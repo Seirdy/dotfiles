@@ -1,0 +1,755 @@
+/* Import any webextension tweaks here - Example Shown below */
+/* IMPORTANT: change the Internal UUID in the corresponding css file */
+:root {
+    --primary-dark-color: #31363B;
+    /* Color of FF dark theme nav-bar */
+    --primary-light-color: #A1A5A0;
+    /* Off white */
+    --light-accent-color: #616569;
+    /* Slightly darker off white */
+    --dark-accent: var(--primary-accent-color-dark);
+    /* darker shade of main color */
+    --mid-way-color: #404B4F;
+    /* inbetween main dark and light color */
+    --primary-accent-color: #3DAEE9;
+    --primary-accent-color-dark: #2A2E32;
+    /* Darker cyan color */
+    --dark-background: #232629;
+    --in-content-page-color: var(--primary-light-color) !important;
+    --in-content-page-background: var(--dark-background) !important;
+    --in-content-text-color: var(--primary-light-color) !important;
+    --in-content-selected-text: var(--primary-light-color) !important;
+    --in-content-box-background: var(--primary-dark-color) !important;
+    --in-content-box-background-odd: var(--light-accent-color) !important;
+    --in-content-box-background-hover: var(--dark-accent) !important;
+    --in-content-box-background-active: var(--dark-accent) !important;
+    --in-content-box-border-color: var(--primary-dark-color) !important;
+    --in-content-item-hover: var(--dark-accent) !important;
+    --in-content-item-selected: var(--dark-accent) !important;
+    --in-content-border-highlight: var(--dark-accent) !important;
+    --in-content-border-focus: var(--dark-accent) !important;
+    --in-content-border-color: var(--primary-dark-color) !important;
+    --in-content-category-outline-focus: 1px dotted var(--dark-accent) !important;
+    --in-content-category-text: var(--primary-light-color) !important;
+    --in-content-category-text-active: var(--primary-light-color) !important;
+    --in-content-category-text-selected: var(--primary-accent-color) !important;
+    --in-content-category-text-selected-active: var(--primary-accent-color-dark) !important;
+    --in-content-category-background-selected-hover: var(--primary-dark-color) !important;
+    --in-content-category-background-selected-active: var(--primary-dark-color) !important;
+    --in-content-link-color: var(--primary-accent-color) !important;
+    --in-content-link-color-hover: var(--primary-accent-color-dark) !important;
+    --in-content-link-color-visited: var(--dark-accent) !important;
+    --in-content-primary-button-background: var(--dark-accent) !important;
+    --in-content-primary-button-background-hover: var(--primary-accent-color-dark) !important;
+    --in-content-primary-button-background-active: var(--primary-accent-color-dark) !important;
+    --in-content-table-header-background: var(--dark-accent) !important;
+    --in-content-category-background: var(--primary-dark-color) !important;
+    --grey-10: #f9f9fa;
+    --grey-20: #ededf0;
+    --grey-30: #d7d7db;
+    --grey-40: #b1b1b3;
+    --grey-50: #737373;
+    --grey-60: #4a4a4f;
+    --grey-70: #38383d;
+    --grey-80: #2a2a2e;
+    --grey-90: #0c0c0d;
+    --tone-1: var(--grey-10);
+    --tone-2: var(--grey-20);
+    --tone-3: var(--grey-30);
+    --tone-4: var(--grey-40);
+    --tone-5: var(--grey-50);
+    --tone-6: var(--grey-60);
+    --tone-7: var(--grey-70);
+    --tone-8: var(--grey-80);
+    --tone-9: var(--grey-90);
+    --theme-selection-background: var(--dark-accent)!important;
+    --theme-selection-background-hover: var(--mid-way-color)!important;
+    --in-content-category-header-background: var(--primary-accent-color-dark)!important;
+    --selected-icon-fill-color: var(--tone-2)!important;
+    --in-content-dark-header-background: var(--tone-9)!important;
+}
+
+/*@-moz-document url-prefix(about:about), url-prefix(about:crashes), url(about:debugging), url-prefix(about:downloads), url-prefix(about:privatebrowsing), url-prefix(about:buildconfig), url-prefix(about:networking),url-prefix(about:license), url(about:studies), url(about:telemetry), url(about:support), url(about:sessionrestore), url(about:neterror), url(about:home)   {*/
+
+/*}*/
+@-moz-document url-prefix(https://addons.mozilla.org) {
+  .Footer,
+  .Footer-wrapper,
+  .LanguageTools-header-row,
+  .Header,
+  .amo,
+  body, html{
+    background: var(--in-content-category-header-background)!important
+  }
+  h1,
+  h2 {
+    color: var(--in-content-category-text)!important
+  }
+  .Guides-header,
+  .HomeHeroGuides-sections .Hero-name-HomeHeroGuides {
+    border-color: var(--in-content-box-border-color)!important
+  }
+  .App-content,
+  .Home,
+  .LandingPage,
+  .LanguageTools-table-row:nth-child(2n),
+  .Paginate {
+    background: var(--in-content-page-background)!important
+  }
+  .Select {
+    background-color: var(--in-content-page-background)!important
+  }
+  .SearchForm-icon-magnifying-glass {
+    filter: invert(65%)!important
+  }
+  .AddonDescription-more-addons--theme .Card-contents .AddonsCard-list,
+  .AddonDescription-more-addons:not(.AddonDescription-more-addons--theme) .Card-contents .AddonsCard-list,
+  .AddonsByAuthorsCard .Card-contents .AddonsCard-list,
+  .AddonsCard--horizontal .Card-contents,
+  .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-link,
+  .AutoSearchInput-suggestions-item,
+  .Card--photon .Card-contents,
+  .Card-contents,
+  .Card-contents li,
+  .Card-footer,
+  .Card-footer-link,
+  .Card-footer-text,
+  .Card-header,
+  .Categories .Card-contents,
+  .DropdownMenu-items::after,
+  .Hero .Card-contents,
+  .Home-SubjectShelf .Card-contents,
+  .LandingPage-header,
+  .MetadataCard,
+  .Search .SearchResults .SearchResult,
+  .Search .SearchResults-message,
+  .SearchForm-query,
+  .SearchForm-suggestions-item.SearchForm-suggestions-item,
+  .SectionLinks-dropdown .DropdownMenu-items,
+  input.AutoSearchInput-query {
+    background: var(--in-content-box-background)!important
+  }
+  .Addon-author,
+  .Addon-author a,
+  .Addon-author a:link .Button--action,
+  .Addon-title,
+  .AddonBadges .Badge,
+  .AddonTitle,
+  .Button--action,
+  .Button--action.Button--small:link,
+  .Button--action:link,
+  .Button--neutral,
+  .Button--neutral:link,
+  .Card--photon .Card-contents,
+  .Card-contents,
+  .Card-footer-text,
+  .Definition-dt,
+  .DropdownMenuItem,
+  .DropdownMenuItem-link a,
+  .DropdownMenuItem-link a:link,
+  .DropdownMenuItem-section,
+  .ExpandableCard-ToggleLink:link,
+  .Footer a:active,
+  .Footer a:hover,
+  .Footer-links-header a:link,
+  .GuidesAddonCard .AddonTitle a,
+  .GuidesAddonCard .GuidesAddonCard-content-header-title .AddonTitle-author,
+  .Home-SubjectShelf-link:link,
+  .Home-SubjectShelf-link:visited,
+  .Home-SubjectShelf-subheading,
+  .LandingPage-addonType-name,
+  .LandingPage-heading-content,
+  .MetadataCard-list dt,
+  .Paginate .Button.Paginate-item--current-page,
+  .Paginate .Button.Paginate-item:first-child,
+  .Paginate .Button.Paginate-item:last-child,
+  .Paginate .Button.Paginate-item:link:first-child,
+  .Paginate .Button.Paginate-item:link:last-child,
+  .Paginate .Button.Paginate-item:visited:first-child,
+  .Paginate .Button.Paginate-item:visited:last-child .Paginate-page-number,
+  .PermissionsCard-subhead,
+  .ReportAbuseButton-show-more,
+  .SearchContextCard-header,
+  .SearchFilters-label,
+  .SearchForm-query,
+  .SearchResult--meta-section,
+  .SearchResult-name,
+  .SearchResult-summary,
+  .Select,
+  input.AutoSearchInput-query {
+    color: var(--in-content-page-color)!important
+  }
+  .Paginate .Button.Paginate-item:active,
+  .Paginate .Button.Paginate-item:hover {
+    background-color: var(--in-content-box-background)!important
+  }
+  .AutoSearchInput-suggestions-item {
+    color: var(--in-content-page-color)
+  }
+  .Card-header {
+    color: var(--in-content-text-color)!important
+  }
+  .Card-contents li .Rating-star-group,
+  .Paginate-next::after,
+  .Paginate-previous::before {
+    filter: invert(70%)!important
+  }
+  .AddonMeta .MetadataCard-content a,
+  .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link,
+  .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:link,
+  .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:visited,
+  .AddonMeta .MetadataCard-content a:link,
+  .AddonMeta .MetadataCard-content a:visited,
+  .AddonMeta .MetadataCard-title a,
+  .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link,
+  .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:link,
+  .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:visited,
+  .AddonMeta .MetadataCard-title a:link,
+  .AddonMeta .MetadataCard-title a:visited,
+  .RatingsByStar-count a:active,
+  .RatingsByStar-count a:link,
+  .RatingsByStar-count a:visited,
+  .RatingsByStar-star a:active,
+  .RatingsByStar-star a:link,
+  .RatingsByStar-star a:visited {
+    color: var(--in-content-page-color)!important
+  }
+  .Rating-selected-star {
+    background: url("data:image/svg+xml,%3Csvg width='17px' height='16px' viewBox='0 0 17 16' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch --%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='Screens' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Extension-Detail---1366px' transform='translate(-1268.000000, -191.000000)' fill-rule='nonzero' fill='%23D7D7DB'%3E %3Cg id='Icon/Star/Off' transform='translate(1268.093458, 191.000000)'%3E %3Cpath d='M16.9387231,6.0134792 C16.8019739,5.62866693 16.4537759,5.34430427 16.0298163,5.27120279 L11.6315676,4.53095169 L9.55990532,0.617038533 C9.35975238,0.238957594 8.94965505,-8.43205013e-17 8.50094816,0 C8.05224128,5.62136675e-17 7.64214395,0.238957594 7.44199101,0.617038533 L5.36925312,4.53095169 L0.979609481,5.26917748 C0.55189384,5.33952054 0.199461709,5.62476632 0.0614173919,6.01232884 C-0.0766269256,6.39989135 0.0218952463,6.82750347 0.318097391,7.1263875 L3.46646469,10.3132141 L2.81140637,14.7283917 C2.74982246,15.1419679 2.93913032,15.5532305 3.30178728,15.7937216 C3.66444423,16.0342127 4.13951821,16.0635259 4.53241344,15.8696543 L8.50041035,13.9213053 L12.4694829,15.8726923 C12.8623781,16.0665639 13.3374521,16.0372507 13.7001091,15.7967596 C14.062766,15.5562685 14.2520739,15.1450059 14.19049,14.7314296 L13.534356,10.3132141 L16.6816477,7.12740015 C16.9779332,6.82862115 17.0766057,6.40106827 16.9387231,6.0134792 Z' id='Star-Copy'%3E%3C/path%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") 50%/contain no-repeat!important
+  }
+  .ShowMoreCard-contents::after {
+    background: linear-gradient(rgba(255,255,255,0),var(--in-content-box-background))!important
+  }
+  .Addon-details .AddonDescription-contents a:link,
+  .AddonMoreInfo-contents a:link,
+  .Card-footer-link a,
+  .Card-footer-link a:hover,
+  .Card-footer-link a:link,
+  .Card.ShowMoreCard.AddonDescription-version-notes a:link,
+  .DropdownMenuItem-link a:hover,
+  .Home-SubjectShelf-link:active,
+  .Home-SubjectShelf-link:focus,
+  .Home-SubjectShelf-link:hover,
+  .LanguageTools-table a:link,
+  .SearchResult-link:focus .SearchResult-name,
+  .SearchResult-link:hover .SearchResult-name {
+    color: var(--in-content-link-color)!important
+  }
+  .Button--action.Button--outline-only {
+    border-color: var(--in-content-border-highlight)!important
+  }
+  input.AutoSearchInput-query {
+    border-color: var(--in-content-box-border-color)!important
+  }
+  .Addon .InstallButton-button,
+  .Button--action,
+  .Button--action.Button--small,
+  .SearchForm-suggestions-item.SearchForm-suggestions-item--highlighted {
+    background: var(--in-content-primary-button-background)!important
+  }
+  .Button--action.Button--outline-only:hover,
+  .Button--action:hover,
+  .SearchForm-query:hover {
+    border-color: var(--in-content-primary-button-background)!important
+  }
+  .SearchForm-query:focus {
+    box-shadow: 0 0 5px 0 var(--in-content-border-highlight)!important;
+    border-color: var(--in-content-primary-button-background)!important
+  }
+  .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-link:hover {
+    background: var(--in-content-page-background)!important;
+    border-radius: 0!important
+  }
+  .Button--report {
+    text-shadow: none!important
+  }
+  .Icon-arrow,
+  .Icon-external {
+    filter: invert(20%)!important
+  }
+  .Icon-magnifying-glass {
+    filter: invert(65%)
+  }
+  .Icon-featured {
+    filter: invert(85%)!important
+  }
+  .Icon-plus-dark {
+    filter: invert(100%)!important
+  }
+  .Button--neutral.Button--puffy,
+  .Button--neutral:link.Button--puffy {
+    background: var(--in-content-primary-button-background)!important;
+    color: var(--in-content-selected-text)!important
+  }
+  .Button--neutral.Button--puffy:hover,
+  .Button--neutral:link.Button--puffy:hover {
+    background: var(--in-content-primary-button-background-hover)!important
+  }
+}
+@-moz-document url-prefix(about:addons) {
+    .addon-name {
+        color: var(--grey-10) !important;
+    }
+    .addon-detail-row {
+        color: var(--grey-20) !important;
+    }
+}
+/* View Source */
+@-moz-document url-prefix(view-source) {
+  :root {
+    background-color: var(--in-content-page-background)!important;
+    color: var(--in-content-page-color)!important
+  }
+  pre[id]:before,
+  span[id]:before {
+    color: var(--in-content-page-color)!important
+  }
+  .highlight .end-tag,
+  .highlight .start-tag {
+    color: var(--theme-highlight-purple)!important
+  }
+  .highlight .comment {
+    color: var(--theme-highlight-green)!important
+  }
+  .highlight .cdata {
+    color: #c06!important
+  }
+  .highlight .doctype {
+    color: #4682b4!important
+  }
+  .highlight .pi {
+    color: var(--theme-highlight-red)!important
+  }
+  .highlight .entity {
+    color: #dea174!important
+  }
+  .highlight .attribute-name {
+    color: var(--theme-highlight-green)!important
+  }
+  .highlight .attribute-value {
+    color: var(--theme-highlight-blue)!important
+  }
+  .highlight .markupdeclaration {
+    color: #4682b4!important
+  }
+  .highlight .error,
+  .highlight .error > :-moz-any(.start-tag,.end-tag,.comment,.cdata,.doctype,.pi,.entity,.attribute-name,.attribute-value) {
+    color: #de7474!important
+  }
+}
+/* Tridactyl */
+@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/") {
+  .container-main,
+  body,
+  html {
+    background: var(--in-content-page-background)!important
+  }
+  .tsd-panel {
+    background: var(--in-content-box-background)!important
+  }
+  .tsd-page-title,
+  .tsd-page-toolbar,
+  footer {
+    background: var(--in-content-category-header-background)!important;
+    border-color: var(--in-content-category-header-background)!important
+  }
+  body,
+  table {
+    color: var(--in-content-page-color)!important
+  }
+  a:link {
+    color: var(--in-content-link-color)!important
+  }
+  #completions .sectionHeader {
+    background: var(--in-content-category-header-background)!important;
+    color: var(--in-content-text-color)!important
+  }
+  #completions {
+    background: var(--in-content-page-background)!important;
+    border-color: var(--in-content-box-border-color)!important
+  }
+  .option:not(.focused) .url {
+    color: var(--code-green)!important;
+    background: var(--in-content-page-background)!important
+  }
+  input {
+    background: var(--in-content-category-header-background)!important;
+    color: var(--in-content-text-color)!important
+  }
+  .focused,
+  .focused .url {
+    background: var(--warning-background-color)!important;
+    color: var(--warning-color)!important
+  }
+  .spoiler {
+    background-color: var(--in-content-box-background)!important;
+    border-color: var(--in-content-box-border-color)!important
+  }
+}
+
+@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/static/newtab.html") {
+    body {
+        background-color: var(--primary-dark-color) !important;
+        color: var(--primary-light-color) !important;
+    }
+}
+
+/* MEGA */
+@-moz-document url-prefix("moz-extension://2416ce8f-e5ce-4bbf-a9d0-c7007c211d44/mega")
+{
+  .default-white-button:not(.top-login-button),
+.chat-right-area::after,
+.bottom-page.plans-info,
+.create-folder-input-bl > input,
+div.create-folder-button-cancel.popup.default-grey-button.right,
+.active-folder-link .nw-fm-left-icons-panel,
+.files-grid-view,
+.bottom-page.light-blue-top .top-head,
+.bottom-page.light-blue-top .top-head,
+.bottom-page.light-blue-top .top-head.floating
+  {
+    background: #333;
+  }
+
+  body,
+.loading-mid-white-block,
+.light-overlay,
+.top-menu-popup,
+.dropdown-item:not(.static):hover,
+.contains-submenu.opened,
+.dropdown.body,
+.shared-top-details,
+.shared-details-buttons,
+.shared-details-buttons::before,
+.transfer-table-header,
+.transfer-table-wrapper,
+.fm-empty-folder,
+.fm-left-panel,
+.jspContainer,
+.default-grey-button,
+.widgets.content-block,
+.content-panel.conversations.active,
+.messages-block,
+.arc-conversation-btn-block:hover,
+.messages-textarea,
+.fm-empty-contacts,
+.bottom-page.white-block,
+.vertical-centered-bl,
+.plans-block > .membership-pad-bl,
+.sign .main-pad-block,
+.pages-nav.content-block,
+.vertical-centered-cell > .pages-nav.content-block,
+.create-folder-input-bl,
+.create-folder-bottom
+  {
+    background: #222;
+  }
+
+  .fm-right-header,
+.fm-header-buttons,
+.data-block-view:before,
+.file-settings-icon,
+.top-search-input::selection,
+.notification-header,
+.fm-notifications-bottom,
+.grid-url-arrow,
+.fm-transfers-header,
+.account.tabs-bl,
+.contacts-tabs-bl,
+.fm-dialog,
+.fm-account-input,
+.medium.account.grey-info-bl,
+.account.widget,
+.fm-account-history-head,
+.fm-account-history .grey-bar,
+.grid-table tr:hover td,
+.grid-table tr:hover:nth-child(2n+1) td,
+.chat-right-pad,
+.arc-conversation-btn-block,
+.conversations-pane li:nth-child(2n+1),
+.arc-chat-messages-block tr.arc-chat-list:nth-child(2n+1),
+.chat-textarea,
+.toast-notification,
+.contact-top-details,
+.bottom-page.grey-block,
+.bottom-menu.body
+  {
+    background: #111;
+  }
+
+  .arrow:not(.grid-header-star)
+  {
+    background: none;
+  }
+
+  .notification-txt,
+.grid-table.sessions > tbody > tr span.current-session-txt,
+.grid-table.sessions > tbody > tr span.active-session-txt
+  {
+    color: #222;
+  }
+
+  .bottom-page > .top-head,
+.top-head,
+.submenu,
+.fm-left-menu.transfers,
+.top-head.floating.activated,
+.default-white-button.semi-small::after
+  {
+    background: #D90007;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px;
+  }
+
+  .settings-logout,
+#login-name::selection,
+#login-name2::selection,
+#login-password::selection,
+#login-password2::selection
+  {
+    background: #772225;
+  }
+
+  a.st-facebook-button
+  {
+    color: #D90007;
+  }
+
+  ul.loading-info > li,
+.dropdown-item,
+.button,
+.nw-fm-tree-folder,
+.data-item-icon,
+.file-block-title,
+.fm-breadcrumbs.has-next-button .right-arrow-bg,
+.fm-tree-panel,
+.nw-tree-panel-header,
+.notification-username,
+.shared-details-folder-name,
+.membership-big-txt.email,
+.account.membership-plan,
+.account.tab-lnk,
+.account.data-block.storage-data > .used-space > span,
+.account.progress-title,
+.grid-table.sessions > tbody *,
+.account > .radio-txt,
+.account.left-pane.big-txt,
+.account.left-pane.info-txt,
+.chat-right-pad *,
+.arc-conversation-btn-block:hover,
+.conversation-message,
+textarea.messages-textarea,
+.contact-top-details *,
+.horizontal-centered-bl > .bottom-page.top-header,
+.bottom-page.plans-info,
+.account.top-header,
+.img-description .bottom-page.big-header
+  {
+    color: #e1e1e1;
+  }
+
+  .link-button:hover,
+.menu,
+.top-menu-item:hover,
+.top-search-input,
+.transfer-table-header > tbody > tr > th,
+.membership-big-txt.name,
+.fm-account-header,
+.fm-account-input input,
+.default-dropdown-item,
+.account.storage,
+.account.plan-info,
+.account.data-txt,
+table.grid-table > tr:hover > td > div > .shared-folder-name,
+table.grid-table > tr:hover > td > div > .fm-chat-user,
+table.grid-table > tr:hover > td > div > .fm-chat-user-status,
+.user-card-name.conversation-name,
+#login-name,
+#login-name2,
+#login-password,
+#login-password2,
+.nw-contact-item > .nw-contact-name,
+.fm-empty-pad > .fm-empty-cloud-txt,
+.dropdown.body.tooltip.small,
+h5.main-italic-header,
+.expiry,
+.pages-nav.button-label
+  {
+    color: #c3c3c3;
+  }
+
+  a.user-name,
+.account.tab-lnk.active,
+.contacts-tab-lnk.active,
+#token-input-add-user-dialog-input,
+.top-change-language-name,
+.fm-notifications-bottom > .default-white-button,
+.create-folder-input-bl > input,
+.create-folder-button
+  {
+    color: #fff;
+  }
+
+  .avatar-bg.colorized,
+.mega-logo
+  {
+    filter: grayscale(100%) invert(90%);
+  }
+
+  .grid-header-star,
+.fm-files-view-icon,
+.transfer-filetype-icon,
+.arrow.desc,
+.arrow.asc,
+.data-item-icon,
+.top-clear-button,
+.notification-txt,
+.shared-folder-icon,
+table.grid-table > tr > td > .avatar-wrapper,
+.fm-breadcrumbs,
+.transfer-type,
+.transfer-table-header > tbody > tr > th:after,
+table.grid-table.contacts > tr:hover,
+.tranfer-filetype-txt:after,
+.membership-pad-bl,
+.reg-st3-membership-icon,
+.pro-feature-icon,
+.period
+  {
+    filter: invert(100%);
+  }
+
+  .fm-account-select-block > div,
+.account.chart-block,
+.shared-with-me > tr:hover,
+.toast-close-button,
+.nav-icon
+  {
+    filter: invert(94%);
+  }
+
+  .grid-scrolling-table,
+.transfer-scrolling-table,
+.small-icon,
+.nw-fm-arrow-icon,
+.dropdown-item.contains-submenu:not(.disabled-submenu)::before,
+.fm-breadcrumbs.has-next-button,
+.fm-account-button,
+.avatar-white-bg,
+.account-history-dropdown-button,
+.account-history-dropdown,
+.account-history-drop-items.active,
+.start-chat-button
+  {
+    filter: invert(88%);
+  }
+
+  .grey-rocket
+  {
+    filter: invert(86.5%);
+  }
+
+  .jspContainer:before,
+.jspContainer:after,
+.top-menu-item.submenu-item::before,
+.grid-header-star,
+.grid-url-arrow,
+.nw-tree-panel-arrows,
+.account-icon
+  {
+    filter: invert(85%);
+  }
+
+  .dropdown-section > hr,
+.dropdown-white-arrow,
+.fm-empty-transfers-bg,
+.fm-empty-folder-bg,
+.fm-empty-contacts-bg,
+.top-login-forgot-pass
+  {
+    filter: invert(50%);
+  }
+
+  ul > li > span:hover > .nw-fm-arrow-icon,
+ul > li > span:hover > .data-item-icon,
+ul > li > .nw-fm-tree-item.selected > .data-item-icon,
+.dropdown-item.contains-submenu.opened:before,
+.dropdown-item:hover > i.small-icon,
+.dropdown-item.opened > i.small-icon,
+.membership,
+table.grid-table > tr:hover > td > .avatar-wrapper,
+table.grid-table > tr:hover > td > .shared-folder-icon,
+table.grid-table.contacts > tr:hover > td > .avatar-wrapper,
+.top-login-forgot-pass:hover
+  {
+    filter: invert(0);
+  }
+
+  a.fm-avatar
+  {
+    filter: brightness(80%);
+  }
+
+  .top-icon
+  {
+    filter: brightness(250%);
+  }
+
+  .fm-tree-panel,
+.nw-tree-panel-header
+  {
+    border-left: 1px #333 solid;
+    border-right: 1px #333 solid;
+    background: #222;
+  }
+
+  .dropdown,
+.default-select-dropdown,
+.account.left-pane.divider .chat-right-pad
+  {
+    border: 1px solid #444;
+  }
+
+  .account.tabs-bl,
+.contacts-tabs-bl,
+a.nlanguage-lnk
+  {
+    border-color: #333;
+  }
+
+  .grid-table-header,
+.file-block-scrolling
+  {
+    border-top: 1px #333 solid;
+    border-bottom: 1px #333 solid;
+    background: #222;
+  }
+
+  .logo
+  {
+    border: 1px solid #fff;
+  }
+
+  .dropdown.body.submenu
+  {
+    margin-left: 0px;
+  }
+
+  .fm-notifications-bottom .default-white-button
+  {
+    margin-top: 0px;
+  }
+
+  .arrow.desc
+  {
+    background-image: url(https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png);
+    background-position: right -1285px;
+    background-repeat: no-repeat;
+  }
+
+  .arrow.asc
+  {
+    background-image: url(https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png);
+    background-position: right -1225px;
+    background-repeat: no-repeat;
+  }
+}

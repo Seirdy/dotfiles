@@ -1,0 +1,5 @@
+browser "nightly %u"
+bookmark-cmd "/home/rkumar/.local/share/newsboat/send-to-pocket.sh"
+reload-threads 12
+refresh-on-startup yes
+reload-time 60

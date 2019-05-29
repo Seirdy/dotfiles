@@ -1,0 +1,1 @@
+setlocal formatexpr=CocAction('formatSelected')

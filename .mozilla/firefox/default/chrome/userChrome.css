@@ -1,0 +1,525 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/*enable userchrome.js*/
+toolbarbutton#alltabs-button {
+	-moz-binding: url("userChrome.xml#js");
+}
+/*For reference:
+ * chrome://browser/skin/browser.css
+ * chrome://global/skin/dropmarker.css
+ * chrome://browser/skin/compacttheme.css
+ * chrome://global/skin/toolbar.css
+ * chrome://global/skin/global.css
+ * chrome://global/locale/intl.css
+ * chrome://global/content/xul.css
+ * chrome://global/content/minimal-xul.css
+ */
+
+:root {
+	/*My own variables, from the Breeze-Dark theme*/
+	--ui-basecolor: #31363B;
+	--ui-background: #232629;
+	--ui-darkcolor: #171A1C;
+	--ui-accent: #3DAEE9;
+	--ui-lighter: #2A2E32;
+	--ui-emphasis: rgba(147, 206, 233, 0.8);
+	/*My own color pallete for Adapta-Nokto*/
+	/*    --ui-basecolor: #222D32;
+	--ui-background: #263238;
+	--ui-darkcolor: #222D32;
+	--ui-accent: #00BCD4;*/
+	/* --ui-lighter: #29353B; */
+	--ui-border: #616569;
+	--ui-lightest: #A5AEB3;
+	--ui-faded_text: #818C91;
+	--compact-urlbar-min-height: 26px;
+	/*Variables from Firefox styelsheets*/
+	--toolbar-bgcolor: var(--ui-basecolor) !important;
+	--toolbar-bgimage: none !important;
+	--lwt-accent-color: var(--ui-accent) !important;
+	/*Color tabstrip background*/
+	--chrome-background-color: var(--ui-basecolor) !important;
+	--tab-selection-background-color: var(--ui-basecolor) !important;
+	/*Color toolbr, urlbr wrapper*/
+	--chrome-secondary-background-color: var(--ui-darkcolor) !important;
+	--chrome-content-separator-color: var(--ui-basecolor) !important;
+	--url-and-searchbar-background-color: transparent !important;
+	--chrome-selection-background-color: var(--ui-accent) !important;
+	--toolbarbutton-border-radius: 20% !important;
+	--tab-loading-fill: var(--ui-accent) !important;
+	--autocomplete-popup-background: var(--ui-background) !important;
+	--arrowpanel-background: var(--ui-background) !important;
+	--tabs-border: transparent !important; /* Remove borders from active tab and below tabs */
+	--toolbox-border-bottom-color: none !important;
+	--toolbarbutton-hover-background: var(--ui-basecolor) !important;
+	--toolbarbutton-active-background: var(--ui-accent) !important;
+	--lwt-toolbarbutton-active-background: var(--toolbarbutton-hover-background) !important;
+	--lwt-toolbarbutton-hover-background: var(--toolbarbutton-hover-background) !important;
+	/*Make toolbarbuttons have circular backgrounds*/
+}
+/*#TabsToolbar, #navigator-toolbox{
+background-color: var(--ui-background) !important;
+}*/
+
+.autocomplete-richlistitem .ac-url {
+	color: var(--ui-faded-text) !important;
+	opacity: 0.6 !important;
+}
+
+/*toolbar*/
+
+#urlbar,
+.searchbar-textbox,
+.findbar-textbox {
+	border-color: var(--ui-border) !important;
+	transition: .1s;
+	transition-property: border-color;
+	border-radius: 0 !important;
+	/*     border-width: 0 0 1px 0 !important; */
+	background-color: var(--ui-background) !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	min-height: var(--compact-urlbar-min-height) !important;
+}
+
+#urlbar[focused],
+.searchbar-textbox[focused],
+.findbar-textbox[focused] {
+	border-color: var(--ui-accent) !important;
+}
+
+
+
+#urlbar[pageproxystate="invalid"] .urlbar-textbox-container {
+	padding-left: 5px !important;
+}
+
+/* Reduce URLbar suggestion width */
+/*#PopupAutoCompleteRichResult {
+width: 80% !important;
+max-width: 1000px !important;
+margin-left: 0px !important;
+margin-right: 0px !important;
+}*/
+
+#PopupAutoCompleteRichResult {
+	opacity: 0.97 !important;
+}
+
+/*toolbar buttons*/
+
+#navigator-toolbox {
+	--toolbarbutton-border-radius: 20% !important;
+}
+/*Reduce distracting addon button colors*/
+#navigator-toolbox .webextension-browser-action .toolbarbutton-icon {
+	filter: grayscale(100%) brightness(180%) opacity(70%) !important;
+}
+#navigator-toolbox .toolbarbutton-1:hover  .toolbarbutton-badge-stack {
+	border: 0px solid var(--ui-accent) !important;
+
+}
+#navigator-toolbox .toolbarbutton-1:hover  .toolbarbutton-badge-stack {
+	--toolbarbutton-inner-padding: 5px !important;
+	border-width: 1px !important;
+}
+
+/* change overflow button icon */
+#PlacesChevron, #nav-bar-overflow-button {
+	list-style-image: url("chrome://browser/skin/page-action.svg") !important;
+	transform: rotate(90deg);
+}
+
+.tabbrowser-tab,
+.tab-stack,
+.tab-background {
+	border: none !important;
+	border-width: 0px !important;
+}
+
+
+/*Shrink close button, favicon*/
+
+.tabbrowser-tab .tab-icon-image,
+.tabbrowser-tab .close-icon {
+	transform: scale(.9, .9)!important;
+}
+
+/*.close-icon {
+transition: opacity 250ms var(--animation-easing-function);
+margin-left: 250ms var(--animation-easing-function);
+transform: var(--animation-easing-function);
+visibility: 0ms 25ms!important;
+}
+
+.tabbrowser-tab:not(:hover) .close-icon {
+opacity: 0!important;
+margin-left: calc((-20px * .9) + 2px)!important;
+transform: scale(.4, .4)!important;
+}*/
+
+
+/*Dim un-loaded and background tabs*/
+
+.tabbrowser-tab:not([selected]):not([pending=true]) {
+	opacity: .8;
+}
+
+.tabbrowser-tab:not([selected])[pending=true] {
+	opacity: .35;
+}
+
+
+/*hide stuff*/
+
+#forward-button,
+#back-button,
+.urlbar-go-button,
+.search-go-button,
+.urlbar-history-dropmarker,
+#context-sendpagetodevice,
+#context-sep-sendpagetodevice,
+#appMenu-fxa-container,
+#appMenu-fxa-container+toolbarseparator,
+#context-sendpagetodevice,
+#context-sendlinktodevice,
+#context-sep-sendlinktodevice,
+#context_sendTabToDevice,
+#context_sendTabToDevice_separator,
+#pageActionSeparator,
+#PanelUI-button,
+#identity-icon-labels,
+#TabsToolbar #window-controls,
+#identity-icon,
+#userContext-indicator.identity-icon-circle,
+#pocket-button-box,
+#tabContextMenu .menu-iconic-icon,
+/* .findbar-closebutton, */
+#overflowMenu-customize-button,
+#urlbar *|*.textbox-input::-moz-placeholder,
+
+/*Search engines in urlbar dropdown*/
+.search-one-offs,
+
+/*Compact sidebar header*/
+
+#sidebar-box #sidebar-header #sidebar-close,
+#sidebar-box #sidebar-header #sidebar-switcher-target #sidebar-switcher-arrow,
+
+/*urlbr magnifying glass*/
+
+#urlbar[pageproxystate="invalid"]>#identity-box,
+/* Circle container indicator */
+#userContext-indicator[data-identity-icon="circle"]
+/* .scrollbutton-up[disabled="true"], */
+/* .scrollbutton-down:not([disabled="true"])*/ {
+display: none !important;
+visibility: collapse !important;
+opacity: 0 !important;
+}
+
+/*Hide pageActionButton without removing its functionality*/
+#pageActionButton {
+	list-style-image: none !important;
+	width: 0px !important;
+	height: 0px !important;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+#identity-box {
+	padding: -8px 0 !important;
+	border: none !important;
+	margin: -8px 0 !important;
+	line-height: 0 !important;
+	transform: scale(.75, .75) !important;
+}
+
+#identity-box:hover {
+	background-color: transparent !important;
+}
+
+#urlbar:not([focused]) #identity-box #connection-icon {
+	fill: var(--ui-lightest) !important;
+	opacity: 1 !important;
+}
+
+#urlbar[focused] #identity-box #connection-icon {
+	fill: var(--ui-accent) !important;
+}
+
+
+/*Tabs on bottom*/
+
+#TabsToolbar,
+.tabbrowser-tab .tab-line {
+	-moz-box-ordinal-group: 2 !important;
+}
+#nav-bar {
+	-moz-box-ordinal-group: 0 !important;
+}
+#navigator-toolbox {
+	-moz-box-ordinal-group: 1 !important;
+}
+/*Lighten tab separators*/
+
+/*Remove extra 1px space before 1st tab and after last tab*/
+
+.tabbrowser-tab[first-tab="true"] .tab-background {
+	border-left-width: 0px !important;
+}
+
+.tabbrowser-tab[first-tab="true"]::before {
+	opacity: 0 !important;
+}
+
+.tabbrowser-tab[last-tab="true"] .tab-background {
+	border-right-width: 0px !important;
+}
+
+.tabbrowser-tab[last-tab="true"]::after {
+	opacity: 0 !important;
+}
+
+
+/*tab-line is to bright. Reduce its opacity a bit*/
+
+.tabbrowser-tab .tab-line {
+	opacity: 0.75 !important;
+}
+
+
+/*Fatten selected line when hovered*/
+
+.tabbrowser-tab[selected]:hover .tab-line {
+	height: 3px !important;
+	opacity: 1 !important;
+}
+
+
+/*Hide new tab favicon*/
+
+.tabbrowser-tab[label="New Tab"] .tab-icon-image {
+	display: none !important;
+}
+
+
+/*----Container tweaks----*/
+
+
+/*hide the circle icon in the URL bar and color the indicator*/
+
+#userContext-icons {
+	background: var(--identity-tab-color)!important;
+	margin: auto 3px!important;
+	border-radius: 1px!important;
+	padding: 0 2px 0 5px!important;
+}
+
+
+#userContext-label {
+	color: #fff!important;
+}
+
+#userContext-indicator {
+	fill: #fff!important;
+	margin-right: 2px!important;
+}
+
+
+/*Color mods*/
+
+
+/*Change the color of the tab line of container tabs*/
+
+.tabbrowser-tab:not([usercontextid]) .tab-line[selected="true"] {
+	--tab-line-color: var(--ui-accent) !important;
+}
+
+.tabbrowser-tab[usercontextid] .tab-line {
+	--tab-line-color: var(--identity-tab-color) !important;
+}
+
+.tabbrowser-tab[usercontextid]:not([selected]):hover .tab-line {
+	opacity: 0.5 !important;
+	background-color: var(--identity-tab-color) !important;
+}
+
+
+/*Color the tab throbber and tab burst*/
+
+.tabbrowser-tab[usercontextid] {
+	--tab-loading-fill: var(--identity-tab-color) !important;
+}
+
+
+/*Hide the standard container indicators of unfocused tabs*/
+
+.tabbrowser-tab[selected] .tab-bottom-line,
+.tabbrowser-tab:hover .tab-bottom-line {
+	display: none !important;
+}
+
+
+/*Make tab bottom line less distracting*/
+
+.tab-bottom-line {
+	opacity: 0.4 !important;
+	margin-bottom: -2px !important;
+	padding: 0 !important;
+}
+
+
+/*Make tab content a bit higher so it looks less cramped*/
+
+/*.tabbrowser-tab .tab-content {
+margin-bottom: 1px !important;
+}*/
+
+
+/*Smaller tab font*/
+
+.tabbrowser-tab label {
+	font-size: 90% !important;
+}
+
+
+/*More compact sidebar header*/
+
+#sidebar-box #sidebar-header {
+	padding: 0 !important;
+	margin-left: 0 !important;
+	font-size: 1.15em !important;
+	line-height: 1em !important;
+	font-weight: inherit !important;
+	border-bottom-color: transparent !important;
+}
+
+#sidebar-box #sidebar-header #sidebar-icon {
+	opacity: 0 !important;
+	width: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#sidebar-box #sidebar-header #sidebar-switcher-target {
+	margin-left: -2px !important;
+	padding: 0 !important;
+}
+
+.sidebar-splitter {
+	width: 3px !important;
+	border-color: var(--ui-darkcolor) !important;
+	background-color: var(--ui-darkcolor) !important;
+}
+
+:root[uidensity=compact] #nav-bar .toolbarbutton-1 {
+	padding-left: 2px !important;
+	padding-right: 2px !important;
+}
+
+/*remove extra space*/
+
+#titlebar-placeholder-on-TabsToolbar-for-captions-buttons {
+	display: none;
+}
+
+.box-inherit .scrollbox-innerbox {
+	margin-right: 0 !important;
+	border: none !important;
+	background-color: #263238 !important;
+}
+
+#TabsToolbar .tabbrowser-arrowscrollbox>.arrowscrollbox-scrollbox,
+#TabsToolbar .tabbrowser-arrowscrollbox,
+#TabsToolbar,
+#scrollbox-innerbox {
+	padding-inline-start: 0px !important;
+	padding-inline-end: 0px !important;
+	background-color: var(--arrowpanel-background) !important;
+	/*    border-top-width: 0px !important;*/
+	/*    border: none !important;*/
+}
+
+
+/*Disable White Flash of Death*/
+#browser vbox#appcontent tabbrowser,
+#content,
+browser[type="content-primary"],
+tabbrowser-tabpanels,
+browser[type=content-primary],
+#appcontent > #content,
+browser[type=content] > html {
+	background-color: var(--ui-background) !important;
+}
+
+.browserContainer {
+	background-color: var(--ui-background) !important;
+}
+
+
+/*--More options for Bookmark panel--*/
+
+#editBMPanel_keywordRow,
+#editBMPanel_descriptionRow,
+#editBMPanel_locationRow,
+#editBMPanel_loadInSidebarCheckbox {
+	visibility: visible;
+}
+
+
+/* Redirector button for dark Firefox themes */
+
+#toggle-button--redirectoreinaregilssoncom-redirector[image*="active"] {
+	filter: invert(100%) brightness(600%);
+}
+
+#toggle-button--redirectoreinaregilssoncom-redirector[image*="disabled"] {
+	filter: invert(100%) brightness(250%);
+}
+
+
+/*
+ * Compact findbar at the top of the window
+ *
+ * Contributor(s): Madis0
+ */
+
+.browserContainer>findbar {
+	-moz-box-ordinal-group: 0;
+	position: fixed !important;
+	right: 1em;
+	border: 1px solid threedshadow !important;
+	/* Hide top border by removing the box-shadow and background-image */
+	border-top: none !important;
+	box-shadow: none !important;
+	background-image: none !important;
+	opacity: 0.9;
+	/* Uncomment to add a transition from the top */
+	/*
+	transition: 400ms !important;
+	z-index: 0 !important;
+	 */
+}
+.findbar-find-previous, .findbar-find-next {
+	background: transparent !important;
+}
+
+/* Margin from top when hidden (necessary for the transition to work) */
+
+
+/*findbar[hidden]{ margin-top: -2em !important; }*/
+
+
+/* Aligns the close button to the center */
+
+.findbar-closebutton {
+	margin-inline-start: 0.5em !important;
+	vertical-align: middle !important;
+	margin-bottom: 0.25em !important;
+	height: inherit !important;
+}
+/*make tabs wider*/
+
+.tabbrowser-tab[fadein]:not([pinned]) {
+	max-width: 550px !important;
+}

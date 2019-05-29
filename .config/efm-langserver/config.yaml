@@ -1,0 +1,15 @@
+languages:
+        pandoc:
+                lint-command: 'markdownlint -c ~/.config/markdownlint/markdownlint.json -s'
+                lint-stdin: true
+                lint-formats:
+                        - '%f: %l: %m'
+                format-command: 'pandoc -f markdown -t markdown -s --columns=88'
+        rst:
+                lint-command: 'rst-lint'
+                lint-stdin: false
+                lint-formats:
+                        - '%l %f %m'
+                format-command: 'pandoc -f rst -t rst --columns=79'
+        sh:
+                lint-command: 'shellcheck'

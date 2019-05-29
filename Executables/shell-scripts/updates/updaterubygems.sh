@@ -1,0 +1,1 @@
+gem update neovim

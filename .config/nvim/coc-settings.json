@@ -1,0 +1,103 @@
+{
+	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
+	"coc.preferences.useQuickfixForLocations": true,
+	"suggest.autoTrigger": "always",
+	"suggest.completionItemKindLabels": {
+		"function": "\uf794",
+		"method": "\uf6a6",
+		"variable": "\uf71b",
+		"constant": "\uf8ff",
+		"struct": "\ufb44",
+		"class": "\uf0e8",
+		"interface": "\ufa52",
+		"text": "\ue612",
+		"enum": "\uf435",
+		"enumMember": "\uf02b",
+		"module": "\uf668",
+		"color": "\ue22b",
+		"property": "\ufab6",
+		"field": "\uf93d",
+		"unit": "\uf475",
+		"file": "\uf471",
+		"value": "\uf8a3",
+		"event": "\ufacd",
+		"folder": "\uf115",
+		"keyword": "\uf893",
+		"snippet": "\uf64d",
+		"operator": "\uf915",
+		"reference": "\uf87a",
+		"typeParameter": "\uf278",
+		"default": "\uf29c"
+	},
+	"diagnostic.errorSign": "",
+	"diagnostic.warningSign": "",
+	"diagnostic.infoSign": "",
+	"diagnostic.hintSign": "\ufeb6",
+	"codeLens.enable": true,
+	"codeLens.separator": "",
+	"highlight.colors.enable": false,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"python",
+		"python3",
+		"rust",
+		"c",
+		"cpp",
+		"css",
+		"json",
+		"rst",
+		"bib",
+		"tex",
+		"latex",
+		"yaml"
+	],
+	"json.enable": true,
+	"json.format.enable": true,
+	"python.jediEnabled": false,
+	"python.autoComplete.addBrackets": true,
+	"python.autoUpdateLanguageServer": true,
+	"python.formatting.provider": "black",
+	"python.formatting.blackPath": "~/Executables/pipx/bin/black",
+	"python.linting.enabled": true,
+	"python.linting.flake8Enabled": true,
+	"python.linting.flake8Path": "~/Executables/pipx/bin/flake8",
+	"python.linting.pylintEnabled": false,
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": [
+				"c",
+				"cpp",
+				"cuda",
+				"objc",
+				"objcpp"
+			],
+			"rootPatterns": [
+				".ccls",
+				"compile_commands.json",
+				".vim/",
+				".git/",
+				".hg/"
+			],
+			"initializationOptions": {
+				"cache.directory": "/tmp/ccls"
+			}
+		},
+		"lua": {
+			"command": "lua-lsp",
+			"filetypes": [
+				"lua"
+			]
+		},
+		"efm": {
+			"command": "efm-langserver",
+			"args": [
+				"-c",
+				"/home/rkumar/.config/efm-langserver/config.yaml"
+			],
+			"filetypes": [
+				"rst",
+				"pandoc"
+			]
+		}
+	}
+}

@@ -1,0 +1,29 @@
+#!/bin/sh
+SCRIPTPATH="$HOME/Executables/shell-scripts/updates"
+cd "$SCRIPTPATH/all_update/logs" || return 1
+echo "Compressing old log"
+fd -t d -x 7z a -bd -m0=lzma -mx=9 -y "{/}.7z" "{}"
+fd -t d -x rm -rf
+STARTTIME=$(date '+%s')
+mkdir "$STARTTIME"
+cd "$STARTTIME" || return 2
+LOGDIR="$PWD"
+
+echo "Starting update: scripting lang packages"
+nohup "$SCRIPTPATH/all_update/update_env.sh" > "$LOGDIR/env-$STARTTIME.log" &
+
+echo "Starting update: flatpak"
+nohup "$SCRIPTPATH/updateflatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+
+echo "Starting update: chromium-latest-linux"
+nohup "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+
+echo "Starting update: compiled lang packages"
+nohup "$SCRIPTPATH/all_update/source_update.sh" > "$LOGDIR/source-$STARTTIME.log" &
+
+echo "Starting update: dnf packages"
+nohup "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+
+ENDTIME=$(date '+%s')
+ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
+echo "Time elapsed for full update: ${ELAPSED} seconds"
