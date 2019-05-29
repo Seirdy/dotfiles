@@ -1,0 +1,15 @@
+{
+	"default": true,
+	"heading-style": {
+		"style": "setext_with_atx"
+	},
+	"ol-prefix": false,
+	"list-marker-space": false,
+	"line-length": {
+		"line_length": 88
+	},
+	"no-inline-html": false,
+	"ul-indent": {
+		"indent": 4
+	}
+}
