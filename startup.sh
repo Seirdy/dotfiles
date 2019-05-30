@@ -9,16 +9,21 @@ fi
 SESSION_START=$(date -Iseconds)
 export SESSION_START
 
+# XDG Base Directory Specification
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 export LC_TIME=en_ZA.UTF-8
 export DEFTERM="kitty -1"  # Default terminal
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export NVIM_GTK_PREFER_DARK_THEME=1
 export GIT_COLA_ICON_THEME="dark"
-export NNN_TMPFILE="$HOME/.cache/nnn"
+export NNN_TMPFILE="$XDG_CACHE_HOME/nnn"
 export NNN_TRASH=1
-export ABDUCO_SOCKET_DIR="$HOME/.local/share"
-export WEECHAT_HOME="$HOME/.config/weechat"
+export ABDUCO_SOCKET_DIR="$XDG_DATA_HOME"
+export WEECHAT_HOME="$XDG_DATA_HOME/weechat"
 export GTK_THEME=Breeze-Dark
 export GTK_THEME_VARIANT=dark
 export BROWSER=nightly
@@ -28,6 +33,9 @@ export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 
 # De-clutter my home folder.
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep"
+export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export GOPATH="$HOME/Executables/go"
 export CARGO_HOME="$HOME/Executables/cargo"
 export NPM_PACKAGES="$HOME/Executables/npm-packages"
@@ -51,7 +59,7 @@ PATH="$PATH:$GEM_HOME/bin"                           # rubygems
 PATH="$PATH:$PIPX_BIN_DIR"                           # pipx
 PATH="$PATH:$GOPATH/bin"                             # go
 PATH="$PATH:$HOME/.local/bin"                        # local bin
-PATH="$PATH:$HOME/.local/share/flatpak/exports/bin"  # flatpak
+PATH="$PATH:$XDG_DATA_HOME/flatpak/exports/bin"  # flatpak
 PATH="$PATH:/var/lib/flatpak/exports/bin"            # more flatpak
 PATH="$PATH:$HOME/Executables/fzf/bin"               # fzf
 PATH="$PATH:/usr/lib64/qt5/bin"                      # qt programs
@@ -79,8 +87,8 @@ export EDITOR="nvim"
 export PAGER="w3m"
 
 # I hid these away in their own file so I could privately update my coords
-LATITUDE=$(sed -n 1p "$HOME/.local/share/computer_state/coordinates")
-LONGITUDE=$(sed -n 2p "$HOME/.local/share/computer_state/coordinates")
+LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
+LONGITUDE=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		export KITTY_ENABLE_WAYLAND=1

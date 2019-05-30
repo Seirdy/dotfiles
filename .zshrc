@@ -4,7 +4,7 @@
 # export MANPATH="$HOME/.local/venvs/*/share/man:$MANPATH"
 # fortune -n 70 -s computers pets
 export LC_ALL=en_US.UTF-8
-module_path+=( "/home/rkumar/.zplugin/bin/zmodules/Src" )
+module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 zmodload zdharma/zplugin
 if [ "$PROFILE_SET" != 1 ]; then
 	echo "PROFILE_SET initial val: \"$PROFILE_SET\""
