@@ -1,0 +1,64 @@
+#!/bin/bash
+
+NEWDISP=$1  # Either "lap" or "mon"
+CONFFILE="$HOME/.local/share/computer_state/current_display"
+
+if [ -z "$NEWDISP" ]; then
+	OLDDISP=$(cat "$CONFFILE")
+	if [ "$OLDDISP" = "mon" ]; then
+		NEWDISP="lap"
+	elif [ "$OLDDISP" = "lap" ]; then
+		NEWDISP="mon"
+	fi
+	echo "Switching from $OLDDISP to $NEWDISP"
+fi
+
+# Save $NEWDISP to $CONFFILE for if switch_display is called again without args
+echo "$NEWDISP" > "$CONFFILE"
+
+# 1. KDE Fonts
+# ============
+if [ "$NEWDISP" = "mon" ]; then
+	SANS_FONT="Source Sans Pro,12,-1,5,50,0,0,0,0,0,Regular"
+	MONO_FONT="Hasklig, 12,-1,5,50,0,0,0,0,0,Regular"
+	SMALL_FONT="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
+elif [ "$NEWDISP" = "lap" ]; then
+	SANS_FONT="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
+	MONO_FONT="Hasklig, 10,-1,5,50,0,0,0,0,0,Regular"
+	SMALL_FONT="Source Sans Pro,8,-1,5,50,0,0,0,0,0,Regular"
+else
+	echo "Error; please specify mon or lap"
+	exit 1
+fi
+
+kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "fixed" "$MONO_FONT"
+kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "font" "$SANS_FONT"
+kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "menuFont" "$SANS_FONT"
+kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "toolBarFont" "$SANS_FONT"
+kwriteconfig5 --file ~/.config/kdeglobals --group "WM" --key "activeFont" "$SANS_FONT"
+kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "smallestReadableFont" "$SMALL_FONT"
+
+# Config directories
+KITTY_CONFDIR="$HOME/.config/kitty"
+FF_CONFDIR="$HOME/.mozilla/firefox/default"
+GTK_CONFDIR="$HOME/.config/gtk-3.0"
+TERMSET_CONFDIR="$HOME/Executables/shell-scripts/terminal_cmds"
+NVIM_CONFDIR="$HOME/.config/nvim"
+
+KITTY_SPECIAL="./kitty_$NEWDISP.conf"
+FF_SPECIAL="./user_$NEWDISP.js"
+GTK_SPECIAL="./settings_$NEWDISP.ini"
+TERMSET_SPECIAL="./st-vars_$NEWDISP"
+NVIM_SPECIAL="./ginit_$NEWDISP.vim"
+
+cd "$KITTY_CONFDIR"
+cat ./kitty_master.conf "$KITTY_SPECIAL" > kitty.conf
+cd "$FF_CONFDIR"
+cat ./user_master.js "$FF_SPECIAL" > ./user.js
+cd "$GTK_CONFDIR"
+cat ./settings_master.ini "$GTK_SPECIAL" > settings.ini
+cd "$TERMSET_CONFDIR"
+cp "$TERMSET_SPECIAL" ./st-vars
+cd "$NVIM_CONFDIR"
+cp "$NVIM_SPECIAL" ginit.vim
+
