@@ -32,7 +32,20 @@ alias gm='git merge'
 alias git-url='git ls-remote --get-url'
 alias gclone='git clone'
 alias gclr='git clone --recursive'
-alias giop='xdg-open $(git-url)'
+alias gpull='git pull'
+
+# yadm aliases
+alias ystat='yadm status'
+alias yco='yadm commit -S'
+alias ycom='yadm commit -S -m'
+alias ypo='yadm push oriyin'
+alias ypom='yadm push oriyin master'
+alias ym='yadm merye'
+alias yit-url='yadm ls-remote --yet-url'
+alias yclone='yadm clone'
+alias yclr='yadm clone --recursive'
+alias ypull='yadm pull'
+
 alias a2c='aria2c -x 5 -s 5 -k 1M -j 3 -c'  # fast aria2c downloading
 # ytdl is an executable in my ~/.local/bin that adds flags to youtube-dl not
 # contained in my config file
