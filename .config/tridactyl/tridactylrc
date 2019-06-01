@@ -1,0 +1,75 @@
+" Based on the example tridactylrc provided in the repo.
+
+sanitise tridactyllocal tridactylsync
+
+colourscheme dark
+
+"
+" Binds
+"
+
+" Comment toggler for Reddit and Hacker News
+bind ;c hint -c [class*="expand"],[class="togg"]
+
+" Make gu take you back to subreddit from comments
+bindurl reddit.com gu urlparent 4
+
+" Only hint search results on Google
+bindurl www.google.com ;f hint -Jc .rc > .r > a
+bindurl www.google.com ;F hint -Jtc .rc>.r>a
+
+bindurl next.duckduckgo.com ;f hint -Jc .result__a
+" Allow Ctrl-a to select all in the commandline
+unbind --mode=ex <C-a>
+
+" Let Ctrl-c to copy in the commandline
+unbind --mode=ex <C-c>
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+
+"
+" Misc settings
+"
+
+" Make Tridactyl work on more sites at the expense of some security
+set csp clobber
+fixamo_quiet
+set allowautofocus false
+set editorcmd $DEFTERM $EDITOR
+
+"
+" URL redirects
+"
+
+" New reddit bad; old reddit good
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
+" Custom binds
+
+" Open about window to update
+bind ,a exclaim_quiet xdotool key --delay 50 alt+h a
+" Open native search dialog
+bind ? exclaim_quiet xdotool key --delay 50 alt+e f
+" Open url in Reddit Terminal Viewer
+bind ,r hint -W exclaim $DEFTERM rtv
+" Open in mpv
+bind ,m hint -W exclaim mpv
+" Open image in feh
+bind ,i composite hint -pipe img src | exclaim_quiet feh
+" Save to pocket (requires pockyt to be installed)
+bind ,p composite get_current_url | exclaim pockyt put -i
+
+bind ,s source
+
+" Search URLS
+set searchurls.ddg https://next.duckduckgo.com/?kmjx.menu=renderer%3ANativeMML%26%3Bsemantics%3Atrue%26%3Bcontext%3ABrowser%26%3Bzoom%3ANone&kp=-2&kc=-1&k1=-1&kam=osm&kak=-1&kax=-1&kaq=-1&kao=-1&kap=-1&kau=-1&t=ffab&ia=web&q=%s
+set searchengine ddg
+
+" Autocontain
+autocontain lclark\.edu School
+autocontain (classroom|accounts)\.google\.com Google
+autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
+autocontain questionablecontent\.net Webcomics
+autocontain getpocket\.com Pocket
