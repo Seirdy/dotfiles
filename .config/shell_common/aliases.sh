@@ -46,7 +46,7 @@ alias yclone='yadm clone'
 alias yclr='yadm clone --recursive'
 alias ypull='yadm pull'
 
-alias a2c='aria2c -x 5 -s 5 -k 1M -j 3 -c'  # fast aria2c downloading
+alias a2c='aria2c'  # fast aria2c downloading
 # ytdl is an executable in my ~/.local/bin that adds flags to youtube-dl not
 # contained in my config file
 alias ytdl-bf='ytdl --format=bestvideo+bestaudio/best'
