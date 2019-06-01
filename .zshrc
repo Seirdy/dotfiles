@@ -5,6 +5,7 @@
 # fortune -n 70 -s computers pets
 export LC_ALL=en_US.UTF-8
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
+module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
 zmodload zdharma/zplugin
 if [ "$PROFILE_SET" != 1 ]; then
 	echo "PROFILE_SET initial val: \"$PROFILE_SET\""

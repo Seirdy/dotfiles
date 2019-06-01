@@ -1,5 +1,4 @@
 # I use zplugin for plugins
-module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
 # shellcheck source=/dev/null
 . "$HOME/.zplugin/bin/zplugin.zsh"
 
