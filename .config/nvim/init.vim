@@ -23,7 +23,7 @@ set tabstop=4
 set colorcolumn=86
 
 " Remove trailing whitespace on save
-autocmd! BufWritePre * :%s/\s\+$//e 
+autocmd! BufWritePre * :%s/\s\+$//e
 
 " =======
 " Plugins
@@ -114,7 +114,7 @@ nnoremap <leader>bn :enew<cr>
 nnoremap <leader>bq :bp <bar> bd! #<cr>
 " close all buffers
 nnoremap <leader>bQ :bufdo bd! #<cr>
-" List buffers 
+" List buffers
 nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 
 " ==========
@@ -163,36 +163,36 @@ let g:airline_theme = 'breezy'
 
 set t_Co=256
 " black
-let g:erminal_color_0 = '#31363b'
-let g:erminal_color_8 = '#6a6e71'
+let g:terminal_color0 = '#31363b'
+let g:terminal_color8 = '#6a6e71'
 
-" red                          
-let g:erminal_color_1 = '#ed1515'
-let g:erminal_color_9 = '#c0392b'
+" red
+let g:terminal_color1 = '#ed1515'
+let g:terminal_color9 = '#c0392b'
 
-" green                        
-let g:erminal_color_2 = '#11d116'
-let g:erminal_color_10 = '#1cdc9a'
+" green
+let g:terminal_color2 = '#11d116'
+let g:terminal_color10 = '#1cdc9a'
 
-" yellow                       
-let g:erminal_color_3 = '#f67400'
-let g:erminal_color_11 = '#fdbc4b'
+" yellow
+let g:terminal_color3 = '#f67400'
+let g:terminal_color11 = '#fdbc4b'
 
-" blue                         
-let g:erminal_color_4 = '#1d99f3'
-let g:erminal_color_12 = '#3daee9'
+" blue
+let g:terminal_color4 = '#1d99f3'
+let g:terminal_color12 = '#3daee9'
 
-" magenta                      
-let g:erminal_color_5 = '#9b59b6'
-let g:erminal_color_13 = '#8e44ad'
+" magenta
+let g:terminal_color5 = '#9b59b6'
+let g:terminal_color13 = '#8e44ad'
 
-" cyan                         
-let g:erminal_color_6 = '#1abc9c'
-let g:erminal_color_14 = '#16a085'
+" cyan
+let g:terminal_color6 = '#1abc9c'
+let g:terminal_color14 = '#16a085'
 
-" white                        
-let g:erminal_color_7 = '#eff0f1'
-let g:erminal_color_15 = '#ffffff'
+" white
+let g:terminal_color7 = '#eff0f1'
+let g:terminal_color15 = '#ffffff'
 
 " ======================================================
 " Coc.nvim: Language Server Client and VSCode extensions
@@ -352,8 +352,15 @@ let g:table_mode_corner_corner='+'
 let g:table_mode_header_fillchar='='
 let g:table_mode_align_char='+'
 
-let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python3", "python", "py", "sh", "asm", "yaml", "html", "css"]
+" =======================
+" Language-specific prefs
+" =======================
+" These are prefs that don't work well when run in autoload/ftplugin, so they
+" go here.
+
+let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python3", "python", "py", "sh", "asm", "yaml", "html", "css", "vim"]
 let g:pandoc#formatting#mode = 'h'
-let g:pandoc#formatting#textwidth = 88
 let g:pandoc#modules#disabled = ["folding","formatting"]
 let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}
+
+let g:vimtex_compiler_progname = 'nvr'
