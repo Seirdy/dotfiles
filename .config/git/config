@@ -1,0 +1,21 @@
+[user]
+	name = Rohan Kumar
+	email = seirdy@protonmail.com
+	signingkey = 82AEA0AC
+[cola]
+	fontdiff = Fira Code,10,-1,5,50,0,0,0,0,0,Regular
+	blameviewer = git gui blame
+	spellcheck = true
+[gui]
+	editor = kwrite
+	historybrowser = git-dag
+[diff]
+	tool = xxdiff
+[merge]
+	tool = xxdiff
+[gpg]
+	program = gpg2
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim

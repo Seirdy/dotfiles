@@ -33,18 +33,37 @@ export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 
 # De-clutter my home folder.
+# See https://0x46.net/thoughts/2019/02/01/dotfile-madness/
+# See https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# In addition to this spec, I use ~/Executables to keep packages installed by
+# 3rd-party package managers.
+export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
+export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
+export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export GOPATH="$HOME/Executables/go"
 export CARGO_HOME="$HOME/Executables/cargo"
-export NPM_PACKAGES="$HOME/Executables/npm-packages"
 export WAPM_PACKAGES="$HOME/Executables/wapm"
-export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-export GEM_HOME="$HOME/Executables/gem"
-export GEM_PATH="$GEM_HOME:/usr/share/gems:/usr/local/share/gems:$GEM_PATH"
+export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config.lua"
 export PIPX_HOME="$HOME/Executables/pipx"
 export PIPX_BIN_DIR="$HOME/Executables/pipx/bin"
+# Keep npm from polluting my $HOME
+export NPM_PACKAGES="$HOME/Executables/npm-packages"
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+# Keep rubygems from polluting my $HOME
+# Note that ~/.gem will be created if using --user-install, but it's completely
+# disposable.
+export GEM_HOME="$HOME/Executables/gem"
+export GEM_PATH="$GEM_HOME:/usr/share/gems:/usr/local/share/gems:$GEM_PATH"
+export GEM_SPEC_CACHE="$GEM_HOME/specs"
+export GEMRC="$XDG_CONFIG_HOME/gem/config"
+
 # Set MANPATH
 export MANPATH="/usr/share/man:$MANPATH"
 export MANPATH="$HOME/.local/man:$MANPATH"
@@ -52,17 +71,17 @@ export MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 # Set PATH
 # PATH="$PATH:$HOME/Executables/anaconda3/bin"       # conda
-PATH="$PATH:$CARGO_HOME/bin"                         # cargo
-PATH="$PATH:$NPM_PACKAGES/bin"                       # npm
-PATH="$PATH:$HOME/.luarocks/bin"                     # luarocks
-PATH="$PATH:$GEM_HOME/bin"                           # rubygems
-PATH="$PATH:$PIPX_BIN_DIR"                           # pipx
-PATH="$PATH:$GOPATH/bin"                             # go
-PATH="$PATH:$HOME/.local/bin"                        # local bin
-PATH="$PATH:$XDG_DATA_HOME/flatpak/exports/bin"  # flatpak
-PATH="$PATH:/var/lib/flatpak/exports/bin"            # more flatpak
-PATH="$PATH:$HOME/Executables/fzf/bin"               # fzf
-PATH="$PATH:/usr/lib64/qt5/bin"                      # qt programs
+PATH="$HOME/.local/bin:$PATH"                        # local bin
+PATH="$CARGO_HOME/bin:$PATH"                         # cargo
+PATH="$NPM_PACKAGES/bin:$PATH"                       # npm
+PATH="$HOME/.luarocks/bin:$PATH"                     # luarocks
+PATH="$GEM_HOME/bin:$PATH"                           # rubygems
+PATH="$PIPX_BIN_DIR:$PATH"                           # pipx
+PATH="$GOPATH/bin:$PATH"                             # go
+PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
+PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
+PATH="$HOME/Executables/fzf/bin:$PATH"               # fzf
+PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
 
 # Dedupe PATH
 if [ -n "$ZSH_VERSION" ] || which zsh; then
