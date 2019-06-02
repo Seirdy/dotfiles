@@ -28,6 +28,7 @@ export GTK_THEME=Breeze-Dark
 export GTK_THEME_VARIANT=dark
 export BROWSER=nightly
 export GTK_USE_PORTAL=1  # KDE file-picker
+export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
@@ -104,6 +105,7 @@ export PATH
 
 export EDITOR="nvim"
 export PAGER="w3m"
+export RTV_EDITOR="nvim -c ':set filetype=md'"
 
 # I hid these away in their own file so I could privately update my coords
 LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
