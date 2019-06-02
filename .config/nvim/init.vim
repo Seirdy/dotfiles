@@ -358,7 +358,7 @@ let g:table_mode_align_char='+'
 " These are prefs that don't work well when run in autoload/ftplugin, so they
 " go here.
 
-let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python3", "python", "py", "sh", "asm", "yaml", "html", "css", "vim"]
+let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python", "sh", "asm", "yaml", "html", "css", "vim"]
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ["folding","formatting"]
 let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}
