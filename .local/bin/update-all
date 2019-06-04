@@ -1,0 +1,53 @@
+#!/bin/sh
+# Runs a full update and saves log files.
+# Full update includes:
+# - dnf packages (dnf is Fedora's package manager)
+# - cargo packages
+# - go packages (installed via go-get)
+# - pipx packages (python pkgs in their own venvs with entries in $PATH)
+# - global pip3 packages (including pipx)
+# - global npm packages
+# - global luarocks
+# - global rubygems
+# - flatpaks
+# - chromium (via chromium-latest-linux).
+# Everything is run simultaneously in the background. The DNF update is also
+# displayed in the interactive session via `tee` so I can enter my root pw and
+# watch it happen.
+# Log files can be big, so all but the most recent are compressed.
+# TODO: Update neovim plugins
+# TODO: determine number of cores and use it to run the max number of parallel
+# processes.
+# I still have to figure out how to update Firefox Nightly (my $BROWSER)
+# without actually launching it.
+
+# SETUP
+SCRIPTPATH="$HOME/Executables/shell-scripts/updates"
+cd "$XDG_DATA_HOME/update-all/logs" || return 1
+echo "Compressing old log"
+fd -t d -x 7z a -bd -m0=lzma -mx=9 -y "{/}.7z" "{}"
+fd -t d -x rm -rf
+STARTTIME=$(date '+%s')
+mkdir "$STARTTIME"
+cd "$STARTTIME" || return 2
+LOGDIR="$PWD"
+
+# RUN UPDATE
+echo "Starting update: scripting lang packages"
+nohup "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/env-$STARTTIME.log" &
+
+echo "Starting update: flatpak"
+nohup "$SCRIPTPATH/updateflatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+
+echo "Starting update: chromium-latest-linux"
+nohup "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+
+echo "Starting update: compiled lang packages"
+nohup "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/source-$STARTTIME.log" &
+
+echo "Starting update: dnf packages"
+nohup "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+
+ENDTIME=$(date '+%s')
+ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
+echo "Time elapsed for full update: ${ELAPSED} seconds"
