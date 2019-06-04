@@ -13,12 +13,13 @@ alias vim='vim -u NONE'
 alias ddgr='ddgr -x'
 
 alias edi='$EDITOR'
-alias aliasrc='edi $HOME/.config/shell_common/aliases.sh'
+alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias zshrc='edi $HOME/.zshrc'
-alias zpluginrc='edi $HOME/.config/shell_common/zplugin.zsh'
-alias nvimrc='edi $HOME/.config/nvim/init.vim'
+alias zpluginrc='edi $XDG_CONFIG_HOME/shell_common/zplugin.zsh'
+alias nvimrc='edi $XDG_CONFIG_HOME/nvim/init.vim'
 alias startuprc='edi $HOME/startup.sh'
-alias rssrc='edi $HOME/.config/newsboat/urls'
+alias rssrc='edi $XDG_CONFIG_HOME/newsboat/urls'
+alias tridactylrc='edi $XDG_CONFIG_HOME/tridactyl/tridactylrc'
 
 # gcc with all the errors
 alias gccv='gcc -pedantic -Wall'
@@ -48,8 +49,7 @@ alias yclr='yadm clone --recursive'
 alias ypull='yadm pull'
 
 alias a2c='aria2c'  # fast aria2c downloading
-# ytdl is an executable in my ~/.local/bin that adds flags to youtube-dl not
-# contained in my config file
+alias ytdl='youtube-dl'
 alias ytdl-bf='ytdl --format=bestvideo+bestaudio/best'
 alias ytdl-sm="youtube-dl -f 'bestvideo[height<=720]+bestaudio'"
 alias sdrem='sudo dnf remove'
@@ -77,7 +77,7 @@ alias cdnote='cd $HOME/Documents/Notes'
 alias cded='cd $HOME/Documents/Work/School/ED'
 alias cdla='cd $HOME/Documents/Work/School/LINALG'
 alias cdcs='cd $HOME/Documents/Work/School/CS_277'
-alias cdlog='cd $HOME/Executables/shell-scripts/updates/all_update/logs/*/.'
+alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/.'
 
 alias settmp='redshift -O'
 alias resettmp='redshift -x'
