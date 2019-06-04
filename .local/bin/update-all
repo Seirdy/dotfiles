@@ -37,7 +37,7 @@ echo "Starting update: scripting lang packages"
 nohup "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/env-$STARTTIME.log" &
 
 echo "Starting update: flatpak"
-nohup "$SCRIPTPATH/updateflatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+nohup "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
 
 echo "Starting update: chromium-latest-linux"
 nohup "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
