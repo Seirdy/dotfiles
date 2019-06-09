@@ -45,6 +45,9 @@ zplugin light laggardkernel/thefuck
 zplugin ice wait'0' atclone"cp hr.1 $HOME/.local/man/man1" as'command' atpull'%atclone' lucid
 zplugin light LuRsT/hr
 
+zplugin ice wait'0' as'snippet' pick'extract.sh' lucid
+zplugin light xvoland/Extract
+
 finish_setup() {
 	zpcompinit
 	zpcdreplay
