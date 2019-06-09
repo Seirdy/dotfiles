@@ -266,6 +266,9 @@ augroup end
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
+
 " Format entire doc with langserver and write
 nmap <leader>w :Format<CR>:w<CR>
 
@@ -309,18 +312,24 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " CocList
 " ~~~~~~~
 
+" Open file found by ripgrep
+nnoremap <silent> <space>/  :<C-u>CocList grep<cr>
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Extension marketplace
+nnoremap <silent> <space>E  :<C-u>CocList marketplace<CR>
+" vim commands
+nnoremap <silent> <space>c  :<C-u>CocList vimcommands<cr>
+" coc.nvim commands
+nnoremap <silent> <space>C  :<C-u>CocList commands<cr>
+" Show maps
+nnoremap <silent> <space>m  :<C-u>CocList maps<CR>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Git status
-nnoremap <silent> <space>g  :<C-u>CocList --normal gstatus<CR>
 " List snippets of current file
 nnoremap <silent> <space>n  :<C-u>CocList <cr>
 " Do default action for next item.
@@ -329,6 +338,27 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" ~~CocList Git~~
+" Git status
+nnoremap <silent> <space>gs :<C-u>CocList --normal gstatus<CR>
+" Git branches
+nnoremap <silent> <space>gb :<C-u>CocList branches<CR>
+" Files on different branches/commits/tags
+nnoremap <silent> <space>gf :<C-u>CocList gfiles<CR>
+" Commits
+nnoremap <silent> <space>gc :<C-u>CocList commits<CR>
+
+" ~~CocList History~~
+" Most recently used files
+nnoremap <silent> <space>-r :<C-u>CocList mru<CR>
+" Search history
+nnoremap <silent> <space>-s :<C-u>CocList searchhistory<CR>
+" Yank history
+nnoremap <silent> <space>-y :<C-u>CocList yank<CR>
+" Command history
+nnoremap <silent> <space>-c :<C-u>CocList cmdhistory<CR>
+
 
 " ==========
 " Table Mode

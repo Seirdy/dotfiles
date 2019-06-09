@@ -2,6 +2,7 @@
 	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"suggest.autoTrigger": "always",
+	"suggest.floatEnable": true,
 	"suggest.completionItemKindLabels": {
 		"function": "\uf794",
 		"method": "\uf6a6",
@@ -36,20 +37,6 @@
 	"codeLens.enable": true,
 	"codeLens.separator": "",
 	"highlight.colors.enable": false,
-	"coc.preferences.formatOnSaveFiletypes": [
-		"python",
-		"python3",
-		"rust",
-		"c",
-		"cpp",
-		"css",
-		"json",
-		"rst",
-		"bib",
-		"tex",
-		"latex",
-		"yaml"
-	],
 	"json.enable": true,
 	"json.format.enable": true,
 	"python.jediEnabled": false,
