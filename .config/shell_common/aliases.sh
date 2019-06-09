@@ -2,6 +2,7 @@
 alias psave='pockyt put -i'
 alias yadm='yadm -Y "$HOME/.config/yadm"'
 alias :q='exit'  # muh vim habits
+alias c='calc -p'
 alias l='lsd --group-dirs first'
 alias la='l -a'
 alias ll='exa -lh --time-style=iso'  # Better output than ls

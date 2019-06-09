@@ -78,8 +78,6 @@ bindkey '^Z' fancy_ctrl_z
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-# shellcheck disable=SC2034
-aliases[=]='calc -p'
 export PAGER="w3m"
 export BAT_PAGER="less"
 export _ZL_MATCH_MODE=1
