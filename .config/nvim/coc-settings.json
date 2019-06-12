@@ -77,10 +77,6 @@
 		},
 		"efm": {
 			"command": "efm-langserver",
-			"args": [
-				"-c",
-				"/home/rkumar/.config/efm-langserver/config.yaml"
-			],
 			"filetypes": [
 				"rst",
 				"pandoc"
