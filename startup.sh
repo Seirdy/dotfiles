@@ -136,7 +136,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ]; then  # Redshift only runs on X
 		#  Don't run redshift on GNOME (it has its own Night Light)
 		#  Don't run redshift if it's already running.
-		if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift; then
+		if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift > /dev/null; then
 				export REDSHIFT_RUNNING=1
 		else
 				redshift -l "$LATITUDE:$LONGITUDE" -t 6500:2800 &

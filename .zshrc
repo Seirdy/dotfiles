@@ -6,12 +6,15 @@
 export LC_ALL=en_US.UTF-8
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
-zmodload zdharma/zplugin
-if [ "$PROFILE_SET" != 1 ]; then
-	echo "PROFILE_SET initial val: \"$PROFILE_SET\""
+if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=/home/rkumar/.profile
 	. "$HOME/.profile"
 	export PROFILE_SET=2
+fi
+# I can't get zpmod to work on macOS
+# See https://github.com/zdharma/zplugin/issues/131
+if [ "$MACHINE" != "Darwin" ]; then
+		zmodload zdharma/zplugin
 fi
 # dedupe $PATH
 PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
