@@ -1,7 +1,7 @@
 #!/bin/sh
 # Runs a full update and saves log files.
 # Full update includes:
-# - dnf packages (dnf is Fedora's package manager)
+# - system packages with system package manager
 # - cargo packages
 # - go packages (installed via go-get)
 # - pipx packages (python pkgs in their own venvs with entries in $PATH)
@@ -34,19 +34,23 @@ LOGDIR="$PWD"
 
 # RUN UPDATE
 echo "Starting update: scripting lang packages"
-nohup "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/env-$STARTTIME.log" &
-
-echo "Starting update: flatpak"
-nohup "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
-
-echo "Starting update: chromium-latest-linux"
-nohup "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+nohup "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/script-pkg-$STARTTIME.log" &
 
 echo "Starting update: compiled lang packages"
-nohup "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/source-$STARTTIME.log" &
+nohup "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/compiled-pkg-$STARTTIME.log" &
 
-echo "Starting update: dnf packages"
-nohup "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+# TODO: stop assuming all GNU/Linux machines run Fedora, lol
+if [ "$MACHINE" = "Linux" ]; then
+		echo "Starting update: dnf packages"
+		nohup "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+		echo "Starting update: flatpak"
+		nohup "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+		echo "Starting update: chromium-latest-linux"
+		nohup "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+
+elif [ "$MACHINE" = "Darwin" ]; then
+		brew update | tee "$LOGDIR/brew-$STARTTIME.log"
+fi
 
 ENDTIME=$(date '+%s')
 ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")

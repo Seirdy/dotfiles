@@ -19,11 +19,14 @@ zplugin light PhrozenByte/rmtrash
 zplugin ice wait'0' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" as'command' atpull'%atclone' lucid
 zplugin light paulirish/git-open
 
+zplugin ice as"program" pick"bin/git-dsf"
+zplugin light zdharma/zsh-diff-so-fancy
+
 zplugin ice blockf wait'0' atload'_zsh_autosuggest_start' lucid
 zplugin load zsh-users/zsh-autosuggestions
 
 # fzf-related plugins
-zplugin ice wait'0' from'gh-r' lucid
+zplugin ice wait'0' lucid
 zplugin load skywind3000/z.lua
 
 zplugin ice wait'0' pick'fzf-finder.plugin.zsh' lucid
@@ -56,5 +59,5 @@ finish_setup() {
 zplugin ice blockf wait"0" as"completion" atload'finish_setup' silent
 zplugin light zsh-users/zsh-completions
 zplugin light srijanshetty/zsh-pip-completion
-zplugin light zdharma/fast-synax-highlighting
+zplugin light zdharma/fast-syntax-highlighting
 zplugin light %HOME/.config/shell_common/kitty_completions

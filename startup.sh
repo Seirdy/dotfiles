@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 # POSIX-compliant startup script
 # This script sets environment vars and runs redshift if necessary
 
@@ -6,8 +6,15 @@
 if [ "$PROFILE_SET" = 1 ]; then
 		exit
 fi
-SESSION_START=$(date -Iseconds)
-export SESSION_START
+# Detect my OS
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     MACHINE='Linux';;
+    Darwin*)    MACHINE='Darwin';;
+    CYGWIN*)    MACHINE='Cygwin';;
+    MINGW*)     MACHINE='MinGw';;
+    *)          MACHINE="UNKNOWN:${unameOut}"
+esac
 
 # XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -32,6 +39,7 @@ export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
+export GPG_TTY="$(tty)"
 
 # De-clutter my home folder.
 # See https://0x46.net/thoughts/2019/02/01/dotfile-madness/
@@ -54,7 +62,7 @@ export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config.lua"
 export PIPX_HOME="$HOME/Executables/pipx"
 export PIPX_BIN_DIR="$HOME/Executables/pipx/bin"
 # Keep npm from polluting my $HOME
-export NPM_PACKAGES="$HOME/Executables/npm-packages"
+export NPM_PACKAGES="$HOME/Executables/npm"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # Keep rubygems from polluting my $HOME
@@ -73,16 +81,22 @@ export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 # Set PATH
 # PATH="$PATH:$HOME/Executables/anaconda3/bin"       # conda
 PATH="$HOME/.local/bin:$PATH"                        # local bin
+PATH="/usr/local/bin:$PATH"                        # local bin
 PATH="$CARGO_HOME/bin:$PATH"                         # cargo
 PATH="$NPM_PACKAGES/bin:$PATH"                       # npm
 PATH="$HOME/Executables/luarocks/bin:$PATH"                     # luarocks
 PATH="$GEM_HOME/bin:$PATH"                           # rubygems
 PATH="$PIPX_BIN_DIR:$PATH"                           # pipx
 PATH="$GOPATH/bin:$PATH"                             # go
-PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
-PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
 PATH="$HOME/Executables/fzf/bin:$PATH"               # fzf
-PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
+
+if [ "$MACHINE" = "Linux" ]; then
+		PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
+		PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
+		PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
+elif [ "$MACHINE" = "Darwin" ]; then
+		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
 
 # Dedupe PATH
 if [ -n "$ZSH_VERSION" ] || which zsh; then
@@ -119,7 +133,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		export QT_WAYLAND_FORCE_DPI=physical
 		export SDL_VIDEODRIVER=wayland  # Makes imv use wayland backend
 		# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
-elif [ "$XDG_SESSION_TYPE" = "x11" ]; then  # Redshift only runs on X
+elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ]; then  # Redshift only runs on X
 		#  Don't run redshift on GNOME (it has its own Night Light)
 		#  Don't run redshift if it's already running.
 		if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift; then
@@ -128,5 +142,8 @@ elif [ "$XDG_SESSION_TYPE" = "x11" ]; then  # Redshift only runs on X
 				redshift -l "$LATITUDE:$LONGITUDE" -t 6500:2800 &
 		fi
 fi
+
+SESSION_START=$(date -Iseconds)
+export SESSION_START
 
 export PROFILE_SET=1
