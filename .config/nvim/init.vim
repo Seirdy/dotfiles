@@ -136,7 +136,9 @@ set number  " Show line number column
 set signcolumn=yes  " for vim-pandoc-syntax and vim-signify
 " set cursorline  " Commented out because it slows (n)vim down.
 set lazyredraw
-set pumblend=20  " translucent pum
+if exists('&pumblend')
+		set pumblend=20
+endif
 set scrolloff=3
 
 " Airline
