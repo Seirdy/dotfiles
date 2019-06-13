@@ -6,15 +6,17 @@
 export LC_ALL=en_US.UTF-8
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
-if [ -z "$PROFILE_SET" ]; then
-	# shellcheck source=/home/rkumar/.profile
-	. "$HOME/.profile"
-	export PROFILE_SET=2
+if [ "$PROFILE_SET" != 1 ] || [ "$PROFILE_SET" != 3 ]; then
+    . "$HOME/.profile"
+    export PROFILE_SET=2
 fi
 # I can't get zpmod to work on macOS
 # See https://github.com/zdharma/zplugin/issues/131
 if [ "$MACHINE" != "Darwin" ]; then
-		zmodload zdharma/zplugin
+    zmodload zdharma/zplugin
+elif [ "$is_tty" != "not a tty" ]; then
+    is_tty="$(tty)"
+    export GPG_TTY="$is_tty"
 fi
 # dedupe $PATH
 PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
@@ -39,9 +41,9 @@ setopt share_history          # share command history data
 unsetopt correct_all
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-	export EDITOR='vim'
+    export EDITOR='vim'
 else
-	export EDITOR='nvim'
+    export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -68,13 +70,13 @@ SHELL_COMMON="$HOME/.config/shell_common"
 function _z() { _zlua "$@"; }
 
 function fancy_ctrl_z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    export BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
+    if [[ $#BUFFER -eq 0 ]]; then
+        export BUFFER="fg"
+        zle accept-line
+    else
+        zle push-input
+        zle clear-screen
+    fi
 }
 zle -N fancy_ctrl_z
 bindkey '^Z' fancy_ctrl_z
@@ -91,13 +93,13 @@ export _ZL_MATCH_MODE=1
 # See the source code (completion.{bash,zsh}) for the details.
 
 _fzf_compgen_path() {
-	fd --hidden --follow --exclude ".git" . "$1"
+    fd --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 
 _fzf_compgen_dir() {
-	fd --type d --hidden --follow --exclude ".git" . "$1"
+    fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # source the theme
@@ -108,13 +110,11 @@ _fzf_compgen_dir() {
 . "$SHELL_COMMON/zplugin.zsh"
 
 n() {
-	nnn "$@"
+    nnn "$@"
 
-	if [ -f "$NNN_TMPFILE" ]; then
-		# shellcheck source=/dev/null
-		. "$NNN_TMPFILE"
-		rm "$NNN_TMPFILE"
-	fi
+    if [ -f "$NNN_TMPFILE" ]; then
+        # shellcheck source=/dev/null
+        . "$NNN_TMPFILE"
+        rm "$NNN_TMPFILE"
+    fi
 }
-
-# [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh  # Commented; moved to zplugin
