@@ -15,6 +15,7 @@ case "${unameOut}" in
     MINGW*)     MACHINE='MinGw';;
     *)          MACHINE="UNKNOWN:${unameOut}"
 esac
+export MACHINE
 
 # XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
