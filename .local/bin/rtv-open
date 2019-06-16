@@ -1,0 +1,13 @@
+#!/usr/bin/env dash
+
+DL_DIR="$HOME/.local/share/rtv/rtv-open"
+mkdir -p "$DL_DIR" && cd "$DL_DIR"
+rm -f ./*
+
+for URL in $@
+do
+		aria2c $URL
+done
+openx ./*
+
+# vim:filetype=sh

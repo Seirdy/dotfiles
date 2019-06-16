@@ -22,6 +22,9 @@ set tabstop=4
 " - 1 padding col = 86 cols
 set colorcolumn=86
 
+" Spellfile
+set spellfile=~/.config/nvim/spell/en.utf-8.add
+
 " Remove trailing whitespace on save
 autocmd! BufWritePre * :%s/\s\+$//e
 
@@ -94,7 +97,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Indent entire document with eqcmd. Alternative to :Format
 nnoremap <F7> gg=G<C-o><C-o>
 " Toggle conceal level
-nnoremap <silent> <C-c><C-y> :call SwitchConcealLevel <CR>
+nnoremap <silent> <C-c><C-y> :call SwitchConcealLevel() <CR>
 " Toggle invisible chars
 nnoremap <leader>l :set list!<CR>
 

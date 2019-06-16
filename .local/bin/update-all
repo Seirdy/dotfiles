@@ -11,7 +11,7 @@
 # - global rubygems
 # - flatpaks
 # - chromium (via chromium-latest-linux).
-# Everything is run simultaneously in the background. The DNF update is also
+# Everything is run simultaneously in the background. The system update is also
 # displayed in the interactive session via `tee` so I can enter my root pw and
 # watch it happen.
 # Log files can be big, so all but the most recent are compressed.
@@ -34,22 +34,26 @@ LOGDIR="$PWD"
 
 # RUN UPDATE
 echo "Starting update: scripting lang packages"
-nohup "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/script-pkg-$STARTTIME.log" &
+nohup dash "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/script-pkg-$STARTTIME.log" &
 
 echo "Starting update: compiled lang packages"
-nohup "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/compiled-pkg-$STARTTIME.log" &
+nohup dash "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/compiled-pkg-$STARTTIME.log" &
 
 # TODO: stop assuming all GNU/Linux machines run Fedora, lol
 if [ "$MACHINE" = "Linux" ]; then
 		echo "Starting update: dnf packages"
-		nohup "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+		nohup dash "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
 		echo "Starting update: flatpak"
-		nohup "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+		nohup dash "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
 		echo "Starting update: chromium-latest-linux"
-		nohup "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+		nohup dash "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
 
 elif [ "$MACHINE" = "Darwin" ]; then
-		brew update | tee "$LOGDIR/brew-$STARTTIME.log"
+		echo "Starting update: homebrew packages"
+		nohup brew update | tee "$LOGDIR/brew-$STARTTIME.log"
+else
+		echo "Unsupported machine for system package updates"
+		echo "You machine is $MACHINE"
 fi
 
 ENDTIME=$(date '+%s')

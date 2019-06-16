@@ -14,6 +14,8 @@ fi
 # See https://github.com/zdharma/zplugin/issues/131
 if [ "$MACHINE" != "Darwin" ]; then
     zmodload zdharma/zplugin
+# macOS has issues with gpg password input.
+# This makes password input happen in a TUI.
 elif [ "$is_tty" != "not a tty" ]; then
     is_tty="$(tty)"
     export GPG_TTY="$is_tty"
@@ -39,12 +41,6 @@ setopt share_history          # share command history data
 
 # Don't autocorrect. Use `thefuck` for that.
 unsetopt correct_all
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-else
-    export EDITOR='nvim'
-fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"

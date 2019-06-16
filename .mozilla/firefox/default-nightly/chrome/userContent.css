@@ -72,220 +72,6 @@
 /*@-moz-document url-prefix(about:about), url-prefix(about:crashes), url(about:debugging), url-prefix(about:downloads), url-prefix(about:privatebrowsing), url-prefix(about:buildconfig), url-prefix(about:networking),url-prefix(about:license), url(about:studies), url(about:telemetry), url(about:support), url(about:sessionrestore), url(about:neterror), url(about:home)   {*/
 
 /*}*/
-@-moz-document url-prefix(https://addons.mozilla.org) {
-  .Footer,
-  .Footer-wrapper,
-  .LanguageTools-header-row,
-  .Header,
-  .amo,
-  body, html{
-    background: var(--in-content-category-header-background)!important
-  }
-  h1,
-  h2 {
-    color: var(--in-content-category-text)!important
-  }
-  .Guides-header,
-  .HomeHeroGuides-sections .Hero-name-HomeHeroGuides {
-    border-color: var(--in-content-box-border-color)!important
-  }
-  .App-content,
-  .Home,
-  .LandingPage,
-  .LanguageTools-table-row:nth-child(2n),
-  .Paginate {
-    background: var(--in-content-page-background)!important
-  }
-  .Select {
-    background-color: var(--in-content-page-background)!important
-  }
-  .SearchForm-icon-magnifying-glass {
-    filter: invert(65%)!important
-  }
-  .AddonDescription-more-addons--theme .Card-contents .AddonsCard-list,
-  .AddonDescription-more-addons:not(.AddonDescription-more-addons--theme) .Card-contents .AddonsCard-list,
-  .AddonsByAuthorsCard .Card-contents .AddonsCard-list,
-  .AddonsCard--horizontal .Card-contents,
-  .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-link,
-  .AutoSearchInput-suggestions-item,
-  .Card--photon .Card-contents,
-  .Card-contents,
-  .Card-contents li,
-  .Card-footer,
-  .Card-footer-link,
-  .Card-footer-text,
-  .Card-header,
-  .Categories .Card-contents,
-  .DropdownMenu-items::after,
-  .Hero .Card-contents,
-  .Home-SubjectShelf .Card-contents,
-  .LandingPage-header,
-  .MetadataCard,
-  .Search .SearchResults .SearchResult,
-  .Search .SearchResults-message,
-  .SearchForm-query,
-  .SearchForm-suggestions-item.SearchForm-suggestions-item,
-  .SectionLinks-dropdown .DropdownMenu-items,
-  input.AutoSearchInput-query {
-    background: var(--in-content-box-background)!important
-  }
-  .Addon-author,
-  .Addon-author a,
-  .Addon-author a:link .Button--action,
-  .Addon-title,
-  .AddonBadges .Badge,
-  .AddonTitle,
-  .Button--action,
-  .Button--action.Button--small:link,
-  .Button--action:link,
-  .Button--neutral,
-  .Button--neutral:link,
-  .Card--photon .Card-contents,
-  .Card-contents,
-  .Card-footer-text,
-  .Definition-dt,
-  .DropdownMenuItem,
-  .DropdownMenuItem-link a,
-  .DropdownMenuItem-link a:link,
-  .DropdownMenuItem-section,
-  .ExpandableCard-ToggleLink:link,
-  .Footer a:active,
-  .Footer a:hover,
-  .Footer-links-header a:link,
-  .GuidesAddonCard .AddonTitle a,
-  .GuidesAddonCard .GuidesAddonCard-content-header-title .AddonTitle-author,
-  .Home-SubjectShelf-link:link,
-  .Home-SubjectShelf-link:visited,
-  .Home-SubjectShelf-subheading,
-  .LandingPage-addonType-name,
-  .LandingPage-heading-content,
-  .MetadataCard-list dt,
-  .Paginate .Button.Paginate-item--current-page,
-  .Paginate .Button.Paginate-item:first-child,
-  .Paginate .Button.Paginate-item:last-child,
-  .Paginate .Button.Paginate-item:link:first-child,
-  .Paginate .Button.Paginate-item:link:last-child,
-  .Paginate .Button.Paginate-item:visited:first-child,
-  .Paginate .Button.Paginate-item:visited:last-child .Paginate-page-number,
-  .PermissionsCard-subhead,
-  .ReportAbuseButton-show-more,
-  .SearchContextCard-header,
-  .SearchFilters-label,
-  .SearchForm-query,
-  .SearchResult--meta-section,
-  .SearchResult-name,
-  .SearchResult-summary,
-  .Select,
-  input.AutoSearchInput-query {
-    color: var(--in-content-page-color)!important
-  }
-  .Paginate .Button.Paginate-item:active,
-  .Paginate .Button.Paginate-item:hover {
-    background-color: var(--in-content-box-background)!important
-  }
-  .AutoSearchInput-suggestions-item {
-    color: var(--in-content-page-color)
-  }
-  .Card-header {
-    color: var(--in-content-text-color)!important
-  }
-  .Card-contents li .Rating-star-group,
-  .Paginate-next::after,
-  .Paginate-previous::before {
-    filter: invert(70%)!important
-  }
-  .AddonMeta .MetadataCard-content a,
-  .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link,
-  .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:link,
-  .AddonMeta .MetadataCard-content a.AddonMeta-reviews-content-link:visited,
-  .AddonMeta .MetadataCard-content a:link,
-  .AddonMeta .MetadataCard-content a:visited,
-  .AddonMeta .MetadataCard-title a,
-  .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link,
-  .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:link,
-  .AddonMeta .MetadataCard-title a.AddonMeta-reviews-content-link:visited,
-  .AddonMeta .MetadataCard-title a:link,
-  .AddonMeta .MetadataCard-title a:visited,
-  .RatingsByStar-count a:active,
-  .RatingsByStar-count a:link,
-  .RatingsByStar-count a:visited,
-  .RatingsByStar-star a:active,
-  .RatingsByStar-star a:link,
-  .RatingsByStar-star a:visited {
-    color: var(--in-content-page-color)!important
-  }
-  .Rating-selected-star {
-    background: url("data:image/svg+xml,%3Csvg width='17px' height='16px' viewBox='0 0 17 16' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch --%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='Screens' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Extension-Detail---1366px' transform='translate(-1268.000000, -191.000000)' fill-rule='nonzero' fill='%23D7D7DB'%3E %3Cg id='Icon/Star/Off' transform='translate(1268.093458, 191.000000)'%3E %3Cpath d='M16.9387231,6.0134792 C16.8019739,5.62866693 16.4537759,5.34430427 16.0298163,5.27120279 L11.6315676,4.53095169 L9.55990532,0.617038533 C9.35975238,0.238957594 8.94965505,-8.43205013e-17 8.50094816,0 C8.05224128,5.62136675e-17 7.64214395,0.238957594 7.44199101,0.617038533 L5.36925312,4.53095169 L0.979609481,5.26917748 C0.55189384,5.33952054 0.199461709,5.62476632 0.0614173919,6.01232884 C-0.0766269256,6.39989135 0.0218952463,6.82750347 0.318097391,7.1263875 L3.46646469,10.3132141 L2.81140637,14.7283917 C2.74982246,15.1419679 2.93913032,15.5532305 3.30178728,15.7937216 C3.66444423,16.0342127 4.13951821,16.0635259 4.53241344,15.8696543 L8.50041035,13.9213053 L12.4694829,15.8726923 C12.8623781,16.0665639 13.3374521,16.0372507 13.7001091,15.7967596 C14.062766,15.5562685 14.2520739,15.1450059 14.19049,14.7314296 L13.534356,10.3132141 L16.6816477,7.12740015 C16.9779332,6.82862115 17.0766057,6.40106827 16.9387231,6.0134792 Z' id='Star-Copy'%3E%3C/path%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") 50%/contain no-repeat!important
-  }
-  .ShowMoreCard-contents::after {
-    background: linear-gradient(rgba(255,255,255,0),var(--in-content-box-background))!important
-  }
-  .Addon-details .AddonDescription-contents a:link,
-  .AddonMoreInfo-contents a:link,
-  .Card-footer-link a,
-  .Card-footer-link a:hover,
-  .Card-footer-link a:link,
-  .Card.ShowMoreCard.AddonDescription-version-notes a:link,
-  .DropdownMenuItem-link a:hover,
-  .Home-SubjectShelf-link:active,
-  .Home-SubjectShelf-link:focus,
-  .Home-SubjectShelf-link:hover,
-  .LanguageTools-table a:link,
-  .SearchResult-link:focus .SearchResult-name,
-  .SearchResult-link:hover .SearchResult-name {
-    color: var(--in-content-link-color)!important
-  }
-  .Button--action.Button--outline-only {
-    border-color: var(--in-content-border-highlight)!important
-  }
-  input.AutoSearchInput-query {
-    border-color: var(--in-content-box-border-color)!important
-  }
-  .Addon .InstallButton-button,
-  .Button--action,
-  .Button--action.Button--small,
-  .SearchForm-suggestions-item.SearchForm-suggestions-item--highlighted {
-    background: var(--in-content-primary-button-background)!important
-  }
-  .Button--action.Button--outline-only:hover,
-  .Button--action:hover,
-  .SearchForm-query:hover {
-    border-color: var(--in-content-primary-button-background)!important
-  }
-  .SearchForm-query:focus {
-    box-shadow: 0 0 5px 0 var(--in-content-border-highlight)!important;
-    border-color: var(--in-content-primary-button-background)!important
-  }
-  .AddonsCard--horizontal ul.AddonsCard-list .SearchResult-link:hover {
-    background: var(--in-content-page-background)!important;
-    border-radius: 0!important
-  }
-  .Button--report {
-    text-shadow: none!important
-  }
-  .Icon-arrow,
-  .Icon-external {
-    filter: invert(20%)!important
-  }
-  .Icon-magnifying-glass {
-    filter: invert(65%)
-  }
-  .Icon-featured {
-    filter: invert(85%)!important
-  }
-  .Icon-plus-dark {
-    filter: invert(100%)!important
-  }
-  .Button--neutral.Button--puffy,
-  .Button--neutral:link.Button--puffy {
-    background: var(--in-content-primary-button-background)!important;
-    color: var(--in-content-selected-text)!important
-  }
-  .Button--neutral.Button--puffy:hover,
-  .Button--neutral:link.Button--puffy:hover {
-    background: var(--in-content-primary-button-background-hover)!important
-  }
-}
 @-moz-document url-prefix(about:addons) {
     .addon-name {
         color: var(--grey-10) !important;
@@ -296,98 +82,100 @@
 }
 /* View Source */
 @-moz-document url-prefix(view-source) {
-  :root {
-    background-color: var(--in-content-page-background)!important;
-    color: var(--in-content-page-color)!important
-  }
-  pre[id]:before,
-  span[id]:before {
-    color: var(--in-content-page-color)!important
-  }
-  .highlight .end-tag,
-  .highlight .start-tag {
-    color: var(--theme-highlight-purple)!important
-  }
-  .highlight .comment {
-    color: var(--theme-highlight-green)!important
-  }
-  .highlight .cdata {
-    color: #c06!important
-  }
-  .highlight .doctype {
-    color: #4682b4!important
-  }
-  .highlight .pi {
-    color: var(--theme-highlight-red)!important
-  }
-  .highlight .entity {
-    color: #dea174!important
-  }
-  .highlight .attribute-name {
-    color: var(--theme-highlight-green)!important
-  }
-  .highlight .attribute-value {
-    color: var(--theme-highlight-blue)!important
-  }
-  .highlight .markupdeclaration {
-    color: #4682b4!important
-  }
-  .highlight .error,
-  .highlight .error > :-moz-any(.start-tag,.end-tag,.comment,.cdata,.doctype,.pi,.entity,.attribute-name,.attribute-value) {
-    color: #de7474!important
-  }
-}
-/* Tridactyl */
-@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/") {
-  .container-main,
-  body,
-  html {
-    background: var(--in-content-page-background)!important
-  }
-  .tsd-panel {
-    background: var(--in-content-box-background)!important
-  }
-  .tsd-page-title,
-  .tsd-page-toolbar,
-  footer {
-    background: var(--in-content-category-header-background)!important;
-    border-color: var(--in-content-category-header-background)!important
-  }
-  body,
-  table {
-    color: var(--in-content-page-color)!important
-  }
-  a:link {
-    color: var(--in-content-link-color)!important
-  }
-  #completions .sectionHeader {
-    background: var(--in-content-category-header-background)!important;
-    color: var(--in-content-text-color)!important
-  }
-  #completions {
-    background: var(--in-content-page-background)!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  .option:not(.focused) .url {
-    color: var(--code-green)!important;
-    background: var(--in-content-page-background)!important
-  }
-  input {
-    background: var(--in-content-category-header-background)!important;
-    color: var(--in-content-text-color)!important
-  }
-  .focused,
-  .focused .url {
-    background: var(--warning-background-color)!important;
-    color: var(--warning-color)!important
-  }
-  .spoiler {
-    background-color: var(--in-content-box-background)!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
+    :root {
+        background-color: var(--in-content-page-background)!important;
+        color: var(--in-content-page-color)!important;
+    }
+    pre[id]:before,
+    span[id]:before {
+        color: var(--in-content-page-color)!important;
+    }
+    .highlight .end-tag,
+    .highlight .start-tag {
+        color: var(--theme-highlight-purple)!important;
+    }
+    .highlight .comment {
+        color: var(--theme-highlight-green)!important;
+    }
+    .highlight .cdata {
+        color: #c06!important;
+    }
+    .highlight .doctype {
+        color: #4682b4!important;
+    }
+    .highlight .pi {
+        color: var(--theme-highlight-red)!important;
+    }
+    .highlight .entity {
+        color: #dea174!important;
+    }
+    .highlight .attribute-name {
+        color: var(--theme-highlight-green)!important;
+    }
+    .highlight .attribute-value {
+        color: var(--theme-highlight-blue)!important;
+    }
+    .highlight .markupdeclaration {
+        color: #4682b4!important;
+    }
+    .highlight .error,
+    .highlight .error > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) {
+        color: #de7474!important;
+    }
 }
 
-@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/static/newtab.html") {
+/* Tridactyl */
+@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/") {
+    .container-main,
+    body,
+    html {
+        background: var(--in-content-page-background)!important;
+    }
+    .tsd-panel {
+        background: var(--in-content-box-background)!important;
+    }
+    .tsd-page-title,
+    .tsd-page-toolbar,
+    footer {
+        background: var(--in-content-category-header-background)!important;
+        border-color: var(--in-content-category-header-background)!important;
+    }
+    body,
+    table {
+        color: var(--in-content-page-color)!important;
+    }
+    a:link {
+        color: var(--in-content-link-color)!important;
+    }
+    #completions .sectionHeader {
+        background: var(--in-content-category-header-background)!important;
+        color: var(--in-content-text-color)!important;
+    }
+    #completions {
+        background: var(--in-content-page-background)!important;
+        border-color: var(--in-content-box-border-color)!important;
+    }
+    .option:not(.focused) .url {
+        color: var(--code-green)!important;
+        background: var(--in-content-page-background)!important;
+    }
+    input {
+        background: var(--in-content-category-header-background)!important;
+        color: var(--in-content-text-color)!important;
+    }
+    .focused,
+    .focused .url {
+        background: var(--warning-background-color)!important;
+        color: var(--warning-color)!important;
+    }
+    .spoiler {
+        background-color: var(--in-content-box-background)!important;
+        border-color: var(--in-content-box-border-color)!important;
+    }
+}
+
+
+@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/static/newtab.html"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/static/newtab.html") {
     body {
         background-color: var(--primary-dark-color) !important;
         color: var(--primary-light-color) !important;
@@ -395,361 +183,320 @@
 }
 
 /* MEGA */
-@-moz-document url-prefix("moz-extension://2416ce8f-e5ce-4bbf-a9d0-c7007c211d44/mega")
-{
-  .default-white-button:not(.top-login-button),
-.chat-right-area::after,
-.bottom-page.plans-info,
-.create-folder-input-bl > input,
-div.create-folder-button-cancel.popup.default-grey-button.right,
-.active-folder-link .nw-fm-left-icons-panel,
-.files-grid-view,
-.bottom-page.light-blue-top .top-head,
-.bottom-page.light-blue-top .top-head,
-.bottom-page.light-blue-top .top-head.floating
-  {
-    background: #333;
-  }
+@-moz-document url-prefix("moz-extension://2416ce8f-e5ce-4bbf-a9d0-c7007c211d44/mega") {
+    .active-folder-link .nw-fm-left-icons-panel,
+    .bottom-page.light-blue-top .top-head,
+    .bottom-page.light-blue-top .top-head,
+    .bottom-page.light-blue-top .top-head.floating,
+    .bottom-page.plans-info,
+    .chat-right-area::after,
+    .create-folder-input-bl > input,
+    .default-white-button:not(.top-login-button),
+    .files-grid-view,
+    div.create-folder-button-cancel.popup.default-grey-button.right {
+        background: #333;
+    }
+    .arc-conversation-btn-block:hover,
+    .bottom-page.white-block,
+    .contains-submenu.opened,
+    .content-panel.conversations.active,
+    .create-folder-bottom,
+    .create-folder-input-bl,
+    .default-grey-button,
+    .dropdown-item:not(.static):hover,
+    .dropdown.body,
+    .fm-empty-contacts,
+    .fm-empty-folder,
+    .fm-left-panel,
+    .jspContainer,
+    .light-overlay,
+    .loading-mid-white-block,
+    .messages-block,
+    .messages-textarea,
+    .pages-nav.content-block,
+    .plans-block > .membership-pad-bl,
+    .shared-details-buttons,
+    .shared-details-buttons::before,
+    .shared-top-details,
+    .sign .main-pad-block,
+    .top-menu-popup,
+    .transfer-table-header,
+    .transfer-table-wrapper,
+    .vertical-centered-bl,
+    .vertical-centered-cell > .pages-nav.content-block,
+    .widgets.content-block,
+    body {
+        background: #222;
+    }
+    .account.tabs-bl,
+    .account.widget,
+    .arc-chat-messages-block tr.arc-chat-list:nth-child(2n+1),
+    .arc-conversation-btn-block,
+    .bottom-menu.body,
+    .bottom-page.grey-block,
+    .chat-right-pad,
+    .chat-textarea,
+    .contact-top-details,
+    .contacts-tabs-bl,
+    .conversations-pane li:nth-child(2n+1),
+    .data-block-view:before,
+    .file-settings-icon,
+    .fm-account-history .grey-bar,
+    .fm-account-history-head,
+    .fm-account-input,
+    .fm-dialog,
+    .fm-header-buttons,
+    .fm-notifications-bottom,
+    .fm-right-header,
+    .fm-transfers-header,
+    .grid-table tr:hover td,
+    .grid-table tr:hover:nth-child(2n+1) td,
+    .grid-url-arrow,
+    .medium.account.grey-info-bl,
+    .notification-header,
+    .toast-notification,
+    .top-search-input::selection {
+        background: #111;
+    }
+    .arrow:not(.grid-header-star) {
+        background: none;
+    }
 
-  body,
-.loading-mid-white-block,
-.light-overlay,
-.top-menu-popup,
-.dropdown-item:not(.static):hover,
-.contains-submenu.opened,
-.dropdown.body,
-.shared-top-details,
-.shared-details-buttons,
-.shared-details-buttons::before,
-.transfer-table-header,
-.transfer-table-wrapper,
-.fm-empty-folder,
-.fm-left-panel,
-.jspContainer,
-.default-grey-button,
-.widgets.content-block,
-.content-panel.conversations.active,
-.messages-block,
-.arc-conversation-btn-block:hover,
-.messages-textarea,
-.fm-empty-contacts,
-.bottom-page.white-block,
-.vertical-centered-bl,
-.plans-block > .membership-pad-bl,
-.sign .main-pad-block,
-.pages-nav.content-block,
-.vertical-centered-cell > .pages-nav.content-block,
-.create-folder-input-bl,
-.create-folder-bottom
-  {
-    background: #222;
-  }
+    .grid-table.sessions > tbody > tr span.active-session-txt,
+    .grid-table.sessions > tbody > tr span.current-session-txt,
+    .notification-txt {
+        color: #222;
+    }
 
-  .fm-right-header,
-.fm-header-buttons,
-.data-block-view:before,
-.file-settings-icon,
-.top-search-input::selection,
-.notification-header,
-.fm-notifications-bottom,
-.grid-url-arrow,
-.fm-transfers-header,
-.account.tabs-bl,
-.contacts-tabs-bl,
-.fm-dialog,
-.fm-account-input,
-.medium.account.grey-info-bl,
-.account.widget,
-.fm-account-history-head,
-.fm-account-history .grey-bar,
-.grid-table tr:hover td,
-.grid-table tr:hover:nth-child(2n+1) td,
-.chat-right-pad,
-.arc-conversation-btn-block,
-.conversations-pane li:nth-child(2n+1),
-.arc-chat-messages-block tr.arc-chat-list:nth-child(2n+1),
-.chat-textarea,
-.toast-notification,
-.contact-top-details,
-.bottom-page.grey-block,
-.bottom-menu.body
-  {
-    background: #111;
-  }
+    .bottom-page > .top-head,
+    .default-white-button.semi-small::after,
+    .fm-left-menu.transfers,
+    .submenu,
+    .top-head,
+    .top-head.floating.activated {
+        background: #D90007;
+        box-shadow: rgba(0, 0, 0, 0) 0 0 0 1px;
+    }
 
-  .arrow:not(.grid-header-star)
-  {
-    background: none;
-  }
+    #login-name2::selection,
+    #login-name::selection,
+    #login-password2::selection,
+    #login-password::selection,
+    .settings-logout {
+        background: #772225;
+    }
 
-  .notification-txt,
-.grid-table.sessions > tbody > tr span.current-session-txt,
-.grid-table.sessions > tbody > tr span.active-session-txt
-  {
-    color: #222;
-  }
+    a.st-facebook-button {
+        color: #D90007;
+    }
+    .account > .radio-txt,
+    .account.data-block.storage-data > .used-space > span,
+    .account.left-pane.big-txt,
+    .account.left-pane.info-txt,
+    .account.membership-plan,
+    .account.progress-title,
+    .account.tab-lnk,
+    .account.top-header,
+    .arc-conversation-btn-block:hover,
+    .bottom-page.plans-info,
+    .button,
+    .chat-right-pad *,
+    .contact-top-details *,
+    .conversation-message,
+    .data-item-icon,
+    .dropdown-item,
+    .file-block-title,
+    .fm-breadcrumbs.has-next-button .right-arrow-bg,
+    .fm-tree-panel,
+    .grid-table.sessions > tbody *,
+    .horizontal-centered-bl > .bottom-page.top-header,
+    .img-description .bottom-page.big-header,
+    .membership-big-txt.email,
+    .notification-username,
+    .nw-fm-tree-folder,
+    .nw-tree-panel-header,
+    .shared-details-folder-name,
+    textarea.messages-textarea,
+    ul.loading-info > li {
+        color: #e1e1e1;
+    }
+    #login-name,
+    #login-name2,
+    #login-password,
+    #login-password2,
+    .account.data-txt,
+    .account.plan-info,
+    .account.storage,
+    .default-dropdown-item,
+    .dropdown.body.tooltip.small,
+    .expiry,
+    .fm-account-header,
+    .fm-account-input input,
+    .fm-empty-pad > .fm-empty-cloud-txt,
+    .link-button:hover,
+    .membership-big-txt.name,
+    .menu,
+    .nw-contact-item > .nw-contact-name,
+    .pages-nav.button-label,
+    .top-menu-item:hover,
+    .top-search-input,
+    .transfer-table-header > tbody > tr > th,
+    .user-card-name.conversation-name,
+    h5.main-italic-header,
+    table.grid-table > tr:hover > td > div > .fm-chat-user,
+    table.grid-table > tr:hover > td > div > .fm-chat-user-status,
+    table.grid-table > tr:hover > td > div > .shared-folder-name {
+        color: #c3c3c3;
+    }
 
-  .bottom-page > .top-head,
-.top-head,
-.submenu,
-.fm-left-menu.transfers,
-.top-head.floating.activated,
-.default-white-button.semi-small::after
-  {
-    background: #D90007;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px;
-  }
+    #token-input-add-user-dialog-input,
+    .account.tab-lnk.active,
+    .contacts-tab-lnk.active,
+    .create-folder-button,
+    .create-folder-input-bl > input,
+    .fm-notifications-bottom > .default-white-button,
+    .top-change-language-name,
+    a.user-name {
+        color: #fff;
+    }
 
-  .settings-logout,
-#login-name::selection,
-#login-name2::selection,
-#login-password::selection,
-#login-password2::selection
-  {
-    background: #772225;
-  }
+    .avatar-bg.colorized,
+    .mega-logo {
+        filter: grayscale(100%) invert(90%);
+    }
+    .arrow.asc,
+    .arrow.desc,
+    .data-item-icon,
+    .fm-breadcrumbs,
+    .fm-files-view-icon,
+    .grid-header-star,
+    .membership-pad-bl,
+    .notification-txt,
+    .period,
+    .pro-feature-icon,
+    .reg-st3-membership-icon,
+    .shared-folder-icon,
+    .top-clear-button,
+    .tranfer-filetype-txt:after,
+    .transfer-filetype-icon,
+    .transfer-table-header > tbody > tr > th:after,
+    .transfer-type,
+    table.grid-table > tr > td > .avatar-wrapper,
+    table.grid-table.contacts > tr:hover {
+        filter: invert(100%);
+    }
+    .account.chart-block,
+    .fm-account-select-block > div,
+    .nav-icon,
+    .shared-with-me > tr:hover,
+    .toast-close-button {
+        filter: invert(94%);
+    }
+    .account-history-drop-items.active,
+    .account-history-dropdown,
+    .account-history-dropdown-button,
+    .avatar-white-bg,
+    .dropdown-item.contains-submenu:not(.disabled-submenu)::before,
+    .fm-account-button,
+    .fm-breadcrumbs.has-next-button,
+    .grid-scrolling-table,
+    .nw-fm-arrow-icon,
+    .small-icon,
+    .start-chat-button,
+    .transfer-scrolling-table {
+        filter: invert(88%);
+    }
 
-  a.st-facebook-button
-  {
-    color: #D90007;
-  }
+    .grey-rocket {
+        filter: invert(86.5%);
+    }
+    .account-icon,
+    .grid-header-star,
+    .grid-url-arrow,
+    .jspContainer:after,
+    .jspContainer:before,
+    .nw-tree-panel-arrows,
+    .top-menu-item.submenu-item::before {
+        filter: invert(85%);
+    }
 
-  ul.loading-info > li,
-.dropdown-item,
-.button,
-.nw-fm-tree-folder,
-.data-item-icon,
-.file-block-title,
-.fm-breadcrumbs.has-next-button .right-arrow-bg,
-.fm-tree-panel,
-.nw-tree-panel-header,
-.notification-username,
-.shared-details-folder-name,
-.membership-big-txt.email,
-.account.membership-plan,
-.account.tab-lnk,
-.account.data-block.storage-data > .used-space > span,
-.account.progress-title,
-.grid-table.sessions > tbody *,
-.account > .radio-txt,
-.account.left-pane.big-txt,
-.account.left-pane.info-txt,
-.chat-right-pad *,
-.arc-conversation-btn-block:hover,
-.conversation-message,
-textarea.messages-textarea,
-.contact-top-details *,
-.horizontal-centered-bl > .bottom-page.top-header,
-.bottom-page.plans-info,
-.account.top-header,
-.img-description .bottom-page.big-header
-  {
-    color: #e1e1e1;
-  }
+    .dropdown-section > hr,
+    .dropdown-white-arrow,
+    .fm-empty-contacts-bg,
+    .fm-empty-folder-bg,
+    .fm-empty-transfers-bg,
+    .top-login-forgot-pass {
+        filter: invert(50%);
+    }
+    .dropdown-item.contains-submenu.opened:before,
+    .dropdown-item.opened > i.small-icon,
+    .dropdown-item:hover > i.small-icon,
+    .membership,
+    .top-login-forgot-pass:hover,
+    table.grid-table > tr:hover > td > .avatar-wrapper,
+    table.grid-table > tr:hover > td > .shared-folder-icon,
+    table.grid-table.contacts > tr:hover > td > .avatar-wrapper,
+    ul > li > .nw-fm-tree-item.selected > .data-item-icon,
+    ul > li > span:hover > .data-item-icon,
+    ul > li > span:hover > .nw-fm-arrow-icon {
+        filter: invert(0);
+    }
 
-  .link-button:hover,
-.menu,
-.top-menu-item:hover,
-.top-search-input,
-.transfer-table-header > tbody > tr > th,
-.membership-big-txt.name,
-.fm-account-header,
-.fm-account-input input,
-.default-dropdown-item,
-.account.storage,
-.account.plan-info,
-.account.data-txt,
-table.grid-table > tr:hover > td > div > .shared-folder-name,
-table.grid-table > tr:hover > td > div > .fm-chat-user,
-table.grid-table > tr:hover > td > div > .fm-chat-user-status,
-.user-card-name.conversation-name,
-#login-name,
-#login-name2,
-#login-password,
-#login-password2,
-.nw-contact-item > .nw-contact-name,
-.fm-empty-pad > .fm-empty-cloud-txt,
-.dropdown.body.tooltip.small,
-h5.main-italic-header,
-.expiry,
-.pages-nav.button-label
-  {
-    color: #c3c3c3;
-  }
+    a.fm-avatar {
+        filter: brightness(80%);
+    }
 
-  a.user-name,
-.account.tab-lnk.active,
-.contacts-tab-lnk.active,
-#token-input-add-user-dialog-input,
-.top-change-language-name,
-.fm-notifications-bottom > .default-white-button,
-.create-folder-input-bl > input,
-.create-folder-button
-  {
-    color: #fff;
-  }
+    .top-icon {
+        filter: brightness(250%);
+    }
 
-  .avatar-bg.colorized,
-.mega-logo
-  {
-    filter: grayscale(100%) invert(90%);
-  }
+    .fm-tree-panel,
+    .nw-tree-panel-header {
+        border-left: 1px #333 solid;
+        border-right: 1px #333 solid;
+        background: #222;
+    }
 
-  .grid-header-star,
-.fm-files-view-icon,
-.transfer-filetype-icon,
-.arrow.desc,
-.arrow.asc,
-.data-item-icon,
-.top-clear-button,
-.notification-txt,
-.shared-folder-icon,
-table.grid-table > tr > td > .avatar-wrapper,
-.fm-breadcrumbs,
-.transfer-type,
-.transfer-table-header > tbody > tr > th:after,
-table.grid-table.contacts > tr:hover,
-.tranfer-filetype-txt:after,
-.membership-pad-bl,
-.reg-st3-membership-icon,
-.pro-feature-icon,
-.period
-  {
-    filter: invert(100%);
-  }
+    .account.left-pane.divider .chat-right-pad,
+    .default-select-dropdown,
+    .dropdown {
+        border: 1px solid #444;
+    }
 
-  .fm-account-select-block > div,
-.account.chart-block,
-.shared-with-me > tr:hover,
-.toast-close-button,
-.nav-icon
-  {
-    filter: invert(94%);
-  }
+    .account.tabs-bl,
+    .contacts-tabs-bl,
+    a.nlanguage-lnk {
+        border-color: #333;
+    }
 
-  .grid-scrolling-table,
-.transfer-scrolling-table,
-.small-icon,
-.nw-fm-arrow-icon,
-.dropdown-item.contains-submenu:not(.disabled-submenu)::before,
-.fm-breadcrumbs.has-next-button,
-.fm-account-button,
-.avatar-white-bg,
-.account-history-dropdown-button,
-.account-history-dropdown,
-.account-history-drop-items.active,
-.start-chat-button
-  {
-    filter: invert(88%);
-  }
+    .file-block-scrolling,
+    .grid-table-header {
+        border-top: 1px #333 solid;
+        border-bottom: 1px #333 solid;
+        background: #222;
+    }
 
-  .grey-rocket
-  {
-    filter: invert(86.5%);
-  }
+    .logo {
+        border: 1px solid #fff;
+    }
 
-  .jspContainer:before,
-.jspContainer:after,
-.top-menu-item.submenu-item::before,
-.grid-header-star,
-.grid-url-arrow,
-.nw-tree-panel-arrows,
-.account-icon
-  {
-    filter: invert(85%);
-  }
+    .dropdown.body.submenu {
+        margin-left: 0;
+    }
 
-  .dropdown-section > hr,
-.dropdown-white-arrow,
-.fm-empty-transfers-bg,
-.fm-empty-folder-bg,
-.fm-empty-contacts-bg,
-.top-login-forgot-pass
-  {
-    filter: invert(50%);
-  }
+    .fm-notifications-bottom .default-white-button {
+        margin-top: 0;
+    }
 
-  ul > li > span:hover > .nw-fm-arrow-icon,
-ul > li > span:hover > .data-item-icon,
-ul > li > .nw-fm-tree-item.selected > .data-item-icon,
-.dropdown-item.contains-submenu.opened:before,
-.dropdown-item:hover > i.small-icon,
-.dropdown-item.opened > i.small-icon,
-.membership,
-table.grid-table > tr:hover > td > .avatar-wrapper,
-table.grid-table > tr:hover > td > .shared-folder-icon,
-table.grid-table.contacts > tr:hover > td > .avatar-wrapper,
-.top-login-forgot-pass:hover
-  {
-    filter: invert(0);
-  }
+    .arrow.desc {
+        background-image: url("https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png");
+        background-position: right -1285px;
+        background-repeat: no-repeat;
+    }
 
-  a.fm-avatar
-  {
-    filter: brightness(80%);
-  }
-
-  .top-icon
-  {
-    filter: brightness(250%);
-  }
-
-  .fm-tree-panel,
-.nw-tree-panel-header
-  {
-    border-left: 1px #333 solid;
-    border-right: 1px #333 solid;
-    background: #222;
-  }
-
-  .dropdown,
-.default-select-dropdown,
-.account.left-pane.divider .chat-right-pad
-  {
-    border: 1px solid #444;
-  }
-
-  .account.tabs-bl,
-.contacts-tabs-bl,
-a.nlanguage-lnk
-  {
-    border-color: #333;
-  }
-
-  .grid-table-header,
-.file-block-scrolling
-  {
-    border-top: 1px #333 solid;
-    border-bottom: 1px #333 solid;
-    background: #222;
-  }
-
-  .logo
-  {
-    border: 1px solid #fff;
-  }
-
-  .dropdown.body.submenu
-  {
-    margin-left: 0px;
-  }
-
-  .fm-notifications-bottom .default-white-button
-  {
-    margin-top: 0px;
-  }
-
-  .arrow.desc
-  {
-    background-image: url(https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png);
-    background-position: right -1285px;
-    background-repeat: no-repeat;
-  }
-
-  .arrow.asc
-  {
-    background-image: url(https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png);
-    background-position: right -1225px;
-    background-repeat: no-repeat;
-  }
+    .arrow.asc {
+        background-image: url("https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png");
+        background-position: right -1225px;
+        background-repeat: no-repeat;
+    }
 }

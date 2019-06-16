@@ -119,6 +119,7 @@ user_pref("beacon.enabled", false);
 user_pref("media.eme.enabled", false);
 /*allow addons on AMO*/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
+user_pref("extensions.webextensions.restrictedDomains", "");
 /*Disable page thumbnails capturing*/
 user_pref("browser.pagethumbnails.capturing_disabled", true);
 /*don't prerender activity-stream*/
