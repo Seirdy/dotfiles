@@ -19,7 +19,7 @@ zplugin light PhrozenByte/rmtrash
 zplugin ice wait'0' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" as'command' atpull'%atclone' lucid
 zplugin light paulirish/git-open
 
-zplugin ice as"program" pick"bin/git-dsf"
+zplugin ice wait'0' as"program" pick"bin/git-dsf" lucid
 zplugin light zdharma/zsh-diff-so-fancy
 
 zplugin ice blockf wait'0' atload'_zsh_autosuggest_start' lucid
