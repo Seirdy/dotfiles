@@ -94,6 +94,9 @@ if [ "$MACHINE" = "Linux" ]; then
 		PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
 		PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
 		PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
+		if [ -z "$TMPDIR" ]; then
+				export TMPDIR="/tmp"
+		fi
 elif [ "$MACHINE" = "Darwin" ]; then
 		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 fi
