@@ -3,6 +3,6 @@
 # Updates that involve compiling packages
 cd ~/Executables/shell-scripts/updates
 echo "===UPDATE: Upgrading: go packages======="
-dash ./updatego.sh
+dash ./update-go.sh
 echo "===UPDATE: Upgrading: Cargo packages======="
-dash ./updatecargo.sh
+dash ./update-cargo.sh

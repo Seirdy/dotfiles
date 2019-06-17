@@ -50,7 +50,7 @@ if [ "$MACHINE" = "Linux" ]; then
 
 elif [ "$MACHINE" = "Darwin" ]; then
 		echo "Starting update: homebrew packages"
-		nohup brew update | tee "$LOGDIR/brew-$STARTTIME.log"
+		nohup dash "$SCRIPTPATH/update-homebrew.sh" | tee "$LOGDIR/brew-$STARTTIME.log"
 else
 		echo "Unsupported machine for system package updates"
 		echo "You machine is $MACHINE"

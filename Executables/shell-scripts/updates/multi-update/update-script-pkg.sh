@@ -2,13 +2,13 @@
 STARTTIME=$(date '+%s')
 cd "$HOME/Executables/shell-scripts/updates"
 echo "===UPDATE: Upgrading: PIP3======="
-sh ./updatepip3.sh
+sh ./update-python.sh
 echo "===UPDATE: Upgrading: NPM======="
-dash ./updatenpm.sh
+dash ./update-node.sh
 echo "===UPDATE: Upgrading: Lua======="
-dash ./updatelua.sh
+dash ./update-lua.sh
 echo "===UPDATE: Upgrading: Rubygems======="
-dash ./updaterubygems.sh
+dash ./update-ruby.sh
 tldr --update
 ENDTIME=$(date '+%s')
 ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
