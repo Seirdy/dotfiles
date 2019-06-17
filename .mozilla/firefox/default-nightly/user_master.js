@@ -1,3 +1,5 @@
+// Enable userChrome.css and userContent.css
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.showQuitWarning", true);
 user_pref("dom.battery.enabled", false);
 user_pref("geo.enabled", false);
@@ -124,6 +126,21 @@ user_pref("extensions.webextensions.restrictedDomains", "");
 user_pref("browser.pagethumbnails.capturing_disabled", true);
 /*don't prerender activity-stream*/
 user_pref("browser.newtabpage.activity-stream.prerender", false);
+/*Clear the NTP*/
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
+user_pref("browser.newtabpage.activity-stream.showSearch", false);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
+user_pref("browser.newtabpage.activity-stream.showSearch", false);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+
+/*Dark devtools theme*/
 
 /*Deny most permissions*/
 user_pref("permissions.default.camera", 2);
@@ -158,8 +175,6 @@ user_pref("browser.safebrowsing.provider.google.advisoryURL", "");
 user_pref("browser.safebrowsing.downloads.remote.url", "");
 user_pref("identity.fxaccounts.pairing.enabled", false);
 user_pref("identity.fxaccounts.pairing.uri", "");
-// Enable userChrome.css and userContent.css
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);

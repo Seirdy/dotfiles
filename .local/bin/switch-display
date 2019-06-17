@@ -40,7 +40,7 @@ kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "smallestReada
 
 # Config directories
 KITTY_CONFDIR="$HOME/.config/kitty"
-FF_CONFDIR="$HOME/.mozilla/firefox/default"
+FF_CONFDIR="$HOME/.mozilla/firefox/default-nightly"
 GTK_CONFDIR="$HOME/.config/gtk-3.0"
 TERMSET_CONFDIR="$HOME/Executables/shell-scripts/terminal_cmds"
 NVIM_CONFDIR="$HOME/.config/nvim"

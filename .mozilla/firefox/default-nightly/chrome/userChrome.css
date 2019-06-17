@@ -167,6 +167,9 @@ transform: scale(.4, .4)!important;
 /* .findbar-closebutton, */
 #overflowMenu-customize-button, #urlbar *|*.textbox-input::-moz-placeholder,
 
+/* Tab close button on background tabs */
+.tabbrowser-tab:not([selected]) .tab-close-button,
+
 /*Search engines in urlbar dropdown*/
 .search-one-offs,
 
