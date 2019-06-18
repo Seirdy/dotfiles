@@ -10,4 +10,4 @@ do
 done
 openx ./*
 
-# vim:filetype=sh
+# vim: filetype=sh

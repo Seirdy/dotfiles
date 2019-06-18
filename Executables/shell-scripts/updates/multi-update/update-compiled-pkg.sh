@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Updates that involve compiling packages
 cd ~/Executables/shell-scripts/updates

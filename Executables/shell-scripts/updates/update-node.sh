@@ -1,4 +1,5 @@
-#!/usr/bin/sh
+#!/usr/bin/env dash
+
 npm i -g tree-sitter
 npm i -g tree-sitter-bash
 npm i -g bash-language-server

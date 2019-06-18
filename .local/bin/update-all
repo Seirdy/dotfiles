@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 # Runs a full update and saves log files.
 # Full update includes:
 # - system packages with system package manager
@@ -59,3 +59,6 @@ fi
 ENDTIME=$(date '+%s')
 ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
 echo "Time elapsed for full update: ${ELAPSED} seconds"
+
+# vim: filetype=sh
+

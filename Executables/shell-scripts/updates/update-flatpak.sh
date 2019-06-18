@@ -1,4 +1,5 @@
 #!/usr/bin/env dash
+
 STARTTIME=$(date '+%s')
 
 flatpak repair --user
