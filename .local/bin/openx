@@ -1,11 +1,11 @@
 #!/usr/bin/env dash
 
 if [ "$MACHINE" = "Linux" ]; then
-		nohup xdg-open "$@" >/dev/null 2>/dev/null
+	nohup xdg-open "$@" >/dev/null 2>/dev/null
 elif [ "$MACHINE" = "Darwin" ]; then
-		nohup open "$@" >/dev/null 2>/dev/null
+	nohup open "$@" >/dev/null 2>/dev/null
 else
-		echo "Unsupported machine. Your \$MACHINE is '$MACHINE'"
+	echo "Unsupported machine. Your \$MACHINE is '$MACHINE'"
 fi
 
 # vim:filetype=sh

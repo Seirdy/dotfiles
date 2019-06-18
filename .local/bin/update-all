@@ -41,19 +41,19 @@ nohup dash "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/compiled
 
 # TODO: stop assuming all GNU/Linux machines run Fedora, lol
 if [ "$MACHINE" = "Linux" ]; then
-		echo "Starting update: dnf packages"
-		nohup dash "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
-		echo "Starting update: flatpak"
-		nohup dash "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
-		echo "Starting update: chromium-latest-linux"
-		nohup dash "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+	echo "Starting update: dnf packages"
+	nohup dash "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+	echo "Starting update: flatpak"
+	nohup dash "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+	echo "Starting update: chromium-latest-linux"
+	nohup dash "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
 
 elif [ "$MACHINE" = "Darwin" ]; then
-		echo "Starting update: homebrew packages"
-		nohup dash "$SCRIPTPATH/update-homebrew.sh" | tee "$LOGDIR/brew-$STARTTIME.log"
+	echo "Starting update: homebrew packages"
+	nohup dash "$SCRIPTPATH/update-homebrew.sh" | tee "$LOGDIR/brew-$STARTTIME.log"
 else
-		echo "Unsupported machine for system package updates"
-		echo "You machine is $MACHINE"
+	echo "Unsupported machine for system package updates"
+	echo "You machine is $MACHINE"
 fi
 
 ENDTIME=$(date '+%s')

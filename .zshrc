@@ -7,18 +7,19 @@ export LC_ALL=en_US.UTF-8
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
 if [ "$PROFILE_SET" != 1 ] || [ "$PROFILE_SET" != 3 ]; then
-    . "$HOME/.profile"
-    export PROFILE_SET=2
+	# shellcheck source=~/.profile
+	. "$HOME/.profile"
+	export PROFILE_SET=2
 fi
 # I can't get zpmod to work on macOS
 # See https://github.com/zdharma/zplugin/issues/131
 if [ "$MACHINE" != "Darwin" ]; then
-    zmodload zdharma/zplugin
-# macOS has issues with gpg password input.
-# This makes password input happen in a TUI.
+	zmodload zdharma/zplugin
+	# macOS has issues with gpg password input.
+	# This makes password input happen in a TUI.
 elif [ "$is_tty" != "not a tty" ]; then
-    is_tty="$(tty)"
-    export GPG_TTY="$is_tty"
+	is_tty="$(tty)"
+	export GPG_TTY="$is_tty"
 fi
 # dedupe $PATH
 PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
@@ -26,7 +27,7 @@ MANPATH=$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")
 export KEYTIMEOUT=1  # Reduces delay when entering vi-mode
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-# An SSD can handle a large history; reduce if needed.
+# An SSD can handle a large history
 HISTSIZE=99999
 # shellcheck disable=SC2034
 SAVEHIST=50000
@@ -39,7 +40,7 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 
-# Don't autocorrect. Use `thefuck` for that.
+# Don't autocorrect when thefuck does it better.
 unsetopt correct_all
 
 # Compilation flags
@@ -54,25 +55,25 @@ zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 3 numeric
 # aliases
 SHELL_COMMON="$HOME/.config/shell_common"
-# shellcheck source=/home/rkumar/.config/shell_common/aliases.sh
+# shellcheck source=~/.config/shell_common/aliases.sh
 . "$SHELL_COMMON/aliases.sh"  # Portable aliases
-# shellcheck source=/home/rkumar/.config/shell_common/aliases_private.sh
+# shellcheck source=~/.config/shell_common/aliases_private.sh
 . "$SHELL_COMMON/aliases_private.sh"  # Not committing private info
 
-# shellcheck source=/home/rkumar/.config/shell_common/functions.sh
+# shellcheck source=~/.config/shell_common/functions.sh
 . "$SHELL_COMMON/functions.sh"  # POSIX-compliant shell functions
 
 # keybinds and functions
 function _z() { _zlua "$@"; }
 
 function fancy_ctrl_z () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        export BUFFER="fg"
-        zle accept-line
-    else
-        zle push-input
-        zle clear-screen
-    fi
+	if [[ $#BUFFER -eq 0 ]]; then
+		export BUFFER="fg"
+		zle accept-line
+	else
+		zle push-input
+		zle clear-screen
+	fi
 }
 zle -N fancy_ctrl_z
 bindkey '^Z' fancy_ctrl_z
@@ -89,19 +90,19 @@ export _ZL_MATCH_MODE=1
 # See the source code (completion.{bash,zsh}) for the details.
 
 _fzf_compgen_path() {
-    fd --hidden --follow --exclude ".git" . "$1"
+	fd --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 
 _fzf_compgen_dir() {
-    fd --type d --hidden --follow --exclude ".git" . "$1"
+	fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # source the theme
-# shellcheck source=/home/rkumar/.config/shell_common/powerlevel9k.zsh
+# shellcheck source=~/.config/shell_common/powerlevel9k.zsh
 . "$SHELL_COMMON/powerlevel9k.zsh"
 # source the plugins and start completions/autosuggestions.
-# shellcheck source=/home/rkumar/.config/shell_common/zplugin.zsh
+# shellcheck source=~/.config/shell_common/zplugin.zsh
 . "$SHELL_COMMON/zplugin.zsh"
 

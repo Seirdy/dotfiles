@@ -4,7 +4,7 @@
 
 # Don't re-run this
 if [ "$PROFILE_SET" = 1 ]; then
-		exit
+	exit
 fi
 
 # XDG Base Directory Specification
@@ -82,34 +82,34 @@ PATH="$HOME/.local/bin:$PATH"                        # local bin
 # Detect my OS
 unameOut="$(uname -s)"
 case "${unameOut}" in
-    Linux*)     MACHINE='Linux';;
-    Darwin*)    MACHINE='Darwin';;
-    CYGWIN*)    MACHINE='Cygwin';;
-    MINGW*)     MACHINE='MinGw';;
-    *)          MACHINE="UNKNOWN:${unameOut}"
+	Linux*)     MACHINE='Linux';;
+	Darwin*)    MACHINE='Darwin';;
+	CYGWIN*)    MACHINE='Cygwin';;
+	MINGW*)     MACHINE='MinGw';;
+	*)          MACHINE="UNKNOWN:${unameOut}"
 esac
 export MACHINE
 
 if [ "$MACHINE" = "Linux" ]; then
-		PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
-		PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
-		PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
-		if [ -z "$TMPDIR" ]; then
-				export TMPDIR="/tmp"
-		fi
+	PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
+	PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
+	PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
+	if [ -z "$TMPDIR" ]; then
+		export TMPDIR="/tmp"
+	fi
 elif [ "$MACHINE" = "Darwin" ]; then
-		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+	PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
 # Dedupe PATH
 old_PATH=$PATH:; PATH=
 while [ -n "$old_PATH" ]; do
-		x=${old_PATH%%:*}       # the first remaining entry
-		case $PATH: in
-				*:"$x":*) ;;          # already there
-				*) PATH=$PATH:$x;;    # not there yet
-		esac
-		old_PATH=${old_PATH#*:}
+	x=${old_PATH%%:*}       # the first remaining entry
+	case $PATH: in
+		*:"$x":*) ;;          # already there
+		*) PATH=$PATH:$x;;    # not there yet
+	esac
+	old_PATH=${old_PATH#*:}
 done
 PATH=${PATH#:}
 unset old_PATH x
@@ -118,48 +118,48 @@ export PATH
 
 export RTV_EDITOR="nvim -c ':set filetype=md'"
 if which w3m > /dev/null; then
-    export PAGER='w3m'
+	export PAGER='w3m'
 elif which less > /dev/null; then
-    export PAGER='less'
+	export PAGER='less'
 fi
 # Preferred editor
 if which nvim > /dev/null; then
-    export EDITOR='nvim'
+	export EDITOR='nvim'
 elif which vim > /dev/null; then
-    export EDITOR='vim'
+	export EDITOR='vim'
 elif which vi > /dev/null; then
-    export EDITOR='vi'
+	export EDITOR='vi'
 elif which nvi > /dev/null; then
-    export EDITOR='nvi'
+	export EDITOR='nvi'
 elif which nano > /dev/null; then
-    export EDITOR='nano'
+	export EDITOR='nano'
 elif which emacs > /dev/null; then
-    # I'm in danger
-    export EDITOR='emacs'
+	# I'm in danger
+	export EDITOR='emacs'
 else
-    # ed is the standard text editor
-    export EDITOR='man ed'
+	# ed is the standard text editor
+	export EDITOR='man ed'
 fi
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-		export KITTY_ENABLE_WAYLAND=1
-		export EGL_PLATFORM=wayland
-		export CLUTTER_BACKEND=wayland
-		export QT_QPA_PLATFORM=wayland-egl
-		export QT_WAYLAND_FORCE_DPI=physical
-		export SDL_VIDEODRIVER=wayland  # Makes imv use wayland backend
-		# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
+	export KITTY_ENABLE_WAYLAND=1
+	export EGL_PLATFORM=wayland
+	export CLUTTER_BACKEND=wayland
+	export QT_QPA_PLATFORM=wayland-egl
+	export QT_WAYLAND_FORCE_DPI=physical
+	export SDL_VIDEODRIVER=wayland  # Makes imv use wayland backend
+	# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
 elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
-		#  Don't run redshift on GNOME (it has its own Night Light)
-		#  Don't run redshift on Wayland
-		#  Don't run redshift if it's already running.
-		if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift > /dev/null; then
-				export REDSHIFT_RUNNING=1
-		else
-				LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
-				LONGITUDE=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
-				redshift -l "$LATITUDE:$LONGITUDE" -t 6500:2800 &
-		fi
+	#  Don't run redshift on GNOME (it has its own Night Light)
+	#  Don't run redshift on Wayland
+	#  Don't run redshift if it's already running.
+	if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift > /dev/null; then
+		export REDSHIFT_RUNNING=1
+	else
+		LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
+		LONGITUDE=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
+		redshift -l "$LATITUDE:$LONGITUDE" -t 6500:2800 &
+	fi
 fi
 
 SESSION_START=$(date -Iseconds)

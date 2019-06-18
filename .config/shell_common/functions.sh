@@ -47,12 +47,12 @@ transfer() {
 }
 
 n() {
-    nnn "$@"
+	nnn "$@"
 
-    if [ -f "$NNN_TMPFILE" ]; then
-        # shellcheck source=/dev/null
-        . "$NNN_TMPFILE"
-        rm "$NNN_TMPFILE"
-    fi
+	if [ -f "$NNN_TMPFILE" ]; then
+		# shellcheck source=/dev/null
+		. "$NNN_TMPFILE"
+		rm "$NNN_TMPFILE"
+	fi
 }
 

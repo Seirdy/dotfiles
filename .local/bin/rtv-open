@@ -6,7 +6,7 @@ rm -f ./*
 
 for URL in $@
 do
-		aria2c $URL
+	aria2c "$URL"
 done
 openx ./*
 
