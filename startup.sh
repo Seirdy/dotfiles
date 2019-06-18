@@ -141,10 +141,6 @@ else
     export EDITOR='man ed'
 fi
 
-# I hid these away in their own file so I could privately update my coords
-LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
-LONGITUDE=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
-
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		export KITTY_ENABLE_WAYLAND=1
 		export EGL_PLATFORM=wayland
@@ -153,12 +149,15 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		export QT_WAYLAND_FORCE_DPI=physical
 		export SDL_VIDEODRIVER=wayland  # Makes imv use wayland backend
 		# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
-elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ] && [ "$REDSHIFT_RUNNING" != 1 ]; then  # Redshift only runs on X
+elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
 		#  Don't run redshift on GNOME (it has its own Night Light)
+		#  Don't run redshift on Wayland
 		#  Don't run redshift if it's already running.
 		if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift > /dev/null; then
 				export REDSHIFT_RUNNING=1
 		else
+				LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
+				LONGITUDE=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
 				redshift -l "$LATITUDE:$LONGITUDE" -t 6500:2800 &
 		fi
 fi

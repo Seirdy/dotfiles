@@ -105,12 +105,3 @@ _fzf_compgen_dir() {
 # shellcheck source=/home/rkumar/.config/shell_common/zplugin.zsh
 . "$SHELL_COMMON/zplugin.zsh"
 
-n() {
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-        # shellcheck source=/dev/null
-        . "$NNN_TMPFILE"
-        rm "$NNN_TMPFILE"
-    fi
-}
