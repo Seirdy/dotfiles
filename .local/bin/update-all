@@ -41,12 +41,12 @@ nohup dash "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/compiled
 
 # TODO: stop assuming all GNU/Linux machines run Fedora, lol
 if [ "$MACHINE" = "Linux" ]; then
-	echo "Starting update: dnf packages"
-	nohup dash "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
 	echo "Starting update: flatpak"
 	nohup dash "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
 	echo "Starting update: chromium-latest-linux"
 	nohup dash "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+	echo "Starting update: dnf packages"
+	nohup dash "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
 
 elif [ "$MACHINE" = "Darwin" ]; then
 	echo "Starting update: homebrew packages"
