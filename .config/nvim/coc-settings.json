@@ -49,30 +49,22 @@
 	"python.linting.flake8Path": "~/Executables/pipx/bin/flake8",
 	"python.linting.pylintEnabled": false,
 	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": [
-				"c",
-				"cpp",
-				"cuda",
-				"objc",
-				"objcpp"
-			],
-			"rootPatterns": [
-				".ccls",
-				"compile_commands.json",
-				".vim/",
-				".git/",
-				".hg/"
-			],
-			"initializationOptions": {
-				"cache.directory": "/tmp/ccls"
-			}
-		},
 		"lua": {
 			"command": "lua-lsp",
 			"filetypes": [
 				"lua"
+			]
+		},
+		"golang": {
+			"command": "gopls",
+			"rootPatterns": [
+				"go.mod",
+				".vim/",
+				".git/",
+				".hg/"
+			],
+			"filetypes": [
+				"go"
 			]
 		},
 		"efm": {

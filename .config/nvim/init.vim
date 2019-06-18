@@ -14,8 +14,8 @@ set mouse=a
 
 "" Default formatting when not detected
 set smartindent
-set tabstop=4
-
+set shiftwidth=2
+set tabstop=2
 " I like splitting windows side-by-side.
 " On a laptop screen, my terminal often has 95 columns.
 " 95 cols - 2 diagnostic cols - 4 number cols - 2 sign cols - 1 folding col
@@ -67,19 +67,19 @@ call plug#end()
 
 " Easily switch conceal levels
 function! SwitchConcealLevel()
-		if &conceallevel == 0
-				setlocal conceallevel=1
-		elseif &conceallevel == 1
-				setlocal conceallevel=2
-		elseif &conceallevel == 2
-				setlocal conceallevel=0
-		endif
+	if &conceallevel == 0
+		setlocal conceallevel=1
+	elseif &conceallevel == 1
+		setlocal conceallevel=2
+	elseif &conceallevel == 2
+		setlocal conceallevel=0
+	endif
 endfunction
 
 " Used in coc > Completions
 function! s:check_back_space() abort
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 
@@ -129,10 +129,10 @@ colorscheme breezy
 " Use 24-bit (true-color) mode in Vim/Neovim
 " (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more.)
 if (has("nvim"))
-		let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 if (has("termguicolors"))
-		set termguicolors
+	set termguicolors
 endif
 
 set number  " Show line number column
@@ -140,7 +140,7 @@ set signcolumn=yes  " for vim-pandoc-syntax and vim-signify
 " set cursorline  " Commented out because it slows (n)vim down.
 set lazyredraw
 if exists('&pumblend')
-		set pumblend=20
+	set pumblend=20
 endif
 set scrolloff=3
 
@@ -209,9 +209,9 @@ let g:terminal_color15 = '#ffffff'
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-						\ pumvisible() ? "\<C-n>" :
-						\ <SID>check_back_space() ? "\<TAB>" :
-						\ coc#refresh()
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Use <c-space> for trigger completion.
@@ -251,18 +251,18 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-		if &filetype == 'vim'
-				execute 'h '.expand('<cword>')
-		else
-				call CocAction('doHover')
-		endif
+	if &filetype == 'vim'
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
 
 augroup coc_stuff
-		autocmd!
-		" Update signature help on jump placeholder (useful for floating
-		" window)
-		autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd!
+	" Update signature help on jump placeholder (useful for floating
+	" window)
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Formatting
@@ -370,18 +370,18 @@ nnoremap <silent> <space>-c :<C-u>CocList cmdhistory<CR>
 " ==========
 
 function! s:isAtStartOfLine(mapping)
-		let text_before_cursor = getline('.')[0 : col('.')-1]
-		let mapping_pattern = '\V' . escape(a:mapping, '\')
-		let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-		return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+	let text_before_cursor = getline('.')[0 : col('.')-1]
+	let mapping_pattern = '\V' . escape(a:mapping, '\')
+	let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+	return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
 endfunction
 
 inoreabbrev <expr> <bar><bar>
-						\ <SID>isAtStartOfLine('\|\|') ?
-						\ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+			\ <SID>isAtStartOfLine('\|\|') ?
+			\ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
 inoreabbrev <expr> __
-						\ <SID>isAtStartOfLine('__') ?
-						\ '<c-o>:silent! TableModeDisable<cr>' : '__'
+			\ <SID>isAtStartOfLine('__') ?
+			\ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
 let g:table_mode_corner_corner='+'
 let g:table_mode_header_fillchar='='
@@ -393,7 +393,7 @@ let g:table_mode_align_char='+'
 " These are prefs that don't work well when run in autoload/ftplugin, so they
 " go here.
 
-let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python", "sh", "asm", "yaml", "html", "css", "vim"]
+let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python", "sh", "asm", "yaml", "html", "css", "vim", "go"]
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ["folding","formatting"]
 let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}
