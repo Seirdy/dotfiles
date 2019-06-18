@@ -2,7 +2,7 @@
 
 sanitise tridactyllocal tridactylsync
 
-colourscheme dark
+colorscheme dark
 
 "
 " Binds
@@ -73,3 +73,5 @@ autocontain (classroom|accounts)\.google\.com Google
 autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket
+
+" vim:filetype=vim
