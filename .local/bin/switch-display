@@ -1,64 +1,95 @@
-#!/bin/bash
+#!/usr/bin/env dash
 
-NEWDISP=$1  # Either "lap" or "mon"
-CONFFILE="$HOME/.local/share/computer_state/current_display"
+new_display=$1  # Either "lap" or "mon"
+display_cfg="$XDG_DATA_HOME/computer_state/current_display"
 
-if [ -z "$NEWDISP" ]; then
-	OLDDISP=$(cat "$CONFFILE")
-	if [ "$OLDDISP" = "mon" ]; then
-		NEWDISP="lap"
-	elif [ "$OLDDISP" = "lap" ]; then
-		NEWDISP="mon"
+if [ -z "$new_display" ]; then
+	old_display=$(cat "$display_cfg")
+	if [ "$old_display" = "mon" ]; then
+		new_display="lap"
+	elif [ "$old_display" = "lap" ]; then
+		new_display="mon"
 	fi
-	echo "Switching from $OLDDISP to $NEWDISP"
+	echo "Switching from $old_display to $new_display"
 fi
 
-# Save $NEWDISP to $CONFFILE for if switch_display is called again without args
-echo "$NEWDISP" > "$CONFFILE"
+# Save $new_display to $display_cfg for if switch_display is called again without args
+echo "$new_display" > "$display_cfg"
 
-# 1. KDE Fonts
-# ============
-if [ "$NEWDISP" = "mon" ]; then
-	SANS_FONT="Source Sans Pro,12,-1,5,50,0,0,0,0,0,Regular"
-	MONO_FONT="Hasklig, 12,-1,5,50,0,0,0,0,0,Regular"
-	SMALL_FONT="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
-elif [ "$NEWDISP" = "lap" ]; then
-	SANS_FONT="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
-	MONO_FONT="Hasklig, 10,-1,5,50,0,0,0,0,0,Regular"
-	SMALL_FONT="Source Sans Pro,8,-1,5,50,0,0,0,0,0,Regular"
+# KDE Fonts
+if [ "$new_display" = "mon" ]; then
+	sans_font="Source Sans Pro,12,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="Hasklig, 12,-1,5,50,0,0,0,0,0,Regular"
+	small_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
+elif [ "$new_display" = "lap" ]; then
+	sans_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="Hasklig, 10,-1,5,50,0,0,0,0,0,Regular"
+	small_font="Source Sans Pro,8,-1,5,50,0,0,0,0,0,Regular"
 else
 	echo "Error; please specify mon or lap"
 	exit 1
 fi
 
-kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "fixed" "$MONO_FONT"
-kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "font" "$SANS_FONT"
-kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "menuFont" "$SANS_FONT"
-kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "toolBarFont" "$SANS_FONT"
-kwriteconfig5 --file ~/.config/kdeglobals --group "WM" --key "activeFont" "$SANS_FONT"
-kwriteconfig5 --file ~/.config/kdeglobals --group "General" --key "smallestReadableFont" "$SMALL_FONT"
+kdeglobals_update() {
+	kwriteconfig5 --file "$XDG_CONFIG_HOME/kdeglobals" "$@"
+}
+
+if [ "$MACHINE" = "Linux" ] && [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
+	if which kwriteconfig5 > /dev/null; then
+		kdeglobals_update --group "General" --key "fixed" "$mono_font"
+		kdeglobals_update --group "General" --key "font" "$sans_font"
+		kdeglobals_update --group "General" --key "menuFont" "$sans_font"
+		kdeglobals_update --group "General" --key "toolBarFont" "$sans_font"
+		kdeglobals_update --group "WM" --key "activeFont" "$sans_font"
+		kdeglobals_update --group "General" --key "smallestReadableFont" "$small_font"
+	else
+		echo "kwriteconfig5 not found; please install it to update KDE settings."
+	fi
+fi
 
 # Config directories
-KITTY_CONFDIR="$HOME/.config/kitty"
-FF_CONFDIR="$HOME/.mozilla/firefox/default-nightly"
-GTK_CONFDIR="$HOME/.config/gtk-3.0"
-TERMSET_CONFDIR="$HOME/Executables/shell-scripts/terminal_cmds"
-NVIM_CONFDIR="$HOME/.config/nvim"
+kitty_confdir="$XDG_CONFIG_HOME/kitty"
+ff_confdir="$HOME/.mozilla/firefox/default-nightly"
+gtk_confdir="$XDG_CONFIG_HOME/gtk-3.0"
+termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
+nvim_confdir="$XDG_CONFIG_HOME/nvim"
 
-KITTY_SPECIAL="./kitty_$NEWDISP.conf"
-FF_SPECIAL="./user_$NEWDISP.js"
-GTK_SPECIAL="./settings_$NEWDISP.ini"
-TERMSET_SPECIAL="./st-vars_$NEWDISP"
-NVIM_SPECIAL="./ginit_$NEWDISP.vim"
+# TODO: update settings for gtk2 and gtk4
 
-cd "$KITTY_CONFDIR"
-cat ./kitty_master.conf "$KITTY_SPECIAL" > kitty.conf
-cd "$FF_CONFDIR"
-cat ./user_master.js "$FF_SPECIAL" > ./user.js
-cd "$GTK_CONFDIR"
-cat ./settings_master.ini "$GTK_SPECIAL" > settings.ini
-cd "$TERMSET_CONFDIR"
-cp "$TERMSET_SPECIAL" ./st-vars
-cd "$NVIM_CONFDIR"
-cp "$NVIM_SPECIAL" ginit.vim
+if [ -d "$kitty_confdir" ]; then
+	cd "$kitty_confdir"
+	cat ./kitty_master.conf "./kitty_$new_display.conf" > kitty.conf
+	echo "updated kitty settings"
+else
+	echo "Failed to find kitty config in \"$kitty_confdir\"; skipping."
+fi
+if [ -d "$ff_confdir" ]; then
+	cd "$ff_confdir"
+	cat ./user_master.js "./user_$new_display.js" > ./user.js
+	echo "updated Firefox Nighty settings"
+else
+	echo "Failed to find Firefox Nightly config in \"$ff_confdir\"; skipping."
+fi
+if [ -d "$gtk_confdir" ]; then
+	cd "$gtk_confdir"
+	cat ./settings_master.ini "./settings_$new_display.ini" > settings.ini
+	echo "updated gtk3 settings"
+else
+	echo "Failed to find GTK3 config in \"$gtk_confdir\"; skipping."
+fi
+if [ -d "$nvim_confdir" ]; then
+	cd "$nvim_confdir"
+	cp "./ginit_$new_display.vim" ginit.vim
+	echo "updated nvim gui settings"
+else
+	echo "Failed to find nvim config in \"$nvim_confdir\"; skipping."
+fi
+if [ -d "$termset_confdir" ]; then
+	cd "$termset_confdir"
+	cp "./st-vars_$new_display" ./st-vars
+	echo "updated st settings"
+else
+	echo "Failed to find st config in \"$termset_confdir\"; skipping."
+fi
 
+# vim: filetype=sh
