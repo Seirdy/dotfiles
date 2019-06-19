@@ -1,16 +1,4 @@
-sohup() {
-	if [ -n "$ZSH_VERSION" ]; then
-		nohup "$@" detch
-	elif [ -n "$BASH" ]; then
-		# shellcheck disable=SC2169
-		nohup "$@" &>/dev/null 2>/dev/null &
-		# shellcheck disable=SC2169
-		disown
-	else
-		return 1
-	fi
-}
-
+# No shebang line here; this file is meant to be sourced by a shell.
 mkcd() {
 	mkdir -p "$@"
 	cd "$@" || return
@@ -21,12 +9,6 @@ wdir() {
 	PROGPATH=$(which "$1")
 	PROGDIR=$(dirname "$PROGPATH")
 	cd "$PROGDIR" || return
-}
-
-editbin() {
-	# shellcheck disable=SC2230
-	PROGPATH=$(which "$1")
-	"$EDITOR" "$PROGPATH" || return
 }
 
 # transfer.sh

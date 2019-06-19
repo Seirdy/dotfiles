@@ -65,7 +65,6 @@ alias pdfify='loffcon pdf'
 
 alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
 alias nvimclean='nvim +PlugClean'
-alias pdco='pandoc -o'
 
 alias dnfs='dnf search'
 # alias weechat-matrix='source $HOME/Downloads/gitclone/weechat-matrix/venv/bin/activate && weechat -r '/script load matrix.py; /matrix connect matrix_org''

@@ -7,7 +7,7 @@ export LC_ALL=en_US.UTF-8
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
 if [ "$PROFILE_SET" != 1 ] || [ "$PROFILE_SET" != 3 ]; then
-	# shellcheck source=~/.profile
+	# shellcheck source=.profile
 	. "$HOME/.profile"
 	export PROFILE_SET=2
 fi
@@ -32,16 +32,30 @@ HISTSIZE=99999
 # shellcheck disable=SC2034
 SAVEHIST=50000
 ## History command configuration
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt inc_append_history     # add commands to HISTFILE in order of execution
-setopt share_history          # share command history data
+# record timestamp of command in HISTFILE
+setopt extended_history
+# delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_expire_dups_first
+# ignore duplicated commands history list
+setopt hist_ignore_dups
+# ignore commands that start with space
+setopt hist_ignore_space
+# show command with history expansion to user before running it
+setopt hist_verify
+# add commands to HISTFILE in order of execution
+setopt inc_append_history
+# share command history data
+setopt share_history
 
 # Don't autocorrect when thefuck does it better.
 unsetopt correct_all
+# Muh globbing
+setopt extended_glob
+setopt equals
+# Expansion
+setopt prompt_subst
+# Comments in the interactive shell
+setopt interactivecomments
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -55,12 +69,12 @@ zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 3 numeric
 # aliases
 SHELL_COMMON="$HOME/.config/shell_common"
-# shellcheck source=~/.config/shell_common/aliases.sh
+# shellcheck source=.config/shell_common/aliases.sh
 . "$SHELL_COMMON/aliases.sh"  # Portable aliases
-# shellcheck source=~/.config/shell_common/aliases_private.sh
+# shellcheck source=.config/shell_common/aliases_private.sh
 . "$SHELL_COMMON/aliases_private.sh"  # Not committing private info
 
-# shellcheck source=~/.config/shell_common/functions.sh
+# shellcheck source=.config/shell_common/functions.sh
 . "$SHELL_COMMON/functions.sh"  # POSIX-compliant shell functions
 
 # keybinds and functions
@@ -100,9 +114,9 @@ _fzf_compgen_dir() {
 }
 
 # source the theme
-# shellcheck source=~/.config/shell_common/powerlevel9k.zsh
+# shellcheck source=.config/shell_common/powerlevel9k.zsh
 . "$SHELL_COMMON/powerlevel9k.zsh"
 # source the plugins and start completions/autosuggestions.
-# shellcheck source=~/.config/shell_common/zplugin.zsh
+# shellcheck source=.config/shell_common/zplugin.zsh
 . "$SHELL_COMMON/zplugin.zsh"
 
