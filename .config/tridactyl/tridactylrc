@@ -10,6 +10,7 @@ colorscheme dark
 
 " Comment toggler for Reddit and Hacker News
 bind ;c hint -c [class*="expand"],[class="togg"]
+bind D tabduplicate
 
 " Make gu take you back to subreddit from comments
 bindurl reddit.com gu urlparent 4

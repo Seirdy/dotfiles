@@ -1,6 +1,5 @@
 #!/bin/zsh
 # powerlevel9k
-ZSH_THEME='powerlevel9k/powerlevel9k'
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 dir_writable dir anaconda virtualenv vcs newline vi_mode status
