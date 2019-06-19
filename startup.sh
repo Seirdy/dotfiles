@@ -1,6 +1,12 @@
 #!/usr/bin/env dash
-# POSIX-compliant startup script
+
+# My startup script, ideally run at the start of my session by my login shell.
 # This script sets environment vars and runs redshift if necessary
+
+# Everything except the shebang should be quite portable and POSIX-compliant, though
+# there are specific bits only for Linux and macOS.
+
+# TODO: Add support for {Free,Open}BSD
 
 # Don't re-run this
 if [ "$PROFILE_SET" = 1 ]; then
@@ -117,23 +123,23 @@ export PATH
 
 
 export RTV_EDITOR="nvim -c ':set filetype=md'"
-if which w3m > /dev/null; then
+if command -v w3m > /dev/null; then
 	export PAGER='w3m'
-elif which less > /dev/null; then
+elif command -v less > /dev/null; then
 	export PAGER='less'
 fi
 # Preferred editor
-if which nvim > /dev/null; then
+if command -v nvim > /dev/null; then
 	export EDITOR='nvim'
-elif which vim > /dev/null; then
+elif command -v vim > /dev/null; then
 	export EDITOR='vim'
-elif which vi > /dev/null; then
+elif command -v vi > /dev/null; then
 	export EDITOR='vi'
-elif which nvi > /dev/null; then
+elif command -v nvi > /dev/null; then
 	export EDITOR='nvi'
-elif which nano > /dev/null; then
+elif command -v nano > /dev/null; then
 	export EDITOR='nano'
-elif which emacs > /dev/null; then
+elif command -v emacs > /dev/null; then
 	# I'm in danger
 	export EDITOR='emacs'
 else
@@ -155,14 +161,16 @@ elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ] && [ "$REDSHIF
 	#  Don't run redshift if it's already running.
 	if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift > /dev/null; then
 		export REDSHIFT_RUNNING=1
+	elif command -v redshift; then
+		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
+		longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
+		redshift -l "$latitude:$longitude" -t 6500:2800 &
 	else
-		LATITUDE=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
-		LONGITUDE=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
-		redshift -l "$LATITUDE:$LONGITUDE" -t 6500:2800 &
+		echo 'redshift not found. Install redshift to warm your screen at night.'
 	fi
 fi
 
-SESSION_START=$(date -Iseconds)
+SESSION_START="$(date -Iseconds)"
 export SESSION_START
 
 export PROFILE_SET=1
