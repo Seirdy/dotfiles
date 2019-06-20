@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# shellcheck source=startup.sh
+. "$HOME/startup.sh"
+echo "Running bootstrap for $MACHINE"
+
+if [ "$MACHINE" = "Darwin" ]; then
+	echo "hi"
+elif [ "$MACHINE" = "Linux" ]; then
+	if [ -f /usr/lib/os-release ]; then
+		# shellcheck source=/dev/null
+		. /usr/lib/os-release
+		if [ "$NAME" != "Fedora" ]; then
+			exit
+		fi
+	else
+		exit
+	fi
+	sudo sh "$HOME/Executables/shell-scripts/bootstrap/sudo-dnf.sh"
+
+	flatpak_remote_add() {
+		flatpak remote-add --if-not-exists "$1" --from "$2" --user
+	}
+	flatpak_remote_add kdeapps https://distribute.kde.org/kdeapps.flatpakrepo
+	flatpak_remote_add gnome-nightly https://sdk.gnome.org/gnome-nightly.flatpakrepo
+	flatpak_remote_add gnome-apps-nightly https://sdk.gnome.org/gnome-apps-nightly.flatpakrepo
+	flatpak_remote_add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+	flatpak install flathub net.minetest.Minetest org.gtk.Gtk3theme.Breeze-Dark org.libreoffice.Libreoffice/x86_64 org.qbittorrent.qBittorrent org.zealdocs.Zeal website.i2pd.i2pd -y
+	flatpak install flathub-beta net.supertuxkart.SuperTuxKart com.github.quaternion -y
+	flatpak install gnome-apps-nightly org.Epiphpany.Devel -y
+	flatpak install kdeapps org.kde.falkon org.kde.okular
+
+fi
+
+cargo install bat cargo cargo-update exa fd-find ffsend hyperfine lsd onefetch ripgrep rls shellharden tealdeer
+tldr --update
+
+pip3 install -U --user pynvim pipx
+pipx install black
+pipx install ddgr
+pipx install flake8
+pipx install pipx install gcalcli  # Eww, Google Apps
+pipx install glances
+pipx install haxor-news
+pipx install httpie
+pipx install mypy
+pipx install neovim-remote
+pipx install pockyt
+pipx install proselint
+pipx install pydiatra
+pipx install requires.io
+pipx install restructuredtext-lint
+pipx install rtv  # Discontinued. TODO: see if community fork lives.
+pipx install safety
+pipx install scspell3k
+pipx install standardebooks
+pipx install thefuck
+pipx install tox
+pipx install trash-cli
+pipx install twine
+pipx install urlscan
+pipx install virtualenv
+pipx install xonsh
+pipx install youtube-dl
