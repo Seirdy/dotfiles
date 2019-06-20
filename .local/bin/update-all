@@ -22,43 +22,39 @@
 # without actually launching it.
 
 # SETUP
-SCRIPTPATH="$HOME/Executables/shell-scripts/updates"
+script_dir="$HOME/Executables/shell-scripts/updates"
 cd "$XDG_DATA_HOME/update-all/logs" || return 1
 echo "Compressing old log"
 fd -t d -x 7z a -bd -m0=lzma -mx=9 -y "{/}.7z" "{}"
 fd -t d -x rm -rf
-STARTTIME=$(date '+%s')
-mkdir "$STARTTIME"
-cd "$STARTTIME" || return 2
-LOGDIR="$PWD"
+time_start=$(date '+%s')
+mkdir "$time_start"
+cd "$time_start" || return 2
+log_dir="$PWD"
 
 # RUN UPDATE
 echo "Starting update: scripting lang packages"
-nohup dash "$SCRIPTPATH/multi-update/update-script-pkg.sh" > "$LOGDIR/script-pkg-$STARTTIME.log" &
+nohup dash "$script_dir/multi-update/update-script-pkg.sh" > "$log_dir/script-pkg-$time_start.log" &
 
 echo "Starting update: compiled lang packages"
-nohup dash "$SCRIPTPATH/multi-update/update-compiled-pkg.sh" > "$LOGDIR/compiled-pkg-$STARTTIME.log" &
+nohup dash "$script_dir/multi-update/update-compiled-pkg.sh" > "$log_dir/compiled-pkg-$time_start.log" &
 
 # TODO: stop assuming all GNU/Linux machines run Fedora, lol
 if [ "$MACHINE" = "Linux" ]; then
 	echo "Starting update: flatpak"
-	nohup dash "$SCRIPTPATH/update-flatpak.sh" > "$LOGDIR/flatpak-$STARTTIME.log" &
+	nohup dash "$script_dir/update-flatpak.sh" > "$log_dir/flatpak-$time_start.log" &
 	echo "Starting update: chromium-latest-linux"
-	nohup dash "$HOME/Executables/chromium-latest-linux/update.sh" > "$LOGDIR/chromium-$STARTTIME.log" &
+	nohup dash "$HOME/Executables/chromium-latest-linux/update.sh" > "$log_dir/chromium-$time_start.log" &
 	echo "Starting update: dnf packages"
-	nohup dash "$SCRIPTPATH/root-dnf-update.sh" | tee "$LOGDIR/dnf-$STARTTIME.log"
+	nohup dash "$script_dir/root-dnf-update.sh" | tee "$log_dir/dnf-$time_start.log"
 
 elif [ "$MACHINE" = "Darwin" ]; then
 	echo "Starting update: homebrew packages"
-	nohup dash "$SCRIPTPATH/update-homebrew.sh" | tee "$LOGDIR/brew-$STARTTIME.log"
+	nohup dash "$script_dir/update-homebrew.sh" | tee "$log_dir/brew-$time_start.log"
 else
 	echo "Unsupported machine for system package updates"
 	echo "You machine is $MACHINE"
 fi
-
-ENDTIME=$(date '+%s')
-ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
-echo "Time elapsed for full update: ${ELAPSED} seconds"
 
 # vim: filetype=sh
 
