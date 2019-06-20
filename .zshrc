@@ -54,7 +54,7 @@ setopt extended_glob
 setopt equals
 # Expansion
 setopt prompt_subst
-# Comments in the interactive shell
+# Comments in the interactive shell; useful for copy-pasting
 setopt interactivecomments
 
 # Compilation flags
@@ -70,12 +70,12 @@ zstyle ':completion:*' max-errors 3 numeric
 # aliases
 SHELL_COMMON="$HOME/.config/shell_common"
 # shellcheck source=.config/shell_common/aliases.sh
-. "$SHELL_COMMON/aliases.sh"  # Portable aliases
+. "$SHELL_COMMON/aliases.sh"
 # shellcheck source=.config/shell_common/aliases_private.sh
 . "$SHELL_COMMON/aliases_private.sh"  # Not committing private info
 
 # shellcheck source=.config/shell_common/functions.sh
-. "$SHELL_COMMON/functions.sh"  # POSIX-compliant shell functions
+. "$SHELL_COMMON/functions.sh"
 
 # keybinds and functions
 function _z() { _zlua "$@"; }
@@ -114,9 +114,9 @@ _fzf_compgen_dir() {
 }
 
 # source the theme
-# shellcheck source=.config/shell_common/powerlevel9k.zsh
-. "$SHELL_COMMON/powerlevel9k.zsh"
+# shellcheck source=/dev/null
+. "$SHELL_COMMON/zsh/powerlevel10k.zsh"
 # source the plugins and start completions/autosuggestions.
 # shellcheck source=.config/shell_common/zplugin.zsh
-. "$SHELL_COMMON/zplugin.zsh"
+. "$SHELL_COMMON/zsh/zplugin.zsh"
 

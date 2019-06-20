@@ -3,20 +3,24 @@ alias psave='pockyt put -i'
 alias yadm='yadm -Y "$HOME/.config/yadm"'
 alias :q='exit'  # muh vim habits
 alias c='calc -p'
-alias l='lsd --group-dirs first'
+
+alias l='lsd --group-dirs first'  # like ls, but faster and with MOAR ICONS
+alias ll='exa -lh --time-style=iso'  # Better output than ls -l
+alias lll='exa -lh --time-style=full-iso -s modified'  # Show full timestamp
 alias la='l -a'
-alias ll='exa -lh --time-style=iso'  # Better output than ls
-alias lla='ll -a'  # Show hidden files
-alias lll='exa -lh --time-style=full-iso'  # Show full timestamp
+alias lla='ll -a'
+alias llla='lll -a'
+
 alias rmm='rmtrash'
 alias rgi='rg -i'
+alias rgv='rg -v'
 alias vim='vim -u NONE'
 alias ddgr='ddgr -x'
 
 alias edi='$EDITOR'
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias zshrc='edi $HOME/.zshrc'
-alias zpluginrc='edi $XDG_CONFIG_HOME/shell_common/zplugin.zsh'
+alias zpluginrc='edi $XDG_CONFIG_HOME/shell_common/zsh/zplugin.zsh'
 alias nvimrc='edi $XDG_CONFIG_HOME/nvim/init.vim'
 alias startuprc='edi $HOME/startup.sh'
 alias rssrc='edi $XDG_CONFIG_HOME/newsboat/urls'
