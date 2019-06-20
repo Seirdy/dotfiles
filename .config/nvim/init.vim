@@ -25,9 +25,6 @@ set colorcolumn=86
 " Spellfile
 set spellfile=~/.config/nvim/spell/en.utf-8.add
 
-" Remove trailing whitespace on save
-autocmd! BufWritePre * :%s/\s\+$//e
-
 " =======
 " Plugins
 " =======
@@ -274,8 +271,8 @@ command! -nargs=0 Format :call CocAction('format')
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
 
-" Format entire doc with langserver and write
-nmap <leader>w :Format<CR>:w<CR>
+" Remove trailing whitespace, format and write
+nmap <leader>w :%s/\s\+$//e<CR>:Format<CR>:w<CR>
 
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)

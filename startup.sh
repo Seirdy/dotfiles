@@ -108,7 +108,9 @@ elif [ "$MACHINE" = "Darwin" ]; then
 fi
 
 # Dedupe PATH
-old_PATH=$PATH:; PATH=
+old_PATH=$PATH:
+# shellcheck disable=SC2123
+PATH=
 while [ -n "$old_PATH" ]; do
 	x=${old_PATH%%:*}       # the first remaining entry
 	case $PATH: in
@@ -122,7 +124,8 @@ unset old_PATH x
 export PATH
 
 
-export RTV_EDITOR="nvim -c ':set filetype=md'"
+export RTV_EDITOR="nvim -c ':set filetype=pandoc'"
+export RTV_BROWSER="$BROWSER"
 if command -v w3m > /dev/null; then
 	export PAGER='w3m'
 elif command -v less > /dev/null; then
