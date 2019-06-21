@@ -4,19 +4,25 @@
 . "$HOME/startup.sh"
 echo "Running bootstrap for $MACHINE"
 
-if [ "$MACHINE" = "Darwin" ]; then
-	echo "hi"
-elif [ "$MACHINE" = "Linux" ]; then
+bootstrap_dir="$HOME/Executables/shell-scripts/bootstrap"
+
+if [ "$MACHINE" = "Linux" ]; then
 	if [ -f /usr/lib/os-release ]; then
 		# shellcheck source=/dev/null
 		. /usr/lib/os-release
 		if [ "$NAME" != "Fedora" ]; then
 			exit
 		fi
+	elif [ "$MACHINE" = "Darwin" ]; then
+		echo "Eww, macOS"
+		echo "Installing Homebrew"
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		echo "Homebrew installed"
+		sh "$bootstrap_dir/homebrew-install.sh"
 	else
 		exit
 	fi
-	sudo sh "$HOME/Executables/shell-scripts/bootstrap/sudo-dnf.sh"
+	sudo sh "$bootstrap_dir/sudo-dnf.sh"
 
 	flatpak_remote_add() {
 		flatpak remote-add --if-not-exists "$1" --from "$2" --user
@@ -35,30 +41,4 @@ fi
 cargo install bat cargo cargo-update exa fd-find ffsend hyperfine lsd onefetch ripgrep rls shellharden tealdeer
 tldr --update
 
-pip3 install -U --user pynvim pipx
-pipx install black
-pipx install ddgr
-pipx install flake8
-pipx install pipx install gcalcli  # Eww, Google Apps
-pipx install glances
-pipx install haxor-news
-pipx install httpie
-pipx install mypy
-pipx install neovim-remote
-pipx install pockyt
-pipx install proselint
-pipx install pydiatra
-pipx install requires.io
-pipx install restructuredtext-lint
-pipx install rtv  # Discontinued. TODO: see if community fork lives.
-pipx install safety
-pipx install scspell3k
-pipx install standardebooks
-pipx install thefuck
-pipx install tox
-pipx install trash-cli
-pipx install twine
-pipx install urlscan
-pipx install virtualenv
-pipx install xonsh
-pipx install youtube-dl
+dash "$bootstrap_dir/python.sh"
