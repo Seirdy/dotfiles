@@ -10,3 +10,4 @@ go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
 go_update github.com/ddo/fast
 go_update golang.org/x/tour
+go_update git.sr.ht/~sircmpwn/aerc
