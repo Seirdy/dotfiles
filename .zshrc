@@ -119,4 +119,6 @@ _fzf_compgen_dir() {
 # source the plugins and start completions/autosuggestions.
 # shellcheck source=.config/shell_common/zplugin.zsh
 . "$SHELL_COMMON/zsh/zplugin.zsh"
+# shellcheck source=.config/shell_common/zsh/zfuncs.zsh
+. "$SHELL_COMMON/zsh/zfuncs.zsh"
 

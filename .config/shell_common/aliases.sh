@@ -98,4 +98,5 @@ if [ -n "$ZSH_VERSION" ]; then
 	alias -g nnote='$(date +%Y-%m-%d_%H-%M-%S_%s).md'
 	alias -g detch='&>/dev/null 2>/dev/null & disown'
 	alias -g pagit='| $PAGER'
+	alias -g w3m-htm="| w3m -T text/html"
 fi

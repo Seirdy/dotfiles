@@ -38,3 +38,7 @@ n() {
 	fi
 }
 
+# Opens a file in $EDITOR in kitty
+vdi() {
+	kitty $EDITOR "$@"
+}
