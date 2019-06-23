@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+url="$1"
+echo ${url%/} \
+	| sed '/\.htm/! s/.*\///' \
+	| sed -e 's#.*/##' -e 's/\.html//'
+
+# vim: filetype=sh

@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+for url in $(pockyt get "$@" -f '{link}')
+do
+	nohup aria2c "$url" -o "$(url-filename "$url").html" &
+done
+
+# vim: filetype=sh
