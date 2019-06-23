@@ -4,6 +4,7 @@
 # export MANPATH="$HOME/.local/venvs/*/share/man:$MANPATH"
 # fortune -n 70 -s computers pets
 export LC_ALL=en_US.UTF-8
+export COLUMNS
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
 if [ "$PROFILE_SET" != 1 ] || [ "$PROFILE_SET" != 3 ]; then

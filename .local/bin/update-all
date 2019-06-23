@@ -77,12 +77,12 @@ if [ "$MACHINE" = "Linux" ]; then
 	log_bg "$HOME/Executables/chromium-latest-linux/update.sh" \
 		"$log_dir/chromium-$time_start.log"
 
-	echo "Starting update: dnf packages"
+	echo "Starting update: dnf packages\n"
 	log_fg "$script_dir/root-dnf-update.sh" \
 		"$log_dir/dnf-$time_start.log"
 
 elif [ "$MACHINE" = "Darwin" ]; then
-	echo "Starting update: homebrew packages"
+	echo "Starting update: homebrew packages\n"
 	log_fg "$script_dir/update-homebrew.sh" \
 		"$log_dir/brew-$time_start.log"
 
