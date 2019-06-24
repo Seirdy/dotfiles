@@ -39,6 +39,7 @@ set csp clobber
 fixamo_quiet
 set allowautofocus false
 set editorcmd $DEFTERM $EDITOR
+set yankto both
 
 "
 " URL redirects
@@ -46,6 +47,7 @@ set editorcmd $DEFTERM $EDITOR
 
 " New reddit bad; old reddit good
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocStart ^http(s?)://www\.nytimes\.com keyfeed gr
 
 " Custom binds
 
@@ -56,7 +58,7 @@ bind ? exclaim_quiet xdotool key --delay 50 alt+e f
 " Open url in Reddit Terminal Viewer
 bind ,r hint -W exclaim $DEFTERM rtv
 " Open in mpv
-bind ,m hint -W exclaim mpv
+bind ,m hint -W mpvsafe
 " Open image in feh
 bind ,i composite hint -pipe img src | exclaim_quiet feh
 " Save to pocket (requires pockyt to be installed)
@@ -70,9 +72,10 @@ set searchengine ddg
 
 " Autocontain
 autocontain lclark\.edu School
-autocontain (classroom|accounts)\.google\.com Google
+autocontain (classroom|accounts|drive|docs|cloud)\.google\.com Google
 autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket
+autocontain git(lab|hub).com Git
 
 " vim:filetype=vim
