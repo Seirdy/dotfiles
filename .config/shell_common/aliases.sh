@@ -12,6 +12,7 @@ alias lla='ll -a'
 alias llla='lll -a'
 
 alias rmm='rmtrash'
+alias rmhtm='rm *.html'
 alias rgi='rg -i'
 alias rgv='rg -v'
 alias vim='vim -u NONE'
