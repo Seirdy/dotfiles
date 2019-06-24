@@ -12,13 +12,7 @@
 		zplugin ice lucid "$@"
 	}
 	zi0() {
-		zi wait'0a' "$@"
-	}
-	zi1() {
-		zi wait'0b' "$@"
-	}
-	zi2() {
-		zi wait'0c' "$@"
+		zi wait'0' "$@"
 	}
 
 # }}}
@@ -47,7 +41,7 @@ fi
 	zi wait'[[ -n ${ZLAST_COMMANDS[(r)fuc*]} ]]'
 	zplugin light laggardkernel/thefuck
 
-	zi1 blockf atload'_zsh_autosuggest_start'
+	zi0 blockf atload'_zsh_autosuggest_start'
 	zplugin load zsh-users/zsh-autosuggestions
 
 	zi0 pick'autopair.zsh'
@@ -73,7 +67,7 @@ fi
 		zi0 as'program' "$@"
 	}
 
-	zi_program has'trash-put' pick'rmtrash'
+	zi_program has'trash' pick'rmtrash'
 	zplugin light PhrozenByte/rmtrash
 
 	# git-open has a manpage that I want in my MANPATH
@@ -96,16 +90,16 @@ fi
 		zpcdreplay
 	}
 
-	zi1 has'pip3' as'completion'
+	zi0 has'pip3' as'completion'
 	zplugin light srijanshetty/zsh-pip-completion
 
-	zi1 has'flatpak' as'completion'
+	zi0 has'flatpak' as'completion'
 	zplugin light bilelmoussaoui/flatpak-zsh-completion
 
-	zi1 has'kitty' as'completion'
+	zi0 has'kitty' as'completion'
 	zplugin light %HOME/.config/shell_common/kitty_completions
 
-	zi2 as'completion' atload'finish_setup'
+	zi0 as'completion' atload'finish_setup'
 	zplugin light zsh-users/zsh-completions
 
 # }}}

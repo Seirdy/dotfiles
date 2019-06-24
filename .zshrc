@@ -7,7 +7,7 @@ export LC_ALL=en_US.UTF-8
 export COLUMNS
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
-if [ "$PROFILE_SET" != 1 ] || [ "$PROFILE_SET" != 3 ]; then
+if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile
 	. "$HOME/.profile"
 	export PROFILE_SET=2
