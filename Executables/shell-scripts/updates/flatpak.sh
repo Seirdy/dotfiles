@@ -7,5 +7,5 @@ flatpak update -y --user
 flatpak uninstall --unused -y
 
 ENDTIME=$(date '+%s')
-ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
+ELAPSED=$(echo "${ENDTIME} - ${STARTTIME}" | bc)
 echo "Time elapsed: ${ELAPSED} seconds"

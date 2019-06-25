@@ -1,44 +1,52 @@
 #!/bin/sh
 
+cd "$HOME/Executables"
+mkdir -p 'go/bin' 'pipx/bin' 'gem/bin' 'luarocks/bin' 'npm/bin' 'cargo/bin' 'stack/bin'
+cd "$HOME"
 # shellcheck source=startup.sh
+echo 'Created some directories before adding to $PATH'
 . "$HOME/startup.sh"
 echo "Running bootstrap for $MACHINE"
 
 bootstrap_dir="$HOME/Executables/shell-scripts/bootstrap"
+updates_dir="$HOME/Executables/shell-scripts/updates"
 
-if [ "$MACHINE" = "Linux" ]; then
+# TODO: Add support for FreeBSD (TrueOS with Area51 repo)
+if [ "$MACHINE" = 'Linux' ]; then
 	if [ -f /usr/lib/os-release ]; then
+		# my scripts only work on Fedora atm. TODO: add support for Debian
 		# shellcheck source=/dev/null
 		. /usr/lib/os-release
-		if [ "$NAME" != "Fedora" ]; then
-			exit
+		if [ "$NAME" = 'Fedora' ]; then
+			echo 'Installing dnf packages for Fedora'
+			sudo sh "$bootstrap_dir/sudo-dnf.sh"
 		fi
-	elif [ "$MACHINE" = "Darwin" ]; then
-		echo "Eww, macOS"
-		echo "Installing Homebrew"
-		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-		echo "Homebrew installed"
+		dash "$bootstrap_dir/flatpak.sh"
+		dash "$updates_dir/chromium.sh"
+	elif [ "$MACHINE" = 'Darwin' ]; then
+		echo 'Eww, macOS'
+		if ! command -v brew; then
+			echo 'Installing Homebrew'
+			ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+			echo 'Homebrew installed'
+		fi
+		echo 'Installing homebrew packages'
 		sh "$bootstrap_dir/homebrew-install.sh"
 	else
 		exit
 	fi
-	sudo sh "$bootstrap_dir/sudo-dnf.sh"
-
-	flatpak_remote_add() {
-		flatpak remote-add --if-not-exists "$1" --from "$2" --user
-	}
-	flatpak_remote_add kdeapps https://distribute.kde.org/kdeapps.flatpakrepo
-	flatpak_remote_add gnome-nightly https://sdk.gnome.org/gnome-nightly.flatpakrepo
-	flatpak_remote_add gnome-apps-nightly https://sdk.gnome.org/gnome-apps-nightly.flatpakrepo
-	flatpak_remote_add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-	flatpak install flathub net.minetest.Minetest org.gtk.Gtk3theme.Breeze-Dark org.libreoffice.Libreoffice/x86_64 org.qbittorrent.qBittorrent org.zealdocs.Zeal website.i2pd.i2pd -y
-	flatpak install flathub-beta net.supertuxkart.SuperTuxKart com.github.quaternion -y
-	flatpak install gnome-apps-nightly org.Epiphpany.Devel -y
-	flatpak install kdeapps org.kde.falkon org.kde.okular
 
 fi
 
 cargo install bat cargo cargo-update exa fd-find ffsend hyperfine lsd onefetch ripgrep rls shellharden tealdeer
 tldr --update
 
+gem pristine msgpack
+gem install neovim
+
 dash "$bootstrap_dir/python.sh"
+dash "$bootstrap_dir/zplugin.sh"
+dash "$updates_dir/node.sh"
+dash "$updates_dir/stack.sh"
+dash "$updates_dir/go.sh"
+echo 'Bootstrap finished! Reboot and try running "update-all" to make sure this worked.'

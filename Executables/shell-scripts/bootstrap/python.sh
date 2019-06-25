@@ -3,20 +3,23 @@
 pip3 install -U --user pynvim pipx
 
 pipx install black
+pipx install consolemd
 pipx install ddgr
 pipx install flake8
-pipx install pipx install gcalcli  # Eww, Google Apps
+pipx install gcalcli
 pipx install glances
 pipx install haxor-news
 pipx install httpie
 pipx install mypy
+pipx install myqr
 pipx install neovim-remote
 pipx install pockyt
 pipx install proselint
 pipx install pydiatra
+pipx install pygments
 pipx install requires.io
 pipx install restructuredtext-lint
-pipx install rtv  # Discontinued. TODO: see if community fork lives.
+pipx install rtv
 pipx install safety
 pipx install scspell3k
 pipx install standardebooks

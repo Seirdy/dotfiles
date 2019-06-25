@@ -68,6 +68,8 @@ export GEM_HOME="$HOME/Executables/gem"
 export GEM_PATH="$GEM_HOME:/usr/share/gems:/usr/local/share/gems:$GEM_PATH"
 export GEM_SPEC_CACHE="$GEM_HOME/specs"
 export GEMRC="$XDG_CONFIG_HOME/gem/config"
+export STACK_YAML="$XDG_CONFIG_HOME/stack/stack.yaml"
+export STACK_ROOT="$HOME/Executables/stack"
 
 # Set MANPATH
 export MANPATH="/usr/share/man:$MANPATH"
@@ -75,15 +77,33 @@ export MANPATH="$HOME/.local/man:$MANPATH"
 export MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 # Set PATH
-PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" # default
-PATH="$CARGO_HOME/bin:$PATH"                         # cargo
-PATH="$NPM_PACKAGES/bin:$PATH"                       # npm
-PATH="$HOME/Executables/luarocks/bin:$PATH"          # luarocks
-PATH="$GEM_HOME/bin:$PATH"                           # rubygems
-PATH="$PIPX_BIN_DIR:$PATH"                           # pipx
-PATH="$GOPATH/bin:$PATH"                             # go
-PATH="$HOME/Executables/fzf/bin:$PATH"               # fzf
-PATH="$HOME/.local/bin:$PATH"                        # local bin
+
+# These functions add a directory to $PATH if it exists and it isn't already there.
+pathadd_head() {
+	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+		PATH="$1${PATH:+":$PATH"}"
+	fi
+}
+pathadd_tail() {
+	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+		PATH="${PATH:+"$PATH:"}$1"
+	fi
+}
+pathadd_tail '/usr/local/sbin'
+pathadd_tail '/usr/local/bin'
+pathadd_tail '/usr/sbin'
+pathadd_tail '/usr/bin'
+pathadd_tail '/sbin'
+pathadd_tail '/bin'
+pathadd_head "$GEM_HOME/bin"                           # rubygems (ruby)
+pathadd_head "$NPM_PACKAGES/bin"                       # npm (javascript)
+pathadd_head "$HOME/Executables/luarocks/bin"          # luarocks (lua)
+pathadd_head "$PIPX_BIN_DIR"                           # pipx (python)
+pathadd_head "$GOPATH/bin"                             # go
+pathadd_head "$STACK_ROOT/bin"                         # stack (haskell)
+pathadd_head "$CARGO_HOME/bin"                         # cargo (rust)
+pathadd_head "$HOME/Executables/fzf/bin"               # fzf
+pathadd_head "$HOME/.local/bin"                        # local bin
 
 # Detect my OS
 unameOut="$(uname -s)"
@@ -96,31 +116,19 @@ case "${unameOut}" in
 esac
 export MACHINE
 
-if [ "$MACHINE" = "Linux" ]; then
-	PATH="$XDG_DATA_HOME/flatpak/exports/bin:$PATH"      # flatpak
-	PATH="/var/lib/flatpak/exports/bin:$PATH"            # more flatpak
-	PATH="/usr/lib64/qt5/bin:$PATH"                      # qt programs
+if [ "$MACHINE" = 'Linux' ]; then
+	pathadd_tail '/usr/lib64/qt5/bin'                     # qt programs
+	pathadd_head "$XDG_DATA_HOME/flatpak/exports/bin"     # flatpak (user)
+	pathadd_tail '/var/lib/flatpak/exports/bin'           # flatpak (global)
 	if [ -z "$TMPDIR" ]; then
 		export TMPDIR="/tmp"
 	fi
 elif [ "$MACHINE" = "Darwin" ]; then
-	PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+	# override macOS defaults with up-to-date/familiar versions
+	pathadd_head '/usr/local/opt/ruby/bin'
+	pathadd_head '/usr/local/opt/coreutils/libexec/gnubin'
 fi
 
-# Dedupe PATH
-old_PATH=$PATH:
-# shellcheck disable=SC2123
-PATH=
-while [ -n "$old_PATH" ]; do
-	x=${old_PATH%%:*}       # the first remaining entry
-	case $PATH: in
-		*:"$x":*) ;;          # already there
-		*) PATH=$PATH:$x;;    # not there yet
-	esac
-	old_PATH=${old_PATH#*:}
-done
-PATH=${PATH#:}
-unset old_PATH x
 export PATH
 
 
@@ -150,7 +158,7 @@ else
 	export EDITOR='man ed'
 fi
 
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
 	export KITTY_ENABLE_WAYLAND=1
 	export EGL_PLATFORM=wayland
 	export CLUTTER_BACKEND=wayland
@@ -158,11 +166,11 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export QT_WAYLAND_FORCE_DPI=physical
 	export SDL_VIDEODRIVER=wayland  # Makes imv use wayland backend
 	# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
-elif [ "$XDG_SESSION_TYPE" = "x11" ] || [ "$MACHINE" = "Darwin" ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
+elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
 	#  Don't run redshift on GNOME (it has its own Night Light)
 	#  Don't run redshift on Wayland
 	#  Don't run redshift if it's already running.
-	if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || pgrep redshift > /dev/null; then
+	if [ "$XDG_CURRENT_DESKTOP" = 'GNOME' ] || pgrep redshift > /dev/null; then
 		export REDSHIFT_RUNNING=1
 	elif command -v redshift; then
 		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
