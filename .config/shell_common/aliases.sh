@@ -17,6 +17,7 @@ alias rgi='rg -i'
 alias rgv='rg -v'
 alias vim='vim -u NONE'
 alias ddgr='ddgr -x'
+alias fuck!='fuck --yeah'  # auto-correct previous command
 
 alias edi='$EDITOR'
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
