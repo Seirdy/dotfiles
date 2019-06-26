@@ -3,7 +3,6 @@ dnf copr enable agriffis/neovim-nightly
 dnf copr enable eklitzke/watchman
 dnf copr enable petersen/stack
 dnf copr enable oleastre/fonts
-dnf copr enable petersen/pandoc
 dnf copr enable rspanton/cpputest
 dnf copr enable sichera/fedora
 dnf copr enable thelocehiliosan/yadm
