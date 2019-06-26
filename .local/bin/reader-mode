@@ -5,6 +5,7 @@ filename_noext=$(echo "${filename%.html}")
 filename_md="$filename_noext.md"
 clean-mark "$filename" > /dev/null
 pandoc --from markdown --to markdown -s "$filename_md" --columns="$COLUMNS" \
-	| consolemd --true-color
+	| consolemd --true-color \
+	| less -r
 
 # vim: filetype=sh

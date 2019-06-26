@@ -2,7 +2,7 @@
 
 for url in $(pockyt get "$@" -f '{link}')
 do
-	nohup aria2c "$url" -o "$(url-filename "$url").html" &
+	nohup webpage-dl "$url" &
 done
 
 # vim: filetype=sh
