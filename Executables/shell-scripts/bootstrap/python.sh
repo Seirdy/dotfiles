@@ -16,7 +16,9 @@ pipx install neovim-remote
 pipx install pockyt
 pipx install proselint
 pipx install pydiatra
+pipx install pydocstyle
 pipx install pygments
+pipx install pyre-check
 pipx install requires.io
 pipx install restructuredtext-lint
 pipx install rtv
@@ -29,5 +31,6 @@ pipx install trash-cli
 pipx install twine
 pipx install urlscan
 pipx install virtualenv
+pipx install xenon
 pipx install xonsh
 pipx install youtube-dl
