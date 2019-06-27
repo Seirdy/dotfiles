@@ -102,7 +102,6 @@ pathadd_head "$PIPX_BIN_DIR"                           # pipx (python)
 pathadd_head "$GOPATH/bin"                             # go
 pathadd_head "$STACK_ROOT/bin"                         # stack (haskell)
 pathadd_head "$CARGO_HOME/bin"                         # cargo (rust)
-pathadd_head "$HOME/Executables/fzf/bin"               # fzf
 pathadd_head "$HOME/.local/bin"                        # local bin
 
 # Detect my OS

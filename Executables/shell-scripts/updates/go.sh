@@ -13,6 +13,8 @@ go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
 # If htop wasn't pretty enough
 go_update github.com/cjbassi/gotop
+# fzf
+go_update github.com/junegunn/fzf
 # Test dl speed
 go_update github.com/ddo/fast
 # Create a langserver from linters and formatters
