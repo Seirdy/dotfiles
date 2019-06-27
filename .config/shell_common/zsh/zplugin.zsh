@@ -23,7 +23,6 @@ zi0() {
 if [ $terminfo[colors] > 255 ]; then
 	zi
 	zplugin load romkatv/powerlevel10k
-	# zplugin load bhilburn/powerlevel9k
 fi
 
 zi0
@@ -56,7 +55,7 @@ zplugin light hlissner/zsh-autopair
 	zplugin light wfxr/forgit
 
 	zi0 has'fzf' pick'key-bindings.zsh'
-	zplugin light %HOME/Executables/fzf/shell
+	zplugin light %$GOPATH/src/github.com/junegunn/fzf/shell
 # }}}
 
 ############
@@ -104,15 +103,37 @@ finish_setup() {
 	zpcdreplay
 }
 
-zi0 has'pip3' as'completion'
-zplugin light srijanshetty/zsh-pip-completion
+zi_completion() {
+	zi0 as'completion' "$@"
+}
 
-zi0 has'flatpak' as'completion'
+zi_completion has'pip3'
+zplugin snippet OMZ::plugins/pip/_pip
+
+zi_completion has'pylint'
+zplugin snippet OMZ::plugins/pylint/_pylint
+
+zi_completion has'cargo'
+zplugin snippet OMZ::plugins/cargo/_cargo
+
+zi_completion has'rustc'
+zplugin snippet OMZ::plugins/rust/_rust
+
+zi_completion has'flatpak'
 zplugin light bilelmoussaoui/flatpak-zsh-completion
 
-zi0 has'kitty' as'completion'
+zi_completion has'docker'
+zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+
+zi_completion has'kitty'
 zplugin light %HOME/.config/shell_common/kitty_completions
 
-zi0 as'completion' atload'finish_setup'
+zi_completion has'rg'
+zplugin snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
+
+zi_completion has'fd'
+zplugin snippet OMZ::plugins/fd/_fd
+
+zi_completion atload'finish_setup'
 zplugin light zsh-users/zsh-completions
 
