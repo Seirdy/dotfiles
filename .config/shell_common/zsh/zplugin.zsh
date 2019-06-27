@@ -86,7 +86,7 @@ zplugin light hlissner/zsh-autopair
 		zi as'program' wait'[[ -n ${ZLAST_COMMANDS[(r)git*]} ]]' "$@"
 	}
 
-	zi_git_program pick'bin/git-dsf'
+	zi_program pick'bin/git-dsf'
 	zplugin light zdharma/zsh-diff-so-fancy
 
 	zi_git_program pick'bin/git-*' make"PREFIX=$ZPFX"
