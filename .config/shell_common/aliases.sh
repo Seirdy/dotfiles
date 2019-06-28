@@ -1,6 +1,5 @@
 # aliases
 alias psave='pockyt put -i'
-alias yadm='yadm -Y "$HOME/.config/yadm"'
 alias :q='exit'  # muh vim habits
 alias c='calc -p'
 
@@ -46,6 +45,7 @@ alias gclr='git clone --recursive'
 alias gpull='git pull'
 
 # yadm aliases
+alias yadm='yadm -Y "$XDG_CONFIG_HOME/yadm"'
 alias ystat='yadm status'
 alias yco='yadm commit -S'
 alias ycom='yadm commit -S -m'
@@ -96,11 +96,18 @@ alias z='z -I'
 alias kicat='kitty +kitten icat'
 alias kittyrc='$EDITOR $HOME/.config/kitty/kitty_master.conf'
 
+if command -v roflcat > /dev/null; then
+	alias lolcat='roflcat -t'
+fi
+
 # zsh-specific
 if [ -n "$ZSH_VERSION" ]; then
 	alias -g isotime='$(date -Iseconds)'
 	alias -g nnote='$(date +%Y-%m-%d_%H-%M-%S_%s).md'
 	alias -g detch='&>/dev/null 2>/dev/null & disown'
 	alias -g pagit='| $PAGER'
-	alias -g w3m-htm="| w3m -T text/html"
+	alias -g w3m-htm='| w3m -T text/html'
+	if command -v lolcat > /dev/null; then
+		alias -g rofl='| lolcat'
+	fi
 fi

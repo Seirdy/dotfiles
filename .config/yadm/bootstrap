@@ -39,6 +39,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 fi
 
 cargo install bat cargo cargo-update exa fd-find ffsend hyperfine lsd onefetch ripgrep rls shellharden tealdeer
+cargo install --git https://github.com/jameslzhu/roflcat
 tldr --update
 
 gem pristine msgpack
