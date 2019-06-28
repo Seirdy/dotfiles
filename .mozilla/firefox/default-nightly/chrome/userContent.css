@@ -1,502 +1,172 @@
 /* Import any webextension tweaks here - Example Shown below */
 /* IMPORTANT: change the Internal UUID in the corresponding css file */
 :root {
-    --primary-dark-color: #31363B;
-    /* Color of FF dark theme nav-bar */
-    --primary-light-color: #A1A5A0;
-    /* Off white */
-    --light-accent-color: #616569;
-    /* Slightly darker off white */
-    --dark-accent: var(--primary-accent-color-dark);
-    /* darker shade of main color */
-    --mid-way-color: #404B4F;
-    /* inbetween main dark and light color */
-    --primary-accent-color: #3DAEE9;
-    --primary-accent-color-dark: #2A2E32;
-    /* Darker cyan color */
-    --dark-background: #232629;
-    --in-content-page-color: var(--primary-light-color) !important;
-    --in-content-page-background: var(--dark-background) !important;
-    --in-content-text-color: var(--primary-light-color) !important;
-    --in-content-selected-text: var(--primary-light-color) !important;
-    --in-content-box-background: var(--primary-dark-color) !important;
-    --in-content-box-background-odd: var(--light-accent-color) !important;
-    --in-content-box-background-hover: var(--dark-accent) !important;
-    --in-content-box-background-active: var(--dark-accent) !important;
-    --in-content-box-border-color: var(--primary-dark-color) !important;
-    --in-content-item-hover: var(--dark-accent) !important;
-    --in-content-item-selected: var(--dark-accent) !important;
-    --in-content-border-highlight: var(--dark-accent) !important;
-    --in-content-border-focus: var(--dark-accent) !important;
-    --in-content-border-color: var(--primary-dark-color) !important;
-    --in-content-category-outline-focus: 1px dotted var(--dark-accent) !important;
-    --in-content-category-text: var(--primary-light-color) !important;
-    --in-content-category-text-active: var(--primary-light-color) !important;
-    --in-content-category-text-selected: var(--primary-accent-color) !important;
-    --in-content-category-text-selected-active: var(--primary-accent-color-dark) !important;
-    --in-content-category-background-selected-hover: var(--primary-dark-color) !important;
-    --in-content-category-background-selected-active: var(--primary-dark-color) !important;
-    --in-content-link-color: var(--primary-accent-color) !important;
-    --in-content-link-color-hover: var(--primary-accent-color-dark) !important;
-    --in-content-link-color-visited: var(--dark-accent) !important;
-    --in-content-primary-button-background: var(--dark-accent) !important;
-    --in-content-primary-button-background-hover: var(--primary-accent-color-dark) !important;
-    --in-content-primary-button-background-active: var(--primary-accent-color-dark) !important;
-    --in-content-table-header-background: var(--dark-accent) !important;
-    --in-content-category-background: var(--primary-dark-color) !important;
-    --grey-10: #f9f9fa;
-    --grey-20: #ededf0;
-    --grey-30: #d7d7db;
-    --grey-40: #b1b1b3;
-    --grey-50: #737373;
-    --grey-60: #4a4a4f;
-    --grey-70: #38383d;
-    --grey-80: #2a2a2e;
-    --grey-90: #0c0c0d;
-    --tone-1: var(--grey-10);
-    --tone-2: var(--grey-20);
-    --tone-3: var(--grey-30);
-    --tone-4: var(--grey-40);
-    --tone-5: var(--grey-50);
-    --tone-6: var(--grey-60);
-    --tone-7: var(--grey-70);
-    --tone-8: var(--grey-80);
-    --tone-9: var(--grey-90);
-    --theme-selection-background: var(--dark-accent)!important;
-    --theme-selection-background-hover: var(--mid-way-color)!important;
-    --in-content-category-header-background: var(--primary-accent-color-dark)!important;
-    --selected-icon-fill-color: var(--tone-2)!important;
-    --in-content-dark-header-background: var(--tone-9)!important;
+	--primary-dark-color: #31363B;
+	/* Color of FF dark theme nav-bar */
+	--primary-light-color: #A1A5A0;
+	/* Off white */
+	--light-accent-color: #616569;
+	/* Slightly darker off white */
+	--dark-accent: var(--primary-accent-color-dark);
+	/* darker shade of main color */
+	--mid-way-color: #404B4F;
+	/* inbetween main dark and light color */
+	--primary-accent-color: #3DAEE9;
+	--primary-accent-color-dark: #2A2E32;
+	/* Darker cyan color */
+	--dark-background: #232629;
+	--in-content-page-color: var(--primary-light-color) !important;
+	--in-content-page-background: var(--dark-background) !important;
+	--in-content-text-color: var(--primary-light-color) !important;
+	--in-content-selected-text: var(--primary-light-color) !important;
+	--in-content-box-background: var(--primary-dark-color) !important;
+	--in-content-box-background-odd: var(--light-accent-color) !important;
+	--in-content-box-background-hover: var(--dark-accent) !important;
+	--in-content-box-background-active: var(--dark-accent) !important;
+	--in-content-box-border-color: var(--primary-dark-color) !important;
+	--in-content-item-hover: var(--dark-accent) !important;
+	--in-content-item-selected: var(--dark-accent) !important;
+	--in-content-border-highlight: var(--dark-accent) !important;
+	--in-content-border-focus: var(--dark-accent) !important;
+	--in-content-border-color: var(--primary-dark-color) !important;
+	--in-content-category-outline-focus: 1px dotted var(--dark-accent) !important;
+	--in-content-category-text: var(--primary-light-color) !important;
+	--in-content-category-text-active: var(--primary-light-color) !important;
+	--in-content-category-text-selected: var(--primary-accent-color) !important;
+	--in-content-category-text-selected-active: var(--primary-accent-color-dark) !important;
+	--in-content-category-background-selected-hover: var(--primary-dark-color) !important;
+	--in-content-category-background-selected-active: var(--primary-dark-color) !important;
+	--in-content-link-color: var(--primary-accent-color) !important;
+	--in-content-link-color-hover: var(--primary-accent-color-dark) !important;
+	--in-content-link-color-visited: var(--dark-accent) !important;
+	--in-content-primary-button-background: var(--dark-accent) !important;
+	--in-content-primary-button-background-hover: var(--primary-accent-color-dark) !important;
+	--in-content-primary-button-background-active: var(--primary-accent-color-dark) !important;
+	--in-content-table-header-background: var(--dark-accent) !important;
+	--in-content-category-background: var(--primary-dark-color) !important;
+	--grey-10: #f9f9fa;
+	--grey-20: #ededf0;
+	--grey-30: #d7d7db;
+	--grey-40: #b1b1b3;
+	--grey-50: #737373;
+	--grey-60: #4a4a4f;
+	--grey-70: #38383d;
+	--grey-80: #2a2a2e;
+	--grey-90: #0c0c0d;
+	--tone-1: var(--grey-10);
+	--tone-2: var(--grey-20);
+	--tone-3: var(--grey-30);
+	--tone-4: var(--grey-40);
+	--tone-5: var(--grey-50);
+	--tone-6: var(--grey-60);
+	--tone-7: var(--grey-70);
+	--tone-8: var(--grey-80);
+	--tone-9: var(--grey-90);
+	--theme-selection-background: var(--dark-accent)!important;
+	--theme-selection-background-hover: var(--mid-way-color)!important;
+	--in-content-category-header-background: var(--primary-accent-color-dark)!important;
+	--selected-icon-fill-color: var(--tone-2)!important;
+	--in-content-dark-header-background: var(--tone-9)!important;
 }
 
-/*@-moz-document url-prefix(about:about), url-prefix(about:crashes), url(about:debugging), url-prefix(about:downloads), url-prefix(about:privatebrowsing), url-prefix(about:buildconfig), url-prefix(about:networking),url-prefix(about:license), url(about:studies), url(about:telemetry), url(about:support), url(about:sessionrestore), url(about:neterror), url(about:home)   {*/
-
-/*}*/
-@-moz-document url-prefix(about:addons) {
-    .addon-name {
-        color: var(--grey-10) !important;
-    }
-    .addon-detail-row {
-        color: var(--grey-20) !important;
-    }
-}
 /* View Source */
-@-moz-document url-prefix(view-source) {
-    :root {
-        background-color: var(--in-content-page-background)!important;
-        color: var(--in-content-page-color)!important;
-    }
-    pre[id]:before,
-    span[id]:before {
-        color: var(--in-content-page-color)!important;
-    }
-    .highlight .end-tag,
-    .highlight .start-tag {
-        color: var(--theme-highlight-purple)!important;
-    }
-    .highlight .comment {
-        color: var(--theme-highlight-green)!important;
-    }
-    .highlight .cdata {
-        color: #c06!important;
-    }
-    .highlight .doctype {
-        color: #4682b4!important;
-    }
-    .highlight .pi {
-        color: var(--theme-highlight-red)!important;
-    }
-    .highlight .entity {
-        color: #dea174!important;
-    }
-    .highlight .attribute-name {
-        color: var(--theme-highlight-green)!important;
-    }
-    .highlight .attribute-value {
-        color: var(--theme-highlight-blue)!important;
-    }
-    .highlight .markupdeclaration {
-        color: #4682b4!important;
-    }
-    .highlight .error,
-    .highlight .error > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) {
-        color: #de7474!important;
-    }
-}
+/* @-moz-document url-prefix(view-source) { */
+/* 	:root { */
+/* 		background-color: var(--in-content-page-background)!important; */
+/* 		color: var(--in-content-page-color)!important; */
+/* 	} */
+/* 	pre[id]:before, */
+/* 	span[id]:before { */
+/* 		color: var(--in-content-page-color)!important; */
+/* 	} */
+/* 	.highlight .end-tag, */
+/* 	.highlight .start-tag { */
+/* 		color: var(--theme-highlight-purple)!important; */
+/* 	} */
+/* 	.highlight .comment { */
+/* 		color: var(--theme-highlight-green)!important; */
+/* 	} */
+/* 	.highlight .cdata { */
+/* 		color: #c06!important; */
+/* 	} */
+/* 	.highlight .doctype { */
+/* 		color: #4682b4!important; */
+/* 	} */
+/* 	.highlight .pi { */
+/* 		color: var(--theme-highlight-red)!important; */
+/* 	} */
+/* 	.highlight .entity { */
+/* 		color: #dea174!important; */
+/* 	} */
+/* 	.highlight .attribute-name { */
+/* 		color: var(--theme-highlight-green)!important; */
+/* 	} */
+/* 	.highlight .attribute-value { */
+/* 		color: var(--theme-highlight-blue)!important; */
+/* 	} */
+/* 	.highlight .markupdeclaration { */
+/* 		color: #4682b4!important; */
+/* 	} */
+/* 	.highlight .error, */
+/* 	.highlight .error > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) { */
+/* 		color: #de7474!important; */
+/* 	} */
+/* } */
 
 /* Tridactyl */
 @-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/") {
-    .container-main,
-    body,
-    html {
-        background: var(--in-content-page-background)!important;
-    }
-    .tsd-panel {
-        background: var(--in-content-box-background)!important;
-    }
-    .tsd-page-title,
-    .tsd-page-toolbar,
-    footer {
-        background: var(--in-content-category-header-background)!important;
-        border-color: var(--in-content-category-header-background)!important;
-    }
-    body,
-    table {
-        color: var(--in-content-page-color)!important;
-    }
-    a:link {
-        color: var(--in-content-link-color)!important;
-    }
-    #completions .sectionHeader {
-        background: var(--in-content-category-header-background)!important;
-        color: var(--in-content-text-color)!important;
-    }
-    #completions {
-        background: var(--in-content-page-background)!important;
-        border-color: var(--in-content-box-border-color)!important;
-    }
-    .option:not(.focused) .url {
-        color: var(--code-green)!important;
-        background: var(--in-content-page-background)!important;
-    }
-    input {
-        background: var(--in-content-category-header-background)!important;
-        color: var(--in-content-text-color)!important;
-    }
-    .focused,
-    .focused .url {
-        background: var(--warning-background-color)!important;
-        color: var(--warning-color)!important;
-    }
-    .spoiler {
-        background-color: var(--in-content-box-background)!important;
-        border-color: var(--in-content-box-border-color)!important;
-    }
+	.container-main,
+	body,
+	html {
+		background: var(--in-content-page-background)!important;
+	}
+	.tsd-panel {
+		background: var(--in-content-box-background)!important;
+	}
+	.tsd-page-title,
+	.tsd-page-toolbar,
+	footer {
+		background: var(--in-content-category-header-background)!important;
+		border-color: var(--in-content-category-header-background)!important;
+	}
+	body,
+	table {
+		color: var(--in-content-page-color)!important;
+	}
+	a:link {
+		color: var(--in-content-link-color)!important;
+	}
+	#completions .sectionHeader {
+		background: var(--in-content-category-header-background)!important;
+		color: var(--in-content-text-color)!important;
+	}
+	#completions {
+		background: var(--in-content-page-background)!important;
+		border-color: var(--in-content-box-border-color)!important;
+	}
+	.option:not(.focused) .url {
+		color: var(--code-green)!important;
+		background: var(--in-content-page-background)!important;
+	}
+	input {
+		background: var(--in-content-category-header-background)!important;
+		color: var(--in-content-text-color)!important;
+	}
+	.focused,
+	.focused .url {
+		background: var(--warning-background-color)!important;
+		color: var(--warning-color)!important;
+	}
+	.spoiler {
+		background-color: var(--in-content-box-background)!important;
+		border-color: var(--in-content-box-border-color)!important;
+	}
 }
 
 
 @-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/static/newtab.html"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/static/newtab.html") {
-    body {
-        background-color: var(--primary-dark-color) !important;
-        color: var(--primary-light-color) !important;
-    }
-}
-
-/* MEGA */
-@-moz-document url-prefix("moz-extension://2416ce8f-e5ce-4bbf-a9d0-c7007c211d44/mega") {
-    .active-folder-link .nw-fm-left-icons-panel,
-    .bottom-page.light-blue-top .top-head,
-    .bottom-page.light-blue-top .top-head,
-    .bottom-page.light-blue-top .top-head.floating,
-    .bottom-page.plans-info,
-    .chat-right-area::after,
-    .create-folder-input-bl > input,
-    .default-white-button:not(.top-login-button),
-    .files-grid-view,
-    div.create-folder-button-cancel.popup.default-grey-button.right {
-        background: #333;
-    }
-    .arc-conversation-btn-block:hover,
-    .bottom-page.white-block,
-    .contains-submenu.opened,
-    .content-panel.conversations.active,
-    .create-folder-bottom,
-    .create-folder-input-bl,
-    .default-grey-button,
-    .dropdown-item:not(.static):hover,
-    .dropdown.body,
-    .fm-empty-contacts,
-    .fm-empty-folder,
-    .fm-left-panel,
-    .jspContainer,
-    .light-overlay,
-    .loading-mid-white-block,
-    .messages-block,
-    .messages-textarea,
-    .pages-nav.content-block,
-    .plans-block > .membership-pad-bl,
-    .shared-details-buttons,
-    .shared-details-buttons::before,
-    .shared-top-details,
-    .sign .main-pad-block,
-    .top-menu-popup,
-    .transfer-table-header,
-    .transfer-table-wrapper,
-    .vertical-centered-bl,
-    .vertical-centered-cell > .pages-nav.content-block,
-    .widgets.content-block,
-    body {
-        background: #222;
-    }
-    .account.tabs-bl,
-    .account.widget,
-    .arc-chat-messages-block tr.arc-chat-list:nth-child(2n+1),
-    .arc-conversation-btn-block,
-    .bottom-menu.body,
-    .bottom-page.grey-block,
-    .chat-right-pad,
-    .chat-textarea,
-    .contact-top-details,
-    .contacts-tabs-bl,
-    .conversations-pane li:nth-child(2n+1),
-    .data-block-view:before,
-    .file-settings-icon,
-    .fm-account-history .grey-bar,
-    .fm-account-history-head,
-    .fm-account-input,
-    .fm-dialog,
-    .fm-header-buttons,
-    .fm-notifications-bottom,
-    .fm-right-header,
-    .fm-transfers-header,
-    .grid-table tr:hover td,
-    .grid-table tr:hover:nth-child(2n+1) td,
-    .grid-url-arrow,
-    .medium.account.grey-info-bl,
-    .notification-header,
-    .toast-notification,
-    .top-search-input::selection {
-        background: #111;
-    }
-    .arrow:not(.grid-header-star) {
-        background: none;
-    }
-
-    .grid-table.sessions > tbody > tr span.active-session-txt,
-    .grid-table.sessions > tbody > tr span.current-session-txt,
-    .notification-txt {
-        color: #222;
-    }
-
-    .bottom-page > .top-head,
-    .default-white-button.semi-small::after,
-    .fm-left-menu.transfers,
-    .submenu,
-    .top-head,
-    .top-head.floating.activated {
-        background: #D90007;
-        box-shadow: rgba(0, 0, 0, 0) 0 0 0 1px;
-    }
-
-    #login-name2::selection,
-    #login-name::selection,
-    #login-password2::selection,
-    #login-password::selection,
-    .settings-logout {
-        background: #772225;
-    }
-
-    a.st-facebook-button {
-        color: #D90007;
-    }
-    .account > .radio-txt,
-    .account.data-block.storage-data > .used-space > span,
-    .account.left-pane.big-txt,
-    .account.left-pane.info-txt,
-    .account.membership-plan,
-    .account.progress-title,
-    .account.tab-lnk,
-    .account.top-header,
-    .arc-conversation-btn-block:hover,
-    .bottom-page.plans-info,
-    .button,
-    .chat-right-pad *,
-    .contact-top-details *,
-    .conversation-message,
-    .data-item-icon,
-    .dropdown-item,
-    .file-block-title,
-    .fm-breadcrumbs.has-next-button .right-arrow-bg,
-    .fm-tree-panel,
-    .grid-table.sessions > tbody *,
-    .horizontal-centered-bl > .bottom-page.top-header,
-    .img-description .bottom-page.big-header,
-    .membership-big-txt.email,
-    .notification-username,
-    .nw-fm-tree-folder,
-    .nw-tree-panel-header,
-    .shared-details-folder-name,
-    textarea.messages-textarea,
-    ul.loading-info > li {
-        color: #e1e1e1;
-    }
-    #login-name,
-    #login-name2,
-    #login-password,
-    #login-password2,
-    .account.data-txt,
-    .account.plan-info,
-    .account.storage,
-    .default-dropdown-item,
-    .dropdown.body.tooltip.small,
-    .expiry,
-    .fm-account-header,
-    .fm-account-input input,
-    .fm-empty-pad > .fm-empty-cloud-txt,
-    .link-button:hover,
-    .membership-big-txt.name,
-    .menu,
-    .nw-contact-item > .nw-contact-name,
-    .pages-nav.button-label,
-    .top-menu-item:hover,
-    .top-search-input,
-    .transfer-table-header > tbody > tr > th,
-    .user-card-name.conversation-name,
-    h5.main-italic-header,
-    table.grid-table > tr:hover > td > div > .fm-chat-user,
-    table.grid-table > tr:hover > td > div > .fm-chat-user-status,
-    table.grid-table > tr:hover > td > div > .shared-folder-name {
-        color: #c3c3c3;
-    }
-
-    #token-input-add-user-dialog-input,
-    .account.tab-lnk.active,
-    .contacts-tab-lnk.active,
-    .create-folder-button,
-    .create-folder-input-bl > input,
-    .fm-notifications-bottom > .default-white-button,
-    .top-change-language-name,
-    a.user-name {
-        color: #fff;
-    }
-
-    .avatar-bg.colorized,
-    .mega-logo {
-        filter: grayscale(100%) invert(90%);
-    }
-    .arrow.asc,
-    .arrow.desc,
-    .data-item-icon,
-    .fm-breadcrumbs,
-    .fm-files-view-icon,
-    .grid-header-star,
-    .membership-pad-bl,
-    .notification-txt,
-    .period,
-    .pro-feature-icon,
-    .reg-st3-membership-icon,
-    .shared-folder-icon,
-    .top-clear-button,
-    .tranfer-filetype-txt:after,
-    .transfer-filetype-icon,
-    .transfer-table-header > tbody > tr > th:after,
-    .transfer-type,
-    table.grid-table > tr > td > .avatar-wrapper,
-    table.grid-table.contacts > tr:hover {
-        filter: invert(100%);
-    }
-    .account.chart-block,
-    .fm-account-select-block > div,
-    .nav-icon,
-    .shared-with-me > tr:hover,
-    .toast-close-button {
-        filter: invert(94%);
-    }
-    .account-history-drop-items.active,
-    .account-history-dropdown,
-    .account-history-dropdown-button,
-    .avatar-white-bg,
-    .dropdown-item.contains-submenu:not(.disabled-submenu)::before,
-    .fm-account-button,
-    .fm-breadcrumbs.has-next-button,
-    .grid-scrolling-table,
-    .nw-fm-arrow-icon,
-    .small-icon,
-    .start-chat-button,
-    .transfer-scrolling-table {
-        filter: invert(88%);
-    }
-
-    .grey-rocket {
-        filter: invert(86.5%);
-    }
-    .account-icon,
-    .grid-header-star,
-    .grid-url-arrow,
-    .jspContainer:after,
-    .jspContainer:before,
-    .nw-tree-panel-arrows,
-    .top-menu-item.submenu-item::before {
-        filter: invert(85%);
-    }
-
-    .dropdown-section > hr,
-    .dropdown-white-arrow,
-    .fm-empty-contacts-bg,
-    .fm-empty-folder-bg,
-    .fm-empty-transfers-bg,
-    .top-login-forgot-pass {
-        filter: invert(50%);
-    }
-    .dropdown-item.contains-submenu.opened:before,
-    .dropdown-item.opened > i.small-icon,
-    .dropdown-item:hover > i.small-icon,
-    .membership,
-    .top-login-forgot-pass:hover,
-    table.grid-table > tr:hover > td > .avatar-wrapper,
-    table.grid-table > tr:hover > td > .shared-folder-icon,
-    table.grid-table.contacts > tr:hover > td > .avatar-wrapper,
-    ul > li > .nw-fm-tree-item.selected > .data-item-icon,
-    ul > li > span:hover > .data-item-icon,
-    ul > li > span:hover > .nw-fm-arrow-icon {
-        filter: invert(0);
-    }
-
-    a.fm-avatar {
-        filter: brightness(80%);
-    }
-
-    .top-icon {
-        filter: brightness(250%);
-    }
-
-    .fm-tree-panel,
-    .nw-tree-panel-header {
-        border-left: 1px #333 solid;
-        border-right: 1px #333 solid;
-        background: #222;
-    }
-
-    .account.left-pane.divider .chat-right-pad,
-    .default-select-dropdown,
-    .dropdown {
-        border: 1px solid #444;
-    }
-
-    .account.tabs-bl,
-    .contacts-tabs-bl,
-    a.nlanguage-lnk {
-        border-color: #333;
-    }
-
-    .file-block-scrolling,
-    .grid-table-header {
-        border-top: 1px #333 solid;
-        border-bottom: 1px #333 solid;
-        background: #222;
-    }
-
-    .logo {
-        border: 1px solid #fff;
-    }
-
-    .dropdown.body.submenu {
-        margin-left: 0;
-    }
-
-    .fm-notifications-bottom .default-white-button {
-        margin-top: 0;
-    }
-
-    .arrow.desc {
-        background-image: url("https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png");
-        background-position: right -1285px;
-        background-repeat: no-repeat;
-    }
-
-    .arrow.asc {
-        background-image: url("https://eu.static.mega.co.nz/3/images/mega/fm-main-sprite_v4.png");
-        background-position: right -1225px;
-        background-repeat: no-repeat;
-    }
+	body {
+		background-color: var(--primary-dark-color) !important;
+		color: var(--primary-light-color) !important;
+	}
 }

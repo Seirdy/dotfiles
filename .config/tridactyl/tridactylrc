@@ -47,7 +47,7 @@ set yankto both
 
 " New reddit bad; old reddit good
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
-autocmd DocStart ^http(s?)://www\.nytimes\.com keyfeed gr
+autocmd TabEnter ^http(s?)://(www\.nytimes|medium)\.com keyfeed gr
 
 " Custom binds
 
