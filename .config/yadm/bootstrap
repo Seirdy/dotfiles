@@ -5,7 +5,11 @@ mkdir -p 'go/bin' 'pipx/bin' 'gem/bin' 'luarocks/bin' 'npm/bin' 'cargo/bin' 'sta
 cd "$HOME"
 # shellcheck source=startup.sh
 echo 'Created some directories before adding to $PATH'
-. "$HOME/startup.sh"
+if [ -z "$PROFILE_SET" ]; then
+	# shellcheck source=.profile
+	. "$HOME/.profile"
+	export PROFILE_SET=2
+fi
 echo "Running bootstrap for $MACHINE"
 
 bootstrap_dir="$HOME/Executables/shell-scripts/bootstrap"
@@ -14,6 +18,7 @@ updates_dir="$HOME/Executables/shell-scripts/updates"
 # TODO: Add support for FreeBSD (TrueOS with Area51 repo)
 if [ "$MACHINE" = 'Linux' ]; then
 	if [ -f /usr/lib/os-release ]; then
+		echo 'Detected Linux'
 		# my scripts only work on Fedora atm. TODO: add support for Debian
 		# shellcheck source=/dev/null
 		. /usr/lib/os-release
@@ -23,24 +28,16 @@ if [ "$MACHINE" = 'Linux' ]; then
 		fi
 		dash "$bootstrap_dir/flatpak.sh"
 		dash "$updates_dir/chromium.sh"
-	elif [ "$MACHINE" = 'Darwin' ]; then
-		echo 'Eww, macOS'
-		if ! command -v brew; then
-			echo 'Installing Homebrew'
-			ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-			echo 'Homebrew installed'
-		fi
-		echo 'Installing homebrew packages'
-		sh "$bootstrap_dir/homebrew-install.sh"
-	else
-		exit
 	fi
-
+elif [ "$MACHINE" = 'Darwin' ]; then
+	echo 'Installing homebrew packages'
+	sh "$bootstrap_dir/homebrew-install.sh"
+else
+	echo 'Unrecognized OS.'
+	exit
 fi
 
-cargo install bat cargo cargo-update exa fd-find ffsend hyperfine lsd onefetch ripgrep rls shellharden tealdeer
-cargo install --git https://github.com/jameslzhu/roflcat
-tldr --update
+dash "$bootstrap_dir/cargo.sh"
 
 gem pristine msgpack
 gem install neovim
