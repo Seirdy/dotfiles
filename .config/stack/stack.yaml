@@ -1,12 +1,2 @@
-# This is the implicit global project's config file, which is only used when
-# 'stack' is run outside of a real project.  Settings here do _not_ act as
-# defaults for all projects.  To change stack's default settings, edit
-# '/Users/i514285/Executables/stack/config.yaml' instead.
-#
-# For more information about stack's configuration, see
-# http://docs.haskellstack.org/en/stable/yaml_configuration/
-#
 packages: []
-resolver: lts-13.26
-system-ghc: true
-local-bin-path: ~/Executables/stack/bin
+resolver: nightly-2019-06-28

@@ -67,7 +67,7 @@ log_bg() {
 # Run and log in foreground (live-preview log file in interactive session)
 log_fg() {
 	echo "Starting update: $1"
-	nohup "$script_dir/$1.sh" < /dev/null 2>&1 | tee "$log_dir/$1-$time_start.log"
+	nohup "$script_dir/$1.sh" 2>&1 | tee "$log_dir/$1-$time_start.log"
 }
 
 ###############
@@ -81,6 +81,7 @@ log_bg 'go'               # build go packages (installed with "go get")
 log_bg 'cargo'            # rust packages (updates infrequently but cpu-intensive)
 log_bg 'stack'            # haskell packages (updates infrequently but cpu-intensive)
 log_bg 'zplugin'          # update zplugin itself, zsh plugins, and zpmod
+log_bg 'kitty'            # build kitty from source, latest commit
 
 if [ "$MACHINE" = 'Linux' ]; then
 	log_bg 'flatpak'        # repair and update user-installed flatpaks

@@ -2,11 +2,16 @@
 
 start_time=$(date '+%s')
 
-stack install pandoc
-stack install pandoc-citeproc
-stack install ShellCheck
-stack install pandoc-include-code
-stack install pandoc-crossref
+stack_install() {
+        stack --local-bin-path="$HOME/Executables/stack/bin" install "$@"
+}
+stack config set resolver nightly
+stack upgrade
+stack_install pandoc
+stack_install pandoc-citeproc
+stack_install ShellCheck
+stack_install pandoc-include-code
+stack_install pandoc-crossref
 
 end_time=$(date '+%s')
 elapsed=$(echo "${end_time} - ${start_time}" | bc)
