@@ -5,6 +5,7 @@
 # fortune -n 70 -s computers pets
 export LC_ALL=en_US.UTF-8
 export COLUMNS
+export ROWS
 module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
 module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
 if [ -z "$PROFILE_SET" ]; then

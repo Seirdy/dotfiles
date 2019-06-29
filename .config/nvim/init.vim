@@ -54,7 +54,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 " Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
 " coc-neco has been replaced by coc-vimlsp
 Plug 'lervag/vimtex', {'for': ['plaintex', 'tex', 'pandoc']}  " works with coc.nvim via coc-vimtex
-Plug   'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 
 call plug#end()
 
