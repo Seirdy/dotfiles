@@ -51,7 +51,7 @@ zplugin light hlissner/zsh-autopair
 	zi0 has'fzf' pick'fzf-finder.plugin.zsh'
 	zplugin light leophys/zsh-plugin-fzf-finder
 
-	zi0 has'git' has'fzf' pick'forgit.plugin.zsh'
+	zi wait'0b' has'git' has'fzf' pick'forgit.plugin.zsh'
 	zplugin light wfxr/forgit
 
 	zi0 has'fzf' pick'key-bindings.zsh'
@@ -82,14 +82,10 @@ zplugin light hlissner/zsh-autopair
 
 # Git extensions {{{
 
-	zi_git_program() {
-		zi as'program' wait'[[ -n ${ZLAST_COMMANDS[(r)git*]} ]]' "$@"
-	}
-
-	zi_program pick'bin/git-dsf'
+	zi as'program' wait'0a' pick'bin/git-dsf'
 	zplugin light zdharma/zsh-diff-so-fancy
 
-	zi_git_program pick'bin/git-*' make"PREFIX=$ZPFX"
+	zi_program pick'bin/git-*' make"PREFIX=$ZPFX"
 	zplugin light tj/git-extras
 
 # }}}
@@ -119,9 +115,6 @@ zplugin snippet OMZ::plugins/cargo/_cargo
 zi_completion has'rustc'
 zplugin snippet OMZ::plugins/rust/_rust
 
-zi_completion has'flatpak'
-zplugin light bilelmoussaoui/flatpak-zsh-completion
-
 zi_completion has'docker'
 zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
@@ -131,8 +124,29 @@ zplugin light %HOME/.config/shell_common/kitty_completions
 zi_completion has'rg'
 zplugin snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 
+zi_completion has'yadm' mv'yadm.zsh_completion -> _yadm'
+zplugin snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/yadm.zsh_completion
+
 zi_completion has'fd'
 zplugin snippet OMZ::plugins/fd/_fd
+
+zi_completion has'exa' mv'completions.zsh -> _exa'
+zplugin snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
+
+if [ "$MACHINE" = 'Linux' ]; then
+
+	zi_completion has'flatpak'
+	zplugin snippet https://github.com/flatpak/flatpak/blob/master/completion/_flatpak
+
+elif [ "$MACHINE" = 'Darwin' ]; then
+
+	zi_completion has'brew'
+	zplugin snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew
+
+	zi_completion has'brew'
+	zplugin snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew_cask
+
+fi
 
 zi_completion atload'finish_setup'
 zplugin light zsh-users/zsh-completions
