@@ -67,31 +67,31 @@ log_bg() {
 # Run and log in foreground (live-preview log file in interactive session)
 log_fg() {
 	echo "Starting update: $1"
-	nohup "$script_dir/$1.sh" 2>&1 | tee "$log_dir/$1-$time_start.log"
+	"$script_dir/$1.sh" | tee "$log_dir/$1-$time_start.log"
 }
 
 ###############
 # Run updates #
 ###############
 
-log_bg 'pip-pipx'         # see https://pipxproject.github.io/pipx/
-log_bg 'node'             # npm packages
-log_bg 'rubygem-luarocks' # combining gem and luarocks since they update more quickly
-log_bg 'go'               # build go packages (installed with "go get")
-log_bg 'cargo'            # rust packages (updates infrequently but cpu-intensive)
-log_bg 'stack'            # haskell packages (updates infrequently but cpu-intensive)
-log_bg 'zplugin'          # update zplugin itself, zsh plugins, and zpmod
-log_bg 'kitty'            # build kitty from source, latest commit
+log_bg 'pip-pipx'          # see https://pipxproject.github.io/pipx/
+log_bg 'node'              # npm packages
+log_bg 'rubygem-luarocks'  # combining gem and luarocks since they update quickly
+log_bg 'go'                # build go packages installed with "go get" (slow)
+log_bg 'cargo'             # rust packages (infrequent, extremely cpu-heavy)
+log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
+log_bg 'zplugin'           # update zplugin itself, zsh plugins, and zpmod
+log_bg 'kitty'             # build kitty from source, latest commit
 
 if [ "$MACHINE" = 'Linux' ]; then
-	log_bg 'flatpak'        # repair and update user-installed flatpaks
-	log_bg 'chromium'       # secondary browser; script based on chromium-latest-linux
+	log_bg 'flatpak'         # repair and update user-installed flatpaks
+	log_bg 'chromium'        # secondary browser; script based on chromium-latest-linux
 	echo
-	log_fg 'dnf'            # system-wide update, autoremoval, and repo caching.
+	log_fg 'dnf'             # system-wide update, autoremoval, and repo caching.
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 	echo
-	log_fg 'homebrew'       # repo-caching and updating of homebrew formulae and casks
+	log_fg 'homebrew'        # repo-caching and updating of homebrew formulae and casks
 
 else
 	echo 'Unsupported machine for system package updates'

@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-STARTTIME=$(date '+%s')
+start_time=$(date '+%s')
 
 npm i -g tree-sitter
 npm i -g tree-sitter-bash
@@ -8,6 +8,6 @@ npm i -g bash-language-server
 npm i -g markdownlint-cli
 npm i -g neovim
 
-ENDTIME=$(date '+%s')
-ELAPSED=$(echo "${ENDTIME} - ${STARTTIME}" | bc)
-echo "Time elapsed: ${ELAPSED} seconds"
+end_time=$(date '+%s')
+elapsed=$(echo "${end_time} - ${start_time}" | bc)
+echo "Time elapsed: ${elapsed} seconds"

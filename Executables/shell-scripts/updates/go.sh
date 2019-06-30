@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-STARTTIME=$(date '+%s')
+start_time=$(date '+%s')
 
 go_update() {
 	go get -u -v "$@" 2>&1  # verbose output is sent to stderr for some reason
@@ -28,6 +28,6 @@ go_update gitlab.com/gitlab-org/gitlab-runner
 # Learn go
 go_update golang.org/x/tour
 
-ENDTIME=$(date '+%s')
-ELAPSED=$(echo "${ENDTIME} - ${STARTTIME}" | bc)
-echo "Time elapsed: ${ELAPSED} seconds"
+end_time=$(date '+%s')
+elapsed=$(echo "${end_time} - ${start_time}" | bc)
+echo "Time elapsed: ${elapsed} seconds"

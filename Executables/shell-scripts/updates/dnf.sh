@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 
 # Update packages with the DNF package manager on Fedora
-STARTTIME=$(date '+%s')
+start_time=$(date '+%s')
 
 echo '=====UPDATE: updating dnf packages======'
 sudo dnf upgrade --refresh -y --allowerasing
@@ -12,6 +12,6 @@ sudo dnf autoremove -y --allowerasing
 echo '=====UPDATE: caching repos=============='
 dnf makecache
 
-ENDTIME=$(date '+%s')
-ELAPSED=$(echo "${ENDTIME} - ${STARTTIME}" | bc)
-echo "Time elapsed: ${ELAPSED} seconds"
+end_time=$(date '+%s')
+elapsed=$(echo "${end_time} - ${start_time}" | bc)
+echo "Time elapsed: ${elapsed} seconds"

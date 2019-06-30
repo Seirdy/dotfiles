@@ -1,11 +1,11 @@
 #!/usr/bin/env dash
 
-STARTTIME=$(date '+%s')
+start_time=$(date '+%s')
 
 brew update
 brew upgrade
 brew cask upgrade
 
-ENDTIME=$(date '+%s')
-ELAPSED=$(echo "${ENDTIME} - ${STARTTIME}" | bc)
-echo "Time elapsed: ${ELAPSED} seconds"
+end_time=$(date '+%s')
+elapsed=$(echo "${end_time} - ${start_time}" | bc)
+echo "Time elapsed: ${elapsed} seconds"

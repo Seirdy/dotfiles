@@ -1,10 +1,12 @@
 #!/usr/bin/env dash
-STARTTIME=$(date '+%s')
+start_time=$(date '+%s')
+
 echo "===UPDATE: Upgrading: Lua======="
 luarocks install lcf --local
 luarocks install --server=http://luarocks.org/dev lua-lsp --local
 echo "===UPDATE: Upgrading: Rubygems======="
 gem update --prerelease -V
-ENDTIME=$(date '+%s')
-ELAPSED=$(calc -p "${ENDTIME} - ${STARTTIME}")
-echo "Time elapsed: ${ELAPSED} seconds"
+
+end_time=$(date '+%s')
+elapsed=$(echo "${end_time} - ${start_time}" | bc)
+echo "Time elapsed: ${elapsed} seconds"

@@ -1,10 +1,10 @@
 #!/usr/bin/env dash
 
-STARTTIME=$(date '+%s')
+start_time=$(date '+%s')
 
 pip3 install -U --user pynvim pipx
 pipx upgrade-all
 
-ENDTIME=$(date '+%s')
-ELAPSED=$(echo "${ENDTIME} - ${STARTTIME}" | bc)
-echo "Time elapsed: ${ELAPSED} seconds"
+end_time=$(date '+%s')
+elapsed=$(echo "${end_time} - ${start_time}" | bc)
+echo "Time elapsed: ${elapsed} seconds"
