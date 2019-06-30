@@ -51,6 +51,7 @@ zplugin light hlissner/zsh-autopair
 	zi0 has'fzf' pick'fzf-finder.plugin.zsh'
 	zplugin light leophys/zsh-plugin-fzf-finder
 
+	# has ICE-selector wait'0b' so it gets loaded after diff-so-fancy
 	zi wait'0b' has'git' has'fzf' pick'forgit.plugin.zsh'
 	zplugin light wfxr/forgit
 
@@ -82,6 +83,7 @@ zplugin light hlissner/zsh-autopair
 
 # Git extensions {{{
 
+	# has ICE-selector wait'0a' so it gets loaded before "forgit"
 	zi as'program' wait'0a' pick'bin/git-dsf'
 	zplugin light zdharma/zsh-diff-so-fancy
 
