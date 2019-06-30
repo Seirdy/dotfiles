@@ -51,6 +51,7 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " ~~~~~~~~~~~~~~~~~
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc-after', { 'for': 'pandoc' }
 " Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
 " coc-neco has been replaced by coc-vimlsp
 Plug 'lervag/vimtex', {'for': ['plaintex', 'tex', 'pandoc']}  " works with coc.nvim via coc-vimtex
@@ -390,9 +391,9 @@ let g:table_mode_align_char='+'
 " These are prefs that don't work well when run in autoload/ftplugin, so they
 " go here.
 
+let g:pandoc#after#modules#enabled = ["vim-table-mode"]
 let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python", "sh", "asm", "yaml", "html", "css", "vim", "go"]
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ["folding","formatting"]
 let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}
-
 let g:vimtex_compiler_progname = 'nvr'
