@@ -20,7 +20,7 @@ zi0() {
 ###########
 
 # My fancy prompt doesn't work on the standard Linux console.
-if [ $terminfo[colors] > 255 ]; then
+if [ $terminfo[colors] -gt 255 ]; then
 	zi
 	zplugin load romkatv/powerlevel10k
 fi

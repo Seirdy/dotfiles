@@ -35,7 +35,7 @@ kdeglobals_update() {
 }
 
 if [ "$MACHINE" = "Linux" ] && [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
-	if which kwriteconfig5 > /dev/null; then
+	if command -v kwriteconfig5 > /dev/null; then
 		kdeglobals_update --group "General" --key "fixed" "$mono_font"
 		kdeglobals_update --group "General" --key "font" "$sans_font"
 		kdeglobals_update --group "General" --key "menuFont" "$sans_font"
@@ -55,8 +55,8 @@ termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
 nvim_confdir="$XDG_CONFIG_HOME/nvim"
 
 # TODO: update settings for gtk2 and gtk4
-
 if [ -d "$kitty_confdir" ]; then
+	# shellcheck disable=SC2164
 	cd "$kitty_confdir"
 	cat ./kitty_master.conf "./kitty_$new_display.conf" > kitty.conf
 	echo "updated kitty settings"
@@ -64,6 +64,7 @@ else
 	echo "Failed to find kitty config in \"$kitty_confdir\"; skipping."
 fi
 if [ -d "$ff_confdir" ]; then
+	# shellcheck disable=SC2164
 	cd "$ff_confdir"
 	cat ./user_master.js "./user_$new_display.js" > ./user.js
 	echo "updated Firefox Nighty settings"
@@ -71,6 +72,7 @@ else
 	echo "Failed to find Firefox Nightly config in \"$ff_confdir\"; skipping."
 fi
 if [ -d "$gtk_confdir" ]; then
+	# shellcheck disable=SC2164
 	cd "$gtk_confdir"
 	cat ./settings_master.ini "./settings_$new_display.ini" > settings.ini
 	echo "updated gtk3 settings"
@@ -78,6 +80,7 @@ else
 	echo "Failed to find GTK3 config in \"$gtk_confdir\"; skipping."
 fi
 if [ -d "$nvim_confdir" ]; then
+	# shellcheck disable=SC2164
 	cd "$nvim_confdir"
 	cp "./ginit_$new_display.vim" ginit.vim
 	echo "updated nvim gui settings"
@@ -85,6 +88,7 @@ else
 	echo "Failed to find nvim config in \"$nvim_confdir\"; skipping."
 fi
 if [ -d "$termset_confdir" ]; then
+	# shellcheck disable=SC2164
 	cd "$termset_confdir"
 	cp "./st-vars_$new_display" ./st-vars
 	echo "updated st settings"

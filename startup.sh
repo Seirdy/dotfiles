@@ -80,12 +80,12 @@ export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 
 # These functions add a directory to $PATH if it exists and it isn't already there.
 pathadd_head() {
-	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+	if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1" > /dev/null; then
 		PATH="$1${PATH:+":$PATH"}"
 	fi
 }
 pathadd_tail() {
-	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+	if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1" > /dev/null; then
 		PATH="${PATH:+"$PATH:"}$1"
 	fi
 }

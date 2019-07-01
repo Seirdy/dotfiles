@@ -1,8 +1,7 @@
 #!/usr/bin/env dash
 
 filename="$1"
-filename_noext=$(echo "${filename%.html}")
-filename_md="$filename_noext.md"
+filename_md="${filename%.html}.md"
 clean-mark "$filename" > /dev/null
 pandoc --from markdown --to markdown -s "$filename_md" --columns="$COLUMNS" \
 	| mdcat \
