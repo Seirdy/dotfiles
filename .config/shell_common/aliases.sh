@@ -19,9 +19,9 @@ alias ddgr='ddgr -x'
 alias fuck!='fuck --yeah'  # auto-correct previous command
 
 alias edi='$EDITOR'
+alias vdi='$DEFTERM $EDITOR'
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias funcrc='edi $XDG_CONFIG_HOME/shell_common/functions.sh'
-alias zfuncrc='edi $XDG_CONFIG_HOME/shell_common/zsh/zfuncs.sh'
 alias zshrc='edi $HOME/.zshrc'
 alias zpluginrc='edi $XDG_CONFIG_HOME/shell_common/zsh/zplugin.zsh'
 alias nvimrc='edi $XDG_CONFIG_HOME/nvim/init.vim'

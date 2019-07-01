@@ -75,7 +75,6 @@ SHELL_COMMON="$HOME/.config/shell_common"
 . "$SHELL_COMMON/aliases.sh"
 # shellcheck source=.config/shell_common/aliases_private.sh
 . "$SHELL_COMMON/aliases_private.sh"  # Not committing private info
-
 # shellcheck source=.config/shell_common/functions.sh
 . "$SHELL_COMMON/functions.sh"
 
@@ -119,8 +118,6 @@ _fzf_compgen_dir() {
 # shellcheck source=/dev/null
 . "$SHELL_COMMON/zsh/powerlevel10k.zsh"
 # source the plugins and start completions/autosuggestions.
-# shellcheck source=.config/shell_common/zplugin.zsh
+# shellcheck source=.config/shell_common/zsh/zplugin.zsh
 . "$SHELL_COMMON/zsh/zplugin.zsh"
-# shellcheck source=.config/shell_common/zsh/zfuncs.zsh
-. "$SHELL_COMMON/zsh/zfuncs.zsh"
 
