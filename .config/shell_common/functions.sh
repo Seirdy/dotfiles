@@ -38,11 +38,6 @@ n() {
 	fi
 }
 
-# Opens a file in $EDITOR in kitty
-vdi() {
-	kitty $EDITOR "$@"
-}
-
 history_stats() {
 	if [ -z "$1" ]; then
 		entries=1000
