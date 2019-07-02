@@ -3,7 +3,7 @@
 start_time=$(date '+%s')
 
 stack_install() {
-        stack --local-bin-path="$HOME/Executables/stack/bin" install "$@"
+        stack --local-bin-path="$HOME/Executables/stack/bin" install "$@" -v
 }
 stack config set resolver nightly
 stack upgrade
