@@ -72,7 +72,7 @@ set searchengine ddg
 
 " Autocontain
 autocontain lclark\.edu School
-autocontain (classroom|accounts|drive|docs|cloud)\.google\.com Google
+autocontain (classroom|accounts|drive|docs|cloud|developers)\.google\.com Google
 autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket
