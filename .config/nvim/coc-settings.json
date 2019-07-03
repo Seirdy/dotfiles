@@ -39,6 +39,7 @@
 	"highlight.colors.enable": false,
 	"json.enable": true,
 	"json.format.enable": true,
+	"git.addGlameToVirtualText": true,
 	"python.jediEnabled": false,
 	"python.autoComplete.addBrackets": true,
 	"python.autoUpdateLanguageServer": true,

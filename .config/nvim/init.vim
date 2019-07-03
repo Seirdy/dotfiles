@@ -3,14 +3,23 @@
 " ================
 
 filetype plugin on
+set title
 set updatetime=300
 set backspace=indent,eol,start
-set autoread                       " Live-reloading
 set ignorecase                     " Case-insensitive search
 set smartcase
 set wildmenu
 set wildmode=list:longest,full
 set mouse=a
+set regexpengine=2
+set undofile
+set undolevels=2000
+set diffopt=vertical
+set pumheight=18
+set scrolloff=3
+set number  " Show line number column
+set relativenumber
+set signcolumn=yes  " for vim-pandoc-syntax and vim-signify
 
 "" Default formatting when not detected
 set smartindent
@@ -133,14 +142,18 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-set number  " Show line number column
-set signcolumn=yes  " for vim-pandoc-syntax and vim-signify
 " set cursorline  " Commented out because it slows (n)vim down.
-set lazyredraw
 if exists('&pumblend')
 	set pumblend=20
 endif
-set scrolloff=3
+
+if has('gui')
+	set transparency=10
+	set guifont=Source\ Code\ Pro:h11
+	if has('antialias')
+		set antialias
+	endif
+endif
 
 " Airline
 " ~~~~~~~
@@ -165,6 +178,7 @@ let g:airline_theme = 'breezy'
 " ~~~~~~~~~~~~~~~~
 
 set t_Co=256
+set t_ut=
 " black
 let g:terminal_color0 = '#31363b'
 let g:terminal_color8 = '#6a6e71'
@@ -232,6 +246,14 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" navigate git chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
+
 " codeAction
 " ~~~~~~~~~~
 
@@ -256,11 +278,19 @@ function! s:show_documentation()
 	endif
 endfunction
 
-augroup coc_stuff
+function! s:OnTermOpen(buf)
+  setl nolist norelativenumber nonumber
+  if &buftype ==# 'terminal'
+    nnoremap <buffer> q :<C-U>bd!<CR>
+  endif
+endfunction
+
+augroup autocmds
 	autocmd!
 	" Update signature help on jump placeholder (useful for floating
 	" window)
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
 augroup end
 
 " Formatting
