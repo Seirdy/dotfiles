@@ -40,6 +40,7 @@
 	--toolbarbutton-active-background: var(--ui-accent) !important;
 	--lwt-toolbarbutton-active-background: var(--toolbarbutton-hover-background) !important;
 	--lwt-toolbarbutton-hover-background: var(--toolbarbutton-hover-background) !important;
+	--lwt-toolbar-field-background-color: var(--ui-background) !important;
 }
 
 .autocomplete-richlistitem .ac-url {
@@ -47,15 +48,26 @@
 	opacity: 0.6 !important;
 }
 
+/*
+Searchbar in overflow menu normally switches from these variables to hardcoded
+values. Manually remind it of the variables it should normally be using.
+*/
+#searchbar {
+	background-color: var(--lwt-toolbar-field-background-color) !important;
+	color: var(--lwt-toolbar-field-color) !important;
+}
+
 #urlbar,
-.findbar-textbox,
-.searchbar-textbox {
+#searchbar,
+.findbar-textbox {
 	border-color: var(--ui-border) !important;
+}
+#urlbar,
+#searchbar,
+findbar {
+	--toolbarbutton-border-radius: 0px !important;
 	transition: 0.1s;
 	transition-property: border-color;
-	border-radius: 0 !important;
-	/*     border-width: 0 0 1px 0 !important; */
-	background-color: var(--ui-background) !important;
 	background-image: none !important;
 	box-shadow: none !important;
 	min-height: var(--compact-urlbar-min-height) !important;
@@ -71,10 +83,11 @@
 #navigator-toolbox .webextension-browser-action .toolbarbutton-icon {
 	filter: grayscale(100%) brightness(180%) opacity(70%) !important;
 }
+
 #navigator-toolbox .toolbarbutton-1:hover .toolbarbutton-badge-stack {
 	border: 0 solid var(--ui-accent) !important;
-
 }
+
 #navigator-toolbox .toolbarbutton-1:hover .toolbarbutton-badge-stack {
 	--toolbarbutton-inner-padding: 5px !important;
 	border-width: 1px !important;
@@ -340,29 +353,29 @@ browser[type=content] > html,
 
 /*
  * Compact findbar at the top of the window
- *
- * Contributor(s): Madis0
+ * Based on code by Madis0@github.com
  */
 
 .browserContainer > findbar {
+	background-color: var(--ui-basecolor) !important;
 	-moz-box-ordinal-group: 0;
 	position: fixed !important;
-	right: 1em;
-	border: 1px solid threedshadow !important;
-	/* Hide top border by removing the box-shadow and background-image */
+	right: 0em;
+	border: 1px solid var(--chrome-content-separator-color) !important;
 	border-top: none !important;
+	/* Hide top border by removing the box-shadow and background-image */
+	/* border-top: none !important; */
 	box-shadow: none !important;
 	background-image: none !important;
 	opacity: 0.9;
 	/* Uncomment to add a transition from the top */
-	/*
 	transition: 400ms !important;
 	z-index: 0 !important;
-	 */
 }
 .findbar-find-next,
 .findbar-find-previous {
 	background: transparent !important;
+	color: inherit !important;
 }
 
 /* Margin from top when hidden (necessary for the transition to work) */
