@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+T!/usr/bin/env dash
 
 # My startup script, ideally run at the start of my session by my login shell.
 # This script sets environment vars and runs redshift if necessary
@@ -131,8 +131,8 @@ fi
 export PATH
 
 
-export RTV_EDITOR="nvim -c ':set filetype=pandoc'"
-export RTV_BROWSER="$BROWSER"
+export TUIR_EDITOR="nvim -c ':set filetype=pandoc'"
+export TUIR_BROWSER="$BROWSER"
 if command -v w3m > /dev/null; then
 	export PAGER='w3m'
 elif command -v less > /dev/null; then

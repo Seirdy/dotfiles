@@ -21,7 +21,7 @@ pipx install pygments
 pipx install pyre-check
 pipx install requires.io
 pipx install restructuredtext-lint
-pipx install rtv
+pipx install tuir
 pipx install safety
 pipx install scspell3k
 pipx install standardebooks
