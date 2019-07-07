@@ -77,5 +77,5 @@ autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket
 autocontain git(lab|hub).com Git
-
+autocontain old\.reddit\.com Reddit
 " vim:filetype=vim

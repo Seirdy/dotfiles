@@ -21,6 +21,7 @@
 	--ui-lightest: #A5AEB3;
 	--ui-faded_text: #818C91;
 	--compact-urlbar-min-height: 26px;
+	--space-above-tabbar: 0 !important;
 	--toolbar-bgcolor: var(--ui-basecolor) !important;
 	--toolbar-bgimage: none !important;
 	--lwt-accent-color: var(--ui-accent) !important;
@@ -51,7 +52,7 @@
 /*
 Searchbar in overflow menu normally switches from these variables to hardcoded
 values. Manually remind it of the variables it should normally be using.
-*/
+ */
 #searchbar {
 	background-color: var(--lwt-toolbar-field-background-color) !important;
 	color: var(--lwt-toolbar-field-color) !important;
@@ -116,7 +117,7 @@ findbar {
 }
 
 /*hide stuff*/
-#forward-button, #back-button, .urlbar-go-button, .search-go-button, .urlbar-history-dropmarker, #context-sendpagetodevice, #context-sep-sendpagetodevice, #appMenu-fxa-container, #appMenu-fxa-container+toolbarseparator, #context-sendpagetodevice, #context-sendlinktodevice, #context-sep-sendlinktodevice, #context_sendTabToDevice, #context_sendTabToDevice_separator, #pageActionSeparator, #PanelUI-button, #identity-icon-labels, #TabsToolbar #window-controls, #identity-icon, #userContext-indicator.identity-icon-circle, #pocket-button-box, #tabContextMenu .menu-iconic-icon,
+#forward-button, #back-button, .urlbar-go-button, .search-go-button, .urlbar-history-dropmarker, #context-sendpagetodevice, #context-sep-sendpagetodevice, #appMenu-fxa-container, #appMenu-fxa-container+toolbarseparator, #context-sendpagetodevice, #context-sendlinktodevice, #context-sep-sendlinktodevice, #context_sendTabToDevice, #context_sendTabToDevice_separator, #pageActionSeparator, #PanelUI-button, #identity-icon-labels, #TabsToolbar #window-controls, #identity-icon, #userContext-indicator.identity-icon-circle, #pocket-button-box, #tabContextMenu .menu-iconic-icon, #TabsToolbar .titlebar-spacer,
 /* .findbar-closebutton, */
 #overflowMenu-customize-button, #urlbar *|*.textbox-input::-moz-placeholder,
 /* Tab close button on background tabs */
@@ -179,6 +180,7 @@ findbar {
 }
 #navigator-toolbox {
 	-moz-box-ordinal-group: 1 !important;
+	background-color: none !important;
 }
 /*Lighten tab separators*/
 
@@ -319,6 +321,23 @@ findbar {
 	background-color: var(--ui-basecolor) !important;
 }
 
+/* Allow arrowscrollbox to collapse when only one tab is visible */
+
+:root:not([inFullscreen]) #tabbrowser-tabs tab:only-of-type {
+	display: none !important;
+}
+
+#tabbrowser-tabs,
+#tabbrowser-tabs arrowscrollbox {
+	height: initial !important;
+	min-height: initial !important;
+}
+
+/* Keep tab height from collapsing due to the above */
+tab > stack {
+	height: 28px !important;
+}
+
 #TabsToolbar,
 #TabsToolbar .tabbrowser-arrowscrollbox,
 #TabsToolbar .tabbrowser-arrowscrollbox > .arrowscrollbox-scrollbox,
@@ -395,4 +414,5 @@ browser[type=content] > html,
 .tabbrowser-tab[fadein]:not([pinned]) {
 	max-width: 550px !important;
 }
+
 
