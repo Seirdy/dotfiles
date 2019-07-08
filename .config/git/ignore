@@ -53,6 +53,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+builds/
 develop-eggs/
 dist/
 downloads/
@@ -74,3 +75,7 @@ MANIFEST
 privatenotes.txt
 lint-test.sh
 .snekrc
+ignore/
+
+# Python stuff
+venv/
