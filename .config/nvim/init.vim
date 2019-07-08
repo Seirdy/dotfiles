@@ -59,8 +59,8 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Language-specific
 " ~~~~~~~~~~~~~~~~~
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
-Plug 'vim-pandoc/vim-pandoc-after', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
+Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 " Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
 " coc-neco has been replaced by coc-vimlsp
 Plug 'lervag/vimtex', {'for': ['plaintex', 'tex', 'pandoc']}  " works with coc.nvim via coc-vimtex
