@@ -1,4 +1,4 @@
-browser "nightly %u"
+browser "$BROWSER %u"
 bookmark-cmd "/home/rkumar/.local/share/newsboat/send-to-pocket.sh"
 reload-threads 12
 refresh-on-startup yes
