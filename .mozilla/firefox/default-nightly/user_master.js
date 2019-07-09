@@ -1,5 +1,4 @@
 // Enable userChrome.css and userContent.css
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.showQuitWarning", true);
 user_pref("dom.battery.enabled", false);
 user_pref("geo.enabled", false);
@@ -30,7 +29,7 @@ user_pref("social.directories", "");
 user_pref("social.share.activationPanelEnabled", false);
 user_pref("social.enabled", false); // (hidden pref)
 user_pref("browser.onboarding.enabled", false);
-user_pref(" extensions.getAddons.showPane", false);
+user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("extensions.formautofill.creditCards.enabled", false); // (FF56+)
 user_pref("extensions.formautofill.experimental", false);
@@ -121,6 +120,7 @@ user_pref("beacon.enabled", false);
 user_pref("media.eme.enabled", false);
 /*allow addons on AMO*/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
+user_pref("privacy.firstparty.isolate", true);
 user_pref("extensions.webextensions.restrictedDomains", "");
 /*Disable page thumbnails capturing*/
 user_pref("browser.pagethumbnails.capturing_disabled", true);
@@ -178,3 +178,7 @@ user_pref("identity.fxaccounts.pairing.uri", "");
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
+// Appearance
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("browser.tabs.tabMinWidth", 130);
+user_pref("browser.tabs.tabClipWidth", 100);

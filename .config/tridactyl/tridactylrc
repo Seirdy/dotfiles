@@ -16,10 +16,11 @@ bind D tabduplicate
 bindurl reddit.com gu urlparent 4
 
 " Only hint search results on Google
-bindurl www.google.com ;f hint -Jc .rc > .r > a
-bindurl www.google.com ;F hint -Jtc .rc>.r>a
+bindurl www\.google\.com/search ;f hint -Jc  .rc > .r > a
+bindurl www\.google\.com/search ;F hint -Jbc .rc > .r > a
 
-bindurl next.duckduckgo.com ;f hint -Jc .result__a
+bindurl next\.duckduckgo\.com ;f hint -Jc  .result__a
+bindurl next\.duckduckgo\.com ;F hint -Jbc .result__a
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
 
@@ -46,7 +47,9 @@ set yankto both
 "
 
 " New reddit bad; old reddit good
-autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocLoad ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocStart ^http(s?)://duckduckgo.com js tri.excmds.urlmodify("-t", "duckduckgo", "next\.duckduckgo")
+
 autocmd TabEnter ^http(s?)://(www\.nytimes|medium)\.com keyfeed gr
 
 " Custom binds
@@ -56,7 +59,7 @@ bind ,a exclaim_quiet xdotool key --delay 50 alt+h a
 " Open native search dialog
 bind ? exclaim_quiet xdotool key --delay 50 alt+e f
 " Open url in Reddit Terminal Viewer
-bind ,r hint -W exclaim $DEFTERM rtv
+bind ,r hint -W exclaim $DEFTERM tuir --enable-media
 " Open in mpv
 bind ,m hint -W mpvsafe
 " Open image in feh
@@ -77,5 +80,5 @@ autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket
 autocontain git(lab|hub).com Git
-autocontain old\.reddit\.com Reddit
+autocontain (old|www|i)\.reddit\.com Reddit
 " vim:filetype=vim

@@ -323,30 +323,24 @@ findbar {
 
 /* Allow arrowscrollbox to collapse when only one tab is visible */
 
-:root:not([inFullscreen]) #tabbrowser-tabs tab:only-of-type {
+tab:only-of-type {
 	display: none !important;
+	visibility: collapse !important;
 }
 
 #tabbrowser-tabs,
-#tabbrowser-tabs arrowscrollbox {
+#tabbrowser-tabs arrowscrollbox,
+#TabsToolbar {
 	height: initial !important;
 	min-height: initial !important;
+	padding-inline-start: 0 !important;
+	padding-inline-end: 0 !important;
+	background-color: var(--arrowpanel-background) !important;
 }
 
 /* Keep tab height from collapsing due to the above */
 tab > stack {
 	height: 28px !important;
-}
-
-#TabsToolbar,
-#TabsToolbar .tabbrowser-arrowscrollbox,
-#TabsToolbar .tabbrowser-arrowscrollbox > .arrowscrollbox-scrollbox,
-#scrollbox-innerbox {
-	padding-inline-start: 0 !important;
-	padding-inline-end: 0 !important;
-	background-color: var(--arrowpanel-background) !important;
-	/*    border-top-width: 0px !important;*/
-	/*    border: none !important;*/
 }
 
 /*Disable White Flash of Death*/
