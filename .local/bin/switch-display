@@ -82,7 +82,7 @@ fi
 if [ -d "$nvim_confdir" ]; then
 	# shellcheck disable=SC2164
 	cd "$nvim_confdir"
-	cp "./ginit_$new_display.vim" ginit.vim
+	cat "./ginit_master.vim" "./ginit_$new_display.vim" > ginit.vim
 	echo "updated nvim gui settings"
 else
 	echo "Failed to find nvim config in \"$nvim_confdir\"; skipping."

@@ -150,16 +150,9 @@ endif
 let g:onedark_terminal_italics=1
 let g:one_allow_italics = 1
 
-set background=light  " Necessary for breezy theme
-colorscheme onedark
+colorscheme breezy
 
-if has('gui')
-	set transparency=10
-	set guifont=Source\ Code\ Pro:h11
-	if has('antialias')
-		set antialias
-	endif
-else
+if !has('gui_running')
 	" Use terminal emulator's background
 	hi Normal guibg=NONE
 endif
@@ -185,39 +178,38 @@ let g:airline_theme = 'breezy'
 " :terminal colors
 " ~~~~~~~~~~~~~~~~
 
-set t_Co=256
 set t_ut=
 " black
-let g:terminal_color0 = '#31363b'
-let g:terminal_color8 = '#6a6e71'
+let g:terminal_color_0 = '#31363b'
+let g:terminal_color_8 = '#6a6e71'
 
 " red
-let g:terminal_color1 = '#ed1515'
-let g:terminal_color9 = '#c0392b'
+let g:terminal_color_1 = '#ed1515'
+let g:terminal_color_9 = '#c0392b'
 
 " green
-let g:terminal_color2 = '#11d116'
-let g:terminal_color10 = '#1cdc9a'
+let g:terminal_color_2 = '#11d116'
+let g:terminal_color_10 = '#1cdc9a'
 
 " yellow
-let g:terminal_color3 = '#f67400'
-let g:terminal_color11 = '#fdbc4b'
+let g:terminal_color_3 = '#f67400'
+let g:terminal_color_11 = '#fdbc4b'
 
 " blue
-let g:terminal_color4 = '#1d99f3'
-let g:terminal_color12 = '#3daee9'
+let g:terminal_color_4 = '#1d99f3'
+let g:terminal_color_12 = '#3daee9'
 
 " magenta
-let g:terminal_color5 = '#9b59b6'
-let g:terminal_color13 = '#8e44ad'
+let g:terminal_color_5 = '#9b59b6'
+let g:terminal_color_13 = '#8e44ad'
 
 " cyan
-let g:terminal_color6 = '#1abc9c'
-let g:terminal_color14 = '#16a085'
+let g:terminal_color_6 = '#1abc9c'
+let g:terminal_color_14 = '#16a085'
 
 " white
-let g:terminal_color7 = '#eff0f1'
-let g:terminal_color15 = '#ffffff'
+let g:terminal_color_7 = '#eff0f1'
+let g:terminal_color_15 = '#ffffff'
 
 " ======================================================
 " Coc.nvim: Language Server Client and VSCode extensions
