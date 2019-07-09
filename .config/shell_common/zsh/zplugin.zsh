@@ -8,11 +8,15 @@
 
 # Common ICE modifiers
 
-zi() {
+z_lucid() {
 	zplugin ice lucid "$@"
 }
-zi0() {
-	zi wait'0' "$@"
+zi0a() {
+	z_lucid wait'0a' "$@"
+}
+
+zi0b() {
+	z_lucid wait'0b' "$@"
 }
 
 ###########
@@ -21,41 +25,41 @@ zi0() {
 
 # My fancy prompt doesn't work on the standard Linux console.
 if [ $terminfo[colors] -gt 255 ]; then
-	zi
+	z_lucid
 	zplugin load romkatv/powerlevel10k
 fi
 
-zi0
+zi0a
 zplugin load skywind3000/z.lua
 
-zi0
+zi0a
 zplugin light zdharma/fast-syntax-highlighting
 
-zi0
+zi0a
 zplugin light shyiko/commacd
 
-zi wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
+z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
 zplugin light xvoland/Extract
 
 # Creates "thefuck" alias without slowing down startup
-zi wait'[[ -n ${ZLAST_COMMANDS[(r)fuc*]} ]]'
+z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)fuc*]} ]]'
 zplugin light laggardkernel/thefuck
 
-zi0 blockf atload'_zsh_autosuggest_start'
+zi0a blockf atload'_zsh_autosuggest_start'
 zplugin load zsh-users/zsh-autosuggestions
 
-zi0 pick'autopair.zsh'
+zi0a pick'autopair.zsh'
 zplugin light hlissner/zsh-autopair
 
 # fzf-related plugins {{{
-	zi0 has'fzf' pick'fzf-finder.plugin.zsh'
+	zi0a has'fzf' pick'fzf-finder.plugin.zsh'
 	zplugin light leophys/zsh-plugin-fzf-finder
 
 	# has ICE-selector wait'0b' so it gets loaded after diff-so-fancy
-	zi wait'0b' has'git' has'fzf' pick'forgit.plugin.zsh'
+	zi0b has'git' has'fzf' pick'forgit.plugin.zsh'
 	zplugin light wfxr/forgit
 
-	zi0 has'fzf' pick'key-bindings.zsh'
+	zi0a has'fzf' pick'key-bindings.zsh'
 	zplugin light %$GOPATH/src/github.com/junegunn/fzf/shell
 # }}}
 
@@ -66,7 +70,7 @@ zplugin light hlissner/zsh-autopair
 # Commands {{{
 
 	zi_program() {
-		zi0 as'program' "$@"
+		zi0a as'program' "$@"
 	}
 
 	zi_program has'trash' pick'rmtrash'
@@ -84,11 +88,14 @@ zplugin light hlissner/zsh-autopair
 # Git extensions {{{
 
 	# has ICE-selector wait'0a' so it gets loaded before "forgit"
-	zi as'program' wait'0a' pick'bin/git-dsf'
+	zi0a as'program' pick'bin/git-dsf'
 	zplugin light zdharma/zsh-diff-so-fancy
 
-	zi_program pick'bin/git-*' make"PREFIX=$ZPFX"
+	zi0a as'program' has'git' pick'bin/git-*' make"PREFIX=$ZPFX"
 	zplugin light tj/git-extras
+
+	zi0b as'completion' has'git-extras'
+	zplugin snippet "$HOME/.zplugin/plugins/tj---git-extras/etc/git-extras-completion.zsh"
 
 # }}}
 
@@ -102,7 +109,7 @@ finish_setup() {
 }
 
 zi_completion() {
-	zi0 as'completion' "$@"
+	zi0a as'completion' "$@"
 }
 
 zi_completion has'pip3'

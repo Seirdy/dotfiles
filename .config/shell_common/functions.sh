@@ -52,3 +52,12 @@ history_stats() {
 		| nl \
 		|  head -n"$entries"
 }
+
+pf() {
+	ps -x | fzf | ( read pid _; echo $pid;  )
+}
+
+fuzzykill() {
+	pf | xargs kill -$1
+}
+
