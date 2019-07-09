@@ -24,14 +24,14 @@ if [ "$MACHINE" = 'Linux' ]; then
 		. /usr/lib/os-release
 		if [ "$NAME" = 'Fedora' ]; then
 			echo 'Installing dnf packages for Fedora'
-			sudo sh "$bootstrap_dir/sudo-dnf.sh"
+			sudo bash "$bootstrap_dir/sudo-dnf.sh"
 		fi
 		dash "$bootstrap_dir/flatpak.sh"
 		dash "$updates_dir/chromium.sh"
 	fi
 elif [ "$MACHINE" = 'Darwin' ]; then
 	echo 'Installing homebrew packages'
-	sh "$bootstrap_dir/homebrew-install.sh"
+	bash "$bootstrap_dir/homebrew-install.sh"
 else
 	echo 'Unrecognized OS.'
 	exit

@@ -1,4 +1,4 @@
-T!/usr/bin/env dash
+#!/usr/bin/env dash
 
 # My startup script, ideally run at the start of my session by my login shell.
 # This script sets environment vars and runs redshift if necessary
@@ -73,9 +73,11 @@ export STACK_ROOT="$HOME/Executables/stack"
 
 # Set MANPATH
 export MANPATH="/usr/share/man:$MANPATH"
+export MANPATH="/usr/local/share/man:$MANPATH"
 export MANPATH="$HOME/.local/man:$MANPATH"
 export MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+export INFOPATH="/usr/local/share/info:$INFOPATH"
 # Set PATH
 
 # These functions add a directory to $PATH if it exists and it isn't already there.
@@ -125,7 +127,19 @@ if [ "$MACHINE" = 'Linux' ]; then
 elif [ "$MACHINE" = "Darwin" ]; then
 	# override macOS defaults with up-to-date/familiar versions
 	pathadd_head '/usr/local/opt/ruby/bin'
+	pathadd_head '/usr/local/opt/unzip/bin'
+	# A whole GNU $PAAAAAAAAATH!
+	pathadd_head '/usr/local/opt/binutils/bin'
 	pathadd_head '/usr/local/opt/coreutils/libexec/gnubin'
+	pathadd_head '/usr/local/opt/ed/libexec/gnubin'
+	pathadd_head '/usr/local/opt/findutils/libexec/gnubin'
+	pathadd_head '/usr/local/opt/gnu-indent/libexec/gnubin'
+	pathadd_head '/usr/local/opt/gnu-sed/libexec/gnubin'
+	pathadd_head '/usr/local/opt/gnu-tar/libexec/gnubin'
+	pathadd_head '/usr/local/opt/gnu-which/libexec/gnubin'
+	pathadd_head '/usr/local/opt/grep/libexec/gnubin'
+	pathadd_head '/usr/local/opt/make/libexec/gnubin'
+	export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
 export PATH
