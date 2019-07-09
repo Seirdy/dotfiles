@@ -51,6 +51,8 @@ Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tab
 Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
 Plug 'vim-airline/vim-airline'  " Like powerline
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
+Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 " Plug 'luochen1990/rainbow'  " Colorize brackets and operators
 " Coc Plugins
 " ~~~~~~~~~~~
@@ -131,8 +133,6 @@ nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 " Appearance
 " ==========
 
-set background=light  " Necessary for breezy theme
-colorscheme breezy
 " Use 24-bit (true-color) mode in Vim/Neovim
 " (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more.)
 if (has("nvim"))
@@ -147,14 +147,22 @@ if exists('&pumblend')
 	set pumblend=20
 endif
 
+let g:onedark_terminal_italics=1
+let g:one_allow_italics = 1
+
+set background=light  " Necessary for breezy theme
+colorscheme onedark
+
 if has('gui')
 	set transparency=10
 	set guifont=Source\ Code\ Pro:h11
 	if has('antialias')
 		set antialias
 	endif
+else
+	" Use terminal emulator's background
+	hi Normal guibg=NONE
 endif
-
 " Airline
 " ~~~~~~~
 set noshowmode  " Airline handles this
@@ -279,10 +287,10 @@ function! s:show_documentation()
 endfunction
 
 function! s:OnTermOpen(buf)
-  setl nolist norelativenumber nonumber
-  if &buftype ==# 'terminal'
-    nnoremap <buffer> q :<C-U>bd!<CR>
-  endif
+	setl nolist norelativenumber nonumber
+	if &buftype ==# 'terminal'
+		nnoremap <buffer> q :<C-U>bd!<CR>
+	endif
 endfunction
 
 augroup autocmds
