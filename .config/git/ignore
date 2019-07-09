@@ -71,6 +71,9 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# Ah, macOS. The bastard child of Mach and FreeBSD.
+.DS_Store
+
 # private stuff
 privatenotes.txt
 lint-test.sh
