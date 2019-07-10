@@ -10,30 +10,30 @@ colorscheme dark
 
 " Comment toggler for Reddit and Hacker News
 bind ;c hint -c [class*="expand"],[class="togg"]
-bind D tabduplicate
+bindurl lobste\.rs ;c hint -c [class*="comment_folder"]
+
 
 " Make gu take you back to subreddit from comments
-bindurl reddit.com gu urlparent 4
+bindurl reddit\.com gu urlparent 4
 
-" Only hint search results on Google
-bindurl www\.google\.com/search ;f hint -Jc  .rc > .r > a
-bindurl www\.google\.com/search ;F hint -Jbc .rc > .r > a
+" Only hint search results
 
 bindurl next\.duckduckgo\.com ;f hint -Jc  .result__a
 bindurl next\.duckduckgo\.com ;F hint -Jbc .result__a
+
+bindurl www\.google\.com/search ;f hint -Jc  .rc > .r > a
+bindurl www\.google\.com/search ;F hint -Jbc .rc > .r > a
+
+bindurl github\.com ;f hint -Jc  h3 > a
+bindurl github\.com ;F hint -Jbc h3 > a
+
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
 
 " Let Ctrl-c to copy in the commandline
 unbind --mode=ex <C-c>
 
-" Handy multiwindow/multitasking binds
-bind gd tabdetach
-bind gD composite tabduplicate | tabdetach
-
-"
 " Misc settings
-"
 
 " Make Tridactyl work on more sites at the expense of some security
 set csp clobber
@@ -65,13 +65,20 @@ bind ,m hint -W mpvsafe
 " Open image in feh
 bind ,i composite hint -pipe img src | exclaim_quiet feh
 " Save to pocket (requires pockyt to be installed)
-bind ,p composite get_current_url | exclaim pockyt put -i
+bind ,P composite get_current_url | exclaim pockyt put -i
+bind ,p composite hint -pipe a href | exclaim pockyt put -i
 
 bind ,s source
+" Tab and window management
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+bind D tabduplicate
+
 
 " Search URLS
-set searchurls.ddg https://next.duckduckgo.com/?kmjx.menu=renderer%3ANativeMML%26%3Bsemantics%3Atrue%26%3Bcontext%3ABrowser%26%3Bzoom%3ANone&kp=-2&kc=-1&k1=-1&kam=osm&kak=-1&kax=-1&kaq=-1&kao=-1&kap=-1&kau=-1&t=ffab&ia=web&q=%s
-set searchengine ddg
+set searchurls.dl https://duckduckgo.com/lite/?q=%s
+set searchurls.d https://next.duckduckgo.com/?kmjx.menu=renderer%3ANativeMML%26%3Bsemantics%3Atrue%26%3Bcontext%3ABrowser%26%3Bzoom%3ANone&kp=-2&kc=-1&k1=-1&kam=osm&kak=-1&kax=-1&kaq=-1&kao=-1&kap=-1&kau=-1&t=ffab&ia=web&q=%s
+set searchengine d
 
 " Autocontain
 autocontain lclark\.edu School
@@ -79,6 +86,6 @@ autocontain (classroom|accounts|drive|docs|cloud|developers)\.google\.com Google
 autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket
-autocontain git(lab|hub).com Git
+autocontain git(lab|hub)\.com Git
 autocontain (old|www|i)\.reddit\.com Reddit
 " vim:filetype=vim
