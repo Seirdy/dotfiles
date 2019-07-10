@@ -1,12 +1,12 @@
 #!/usr/bin/env dash
 
-DL_DIR="$HOME/.local/share/rtv/rtv-open"
-mkdir -p "$DL_DIR" && cd "$DL_DIR"
+dl_dir="$HOME/.local/share/rtv/rtv-open"
+mkdir -p "$dl_dir" && cd "$dl_dir"
 rm -f ./*
 
-for URL in "$@"
+for url in "$@"
 do
-	aria2c "$URL"
+	aria2c "$url"
 done
 openx ./*
 
