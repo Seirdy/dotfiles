@@ -52,13 +52,82 @@
 	"python.linting.flake8Enabled": true,
 	"python.linting.flake8Path": "~/Executables/pipx/bin/flake8",
 	"python.linting.pylintEnabled": false,
-	"languageserver": {
-		"lua": {
-			"command": "lua-lsp",
-			"filetypes": [
-				"lua"
+	"diagnostic-languageserver.linters": {
+		"shellcheck": {
+			"command": "shellcheck",
+			"debounce": 100,
+			"args": [
+				"--format=gcc",
+				"-"
+			],
+			"offsetLine": 0,
+			"offsetColumn": 0,
+			"sourceName": "shellcheck",
+			"formatLines": 1,
+			"formatPattern": [
+				"^[^:]+:(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
+				{
+					"line": 1,
+					"column": 2,
+					"message": 4,
+					"security": 3
+				}
+			],
+			"securities": {
+				"error": "error",
+				"warning": "warning",
+				"note": "info"
+			}
+		},
+		"markdownlint": {
+			"command": "markdownlint",
+			"isStderr": true,
+			"debounce": 100,
+			"args": [
+				"--stdin"
+			],
+			"offsetLine": 0,
+			"offsetColumn": 0,
+			"sourceName": "markdownlint",
+			"formatLines": 1,
+			"formatPattern": [
+				"^.*?:\\s+(\\d+):\\s+(.*)$",
+				{
+					"line": 1,
+					"column": -1,
+					"message": 2
+				}
+			]
+		}
+	},
+	"diagnostic-languageserver.formatters": {
+		"pandoc-md": {
+			"command": "pandoc",
+			"args": [
+				"--from=markdown",
+				"--to=markdown",
+				"-s",
+				"--columns=88"
 			]
 		},
+		"pandoc-rst": {
+			"command": "pandoc",
+			"args": [
+				"--from=rst",
+				"--to=rst",
+				"-s",
+				"--columns=79"
+			]
+		}
+	},
+	"diagnostic-languageserver.filetypes": {
+		"sh": "shellcheck",
+		"pandoc": "markdownlint"
+	},
+	"diagnostic-languageserver.formatFiletypes": {
+		"pandoc": "pandoc-md"
+	},
+	"languageserver": {
 		"golang": {
 			"command": "gopls",
 			"rootPatterns": [
@@ -69,13 +138,6 @@
 			],
 			"filetypes": [
 				"go"
-			]
-		},
-		"efm": {
-			"command": "efm-langserver",
-			"filetypes": [
-				"rst",
-				"pandoc"
 			]
 		}
 	}

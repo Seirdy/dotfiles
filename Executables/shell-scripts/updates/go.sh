@@ -17,8 +17,6 @@ go_update github.com/cjbassi/gotop
 go_update github.com/junegunn/fzf
 # Test dl speed
 go_update github.com/ddo/fast
-# Create a langserver from linters and formatters
-go_update github.com/mattn/efm-langserver/cmd/efm-langserver
 # Quickly share files between computers
 go_update github.com/schollz/croc
 # Pager for log files
