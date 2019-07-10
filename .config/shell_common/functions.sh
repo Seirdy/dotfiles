@@ -54,10 +54,13 @@ history_stats() {
 }
 
 pf() {
-	ps -x | fzf | ( read pid _; echo $pid;  )
+	ps -x | fzf | ( read pid _; echo "$pid";  )
 }
 
 fuzzykill() {
 	pf | xargs kill -$1
 }
 
+jqy() {
+	yq r -j "$1" | jq "$2" | yq - r
+}

@@ -1,9 +1,12 @@
 #!/bin/sh
 
+mkdir -p "$HOME/Executables" || exit
+# shellcheck disable=2164
 cd "$HOME/Executables"
 mkdir -p 'go/bin' 'pipx/bin' 'gem/bin' 'luarocks/bin' 'npm/bin' 'cargo/bin' 'stack/bin'
+# shellcheck disable=2164
 cd "$HOME"
-# shellcheck source=startup.sh
+# shellcheck disable=2016
 echo 'Created some directories before adding to $PATH'
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile
@@ -47,4 +50,6 @@ dash "$bootstrap_dir/zplugin.sh"
 dash "$updates_dir/node.sh"
 dash "$updates_dir/stack.sh"
 dash "$updates_dir/go.sh"
+echo 'installing cht.sh'
+curl https://cht.sh/:cht.sh > "$HOME/.local/bin/chtsh" && chmod +x ~/.local/bin/cht.sh
 echo 'Bootstrap finished! Reboot and try running "update-all" to make sure this worked.'

@@ -109,7 +109,7 @@ finish_setup() {
 }
 
 zi_completion() {
-	zi0a as'completion' "$@"
+	zi0a blockf as'completion' "$@"
 }
 
 zi_completion has'pip3'
@@ -141,6 +141,9 @@ zplugin snippet OMZ::plugins/fd/_fd
 
 zi_completion has'exa' mv'completions.zsh -> _exa'
 zplugin snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
+
+zi_completion has'cht.sh' mv'zsh.txt -> _cht.sh'
+zplugin snippet https://github.com/chubin/cheat.sh/blob/master/share/zsh.txt
 
 if [ "$MACHINE" = 'Linux' ]; then
 
