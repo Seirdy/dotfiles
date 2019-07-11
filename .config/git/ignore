@@ -53,7 +53,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
-builds/
 develop-eggs/
 dist/
 downloads/
@@ -82,3 +81,7 @@ ignore/
 
 # Python stuff
 venv/
+
+# gitlab-runner
+builds/
+cache/
