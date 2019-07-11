@@ -46,7 +46,7 @@ alias gm='git merge'
 alias git-url='git ls-remote --get-url'
 alias gcl='git clone'
 alias gclr='gcl --recursive'
-alias gpull='git pull'
+alias gpull='git pull; git submodule update --init --recursive --force --remote'
 # yadm aliases
 alias yadm='yadm -Y "$XDG_CONFIG_HOME/yadm"'
 alias ystat='yadm status'
@@ -61,7 +61,7 @@ alias ym='yadm merge'
 alias yit-url='yadm ls-remote --get-url'
 alias ycl='yadm clone'
 alias yclr='ycl --recursive'
-alias ypull='yadm pull'
+alias ypull='yadm pull; yadm submodule update --init --recursive --force --remote'
 
 alias a2c='aria2c'  # fast aria2c downloading
 alias ytdl='youtube-dl'
