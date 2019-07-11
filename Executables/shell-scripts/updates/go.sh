@@ -2,9 +2,7 @@
 
 start_time=$(date '+%s')
 
-go_update() {
-	go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
-}
+go_update() go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
 
 # My mail client
 go_update git.sr.ht/~sircmpwn/aerc
@@ -29,5 +27,5 @@ go_update gitlab.com/gitlab-org/gitlab-runner
 go_update golang.org/x/tour
 
 end_time=$(date '+%s')
-elapsed=$(echo "${end_time} - ${start_time}" | bc)
-echo "Time elapsed: ${elapsed} seconds"
+elapsed=$(echo "$end_time - $start_time" | bc)
+echo "Time elapsed: $elapsed seconds"

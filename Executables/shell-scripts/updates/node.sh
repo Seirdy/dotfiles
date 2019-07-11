@@ -9,5 +9,5 @@ npm i -g markdownlint-cli
 npm i -g neovim
 
 end_time=$(date '+%s')
-elapsed=$(echo "${end_time} - ${start_time}" | bc)
-echo "Time elapsed: ${elapsed} seconds"
+elapsed=$(echo "$end_time - $start_time" | bc)
+echo "Time elapsed: $elapsed seconds"

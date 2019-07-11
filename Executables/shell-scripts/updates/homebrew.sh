@@ -7,5 +7,5 @@ brew upgrade
 brew cask upgrade
 
 end_time=$(date '+%s')
-elapsed=$(echo "${end_time} - ${start_time}" | bc)
-echo "Time elapsed: ${elapsed} seconds"
+elapsed=$(echo "$end_time - $start_time" | bc)
+echo "Time elapsed: $elapsed seconds"

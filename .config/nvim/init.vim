@@ -137,10 +137,10 @@ nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 
 " Use 24-bit (true-color) mode in Vim/Neovim
 " (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more.)
-if has("nvim")
+if has('nvim')
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-if has("termguicolors")
+if has('termguicolors')
 	set termguicolors
 endif
 if has('transparency')
