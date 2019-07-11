@@ -21,6 +21,8 @@ go_update github.com/ddo/fast
 go_update github.com/schollz/croc
 # Pager for log files
 go_update github.com/tigrawap/slit/cmd/slit
+# shell script formatter
+go_update github.com/mvdan/sh/cmd/shfmt
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
 # Learn go
