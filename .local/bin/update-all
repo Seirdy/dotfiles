@@ -28,9 +28,9 @@
 
 script_dir="$HOME/Executables/shell-scripts/updates"
 cd "$script_dir" || return 1
-fd -t f -e sh -x chmod +x  # So I can run the scripts with their shebangs
+fd -t f -e sh -x chmod +x # So I can run the scripts with their shebangs
 cd "$XDG_DATA_HOME/update-all/logs" || return 1
-printf "%s" 'Compressing old log: '  # Combines with first line of p7zip output
+printf "%s" 'Compressing old log: ' # Combines with first line of p7zip output
 
 fd -t d -x 7z a -bd -m0=lzma -mx=9 -y "{/}.7z" "{}" \
 	| rg -v 'Copyright|p7zip Version|Scanning the drive|Items to compress' \
@@ -45,7 +45,7 @@ cd "$time_start" || return 2
 log_dir="$PWD"
 # Use log_dir in below scripts.
 export log_dir
-echo  # newline
+echo # newline
 
 #####################
 # Logging functions #
@@ -61,7 +61,7 @@ echo  # newline
 # Run and log in background
 log_bg() {
 	echo "Starting update: $1"
-	nohup "$script_dir/$1.sh" > "$log_dir/$1-$time_start.log" 2>&1 &
+	nohup "$script_dir/$1.sh" >"$log_dir/$1-$time_start.log" 2>&1 &
 }
 
 # Run and log in foreground (live-preview log file in interactive session)
@@ -74,25 +74,25 @@ log_fg() {
 # Run updates #
 ###############
 
-log_bg 'pip-pipx'          # see https://pipxproject.github.io/pipx/
-log_bg 'node'              # npm packages
-log_bg 'rubygem-luarocks'  # combining gem and luarocks since they update quickly
-log_bg 'go'                # build go packages installed with "go get" (slow)
-log_bg 'cargo'             # rust packages (infrequent, extremely cpu-heavy)
-log_bg 'zplugin'           # update zplugin itself, zsh plugins, and zpmod
-log_bg 'kitty'             # build kitty from source, latest commit
+log_bg 'pip-pipx'         # see https://pipxproject.github.io/pipx/
+log_bg 'node'             # npm packages
+log_bg 'rubygem-luarocks' # combining gem and luarocks since they update quickly
+log_bg 'go'               # build go packages installed with "go get" (slow)
+log_bg 'cargo'            # rust packages (infrequent, extremely cpu-heavy)
+log_bg 'zplugin'          # update zplugin itself, zsh plugins, and zpmod
+log_bg 'kitty'            # build kitty from source, latest commit
 
 if [ "$MACHINE" = 'Linux' ]; then
-	log_bg 'newsboat'        # build newsboat from source, latest commit
-	log_bg 'stack'           # haskell packages (infrequent updates, cpu-heavy, slow)
-	log_bg 'flatpak'         # repair and update user-installed flatpaks
-	log_bg 'chromium'        # secondary browser; script based on chromium-latest-linux
-	echo                     # line break
-	log_fg 'dnf'             # system-wide update, autoremoval, and repo caching.
+	log_bg 'newsboat' # build newsboat from source, latest commit
+	log_bg 'stack'    # haskell packages (infrequent updates, cpu-heavy, slow)
+	log_bg 'flatpak'  # repair and update user-installed flatpaks
+	log_bg 'chromium' # secondary browser; script based on chromium-latest-linux
+	echo              # line break
+	log_fg 'dnf'      # system-wide update, autoremoval, and repo caching.
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 	echo
-	log_fg 'homebrew'        # repo-caching and updating of homebrew formulae and casks
+	log_fg 'homebrew' # repo-caching and updating of homebrew formulae and casks
 
 else
 	echo 'Unsupported machine for system package updates'

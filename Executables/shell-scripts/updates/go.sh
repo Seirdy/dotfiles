@@ -3,7 +3,7 @@
 start_time=$(date '+%s')
 
 go_update() {
-	go get -u -v "$@" 2>&1  # verbose output is sent to stderr for some reason
+	go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
 }
 
 # My mail client

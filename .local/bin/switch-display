@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-new_display=$1  # Either "lap" or "mon"
+new_display=$1 # Either "lap" or "mon"
 display_cfg="$XDG_DATA_HOME/computer_state/current_display"
 
 if [ -z "$new_display" ]; then
@@ -14,7 +14,7 @@ if [ -z "$new_display" ]; then
 fi
 
 # Save $new_display to $display_cfg for if switch_display is called again without args
-echo "$new_display" > "$display_cfg"
+echo "$new_display" >"$display_cfg"
 
 # KDE Fonts
 if [ "$new_display" = "mon" ]; then
@@ -35,7 +35,7 @@ kdeglobals_update() {
 }
 
 if [ "$MACHINE" = "Linux" ] && [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
-	if command -v kwriteconfig5 > /dev/null; then
+	if command -v kwriteconfig5 >/dev/null; then
 		kdeglobals_update --group "General" --key "fixed" "$mono_font"
 		kdeglobals_update --group "General" --key "font" "$sans_font"
 		kdeglobals_update --group "General" --key "menuFont" "$sans_font"
@@ -58,7 +58,7 @@ nvim_confdir="$XDG_CONFIG_HOME/nvim"
 if [ -d "$kitty_confdir" ]; then
 	# shellcheck disable=SC2164
 	cd "$kitty_confdir"
-	cat ./kitty_master.conf "./kitty_$new_display.conf" > kitty.conf
+	cat ./kitty_master.conf "./kitty_$new_display.conf" >kitty.conf
 	echo "updated kitty settings"
 else
 	echo "Failed to find kitty config in \"$kitty_confdir\"; skipping."
@@ -66,7 +66,7 @@ fi
 if [ -d "$ff_confdir" ]; then
 	# shellcheck disable=SC2164
 	cd "$ff_confdir"
-	cat ./user_master.js "./user_$new_display.js" > ./user.js
+	cat ./user_master.js "./user_$new_display.js" >./user.js
 	echo "updated Firefox Nighty settings"
 else
 	echo "Failed to find Firefox Nightly config in \"$ff_confdir\"; skipping."
@@ -74,7 +74,7 @@ fi
 if [ -d "$gtk_confdir" ]; then
 	# shellcheck disable=SC2164
 	cd "$gtk_confdir"
-	cat ./settings_master.ini "./settings_$new_display.ini" > settings.ini
+	cat ./settings_master.ini "./settings_$new_display.ini" >settings.ini
 	echo "updated gtk3 settings"
 else
 	echo "Failed to find GTK3 config in \"$gtk_confdir\"; skipping."
@@ -82,7 +82,7 @@ fi
 if [ -d "$nvim_confdir" ]; then
 	# shellcheck disable=SC2164
 	cd "$nvim_confdir"
-	cat "./ginit_master.vim" "./ginit_$new_display.vim" > ginit.vim
+	cat "./ginit_master.vim" "./ginit_$new_display.vim" >ginit.vim
 	echo "updated nvim gui settings"
 else
 	echo "Failed to find nvim config in \"$nvim_confdir\"; skipping."

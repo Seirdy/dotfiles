@@ -7,7 +7,7 @@ if [ -d "$kitty_dir" ]; then
 	cd "$kitty_dir" || exit
 	git pull
 else
-	cd $(dirname "$kitty_dir") || exit
+	cd "$(dirname $kitty_dir)" || exit
 	git clone "https://github.com/kovidgoyal/kitty.git"
 	cd kitty || exit
 fi

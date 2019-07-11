@@ -9,7 +9,7 @@ cd "$HOME"
 # shellcheck disable=2016
 echo 'Created some directories before adding to $PATH'
 if [ -z "$PROFILE_SET" ]; then
-	# shellcheck source=.profile
+	# shellcheck source=../../.profile
 	. "$HOME/.profile"
 	export PROFILE_SET=2
 fi
@@ -51,5 +51,5 @@ dash "$updates_dir/node.sh"
 dash "$updates_dir/stack.sh"
 dash "$updates_dir/go.sh"
 echo 'installing cht.sh'
-curl https://cht.sh/:cht.sh > "$HOME/.local/bin/chtsh" && chmod +x ~/.local/bin/cht.sh
+curl https://cht.sh/:cht.sh >"$HOME/.local/bin/chtsh" && chmod +x ~/.local/bin/cht.sh
 echo 'Bootstrap finished! Reboot and try running "update-all" to make sure this worked.'
