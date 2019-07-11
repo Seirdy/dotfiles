@@ -81,6 +81,7 @@ log_bg 'go'               # build go packages installed with "go get" (slow)
 log_bg 'cargo'            # rust packages (infrequent, extremely cpu-heavy)
 log_bg 'zplugin'          # update zplugin itself, zsh plugins, and zpmod
 log_bg 'kitty'            # build kitty from source, latest commit
+log_bg 'program-data'     # have some programs sync their data
 
 if [ "$MACHINE" = 'Linux' ]; then
 	log_bg 'newsboat' # build newsboat from source, latest commit
