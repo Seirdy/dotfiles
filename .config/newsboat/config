@@ -1,5 +1,30 @@
+# vim: set ft=conf
+refresh-on-startup no
+reload-threads 15
 browser "$BROWSER %u"
+prepopulate-query-feeds yes
 bookmark-cmd "/home/rkumar/.local/share/newsboat/send-to-pocket.sh"
-reload-threads 12
-refresh-on-startup yes
-reload-time 60
+feed-sort-order firsttag
+history-limit 400
+user-agent "Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2s"
+
+unbind-key k
+bind-key k up
+unbind-key j
+bind-key j down
+unbind-key q
+bind-key q hard-quit
+unbind-key l
+bind-key l open
+unbind-key h
+bind-key h quit
+unbind-key m
+bind-key m toggle-show-read-feeds
+unbind-key g
+unbind-key G
+bind-key g home
+bind-key G end
+
+ignore-mode "display"
+ignore-article https://lwn.net/headlines/newrss "title =~ \"Security updates for\""
+ignore-article https://lwn.net/headlines/newrss "title =~ \"stable kernel\""

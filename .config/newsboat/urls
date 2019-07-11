@@ -1,5 +1,6 @@
 # vim: filetype=conf
-"query:Unread Articles:unread = \"yes\""
+"query:All Unread:unread = \"yes\"" "0-query"
+"query:Excluding program updates:tags !# \"Programs\"" "0-query"
 https://sonniesedge.co.uk/rss.xml "Blog"
 https://sonniesedge.co.uk/bookmarks.xml "Blog"
 https://boingboing.net/tag/copyfight/feed "NonDev"
@@ -179,7 +180,7 @@ https://pycoders.com/feed/0 "Dev" "Python"
 https://realpython.com/atom.xml "Dev" "Python"
 http://blog.pytest.org/feeds/all.atom.xml "Dev" "Python"
 https://www.anaconda.com/feed/ "Dev" "Python"
-https://lobste.rs/t/python.rss "Dev" "Python"
+# https://lobste.rs/t/python.rss "Dev" "Python"  # Updates too frequently
 https://blog.jetbrains.com/pycharm/feed/ "Dev" "Python"
 https://hnrss.org/newest.atom?q=webassembly+OR+wasm+OR+asm.js+OR+emscripten&link=comments&points=170 "Dev" "Hacker News"
 https://hnrss.org/show.atom?points=370 "Dev" "Hacker News"
