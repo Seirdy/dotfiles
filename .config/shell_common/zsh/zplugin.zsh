@@ -91,7 +91,7 @@ zplugin light hlissner/zsh-autopair
 	zi0a as'program' pick'bin/git-dsf'
 	zplugin light zdharma/zsh-diff-so-fancy
 
-	zi0a as'program' has'git' pick'bin/git-*' make"PREFIX=$ZPFX"
+	zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
 	zplugin light tj/git-extras
 
 	zi0b as'completion' has'git-extras'
