@@ -11,5 +11,8 @@
 	"no-inline-html": false,
 	"ul-indent": {
 		"indent": 4
+	},
+	"hard_tab": {
+		"code_blocks": false
 	}
 }
