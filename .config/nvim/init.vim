@@ -17,18 +17,22 @@ set undolevels=2000
 set diffopt=vertical
 set pumheight=18
 set scrolloff=3
+set cmdheight=2  " Useful for diagnostics
 set number  " Show line number column
-set relativenumber
+set grepprg=rg\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
+" set relativenumber
+set shell=zsh
 set signcolumn=yes  " for vim-pandoc-syntax and vim-signify
 
 "" Default formatting when not detected
 set smartindent
 set shiftwidth=2
-set tabstop=2
+set tabstop=2  " Anything more than that is distracting.
 " I like splitting windows side-by-side.
 " On a laptop screen, my terminal often has 95 columns.
-" 95 cols - 2 diagnostic cols - 4 number cols - 2 sign cols - 1 folding col
-" - 1 padding col = 86 cols
+" 95 cols - 2 diagnostic cols - 4 number cols - 1 sign col - 1 folding col
+" - 1 padding col - 1 cursorcolumn = 86 cols
 set colorcolumn=86
 
 " Spellfile
@@ -64,8 +68,6 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 " Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
-" coc-neco has been replaced by coc-vimlsp
-Plug 'lervag/vimtex', {'for': ['plaintex', 'tex', 'pandoc']}  " works with coc.nvim via coc-vimtex
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 
 call plug#end()
@@ -135,16 +137,19 @@ nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 
 " Use 24-bit (true-color) mode in Vim/Neovim
 " (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more.)
-if (has("nvim"))
+if has("nvim")
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-if (has("termguicolors"))
+if has("termguicolors")
 	set termguicolors
+endif
+if has('transparency')
+	set transparency=10
 endif
 
 " set cursorline  " Commented out because it slows (n)vim down.
 if exists('&pumblend')
-	set pumblend=20
+	set pumblend=15
 endif
 
 let g:onedark_terminal_italics=1
@@ -167,7 +172,6 @@ let g:airline_extensions = ['branch', 'tabline', 'coc']
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-" colorscheme
 let g:rainbow_active = 1  " Rainbow brackets
 let g:indentLine_char = "\uE621"  " dotted line  from powerline-patched-fonts
 " Language-specific theme settings
@@ -229,7 +233,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current pos
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
