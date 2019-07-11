@@ -15,11 +15,11 @@ if [ -z "$PROFILE_SET" ]; then
 fi
 # I can't get zpmod to work on macOS
 # See https://github.com/zdharma/zplugin/issues/131
-if [ "$MACHINE" != "Darwin" ]; then
+if [ "$MACHINE" != 'Darwin' ]; then
 	zmodload zdharma/zplugin
 	# macOS has issues with gpg password input.
 	# This makes password input happen in a TUI.
-elif [ "$is_tty" != "not a tty" ]; then
+elif [ "$is_tty" != 'not a tty' ]; then
 	is_tty="$(tty)"
 	export GPG_TTY="$is_tty"
 fi
@@ -60,7 +60,7 @@ setopt prompt_subst
 setopt interactivecomments
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS='-arch x86_64'
 
 export _ZL_MATCH_MODE=1
 export _ZL_ECHO=1
@@ -83,7 +83,7 @@ function _z() { _zlua "$@"; }
 
 function fancy_ctrl_z () {
 	if [[ $#BUFFER -eq 0 ]]; then
-		export BUFFER="fg"
+		export BUFFER='fg'
 		zle accept-line
 	else
 		zle push-input
@@ -95,8 +95,8 @@ bindkey '^Z' fancy_ctrl_z
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-export PAGER="w3m"
-export BAT_PAGER="less"
+export PAGER='w3m'
+export BAT_PAGER='less'
 export _ZL_MATCH_MODE=1
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
