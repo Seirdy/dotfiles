@@ -1,5 +1,6 @@
 #!/usr/bin/env dash
 
-aria2c "$1" -o "$(url-filename $1).html"
+filename=$(url-filename "$1")
+aria2c "$1" -o "$filename.html"
 
 # vim: filetype=sh

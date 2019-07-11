@@ -1,7 +1,6 @@
 #!/usr/bin/env dash
 
-for url in $(pockyt get "$@" -f '{link}')
-do
+for url in $(pockyt get "$@" -f '{link}'); do
 	nohup webpage-dl "$url" &
 done
 

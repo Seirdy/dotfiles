@@ -1,11 +1,11 @@
 #!/usr/bin/env dash
 
 dl_dir="$HOME/.local/share/rtv/rtv-open"
+# shellcheck disable=SC2164
 mkdir -p "$dl_dir" && cd "$dl_dir"
 rm -f ./*
 
-for url in "$@"
-do
+for url in "$@"; do
 	aria2c "$url"
 done
 openx ./*

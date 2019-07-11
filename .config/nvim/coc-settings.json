@@ -57,6 +57,7 @@
 			"command": "shellcheck",
 			"debounce": 100,
 			"args": [
+				"-x",
 				"--format=gcc",
 				"-"
 			],
@@ -118,6 +119,14 @@
 				"-s",
 				"--columns=79"
 			]
+		},
+		"shfmt": {
+			"command": "shfmt",
+			"args": [
+				"-ci",
+				"-s",
+				"-bn"
+			]
 		}
 	},
 	"diagnostic-languageserver.filetypes": {
@@ -125,7 +134,10 @@
 		"pandoc": "markdownlint"
 	},
 	"diagnostic-languageserver.formatFiletypes": {
-		"pandoc": "pandoc-md"
+		"pandoc": "pandoc-md",
+		"rst": "pandoc-rst",
+		"sh": "shfmt",
+		"zsh": "shfmt"
 	},
 	"languageserver": {
 		"golang": {

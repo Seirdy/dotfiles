@@ -1,11 +1,12 @@
+#!/usr/bin/env dash
 # aliases
 alias psave='pockyt put -i'
-alias :q='exit'  # muh vim habits
+alias :q='exit' # muh vim habits
 alias c='calc -p'
 
-alias l='lsd --group-dirs first'  # like ls, but faster and with MOAR ICONS
-alias ll='exa -lh --time-style=iso'  # Better output than ls -l
-alias lll='exa -lh --time-style=full-iso -s modified'  # Show full timestamp
+alias l='lsd --group-dirs first'                      # like ls, but faster and with MOAR ICONS
+alias ll='exa -lh --time-style=iso'                   # Better output than ls -l
+alias lll='exa -lh --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -a'
 alias lla='ll -a'
 alias llla='lll -a'
@@ -16,7 +17,7 @@ alias rgi='rg -i'
 alias rgv='rg -v'
 alias vim='vim -u NONE'
 alias ddgr='ddgr -x'
-alias fuck!='fuck --yeah'  # auto-correct previous command
+alias fuck!='fuck --yeah' # auto-correct previous command
 
 # Editing aliases
 alias edi='$EDITOR'
@@ -63,7 +64,7 @@ alias ycl='yadm clone'
 alias yclr='ycl --recursive'
 alias ypull='yadm pull'
 
-alias a2c='aria2c'  # fast aria2c downloading
+alias a2c='aria2c' # fast aria2c downloading
 alias ytdl='youtube-dl'
 alias ytdl-bf='ytdl --format=bestvideo+bestaudio/best'
 alias ytdl-sm="youtube-dl -f 'bestvideo[height<=720]+bestaudio'"
@@ -102,7 +103,7 @@ alias z='z -I'
 alias kicat='kitty +kitten icat'
 alias kittyrc='$EDITOR $HOME/.config/kitty/kitty_master.conf'
 
-if command -v roflcat > /dev/null; then
+if command -v roflcat >/dev/null; then
 	alias lolcat='roflcat -t'
 fi
 
@@ -113,7 +114,7 @@ if [ -n "$ZSH_VERSION" ]; then
 	alias -g detch='&>/dev/null 2>/dev/null & disown'
 	alias -g pagit='| $PAGER'
 	alias -g w3m-htm='| w3m -T text/html'
-	if command -v lolcat > /dev/null; then
+	if command -v lolcat >/dev/null; then
 		alias -g rofl='| lolcat'
 	fi
 fi

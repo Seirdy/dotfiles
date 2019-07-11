@@ -6,8 +6,8 @@
 export LC_ALL=en_US.UTF-8
 export COLUMNS
 export ROWS
-module_path+=( "$HOME/.zplugin/bin/zmodules/Src" )
-module_path+=( "$HOME/.zplugin/mod-bin/zmodules/Src" )
+module_path+=("$HOME/.zplugin/bin/zmodules/Src")
+module_path+=("$HOME/.zplugin/mod-bin/zmodules/Src")
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile
 	. "$HOME/.profile"
@@ -19,14 +19,19 @@ if [ "$MACHINE" != "Darwin" ]; then
 	zmodload zdharma/zplugin
 	# macOS has issues with gpg password input.
 	# This makes password input happen in a TUI.
-elif [ "$is_tty" != "not a tty" ]; then
-	is_tty="$(tty)"
-	export GPG_TTY="$is_tty"
+else
+	if [ "$is_tty" != "not a tty" ]; then
+		is_tty="$(tty)"
+		export GPG_TTY="$is_tty"
+	fi
+	if [ "$(docker-machine status)" != 'Stopped' ]; then
+		eval $(docker-machine env default)
+	fi
 fi
 # dedupe $PATH
 PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
 MANPATH=$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")
-export KEYTIMEOUT=1  # Reduces delay when entering vi-mode
+export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 # An SSD can handle a large history
@@ -74,14 +79,14 @@ SHELL_COMMON="$HOME/.config/shell_common"
 # shellcheck source=.config/shell_common/aliases.sh
 . "$SHELL_COMMON/aliases.sh"
 # shellcheck source=.config/shell_common/aliases_private.sh
-. "$SHELL_COMMON/aliases_private.sh"  # Not committing private info
+. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
 # shellcheck source=.config/shell_common/functions.sh
 . "$SHELL_COMMON/functions.sh"
 
 # keybinds and functions
 function _z() { _zlua "$@"; }
 
-function fancy_ctrl_z () {
+function fancy_ctrl_z() {
 	if [[ $#BUFFER -eq 0 ]]; then
 		export BUFFER="fg"
 		zle accept-line
@@ -120,4 +125,3 @@ _fzf_compgen_dir() {
 # source the plugins and start completions/autosuggestions.
 # shellcheck source=.config/shell_common/zsh/zplugin.zsh
 . "$SHELL_COMMON/zsh/zplugin.zsh"
-

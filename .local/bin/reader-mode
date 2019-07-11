@@ -2,7 +2,7 @@
 
 filename="$1"
 filename_md="${filename%.html}.md"
-clean-mark "$filename" > /dev/null
+clean-mark "$filename" >/dev/null
 pandoc --from markdown --to markdown -s "$filename_md" --columns="$COLUMNS" \
 	| mdcat \
 	| less -r

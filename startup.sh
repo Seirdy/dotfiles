@@ -6,9 +6,16 @@
 # Everything except the shebang should be quite portable and POSIX-compliant, though
 # there are specific bits only for Linux and macOS.
 
-# TODO: Add support for {Free,Open}BSD
+# TODO: Add support for the following (in no particular order):
+#	- {Free,Open}BSD
+#	- Debian and derivatives
+#	- Arch (btw)
+#	- Void Linux
+#	- NixOS
+#	- TempleOS (fight me)
 
 # Don't re-run this
+echo 'setting profile'
 if [ "$PROFILE_SET" = 1 ]; then
 	exit
 fi
@@ -19,7 +26,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export LC_TIME=en_ZA.UTF-8
-export DEFTERM="kitty -1"  # Default terminal
+export DEFTERM="kitty -1" # Default terminal
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export NVIM_GTK_PREFER_DARK_THEME=1
@@ -31,7 +38,7 @@ export WEECHAT_HOME="$XDG_DATA_HOME/weechat"
 export GTK_THEME=Breeze-Dark
 export GTK_THEME_VARIANT=dark
 export BROWSER=firefox-nightly
-export GTK_USE_PORTAL=1  # KDE file-picker
+export GTK_USE_PORTAL=1 # KDE file-picker
 export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
@@ -82,12 +89,12 @@ export INFOPATH="/usr/local/share/info:$INFOPATH"
 
 # These functions add a directory to $PATH if it exists and it isn't already there.
 pathadd_head() {
-	if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1" > /dev/null; then
+	if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1" >/dev/null; then
 		PATH="$1${PATH:+":$PATH"}"
 	fi
 }
 pathadd_tail() {
-	if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1" > /dev/null; then
+	if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1" >/dev/null; then
 		PATH="${PATH:+"$PATH:"}$1"
 	fi
 }
@@ -97,30 +104,30 @@ pathadd_tail '/usr/sbin'
 pathadd_tail '/usr/bin'
 pathadd_tail '/sbin'
 pathadd_tail '/bin'
-pathadd_head "$GEM_HOME/bin"                           # rubygems (ruby)
-pathadd_head "$NPM_PACKAGES/bin"                       # npm (javascript)
-pathadd_head "$HOME/Executables/luarocks/bin"          # luarocks (lua)
-pathadd_head "$PIPX_BIN_DIR"                           # pipx (python)
-pathadd_head "$GOPATH/bin"                             # go
-pathadd_head "$STACK_ROOT/bin"                         # stack (haskell)
-pathadd_head "$CARGO_HOME/bin"                         # cargo (rust)
-pathadd_head "$HOME/.local/bin"                        # local bin
+pathadd_head "$GEM_HOME/bin"                  # rubygems (ruby)
+pathadd_head "$NPM_PACKAGES/bin"              # npm (javascript)
+pathadd_head "$HOME/Executables/luarocks/bin" # luarocks (lua)
+pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
+pathadd_head "$GOPATH/bin"                    # go
+pathadd_head "$STACK_ROOT/bin"                # stack (haskell)
+pathadd_head "$CARGO_HOME/bin"                # cargo (rust)
+pathadd_head "$HOME/.local/bin"               # local bin
 
 # Detect my OS
 unameOut="$(uname -s)"
 case "${unameOut}" in
-	Linux*)     MACHINE='Linux';;
-	Darwin*)    MACHINE='Darwin';;
-	CYGWIN*)    MACHINE='Cygwin';;
-	MINGW*)     MACHINE='MinGw';;
-	*)          MACHINE="UNKNOWN:${unameOut}"
+	Linux*) MACHINE='Linux' ;;
+	Darwin*) MACHINE='Darwin' ;;
+	CYGWIN*) MACHINE='Cygwin' ;;
+	MINGW*) MACHINE='MinGw' ;;
+	*) MACHINE="UNKNOWN:${unameOut}" ;;
 esac
 export MACHINE
 
 if [ "$MACHINE" = 'Linux' ]; then
-	pathadd_tail '/usr/lib64/qt5/bin'                     # qt programs
-	pathadd_head "$XDG_DATA_HOME/flatpak/exports/bin"     # flatpak (user)
-	pathadd_tail '/var/lib/flatpak/exports/bin'           # flatpak (global)
+	pathadd_tail '/usr/lib64/qt5/bin'                 # qt programs
+	pathadd_head "$XDG_DATA_HOME/flatpak/exports/bin" # flatpak (user)
+	pathadd_tail '/var/lib/flatpak/exports/bin'       # flatpak (global)
 	if [ -z "$TMPDIR" ]; then
 		export TMPDIR="/tmp"
 	fi
@@ -145,26 +152,25 @@ fi
 
 export PATH
 
-
 export TUIR_EDITOR="nvim -c ':set filetype=pandoc'"
 export TUIR_BROWSER="$BROWSER"
-if command -v w3m > /dev/null; then
+if command -v w3m >/dev/null; then
 	export PAGER='w3m'
-elif command -v less > /dev/null; then
+elif command -v less >/dev/null; then
 	export PAGER='less'
 fi
 # Preferred editor
-if command -v nvim > /dev/null; then
+if command -v nvim >/dev/null; then
 	export EDITOR='nvim'
-elif command -v vim > /dev/null; then
+elif command -v vim >/dev/null; then
 	export EDITOR='vim'
-elif command -v vi > /dev/null; then
+elif command -v vi >/dev/null; then
 	export EDITOR='vi'
-elif command -v nvi > /dev/null; then
+elif command -v nvi >/dev/null; then
 	export EDITOR='nvi'
-elif command -v nano > /dev/null; then
+elif command -v nano >/dev/null; then
 	export EDITOR='nano'
-elif command -v emacs > /dev/null; then
+elif command -v emacs >/dev/null; then
 	# I'm in danger
 	export EDITOR='emacs'
 else
@@ -178,13 +184,13 @@ if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
 	export CLUTTER_BACKEND=wayland
 	export QT_QPA_PLATFORM=wayland-egl
 	export QT_WAYLAND_FORCE_DPI=physical
-	export SDL_VIDEODRIVER=wayland  # Makes imv use wayland backend
+	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
 	# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
 elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
 	#  Don't run redshift on GNOME (it has its own Night Light)
 	#  Don't run redshift on Wayland
 	#  Don't run redshift if it's already running.
-	if [ "$XDG_CURRENT_DESKTOP" = 'GNOME' ] || pgrep redshift > /dev/null; then
+	if [ "$XDG_CURRENT_DESKTOP" = 'GNOME' ] || pgrep redshift >/dev/null; then
 		export REDSHIFT_RUNNING=1
 	elif command -v redshift; then
 		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
