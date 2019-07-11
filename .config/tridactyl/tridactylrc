@@ -21,11 +21,14 @@ bindurl reddit\.com gu urlparent 4
 bindurl next\.duckduckgo\.com ;f hint -Jc  .result__a
 bindurl next\.duckduckgo\.com ;F hint -Jbc .result__a
 
-bindurl www\.google\.com/search ;f hint -Jc  .rc > .r > a
-bindurl www\.google\.com/search ;F hint -Jbc .rc > .r > a
+bindurl www\.google\.com ;f hint -Jc  .rc > .r > a
+bindurl www\.google\.com ;F hint -Jbc .rc > .r > a
 
 bindurl github\.com ;f hint -Jc  h3 > a
 bindurl github\.com ;F hint -Jbc h3 > a
+
+bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
+bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
 
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
