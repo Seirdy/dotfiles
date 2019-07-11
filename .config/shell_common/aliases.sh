@@ -17,6 +17,7 @@ alias rgi='rg -i'
 alias rgv='rg -v'
 alias vim='vim -u NONE'
 alias ddgr='ddgr -x'
+alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias fuck!='fuck --yeah' # auto-correct previous command
 
 # Editing aliases

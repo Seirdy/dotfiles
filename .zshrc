@@ -20,11 +20,11 @@ if [ "$MACHINE" != 'Darwin' ]; then
 	# macOS has issues with gpg password input.
 	# This makes password input happen in a TUI.
 else
+	is_tty="$(tty)"
 	if [ "$is_tty" != 'not a tty' ]; then
-		is_tty="$(tty)"
 		export GPG_TTY="$is_tty"
 	fi
-	if [ "$(docker-machine status)" != 'Stopped' ]; then
+	if [ "$(docker-machine status)" = 'Running' ]; then
 		eval $(docker-machine env default)
 	fi
 fi
@@ -38,6 +38,9 @@ export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
 HISTSIZE=99999
 # shellcheck disable=SC2034
 SAVEHIST=50000
+# Writing dupes to history is fine, but don't search them
+# Useful for ^R keybind, esp. with fzf-history-search-widget
+HIST_FIND_NO_DUPS=1
 ## History command configuration
 # record timestamp of command in HISTFILE
 setopt extended_history

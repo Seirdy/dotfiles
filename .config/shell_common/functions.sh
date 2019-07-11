@@ -55,14 +55,37 @@ history_stats() {
 }
 
 pf() {
-	ps -x | fzf | (
-		read -r pid _ # pid is the first arg. GNU read will strip whitespace and stuff.
+	local pid
+	pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+	if [ "x$pid" != "x" ]; then
 		echo "$pid"
-	)
+	fi
 }
 
-fuzzykill() {
-	pf | xargs kill -"$1"
+# list only the ones you can kill. Modified the earlier script.
+pfu() {
+	local pid uid
+	uid=$(bash -c 'echo $UID')
+	if [ "$uid" != "0" ]; then
+		pid=$(ps -f -u "$uid" | sed 1d | fzf -m | awk '{print $2}')
+	else
+		pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+	fi
+
+	if [ "x$pid" != "x" ]; then
+		echo "$pid"
+	fi
+}
+
+fkill() {
+	local signal
+	if [ $# -eq 0 ]; then
+		signal=9
+	else
+		signal="$1"
+	fi
+	pfu | xargs kill -"$signal"
 }
 
 # jq for YAML.
@@ -74,3 +97,20 @@ jqy() {
 		| jq "$2" \
 		| yq - r
 }
+
+# Start and attach to a docker container
+da() {
+	local cid
+	cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+	[ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+
+# Select a running docker container to stop
+ds() {
+	local cid
+	cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+	[ -n "$cid" ] && docker stop "$cid"
+}
+
