@@ -5,7 +5,7 @@ start_time=$(date '+%s')
 echo 'tldr update'
 tldr --update
 echo 'Sync Pocket and Buku'
-poku -c ~/.config/poku.cfg
+poku
 echo 'Update buku database'
 buku -u --threads 10
 echo 'Updating RSS feeds'

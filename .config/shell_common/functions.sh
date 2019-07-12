@@ -114,3 +114,10 @@ ds() {
 	[ -n "$cid" ] && docker stop "$cid"
 }
 
+fbuku() {
+	bmark=$(buku -p -f 5 | fzf)
+	index="$(echo "$bmark" | awk '{print $1}')"
+	echo "index is $index"
+	buku -p "$index"
+	buku -o "$index"
+}
