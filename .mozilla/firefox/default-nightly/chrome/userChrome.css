@@ -21,6 +21,8 @@
 	--ui-lightest: #A5AEB3;
 	--ui-faded_text: #818C91;
 	--compact-urlbar-min-height: 26px;
+	/* I collapse the tabbar, but tabs themselves shouldn't collapse. */
+	--tab-min-height: 26px !important;
 	--space-above-tabbar: 0 !important;
 	--toolbar-bgcolor: var(--ui-basecolor) !important;
 	--toolbar-bgimage: none !important;
@@ -105,7 +107,12 @@ findbar {
 
 .tabbrowser-tab .close-icon,
 .tabbrowser-tab .tab-icon-image {
-	transform: scale(.9, .9)!important;
+	transform: scale(.9, .9) !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-icon-image {
+	opacity: 0.8 !important;
+	filter: grayscale(0.7) !important;
 }
 
 /*Dim un-loaded and background tabs*/
@@ -232,11 +239,11 @@ findbar {
 }
 
 #userContext-label {
-	color: #fff!important;
+	color: #fff !important;
 }
 
 #userContext-indicator {
-	fill: #fff!important;
+	fill: #fff !important;
 	margin-right: 2px!important;
 }
 
@@ -340,7 +347,7 @@ tab:only-of-type {
 
 /* Keep tab height from collapsing due to the above */
 tab > stack {
-	height: 28px !important;
+	height: var(--tab-min-height) !important;
 }
 
 /*Disable White Flash of Death*/
