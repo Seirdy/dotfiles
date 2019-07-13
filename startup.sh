@@ -203,5 +203,6 @@ fi
 
 SESSION_START="$(date -Iseconds)"
 export SESSION_START
+export FZF_DEFAULT_OPTS='-m --ansi'
 
 export PROFILE_SET=1

@@ -66,6 +66,11 @@ setopt equals
 setopt prompt_subst
 # Comments in the interactive shell; useful for copy-pasting
 setopt interactivecomments
+# Use colors in auto-completion
+eval `dircolors`
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# Send CONT signal automatically when disowning jobs
+setopt AUTO_CONTINUE
 
 # Compilation flags
 export ARCHFLAGS='-arch x86_64'
