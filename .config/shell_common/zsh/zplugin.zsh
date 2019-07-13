@@ -106,11 +106,6 @@ zplugin snippet "$HOME/.zplugin/plugins/tj---git-extras/etc/git-extras-completio
 # Completions #
 ###############
 
-finish_setup() {
-	zpcompinit
-	zpcdreplay
-}
-
 zi_completion() {
 	zi0a as'completion' "$@"
 }
@@ -168,6 +163,11 @@ elif [ "$MACHINE" = 'Darwin' ]; then
 	zplugin snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew_cask
 
 fi
+
+finish_setup() {
+	zpcompinit
+	zpcdreplay
+}
 
 zi_completion atload'finish_setup'
 zplugin light zsh-users/zsh-completions
