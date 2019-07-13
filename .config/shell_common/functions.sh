@@ -115,9 +115,12 @@ ds() {
 }
 
 fbuku() {
-	bmark=$(buku -p -f 5 | fzf)
+	bmark=$(buku -p -f 5 | fzf --tac)
 	index="$(echo "$bmark" | awk '{print $1}')"
 	echo "index is $index"
 	buku -p "$index"
 	buku -o "$index"
 }
+
+# shellcheck source=file_mngment.sh
+. "$XDG_CONFIG_HOME/shell_common/file_mngment.sh"
