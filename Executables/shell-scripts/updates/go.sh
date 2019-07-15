@@ -21,6 +21,8 @@ go_update github.com/schollz/croc
 go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
 go_update github.com/mvdan/sh/cmd/shfmt
+# like jq but for yaml
+go_update github.com/mikefarah/yq
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
 # Learn go
