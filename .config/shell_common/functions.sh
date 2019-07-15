@@ -122,5 +122,15 @@ fbuku() {
 	buku -o "$index"
 }
 
+bcalc() {
+	echo "scale=10; $*" | bc -l
+}
 # shellcheck source=file_mngment.sh
 . "$XDG_CONFIG_HOME/shell_common/file_mngment.sh"
+
+imgurup() {
+	curl -H "Referer: https://imgur.com/upload" -F "Filedata=@$1" https://imgur.com/upload \
+		| jq '.data' \
+		| yq - r \
+		| bat --language yaml --style plain
+}
