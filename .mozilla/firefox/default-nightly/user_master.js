@@ -120,7 +120,6 @@ user_pref("beacon.enabled", false);
 user_pref("media.eme.enabled", false);
 /*allow addons on AMO*/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
-user_pref("privacy.firstparty.isolate", true);
 user_pref("extensions.webextensions.restrictedDomains", "");
 /*Disable page thumbnails capturing*/
 user_pref("browser.pagethumbnails.capturing_disabled", true);
@@ -139,8 +138,14 @@ user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket",
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.feeds.aboutpreferences", false);
+user_pref("browser.newtabpage.activity-stream.discoverystream.endpoints", "");
+user_pref("browser.newtabpage.activity-stream.discoverystream.endpointSpocsClear", "");
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
 
-/*Dark devtools theme*/
+// misc privacy
+user_pref("privacy.firstparty.isolate", true);
+user_pref("browser.sessionrestore.privacy_level", 2);
 
 /*Deny most permissions*/
 user_pref("permissions.default.camera", 2);
@@ -148,6 +153,8 @@ user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.microphone", 2);
 
+/*Extension blocklist*/
+user_pref("extensions.blocklist.enabled", false);
 /*Safebrowsing*/
 user_pref("browser.safebrowsing.enabled ", false);
 user_pref("browser.safebrowsing.phishing.enabled ", false);

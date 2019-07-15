@@ -197,17 +197,16 @@ findbar {
 	border-left-width: 0 !important;
 }
 
-.tabbrowser-tab[first-tab="true"]::before {
-	opacity: 0 !important;
+.tabbrowser-tab[first-tab="true"]::before, .tabbrowser-tab[last-tab="true"]::after {
+	display: none !important;
+	border-color: transparent !important;
+	border-image: none !important;
 }
 
 .tabbrowser-tab[last-tab="true"] .tab-background {
 	border-right-width: 0 !important;
 }
 
-.tabbrowser-tab[last-tab="true"]::after {
-	opacity: 0 !important;
-}
 
 /*tab-line is to bright. Reduce its opacity a bit*/
 
@@ -413,7 +412,7 @@ browser[type=content] > html,
 
 /*make tabs wider*/
 .tabbrowser-tab[fadein]:not([pinned]) {
-	max-width: 550px !important;
+	max-width: 100% !important;
 }
 
 

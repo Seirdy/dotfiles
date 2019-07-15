@@ -8,8 +8,8 @@ colorscheme dark
 " Binds
 "
 
-" Comment toggler for Reddit and Hacker News
-bind ;c hint -c [class*="expand"],[class="togg"]
+" Comment toggler
+bind ;c hint -c summary,[class*="expand"],[class="togg"]
 bindurl lobste\.rs ;c hint -c [class*="comment_folder"]
 
 
