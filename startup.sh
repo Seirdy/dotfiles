@@ -49,6 +49,13 @@ export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 # See https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # In addition to this spec, I use ~/Executables to keep packages installed by
 # 3rd-party package managers.
+export INFLUXDB_CONFIG_PATH="$XDG_CONFIG_HOME/influxdb/influxdb.conf"
+export INFLUXDB_DATA_DIR="$XDG_DATA_HOME/influxdb/data"
+export INFLUXDB_DATA_WAL_DIR="$XDG_DATA_HOME/influxdb/wal"
+export INFLUXDB_META_DIR="$XDG_DATA_HOME/influxdb/meta"
+export GF_PATHS_LOGS="$XDG_DATA_HOME/grafana/logs"
+export GF_PATHS_DATA="$XDG_DATA_HOME/grafana/data"
+export GF_PATHS_plugins="$XDG_DATA_HOME/grafana/plugins"
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
@@ -154,11 +161,11 @@ export PATH
 
 export TUIR_EDITOR="nvim -c ':set filetype=pandoc'"
 export TUIR_BROWSER="$BROWSER"
-if command -v w3m >/dev/null; then
-	export PAGER='w3m'
-elif command -v less >/dev/null; then
-	export PAGER='less'
-fi
+# if command -v w3m >/dev/null; then
+# 	export PAGER='w3m'
+# elif command -v less >/dev/null; then
+export PAGER='less -x 2 -FR'
+# fi
 # Preferred editor
 if command -v nvim >/dev/null; then
 	export EDITOR='nvim'
