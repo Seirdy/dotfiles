@@ -1,0 +1,7 @@
+--italic-text=always
+--map-syntax .ignore:.gitignore
+--map-syntax h:c
+--color=always
+--pager="less -x 2 -FR"
+--tabs 2
+--theme="Monokai Extended Bright"

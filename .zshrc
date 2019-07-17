@@ -109,7 +109,6 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 export PAGER='w3m'
-export BAT_PAGER='less'
 export _ZL_MATCH_MODE=1
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
