@@ -55,7 +55,6 @@ Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tab
 Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
 Plug 'vim-airline/vim-airline'  " Like powerline
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
-Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
 " Plug 'luochen1990/rainbow'  " Colorize brackets and operators
 " Coc Plugins
@@ -69,6 +68,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 " Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
+Plug 'nathanielc/vim-tickscript'
 
 call plug#end()
 
@@ -147,16 +147,21 @@ if has('transparency')
 	set transparency=10
 endif
 
+if has('mac')
+	let g:python_host_prog = '/usr/local/bin/python3'
+else
+	let g:python_host_prog = '/usr/bin/python3'
+endif
+
 " set cursorline  " Commented out because it slows (n)vim down.
 if exists('&pumblend')
 	set pumblend=15
 endif
 
-let g:onedark_terminal_italics=1
 let g:one_allow_italics = 1
 
 colorscheme breezy
-
+hi Comment gui=italic
 if !has('gui_running')
 	" Use terminal emulator's background
 	hi Normal guibg=NONE
