@@ -5,6 +5,11 @@ mkcd() {
 	cd "$@" || return
 }
 
+mkcp() {
+	mkdir -p "$(dirname $2)"
+	cp "$1" "$2"
+}
+
 wdir() {
 	# shellcheck disable=SC2230
 	PROGPATH=$(which "$1")
