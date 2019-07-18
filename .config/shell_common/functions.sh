@@ -73,9 +73,9 @@ pfu() {
 	local pid uid
 	uid=$(bash -c 'echo $UID')
 	if [ "$uid" != "0" ]; then
-		pid=$(ps -f -u "$uid" | sed 1d | fzf -m | awk '{print $2}')
+		pid=$(ps -f -u "$uid" | sed 1d | fzf -m -q "$@" | awk '{print $2}')
 	else
-		pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+		pid=$(ps -ef | sed 1d | fzf -m -q "$@" | awk '{print $2}')
 	fi
 
 	if [ "x$pid" != "x" ]; then
@@ -90,7 +90,7 @@ fkill() {
 	else
 		signal="$1"
 	fi
-	pfu | xargs kill -"$signal"
+	pfu "$@" | xargs kill -"$signal"
 }
 
 # jq for YAML.
@@ -138,4 +138,8 @@ imgurup() {
 		| jq '.data' \
 		| yq - r \
 		| bat --language yaml --style plain
+}
+
+dnfss() {
+	dnf search "$@" | rg -v "i686|\-doc"
 }
