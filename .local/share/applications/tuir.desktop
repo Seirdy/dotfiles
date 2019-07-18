@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=tuir
+Type=Application
+Comment=A terminal interface to view and interact with reddit
+Terminal=true
+Exec=tuir --enable-media
+Icon=reddit
+Categories=Internet;Social;ConsoleOnly
+Keywords=reddit;social

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.8.1
+Type=Application
+Name=st
+GenericName=Terminal emulator
+Comment=a simple terminal implementation for X
+Exec=st-cmd %U
+Icon=utilities-terminal
+Categories=System;TerminalEmulator;

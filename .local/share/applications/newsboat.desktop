@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=newsboat
+Comment=An RSS/Atom feed reader for text terminals
+Exec=newsboat %U
+Terminal=true
+Icon=liferea
+Categories=Network;Feed;News;
+Type=Application
+StartupNotify=true
+MimeType=application/rss+xml;application/atom+xml;application/rdf+xml;x-scheme-handler/feed

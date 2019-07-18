@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=zsh
+Type=Application
+Comment=default shell
+Terminal=true
+Exec=zsh
+Icon=terminal
+Categories=ConsoleOnly;System;Shell
+Keywords=system;shell;prompt
