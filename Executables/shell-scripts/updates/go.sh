@@ -25,6 +25,7 @@ go_update github.com/mvdan/sh/cmd/shfmt
 go_update github.com/mikefarah/yq
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
+go_update github.com/tulir/gomuks
 # format tickscript
 go_update github.com/influxdata/kapacitor/tick/cmd/tickfmt
 # Learn go
