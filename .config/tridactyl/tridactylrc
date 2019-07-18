@@ -46,7 +46,7 @@ unbind --mode=ex <C-c>
 set csp clobber
 fixamo_quiet
 set allowautofocus false
-set editorcmd $DEFTERM $EDITOR
+set editorcmd $TERMINAL $EDITOR
 set yankto both
 
 "
@@ -66,7 +66,7 @@ bind ,a exclaim_quiet xdotool key --delay 50 alt+h a
 " Open native search dialog
 bind ? exclaim_quiet xdotool key --delay 50 alt+e f
 " Open url in Reddit Terminal Viewer
-bind ,r hint -W exclaim $DEFTERM tuir --enable-media
+bind ,r hint -W exclaim $TERMINAL tuir --enable-media
 " Open in mpv
 bind ,m hint -W mpvsafe
 " Open image in feh
