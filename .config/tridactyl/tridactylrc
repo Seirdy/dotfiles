@@ -18,17 +18,21 @@ bindurl reddit\.com gu urlparent 4
 
 " Only hint search results
 
-bindurl next\.duckduckgo\.com ;f hint -Jc  .result__a
-bindurl next\.duckduckgo\.com ;F hint -Jbc .result__a
+bindurl next\.duckduckgo\.com ;f hint -Jc  a.result__a
+bindurl next\.duckduckgo\.com ;F hint -Jbc a.result__a
 
 bindurl www\.google\.com ;f hint -Jc  .rc > .r > a
 bindurl www\.google\.com ;F hint -Jbc .rc > .r > a
 
-bindurl github\.com ;f hint -Jc  h3 > a
-bindurl github\.com ;F hint -Jbc h3 > a
-
+bindurl github\.com/search ;f hint -Jc  .repo-list-item h3 > a
+bindurl github\.com/search ;F hint -Jbc .repo-list-item h3 > a
 bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
 bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
+
+bindurl git.sr.ht/.*/.*/tree ;f hint -Jc .name > a
+bindurl git.sr.ht/.*/.*/tree ;F hint -Jbc .name > a
+bindurl git.sr.ht/.*/.*/log ;f hint -Jc .event > div > a:nth-of-type(1)
+bindurl git.sr.ht/.*/.*/log ;f hint -Jbc .event > div > a:nth-of-type(1)
 
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
