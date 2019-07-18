@@ -133,3 +133,6 @@ aerc
 Protonmail
 dunst
 config
+mpd
+mpc
+ncmpcpp
