@@ -1,12 +1,14 @@
 #!/usr/bin/env dash
 # aliases
 alias psave='pockyt put -i'
+alias hnopen='hn view -bc'
 alias :q='exit' # muh vim habits
 alias c='calc -p'
 
-alias l='lsd --group-dirs first'                      # like ls, but faster and with MOAR ICONS
-alias ll='exa -lh --time-style=iso'                   # Better output than ls -l
-alias lll='exa -lh --time-style=full-iso -s modified' # Show full timestamp
+alias l='lsd --group-dirs first --icon always' # like ls, but faster and with MOAR ICONS
+alias exa='exa -h --icons --group-directories-first --color=always'
+alias ll='exa -l --time-style=long-iso'              # Better output than ls -l
+alias lll='exa -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -a'
 alias lla='ll -a'
 alias llla='lll -a'
