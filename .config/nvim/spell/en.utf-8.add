@@ -136,3 +136,4 @@ config
 mpd
 mpc
 ncmpcpp
+FTFY
