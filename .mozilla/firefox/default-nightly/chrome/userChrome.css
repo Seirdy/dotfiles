@@ -20,6 +20,7 @@
 	--ui-border: #616569;
 	--ui-lightest: #A5AEB3;
 	--ui-faded_text: #818C91;
+	--tab-icon-dimension: 14px;
 	--compact-urlbar-min-height: 26px;
 	/* I collapse the tabbar, but tabs themselves shouldn't collapse. */
 	--tab-min-height: 26px !important;
@@ -103,32 +104,86 @@ findbar {
 	border-width: 0 !important;
 }
 
-/*Shrink close button, favicon*/
-
-.tabbrowser-tab .close-icon,
-.tabbrowser-tab .tab-icon-image {
-	transform: scale(.9, .9) !important;
+/* Center all inside tab */
+.tab-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 100% !important;
+	padding: 0 10px !important;
 }
 
-.tabbrowser-tab:not([selected]) .tab-icon-image {
-	opacity: 0.8 !important;
-	filter: grayscale(0.7) !important;
+/* Prevent tab icons size breaking */
+.tab-icon-image, .tab-icon-sound, .tab-throbber, .tab-throbber-fallback, .tab-close-button {
+	min-width: var(--tab-icon-dimension) !important;
+	width: var(--tab-icon-dimension) !important;
+	height: var(--tab-icon-dimension) !important;
 }
 
-/*Dim un-loaded and background tabs*/
-.tabbrowser-tab:not([selected]):not([pending=true]) {
-	opacity: 0.8;
+/* Adjust tab label width */
+.tab-label-container {
+	min-width: 0 !important;
 }
-.tabbrowser-tab:not([selected])[pending=true] {
-	opacity: 0.35;
+
+/* Put tab close button and icon sound to the right */
+.tab-icon-sound[soundplaying="true"], .tab-icon-sound[muted="true"],
+.tab-icon-sound[activemedia-blocked="true"] {
+	margin-left: auto !important;
+}
+.tabbrowser-tab:not([soundplaying]):not([muted]):not([activemedia-blocked]) .tab-close-button {
+	margin-left: auto !important;
+}
+
+/* Force tab favicon to the center */
+.tab-throbber, .tab-throbber-fallback {
+	margin-left: auto;
+}
+.tabbrowser-tab:not([busy]) .tab-icon-image {
+	margin-left: auto;
+}
+
+/* If tab favicon is not present, force tab label to the center */
+.tabbrowser-tab .tab-label-container {
+	margin-left: 0 !important;
+}
+.tabbrowser-tab:not([image]):not([busy]):not([progress]) .tab-label-container {
+	margin-left: auto !important;
+}
+
+/* If tab close button is not present, don't force favicon to the center */
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]) .tab-throbber,
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]) .tab-throbber-fallback {
+	margin-left: 0 !important;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]):not([busy]) .tab-icon-image,
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]):not([image]) .tab-label-container {
+	margin-left: 6px !important;
+}
+
+/* Close tab button */
+.tab-close-button {
+	/* border: 1px solid transparent; */
+	box-sizing: content-box; /* Avoid deformation on flexbox */
+	/* list-style-image: url("moz-icon://stock/window-close-symbolic?size=dialog") !important; */
+	height: var(--tab-icon-dimension);
+	opacity: .8;
+	padding: 2px;
+	width: var(--tab-icon-dimension);
 }
 
 /*hide stuff*/
-#forward-button, #back-button, .urlbar-go-button, .search-go-button, .urlbar-history-dropmarker, #context-sendpagetodevice, #context-sep-sendpagetodevice, #appMenu-fxa-container, #appMenu-fxa-container+toolbarseparator, #context-sendpagetodevice, #context-sendlinktodevice, #context-sep-sendlinktodevice, #context_sendTabToDevice, #context_sendTabToDevice_separator, #pageActionSeparator, #PanelUI-button, #identity-icon-labels, #TabsToolbar #window-controls, #identity-icon, #userContext-indicator.identity-icon-circle, #pocket-button-box, #tabContextMenu .menu-iconic-icon, #TabsToolbar .titlebar-spacer,
+#forward-button, #back-button,
+.urlbar-go-button, .search-go-button, .urlbar-history-dropmarker, #urlbar *|*.textbox-input::placeholder,
+#pocket-button-box, #pageActionSeparator, #pageActionButton,
+#context-sendpagetodevice, #context-sep-sendpagetodevice, #context-sep-sendlinktodevice, #context_sendTabToDevice, #context_sendTabToDevice_separator,
+#appMenu-fxa-container, #appMenu-fxa-container+toolbarseparator, #appMenu-update-available-notification,
+#PanelUI-button,
+#identity-icon-labels, #identity-icon,
+#userContext-indicator.identity-icon-circle, #tabContextMenu .menu-iconic-icon,
+#TabsToolbar #window-controls, #TabsToolbar .titlebar-spacer,
 /* .findbar-closebutton, */
-#overflowMenu-customize-button, #urlbar *|*.textbox-input::-moz-placeholder,
-/* Tab close button on background tabs */
-.tabbrowser-tab:not([selected]) .tab-close-button,
+#overflowMenu-customize-button,
 /*Search engines in urlbar dropdown*/
 .search-one-offs,
 /*Compact sidebar header*/
@@ -137,24 +192,10 @@ findbar {
 #userContext-indicator[data-identity-icon="circle"],
 /* urlbar magnifying glass icon */
 #identity-box.unknownIdentity > .identity-icon,
-
-/* Some popup notifications */
-#appMenu-update-available-notification,
-#titlebar-placeholder-on-TabsToolbar-for-captions-buttons,
-.titlebar-buttonbox-container,
-.titlebar-spacer {
+#titlebar-placeholder-on-TabsToolbar-for-captions-buttons, .titlebar-buttonbox-container, .titlebar-spacer
+{
 	display: none !important;
 	visibility: collapse !important;
-	opacity: 0 !important;
-}
-
-/*Hide pageActionButton without removing its functionality*/
-#pageActionButton {
-	list-style-image: none !important;
-	width: 0 !important;
-	height: 0 !important;
-	padding: 0 !important;
-	margin: 0 !important;
 }
 
 #identity-box {
@@ -233,8 +274,8 @@ findbar {
 #userContext-icons {
 	background: var(--identity-tab-color) !important;
 	margin: auto 3px !important;
-	border-radius: 1px !important;
 	padding: 0 2px 0 5px !important;
+	height: calc(var(--compact-urlbar-min-height) - 2px)
 }
 
 #userContext-label {

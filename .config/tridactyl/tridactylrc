@@ -15,19 +15,28 @@ bindurl lobste\.rs ;c hint -c [class*="comment_folder"]
 
 " Make gu take you back to subreddit from comments
 bindurl reddit\.com gu urlparent 4
+bindurl news\.ycombinator\.com/item gu urlparent 2
 
-" Only hint search results
+" ;f and ;F are used to hint only the urls I'm most likely to click (like
+" search results)
 
 bindurl next\.duckduckgo\.com ;f hint -Jc  a.result__a
 bindurl next\.duckduckgo\.com ;F hint -Jbc a.result__a
 
-bindurl www\.google\.com ;f hint -Jc  .rc > .r > a
+bindurl www\.google\.com ;f hint -Jc .rc > .r > a
 bindurl www\.google\.com ;F hint -Jbc .rc > .r > a
+
+bindurl news\.ycombinator\.com/news ;f hint -Jc .age > a
+bindurl news\.ycombinator\.com/news ;F hint -Jbc .age > a
+bindurl news\.ycombinator\.com/item ;f hint -Jc .comment .commtext a
+bindurl news\.ycombinator\.com/item ;F hint -Jbc .comment .commtext a
 
 bindurl github\.com/search ;f hint -Jc  .repo-list-item h3 > a
 bindurl github\.com/search ;F hint -Jbc .repo-list-item h3 > a
 bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
 bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
+bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
+bindurl github\.com/.*/.*/commits ;F hint -Jbc a.message
 
 bindurl git.sr.ht/.*/.*/tree ;f hint -Jc .name > a
 bindurl git.sr.ht/.*/.*/tree ;F hint -Jbc .name > a
