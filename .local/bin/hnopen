@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+for URL in "$@"
+do
+	hn view -bc "$URL"
+done
+
+# vim: ft=sh
