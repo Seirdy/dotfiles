@@ -154,6 +154,8 @@ elif [ "$MACHINE" = "Darwin" ]; then
 	pathadd_head '/usr/local/opt/grep/libexec/gnubin'
 	pathadd_head '/usr/local/opt/make/libexec/gnubin'
 	pathadd_head '/usr/local/opt/file-formula/bin'
+	pathadd_head '/usr/local/opt/gettext/bin'
+	pathadd_head '/usr/local/opt/libxml2/lib/pkgconfig'
 	export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 

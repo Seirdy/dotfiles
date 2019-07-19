@@ -24,9 +24,9 @@ else
 	if [ "$is_tty" != 'not a tty' ]; then
 		export GPG_TTY="$is_tty"
 	fi
-	if [ "$(docker-machine status)" = 'Running' ]; then
-		eval $(docker-machine env default)
-	fi
+	# if [ "$(docker-machine status)" = 'Running' ]; then
+	# 	eval $(docker-machine env default)
+	# fi
 fi
 # dedupe $PATH
 PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
