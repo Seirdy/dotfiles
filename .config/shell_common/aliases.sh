@@ -1,7 +1,6 @@
 #!/usr/bin/env dash
 # aliases
 alias psave='pockyt put -i'
-alias hnopen='hn view -bc'
 alias :q='exit' # muh vim habits
 alias c='calc -p'
 
@@ -39,7 +38,7 @@ alias gccv='gcc -pedantic -Wall'
 
 # git aliases
 alias gstat='git status'
-alias gco='git commit -S'
+alias gco='git commit'
 alias gcoa='gco -a'
 alias gcom='gco -m'
 alias gcoam='gcoa -m'
