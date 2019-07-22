@@ -2,10 +2,11 @@
 
 start_time=$(date '+%s')
 
-stack_install() stack --local-bin-path="$HOME/Executables/stack/bin" install "$@" -v
+stack_local() stack --local-bin-path="$HOME/Executables/stack/bin" "$@"
+stack_install() stack_local install "$@"
 
-stack config set resolver nightly
-stack upgrade
+stack_local config set resolver nightly
+stack_local upgrade
 stack_install pandoc
 stack_install pandoc-citeproc
 stack_install ShellCheck
