@@ -63,8 +63,6 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
-export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
-export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export GOPATH="$HOME/Executables/go"
 export CARGO_HOME="$HOME/Executables/cargo"
 export WAPM_PACKAGES="$HOME/Executables/wapm"
@@ -163,10 +161,49 @@ export PATH
 
 export TUIR_EDITOR="nvim -c ':set filetype=pandoc'"
 export TUIR_BROWSER="$BROWSER"
-# if command -v w3m >/dev/null; then
-# 	export PAGER='w3m'
-# elif command -v less >/dev/null; then
-export PAGER='less -x 2 -FR'
+
+# Pager options
+export PAGER='less'
+export LESS="-x 2 -FiR"
+export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+# Pretty colors! Yay!
+LESS_TERMCAP_mb=$(
+	tput bold
+	tput setaf 2
+) # green
+LESS_TERMCAP_md=$(
+	tput bold
+	tput setaf 6
+) # cyan
+LESS_TERMCAP_me=$(tput sgr0)
+LESS_TERMCAP_so=$(
+	tput bold
+	tput setaf 3
+	tput setab 4
+) # yellow on blue
+LESS_TERMCAP_se=$(
+	tput rmso
+	tput sgr0
+)
+LESS_TERMCAP_us=$(
+	tput smul
+	tput bold
+	tput setaf 7
+) # white
+LESS_TERMCAP_ue=$(
+	tput rmul
+	tput sgr0
+)
+LESS_TERMCAP_mr=$(tput rev)
+LESS_TERMCAP_mh=$(tput dim)
+LESS_TERMCAP_ZN=$(tput ssubm)
+LESS_TERMCAP_ZV=$(tput rsubm)
+LESS_TERMCAP_ZO=$(tput ssupm)
+LESS_TERMCAP_ZW=$(tput rsupm)
+export LESS_TERMCAP_md LESS_TERMCAP_mb LESS_TERMCAP_me LESS_TERMCAP_so LESS_TERMCAP_se LESS_TERMCAP_us LESS_TERMCAP_ue LESS_TERMCAP_mr LESS_TERMCAP_mh LESS_TERMCAP_ZN LESS_TERMCAP_ZV LESS_TERMCAP_ZO LESS_TERMCAP_ZW
+export GROFF_NO_SGR=1
+
 # fi
 # Preferred editor
 if command -v nvim >/dev/null; then

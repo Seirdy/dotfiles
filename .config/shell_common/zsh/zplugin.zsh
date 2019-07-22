@@ -35,9 +35,6 @@ zplugin load skywind3000/z.lua
 zi0a
 zplugin light zdharma/fast-syntax-highlighting
 
-zi0a
-zplugin light shyiko/commacd
-
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
 zplugin light xvoland/Extract
 
@@ -78,6 +75,9 @@ zplugin light paulirish/git-open
 
 zi_program atclone"cp hr.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light LuRsT/hr
+
+zi_program pick'prettyping' has'ping'
+zplugin light denilsonsa/prettyping
 
 # }}}
 
