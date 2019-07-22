@@ -50,6 +50,7 @@ Plug 'tpope/vim-surround'  " Commands for matching pairs
 Plug 'townk/vim-autoclose'  " Auto-match pairs in insert mode
 Plug 'tpope/vim-commentary'  " Polygot keybinds for commenting code
 Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tables
+Plug 'ConradIrwin/vim-bracketed-paste'  " Auto-sets paste
 " Appearance Plugins
 " ~~~~~~~~~~~~~~~~~~
 Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
@@ -60,7 +61,7 @@ Plug 'rakr/vim-one'
 " Coc Plugins
 " ~~~~~~~~~~~
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-
+Plug 'tjdevries/coc-zsh', {'for': 'zsh'}
 " Language-specific
 " ~~~~~~~~~~~~~~~~~
 Plug 'vim-pandoc/vim-pandoc'
