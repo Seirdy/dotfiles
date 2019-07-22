@@ -114,7 +114,7 @@
 /* } */
 
 /* Tridactyl */
-@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/") {
+@-moz-document url-prefix("moz-extension://54c74a00-4141-4ab1-9d9a-f9aa335dad81/"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/") {
 	.container-main,
 	body,
 	html {
@@ -164,7 +164,7 @@
 }
 
 
-@-moz-document url-prefix("moz-extension://d4c203cc-81b5-401c-8d8a-65e51f160415/static/newtab.html"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/static/newtab.html") {
+@-moz-document url-prefix("moz-extension://54c74a00-4141-4ab1-9d9a-f9aa335dad81/static/newtab.html"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/static/newtab.html") {
 	body {
 		background-color: var(--primary-dark-color) !important;
 		color: var(--primary-light-color) !important;
