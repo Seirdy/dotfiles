@@ -14,7 +14,7 @@
     "coc-vimlsp": ">=0.2.0",
     "coc-yaml": "^1.0.2",
     "coc-yank": "^1.0.4",
-    "coc-python": ">=1.2.2",
+    "coc-python": ">=1.2.3",
     "coc-docker": ">=0.1.2",
     "coc-diagnostic": ">=0.0.9",
     "coc-texlab": ">=1.7.0",
