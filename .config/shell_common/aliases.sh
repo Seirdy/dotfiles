@@ -3,11 +3,11 @@
 alias psave='pockyt put -i'
 alias :q='exit' # muh vim habits
 alias c='calc -p'
+alias p='$PAGER'
 
-alias l='lsd --group-dirs first --icon always' # like ls, but faster + MOAR ICONS
-alias exa='exa -h --icons --group-directories-first --color=always'
-alias ll='exa -l --time-style=long-iso'              # Better output than ls -l
-alias lll='exa -l --time-style=full-iso -s modified' # Show full timestamp
+alias l='exa -h --icons --group-directories-first --color=always'
+alias ll='l -l --time-style=long-iso'              # Better output than ls -l
+alias lll='l -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -a'
 alias lla='ll -a'
 alias llla='lll -a'
