@@ -23,13 +23,27 @@ go_update github.com/tigrawap/slit/cmd/slit
 go_update github.com/mvdan/sh/cmd/shfmt
 # like jq but for yaml
 go_update github.com/mikefarah/yq
+# matrix client, for when I get bored of weechat-matrix
+go_update github.com/tulir/gomuks
+# More strict than gofmt
+go_update mvdan.cc/gofumpt
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
-go_update github.com/tulir/gomuks
-# format tickscript
-go_update github.com/influxdata/kapacitor/tick/cmd/tickfmt
 # Learn go
 go_update golang.org/x/tour
+
+# better version of go language server
+bingo_dir="$GOPATH/src/github.com/sailbing"
+if [ -d "$bingo_dir/tools" ]; then
+	cd "$bingo_dir/tools"
+	git pull
+else
+	mkdir -p bingo_dir
+	cd bingo_dir
+	git clone --recursive -b bingo https://github.com/saibing/tools.git
+fi
+cd tools/gopls
+go install
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
