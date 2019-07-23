@@ -38,10 +38,10 @@ bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
 bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
 bindurl github\.com/.*/.*/commits ;F hint -Jbc a.message
 
-bindurl git.sr.ht/.*/.*/tree ;f hint -Jc .name > a
-bindurl git.sr.ht/.*/.*/tree ;F hint -Jbc .name > a
-bindurl git.sr.ht/.*/.*/log ;f hint -Jc .event > div > a:nth-of-type(1)
-bindurl git.sr.ht/.*/.*/log ;f hint -Jbc .event > div > a:nth-of-type(1)
+bindurl git\.sr\.ht/.*/.*/tree ;f hint -Jc .name > a
+bindurl git\.sr\.ht/.*/.*/tree ;F hint -Jbc .name > a
+bindurl git\.sr\.ht/.*/.*/log ;f hint -Jc .event > div > a:nth-of-type(1)
+bindurl git\.sr\.ht/.*/.*/log ;f hint -Jbc .event > div > a:nth-of-type(1)
 
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
@@ -63,9 +63,13 @@ set yankto both
 "
 
 " New reddit bad; old reddit good
-autocmd DocLoad ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
-autocmd DocStart ^http(s?)://duckduckgo.com js tri.excmds.urlmodify("-t", "duckduckgo", "next\.duckduckgo")
+autocmd DocStart ^http(s?)://www\.reddit\.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocStart ^http(s?)://duckduckgo\.com js tri.excmds.urlmodify("-t", "duckduckgo", "next\.duckduckgo")
 
+" Twitter minus bloat
+autocmd DocStart ^http(s?)://twitter\.com/.*/status js tri.excmds.urlmodify("-t", "twitter", "mobile\.twitter")
+
+" Auto-enter Reader Mode on some websites
 autocmd TabEnter ^http(s?)://(www\.nytimes|medium)\.com keyfeed gr
 
 " Custom binds
