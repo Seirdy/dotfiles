@@ -2,7 +2,9 @@
 
 start_time=$(date '+%s')
 
-go_update() go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
+go_update() {
+	go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
+}
 
 # My mail client
 go_update git.sr.ht/~sircmpwn/aerc
@@ -35,14 +37,14 @@ go_update golang.org/x/tour
 # better version of go language server
 bingo_dir="$GOPATH/src/github.com/sailbing"
 if [ -d "$bingo_dir/tools" ]; then
-	cd "$bingo_dir/tools"
+	cd "$bingo_dir/tools" || exit
 	git pull
 else
-	mkdir -p bingo_dir
-	cd bingo_dir
+	mkdir -p "$bingo_dir"
+	cd "$bingo_dir" || exit
 	git clone --recursive -b bingo https://github.com/saibing/tools.git
 fi
-cd tools/gopls
+cd tools/gopls || exit
 go install
 
 end_time=$(date '+%s')
