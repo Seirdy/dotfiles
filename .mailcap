@@ -27,8 +27,8 @@
 # around the `%s`
 # image/x-imgur-album; feh --scale-down -g 640x480 %s; test=test -n "$DISPLAY"
 image/gif; mpv '%s' --loop; test=test -n "$DISPLAY"
-image/*; rtv-open %s; test=test -n "$DISPLAY"
-image/x-imgur-album; rtv-open %s; test=test -n "$DISPLAY"
+image/*; dl-open %s; test=test -n "$DISPLAY"
+image/x-imgur-album; dl-open %s; test=test -n "$DISPLAY"
 
 # Youtube videos are assigned a custom mime-type, which can be streamed with
 # vlc or youtube-dl.
