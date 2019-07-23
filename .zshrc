@@ -37,16 +37,13 @@ export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
 # An SSD can handle a large history
 HISTSIZE=99999
 # shellcheck disable=SC2034
-SAVEHIST=50000
-# Writing dupes to history is fine, but don't search them
-# Useful for ^R keybind, esp. with fzf-history-search-widget
-HIST_FIND_NO_DUPS=1
+SAVEHIST=90000
 ## History command configuration
 # record timestamp of command in HISTFILE
 setopt extended_history
 # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_expire_dups_first
-# ignore duplicated commands history list
+# Don't add duplicate entries
 setopt hist_ignore_dups
 # ignore commands that start with space
 setopt hist_ignore_space
@@ -56,6 +53,11 @@ setopt hist_verify
 setopt inc_append_history
 # share command history data
 setopt share_history
+# don't display duplicates in reverse search
+setopt hist_find_no_dups
+# remove superfluous blanks
+setopt hist_reduce_blanks
+
 
 # Don't autocorrect when thefuck does it better.
 unsetopt correct_all
@@ -70,7 +72,8 @@ setopt interactivecomments
 eval `dircolors`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Send CONT signal automatically when disowning jobs
-setopt AUTO_CONTINUE
+setopt auto_continue
+setopt pushd_ignore_dups
 
 # Compilation flags
 export ARCHFLAGS='-arch x86_64'
