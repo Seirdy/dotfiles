@@ -154,6 +154,7 @@ elif [ "$MACHINE" = "Darwin" ]; then
 	pathadd_head '/usr/local/opt/file-formula/bin'
 	pathadd_head '/usr/local/opt/gettext/bin'
 	pathadd_head '/usr/local/opt/libxml2/lib/pkgconfig'
+	pathadd_head '/usr/local/opt/sqlite/bin'
 	export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
@@ -161,6 +162,7 @@ export PATH
 
 export TUIR_EDITOR="nvim -c ':set filetype=pandoc'"
 export TUIR_BROWSER="$BROWSER"
+export TUIR_PAGER="less -x 2 -ir"
 
 # Pager options
 export PAGER='less'
