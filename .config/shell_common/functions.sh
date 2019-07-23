@@ -90,7 +90,7 @@ fkill() {
 	else
 		signal="$1"
 	fi
-	pfu "$@" | xargs kill -"$signal"
+	pfu "$2" | xargs kill -"$signal"
 }
 
 # jq for YAML.
@@ -137,7 +137,13 @@ imgurup() {
 	curl -H "Referer: https://imgur.com/upload" -F "Filedata=@$1" https://imgur.com/upload \
 		| jq '.data' \
 		| yq - r \
-		| bat --language yaml --style plain
+		| $PAGER
+}
+
+hnopen() {
+	for URL in "$@"; do
+		hn view -bc "$URL"
+	done
 }
 
 dnfss() {
