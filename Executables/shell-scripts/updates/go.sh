@@ -43,8 +43,9 @@ else
 	mkdir -p "$bingo_dir"
 	cd "$bingo_dir" || exit
 	git clone --recursive -b bingo https://github.com/saibing/tools.git
+	cd tools || exit
 fi
-cd tools/gopls || exit
+cd gopls || exit
 go install
 
 end_time=$(date '+%s')
