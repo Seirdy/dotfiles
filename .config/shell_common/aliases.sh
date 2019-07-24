@@ -1,9 +1,5 @@
 #!/usr/bin/env dash
-# aliases
-alias psave='pockyt put -i'
-alias :q='exit' # muh vim habits
-alias c='calc -p'
-alias p='$PAGER'
+# Jesus christ this is over 100 aliases
 
 alias l='exa -h --icons --group-directories-first --color=always'
 alias ll='l -l --time-style=long-iso'              # Better output than ls -l
@@ -12,18 +8,51 @@ alias la='l -a'
 alias lla='ll -a'
 alias llla='lll -a'
 
+alias a2c='aria2c' # fast aria2c downloading
+alias ytdl='youtube-dl'
+alias ytdl-sm="ytdl -f 'bestvideo[height<=720]+bestaudio'"
+alias dnfs='dnf search'
+alias sdrem='sudo dnf remove'
+alias sdins='sudo dnf install'
+alias stb='sudo tlp bat'
 alias rmm='rmtrash'
 alias rmhtm='rm *.html'
 alias rgi='rg -i'
 alias rgv='rg -v'
 alias vim='vim -u NONE'
+alias wcl='wc -l'
+alias psave='pockyt put -i'
+alias :q='exit' # muh vim habits
+alias c='calc -p'
+alias p='$PAGER'
+alias fuck!='fuck --yeah' # auto-correct previous command
+alias cmdv='command -v'
+alias settmp='redshift -O'
+alias resettmp='redshift -x'
+# compiler conveniences
+alias gccv='gcc -pedantic -Wall'
+alias gorun='go run .'
+alias gobld='go build'
+# flatpak app aliases to replicate non-flatpak CLI functionality
+alias ebook-convert='flatpak run --command=ebook-convert com.calibre_ebook.calibre'
+alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
+alias pdfify='loffcon pdf'
+alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
+alias nvimclean='nvim +PlugClean'
+
+# Aliases that change existing commands
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
-alias fuck!='fuck --yeah' # auto-correct previous command
+alias z='z -I'
+alias tuir='tuir --enable-media'
+alias sub='tuir -s'
+if command -v roflcat >/dev/null; then
+	alias lolcat='roflcat -t'
+fi
 
 # Editing aliases
 alias edi='$EDITOR'
-alias vdi='$DEFTERM $EDITOR'
+alias vdi='eval $TERMINAL $EDITOR'
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias funcrc='edi $XDG_CONFIG_HOME/shell_common/functions.sh'
 alias zshrc='edi $HOME/.zshrc'
@@ -32,9 +61,8 @@ alias nvimrc='edi $XDG_CONFIG_HOME/nvim/init.vim'
 alias startuprc='edi $HOME/startup.sh'
 alias rssrc='edi $XDG_CONFIG_HOME/newsboat/urls'
 alias tridactylrc='edi $XDG_CONFIG_HOME/tridactyl/tridactylrc'
-
-# gcc with all the errors
-alias gccv='gcc -pedantic -Wall'
+alias kittyrc='edi $XDG_CONFIG_HOME/kitty/kitty_master.conf'
+alias cocrc='nvim +CocConfig'
 
 # git aliases
 alias gstat='git status'
@@ -50,6 +78,11 @@ alias git-url='git ls-remote --get-url'
 alias gcl='git clone'
 alias gclr='gcl --recursive'
 alias gpull='git pull; git submodule update --init --recursive --force --remote'
+alias grst='git reset'
+alias gadd='git add'
+alias gdsf='git dsf' # diff-so-fancy
+alias gdsfs='gdsf --staged'
+alias gopen='git open'
 # yadm aliases
 alias yadm='yadm -Y "$XDG_CONFIG_HOME/yadm"'
 alias ystat='yadm status'
@@ -65,25 +98,11 @@ alias yit-url='yadm ls-remote --get-url'
 alias ycl='yadm clone'
 alias yclr='ycl --recursive'
 alias ypull='yadm pull; yadm submodule update --init --recursive --force --remote'
-
-alias a2c='aria2c' # fast aria2c downloading
-alias ytdl='youtube-dl'
-alias ytdl-bf='ytdl --format=bestvideo+bestaudio/best'
-alias ytdl-sm="youtube-dl -f 'bestvideo[height<=720]+bestaudio'"
-alias sdrem='sudo dnf remove'
-alias sdins='sudo dnf install'
-# alias pwsv='sudo tlp bat && sudo powertop'
-alias stb='sudo tlp bat'
-# Calibre flatpak ebook-convert command
-alias ebook-convert='flatpak run --command=ebook-convert com.calibre_ebook.calibre'
-# Libreoffice conversions
-alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
-alias pdfify='loffcon pdf'
-
-alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
-alias nvimclean='nvim +PlugClean'
-
-alias dnfs='dnf search'
+alias yrst='yadm reset'
+alias yadd='yadm add'
+alias ydsf='yadm dsf'
+alias ydsfs='ydsf --staged'
+alias yopen='yadm open'
 # alias weechat-matrix='source $HOME/Downloads/gitclone/weechat-matrix/venv/bin/activate && weechat -r '/script load matrix.py; /matrix connect matrix_org''
 alias bd='cd ..'
 # bookmarks
@@ -96,18 +115,8 @@ alias cdla='cd $HOME/Documents/Work/School/LINALG'
 alias cdcs='cd $HOME/Documents/Work/School/CS_277'
 alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/.'
 
-alias settmp='redshift -O'
-alias resettmp='redshift -x'
-# fzf, z, etc.
-alias z='z -I'
-
 # kitty-specific
 alias kicat='kitty +kitten icat'
-alias kittyrc='$EDITOR $HOME/.config/kitty/kitty_master.conf'
-
-if command -v roflcat >/dev/null; then
-	alias lolcat='roflcat -t'
-fi
 
 # zsh-specific
 if [ -n "$ZSH_VERSION" ]; then
@@ -120,3 +129,4 @@ if [ -n "$ZSH_VERSION" ]; then
 		alias -g rofl='| lolcat'
 	fi
 fi
+
