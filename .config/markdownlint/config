@@ -6,7 +6,8 @@
 	"ol-prefix": false,
 	"list-marker-space": false,
 	"line-length": {
-		"line_length": 88
+		"line_length": 88,
+		"code_blocks": false
 	},
 	"no-inline-html": false,
 	"ul-indent": {
