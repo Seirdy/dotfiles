@@ -121,8 +121,10 @@ vnoremap > >gv
 " ~~~~~~~~~~~~~~~~~
 
 " Buffer switching
-nnoremap <tab> :bnext<CR>
-nnoremap <s-tab> :bprevious<CR>
+nnoremap gt :bnext<CR>
+nnoremap gT :bprevious<CR>
+nnoremap <tab> <C-w>l
+nnoremap <s-tab> <C-w>h
 " New buffer
 nnoremap <leader>bn :enew<cr>
 " close buffer
@@ -131,6 +133,7 @@ nnoremap <leader>bq :bp <bar> bd! #<cr>
 nnoremap <leader>bQ :bufdo bd! #<cr>
 " List buffers
 nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
+
 
 " ==========
 " Appearance
