@@ -29,8 +29,6 @@ else
 	# fi
 fi
 # dedupe $PATH
-PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
-MANPATH=$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
