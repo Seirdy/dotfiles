@@ -1,10 +1,11 @@
 #!/usr/bin/env dash
 # Jesus christ this is over 100 aliases
 
-alias l='exa -h --icons --group-directories-first --color=always'
-alias ll='l -l --time-style=long-iso'              # Better output than ls -l
-alias lll='l -l --time-style=full-iso -s modified' # Show full timestamp
-alias la='l -a'
+alias _exa='exa -h --icons --group-directories-first --color=always'
+alias l='lsd --group-dirs first --color always --icon always --icon-theme fancy'
+alias ll='_exa -l --time-style=long-iso'              # Better output than ls -l
+alias lll='_exa -l --time-style=full-iso -s modified' # Show full timestamp
+alias la='l -A'
 alias lla='ll -a'
 alias llla='lll -a'
 
