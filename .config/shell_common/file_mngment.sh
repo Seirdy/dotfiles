@@ -3,7 +3,7 @@
 # File management functions, powered by FZF and fd
 # Source these and never use a file manager again!
 # All commands begin with an "f" for "fuzzy" followed by 2 letters:
-# 	1. p,e,o,c: print, edit, open (with associated application), cd
+# 	1. p,d,e,o,c: print, display (with bat), edit, open (with default program), cd
 # 	2. f,d,a:   file,directory,all
 # Not every combination is possible; you can't cd into a file
 # Dependencies:
@@ -36,6 +36,17 @@ fpf() {
 	_set_opts "--preview='bat {} --color always --style header'"
 	dash -c "fd -t f -d 1 -x lsd $* $_lsd_args" | fzf
 	FZF_DEFAULT_OPTS=$original_opts
+}
+
+_display() {
+	[ -n "$1" ] && bat --color always --style full "$1"
+}
+
+fdf() {
+	original_opts=$FZF_DEFAULT_OPTS
+	_set_opts "--preview='bat {} --color always --style header'"
+	_display "$(fpf "$@")"
+	FZF_DEFAULT_OPTS=$orignal_opts
 }
 
 _openx_if_set() {
