@@ -67,7 +67,7 @@ autocmd DocStart ^http(s?)://www\.reddit\.com js tri.excmds.urlmodify("-t", "www
 autocmd DocStart ^http(s?)://duckduckgo\.com js tri.excmds.urlmodify("-t", "duckduckgo", "next\.duckduckgo")
 
 " Twitter minus bloat
-autocmd DocStart ^http(s?)://twitter\.com/.*/status js tri.excmds.urlmodify("-t", "twitter", "mobile\.twitter")
+autocmd DocLoad ^http(s?)://twitter\.com/.*/status js tri.excmds.urlmodify("-t", "twitter", "mobile\.twitter")
 
 " Auto-enter Reader Mode on some websites
 autocmd TabEnter ^http(s?)://(www\.nytimes|medium)\.com keyfeed gr
