@@ -102,7 +102,7 @@ set searchengine d
 
 " Autocontain
 autocontain lclark\.edu School
-autocontain (classroom|accounts|drive|docs|cloud|developers)\.google\.com Google
+autocontain (classroom|mail|accounts|drive|docs|cloud|developers)\.google\.com Google
 autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
 autocontain questionablecontent\.net Webcomics
 autocontain getpocket\.com Pocket

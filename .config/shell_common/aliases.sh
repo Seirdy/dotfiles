@@ -2,7 +2,7 @@
 # Jesus christ this is over 100 aliases
 
 alias _exa='exa -h --icons --group-directories-first --color=always'
-alias l='lsd --icon always --icon-theme fancy -h --group-dirs first'
+alias l='lsd --group-dirs first --color always --icon always --icon-theme fancy'
 alias ll='_exa -l --time-style=long-iso'              # Better output than ls -l
 alias lll='_exa -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -A'

@@ -13,7 +13,7 @@
 # 	- bat
 # 	- openx (already included in dotfiles; see ~/.local/bin/openx)
 
-_lsd_args='--color always --icon-theme fancy --oneline'
+_lsd_args='--color always --oneline'
 _lsd_args_icon="$_lsd_args --icon always"
 
 fpa() {
@@ -27,7 +27,7 @@ _set_opts() {
 fpd() {
 	orignal_opts=$FZF_DEFAULT_OPTS
 	_set_opts "--height=20 --preview='lsd {} $_lsd_args_icon'"
-	dash -c "fd -t d -d 1 -x lsd -d $* $_lsd_args" | fzf
+	dash -c "exa -D $* $_lsd_args" | fzf
 	FZF_DEFAULT_OPTS=$orignal_opts
 }
 
