@@ -27,12 +27,19 @@ go_update github.com/mvdan/sh/cmd/shfmt
 go_update github.com/mikefarah/yq
 # matrix client, for when I get bored of weechat-matrix
 go_update github.com/tulir/gomuks
+# Learn go
+go_update golang.org/x/tour
+#
+
+# Development tools
+#
+
+# linting
+go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 # More strict than gofmt
 go_update mvdan.cc/gofumpt
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
-# Learn go
-go_update golang.org/x/tour
 
 # better version of go language server
 bingo_dir="$GOPATH/src/github.com/sailbing"
