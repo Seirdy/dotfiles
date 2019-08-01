@@ -19,9 +19,6 @@ tags
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
 
-# KDE directory preferences
-.directory
-
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
@@ -72,8 +69,17 @@ MANIFEST
 
 # Ah, macOS. The bastard child of Mach and FreeBSD.
 .DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+# Windows. I don't even need to say anything snarky here; it speaks for itself.
+._*
+ehthumbs.db
+Thumbs.db
+# KDE's dolphin. Because file browsing wasn't bloated enough already.
+.directory
 
-# private stuff
+# private stuff I like to add to my repos
 privatenotes.txt
 lint-test.sh
 .snekrc
