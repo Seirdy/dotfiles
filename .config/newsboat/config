@@ -1,6 +1,8 @@
 # vim: set ft=conf
-refresh-on-startup no
-reload-threads 250
+refresh-on-startup yes
+auto-reload yes
+reload-time 10
+reload-threads 100
 browser "$BROWSER %u"
 prepopulate-query-feeds yes
 bookmark-cmd "/home/rkumar/.local/share/newsboat/send-to-pocket.sh"
