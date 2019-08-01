@@ -20,6 +20,7 @@
     "coc-texlab": ">=1.7.0",
     "coc-vimlsp": ">=0.3.0",
     "coc-yaml": "^1.0.2",
-    "coc-yank": ">=1.1.2"
+    "coc-yank": ">=1.1.2",
+    "coc-go": ">=0.1.2"
   }
 }
