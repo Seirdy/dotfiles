@@ -138,19 +138,5 @@
 		"rst": "pandoc-rst",
 		"sh": "shfmt",
 		"zsh": "shfmt"
-	},
-	"languageserver": {
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": [
-				"go.mod",
-				".vim/",
-				".git/",
-				".hg/"
-			],
-			"filetypes": [
-				"go"
-			]
-		}
 	}
 }

@@ -6,8 +6,8 @@ echo 'tldr update'
 tldr --update
 echo 'Sync Pocket and Buku'
 poku
-echo 'Update buku database'
-buku -u --threads 10
+# echo 'Update buku database'
+# buku -u --threads 10
 echo 'Updating RSS feeds'
 newsboat -x reload
 
