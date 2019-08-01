@@ -38,22 +38,24 @@ go_update golang.org/x/tour
 go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 # More strict than gofmt
 go_update mvdan.cc/gofumpt
+# gopls
+go_update golang.org/x/tools/gopls
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
 
 # better version of go language server
-bingo_dir="$GOPATH/src/github.com/sailbing"
-if [ -d "$bingo_dir/tools" ]; then
-	cd "$bingo_dir/tools" || exit
-	git pull
-else
-	mkdir -p "$bingo_dir"
-	cd "$bingo_dir" || exit
-	git clone --recursive -b bingo https://github.com/saibing/tools.git
-	cd tools || exit
-fi
-cd gopls || exit
-go install
+# bingo_dir="$GOPATH/src/github.com/sailbing"
+# if [ -d "$bingo_dir/tools" ]; then
+# 	cd "$bingo_dir/tools" || exit
+# 	git pull
+# else
+# 	mkdir -p "$bingo_dir"
+# 	cd "$bingo_dir" || exit
+# 	git clone --recursive -b bingo https://github.com/saibing/tools.git
+# 	cd tools || exit
+# fi
+# cd gopls || exit
+# go install
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
