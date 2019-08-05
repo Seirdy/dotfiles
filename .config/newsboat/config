@@ -2,7 +2,7 @@
 refresh-on-startup yes
 auto-reload yes
 reload-time 10
-reload-threads 100
+reload-threads 236
 browser "$BROWSER %u"
 prepopulate-query-feeds yes
 bookmark-cmd "/home/rkumar/.local/share/newsboat/send-to-pocket.sh"
@@ -10,6 +10,12 @@ feed-sort-order firsttag
 history-limit 400
 user-agent "Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2s"
 
+# Notifications
+notify-always yes
+notify-program notify-send
+notify-format "Newsboat: %n unread articles in %f feeds"
+
+# Keybinds
 unbind-key k
 bind-key k up
 unbind-key j
@@ -27,6 +33,13 @@ unbind-key G
 bind-key g home
 bind-key G end
 
+# Filter out some articles
 ignore-mode "display"
 ignore-article https://lwn.net/headlines/newrss "title =~ \"Security updates for\""
 ignore-article https://lwn.net/headlines/newrss "title =~ \"stable kernel\""
+
+# Macros
+macro y set browser "echo -n %u | xclip -selection clipboard"; open-in-browser ; set browser "$BROWSER %u"
+# Youtube viewing
+macro Y set browser "ytdl-rss %u"; open-in-browser ; set browser "$BROWSER %u"
+macro m set browser "mpv %u"; open-in-browser ; set browser "$BROWSER %u"
