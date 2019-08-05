@@ -70,6 +70,7 @@ Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 " Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 Plug 'nathanielc/vim-tickscript'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
