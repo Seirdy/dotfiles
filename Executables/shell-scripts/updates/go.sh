@@ -40,6 +40,7 @@ go_update golang.org/x/tools/gopls
 go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 # More strict than gofmt
 go_update mvdan.cc/gofumpt
+go_update mvdan.cc/gofumpt/gofumports
 # Dependency graph
 go_update github.com/kisielk/godepgraph
 # Run my CI/CD pipelines locally
