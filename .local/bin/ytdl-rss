@@ -1,4 +1,9 @@
-#!/usr/bin/env dash
-cd /run/*/rkumar/bigssd/Videos/yt/rss || exit
-youtube-dl "$@"
+#!/usr/bin/env bash
+if [ -d /run/media/rkumar/bigssd/Videos/yt/rss ]; then
+	cd /run/*/rkumar/bigssd/Videos/yt/rss || exit
+else
+	cd "$HOME/Videos/yt" || exit
+fi
+nohup youtube-dl "$@" 2>&1 &
+disown
 # vim:ft=sh

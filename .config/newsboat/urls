@@ -231,20 +231,33 @@ https://xkcd.com/rss.xml "NonDev" "Comics" "Favorite"
 https://what-if.xkcd.com/feed.atom "NonDev" "Favorite"
 https://blog.xkcd.com/feed/ "NonDev" "Comics" "Favorite" "Blog"
 https://feeds.feedburner.com/oatmealfeed "NonDev" "Comics"
-https://github.com/ytdl-org/youtube-dl/releases.atom "Dev" "Programs" "git repos" "YouTube"
-# LWT
-https://www.youtube.com/feeds/videos.xml?channel_id=UC3XTzVzaHQEd30rQbuvCtTQ "YouTube" "NonDev"
-# Kurzgesagt
-https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q "YouTube" "NonDev"
+https://github.com/ytdl-org/youtube-dl/releases.atom "Dev" "Programs" "git repos"
+
+# Media
+
+# Podcasts
+
+http://faif.us/feeds/cast-ogg/ "Dev" "Linux" "Media" "Audio"
 # Matrix Live
-https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w "YouTube" "Dev" "Matrix"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w "Media" "Audio" "Dev" "Matrix"
+# Ask Noah
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6fENpYcDzxfxqGqrsstZRA "Dev" "Linux" "Media" "Audio"
+# Librelounge
+https://librelounge.org/atom-feed.atom "Dev" "Linux" "Media" "Audio"
+
+# Video
+
+# LWT
+https://www.youtube.com/feeds/videos.xml?channel_id=UC3XTzVzaHQEd30rQbuvCtTQ "Media" "Video" "NonDev"
+# Kurzgesagt
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q "Media" "Video" "NonDev"
 # Wisecrack
-https://www.youtube.com/feeds/videos.xml?channel_id=UC6-ymYjG0SU0jUWnWh9ZzEQ "YouTube" "NonDev"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6-ymYjG0SU0jUWnWh9ZzEQ "Media" "Video" "NonDev"
 # CinemaWins
-https://www.youtube.com/feeds/videos.xml?channel_id=UCL8h3ri2WN_-IbviBlWtUcQ "YouTube" "NonDev" "Favorite"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCL8h3ri2WN_-IbviBlWtUcQ "Media" "Video" "NonDev" "Favorite"
 # FilmJoy
-https://www.youtube.com/feeds/videos.xml?channel_id=UCEtB-nx5ngoNJWEzYa-yXBg "YouTube" "NonDev" "Favorite"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEtB-nx5ngoNJWEzYa-yXBg "Media" "Video" "NonDev" "Favorite"
 # CinemaSins
-https://www.youtube.com/feeds/videos.xml?channel_id=UCYUQQgogVeQY8cMQamhHJcg "YouTube" "NonDev"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYUQQgogVeQY8cMQamhHJcg "Media" "Video" "NonDev"
 # Aliens Guide
-https://www.youtube.com/feeds/videos.xml?channel_id=UCu6DDGoV21YhwSb5iWbriAw "YouTube" "NonDev"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCu6DDGoV21YhwSb5iWbriAw "Media" "Video" "NonDev"
