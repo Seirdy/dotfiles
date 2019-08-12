@@ -45,6 +45,7 @@ alias nvimclean='nvim +PlugClean'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias z='z -I'
+alias tldr='tldr -p'
 alias tuir='tuir --enable-media'
 alias sub='tuir -s'
 if command -v roflcat >/dev/null; then
