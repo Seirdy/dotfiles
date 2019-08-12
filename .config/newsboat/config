@@ -48,5 +48,6 @@ macro E set browser "echo %u >> $XDG_DATA_DIR/newsboat/queue" ; open-in-browser 
 
 # Podcast downloading
 download-path "~/Podcasts/%h/%n"
-max-downloads 3
-player "mpv"
+max-downloads 15
+player "kitty -1 mpv"
+podlist-format "%4i %S [%6dMB/%6tMB] [%5p %%] [%7k kb/s] %u"
