@@ -110,8 +110,11 @@ zi_completion() {
 	zi0a as'completion' "$@"
 }
 
-zi0a
-zplugin snippet https://github.com/changyuheng/zsh-interactive-cd/blob/master/zsh-interactive-cd.plugin.zsh
+# Seems to only work on Linux and BSD
+if [ "$MACHINE" != 'Darwin' ]; then
+	zi0a
+	zplugin snippet https://github.com/changyuheng/zsh-interactive-cd/blob/master/zsh-interactive-cd.plugin.zsh
+fi
 
 zi_completion has'pip3'
 zplugin snippet OMZ::plugins/pip/_pip
