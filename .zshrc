@@ -130,6 +130,9 @@ _fzf_compgen_dir() {
 # source the theme
 # shellcheck source=/dev/null
 . "$SHELL_COMMON/zsh/powerlevel10k.zsh"
+# give less pretty colors
+# shellcheck source=.config/less/less_termcap.sh
+. "$XDG_CONFIG_HOME/less/less_termcap.sh"
 # source the plugins and start completions/autosuggestions.
 # shellcheck source=.config/shell_common/zsh/zplugin.zsh
 . "$SHELL_COMMON/zsh/zplugin.zsh"
