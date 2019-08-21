@@ -43,6 +43,8 @@ go_update mvdan.cc/gofumpt
 go_update mvdan.cc/gofumpt/gofumports
 # Dependency graph
 go_update github.com/kisielk/godepgraph
+# best sloc cloc and code counter
+go_update github.com/boyter/scc
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
 
