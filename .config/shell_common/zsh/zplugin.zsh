@@ -79,6 +79,9 @@ zplugin light LuRsT/hr
 zi_program pick'prettyping' has'ping'
 zplugin light denilsonsa/prettyping
 
+zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
+zplugin light TheLocehiliosan/yadm
+
 # }}}
 
 # Git extensions {{{

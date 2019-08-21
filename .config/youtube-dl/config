@@ -1,5 +1,7 @@
 --add-metadata
 --fixup detect_or_warn
+--all-subs
 --embed-subs
 --console-title
 --external-downloader aria2c
+--audio-quality 0

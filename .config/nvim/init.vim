@@ -24,6 +24,7 @@ set grepformat=%f:%l:%c:%m
 " set relativenumber
 set shell=zsh
 set signcolumn=yes  " for vim-pandoc-syntax and vim-signify
+set splitright " open vnew windows to the right
 
 "" Default formatting when not detected
 set smartindent
@@ -47,6 +48,7 @@ Plug 'junegunn/vim-plug'
 " General plugins
 " ~~~~~~~~~~~~~~~
 Plug 'tpope/vim-surround'  " Commands for matching pairs
+Plug 'tpope/vim-endwise'
 Plug 'townk/vim-autoclose'  " Auto-match pairs in insert mode
 Plug 'tpope/vim-commentary'  " Polygot keybinds for commenting code
 Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tables
@@ -245,7 +247,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current pos
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Navigation
 " ~~~~~~~~~~

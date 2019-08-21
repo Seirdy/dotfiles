@@ -13,6 +13,7 @@ if [ -z "$PROFILE_SET" ]; then
 	. "$HOME/.profile"
 	export PROFILE_SET=2
 fi
+
 # I can't get zpmod to work on macOS
 # See https://github.com/zdharma/zplugin/issues/131
 if [ "$MACHINE" != 'Darwin' ]; then

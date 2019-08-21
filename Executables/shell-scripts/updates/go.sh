@@ -29,8 +29,14 @@ go_update github.com/mikefarah/yq
 go_update github.com/tulir/gomuks
 # Learn go
 go_update golang.org/x/tour
-#
 
+# podman > docker
+if [ "$MACHINE" = 'Linux' ]; then
+	go_update github.com/containers/libpod/cmd/podman
+else
+	# podman-machine is like docker-machine/docker desktop
+	go_update https://github.com/boot2podman/machine/cmd/podman-machine
+fi
 # Development tools
 #
 
