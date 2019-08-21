@@ -24,9 +24,9 @@ else
 	if [ "$is_tty" != 'not a tty' ]; then
 		export GPG_TTY="$is_tty"
 	fi
-	# if [ "$(docker-machine status)" = 'Running' ]; then
-	# 	eval $(docker-machine env default)
-	# fi
+fi
+if [ "$MACHINE" != 'Linux' ] && [ "$(podman-machine status)" = 'Running' ]; then
+	eval $(podman-machine env box)
 fi
 # dedupe $PATH
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
