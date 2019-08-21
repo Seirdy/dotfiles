@@ -32,6 +32,7 @@ unbind-key g
 unbind-key G
 bind-key g home
 bind-key G end
+bind-key f pb-mark-as-finished
 
 # Filter out some articles
 ignore-mode "display"
