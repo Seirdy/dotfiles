@@ -1,3 +1,6 @@
+.ssh/*.key
+.gnupg/*.gpg
+.config/shell_common/aliases_private.sh
 .config/aerc/accounts.conf
 .pockyt
 .config/poku.cfg
