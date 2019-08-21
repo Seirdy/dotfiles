@@ -35,6 +35,7 @@ export NNN_TMPFILE="$XDG_CACHE_HOME/nnn"
 export NNN_TRASH=1
 export ABDUCO_SOCKET_DIR="$XDG_DATA_HOME"
 export WEECHAT_HOME="$XDG_DATA_HOME/weechat"
+export GRAFANA_THEME=dark
 export GTK_THEME=Breeze-Dark
 export GTK_THEME_VARIANT=dark
 export BROWSER=firefox-nightly
