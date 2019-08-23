@@ -5,9 +5,6 @@ start_time=$(date '+%s')
 go_update() {
 	go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
 }
-
-# My mail client
-go_update git.sr.ht/~sircmpwn/aerc
 # Critical programs for my workflow; computer is useless without them
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
@@ -53,6 +50,20 @@ go_update github.com/kisielk/godepgraph
 go_update github.com/boyter/scc
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
+
+# my mail client
+update_aerc() {
+	aerc_dir="$GOPATH/src/git.sr.ht/~sircmpwn/aerc"
+	if [ ! -d "$aerc_dir" ]; then
+		mkdir -p "$aerc_dir"
+	fi
+	cd "$aerc_dir" || return 1
+	env GO111MODULE=on go get git.sr.ht/~sircmpwn/aerc
+	PREFIX=$HOME/.local make
+	make install
+}
+
+update_aerc
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
