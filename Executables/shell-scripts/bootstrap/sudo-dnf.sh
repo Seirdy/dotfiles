@@ -126,6 +126,7 @@ packages=(
 	"luajit"
 	"luarocks"
 	"mesa-libGL-devel.x86_64"
+	"mesa-libGLU-devel"
 	"meson"
 	"mozilla-fira-mono-fonts"
 	"mozilla-fira-sans-fonts"
