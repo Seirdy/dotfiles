@@ -7,7 +7,11 @@ dnf copr enable rspanton/cpputest
 dnf copr enable sichera/fedora
 dnf copr enable thelocehiliosan/yadm
 dnf copr enable sramanujam/firefox-nightly
+dnf copr enable zawertun/kde
+dnf copr enable gumieri/sway
 dnf install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+dnf install "https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-$(rpm -E %fedora)-1.noarch.rpm"
+dnf config-manager --add-repo https://download.opensuse.org/repositories/home:mcepl:neovim/Fedora_Rawhide/home:mcepl:neovim.repo
 # dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
@@ -23,6 +27,8 @@ packages=(
 	"aria2"
 	"asciidoc"
 	"autoconf"
+	"autoconf"
+	"automake"
 	"bash-completion"
 	"bc"
 	"breeze-gtk"
@@ -33,6 +39,15 @@ packages=(
 	"ccls"
 	"clang"
 	"cmake"
+	"cmake(KDecoration2)"
+	"cmake(KF5ConfigWidgets)"
+	"cmake(KF5CoreAddons)"
+	"cmake(KF5GuiAddons)"
+	"cmake(KF5WindowSystem)"
+	"cmake(Qt5Core)"
+	"cmake(Qt5DBus)"
+	"cmake(Qt5Gui)"
+	"cmake(Qt5X11Extras)"
 	"cmake-data"
 	"containernetworking-plugins"
 	"cryptsetup"
@@ -43,7 +58,6 @@ packages=(
 	"dbus-devel.x86_64"
 	"device-mapper-devel"
 	"dnf-plugins-core"
-	"docker"
 	"dolphin-plugins"
 	"dvtm"
 	"egl-wayland-devel"
@@ -69,6 +83,7 @@ packages=(
 	"gdb"
 	"gettext"
 	"git"
+	"git-email"
 	"glibc"
 	"glibc-all-langpacks"
 	"glibc-devel"
@@ -91,7 +106,6 @@ packages=(
 	"iptables"
 	"ituomi-hasklig-fonts"
 	"java-openjdk-devel"
-	"keepassxc"
 	"latexmk"
 	"libXcursor-devel.x86_64"
 	"libXi-devel.x86_64"
@@ -104,6 +118,7 @@ packages=(
 	"libseccomp-devel"
 	"libsodium"
 	"libtiff-devel"
+	"libtool"
 	"libva-vdpau-driver"
 	"libxkbcommon-x11-devel.x86_64"
 	"llvm"
@@ -121,7 +136,7 @@ packages=(
 	"ncurses-devel"
 	"neofetch"
 	"neovim"
-	"newsboat"
+	"ninja-build"
 	"nnn"
 	"npm"
 	"nprokopov-fira-code-fonts"
@@ -131,11 +146,15 @@ packages=(
 	"p7zip"
 	"p7zip-plugins"
 	"papirus-icon-theme"
+	"patch"
 	"perl-ExtUtils-Embed.noarch"
+	"pkgconfig"
 	"plasma-browser-integration"
 	"plasma-nm"
 	"plasma-widget-menubar"
 	"plasma-workspace-wayland"
+	"podman"
+	"podman-docker"
 	"powerline-fonts"
 	"python3-devel"
 	"radeontop"
@@ -174,6 +193,7 @@ packages=(
 	"tmux"
 	"transmission-cli"
 	"turbojpeg-devel"
+	"unzip"
 	"vim"
 	"vollkorn-fonts"
 	"w3m"
@@ -203,5 +223,4 @@ packages=(
 )
 # shellcheck disable=SC2086
 dnf install ${packages[*]} --allowerasing
-dnf install "cmake(KDecoration2)" "cmake(KF5ConfigWidgets)" "cmake(KF5CoreAddons)" "cmake(KF5GuiAddons)" "cmake(KF5WindowSystem)" "cmake(Qt5Core)" "cmake(Qt5DBus)" "cmake(Qt5Gui)" "cmake(Qt5X11Extras)" --allowerasing
-dnf remove python-unversioned-command
+dnf remove python-unversioned-command python2

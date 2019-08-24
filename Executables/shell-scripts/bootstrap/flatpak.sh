@@ -6,11 +6,29 @@ flatpak_remote_add() {
 flatpak_install() {
 	flatpak install "$@" -y --user
 }
+
 flatpak_remote_add kdeapps https://distribute.kde.org/kdeapps.flatpakrepo
 flatpak_remote_add gnome-nightly https://sdk.gnome.org/gnome-nightly.flatpakrepo
 flatpak_remote_add gnome-apps-nightly https://sdk.gnome.org/gnome-apps-nightly.flatpakrepo
 flatpak_remote_add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-flatpak_install flathub net.minetest.Minetest org.gtk.Gtk3theme.Breeze-Dark org.libreoffice.Libreoffice/x86_64 org.qbittorrent.qBittorrent org.zealdocs.Zeal website.i2pd.i2pd
-flatpak_install flathub-beta net.supertuxkart.SuperTuxKart com.github.quaternion
+
+flatpak_install flathub \
+	net.minetest.Minetest \
+	org.gtk.Gtk3theme.Breeze-Dark \
+	org.keepassxc.KeePassXC \
+	'app/org.libreoffice.LibreOffice/x86_64/stable' \
+	org.qbittorrent.qBittorrent \
+	org.zealdocs.Zeal \
+	website.i2pd.i2pd \
+	org.signal.Signal
+
+flatpak_install flathub-beta \
+	net.supertuxkart.SuperTuxKart
+
 flatpak_install gnome-apps-nightly org.Epiphpany.Devel
-flatpak_install kdeapps org.kde.falkon org.kde.okular org.kde.konqueror org.kde.filelight
+
+flatpak_install kdeapps \
+	org.kde.falkon \
+	org.kde.okular \
+	org.kde.konqueror \
+	org.kde.filelight
