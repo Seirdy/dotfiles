@@ -19,7 +19,15 @@ echo 'setting profile'
 if [ "$PROFILE_SET" = 1 ]; then
 	exit
 fi
-
+find_alt() {
+	for i; do
+		which "$i" >/dev/null && {
+			echo "$i"
+			return 0
+		}
+	done
+	return 1
+}
 # XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -174,23 +182,7 @@ export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
 # Preferred editor
-if command -v nvim >/dev/null; then
-	export EDITOR='nvim'
-elif command -v vim >/dev/null; then
-	export EDITOR='vim'
-elif command -v vi >/dev/null; then
-	export EDITOR='vi'
-elif command -v nvi >/dev/null; then
-	export EDITOR='nvi'
-elif command -v nano >/dev/null; then
-	export EDITOR='nano'
-elif command -v emacs >/dev/null; then
-	# I'm in danger
-	export EDITOR='emacs'
-else
-	# ed is the standard text editor
-	export EDITOR='man ed'
-fi
+export EDITOR=$(find_alt nvim vim vi nvi nano emacs)
 
 if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
 	export KITTY_ENABLE_WAYLAND=1
