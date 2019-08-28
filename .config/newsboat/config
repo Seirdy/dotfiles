@@ -1,14 +1,21 @@
 # vim: set ft=conf
+browser "$BROWSER %u"
+prepopulate-query-feeds yes
+feed-sort-order firsttag
+bookmark-cmd "$XDG_DATA_DIR/newsboat/send-to-pocket.sh"
+bookmark-autopilot yes
+history-limit 400
+text-width 84
+# user-agent "Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2s"
+# html-renderer "w3m -dump -T text/html"
+external-url-viewer "linkview"
+
+# Reloading
 refresh-on-startup yes
 auto-reload yes
 reload-time 10
-reload-threads 236
-browser "$BROWSER %u"
-prepopulate-query-feeds yes
-bookmark-cmd "$XDG_DATA_DIR/newsboat/send-to-pocket.sh"
-feed-sort-order firsttag
-history-limit 400
-user-agent "Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2s"
+reload-threads 400
+download-retries 4
 
 # Notifications
 notify-always yes

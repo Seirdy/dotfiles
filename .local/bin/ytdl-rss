@@ -2,7 +2,8 @@
 if [ -d /run/media/rkumar/bigssd/Videos/yt/rss ]; then
 	cd /run/*/rkumar/bigssd/Videos/yt/rss || exit
 else
-	cd "$HOME/Videos/yt" || exit
+	mkdir -p "$HOME/Videos/yt/rss" || exit
+	cd "$HOME/Videos/yt/rss" || exit
 fi
 abduco -rnf "ytdl-$(date -u +'%Y-%m-%dT%H:%M:%SZ')" youtube-dl "$@" 2>&1
 # vim:ft=sh
