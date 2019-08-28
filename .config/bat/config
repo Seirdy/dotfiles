@@ -4,4 +4,4 @@
 --color=always
 --pager="less -x 2 -FR"
 --tabs 2
---theme="Monokai Extended Bright"
+--theme="base16"
