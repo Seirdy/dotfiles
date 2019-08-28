@@ -78,16 +78,18 @@ log_bg 'pip-pipx'         # see https://pipxproject.github.io/pipx/
 log_bg 'node'             # npm packages
 log_bg 'rubygem-luarocks' # combining gem and luarocks since they update quickly
 log_bg 'go'               # build go packages installed with "go get" (slow)
-log_bg 'cargo'            # rust packages (infrequent, extremely cpu-heavy)
+log_bg 'cargo'            # rust packages (extremely cpu-heavy)
 log_bg 'zplugin'          # update zplugin itself, zsh plugins, and zpmod
-log_bg 'kitty'            # build kitty from source, latest commit
+log_bg 'kitty'            # compile kitty from git
 log_bg 'program-data'     # have some programs sync their data
 
 if [ "$MACHINE" = 'Linux' ]; then
-	log_bg 'newsboat' # build newsboat from source, latest commit
+	log_bg 'newsboat' # compile newsboat from git
+	log_bg 'neovim'   # compile neovim from git
+	log_bg 'imv'      # compile imv from git
 	log_bg 'stack'    # haskell packages (infrequent updates, cpu-heavy, slow)
 	log_bg 'flatpak'  # repair and update user-installed flatpaks
-	log_bg 'chromium' # secondary browser; script based on chromium-latest-linux
+	log_bg 'chromium' # tertiary browser (after Firefox Nightly, Falkon)
 	echo              # line break
 	log_fg 'dnf'      # system-wide update, autoremoval, and repo caching.
 
