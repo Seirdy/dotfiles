@@ -130,5 +130,5 @@ hnopen() {
 }
 
 dnfss() {
-	dnf search "$@" | rg -v "i686|\-doc"
+	dnf search "$@" | rg -v "i686|\-doc|debuginfo|\.src "
 }

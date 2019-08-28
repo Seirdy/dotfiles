@@ -11,7 +11,7 @@ alias llla='lll -a'
 
 alias a2c='aria2c' # fast aria2c downloading
 alias ytdl='youtube-dl'
-alias ytdl-sm="ytdl -f 'bestvideo[height<=720]+bestaudio'"
+alias ytdl-sm="ytdl -f 'bestvideo[height<=1080]+bestaudio'"
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
 alias sdins='sudo dnf install'
@@ -40,6 +40,8 @@ alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
 alias pdfify='loffcon pdf'
 alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
 alias nvimclean='nvim +PlugClean'
+
+alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
 
 # Aliases that change existing commands
 alias ddgr='ddgr -x'
@@ -122,8 +124,8 @@ alias kicat='kitty +kitten icat'
 
 # zsh-specific
 if [ -n "$ZSH_VERSION" ]; then
-	alias -g isotime='$(date -Iseconds)'
-	alias -g nnote='$(date +%Y-%m-%d_%H-%M-%S_%s).md'
+	alias -g isotime='$(date -u -Iseconds)'
+	alias -g nnote='$(date -u -Iseconds).md'
 	alias -g detch='&>/dev/null 2>/dev/null & disown'
 	alias -g pagit='| $PAGER'
 	alias -g w3m-htm='| w3m -T text/html'
