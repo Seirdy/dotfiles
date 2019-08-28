@@ -50,6 +50,8 @@ dash "$bootstrap_dir/zplugin.sh"
 dash "$updates_dir/node.sh"
 dash "$updates_dir/stack.sh"
 dash "$updates_dir/go.sh"
-echo 'installing cht.sh'
-curl https://cht.sh/:cht.sh >"$HOME/.local/bin/chtsh" && chmod +x ~/.local/bin/cht.sh
+if ! command -v cht.sh; then
+	echo 'installing cht.sh'
+	curl https://cht.sh/:cht.sh >"$HOME/.local/bin/chtsh" && chmod +x ~/.local/bin/cht.sh
+fi
 echo 'Bootstrap finished! Reboot and try running "update-all" to make sure this worked.'

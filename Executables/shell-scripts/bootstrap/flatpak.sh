@@ -13,22 +13,24 @@ flatpak_remote_add gnome-apps-nightly https://sdk.gnome.org/gnome-apps-nightly.f
 flatpak_remote_add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 
 flatpak_install flathub \
-	net.minetest.Minetest \
-	org.gtk.Gtk3theme.Breeze-Dark \
-	org.keepassxc.KeePassXC \
+	'app/net.minetest.Minetest/x86_64' \
+	'org.gtk.Gtk3theme.Breeze-Dark' \
+	'app/org.keepassxc.KeePassXC' \
 	'app/org.libreoffice.LibreOffice/x86_64/stable' \
-	org.qbittorrent.qBittorrent \
-	org.zealdocs.Zeal \
-	website.i2pd.i2pd \
-	org.signal.Signal
+	'app/org.qbittorrent.qBittorrent' \
+	'app/org.zealdocs.Zeal' \
+	'app/website.i2pd.i2pd' \
+	'app/org.signal.Signal' \
+	'app/com.github.johnfactonum.Foliate'
 
 flatpak_install flathub-beta \
-	net.supertuxkart.SuperTuxKart
+	'app/net.supertuxkart.SuperTuxKart/x86_64/beta'
+	'app/com.github.quaternion/x86_64/beta'
 
 flatpak_install gnome-apps-nightly org.Epiphpany.Devel
 
 flatpak_install kdeapps \
-	org.kde.falkon \
-	org.kde.okular \
-	org.kde.konqueror \
-	org.kde.filelight
+	'app/org.kde.falkon/x86_64' \
+	'app/org.kde.okular/x86_64' \
+	'app/org.kde.konqueror/x86_64' \
+	'app/org.kde.filelight/x86_64'

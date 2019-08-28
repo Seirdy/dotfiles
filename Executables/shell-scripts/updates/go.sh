@@ -24,6 +24,8 @@ go_update github.com/mvdan/sh/cmd/shfmt
 go_update github.com/mikefarah/yq
 # matrix client, for when I get bored of weechat-matrix
 go_update github.com/tulir/gomuks
+# Alternative to urlview
+go_update github.com/imwally/linkview
 # Learn go
 go_update golang.org/x/tour
 

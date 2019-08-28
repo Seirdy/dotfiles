@@ -1,5 +1,4 @@
 #!/bin/bash
-dnf copr enable agriffis/neovim-nightly
 dnf copr enable eklitzke/watchman
 dnf copr enable petersen/stack
 dnf copr enable oleastre/fonts
@@ -9,10 +8,11 @@ dnf copr enable thelocehiliosan/yadm
 dnf copr enable sramanujam/firefox-nightly
 dnf copr enable zawertun/kde
 dnf copr enable gumieri/sway
+dnf copr enable jdoss/wireguard
 dnf install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
 dnf install "https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-$(rpm -E %fedora)-1.noarch.rpm"
 dnf config-manager --add-repo https://download.opensuse.org/repositories/home:mcepl:neovim/Fedora_Rawhide/home:mcepl:neovim.repo
-# dnf upgrade --refresh --allowerasing -y
+dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
 	"ImageMagick"
@@ -76,6 +76,7 @@ packages=(
 	"fortune-mod"
 	"fpaste"
 	"freeimage-devel"
+	"freeimage-devel"  # Compiling imv
 	"freetype"
 	"gcc"
 	"gcc-c++"
@@ -106,20 +107,25 @@ packages=(
 	"iptables"
 	"ituomi-hasklig-fonts"
 	"java-openjdk-devel"
+	"jq"
 	"latexmk"
 	"libXcursor-devel.x86_64"
 	"libXi-devel.x86_64"
 	"libXinerama-devel.x86_64"
 	"libXrandr-devel.x86_64"
 	"libassuan-devel"
+	"libcanberra-devel"  # Required to build kitty
 	"libcmocka-devel"
 	"libdbusmenu-gtk3"
 	"libpng-devel"
+	"librsvg2-devel"  # Compiling imv
 	"libseccomp-devel"
 	"libsodium"
 	"libtiff-devel"
 	"libtool"
 	"libva-vdpau-driver"
+	"libwayland-client"  # Compiling imv
+	"libwayland-egl"  # Compiling imv
 	"libxkbcommon-x11-devel.x86_64"
 	"llvm"
 	"lua-devel"
@@ -138,6 +144,7 @@ packages=(
 	"neofetch"
 	"neovim"
 	"ninja-build"
+	"nmap"
 	"nnn"
 	"npm"
 	"nprokopov-fira-code-fonts"
@@ -150,6 +157,13 @@ packages=(
 	"patch"
 	"perl-ExtUtils-Embed.noarch"
 	"pkgconfig"
+	"pkgconfig(json-c)"  # newsboat compilation
+	"pkgconfig(libcrypto)"  # newsboat compilation
+	"pkgconfig(libcurl)"  # newsboat compilation
+	"pkgconfig(libxml-2.0)"  # newsboat compilation
+	"pkgconfig(ncursesw)"  # newsboat compilation
+	"pkgconfig(sqlite3)"  # newsboat compilation
+	"pkgconfig(stfl)"  # newsboat compilation
 	"plasma-browser-integration"
 	"plasma-nm"
 	"plasma-widget-menubar"
@@ -158,6 +172,7 @@ packages=(
 	"podman-docker"
 	"powerline-fonts"
 	"python3-devel"
+	"qt5-qtmultimedia-devel"  # compile quotient
 	"radeontop"
 	"rc"
 	"rclone"
@@ -204,6 +219,9 @@ packages=(
 	"wayland-protocols-devel"
 	"wget"
 	"which"
+	"wireguard"
+	"wireguard-dkms"
+	"wireguard-tools"
 	"wlc-devel"
 	"x264-libs"
 	"x265-libs"
