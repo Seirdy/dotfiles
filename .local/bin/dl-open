@@ -9,6 +9,10 @@ rm -f ./*
 for url in "$@"; do
 	aria2c "$url"
 done
-openx ./*
+if fd -t f -e png -e jpg -e jpeg -e gif -e svg -e tiff -e psd; then
+	imv ./*
+else
+	openx ./*
+fi
 
 # vim: filetype=sh

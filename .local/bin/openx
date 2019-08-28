@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 
 if [ "$MACHINE" = "Linux" ]; then
-	nohup xdg-open "$@" >/dev/null 2>/dev/null
+	xdg-open "$@" >/dev/null 2>/dev/null
 elif [ "$MACHINE" = "Darwin" ]; then
 	nohup open "$@" >/dev/null 2>/dev/null
 else
