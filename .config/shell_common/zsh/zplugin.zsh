@@ -173,6 +173,9 @@ fi
 finish_setup() {
 	zpcompinit
 	zpcdreplay
+	# give less pretty colors
+	# shellcheck source=.config/less/less_termcap.sh
+	. "$XDG_CONFIG_HOME/less/less_termcap.sh"
 }
 
 zi_completion atload'finish_setup'

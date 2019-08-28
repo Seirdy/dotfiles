@@ -9,26 +9,12 @@ export ROWS
 module_path+=("$HOME/.zplugin/bin/zmodules/Src")
 module_path+=("$HOME/.zplugin/mod-bin/zmodules/Src")
 if [ -z "$PROFILE_SET" ]; then
-	# shellcheck source=.profile
-	. "$HOME/.profile"
-	export PROFILE_SET=2
+# shellcheck source=.profile
+. "$HOME/.profile"
+export PROFILE_SET=2
 fi
 
-# I can't get zpmod to work on macOS
-# See https://github.com/zdharma/zplugin/issues/131
-if [ "$MACHINE" != 'Darwin' ]; then
-	zmodload zdharma/zplugin
-	# macOS has issues with gpg password input.
-	# This makes password input happen in a TUI.
-else
-	is_tty="$(tty)"
-	if [ "$is_tty" != 'not a tty' ]; then
-		export GPG_TTY="$is_tty"
-	fi
-fi
-if [ "$MACHINE" != 'Linux' ] && [ "$(podman-machine status)" = 'Running' ]; then
-	eval $(podman-machine env box)
-fi
+zmodload zdharma/zplugin
 # dedupe $PATH
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
 ## History file configuration
@@ -112,6 +98,14 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 export _ZL_MATCH_MODE=1
 
+# Print previous command with Alt-N, where N is the number of arguments
+bindkey -s '\e1' "!:0 \t"
+bindkey -s '\e2' "!:0-1 \t"
+bindkey -s '\e3' "!:0-2 \t"
+bindkey -s '\e4' "!:0-3 \t"
+bindkey -s '\e5' "!:0-4 \t"
+bindkey -s '\e`' "!:0- \t"     # all but the last word
+
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
 # The first argument to the function ($1) is the base path to start traversal
@@ -130,9 +124,6 @@ _fzf_compgen_dir() {
 # source the theme
 # shellcheck source=/dev/null
 . "$SHELL_COMMON/zsh/powerlevel10k.zsh"
-# give less pretty colors
-# shellcheck source=.config/less/less_termcap.sh
-. "$XDG_CONFIG_HOME/less/less_termcap.sh"
 # source the plugins and start completions/autosuggestions.
 # shellcheck source=.config/shell_common/zsh/zplugin.zsh
 . "$SHELL_COMMON/zsh/zplugin.zsh"
