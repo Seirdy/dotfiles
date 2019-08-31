@@ -16,6 +16,8 @@ go_update github.com/junegunn/fzf
 go_update github.com/ddo/fast
 # Quickly share files between computers
 go_update github.com/schollz/croc
+# Access cloud storage
+go_update github.com/rclone/rclone
 # Pager for log files
 go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
@@ -28,6 +30,10 @@ go_update github.com/tulir/gomuks
 go_update github.com/imwally/linkview
 # Learn go
 go_update golang.org/x/tour
+# Alternative terminal emulator
+# github.com/liamg/aminal
+# Advanced file manager (better than ranger)
+go_update github.com/gokcehan/lf
 
 # podman > docker
 if [ "$MACHINE" = 'Linux' ]; then
