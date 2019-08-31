@@ -29,8 +29,8 @@ if [ $terminfo[colors] -gt 255 ]; then
 	zplugin load romkatv/powerlevel10k
 fi
 
-zi0a
-zplugin load skywind3000/z.lua
+zi0b proto'git' ver'master'
+zplugin light skywind3000/z.lua
 
 zi0a
 zplugin light zdharma/fast-syntax-highlighting
@@ -82,6 +82,13 @@ zplugin light denilsonsa/prettyping
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light TheLocehiliosan/yadm
 
+zi_program has'ueberzug' pick'stpvimg'
+zplugin light https://github.com/Seirdy/stpv
+zi_program pick'stpv'
+zplugin light https://github.com/Seirdy/stpv
+zi_program has'fzf' pick'fzfp'
+zplugin light https://github.com/Seirdy/stpv
+
 # }}}
 
 # Git extensions {{{
@@ -94,7 +101,7 @@ zi0a
 zplugin light wfxr/emoji-cli
 
 # has ICE-selector wait'0b' so it gets loaded after diff-so-fancy
-zi0b has'git' has'fzf' pick'forgit.plugin.zsh'
+zi0b has'fzf' pick'forgit.plugin.zsh'
 zplugin light wfxr/forgit
 
 zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
@@ -176,6 +183,15 @@ finish_setup() {
 	# give less pretty colors
 	# shellcheck source=.config/less/less_termcap.sh
 	. "$XDG_CONFIG_HOME/less/less_termcap.sh"
+	. "$XDG_CONFIG_HOME/lf/lf_icons.sh"
+	# aliases
+	SHELL_COMMON="$HOME/.config/shell_common"
+	# shellcheck source=.config/shell_common/aliases.sh
+	. "$SHELL_COMMON/aliases.sh"
+	# shellcheck source=.config/shell_common/aliases_private.sh
+	. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
+	# shellcheck source=.config/shell_common/functions.sh
+	. "$SHELL_COMMON/functions.sh"
 }
 
 zi_completion atload'finish_setup'

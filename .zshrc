@@ -70,14 +70,6 @@ export _ZL_ECHO=1
 # Completion initialization happens asynchrously when loading plugins.
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 3 numeric
-# aliases
-SHELL_COMMON="$HOME/.config/shell_common"
-# shellcheck source=.config/shell_common/aliases.sh
-. "$SHELL_COMMON/aliases.sh"
-# shellcheck source=.config/shell_common/aliases_private.sh
-. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
-# shellcheck source=.config/shell_common/functions.sh
-. "$SHELL_COMMON/functions.sh"
 
 # keybinds and functions
 function _z() { _zlua "$@"; }
@@ -121,6 +113,7 @@ _fzf_compgen_dir() {
 	fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+SHELL_COMMON="$HOME/.config/shell_common"
 # source the theme
 # shellcheck source=/dev/null
 . "$SHELL_COMMON/zsh/powerlevel10k.zsh"

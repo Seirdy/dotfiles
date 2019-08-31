@@ -14,28 +14,17 @@
 # 	- openx (already included in dotfiles; see ~/.local/bin/openx)
 
 _lsd_args='--color always --oneline'
-_lsd_args_icon="$_lsd_args --icon always"
 
 fpa() {
-	dash -c "lsd --group-dirs first $* $_lsd_args_icon" | fzf | awk '{print $2}'
-}
-
-_set_opts() {
-	export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $*"
+	dash -c "lsd --group-dirs first $* $_lsd_args" | fzfp | awk '{print $2}'
 }
 
 fpd() {
-	orignal_opts=$FZF_DEFAULT_OPTS
-	_set_opts "--height=20 --preview='lsd {} $_lsd_args_icon'"
-	dash -c "exa -D $* $_lsd_args" | fzf
-	FZF_DEFAULT_OPTS=$orignal_opts
+	dash -c "exa -D $* $_lsd_args" | fzfp
 }
 
 fpf() {
-	original_opts=$FZF_DEFAULT_OPTS
-	_set_opts "--preview='bat {} --color always --style header'"
-	dash -c "fd -t f -d 1 -x lsd $* $_lsd_args" | fzf
-	FZF_DEFAULT_OPTS=$original_opts
+	dash -c "fd -t f -d 1 -x lsd $* $_lsd_args" | fzfp
 }
 
 _display() {
@@ -43,10 +32,7 @@ _display() {
 }
 
 fdf() {
-	original_opts=$FZF_DEFAULT_OPTS
-	_set_opts "--preview='bat {} --color always --style header'"
 	_display "$(fpf "$@")"
-	FZF_DEFAULT_OPTS=$orignal_opts
 }
 
 _openx_if_set() {
