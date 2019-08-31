@@ -1,10 +1,10 @@
 #!/usr/bin/env dash
 # Jesus christ this is over 100 aliases
 
-alias _exa='exa -h --icons --group-directories-first --color=always'
+alias exa-fancy='exa -h --icons --group-directories-first --color=always'
 alias l='lsd --group-dirs first --color always --icon always --icon-theme fancy'
-alias ll='_exa -l --time-style=long-iso'              # Better output than ls -l
-alias lll='_exa -l --time-style=full-iso -s modified' # Show full timestamp
+alias ll='exa-fancy -l --time-style=long-iso'              # Better output than ls -l
+alias lll='exa-fancy -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -A'
 alias lla='ll -a'
 alias llla='lll -a'
@@ -132,5 +132,6 @@ if [ -n "$ZSH_VERSION" ]; then
 	if command -v lolcat >/dev/null; then
 		alias -g rofl='| lolcat'
 	fi
+	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
 fi
 
