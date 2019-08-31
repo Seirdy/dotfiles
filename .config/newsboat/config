@@ -9,6 +9,7 @@ text-width 84
 # user-agent "Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2s"
 # html-renderer "w3m -dump -T text/html"
 external-url-viewer "linkview"
+suppress-first-reload yes
 
 # Reloading
 refresh-on-startup yes
