@@ -1,0 +1,11 @@
+#!/bin/dash
+# shellcheck source=/home/rkumar/Executables/shell-scripts/terminal_cmds/st-vars
+. ~/Executables/shell-scripts/terminal_cmds/st-vars
+export ST_CMD="st -f 'Source Code Pro for Powerline:style=Medium:pixelsize=$SIZE:antialias=true:autohint:true' -g ${ST_COLS}x${ST_ROWS}"
+eval "$ST_CMD $@"
+# if [ $# -eq 0 ]
+# then
+# 	eval "${ST_CMD}"
+# else
+# 	eval "${ST_CMD} -e $1 $2 $3 $4 $5"
+# fi
