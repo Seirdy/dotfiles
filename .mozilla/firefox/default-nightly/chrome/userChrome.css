@@ -456,4 +456,9 @@ browser[type=content] > html,
 	max-width: 100% !important;
 }
 
+/* Fix autocomplete being below the active tab */
+
+.tabbrowser-tab[visuallyselected="true"] {
+	z-index: 0 !important;
+}
 
