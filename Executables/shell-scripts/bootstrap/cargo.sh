@@ -2,7 +2,7 @@
 
 cargo install cargo cargo-update rls
 cargo_install_git() {
-	cargo install --git "$@" --all-features
+	cargo install --git "$@" --force
 }
 cargo_install_git https://github.com/BurntSushi/ripgrep
 cargo_install_git https://github.com/Peltoche/lsd.git
