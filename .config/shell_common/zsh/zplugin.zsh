@@ -89,6 +89,9 @@ zplugin light https://github.com/Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
 zplugin light https://github.com/Seirdy/stpv
 
+zi_program has'perl'
+zplugin snippet https://github.com/bobrippling/perlbin/blob/master/xurls
+
 # }}}
 
 # Git extensions {{{
