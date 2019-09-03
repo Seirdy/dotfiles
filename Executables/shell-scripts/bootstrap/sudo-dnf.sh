@@ -60,7 +60,7 @@ packages=(
 	"ctags-etags"
 	"curl"
 	"dash"
-	"dbus-devel.x86_64"
+	"dbus-devel"
 	"device-mapper-devel"
 	"dnf-plugins-core"
 	"dolphin-plugins"
@@ -117,10 +117,10 @@ packages=(
 	"java-openjdk-devel"
 	"jq"
 	"latexmk"
-	"libXcursor-devel.x86_64"
-	"libXi-devel.x86_64"
-	"libXinerama-devel.x86_64"
-	"libXrandr-devel.x86_64"
+	"libXcursor-devel"
+	"libXi-devel"
+	"libXinerama-devel"
+	"libXrandr-devel"
 	"libassuan-devel"
 	"libcanberra-devel" # Required to build kitty
 	"libcmocka-devel"
@@ -134,12 +134,12 @@ packages=(
 	"libva-vdpau-driver"
 	"libwayland-client" # Compiling imv
 	"libwayland-egl"    # Compiling imv
-	"libxkbcommon-x11-devel.x86_64"
+	"libxkbcommon-x11-devel"
 	"llvm"
 	"lua-devel"
 	"luajit"
 	"luarocks"
-	"mesa-libGL-devel.x86_64"
+	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
 	"meson"
 	"mozilla-fira-mono-fonts"
@@ -163,7 +163,8 @@ packages=(
 	"p7zip-plugins"
 	"papirus-icon-theme"
 	"patch"
-	"perl-ExtUtils-Embed.noarch"
+	"perl-ExtUtils-Embed"
+	"perl-Image-ExifTool" # For viewing exif metadata, esp. in stpv
 	"pkgconfig"
 	"pkgconfig(json-c)"     # newsboat compilation
 	"pkgconfig(libcrypto)"  # newsboat compilation
@@ -190,9 +191,10 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
+	"scrot" # Screenshots on X11
 	"sqlitebrowser"
 	"stack"
-	"startup-notification-devel.x86_64"
+	"startup-notification-devel"
 	"taglib"
 	"tar"
 	"terminus-fonts"
@@ -227,7 +229,6 @@ packages=(
 	"wayland-protocols-devel"
 	"wget"
 	"which"
-	"wireguard"
 	"wireguard-dkms"
 	"wireguard-tools"
 	"wlc-devel"
