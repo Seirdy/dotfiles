@@ -33,8 +33,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
 export LC_TIME=en_ZA.UTF-8
-export TERMINAL="kitty -1" # Default terminal
+export TERMINAL="st" # Default terminal
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export NVIM_GTK_PREFER_DARK_THEME=1
