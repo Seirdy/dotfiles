@@ -5,5 +5,5 @@ Name=st
 GenericName=Terminal emulator
 Comment=a simple terminal implementation for X
 Exec=st-cmd %U
-Icon=utilities-terminal
+Icon=st
 Categories=System;TerminalEmulator;
