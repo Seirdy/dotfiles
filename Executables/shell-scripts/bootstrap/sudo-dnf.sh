@@ -21,6 +21,7 @@ packages=(
 	"ImageMagick"
 	"ImageMagick-devel" # For building chafa
 	"ImageMagick-libs"
+	"libva-utils" # provides commands for verifying that vaapi works
 	"LibRaw"
 	"SDL2-devel"
 	"SDL2_ttf-devel"
