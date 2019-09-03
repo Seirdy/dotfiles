@@ -5,10 +5,10 @@ feed-sort-order firsttag
 bookmark-cmd "$XDG_DATA_DIR/newsboat/send-to-pocket.sh"
 bookmark-autopilot yes
 history-limit 400
-text-width 84
+text-width 88
 # user-agent "Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2s"
 # html-renderer "w3m -dump -T text/html"
-external-url-viewer "urlscan --no-browser --dedupe | fzf --reverse | xargs -r $BROWSER"
+external-url-viewer "url-picker"
 suppress-first-reload yes
 
 # Reloading

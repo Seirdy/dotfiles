@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
-urls=$(cat </dev/stdin | tr ' ' '\n' | urlscan --no-browser --dedupe)
-rows=$(echo "$(echo "$urls" | wc -l)+2" | bc -l)
-cols=$(echo "$(echo "$urls" | wc -L)+3" | bc -l)
-st -g "${cols}x${rows}" -e dash -c "echo \"$urls\" | fzf | xargs -r $BROWSER"
-
+# urls=$(cat </dev/stdin | tr ' ' '\n' | urlscan --no-browser --dedupe)
+# rows=$(echo "$(echo "$urls" | wc -l)+2" | bc -l)
+# cols=$(echo "$(echo "$urls" | wc -L)+3" | bc -l)
+# st -g "${cols}x${rows}" -e dash -c "echo \"$urls\" | fzf | xargs -r $BROWSER"
+cat </dev/stdin | tr ' ' '\n' | urlscan --no-browser --dedupe | rofi -dmenu | xargs -r $BROWSER
 # vim:ft=sh
