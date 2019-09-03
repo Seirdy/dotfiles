@@ -82,6 +82,9 @@ zplugin light denilsonsa/prettyping
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light TheLocehiliosan/yadm
 
+zi_program has'jq'
+zplugin snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
+
 zi_program has'ueberzug' pick'stpvimg'
 zplugin light https://github.com/Seirdy/stpv
 zi_program pick'stpv'
