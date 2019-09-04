@@ -19,6 +19,10 @@ zi0b() {
 	z_lucid wait'0b' "$@"
 }
 
+zi0c() {
+	z_lucid wait'0c' "$@"
+}
+
 ###########
 # Plugins #
 ###########
@@ -31,6 +35,9 @@ fi
 
 zi0b proto'git' ver'master'
 zplugin light skywind3000/z.lua
+
+zi0c
+zplugin snippet https://github.com/changyuheng/fz/blob/master/fz.sh
 
 zi0a
 zplugin light zdharma/fast-syntax-highlighting

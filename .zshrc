@@ -15,8 +15,8 @@ export PROFILE_SET=2
 fi
 
 zmodload zdharma/zplugin
-# dedupe $PATH
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
+export FZ_HISTORY_CD_CMD=_zlua
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 # An SSD can handle a large history
