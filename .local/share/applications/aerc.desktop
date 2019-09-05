@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=aerc
+GenericName=Mail Client
+Type=Application
+Comment=An email client for your terminal
+Terminal=true
+Exec=aerc
+Icon=internet-mail
+Categories=Office;Network;Email;Internet;ConsoleOnly
+Keywords=reddit;social
+MimeType=x-scheme-handler/mailto;
