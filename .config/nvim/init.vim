@@ -104,6 +104,9 @@ endfunction
 
 " Keymaps for coc features are in a dedicated section.
 
+" 'Ex mode is fucking dumb' --sircmpwm
+nnoremap Q <Nop>
+
 let mapleader = ','  " better than backslash imo
 " hide search
 nmap <silent> <leader><Space> :nohls<CR>
