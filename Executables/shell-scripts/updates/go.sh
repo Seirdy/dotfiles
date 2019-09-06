@@ -3,7 +3,10 @@
 start_time=$(date '+%s')
 
 go_update() {
-	go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
+	echo "###"
+	echo "### Updating $* ###"
+	echo "###"
+	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 # Critical programs for my workflow; computer is useless without them
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
@@ -30,9 +33,11 @@ go_update github.com/tulir/gomuks
 go_update github.com/imwally/linkview
 # Learn go
 go_update golang.org/x/tour
+# godoc webserver
+go_update golang.org/x/tools/cmd/godoc
 # Alternative terminal emulator
 # github.com/liamg/aminal
-# Advanced file manager (better than ranger)
+# Advanced file manager (like ranger)
 go_update github.com/gokcehan/lf
 
 # podman > docker
@@ -66,9 +71,10 @@ update_aerc() {
 		mkdir -p "$aerc_dir"
 	fi
 	cd "$aerc_dir" || return 1
-	env GO111MODULE=on go get git.sr.ht/~sircmpwn/aerc
-	PREFIX=$HOME/.local make
-	make install
+	export GO111MODULE=on
+	go_update 'git.sr.ht/~sircmpwn/aerc'
+	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make
+	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make install
 }
 
 update_aerc
