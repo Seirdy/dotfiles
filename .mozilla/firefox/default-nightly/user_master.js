@@ -1,5 +1,6 @@
 // disable auto connections for updates, since I handle updates outside the browser
 user_pref("app.update.url", "");
+user_pref("app.update.url.manual", "");
 user_pref("app.update.enabled", false);
 user_pref("app.update.auto", false);
 user_pref("app.update.service.enabled", false);
@@ -40,9 +41,11 @@ user_pref("browser.eme.ui.enabled", false);
 user_pref("media.gmp-eme-adobe.enabled", false);
 user_pref("dom.battery.enabled", false);
 user_pref("geo.enabled", false);
+user_pref("geo.wifi.uri", "");
 user_pref("browser.search.geoip.url", "");
 user_pref("browser.search.geoSpecificDefaults.url", "");
 user_pref("browser.selfsupport.url", "");
+user_pref("browser.chrome.errorReporter.infoURL", "");
 user_pref("browser.aboutHomeSnippets.updateUrL", "");
 user_pref("browser.startup.homepage_override.buildID", "");
 user_pref("startup.homepage_welcome_url", "");
@@ -117,6 +120,16 @@ user_pref("browser.urlbar.oneOffSearches", false);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.library.activity-stream.enabled", false);
+user_pref("browser.newtabpage.activity-stream.default.sites", "");
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.whats-new-panel", "");
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.onboarding", "");
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.cfr-fxa", "");
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.cfr", "");
+user_pref("browser.newtabpage.activity-stream.discoverystream.config", "");
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories.options", "");
+user_pref("browser.newtabpage.activity-stream.telemetry.structuredIngestion.endpoint", "");
+user_pref("browser.pageActions.persistedActions", "");
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.server", "");
@@ -260,6 +273,7 @@ user_pref("browser.safebrowsing.malware.enabled ", false);
 user_pref("browser.safebrowsing.downloads.enabled ", false);
 user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", "");
 user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
+user_pref("browser.safebrowsing.provider.mozilla.lists", "");
 user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
 user_pref("browser.safebrowsing.provider.google4.updateURL", "");
 user_pref("browser.safebrowsing.provider.google4.reportURL", "");
@@ -285,11 +299,17 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
 user_pref("identity.fxaccounts.pairing.enabled", false);
 user_pref("identity.fxaccounts.pairing.uri", "");
 user_pref("identity.fxaccounts.enabled", false);
+user_pref("identity.sync.tokenserver.uri", "");
+user_pref("webextensions.storage.sync.serverURL", "");
 // devtools telemetry
 user_pref("devtools.onboarding.telemetry.logged", false);
 user_pref("devtools.remote.adb.extensionURL", "");
 user_pref("devtools.webide.autoinstallADBExtension", false);
 user_pref("devtools.webide.autoinstallADBHelper", false);
+// firefox monitor
+user_pref("browser.contentblocking.report.monitor.enabled", false);
+user_pref("browser.contentblocking.report.monitor.url", "");
+user_pref("extensions.fxmonitor.firstAlertShown", "");
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
