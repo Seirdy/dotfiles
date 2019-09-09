@@ -21,7 +21,6 @@ packages=(
 	"ImageMagick"
 	"ImageMagick-devel" # For building chafa
 	"ImageMagick-libs"
-	"libva-utils" # provides commands for verifying that vaapi works
 	"LibRaw"
 	"SDL2-devel"
 	"SDL2_ttf-devel"
@@ -132,6 +131,7 @@ packages=(
 	"libsodium"
 	"libtiff-devel"
 	"libtool"
+	"libva-utils" # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
 	"libwayland-client" # Compiling imv
 	"libwayland-egl"    # Compiling imv
@@ -192,6 +192,7 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
+	"scdoc" # Build aerc docs
 	"scrot" # Screenshots on X11
 	"sqlitebrowser"
 	"stack"
@@ -248,6 +249,7 @@ packages=(
 	"zathura-plugins-all"
 	"zathura-zsh-completion"
 	"zip"
+	"firejail" # sandbox for things like w3m without network access
 	"zsh"
 )
 # shellcheck disable=SC2086

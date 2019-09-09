@@ -1,4 +1,5 @@
 configuration {
 	theme: "breeze";
 	show-icons: true;
+	modi: "window,run,drun";
 }

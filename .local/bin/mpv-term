@@ -1,0 +1,5 @@
+#!/usr/bin/env dash
+
+$TERMINAL mpv "$@" &
+
+# vim:ft=sh

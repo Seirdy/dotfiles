@@ -1,9 +1,10 @@
 #!/usr/bin/env dash
-if [ -d /run/media/rkumar/bigssd/Videos/yt/rss ]; then
-	cd /run/*/rkumar/bigssd/Videos/yt/rss || exit
+if [ -d "/run/media/$USER/bigssd" ]; then
+	dir="/run/media/$USER/bigssd/Videos/yt/rss"
 else
-	mkdir -p "$HOME/Videos/yt/rss" || exit
-	cd "$HOME/Videos/yt/rss" || exit
+	dir="$HOME/Videos/yt/rss"
 fi
-abduco -rnf "ytdl-$(date -u +'%Y-%m-%dT%H:%M:%SZ')" youtube-dl "$@" 2>&1
+mkdir -p "$dir" \
+	&& cd "$dir" \
+	&& nohup youtube-dl "$1" >/dev/null 2>&1 &
 # vim:ft=sh
