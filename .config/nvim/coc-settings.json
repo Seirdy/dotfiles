@@ -106,7 +106,7 @@
 			"command": "pandoc",
 			"args": [
 				"--from=markdown",
-				"--to=markdown-fenced_code_attributes+pipe_tables-simple_tables-multiline_tables-grid_tables-raw_html",
+				"--to=markdown",
 				"-s",
 				"--columns=87"
 			]
