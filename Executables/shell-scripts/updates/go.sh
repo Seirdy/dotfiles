@@ -19,41 +19,22 @@ go_update github.com/junegunn/fzf
 go_update github.com/ddo/fast
 # Quickly share files between computers
 go_update github.com/schollz/croc
-# Access cloud storage
-go_update github.com/rclone/rclone
 # Pager for log files
 go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
 go_update github.com/mvdan/sh/cmd/shfmt
 # like jq but for yaml
 go_update github.com/mikefarah/yq
-# matrix client, for when I get bored of weechat-matrix
-go_update github.com/tulir/gomuks
 # Alternative to urlview
 go_update github.com/imwally/linkview
-# Learn go
-go_update golang.org/x/tour
-# godoc webserver
-go_update golang.org/x/tools/cmd/godoc
 # Alternative terminal emulator
 # github.com/liamg/aminal
 # Advanced file manager (like ranger)
 go_update github.com/gokcehan/lf
 
-# podman > docker
-if [ "$MACHINE" = 'Linux' ]; then
-	go_update github.com/containers/libpod/cmd/podman
-else
-	# podman-machine is like docker-machine/docker desktop
-	go_update https://github.com/boot2podman/machine/cmd/podman-machine
-fi
 # Development tools
 #
 
-# language server
-go_update golang.org/x/tools/gopls
-# linting
-go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 # More strict than gofmt
 go_update mvdan.cc/gofumpt
 go_update mvdan.cc/gofumpt/gofumports
@@ -61,18 +42,14 @@ go_update mvdan.cc/gofumpt/gofumports
 go_update github.com/kisielk/godepgraph
 # best sloc cloc and code counter
 go_update github.com/boyter/scc
-# Run my CI/CD pipelines locally
-go_update gitlab.com/gitlab-org/gitlab-runner
 
 # my mail client
 update_aerc() {
 	aerc_dir="$GOPATH/src/git.sr.ht/~sircmpwn/aerc"
-	if [ ! -d "$aerc_dir" ]; then
-		mkdir -p "$aerc_dir"
-	fi
+	mkdir -p "$aerc_dir"
 	cd "$aerc_dir" || return 1
 	export GO111MODULE=on
-	go_update 'git.sr.ht/~sircmpwn/aerc'
+	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git pull
 	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make
 	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make install
 }
