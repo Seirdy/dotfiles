@@ -14,7 +14,8 @@ dnf copr enable zawertun/kde
 dnf copr enable gumieri/sway
 dnf copr enable jdoss/wireguard
 dnf install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-dnf install "https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-$(rpm -E %fedora)-1.noarch.rpm"
+dnf install "https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-$(rpm -E %fedora)-1.noarch.rpm" -y
+dnf remove python-unversioned-command python2 -y
 dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
@@ -195,9 +196,8 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
-	"sagemath" # for school
-	"scdoc"    # Build aerc docs
-	"scrot"    # Screenshots on X11
+	"scdoc" # Build aerc docs
+	"scrot" # Screenshots on X11
 	"sqlitebrowser"
 	"stack"
 	"startup-notification-devel"
@@ -205,7 +205,15 @@ packages=(
 	"tar"
 	"terminus-fonts"
 	"terminus-fonts-console"
-	"texlive-scheme-full" # ALL the tex/latex/context. Like 3000 dependencies.
+	"texlive-collection-basic"
+	"texlive-collection-bibtexextra"
+	"texlive-collection-humanities"
+	"texlive-collection-langenglish"
+	"texlive-collection-latexrecommended"
+	"texlive-collection-mathscience"
+	"texlive-collection-plaingeneric"
+	"texlive-collection-publishers"
+	"texlive-collection-xetex"
 	"tig"
 	"tlp"
 	"tmux"
@@ -243,6 +251,5 @@ packages=(
 	"zip"
 	"zsh"
 )
-dnf remove python-unversioned-command python2
 # shellcheck disable=SC2086
 dnf install ${packages[*]} --allowerasing
