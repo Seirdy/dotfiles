@@ -195,8 +195,9 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
-	"scdoc" # Build aerc docs
-	"scrot" # Screenshots on X11
+	"sagemath" # for school
+	"scdoc"    # Build aerc docs
+	"scrot"    # Screenshots on X11
 	"sqlitebrowser"
 	"stack"
 	"startup-notification-devel"
@@ -204,20 +205,7 @@ packages=(
 	"tar"
 	"terminus-fonts"
 	"terminus-fonts-console"
-	"texlive"
-	"texlive-base"
-	"texlive-caption"
-	"texlive-cite"
-	"texlive-collection-latex"
-	"texlive-collection-xetex"
-	"texlive-ctable"
-	"texlive-etex"
-	"texlive-filecontents"
-	"texlive-lwarp"
-	"texlive-pdftex"
-	"texlive-plain"
-	"texlive-texlive-en"
-	"texlive-trimspaces"
+	"texlive-scheme-full" # ALL the tex/latex/context. Like 3000 dependencies.
 	"tig"
 	"tlp"
 	"tmux"
