@@ -36,6 +36,7 @@ packages=(
 	"automake"
 	"bash-completion"
 	"bc"
+	"bionic-manager" # distributed compute and GridCoin
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman
 	"calc"
@@ -67,12 +68,14 @@ packages=(
 	"dvtm"
 	"egl-wayland-devel"
 	"enchant"
+	"exif" # useful for stpv
 	"extra-cmake-modules"
 	"fedora-toolbox"
 	"feh"
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"firefox-nightly"
+	"firejail" # sandbox for things like w3m without network access
 	"fish"
 	"flatpak"
 	"flatpak-builder"
@@ -192,8 +195,9 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
-	"scdoc" # Build aerc docs
-	"scrot" # Screenshots on X11
+	"sagemath" # for school
+	"scdoc"    # Build aerc docs
+	"scrot"    # Screenshots on X11
 	"sqlitebrowser"
 	"stack"
 	"startup-notification-devel"
@@ -201,24 +205,12 @@ packages=(
 	"tar"
 	"terminus-fonts"
 	"terminus-fonts-console"
-	"texlive"
-	"texlive-base"
-	"texlive-caption"
-	"texlive-cite"
-	"texlive-collection-bibtexextra"
-	"texlive-collection-latex"
-	"texlive-collection-xetex"
-	"texlive-ctable"
-	"texlive-etex"
-	"texlive-filecontents"
-	"texlive-lwarp"
-	"texlive-pdftex"
-	"texlive-plain"
-	"texlive-texlive-en"
-	"texlive-trimspaces"
+	"texlive-scheme-full" # ALL the tex/latex/context. Like 3000 dependencies.
 	"tig"
 	"tlp"
 	"tmux"
+	"tor"      # tor
+	"torsocks" # tor
 	"transmission-cli"
 	"turbojpeg-devel"
 	"unzip"
@@ -237,21 +229,20 @@ packages=(
 	"x264-libs"
 	"x265-libs"
 	"xbacklight"
-	"xclip"
 	"xdg-desktop-portal"
 	"xdg-desktop-portal-kde"
 	"xdotool"
-	"xsel"
+	"xsel" # Yank tool; used by yank-cli
 	"yacreader"
 	"yadm"
+	"yank-cli" # Good yank tool; works with xsel
 	"yarn"
 	"zathura"
 	"zathura-plugins-all"
 	"zathura-zsh-completion"
 	"zip"
-	"firejail" # sandbox for things like w3m without network access
 	"zsh"
 )
+dnf remove python-unversioned-command python2
 # shellcheck disable=SC2086
 dnf install ${packages[*]} --allowerasing
-dnf remove python-unversioned-command python2

@@ -21,7 +21,7 @@ if [ "$PROFILE_SET" = 1 ]; then
 fi
 find_alt() {
 	for i; do
-		which "$i" >/dev/null && {
+		command -v "$i" >/dev/null && {
 			echo "$i"
 			return 0
 		}
@@ -76,6 +76,8 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
 export GOPATH="$HOME/Executables/go"
+export GOROOT="$GOPATH/sdk/gotip"
+export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
 export CARGO_HOME="$HOME/Executables/cargo"
 export WAPM_PACKAGES="$HOME/Executables/wapm"
 export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config.lua"
@@ -126,6 +128,7 @@ pathadd_head "$NPM_PACKAGES/bin"              # npm (javascript)
 pathadd_head "$HOME/Executables/luarocks/bin" # luarocks (lua)
 pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
 pathadd_head "$GOPATH/bin"                    # go
+pathadd_head "$GOPATH/sdk/gotip/bin"          # go
 pathadd_head "$STACK_ROOT/bin"                # stack (haskell)
 pathadd_head "$CARGO_HOME/bin"                # cargo (rust)
 pathadd_head "$HOME/.local/bin"               # local bin
@@ -183,7 +186,8 @@ export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
 # Preferred editor
-export EDITOR=$(find_alt nvim vim vi nvi nano emacs)
+EDITOR=$(find_alt nvim vim vi nvi nano emacs)
+export EDITOR
 
 if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
 	export KITTY_ENABLE_WAYLAND=1
