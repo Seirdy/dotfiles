@@ -28,6 +28,12 @@ go_update golang.org/x/tour
 go_update golang.org/x/tools/cmd/godoc
 # podman > docker
 if [ "$MACHINE" = 'Linux' ]; then
+	runc_import_path="github.com/opencontainers/runc"
+	go_update "$runc_import_path"
+	cd "$GOPATH/src/$runc_import_path" \
+		&& BUILDTAGS='seccomp' make && cp ./runc "$GOPATH/bin/runc" \
+		&& cd - || exit 1
+	go_update github.com/containers/skopeo/cmd/skopeo
 	go_update github.com/containers/libpod/cmd/podman
 else
 	# podman-machine is like docker-machine/docker desktop

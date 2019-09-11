@@ -85,14 +85,14 @@ log_bg 'kitty'            # compile kitty from git
 log_bg 'program-data'     # have some programs sync their data
 
 if [ "$MACHINE" = 'Linux' ]; then
-	log_bg 'newsboat' # compile newsboat from git
-	log_bg 'neovim'   # compile neovim from git
-	log_bg 'imv'      # compile imv from git
-	log_bg 'stack'    # haskell packages (infrequent updates, cpu-heavy, slow)
-	log_bg 'flatpak'  # repair and update user-installed flatpaks
-	log_bg 'chromium' # tertiary browser (after Firefox Nightly, Falkon)
-	echo              # line break
-	log_fg 'dnf'      # system-wide update, autoremoval, and repo caching.
+	log_bg 'newsboat'          # compile newsboat from git
+	log_bg 'neovim'            # compile neovim from git
+	log_bg 'small-cc-programs' # compile imv from git
+	log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
+	log_bg 'flatpak'           # repair and update user-installed flatpaks
+	log_bg 'chromium'          # tertiary browser (after Firefox Nightly, Falkon)
+	echo                       # line break
+	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 	echo

@@ -34,12 +34,11 @@ packages=(
 	"atool" # file extraction util used by stpv
 	"autoconf"
 	"autoconf"
-	"automake"
+	"automake"          # build things like podman
 	"bash-completion"
 	"bc"
-	"bionic-manager" # distributed compute and GridCoin
 	"breeze-gtk"
-	"btrfs-progs-devel" # build podman
+	"btrfs-progs-devel" # build podman, skopeo
 	"calc"
 	"cargo"
 	"catimg"
@@ -57,14 +56,16 @@ packages=(
 	"cmake(Qt5X11Extras)"
 	"cmake-data"
 	"containernetworking-plugins"
+	"containers-common" # build podman, skopeo, buildah
 	"cryptsetup"
 	"ctags"
 	"ctags-etags"
 	"curl"
 	"dash"
 	"dbus-devel"
-	"device-mapper-devel"
+	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
+	"dnf-plugins-core"  # copr and stuff
 	"dolphin-plugins"
 	"dvtm"
 	"egl-wayland-devel"
@@ -89,6 +90,7 @@ packages=(
 	"freeimage-devel"
 	"freeimage-devel" # Compiling imv
 	"freetype"
+	"fuse-overlayfs" # podman runtime dependency
 	"gcc"
 	"gcc-c++"
 	"gcc-gdb-plugin"
@@ -107,30 +109,32 @@ packages=(
 	"gnu-free-mono-fonts"
 	"golang"
 	"google-*-fonts"
-	"gpgme-devel"
+	"gpgme-devel" # building skopeo and others
 	"grsync"
 	"gtk-doc" # for building chafa's docs
 	"gtk3-devel"
 	"harfbuzz-devel"
 	"haskell-platform"
+	"hostname"       # required for yadm
 	"ht-*-fonts"
 	"hunspell-en"
 	"hwinfo"
 	"iptables"
 	"ituomi-hasklig-fonts"
-	"java-openjdk-devel"
+	"java-latest-openjdk-devel"
 	"jq"
 	"latexmk"
 	"libXcursor-devel"
 	"libXi-devel"
 	"libXinerama-devel"
 	"libXrandr-devel"
-	"libassuan-devel"
+	"libassuan-devel"   # building skopeo and others
 	"libcanberra-devel" # Required to build kitty
 	"libcmocka-devel"
 	"libdbusmenu-gtk3"
 	"libpng-devel"
 	"librsvg2-devel" # Compiling imv
+	"libseccomp"        # build runc
 	"libseccomp-devel"
 	"libsodium"
 	"libtiff-devel"
@@ -163,7 +167,7 @@ packages=(
 	"nprokopov-fira-code-fonts"
 	"nvi"
 	"openssl-devel"
-	"ostree-devel"
+	"ostree-devel" # build runc, skopeo, and others
 	"p7zip"
 	"p7zip-plugins"
 	"papirus-icon-theme"
@@ -194,6 +198,7 @@ packages=(
 	"rsync"
 	"ruby-devel"
 	"rubygems"
+	"runc"
 	"rust-analysis"
 	"rust-std-static"
 	"scdoc" # Build aerc docs
@@ -242,8 +247,7 @@ packages=(
 	"xdotool"
 	"xsel" # Yank tool; used by yank-cli
 	"yacreader"
-	"yadm"
-	"yank-cli" # Good yank tool; works with xsel
+	"yank" # Good yank tool; works with xsel
 	"yarn"
 	"zathura"
 	"zathura-plugins-all"
