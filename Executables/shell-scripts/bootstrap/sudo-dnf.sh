@@ -34,7 +34,7 @@ packages=(
 	"atool" # file extraction util used by stpv
 	"autoconf"
 	"autoconf"
-	"automake"          # build things like podman
+	"automake" # build things like podman
 	"bash-completion"
 	"bc"
 	"breeze-gtk"
@@ -65,7 +65,7 @@ packages=(
 	"dbus-devel"
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
-	"dnf-plugins-core"  # copr and stuff
+	"dnf-plugins-core" # copr and stuff
 	"dolphin-plugins"
 	"dvtm"
 	"egl-wayland-devel"
@@ -115,7 +115,7 @@ packages=(
 	"gtk3-devel"
 	"harfbuzz-devel"
 	"haskell-platform"
-	"hostname"       # required for yadm
+	"hostname" # required for yadm
 	"ht-*-fonts"
 	"hunspell-en"
 	"hwinfo"
@@ -134,7 +134,7 @@ packages=(
 	"libdbusmenu-gtk3"
 	"libpng-devel"
 	"librsvg2-devel" # Compiling imv
-	"libseccomp"        # build runc
+	"libseccomp"     # build runc
 	"libseccomp-devel"
 	"libsodium"
 	"libtiff-devel"
@@ -248,7 +248,6 @@ packages=(
 	"xsel" # Yank tool; used by yank-cli
 	"yacreader"
 	"yank" # Good yank tool; works with xsel
-	"yarn"
 	"zathura"
 	"zathura-plugins-all"
 	"zathura-zsh-completion"
