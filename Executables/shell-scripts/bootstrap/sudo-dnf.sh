@@ -256,4 +256,4 @@ packages=(
 	"zsh"
 )
 # shellcheck disable=SC2086
-dnf install ${packages[*]} --allowerasing
+dnf install ${packages[*]} --allowerasing --skip-broken
