@@ -29,7 +29,7 @@
 script_dir="$HOME/Executables/shell-scripts/updates"
 cd "$script_dir" || return 1
 fd -t f -e sh -x chmod +x # So I can run the scripts with their shebangs
-mkdir -p "$XDG_DATA_HOME/update-all/logs" && cd "$XDG_DATA_HOME/update-all/logs" || return 1
+mkdir -p "$XDG_DATA_HOME/update-all/logs" "$GOPATH" && cd "$XDG_DATA_HOME/update-all/logs" || return 1
 printf "%s" 'Compressing old log: ' # Combines with first line of p7zip output
 
 fd -t d -x 7z a -bd -m0=lzma -mx=9 -y "{/}.7z" "{}" \
