@@ -65,8 +65,10 @@ log_bg() {
 }
 
 # Run and log in foreground (live-preview log file in interactive session)
+# Done in foreground so I can enter my password (dnf) and because some things need
+# a controlling tty for compilation.
 log_fg() {
-	echo "Starting update: $1"
+	echo && echo "Starting update: $1"
 	"$script_dir/$1.sh" | tee "$log_dir/$1-$time_start.log"
 }
 
@@ -80,7 +82,6 @@ log_bg 'rubygem-luarocks' # combining gem and luarocks since they update quickly
 log_bg 'go'               # build go packages installed with "go get" (slow)
 log_bg 'go-big'           # same as above, but for larger packages
 log_bg 'cargo'            # rust packages (extremely cpu-heavy)
-log_bg 'zplugin'          # update zplugin itself, zsh plugins, and zpmod
 log_bg 'kitty'            # compile kitty from git
 log_bg 'program-data'     # have some programs sync their data
 
@@ -91,7 +92,6 @@ if [ "$MACHINE" = 'Linux' ]; then
 	log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
 	log_bg 'flatpak'           # repair and update user-installed flatpaks
 	log_bg 'chromium'          # tertiary browser (after Firefox Nightly, Falkon)
-	echo                       # line break
 	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
 
 elif [ "$MACHINE" = 'Darwin' ]; then
@@ -102,5 +102,7 @@ else
 	echo 'Unsupported machine for system package updates'
 	echo "Your machine is $MACHINE"
 fi
+# zpmod is best compiled in the foreground since it uses tcsetpgrp
+log_fg 'zplugin' # update zplugin, its zsh plugins, and zpmod
 
 # vim: filetype=sh
