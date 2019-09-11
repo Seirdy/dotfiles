@@ -5,6 +5,8 @@ gohome() {
 	cd "$HOME/Downloads/gitclone" || return 1
 }
 
+mkdir -p "$HOME/Downloads/gitclone" || exit 1
+
 prepare() {
 	gohome
 	if [ ! -d "./$1" ]; then
