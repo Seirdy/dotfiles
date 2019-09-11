@@ -11,6 +11,7 @@ flatpak_remote_add kdeapps https://distribute.kde.org/kdeapps.flatpakrepo
 flatpak_remote_add gnome-nightly https://sdk.gnome.org/gnome-nightly.flatpakrepo
 flatpak_remote_add gnome-apps-nightly https://sdk.gnome.org/gnome-apps-nightly.flatpakrepo
 flatpak_remote_add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+flatpak_remote_add flathub https://flathub.org/repo/flathub.flatpakrepo
 
 flatpak_install flathub \
 	'app/net.minetest.Minetest/x86_64' \
@@ -24,7 +25,7 @@ flatpak_install flathub \
 	'app/com.github.johnfactonum.Foliate'
 
 flatpak_install flathub-beta \
-	'app/net.supertuxkart.SuperTuxKart/x86_64/beta'
+	'app/net.supertuxkart.SuperTuxKart/x86_64/beta' \
 	'app/com.github.quaternion/x86_64/beta'
 
 flatpak_install gnome-apps-nightly org.Epiphpany.Devel
