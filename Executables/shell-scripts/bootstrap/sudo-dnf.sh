@@ -1,21 +1,19 @@
 #!/bin/bash
 
+# dnf can do many parallel downloads
 if ! grep max_parallel_downloads /etc/dnf/dnf.conf >/dev/null; then
-	echo "max_parallel_downloads=15" >>/etc/dnf/dnf.conf
+	echo "max_parallel_downloads=20" >>/etc/dnf/dnf.conf
 fi
+# Enable rpmfusion-free and copr
+dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
+# copr repos
 dnf copr enable eklitzke/watchman
 dnf copr enable petersen/stack
-dnf copr enable oleastre/fonts
-dnf copr enable rspanton/cpputest
-dnf copr enable sichera/fedora
-dnf copr enable thelocehiliosan/yadm
+dnf copr enable oleastre/fonts # Hasklig and Fira Code
 dnf copr enable sramanujam/firefox-nightly
-dnf copr enable zawertun/kde
+dnf copr enable zawertun/kde # latest kde
 dnf copr enable gumieri/sway
 dnf copr enable jdoss/wireguard
-dnf install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-dnf install "https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-$(rpm -E %fedora)-1.noarch.rpm" -y
-dnf remove python-unversioned-command python2 -y
 dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
@@ -65,7 +63,6 @@ packages=(
 	"dbus-devel"
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
-	"dnf-plugins-core" # copr and stuff
 	"dolphin-plugins"
 	"dvtm"
 	"egl-wayland-devel"
@@ -109,6 +106,7 @@ packages=(
 	"gnu-free-mono-fonts"
 	"golang"
 	"google-*-fonts"
+	"gperf"       # neovim dependency
 	"gpgme-devel" # building skopeo and others
 	"grsync"
 	"gtk-doc" # for building chafa's docs
@@ -137,10 +135,12 @@ packages=(
 	"libseccomp"     # build runc
 	"libseccomp-devel"
 	"libsodium"
+	"libtermkey" # neovim dependency
 	"libtiff-devel"
 	"libtool"
 	"libva-utils" # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
+	"libvterm"          # neovim dependency
 	"libwayland-client" # Compiling imv
 	"libwayland-egl"    # Compiling imv
 	"libxkbcommon-x11-devel"
@@ -156,10 +156,10 @@ packages=(
 	"mpc"
 	"mpd"
 	"mpv"
+	"msgpack" # neovim dependency
 	"ncdu"
 	"ncurses-devel"
-	"neofetch"
-	"neovim"
+	"neofetch" # installing it from here because it comes loaded with deps
 	"ninja-build"
 	"nmap"
 	"nnn"
@@ -226,6 +226,7 @@ packages=(
 	"torsocks" # tor
 	"transmission-cli"
 	"turbojpeg-devel"
+	"unibilium" # terminfo parsing and neovim dependency
 	"unzip"
 	"vim"
 	"vollkorn-fonts"
