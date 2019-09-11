@@ -3,7 +3,7 @@
 mkdir -p "$HOME/Executables" || exit
 # shellcheck disable=2164
 cd "$HOME/Executables"
-mkdir -p 'go/bin' 'pipx/bin' 'gem/bin' 'luarocks/bin' 'npm/bin' 'cargo/bin' 'stack/bin'
+mkdir -p 'go/bin' 'pipx/bin' 'gem/bin' 'luarocks/bin' 'npm/bin' 'cargo/bin' 'stack/bin' "$HOME/bootstrap-logs"
 # shellcheck disable=2164
 cd "$HOME"
 # shellcheck disable=2016
@@ -12,6 +12,8 @@ if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=../../.profile
 	. "$HOME/.profile"
 	export PROFILE_SET=2
+	# make sure all the variables were set in .profile
+	[ "$GOPATH" = "$HOME/Executables/go" ] || exit 1
 fi
 echo "Running bootstrap for $MACHINE"
 
@@ -27,10 +29,10 @@ if [ "$MACHINE" = 'Linux' ]; then
 		. /usr/lib/os-release
 		if [ "$NAME" = 'Fedora' ]; then
 			echo 'Installing dnf packages for Fedora'
-			sudo bash "$bootstrap_dir/sudo-dnf.sh"
+			sudo bash "$bootstrap_dir/sudo-dnf.sh" | tee "$HOME/bootstrap-logs/dnf.log"
 		fi
-		dash "$bootstrap_dir/flatpak.sh"
-		dash "$updates_dir/chromium.sh"
+		nohup dash "$bootstrap_dir/flatpak.sh" >"$HOME/bootstrap-logs/flatpak.log" &
+		nohup dash "$updates_dir/chromium.sh" >"$HOME/bootstrap-logs/chromium.log" &
 	fi
 elif [ "$MACHINE" = 'Darwin' ]; then
 	echo 'Installing homebrew packages'
@@ -40,18 +42,22 @@ else
 	exit
 fi
 
-dash "$bootstrap_dir/cargo.sh"
+dash "$bootstrap_dir/cargo.sh" >"$HOME/bootstrap-logs/cargo.log" &
 
 gem pristine msgpack
 gem install neovim
 
-dash "$bootstrap_dir/python.sh"
-dash "$bootstrap_dir/zplugin.sh"
-dash "$updates_dir/node.sh"
-dash "$updates_dir/stack.sh"
-dash "$updates_dir/go.sh"
-if ! command -v cht.sh; then
-	echo 'installing cht.sh'
-	curl https://cht.sh/:cht.sh >"$HOME/.local/bin/chtsh" && chmod +x ~/.local/bin/cht.sh
-fi
-echo 'Bootstrap finished! Reboot and try running "update-all" to make sure this worked.'
+dash "$bootstrap_dir/zplugin.sh" >"$HOME/bootstrap-logs/zplugin.log" &
+dash "$updates_dir/node.sh" >"$HOME/bootstrap-logs/node.log" &
+dash "$updates_dir/stack.sh" >"$HOME/bootstrap-logs/stack.log" &
+dash "$updates_dir/go.sh" >"$HOME/bootstrap-logs/go.log" &
+dash "$updates_dir/kitty.sh" >"$HOME/bootstrap-logs/kitty.log" &
+# Install pynvim before building neovim
+dash "$bootstrap_dir/python.sh" >"$HOME/bootstrap-logs/python.log"
+dash "$updates_dir/neovim.sh" >"$HOME/bootstrap-logs/neovim.log" &
+# install conmon before building runc, podman, buildah, skopeo
+dash "$updates_dir/small-cc-programs.sh" >"$HOME/bootstrap-logs/small-cc-programs.log"
+dash "$updates_dir/go-big.sh" >"$HOME/bootstrap-logs/go-big.log"
+echo 'Bootstrap executed! Some tasks might still be running in the background'
+echo "Check out $HOME/bootstrap-logs/ for logs"
+echo 'When everything looks done, reboot and run "update-all" to make sure everything worked'

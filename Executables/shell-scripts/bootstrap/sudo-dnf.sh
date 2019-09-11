@@ -1,5 +1,7 @@
 #!/bin/bash
 
+start_time=$(date '+%s')
+
 # dnf can do many parallel downloads
 if ! grep max_parallel_downloads /etc/dnf/dnf.conf >/dev/null; then
 	echo "max_parallel_downloads=20" >>/etc/dnf/dnf.conf
@@ -7,13 +9,13 @@ fi
 # Enable rpmfusion-free and copr
 dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
 # copr repos
-dnf copr enable eklitzke/watchman
-dnf copr enable petersen/stack
-dnf copr enable oleastre/fonts # Hasklig and Fira Code
-dnf copr enable sramanujam/firefox-nightly
-dnf copr enable zawertun/kde # latest kde
-dnf copr enable gumieri/sway
-dnf copr enable jdoss/wireguard
+dnf copr enable eklitzke/watchman -y
+dnf copr enable petersen/stack -y
+dnf copr enable oleastre/fonts -y # Hasklig and Fira Code
+dnf copr enable sramanujam/firefox-nightly -y
+dnf copr enable zawertun/kde -y # latest kde
+dnf copr enable gumieri/sway -y
+dnf copr enable jdoss/wireguard -y
 dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
@@ -256,4 +258,8 @@ packages=(
 	"zsh"
 )
 # shellcheck disable=SC2086
-dnf install ${packages[*]} --allowerasing --skip-broken
+dnf install ${packages[*]} --allowerasing --skip-broken -y
+
+end_time=$(date '+%s')
+elapsed=$(echo "$end_time - $start_time" | bc)
+echo "Time elapsed: $elapsed seconds"
