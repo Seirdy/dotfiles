@@ -8,6 +8,8 @@ go_update() {
 	echo "###"
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
+# building docs for some golang packages
+go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
