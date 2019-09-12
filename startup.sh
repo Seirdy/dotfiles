@@ -55,6 +55,8 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
+# Disable the golang google proxy
+export GOPROXY=direct
 
 # De-clutter my home folder.
 # See https://0x46.net/thoughts/2019/02/01/dotfile-madness/

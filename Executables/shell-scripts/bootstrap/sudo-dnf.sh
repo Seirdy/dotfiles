@@ -39,6 +39,7 @@ packages=(
 	"bc"
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
+	"bzip2"
 	"calc"
 	"cargo"
 	"catimg"
@@ -150,6 +151,7 @@ packages=(
 	"lua-devel"
 	"luajit"
 	"luarocks"
+	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
 	"meson"

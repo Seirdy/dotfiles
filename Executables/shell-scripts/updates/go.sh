@@ -46,6 +46,12 @@ go_update mvdan.cc/gofumpt/gofumports
 go_update github.com/kisielk/godepgraph
 # best sloc cloc and code counter
 go_update github.com/boyter/scc
+# language server
+go_update golang.org/x/tools/gopls
+# Learn go
+go_update golang.org/x/tour
+# godoc webserver
+go_update golang.org/x/tools/cmd/godoc
 
 # my mail client
 update_aerc() {
