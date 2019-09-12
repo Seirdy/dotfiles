@@ -10,9 +10,6 @@ go_update() {
 	echo "###"
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
-echo "## Updating Golang to latest development version"
-go_update golang.org/dl/gotip
-HOME=$GOPATH gotip download 2>&1
 # Access cloud storage
 go_update github.com/rclone/rclone
 # Run my CI/CD pipelines locally
@@ -35,6 +32,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& make docs \
 		&& install -d "$HOME/.local/share/man/man1" \
 		&& install -m 0644 docs/*.1 "$HOME/.local/share/man/man1"
+	export GO111MODULE=on 
 	go_update k8s.io/client-go@master
 	go_update k8s.io/client-go/rest@master
 	go_update github.com/containers/libpod/cmd/podman@master
