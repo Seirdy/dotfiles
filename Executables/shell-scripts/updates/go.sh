@@ -31,6 +31,8 @@ go_update github.com/imwally/linkview
 # github.com/liamg/aminal
 # Advanced file manager (like ranger)
 go_update github.com/gokcehan/lf
+# used to clone repos into a nice directory tree like "go get" does
+go_update github.com/motemen/ghq
 
 # Development tools
 #
