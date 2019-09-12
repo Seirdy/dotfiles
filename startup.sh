@@ -98,11 +98,18 @@ export STACK_YAML="$XDG_CONFIG_HOME/stack/stack.yaml"
 export STACK_ROOT="$HOME/Executables/stack"
 
 # Set MANPATH
-export MANPATH="/usr/share/man:$MANPATH"
-export MANPATH="/usr/local/share/man:$MANPATH"
-export MANPATH="$HOME/.local/man:$MANPATH"
-export MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
-export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+manpathadd_head() {
+	if [ -d "$1" ] && ! echo "$MANPATH" | grep -q "$1" >/dev/null; then
+		MANPATH="$1${MANPATH:+":$MANPATH"}"
+	fi
+}
+manpathadd_head "/usr/share/man"
+manpathadd_head "/usr/local/share/man"
+manpathadd_head "$HOME/.local/man"
+manpathadd_head "$HOME/.local/share/man"
+manpathadd_head "$NPM_PACKAGES/share/man"
+MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
+export MANPATH
 export INFOPATH="/usr/local/share/info:$INFOPATH"
 # Set PATH
 
