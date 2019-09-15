@@ -4,6 +4,6 @@ Type=Application
 Name=st
 GenericName=Terminal emulator
 Comment=a simple terminal implementation for X
-Exec=st-cmd %U
+Exec=st %U
 Icon=st
 Categories=System;TerminalEmulator;
