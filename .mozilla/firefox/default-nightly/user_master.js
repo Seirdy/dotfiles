@@ -311,6 +311,8 @@ user_pref("browser.contentblocking.report.monitor.enabled", false);
 user_pref("browser.contentblocking.report.monitor.url", "");
 user_pref("extensions.fxmonitor.firstAlertShown", "");
 user_pref("browser.contentblocking.report.monitor.enabled", false);
+// DNS should obey my system settings, thank you very much.
+user_pref("network.trr.mode", 5);
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
