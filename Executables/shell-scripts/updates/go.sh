@@ -59,6 +59,8 @@ go_update golang.org/x/tour
 go_update golang.org/x/tools/cmd/godoc
 # linting
 go_update github.com/golangci/golangci-lint/cmd/golangci-lint
+# compiler for embedded go
+go_update github.com/tinygo-org/tinygo
 
 # my mail client
 update_aerc() {
@@ -66,7 +68,7 @@ update_aerc() {
 	mkdir -p "$aerc_dir"
 	cd "$aerc_dir" || return 1
 	export GO111MODULE=on
-	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git pull
+	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git reset --hard HEAD && git pull
 	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make
 	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make install
 }

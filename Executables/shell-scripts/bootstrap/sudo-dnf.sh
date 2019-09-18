@@ -20,7 +20,6 @@ dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
 	"ImageMagick"
-	"ImageMagick-devel" # For building chafa
 	"ImageMagick-libs"
 	"LibRaw"
 	"SDL2-devel"
@@ -31,8 +30,8 @@ packages=(
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
+	"atool"
 	"atool" # file extraction util used by stpv
-	"autoconf"
 	"autoconf"
 	"automake" # build things like podman
 	"bash-completion"
@@ -44,7 +43,9 @@ packages=(
 	"cargo"
 	"catimg"
 	"ccls"
+	"chafa"
 	"clang"
+	"clang-devel" # compile compilers like tinygo
 	"cmake"
 	"cmake(KDecoration2)"
 	"cmake(KF5ConfigWidgets)"
@@ -56,7 +57,6 @@ packages=(
 	"cmake(Qt5Gui)"
 	"cmake(Qt5X11Extras)"
 	"cmake-data"
-	"containernetworking-plugins"
 	"containers-common" # build podman, skopeo, buildah
 	"cryptsetup"
 	"ctags"
@@ -72,13 +72,11 @@ packages=(
 	"enchant"
 	"exif" # useful for stpv
 	"extra-cmake-modules"
-	"fedora-toolbox"
 	"feh"
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"firefox-nightly"
 	"firejail" # sandbox for things like w3m without network access
-	"fish"
 	"flatpak"
 	"flatpak-builder"
 	"flatpak-runtime-config"
@@ -112,7 +110,6 @@ packages=(
 	"gperf"       # neovim dependency
 	"gpgme-devel" # building skopeo and others
 	"grsync"
-	"gtk-doc" # for building chafa's docs
 	"gtk3-devel"
 	"harfbuzz-devel"
 	"haskell-platform"
@@ -133,11 +130,11 @@ packages=(
 	"libcanberra-devel" # Required to build kitty
 	"libcmocka-devel"
 	"libdbusmenu-gtk3"
+	"libmatthew-java" # signal-cli
 	"libpng-devel"
 	"librsvg2-devel" # Compiling imv
 	"libseccomp"     # build runc
 	"libseccomp-devel"
-	"libsodium"
 	"libtermkey" # neovim dependency
 	"libtiff-devel"
 	"libtool"
@@ -148,6 +145,7 @@ packages=(
 	"libwayland-egl"    # Compiling imv
 	"libxkbcommon-x11-devel"
 	"llvm"
+	"llvm-devel" # compile compilers like tinygo
 	"lua-devel"
 	"luajit"
 	"luarocks"
@@ -165,7 +163,7 @@ packages=(
 	"ncurses-devel"
 	"neofetch" # installing it from here because it comes loaded with deps
 	"ninja-build"
-	"nmap"
+	"nmap" # network exploration
 	"nnn"
 	"npm"
 	"nprokopov-fira-code-fonts"
@@ -190,23 +188,24 @@ packages=(
 	"plasma-nm"
 	"plasma-widget-menubar"
 	"plasma-workspace-wayland"
-	"podman"
-	"podman-docker"
 	"powerline-fonts"
+	"pv" # monitor piping
 	"python3-devel"
+	"python3-matplotlib-qt5" # plotting in python
 	"qt5-qtmultimedia-devel" # compile quotient
 	"radeontop"
 	"rc"
 	"rclone"
 	"redshift"
+	"roboto-fontface-fonts"
 	"rsync"
 	"ruby-devel"
 	"rubygems"
-	"runc"
 	"rust-analysis"
 	"rust-std-static"
-	"scdoc" # Build aerc docs
-	"scrot" # Screenshots on X11
+	"scdoc"        # Build aerc docs
+	"scrot"        # Screenshots on X11
+	"slirp4netdns" # building container extensions
 	"sqlitebrowser"
 	"stack"
 	"startup-notification-devel"
@@ -236,7 +235,7 @@ packages=(
 	"vollkorn-fonts"
 	"w3m"
 	"w3m-img"
-	"watchman"
+	"watchman" # required for some language servers (like MPLS)
 	"wayland-devel"
 	"wayland-protocols-devel"
 	"wget"
