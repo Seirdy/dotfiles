@@ -44,6 +44,10 @@
 	"list.indicator": "\uf054",
 	"list.source.grep.command": "rg",
 	"python.jediEnabled": false,
+	"python.pythonPath": "python3",
+	"python.formatting.blackArgs": [
+		"-l 79"
+	],
 	"python.autoComplete.addBrackets": true,
 	"python.autoUpdateLanguageServer": true,
 	"python.formatting.provider": "black",
