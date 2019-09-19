@@ -4,7 +4,7 @@
     "coc-css": ">=1.2.2",
     "coc-diagnostic": ">=0.0.9",
     "coc-docker": ">=0.2.0",
-    "coc-git": ">=1.6.9",
+    "coc-git": ">=1.6.10",
     "coc-gitignore": ">=0.0.4",
     "coc-highlight": ">=1.2.4",
     "coc-html": ">=1.2.1",
@@ -18,9 +18,9 @@
     "coc-snippets": ">=2.1.11",
     "coc-stylelint": ">=1.1.0",
     "coc-texlab": ">=1.9.5",
-    "coc-vimlsp": ">=0.3.7",
+    "coc-vimlsp": ">=0.3.9",
     "coc-yaml": ">=1.0.2",
     "coc-yank": ">=1.1.2",
-    "coc-go": ">=0.4.0"
+    "coc-go": ">=0.5.0"
   }
 }
