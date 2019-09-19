@@ -1,0 +1,5 @@
+#!/usr/bin/env dash
+
+echo "$1" | sed 's/.*=//' | xargs hn view -c | less
+
+# vi:ft=sh
