@@ -17,6 +17,7 @@ stack_install pandoc-citeproc
 stack_install ShellCheck
 stack_install pandoc-include-code
 stack_install pandoc-crossref
+stack_install ghcide
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
