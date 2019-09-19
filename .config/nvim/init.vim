@@ -73,6 +73,7 @@ Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 Plug 'nathanielc/vim-tickscript'
 Plug 'cespare/vim-toml'
+Plug 'zplugin/zplugin-vim-syntax', { 'for': 'zsh' }
 
 call plug#end()
 

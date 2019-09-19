@@ -29,3 +29,8 @@ prepare imv https://github.com/eXeC64/imv && make install
 
 # conmon
 prepare conmon https://github.com/containers/conmon && make podman
+
+prepare cmatrix https://github.com/abishekvashok/cmatrix \
+	&& mkdir -p build \
+	&& cd build \
+	&& cmake .. -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release

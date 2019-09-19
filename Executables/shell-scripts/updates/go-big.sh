@@ -14,10 +14,6 @@ go_update() {
 go_update github.com/rclone/rclone
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
-# linting
-go_update github.com/golangci/golangci-lint/cmd/golangci-lint
-# matrix client, for when I get bored of weechat-matrix
-go_update github.com/tulir/gomuks
 # # podman > docker
 if [ "$MACHINE" = 'Linux' ]; then
 	# install the OCI stack along with its manpages

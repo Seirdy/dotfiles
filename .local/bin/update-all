@@ -30,15 +30,10 @@ script_dir="$HOME/Executables/shell-scripts/updates"
 cd "$script_dir" || return 1
 fd -t f -e sh -x chmod +x # So I can run the scripts with their shebangs
 mkdir -p "$XDG_DATA_HOME/update-all/logs" "$GOPATH" && cd "$XDG_DATA_HOME/update-all/logs" || return 1
-printf "%s" 'Compressing old log: ' # Combines with first line of p7zip output
-
-fd -t d -x 7z a -bd -m0=lzma -mx=9 -y "{/}.7z" "{}" \
-	| rg -v 'Copyright|p7zip Version|Scanning the drive|Items to compress' \
-	| rg -v 'Files read from disk|Everything is Ok' \
-	| sed '/^$/d' \
-	| sed '/\.7z/N;s/\nArchive size:/,/'
-
+echo 'Compressing old logs'
+fd -t d -x tar -I "lzip --best" -cf "{/}.tar.lz" "{}"
 fd -t d -x rm -rf
+
 time_start=$(date '+%s')
 mkdir "$time_start"
 cd "$time_start" || return 2

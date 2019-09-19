@@ -33,8 +33,13 @@ go_update github.com/imwally/linkview
 # github.com/liamg/aminal
 # Advanced file manager (like ranger)
 go_update github.com/gokcehan/lf
+# github and gitlab CLI
+go_update github.com/github/hub
+go_update github.com/zaquestion/lab || echo "failed to install lab"
 # used to clone repos into a nice directory tree like "go get" does
 go_update github.com/motemen/ghq
+# matrix client, for when I get bored of weechat-matrix
+go_update github.com/tulir/gomuks
 
 # Development tools
 #
@@ -52,6 +57,10 @@ go_update golang.org/x/tools/gopls
 go_update golang.org/x/tour
 # godoc webserver
 go_update golang.org/x/tools/cmd/godoc
+# linting
+go_update github.com/golangci/golangci-lint/cmd/golangci-lint
+# compiler for embedded go
+go_update github.com/tinygo-org/tinygo
 
 # my mail client
 update_aerc() {
@@ -59,7 +68,7 @@ update_aerc() {
 	mkdir -p "$aerc_dir"
 	cd "$aerc_dir" || return 1
 	export GO111MODULE=on
-	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git pull
+	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git reset --hard HEAD && git pull
 	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make
 	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make install
 }
