@@ -79,7 +79,9 @@ bind ,a exclaim_quiet xdotool key --delay 50 alt+h a
 " Open native search dialog
 bind ? exclaim_quiet xdotool key --delay 50 alt+e f
 " Open url in Reddit Terminal Viewer
-bind ,r hint -W exclaim $TERMINAL tuir --enable-media
+bind ,r hint -W exclaim_quiet $TERMINAL tuir --enable-media
+" open Hacker News url in haxor-news
+bind ,h hint -W exclaim_quiet $TERMINAL hn-url
 " Open in mpv
 bind ,m hint -W mpvsafe
 " Open image in feh
