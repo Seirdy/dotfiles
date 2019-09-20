@@ -96,6 +96,7 @@ export GEM_SPEC_CACHE="$GEM_HOME/specs"
 export GEMRC="$XDG_CONFIG_HOME/gem/config"
 export STACK_YAML="$XDG_CONFIG_HOME/stack/stack.yaml"
 export STACK_ROOT="$HOME/Executables/stack"
+export GHQ_ROOT="$HOME/Executables/ghq"
 
 # Set MANPATH
 manpathadd_head() {

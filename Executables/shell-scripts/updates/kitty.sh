@@ -2,15 +2,10 @@
 
 start_time=$(date '+%s')
 
-kitty_dir="$HOME/Downloads/gitclone/kitty"
-if [ -d "$kitty_dir" ]; then
-	cd "$kitty_dir" || exit
-	git pull
-else
-	cd "$(dirname $kitty_dir)" || exit
-	git clone "https://github.com/kovidgoyal/kitty.git"
-	cd kitty || exit
-fi
+# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+. "$HOME/.config/shell_common/functions_ghq.sh"
+
+ghq_get_cd https://github.com/kovidgoyal/kitty.git
 
 if [ "$MACHINE" = 'Linux' ]; then
 	echo 'Building kitty for Linux'
