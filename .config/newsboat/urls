@@ -1,6 +1,7 @@
 # vim: filetype=conf
 "query:All Unread:unread = \"yes\"" "0-query"
 "query:Excluding program updates:tags !# \"Programs\"" "0-query"
+"query:Excluding Reddit:tags !# \"Reddit\"" "0-query"
 "query:Favorites:tags # \"Favorite\"" "0-query"
 https://www.sonniesedge.net/posts.xml "Blog" "Favorite"
 # https://sonniesedge.co.uk/bookmarks.xml "Blog"
