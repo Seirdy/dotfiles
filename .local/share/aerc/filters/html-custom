@@ -1,9 +1,9 @@
 #!/bin/sh
 # aerc filter which runs w3m using firejail to prevent
 # any phoning home by rendered emails
-exec firejail --noprofile --net=none --caps.drop=all w3m \
+exec bwrap --ro-bind /usr /usr --symlink usr/lib64 /lib64 --proc /proc --unshare-all w3m \
 	-T text/html \
 	-cols $(tput cols) \
 	-dump \
 	-o display_image=false \
-	-o display_link_number=true
+	-o display_link=true

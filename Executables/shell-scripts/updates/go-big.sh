@@ -14,10 +14,10 @@ go_update() {
 go_update github.com/rclone/rclone
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
-# # podman > docker
 if [ "$MACHINE" = 'Linux' ]; then
 	# install the OCI stack along with its manpages
 	# This includes runc, podman, buildah, skopeo, and container networking plugins
+	# components written in C (like fuse-overlayfs and conmon) are built elsewhere
 	runc_import_path="github.com/opencontainers/runc"
 	go_update "$runc_import_path" \
 		&& cd "$GOPATH/src/$runc_import_path" \
