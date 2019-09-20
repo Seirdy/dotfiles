@@ -1,0 +1,6 @@
+#!/usr/bin/env dash
+newfile="$HOME/.local/bin/$1"
+printf '#!/usr/bin/env dash\n\n# vi:ft=sh' >"$newfile"
+chmod +x "$newfile"
+$EDITOR "$newfile"
+# vi:ft=sh
