@@ -128,6 +128,7 @@ packages=(
 	"libXrandr-devel"
 	"libassuan-devel"   # building skopeo and others
 	"libcanberra-devel" # Required to build kitty
+	"libcap-devel"      # building bubblewrap
 	"libcmocka-devel"
 	"libdbusmenu-gtk3"
 	"libmatthew-java" # signal-cli

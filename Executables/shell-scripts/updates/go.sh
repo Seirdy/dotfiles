@@ -61,6 +61,8 @@ go_update golang.org/x/tools/cmd/godoc
 go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 # compiler for embedded go
 go_update github.com/tinygo-org/tinygo
+# check git repo for secrets
+go_update github.com/zricethezav/gitleaks
 
 # my mail client
 update_aerc() {

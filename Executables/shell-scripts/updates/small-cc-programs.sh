@@ -1,21 +1,10 @@
 #!/usr/bin/env dash
 # Update small programs that are compiled with a C compiler
 
-gohome() {
-	cd "$HOME/Downloads/gitclone" || return 1
-}
+start_time=$(date '+%s')
 
-mkdir -p "$HOME/Downloads/gitclone" || exit 1
-
-prepare() {
-	gohome
-	if [ ! -d "./$1" ]; then
-		git clone "$2"
-	fi
-	cd "$1" || return 1
-	git pull
-	git submodule update --init --recursive --remote
-}
+# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+. "$HOME/.config/shell_common/functions_ghq.sh"
 
 export PREFIX="$HOME/.local"
 export BINPREFIX="$HOME/.local/bin"
@@ -25,12 +14,26 @@ export DATAPREFIX="$HOME/.local/share"
 export CONFIGPREFIX="$HOME/.config"
 
 # imv
-prepare imv https://github.com/eXeC64/imv && make install
+ghq_get_cd https://github.com/eXeC64/imv.git && make install
 
-# conmon
-prepare conmon https://github.com/containers/conmon && make podman
-
-prepare cmatrix https://github.com/abishekvashok/cmatrix \
+# cmatrix
+ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& mkdir -p build \
 	&& cd build \
-	&& cmake .. -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release
+	&& cmake .. -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release \
+	&& cmake --build . --target install
+
+# conmon; necessary for building OCI container stack
+ghq_get_cd https://github.com/containers/conmon.git && make podman
+
+# bubblewrap: sandbox any command. Dependency of flatpak
+ghq_get_cd https://github.com/containers/bubblewrap.git \
+	&& env NOCONFIGURE=1 ./autogen.sh \
+	&& ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib64" \
+	&& make \
+	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
+	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
+
+end_time=$(date '+%s')
+elapsed=$(echo "$end_time - $start_time" | bc)
+echo "Time elapsed: $elapsed seconds"

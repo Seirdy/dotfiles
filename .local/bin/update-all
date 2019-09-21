@@ -87,6 +87,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 	log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
 	log_bg 'flatpak'           # repair and update user-installed flatpaks
 	log_bg 'chromium'          # tertiary browser (after Firefox Nightly, Falkon)
+	log_bg 'in-containers'     # Updates running inside containers
 	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
 
 elif [ "$MACHINE" = 'Darwin' ]; then
