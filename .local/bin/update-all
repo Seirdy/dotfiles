@@ -71,14 +71,13 @@ log_fg() {
 # Run updates #
 ###############
 
-log_bg 'pip-pipx'         # see https://pipxproject.github.io/pipx/
-log_bg 'node'             # npm packages
-log_bg 'rubygem-luarocks' # combining gem and luarocks since they update quickly
-log_bg 'go'               # build go packages installed with "go get" (slow)
-log_bg 'go-big'           # same as above, but for larger packages
-log_bg 'cargo'            # rust packages (extremely cpu-heavy)
-log_bg 'kitty'            # compile kitty from git
-log_bg 'program-data'     # have some programs sync their data
+log_bg 'pip-pipx'              # see https://pipxproject.github.io/pipx/
+log_bg 'rubygem-luarocks-node' # combine gem+luarocks+npm since they update quickly
+log_bg 'go'                    # build go packages installed with "go get"
+log_bg 'go-big'                # same as above, but for larger packages (slow)
+log_bg 'cargo'                 # rust packages (extremely cpu-heavy)
+log_bg 'kitty'                 # compile kitty from git
+log_bg 'program-data'          # have some programs sync their data
 
 if [ "$MACHINE" = 'Linux' ]; then
 	log_bg 'newsboat'          # compile newsboat from git

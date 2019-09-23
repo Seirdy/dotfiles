@@ -1,3 +1,4 @@
+#!/bin/bash
 # I use zplugin for plugins
 # Except for powerlevel10k, all plugins are loaded after the prompt is displayed.
 # Some of my plugins only get loaded after I have typed some characters into the
@@ -27,8 +28,8 @@ zi0c() {
 # Plugins #
 ###########
 
-# My fancy prompt doesn't work on the standard Linux console.
-if [ $terminfo[colors] -gt 255 ]; then
+# My fancy prompt needs at least 256 colors, preferably 24bit color
+if [ "${terminfo[colors]:?}" -gt 255 ]; then
 	z_lucid
 	zplugin load romkatv/powerlevel10k
 fi
@@ -36,16 +37,18 @@ fi
 zi0b proto'git' ver'master'
 zplugin light skywind3000/z.lua
 
-zi0c
+zi0c ''
 zplugin snippet https://github.com/changyuheng/fz/blob/master/fz.sh
 
 zi0a
 zplugin light zdharma/fast-syntax-highlighting
 
+#shellcheck disable=SC2016
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
 zplugin light xvoland/Extract
 
 # Creates "thefuck" alias without slowing down startup
+#shellcheck disable=SC2016
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)fuc*]} ]]'
 zplugin light laggardkernel/thefuck
 
@@ -85,6 +88,9 @@ zplugin light LuRsT/hr
 
 zi_program pick'prettyping' has'ping'
 zplugin light denilsonsa/prettyping
+
+zi_program has'bat' pick'src/*'
+zplugin light https://github.com/eth-p/bat-extras
 
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light TheLocehiliosan/yadm
@@ -197,16 +203,16 @@ finish_setup() {
 	zpcompinit
 	zpcdreplay
 	# give less pretty colors
-	# shellcheck source=.config/less/less_termcap.sh
+	# shellcheck source=../../less/less_termcap.sh
 	. "$XDG_CONFIG_HOME/less/less_termcap.sh"
 	. "$XDG_CONFIG_HOME/lf/lf_icons.sh"
 	# aliases
 	SHELL_COMMON="$HOME/.config/shell_common"
-	# shellcheck source=.config/shell_common/aliases.sh
+	# shellcheck source=../aliases.sh
 	. "$SHELL_COMMON/aliases.sh"
-	# shellcheck source=.config/shell_common/aliases_private.sh
+	# shellcheck source=../aliases_private.sh
 	. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
-	# shellcheck source=.config/shell_common/functions.sh
+	# shellcheck source=../functions.sh
 	. "$SHELL_COMMON/functions.sh"
 }
 

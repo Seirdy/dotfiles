@@ -2,14 +2,11 @@
 
 start_time=$(date '+%s')
 
-# shellcheck source=~/.config/shell_common/functions_ghq.sh
+# shellcheck source=../../../.config/shell_common/functions_ghq.sh
 . "$HOME/.config/shell_common/functions_ghq.sh"
 
 stack_local() {
 	stack --local-bin-path="$HOME/Executables/stack/bin" "$@"
-}
-stack_install() {
-	stack_local install "$@"
 }
 
 stack_install_git() {
@@ -20,13 +17,19 @@ stack_install_git() {
 stack_local config set resolver nightly
 stack_local upgrade
 stack_local update
+# Pandoc and friends
 stack_install_git https://github.com/jgm/pandoc.git
 stack_install_git https://github.com/jgm/pandoc-citeproc.git
-stack_install_git https://github.com/koalaman/shellcheck.git
 stack_install_git https://github.com/owickstrom/pandoc-include-code.git
 stack_install_git https://github.com/lierdakil/pandoc-crossref.git
+# Shell script linter
+stack_install_git https://github.com/koalaman/shellcheck.git
+# Haskell language server; faster than haskell-ide-engine
 stack_install_git https://github.com/digital-asset/ghcide.git
+# source code grepper
 stack_install_git https://github.com/awgn/cgrep.git
+# Dockerfile linter
+stack_install_git https://github.com/hadolint/hadolint
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

@@ -7,14 +7,13 @@ start_time=$(date '+%s')
 . "$HOME/.config/shell_common/functions_ghq.sh"
 
 export PREFIX="$HOME/.local"
-export BINPREFIX="$HOME/.local/bin"
-export PREFIX="$HOME/.local"
-export MANPREFIX="$HOME/.local/man"
-export DATAPREFIX="$HOME/.local/share"
+export BINPREFIX="$PREFIX/bin"
+export MANPREFIX="$PREFIX/man"
+export DATAPREFIX="$PREFIX/share"
 export CONFIGPREFIX="$HOME/.config"
 
 # imv
-ghq_get_cd https://github.com/eXeC64/imv.git && make install
+ghq_get_cd https://github.com/eXeC64/imv.git && make && make install
 
 # cmatrix
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
@@ -22,6 +21,8 @@ ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& cd build \
 	&& cmake .. -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release \
 	&& cmake --build . --target install
+
+ghq_get_cd https://github.com/jarun/bcal.git && make && make install
 
 # conmon; necessary for building OCI container stack
 ghq_get_cd https://github.com/containers/conmon.git && make podman

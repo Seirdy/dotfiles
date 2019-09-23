@@ -27,6 +27,8 @@ go_update github.com/tigrawap/slit/cmd/slit
 go_update github.com/mvdan/sh/cmd/shfmt
 # like jq but for yaml
 go_update github.com/mikefarah/yq
+# curlie: better than httpie
+go_update github.com/rs/curlie
 # Alternative to urlview
 go_update github.com/imwally/linkview
 # Alternative terminal emulator
@@ -63,6 +65,10 @@ go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 go_update github.com/tinygo-org/tinygo
 # check git repo for secrets
 go_update github.com/zricethezav/gitleaks
+# lint dockerfiles; companion to hadolint
+go_update github.com/zabio3/godolint
+# format dockerfiles
+go_update github.com/jessfraz/dockfmt
 
 # my mail client
 update_aerc() {
