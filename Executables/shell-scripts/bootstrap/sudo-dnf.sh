@@ -101,6 +101,7 @@ packages=(
 	"glibc-devel"
 	"glibc-headers"
 	"glibc-static"
+	"gmp-static" # required for building Cabal/Stack packages like Hadolint
 	"gnome-themes"
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"

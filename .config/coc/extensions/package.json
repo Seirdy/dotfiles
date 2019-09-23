@@ -2,7 +2,7 @@
   "dependencies": {
     "coc-ccls": ">=0.0.4",
     "coc-css": ">=1.2.2",
-    "coc-diagnostic": ">=0.0.10",
+    "coc-diagnostic": ">=0.0.11",
     "coc-docker": ">=0.2.0",
     "coc-git": ">=1.6.10",
     "coc-gitignore": ">=0.0.4",
