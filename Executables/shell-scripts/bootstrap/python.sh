@@ -18,7 +18,9 @@ pipx install myqr &
 pipx install ncmpy &
 pipx install neovim-remote &
 pipx install pockyt &
+pipx install poku &
 pipx install proselint &
+pipx install ptpython &
 pipx install pydiatra &
 pipx install pydocstyle &
 pipx install pygments &
@@ -28,6 +30,7 @@ pipx install requires.io &
 pipx install restructuredtext-lint &
 pipx install safety &
 pipx install scspell3k &
+pipx install speedtest-cli &
 pipx install sphinx &
 pipx install standardebooks &
 pipx install thefuck &

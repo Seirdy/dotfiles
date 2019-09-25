@@ -40,7 +40,7 @@ alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
 alias pdfify='loffcon pdf'
 alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
 alias nvimclean='nvim +PlugClean'
-
+# shellcheck disable=SC2142
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
 
 # Aliases that change existing commands
@@ -50,6 +50,7 @@ alias z='z -I'
 alias tldr='tldr -p'
 alias tuir='tuir --enable-media'
 alias sub='tuir -s'
+alias glances='glances --disable-webui --disable-bg --disable-check-update'
 if command -v roflcat >/dev/null; then
 	alias lolcat='roflcat -t'
 fi
