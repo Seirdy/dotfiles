@@ -6,6 +6,8 @@ start_time=$(date '+%s')
 
 ghq_get_cd https://github.com/containers/fuse-overlayfs.git
 cp Dockerfile.static Dockerfile
+# speed up downloading
+sed -i 's/dnf /dnf --setopt=max_parallel_downloads=20 /g' ./Dockerfile
 sed -i 's#registry\.fedoraproject\.org/fedora:latest#registry\.fedoraproject\.org/fedora:rawhide#' ./Dockerfile
 sed -i 's/meson -/meson -D useroot=false -/' ./Dockerfile
 

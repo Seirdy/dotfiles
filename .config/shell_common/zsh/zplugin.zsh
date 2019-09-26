@@ -10,7 +10,7 @@
 # Common ICE modifiers
 
 z_lucid() {
-	zplugin ice lucid "$@"
+	zplugin ice lucid ver'master' "$@"
 }
 zi0a() {
 	z_lucid wait'0a' "$@"
@@ -34,7 +34,7 @@ if [ "${terminfo[colors]:?}" -gt 255 ]; then
 	zplugin load romkatv/powerlevel10k
 fi
 
-zi0b proto'git' ver'master'
+zi0b proto'git'
 zplugin light skywind3000/z.lua
 
 zi0c ''
@@ -129,7 +129,7 @@ zplugin light wfxr/forgit
 zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
 zplugin light tj/git-extras
 
-zi0b as'completion' has'git-extras'
+zi0b as'completion' has'git-extras' blockf
 zplugin snippet "$HOME/.zplugin/plugins/tj---git-extras/etc/git-extras-completion.zsh"
 
 # }}}
@@ -139,7 +139,7 @@ zplugin snippet "$HOME/.zplugin/plugins/tj---git-extras/etc/git-extras-completio
 ###############
 
 zi_completion() {
-	zi0a as'completion' "$@"
+	zi0a as'completion' blockf "$@"
 }
 
 # Seems to only work on Linux and BSD
