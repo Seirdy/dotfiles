@@ -112,7 +112,8 @@
 				"--from=markdown",
 				"--to=markdown",
 				"-s",
-				"--columns=87"
+				"--columns=87",
+				"--preserve-tabs"
 			]
 		},
 		"pandoc-rst": {

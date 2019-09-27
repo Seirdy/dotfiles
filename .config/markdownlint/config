@@ -13,7 +13,5 @@
 	"ul-indent": {
 		"indent": 4
 	},
-	"hard_tab": {
-		"code_blocks": false
-	}
+	"hard_tab": false
 }
