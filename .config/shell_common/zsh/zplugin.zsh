@@ -172,6 +172,9 @@ zplugin snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 zi_completion has'yadm' mv'yadm.zsh_completion -> _yadm'
 zplugin snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/yadm.zsh_completion
 
+zi_completion has'pandoc'
+zplugin light srijanshetty/zsh-pandoc-completion
+
 zi_completion has'fd'
 zplugin snippet OMZ::plugins/fd/_fd
 
