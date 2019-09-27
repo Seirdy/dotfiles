@@ -132,3 +132,21 @@ hnopen() {
 dnfss() {
 	dnf search "$@" | rg -v "i686|\-doc|debuginfo|\.src "
 }
+
+_ghsearch_url() {
+	formatstr=$(echo "$*" | tr ' ' '+')
+	printf 'https://github.com/search?q=%s&type=Repositories' "$formatstr"
+}
+
+gitsearch() {
+	$BROWSER "$(_ghsearch_url "$*")"
+}
+
+_ghsearch_starred_url() {
+	baseurl=$(_ghsearch_url "$*")
+	echo "${baseurl}&o=desc&s=starred"
+}
+
+gitssearch() {
+	$BROWSER "$(_ghsearch_starred_url "$*")"
+}
