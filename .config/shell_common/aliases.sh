@@ -126,7 +126,10 @@ alias kicat='kitty +kitten icat'
 # zsh-specific
 if [ -n "$ZSH_VERSION" ]; then
 	alias -g isotime='$(date -u -Iseconds)'
-	alias -g nnote='$(date -u -Iseconds).md'
+	timefile() {
+		printf '%s%s' "$(date -u -Iseconds)" ".$1"
+	}
+	alias -g nnote='timefile md'
 	alias -g detch='&>/dev/null 2>/dev/null & disown'
 	alias -g pagit='| $PAGER'
 	alias -g w3m-htm='| w3m -T text/html'
@@ -135,4 +138,3 @@ if [ -n "$ZSH_VERSION" ]; then
 	fi
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
 fi
-
