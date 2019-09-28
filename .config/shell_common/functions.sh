@@ -18,6 +18,7 @@ wdir() {
 }
 
 n() {
+	export NNN_TMPFILE="$XDG_CACHE_HOME/nnn/lastd"
 	nnn "$@"
 
 	if [ -f "$NNN_TMPFILE" ]; then
