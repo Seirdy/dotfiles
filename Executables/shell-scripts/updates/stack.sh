@@ -17,11 +17,15 @@ stack_install_git() {
 stack_local config set resolver nightly
 stack_local upgrade
 stack_local update
+
 # Pandoc and friends
 stack_install_git https://github.com/jgm/pandoc.git
+# Pandoc filters
 stack_install_git https://github.com/jgm/pandoc-citeproc.git
 stack_install_git https://github.com/owickstrom/pandoc-include-code.git
 stack_install_git https://github.com/lierdakil/pandoc-crossref.git
+stack_install_git https://github.com/owickstrom/pandoc-emphasize-code.git
+
 # Shell script linter
 stack_install_git https://github.com/koalaman/shellcheck.git
 # Haskell language server; faster than haskell-ide-engine
