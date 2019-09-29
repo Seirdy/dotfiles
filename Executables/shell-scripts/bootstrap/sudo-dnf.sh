@@ -36,6 +36,7 @@ packages=(
 	"automake" # build things like podman
 	"bash-completion"
 	"bc"
+	"bison" # build many programs' docs
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
@@ -64,11 +65,13 @@ packages=(
 	"curl"
 	"dash"
 	"dbus-devel"
+	"dconf-devel"         # build flatpak
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
 	"dolphin-plugins"
 	"dvtm"
 	"egl-wayland-devel"
+	"elfutils"
 	"enchant"
 	"exif" # useful for stpv
 	"extra-cmake-modules"
@@ -76,7 +79,6 @@ packages=(
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"firefox-nightly"
-	"firejail" # sandbox for things like w3m without network access
 	"flatpak"
 	"flatpak-builder"
 	"flatpak-runtime-config"
@@ -88,12 +90,14 @@ packages=(
 	"freeimage-devel"
 	"freeimage-devel" # Compiling imv
 	"freetype"
+	"fuse-devel"     # build flatpak
 	"fuse-overlayfs" # podman runtime dependency
 	"gcc"
 	"gcc-c++"
 	"gcc-gdb-plugin"
 	"gdb"
 	"gettext"
+	"gettext-devel" # build flatpak
 	"git"
 	"git-email"
 	"glibc"
@@ -106,11 +110,12 @@ packages=(
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
 	"gnu-free-mono-fonts"
+	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
 	"gperf"       # neovim dependency
 	"gpgme-devel" # building skopeo and others
-	"grsync"
+	"gtk-doc"     # building flatpak
 	"gtk3-devel"
 	"harfbuzz-devel"
 	"haskell-platform"
@@ -122,23 +127,27 @@ packages=(
 	"ituomi-hasklig-fonts"
 	"java-latest-openjdk-devel"
 	"jq"
+	"json-glib-devel" # build flatpak
 	"latexmk"
 	"libXcursor-devel"
 	"libXi-devel"
 	"libXinerama-devel"
 	"libXrandr-devel"
-	"libassuan-devel"   # building skopeo and others
-	"libcanberra-devel" # Required to build kitty
-	"libcap-devel"      # building bubblewrap
+	"libappstream-glib-devel" # build flatpak
+	"libarchive-devel"        # build flatpak
+	"libassuan-devel"         # building skopeo and others
+	"libcanberra-devel"       # Required to build kitty
+	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
-	"libdbusmenu-gtk3"
-	"libmatthew-java" # signal-cli
-	"libpng-devel"
-	"librsvg2-devel" # Compiling imv
-	"libseccomp"     # build runc
-	"libseccomp-devel"
-	"libtermkey" # neovim dependency
-	"libtiff-devel"
+	"libdbusmenu-gtk3" # enable global app menu
+	"libmatthew-java"  # signal-cli
+	"libpng-devel"     # build imv and others
+	"librsvg2-devel"   # Compiling imv
+	"libseccomp"       # build runc
+	"libseccomp-devel" # build runc, slirp4netns, and others
+	"libsoup-devel"    # build flatpak
+	"libtermkey"       # neovim dependency
+	"libtiff-devel"    # Build imv and others
 	"libtool"
 	"libva-utils" # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
@@ -171,6 +180,7 @@ packages=(
 	"nprokopov-fira-code-fonts"
 	"nvi"
 	"openssl-devel"
+	"ostree"
 	"ostree-devel" # build runc, skopeo, and others
 	"p7zip"
 	"p7zip-plugins"
@@ -190,6 +200,7 @@ packages=(
 	"plasma-nm"
 	"plasma-widget-menubar"
 	"plasma-workspace-wayland"
+	"polkit-devel" # build flatpak
 	"powerline-fonts"
 	"pv" # monitor piping
 	"python3-devel"
@@ -205,9 +216,9 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
-	"scdoc"        # Build aerc docs
-	"scrot"        # Screenshots on X11
-	"slirp4netdns" # building container extensions
+	"scdoc"                # Build aerc docs
+	"scrot"                # Screenshots on X11
+	"selinux-policy-devel" # build flatpak
 	"sqlitebrowser"
 	"stack"
 	"startup-notification-devel"
@@ -249,9 +260,9 @@ packages=(
 	"x265-libs"
 	"xbacklight"
 	"xdg-desktop-portal"
-	"xdg-desktop-portal-kde"
 	"xdotool"
-	"xsel" # Yank tool; used by yank-cli
+	"xmlto" # build many programs that use XML, inc. Flatpak
+	"xsel"  # Yank tool; used by yank-cli
 	"yacreader"
 	"yank" # Good yank tool; works with xsel
 	"zathura"

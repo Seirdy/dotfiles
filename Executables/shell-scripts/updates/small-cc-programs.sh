@@ -12,6 +12,9 @@ export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
 export CONFIGPREFIX="$HOME/.config"
 
+# mpv-mpris
+ghq_get_cd https://github.com/hoyon/mpv-mpris && make install
+
 # imv
 ghq_get_cd https://github.com/eXeC64/imv.git && make && make install
 
@@ -27,13 +30,26 @@ ghq_get_cd https://github.com/jarun/bcal.git && make && make install
 # conmon; necessary for building OCI container stack
 ghq_get_cd https://github.com/containers/conmon.git && make podman
 
-# bubblewrap: sandbox any command. Dependency of flatpak
+# bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib64" \
 	&& make \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
 	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
+
+# slirp4netns: required for many rootless container setups and Flatpak
+ghq_get_cd https://github.com/rootless-containers/slirp4netns \
+	&& ./autogen.sh \
+	&& ./configure --prefix="$PREFIX" \
+	&& make && make install
+
+# flatpak
+ghq_get_cd https://github.com/flatpak/flatpak \
+	&& ./autogen.sh \
+	&& ./configure --prefix="$HOME/.local" --with-system-bubblewrap --with-system-dbus-proxy \
+	&& make \
+	&& make install
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
