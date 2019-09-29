@@ -256,7 +256,11 @@ https://feeds.fireside.fm/linuxactionnews/rss "Linux" "Media" "Audio"
 # User Errors
 https://feeds.fireside.fm/usererror/rss "Linux" "Media" "Audio"
 # Linux Unplugged
-https://linuxunplugged.com/rss "Linux" "Media" "Audio"
+https://linuxunplugged.com/rss "Favorite" "Linux" "Media" "Audio"
+# The Linux Link Tech Show
+https://feeds.feedburner.com/TheLinuxLinkTechShowOpusFeed "Linux" "Media" "Audio"
+# TechSNAP
+https://feeds.fireside.fm/techsnap/rss "Linux" "Media" "Audio"
 
 # Video
 

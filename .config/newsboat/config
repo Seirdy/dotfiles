@@ -60,4 +60,4 @@ macro w set browser "$TERMINAL w3m -o display_image=false" ; open-in-browser ; s
 download-path "~/Podcasts/%h/%n"
 max-downloads 20
 player "mpv-term --speed=1.5"
-podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %S %u"
+podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %S %F"
