@@ -189,6 +189,8 @@ user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
+user_pref("app.normandy.user_id", "");
+user_pref("app.normandy.run_interval_seconds", 999999);
 /* 0513: disable Follow On Search (FF53+)
  * Just DELETE the XPI file in your system extensions directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
@@ -313,6 +315,8 @@ user_pref("extensions.fxmonitor.firstAlertShown", "");
 user_pref("browser.contentblocking.report.monitor.enabled", false);
 // DNS should obey my system settings, thank you very much.
 user_pref("network.trr.mode", 5);
+user_pref("network.trr.resolvers", "");
+user_pref("network.trr.uri", "");
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
@@ -324,3 +328,6 @@ user_pref("browser.tabs.tabClipWidth", 100);
 // animations
 user_pref("full-screen-api.warning.delay", 0);
 user_pref("full-screen-api.warning.timeout", 0);
+
+// I'm not sure if the following settings matter, but they're filled with URLs by default so they might phone home.
+user_pref("signon.management.page.breachAlertUrl", "");
