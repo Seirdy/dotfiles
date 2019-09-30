@@ -15,7 +15,6 @@
 #	- TempleOS (fight me)
 
 # Don't re-run this
-echo 'setting profile'
 if [ "$PROFILE_SET" = 1 ]; then
 	exit
 fi
