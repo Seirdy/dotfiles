@@ -179,6 +179,7 @@ packages=(
 	"npm"
 	"nprokopov-fira-code-fonts"
 	"nvi"
+	"opam"
 	"openssl-devel"
 	"ostree"
 	"ostree-devel" # build runc, skopeo, and others
