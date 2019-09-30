@@ -86,7 +86,7 @@ export PIPX_BIN_DIR="$HOME/Executables/pipx/bin"
 export NPM_PACKAGES="$HOME/Executables/npm"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-
+export UNISON="$XDG_DATA_HOME/unison"
 export OPAMROOT="$HOME/Executables/opam"
 export OPAM_SWITCH_PREFIX="$OPAMROOT/default"
 export CAML_LD_LIBRARY_PATH="$OPAM_SWITCH_PREFIX/lib/stublibs:Updated by package ocaml"
