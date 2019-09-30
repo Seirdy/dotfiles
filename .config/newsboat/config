@@ -1,7 +1,6 @@
 # vim: set ft=conf
 browser "$BROWSER %u"
 prepopulate-query-feeds yes
-feed-sort-order firsttag
 bookmark-cmd "$XDG_DATA_DIR/newsboat/send-to-pocket.sh"
 bookmark-autopilot yes
 history-limit 400
@@ -10,6 +9,10 @@ text-width 88
 # html-renderer "w3m -dump -T text/html"
 external-url-viewer "url-picker"
 suppress-first-reload yes
+
+# Display and sort by first tag
+feed-sort-order firsttag
+feedlist-format "%4i %n %10T %9u %t"
 
 # Reloading
 refresh-on-startup yes
@@ -58,6 +61,6 @@ macro w set browser "$TERMINAL w3m -o display_image=false" ; open-in-browser ; s
 
 # Podcast downloading
 download-path "~/Podcasts/%h/%n"
-max-downloads 20
+max-downloads 50
 player "mpv-term --speed=1.5"
-podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %S %F"
+podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %10S %F"
