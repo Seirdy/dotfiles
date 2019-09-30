@@ -87,6 +87,11 @@ export PIPX_BIN_DIR="$HOME/Executables/pipx/bin"
 export NPM_PACKAGES="$HOME/Executables/npm"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+export OPAMROOT="$HOME/Executables/opam"
+export OPAM_SWITCH_PREFIX="$OPAMROOT/default"
+export CAML_LD_LIBRARY_PATH="$OPAM_SWITCH_PREFIX/lib/stublibs:Updated by package ocaml"
+export OCAML_TOPLEVEL_PATH="$OPAM_SWITCH_PREFIX/lib/toplevel"
 # Keep rubygems from polluting my $HOME
 # Note that ~/.gem will be created if using --user-install, but it's completely
 # disposable.
@@ -109,6 +114,7 @@ manpathadd_head "/usr/local/share/man"
 manpathadd_head "$HOME/.local/man"
 manpathadd_head "$HOME/.local/share/man"
 manpathadd_head "$NPM_PACKAGES/share/man"
+manpathadd_head "$OPAM_SWITCH_PREFIX/man"
 MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
 export MANPATH
 export INFOPATH="/usr/local/share/info:$INFOPATH"
@@ -138,6 +144,7 @@ pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
 pathadd_head "$GOPATH/bin"                    # go
 pathadd_head "$GOPATH/sdk/gotip/bin"          # go
 pathadd_head "$STACK_ROOT/bin"                # stack (haskell)
+pathadd_head "$OPAM_SWITCH_PREFIX/bin"        # opam
 pathadd_head "$CARGO_HOME/bin"                # cargo (rust)
 pathadd_head "$HOME/.local/bin"               # local bin
 
