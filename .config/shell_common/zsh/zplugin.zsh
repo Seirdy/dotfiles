@@ -187,6 +187,9 @@ zplugin snippet https://github.com/chubin/cheat.sh/blob/master/share/zsh.txt
 zi_completion has'buku'
 zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
 
+zi_completion has'hub'
+zplugin snippet https://github.com/github/hub/blob/master/etc/hub.zsh_completion
+
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'

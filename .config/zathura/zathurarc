@@ -3,4 +3,5 @@ set default-fg "#eff0f1"
 set selection-clipboard clipboard
 set recolor-lightcolor "#232629"
 set recolor-darkcolor "#eff0f1"
-set recolor
+set recolor true
+set smooth-scroll true
