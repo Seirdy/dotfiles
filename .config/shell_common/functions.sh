@@ -151,3 +151,6 @@ _ghsearch_starred_url() {
 gitssearch() {
 	$BROWSER "$(_ghsearch_starred_url "$*")"
 }
+
+# shellcheck source=functions_ghq.sh
+. "$(dirname "$0")/functions_ghq.sh"
