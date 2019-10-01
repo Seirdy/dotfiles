@@ -129,7 +129,7 @@ if [ -n "$ZSH_VERSION" ]; then
 	timefile() {
 		printf '%s%s' "$(date -u -Iseconds)" ".$1"
 	}
-	alias -g nnote='timefile md'
+	alias -g nnote='$(timefile md)'
 	alias -g detch='&>/dev/null 2>/dev/null & disown'
 	alias -g pagit='| $PAGER'
 	alias -g w3m-htm='| w3m -T text/html'
