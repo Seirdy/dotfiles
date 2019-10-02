@@ -25,7 +25,11 @@ ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& cmake .. -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release \
 	&& cmake --build . --target install
 
+# bcal
 ghq_get_cd https://github.com/jarun/bcal.git && make && make install
+
+# nnn
+ghq_get_cd https://github.com/jarun/nnn.git && make && make strip install
 
 # conmon; necessary for building OCI container stack
 ghq_get_cd https://github.com/containers/conmon.git && make podman

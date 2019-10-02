@@ -10,6 +10,8 @@ poku
 # buku -u --threads 10
 echo 'Updating RSS feeds'
 newsboat -x reload
+echo 'Updating dnf cache'
+dnf makecache
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

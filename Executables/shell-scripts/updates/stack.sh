@@ -11,6 +11,7 @@ stack_local() {
 
 stack_install_git() {
 	ghq_get_cd "$1" \
+		&& STACK_YAML="./stack.yaml" stack_local --resolver nightly setup \
 		&& STACK_YAML="./stack.yaml" stack_local --resolver nightly install
 }
 

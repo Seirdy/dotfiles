@@ -1,4 +1,8 @@
 #!/usr/bin/env dash
+
+# This script builds fuse-overlayfs and fuseermount3 from source in a Fedora Rawhide
+# unprivileged container.
+
 start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
