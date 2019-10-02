@@ -34,6 +34,12 @@ ghq_get_cd https://github.com/jarun/nnn.git && make && make strip install
 # conmon; necessary for building OCI container stack
 ghq_get_cd https://github.com/containers/conmon.git && make podman
 
+# catatonit; used to init containers
+ghq_get_cd https://github.com/openSUSE/catatonit.git \
+	&& autoreconf -fi \
+	&& ./configure --prefix="$PREFIX" \
+	&& make
+
 # bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
