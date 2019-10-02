@@ -40,6 +40,13 @@ ghq_get_cd https://github.com/openSUSE/catatonit.git \
 	&& ./configure --prefix="$PREFIX" \
 	&& make
 
+# crun: container runtime
+ghq_get_cd https://github.com/containers/crun.git \
+	&& ./autogen.sh \
+	&& ./configure --prefix="$PREFIX" \
+	&& make \
+	&& make install
+
 # bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \

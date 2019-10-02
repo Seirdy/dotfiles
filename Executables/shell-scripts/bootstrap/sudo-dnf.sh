@@ -30,7 +30,6 @@ packages=(
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
-	"atool"
 	"atool" # file extraction util used by stpv
 	"autoconf"
 	"automake" # build things like podman
@@ -79,19 +78,15 @@ packages=(
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"firefox-nightly"
-	"flatpak"
 	"flatpak-builder"
-	"flatpak-runtime-config"
 	"fontawesome-fonts"
 	"fontconfig"
 	"fontconfig-devel"
 	"fortune-mod"
 	"fpaste"
-	"freeimage-devel"
 	"freeimage-devel" # Compiling imv
 	"freetype"
-	"fuse-devel"     # build flatpak
-	"fuse-overlayfs" # podman runtime dependency
+	"fuse-devel" # build flatpak
 	"gcc"
 	"gcc-c++"
 	"gcc-gdb-plugin"
@@ -157,6 +152,7 @@ packages=(
 	"libxkbcommon-x11-devel"
 	"llvm"
 	"llvm-devel" # compile compilers like tinygo
+	"lm_sensors"
 	"lua-devel"
 	"luajit"
 	"luarocks"
@@ -165,7 +161,6 @@ packages=(
 	"mesa-libGLU-devel"
 	"meson"
 	"mozilla-fira-mono-fonts"
-	"mozilla-fira-sans-fonts"
 	"mpc"
 	"mpd"
 	"mpv"
@@ -175,7 +170,6 @@ packages=(
 	"neofetch" # installing it from here because it comes loaded with deps
 	"ninja-build"
 	"nmap" # network exploration
-	"nnn"
 	"npm"
 	"nprokopov-fira-code-fonts"
 	"nvi"
@@ -205,11 +199,13 @@ packages=(
 	"powerline-fonts"
 	"pv" # monitor piping
 	"python3-devel"
+	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
 	"qt5-qtmultimedia-devel" # compile quotient
 	"radeontop"
 	"rc"
 	"rclone"
+	"readline-devel" # build nnn and others
 	"redshift"
 	"roboto-fontface-fonts"
 	"rsync"
@@ -221,6 +217,7 @@ packages=(
 	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
 	"sqlitebrowser"
+	"sshfs" # mount another computer
 	"stack"
 	"startup-notification-devel"
 	"taglib"
@@ -265,7 +262,8 @@ packages=(
 	"xmlto" # build many programs that use XML, inc. Flatpak
 	"xsel"  # Yank tool; used by yank-cli
 	"yacreader"
-	"yank" # Good yank tool; works with xsel
+	"yajl-devel" # building crun
+	"yank"       # Good yank tool; works with xsel
 	"zathura"
 	"zathura-plugins-all"
 	"zathura-zsh-completion"
