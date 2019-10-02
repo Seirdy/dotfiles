@@ -118,7 +118,7 @@ packages=(
 	"ht-*-fonts"
 	"hunspell-en"
 	"hwinfo"
-	"iptables"
+	"iptables" # networking setup
 	"ituomi-hasklig-fonts"
 	"java-latest-openjdk-devel"
 	"jq"
@@ -272,6 +272,10 @@ packages=(
 )
 # shellcheck disable=SC2086
 dnf install ${packages[*]} --allowerasing --skip-broken -y
+
+# ssh setup
+iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+iptables -I INPUT -p udp --dport 60000:61000 -j ACCEPT
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

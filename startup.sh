@@ -227,9 +227,11 @@ elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIF
 	fi
 fi
 
-SESSION_START="$(date -Iseconds)"
-export SESSION_START
 export FZF_DEFAULT_OPTS='-m --ansi'
 export FZF_DEFAULT_COMMAND='rg --files -g ""'
+
+eval "$(ssh-agent)"
+SESSION_START="$(date -Iseconds)"
+export SESSION_START
 
 export PROFILE_SET=1
