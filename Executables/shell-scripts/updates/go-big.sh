@@ -4,10 +4,6 @@
 
 start_time=$(date '+%s')
 
-echo 'cleaning modcache'
-go clean -modcache
-echo 'cleaned modcache'
-
 go_update() {
 	echo "###"
 	echo "### Updating $* ###"
@@ -20,7 +16,8 @@ go_update_cni() {
 	echo "## Installing CNI plugin $*"
 	echo '##'
 	echo "go get -u -v github.com/containernetworking/plugins/plugins/$1"
-	GOBIN="$HOME/.local/libexec/cni" go get -u -v "github.com/containernetworking/plugins/plugins/$1"
+	plgname=$(basename "$1")
+	go build -o "$HOME/.local/libexec/cni/$plgname" -mod=vendor "$GOPATH/src/$1"
 
 }
 # Access cloud storage
@@ -30,11 +27,11 @@ go_update gitlab.com/gitlab-org/gitlab-runner
 if [ "$MACHINE" = 'Linux' ]; then
 	# install the OCI stack along with its manpages
 	# This includes:
-	#		- runc
-	#		- podman
-	#		- buildah
-	#		- skopeo
-	#		- all relevant CNI plugins
+	# - runc
+	# - podman
+	# - buildah
+	# - skopeo
+	# - all relevant CNI plugins
 	# components written in C (like fuse-overlayfs and conmon) are built elsewhere
 	runc_import_path="github.com/opencontainers/runc"
 	go_update "$runc_import_path" \
@@ -49,20 +46,26 @@ if [ "$MACHINE" = 'Linux' ]; then
 	export GO111MODULE=on
 	# podman
 	printf '###\n### Updating podman ###\n###\n'
+	# Do not install podman binary when working with the Makefile
 	[ -d "$GOPATH/src/github.com/containers/libpod" ] || git clone https://github.com/containers/libpod/ "$GOPATH/src/github.com/containers/libpod" \
 		&& cd "$GOPATH/src/github.com/containers/libpod" \
 		&& git pull \
 		&& make BUILDTAGS="seccomp" \
-		&& make PREFIX="$HOME/.local" BINDIR="$GOPATH/bin" ETCDIR="$XDG_CONFIG_HOME" install
+		&& make PREFIX="$HOME/.local" BINDIR="$(mktemp -d)" ETCDIR="$XDG_CONFIG_HOME" install
 	# update podman again, this time without all the flags from its makefile
-	# Rerun on failure
 	echo 'Building podman without flags'
-	go get -u -v github.com/containers/libpod/cmd/podman || go get -u -v github.com/containers/libpod/cmd/podman
+	go build -o "$GOPATH/bin/podman" "$GOPATH/src/github.com/containers/libpod/cmd/podman"
+	go_update github.com/containers/buildah/cmd/buildah \
+		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
+		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
+		&& install -d "$HOME/.local/share/man/man1" \
+		&& install -m 0644 buildah*.1 "$HOME/.local/share/man/man1"
 	# all the relevant CNI plugins
 	if [ -d "$GOPATH/src/github.com/containernetworking/plugins" ]; then
 		mkdir -p "$GOPATH/src/github.com/containernetworking/plugins" \
 			&& git clone 'https://github.com/containernetworking/plugins.git' "$GOPATH/src/github.com/containernetworking/plugins"
 	fi
+	go clean -modcache
 	cd "$GOPATH/src/github.com/containernetworking/plugins/plugins" \
 		&& git pull \
 		&& {
@@ -74,11 +77,6 @@ if [ "$MACHINE" = 'Linux' ]; then
 				fi
 			done
 		}
-	go_update github.com/containers/buildah/cmd/buildah \
-		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
-		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
-		&& install -d "$HOME/.local/share/man/man1" \
-		&& install -m 0644 buildah*.1 "$HOME/.local/share/man/man1"
 else
 	# podman-machine is like docker-machine/docker desktop
 	go_update https://github.com/boot2podman/machine/cmd/podman-machine
