@@ -42,6 +42,19 @@ log_dir="$PWD"
 export log_dir
 echo # newline
 
+###############
+# Arg Parsing #
+###############
+if [ "$1" = '-lite' ] || [ "$1" = '--lite' ]; then
+	export litemode=1
+fi
+
+if [ -z "$litemode" ]; then
+	echo 'Running full upgrade, including compilation of large programs'
+else
+	echo 'Running lite upgrade, skipping compilation of large programs'
+fi
+
 #####################
 # Logging functions #
 #####################
@@ -73,21 +86,25 @@ log_fg() {
 
 log_bg 'pip-pipx'              # see https://pipxproject.github.io/pipx/
 log_bg 'rubygem-luarocks-node' # combine gem+luarocks+npm since they update quickly
-log_bg 'go'                    # build go packages installed with "go get"
-log_bg 'go-big'                # same as above, but for larger packages (slow)
-log_bg 'cargo'                 # rust packages (extremely cpu-heavy)
-log_bg 'kitty'                 # compile kitty from git
 log_bg 'program-data'          # have some programs sync their data
+if [ -z "$litemode" ]; then
+	log_bg 'go'     # build go packages installed with "go get"
+	log_bg 'go-big' # same as above, but for larger packages (slow)
+	log_bg 'cargo'  # rust packages (extremely cpu-heavy)
+	log_bg 'kitty'  # compile kitty from git
+fi
 
 if [ "$MACHINE" = 'Linux' ]; then
-	log_bg 'newsboat'          # compile newsboat from git
-	log_bg 'neovim'            # compile neovim from git
-	log_bg 'small-cc-programs' # compile imv from git
-	log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
-	log_bg 'flatpak'           # repair and update user-installed flatpaks
-	log_bg 'chromium'          # tertiary browser (after Firefox Nightly, Falkon)
-	log_bg 'in-containers'     # Updates running inside containers
-	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
+	if [ -z "$litemode" ]; then
+		log_bg 'newsboat'          # compile newsboat from git
+		log_bg 'neovim'            # compile neovim from git
+		log_bg 'small-cc-programs' # compile imv from git
+		log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
+		log_bg 'in-containers'     # Updates running inside containers
+	fi
+	log_bg 'flatpak'  # repair and update user-installed flatpaks
+	log_bg 'chromium' # tertiary browser (after Firefox Nightly, Falkon)
+	log_fg 'dnf'      # system-wide update, autoremoval, and repo caching.
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 	echo
