@@ -230,7 +230,7 @@ fi
 export FZF_DEFAULT_OPTS='-m --ansi'
 export FZF_DEFAULT_COMMAND='rg --files -g ""'
 
-eval "$(ssh-agent)"
+eval "$(ssh-agent)" >/dev/null
 SESSION_START="$(date -Iseconds)"
 export SESSION_START
 
