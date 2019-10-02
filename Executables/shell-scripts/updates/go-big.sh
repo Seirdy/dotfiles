@@ -4,11 +4,24 @@
 
 start_time=$(date '+%s')
 
+echo 'cleaning modcache'
+go clean -modcache
+echo 'cleaned modcache'
+
 go_update() {
 	echo "###"
 	echo "### Updating $* ###"
 	echo "###"
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
+}
+
+go_update_cni() {
+	echo '##'
+	echo "## Installing CNI plugin $*"
+	echo '##'
+	echo "go get -u -v github.com/containernetworking/plugins/plugins/$1"
+	GOBIN="$HOME/.local/libexec/cni" go get -u -v "github.com/containernetworking/plugins/plugins/$1"
+
 }
 # Access cloud storage
 go_update github.com/rclone/rclone
@@ -16,7 +29,12 @@ go_update github.com/rclone/rclone
 go_update gitlab.com/gitlab-org/gitlab-runner
 if [ "$MACHINE" = 'Linux' ]; then
 	# install the OCI stack along with its manpages
-	# This includes runc, podman, buildah, skopeo, and container networking plugins
+	# This includes:
+	#		- runc
+	#		- podman
+	#		- buildah
+	#		- skopeo
+	#		- all relevant CNI plugins
 	# components written in C (like fuse-overlayfs and conmon) are built elsewhere
 	runc_import_path="github.com/opencontainers/runc"
 	go_update "$runc_import_path" \
@@ -29,18 +47,30 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& install -d "$HOME/.local/share/man/man1" \
 		&& install -m 0644 docs/*.1 "$HOME/.local/share/man/man1"
 	export GO111MODULE=on
-	go_update k8s.io/client-go@master
-	go_update k8s.io/client-go/rest@master
-	go_update github.com/containers/libpod/cmd/podman
-	go_update github.com/containernetworking/plugins/plugins/ipam/dhcp \
-		&& cd "$GOPATH/src/github.com/containernetworking/plugins/plugins" \
+	# podman
+	printf '###\n### Updating podman ###\n###\n'
+	[ -d "$GOPATH/src/github.com/containers/libpod" ] || git clone https://github.com/containers/libpod/ "$GOPATH/src/github.com/containers/libpod" \
+		&& cd "$GOPATH/src/github.com/containers/libpod" \
+		&& git pull \
+		&& make BUILDTAGS="seccomp" \
+		&& make PREFIX="$HOME/.local" BINDIR="$GOPATH/bin" ETCDIR="$XDG_CONFIG_HOME" install
+	# update podman again, this time without all the flags from its makefile
+	# Rerun on failure
+	echo 'Building podman without flags'
+	go get -u -v github.com/containers/libpod/cmd/podman || go get -u -v github.com/containers/libpod/cmd/podman
+	# all the relevant CNI plugins
+	if [ -d "$GOPATH/src/github.com/containernetworking/plugins" ]; then
+		mkdir -p "$GOPATH/src/github.com/containernetworking/plugins" \
+			&& git clone 'https://github.com/containernetworking/plugins.git' "$GOPATH/src/github.com/containernetworking/plugins"
+	fi
+	cd "$GOPATH/src/github.com/containernetworking/plugins/plugins" \
+		&& git pull \
 		&& {
 			plugins="meta/* main/* ipam/*"
 			for plg in $plugins; do
 				plgname="$(basename "$plg")"
 				if [ -d "$plg" ] && [ "$plgname" != "windows" ]; then
-					echo "## Installing CNI plugin $plgname"
-					go_update "github.com/containernetworking/plugins/plugins/$plg"
+					go_update_cni "github.com/containernetworking/plugins/plugins/$plg"
 				fi
 			done
 		}
