@@ -45,8 +45,13 @@ echo # newline
 ###############
 # Arg Parsing #
 ###############
-if [ "$1" = '-lite' ] || [ "$1" = '--lite' ]; then
-	export litemode=1
+
+# On my laptop, I run in lite mode. I rsync binaries from my more powerful desktop to
+# my laptop.
+if [ "$1" = '-lite' ] || [ "$1" = '--lite' ] || [ "$(hostname)" = "rkumarlappie" ]; then
+	if [ "$1" = "--full" ] || [ "$1" = "-full" ]; then
+		export litemode=1
+	fi
 fi
 
 if [ -z "$litemode" ]; then

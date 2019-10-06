@@ -12,6 +12,13 @@ export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
 export CONFIGPREFIX="$HOME/.config"
 
+# crun: container runtime. Better than runc.
+ghq_get_cd https://github.com/containers/crun.git \
+	&& ./autogen.sh \
+	&& ./configure --prefix="$PREFIX" \
+	&& make \
+	&& make install
+
 # mpv-mpris
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make install
 
@@ -29,23 +36,16 @@ ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 ghq_get_cd https://github.com/jarun/bcal.git && make && make install
 
 # nnn
-ghq_get_cd https://github.com/jarun/nnn.git && make && make strip install
+ghq_get_cd https://github.com/jarun/nnn.git && make && make install
 
 # conmon; necessary for building OCI container stack
 ghq_get_cd https://github.com/containers/conmon.git && make podman
 
-# catatonit; used to init containers
+# catatonit; used as container init system
 ghq_get_cd https://github.com/openSUSE/catatonit.git \
 	&& autoreconf -fi \
 	&& ./configure --prefix="$PREFIX" \
 	&& make
-
-# crun: container runtime
-ghq_get_cd https://github.com/containers/crun.git \
-	&& ./autogen.sh \
-	&& ./configure --prefix="$PREFIX" \
-	&& make \
-	&& make install
 
 # bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
