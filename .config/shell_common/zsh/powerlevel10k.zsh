@@ -1,5 +1,6 @@
 #!/bin/zsh
 # powerlevel9k
+export POWERLEVEL9K_GITSTATUS_DIR="$ZPLGM[PLUGINS_DIR]/romkatv---powerlevel10k/gitstatus"
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 	dir_writable dir anaconda virtualenv vcs newline vi_mode status

@@ -6,15 +6,26 @@
 export LC_ALL=en_US.UTF-8
 export COLUMNS
 export ROWS
-module_path+=("$HOME/.zplugin/bin/zmodules/Src")
-module_path+=("$HOME/.zplugin/mod-bin/zmodules/Src")
+
+export ZPLG_HOME="$HOME/Executables/zplugin"
+export ZPFX="$ZPLG_HOME/polaris"
+declare -A ZPLGM
+export ZPLGM[HOME_DIR]="$ZPLG_HOME"
+export ZPLGM[BIN_DIR]="$ZPLGM[HOME_DIR]/bin"
+export ZPLGM[PLUGINS_DIR]="$ZPLGM[HOME_DIR]/plugins"
+export ZPLGM[COMPLETIONS_DIR]="$ZPLGM[HOME_DIR]/completions"
+export ZPLGM[SNIPPETS_DIR]="$ZPLGM[HOME_DIR]/snippets"
+
+module_path+=("$ZPLG_HOME/bin/zmodules/Src")
+module_path+=("$ZPLG_HOME/mod-bin/zmodules/Src")
+zmodload zdharma/zplugin
+
 if [ -z "$PROFILE_SET" ]; then
-# shellcheck source=.profile
-. "$HOME/.profile"
-export PROFILE_SET=2
+	# shellcheck source=.profile
+	. "$HOME/.profile"
+	export PROFILE_SET=2
 fi
 
-zmodload zdharma/zplugin
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
 export FZ_HISTORY_CD_CMD=_zlua
 ## History file configuration

@@ -5,7 +5,7 @@
 # prompt. For example, "thefuck" isn't loaded until after I type "fuc"
 
 # shellcheck source=/dev/null
-. "$HOME/.zplugin/bin/zplugin.zsh"
+. "$ZPLG_HOME/bin/zplugin.zsh"
 
 # Common ICE modifiers
 
@@ -130,7 +130,7 @@ zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
 zplugin light tj/git-extras
 
 zi0b as'completion' has'git-extras' blockf
-zplugin snippet "$HOME/.zplugin/plugins/tj---git-extras/etc/git-extras-completion.zsh"
+zplugin snippet "$ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh"
 
 # }}}
 

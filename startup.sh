@@ -101,6 +101,7 @@ export GEMRC="$XDG_CONFIG_HOME/gem/config"
 export STACK_YAML="$XDG_CONFIG_HOME/stack/stack.yaml"
 export STACK_ROOT="$HOME/Executables/stack"
 export GHQ_ROOT="$HOME/Executables/ghq"
+export ZPLG_HOME="$HOME/Executables/zplugin"
 
 # Set MANPATH
 manpathadd_head() {
