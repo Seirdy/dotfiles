@@ -240,6 +240,7 @@ packages=(
 	"torsocks" # tor
 	"transmission-cli"
 	"turbojpeg-devel"
+	"unar"      # FOSS reimplementation of unrar
 	"unibilium" # terminfo parsing and neovim dependency
 	"unzip"
 	"vim"

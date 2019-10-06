@@ -55,13 +55,13 @@ nohup dash "$bootstrap_dir/zplugin.sh" >"$HOME/bootstrap-logs/zplugin.log" 2>&1 
 nohup dash "$updates_dir/node.sh" >"$HOME/bootstrap-logs/node.log" 2>&1 &
 nohup dash "$updates_dir/stack.sh" >"$HOME/bootstrap-logs/stack.log" 2>&1 &
 nohup dash "$updates_dir/opam.sh" >"$HOME/bootstrap-logs/opam.log" 2>&1 &
-nohup dash "$updates_dir/go.sh" >"$HOME/bootstrap-logs/go.log" 2>&1 &
 nohup dash "$updates_dir/kitty.sh" >"$HOME/bootstrap-logs/kitty.log" 2>&1 &
-# Install pynvim before building neovim
 dash "$bootstrap_dir/python.sh" | tee "$HOME/bootstrap-logs/python.log" 2>&1
+nohup dash "$updates_dir/small-cc-programs.sh" | tee "$HOME/bootstrap-logs/small-cc-programs.log" 2>&1
+nohup dash "$updates_dir/go.sh" >"$HOME/bootstrap-logs/go.log" 2>&1 &
+# Install pynvim before building neovim
 nohup dash "$updates_dir/neovim.sh" >"$HOME/bootstrap-logs/neovim.log" 2>&1 &
 # install conmon before building runc, podman, buildah, skopeo
-nohup dash "$updates_dir/small-cc-programs.sh" | tee "$HOME/bootstrap-logs/small-cc-programs.log" 2>&1
 dash "$updates_dir/go-big.sh" | tee "$HOME/bootstrap-logs/go-big.log" 2>&1
 echo 'Bootstrap executed! Some tasks might still be running in the background'
 echo "Check out $HOME/bootstrap-logs/ for logs"
