@@ -8,6 +8,10 @@ go_update() {
 	echo "###"
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
+# update go itself
+go_update golang.org/dl/gotip
+HOME=$GOPATH gotip download
+
 # building docs for some golang packages
 go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them
