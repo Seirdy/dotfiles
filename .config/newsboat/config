@@ -63,5 +63,5 @@ macro w set browser "$TERMINAL w3m -o display_image=false" ; open-in-browser ; s
 # Podcast downloading
 download-path "~/Podcasts/%h/%n"
 max-downloads 50
-player "mpv-term --speed=1.6"
+player "mpv-term --speed=1.6 --save-position-on-quit"
 podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %10S %F"
