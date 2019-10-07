@@ -1,4 +1,4 @@
 packages: []
 extra-deps:
 - roman-numerals-0.5.1.5@sha256:819d04d9d442b24629dd058f6f0b02bd78e9f9ae99538bc44ca448f1cb2b7b01,1208
-resolver: nightly-2019-10-06
+resolver: nightly-2019-10-07
