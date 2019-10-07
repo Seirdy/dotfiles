@@ -130,6 +130,7 @@ https://github.com/vim-airline/vim-airline/releases.atom "vim" "git repos" "Prog
 https://github.com/fneu/breezy/commits/master.atom "vim" "git repos" "Programs" "Dev" "Favorite"
 https://lobste.rs/t/vim.rss "vim" "Programs" "Dev"
 https://mgallienkde.wordpress.com/feed/ "Programs" "Dev" "Blog" "KDE"
+https://feverfew.home.blog/feed/ "KDE" "Linux" "Dev" "Blog"
 https://pointieststick.com/feed/ "KDE" "Linux" "Dev" "Blog" "Favorite"
 https://drewdevault.com/feed.xml "Blog" "Dev" "Favorite"
 https://danluu.com/atom.xml "Blog" "Dev" "Favorite"
