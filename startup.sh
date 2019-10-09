@@ -103,6 +103,20 @@ export STACK_ROOT="$HOME/Executables/stack"
 export GHQ_ROOT="$HOME/Executables/ghq"
 export ZPLG_HOME="$HOME/Executables/zplugin"
 
+# Set XDG_DATA_DIRS
+xdgdataadd_head() {
+	if ! echo "$XDG_DATA_DIRS" | grep -q "$1" >/dev/null; then
+		XDG_DATA_DIRS="$1${XDG_DATA_DIRS:+":$XDG_DATA_DIRS"}"
+	fi
+}
+
+xdgdataadd_head '/usr/share/kde-settings/kde-profile/default/share'
+xdgdataadd_head '/usr/local/share'
+xdgdataadd_head '/usr/share'
+xdgdataadd_head "$XDG_DATA_HOME"
+xdgdataadd_head "$HOME/.local/var/lib/flatpak/exports/share"
+xdgdataadd_head "$HOME/.local/share/flatpak/exports/share"
+
 # Set MANPATH
 manpathadd_head() {
 	if [ -d "$1" ] && ! echo "$MANPATH" | grep -q "$1" >/dev/null; then
