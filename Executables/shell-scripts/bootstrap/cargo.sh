@@ -19,3 +19,4 @@ cargo_install_git https://github.com/sharkdp/fd.git
 cargo_install_git https://github.com/sharkdp/hyperfine.git
 cargo_install_git https://github.com/timvisee/ffsend.git
 cargo_install_git https://github.com/phiresky/ripgrep-all.git
+cargo_install_git https://github.com/sharkdp/diskus.git
