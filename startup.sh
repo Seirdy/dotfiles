@@ -54,6 +54,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
+export HGPYTHON3=1
 # Disable the golang google proxy
 export GOPROXY=direct
 
@@ -225,6 +226,7 @@ if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
 	export QT_QPA_PLATFORM=wayland-egl
 	export QT_WAYLAND_FORCE_DPI=physical
 	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
+	export GDK_BACKEND=wayland
 	export TERMINAL='kitty -1'
 	# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
 elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
@@ -240,6 +242,16 @@ elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIF
 	else
 		echo 'redshift not found. Install redshift to warm your screen at night.'
 	fi
+elif ps -ef | sed 1d | awk '{print $8}' | grep '^sway$'; then
+	if command -v redshift; then
+		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
+		longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
+		redshift -l "$latitude:$longitude" -t 6500:2800 -m wayland &
+	fi
+fi
+# set the QT5 theme with qt5ct if I'm not running KDE
+if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
+	export QT_QPA_PLATFORMTHEME='qt5ct'
 fi
 
 export FZF_DEFAULT_OPTS='-m --ansi'

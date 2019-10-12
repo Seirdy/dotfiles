@@ -1,0 +1,6 @@
+layer=overlay
+font=Source Sans Pro 12
+background-color=#31363b
+default-timeout=6000
+group-by=app-name
+icon-path=/usr/share/icons/Papirus-Dark

@@ -181,6 +181,7 @@ packages=(
 	"p7zip-plugins"
 	"papirus-icon-theme"
 	"patch"
+	"pavucontrol-qt"
 	"perl-ExtUtils-Embed"
 	"perl-Image-ExifTool" # For viewing exif metadata, esp. in stpv
 	"pkgconfig"
@@ -195,18 +196,19 @@ packages=(
 	"plasma-nm"
 	"plasma-widget-menubar"
 	"plasma-workspace-wayland"
+	"playerctl"
 	"polkit-devel" # build flatpak
 	"powerline-fonts"
 	"pv" # monitor piping
 	"python3-devel"
 	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
+	"qrencode"
 	"qt5-qtmultimedia-devel" # compile quotient
 	"radeontop"
 	"rc"
-	"rclone"
 	"readline-devel" # build nnn and others
-	"redshift"
+	"redshift"       # gumeri/wayland copr repo has patched version for wayland
 	"roboto-fontface-fonts"
 	"rsync"
 	"ruby-devel"
@@ -220,25 +222,27 @@ packages=(
 	"sshfs" # mount another computer
 	"stack"
 	"startup-notification-devel"
+	"swaybg"
+	"swayidle"
+	"swaylock"
 	"taglib"
 	"tar"
 	"terminus-fonts"
 	"terminus-fonts-console"
-	"texlive-collection-basic"
-	"texlive-collection-bibtexextra"
-	"texlive-collection-humanities"
-	"texlive-collection-langenglish"
-	"texlive-collection-latexrecommended"
-	"texlive-collection-mathscience"
-	"texlive-collection-plaingeneric"
-	"texlive-collection-publishers"
-	"texlive-collection-xetex"
-	"tig"
-	"tlp"
+	"texlive-collection-basic"            # there are literally thousands of texlive packages
+	"texlive-collection-bibtexextra"      # holy hell that's a lot of texlive packages
+	"texlive-collection-humanities"       # help
+	"texlive-collection-langenglish"      # jesus christ
+	"texlive-collection-latexrecommended" # make it stop
+	"texlive-collection-mathscience"      # oh my god
+	"texlive-collection-plaingeneric"     # why are you like this
+	"texlive-collection-publishers"       # do you actually need all of these texlive packages
+	"texlive-collection-xetex"            # STAHP
+	"tig"                                 # tui for git. TODO: compile from source
+	"tlp"                                 # power saving on lappie
 	"tmux"
 	"tor"      # tor
 	"torsocks" # tor
-	"transmission-cli"
 	"turbojpeg-devel"
 	"unar"      # FOSS reimplementation of unrar
 	"unibilium" # terminfo parsing and neovim dependency
@@ -254,6 +258,7 @@ packages=(
 	"which"
 	"wireguard-dkms"
 	"wireguard-tools"
+	"wl-clipboard"
 	"wlc-devel"
 	"x264-libs"
 	"x265-libs"
