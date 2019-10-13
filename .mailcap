@@ -26,13 +26,13 @@
 # Note that rtv returns a list of urls for imgur albums, so we don't put quotes
 # around the `%s`
 # image/x-imgur-album; feh --scale-down -g 640x480 %s; test=test -n "$DISPLAY"
-image/gif; mpv '%s' --loop --speed=1; test=test -n "$DISPLAY"
-image/x-imgur-album; dl-open %s; test=test -n "$DISPLAY"
-image/*; dl-open %s; test=test -n "$DISPLAY"
+image/gif; mpv '%s' --loop --speed=1
+image/x-imgur-album; dl-open %s
+image/*; dl-open %s
 
 # Youtube videos are assigned a custom mime-type, which can be streamed with
 # vlc or youtube-dl.
-video/*; mpv '%s' --loop=inf --speed=1; test=test -n "$DISPLAY"
+video/*; mpv '%s' --loop=inf --speed=1
 
 ###############################################################################
 # Commands below this point will attempt to display media directly in the
