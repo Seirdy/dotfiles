@@ -58,10 +58,11 @@ macro Y set browser "ytdl-rss %u"; open-in-browser ; set browser "$BROWSER %u"
 macro m set browser "mpv %u"; open-in-browser ; set browser "$BROWSER %u"
 podcast-auto-enqueue yes
 macro E set browser "echo %u >> $XDG_DATA_DIR/newsboat/queue" ; open-in-browser ; set browser "$BROWSER %u"
-macro w set browser "$TERMINAL w3m -o display_image=false" ; open-in-browser ; set browser "$BROWSER %u"
+macro w set browser "w3m -o display_image=false" ; open-in-browser ; set browser "$BROWSER %u"
+macro r set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u"
 
 # Podcast downloading
 download-path "~/Podcasts/%h/%n"
-max-downloads 50
-player "mpv-term --speed=1.6 --save-position-on-quit"
+max-downloads 8
+player "mpv --speed=1.6 --save-position-on-quit --no-audio-display"
 podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %10S %F"

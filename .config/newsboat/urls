@@ -1,4 +1,5 @@
 # vim: filetype=conf
+"query:All:age between 0:30" "0-query"
 "query:All Unread:unread = \"yes\"" "0-query"
 "query:Excluding program updates:tags !# \"Programs\"" "0-query"
 "query:Excluding Reddit:tags !# \"Reddit\"" "0-query"
@@ -247,6 +248,9 @@ https://what-if.xkcd.com/feed.atom "NonDev" "Favorite"
 https://blog.xkcd.com/feed/ "Comics" "NonDev" "Favorite" "Blog"
 https://feeds.feedburner.com/oatmealfeed "Comics" "NonDev"
 https://github.com/ytdl-org/youtube-dl/releases.atom "git repos" "Programs" "Dev"
+https://www.economist.com/briefing/rss.xml "Economist" "NonDev"
+https://www.economist.com/science-and-technology/rss.xml "Economist" "NonDev" "Favorite"
+https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "Favorite"
 
 # Media
 
@@ -277,6 +281,10 @@ https://www.badvoltage.org/feed/ogg/ "Audio" "Media" "Dev"
 https://feed.podbean.com/podcast.techfreedom.org/feed.xml "Audio" "Advocacy" "Media" "Dev"
 # Gnu World Order
 https://gnuworldorder.info/ogg.atom.xml "Audio" "Media" "Linux"
+# Destination Linux
+https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux"
+# This Week in Linux (TuxDigital)
+https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
 
 # Video
 
