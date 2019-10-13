@@ -86,6 +86,7 @@ packages=(
 	"fpaste"
 	"freeimage-devel" # Compiling imv
 	"freetype"
+	"freetype-devel"
 	"fuse-devel" # build flatpak
 	"gcc"
 	"gcc-c++"
@@ -149,6 +150,7 @@ packages=(
 	"libvterm"          # neovim dependency
 	"libwayland-client" # Compiling imv
 	"libwayland-egl"    # Compiling imv
+	"libxcb-devel"
 	"libxkbcommon-x11-devel"
 	"llvm"
 	"llvm-devel" # compile compilers like tinygo

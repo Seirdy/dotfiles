@@ -14,12 +14,16 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term st
+set $term alacritty
 # Your preferred application launcher
 set $menu rofi -show drun
-bindsym $mod+z exec kitty --class launcher sway-launcher
+bindsym $mod+z exec alacritty --class launcher -e sway-launcher
 for_window [app_id="^launcher$"] floating enable
 for_window [app_id="^keepassxc$"] floating enable
+# images and windows should float above other programs since their dimensions should
+# not be limited by the WM.
+for_window [app_id="^imv$"] floating enable
+for_window [app_id="^mpv$"] floating enable
 # disable titlebar
 default_border pixel 3
 

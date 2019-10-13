@@ -227,7 +227,7 @@ if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
 	export QT_WAYLAND_FORCE_DPI=physical
 	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
 	export GDK_BACKEND=wayland
-	export TERMINAL='kitty -1'
+	export TERMINAL='alacritty'
 	# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
 elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
 	#  Don't run redshift on GNOME (it has its own Night Light)
