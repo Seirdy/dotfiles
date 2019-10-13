@@ -52,6 +52,7 @@ kitty_confdir="$XDG_CONFIG_HOME/kitty"
 ff_confdir="$HOME/.mozilla/firefox/default-nightly"
 gtk_confdir="$XDG_CONFIG_HOME/gtk-3.0"
 termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
+alacritty_confdir="$XDG_CONFIG_HOME/alacritty"
 nvim_confdir="$XDG_CONFIG_HOME/nvim"
 
 # TODO: update settings for gtk2 and gtk4
@@ -95,5 +96,12 @@ if [ -d "$termset_confdir" ]; then
 else
 	echo "Failed to find st config in \"$termset_confdir\"; skipping."
 fi
-
+if [ -d "$alacritty_confdir" ]; then
+	# shellcheck disable=SC2164
+	cd "$alacritty_confdir"
+	cat ./alacritty_master.yml "./alacritty_$new_display.yml" >alacritty.yml
+	echo "updated alacritty settings"
+else
+	echo "Failed to find alacritty config in \"$alacritty_confdir\"; skipping."
+fi
 # vim: filetype=sh
