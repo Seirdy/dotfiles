@@ -130,7 +130,7 @@ zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
 zplugin light tj/git-extras
 
 zi0b as'completion' has'git-extras' blockf
-zplugin snippet "$ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh"
+zplugin snippet $ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh
 
 # }}}
 
@@ -185,7 +185,7 @@ zi_completion has'cht.sh' mv'zsh.txt -> _cht.sh'
 zplugin snippet https://github.com/chubin/cheat.sh/blob/master/share/zsh.txt
 
 zi_completion has'buku'
-zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
+zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completioud/zsh/_buku
 
 zi_completion has'hub'
 zplugin snippet https://github.com/github/hub/blob/master/etc/hub.zsh_completion
@@ -206,8 +206,14 @@ elif [ "$MACHINE" = 'Darwin' ]; then
 fi
 
 finish_setup() {
+	if command -v conda >/dev/null; then
+		eval "$(conda 'shell.zsh' 'hook' 2>/dev/null)"
+	fi
 	zpcompinit
 	zpcdreplay
+	# dircolors
+	eval "$(dircolors)"
+	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 	# give less pretty colors
 	# shellcheck source=../../less/less_termcap.sh
 	. "$XDG_CONFIG_HOME/less/less_termcap.sh"

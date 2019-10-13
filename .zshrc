@@ -1,4 +1,5 @@
 #!/bin/zsh
+export QT_QPA_PLATFORMTHEME='qt5ct'
 # export MANPATH="/usr/local/man:$MANPATH"
 # export MANPATH="$HOME/.local/man:$MANPATH"
 # export MANPATH="$HOME/.local/venvs/*/share/man:$MANPATH"
@@ -23,7 +24,7 @@ zmodload zdharma/zplugin
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile
 	. "$HOME/.profile"
-	export PROFILE_SET=2
+	export PROFILE_SET=3
 fi
 
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
@@ -65,7 +66,6 @@ setopt prompt_subst
 # Comments in the interactive shell; useful for copy-pasting
 setopt interactivecomments
 # Use colors in auto-completion
-eval `dircolors`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Send CONT signal automatically when disowning jobs
 setopt auto_continue
