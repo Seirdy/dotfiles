@@ -1,0 +1,6 @@
+#!/usr/bin/env dash
+
+$TERMINAL nwrap "$@"
+
+# vi:ft=sh
+

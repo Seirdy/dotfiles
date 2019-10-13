@@ -1,0 +1,20 @@
+#!/usr/bin/env dash
+
+export NNN_BMS="D:~/Downloads;v:~/Videos"
+
+export NNN_CONTEXT_COLORS="5236"
+
+alias nsel="cat \${XDG_CONFIG_HOME:-\$HOME/.config}/nnn/.selection | tr '\0' '\n'"
+
+# Unmask ^Q (if required, see `stty -a`) to Quit nnn
+
+stty start undef
+
+stty stop undef
+
+# Start nnn with your preferred options
+
+nnn -is "$@"
+
+# vi:ft=sh
+

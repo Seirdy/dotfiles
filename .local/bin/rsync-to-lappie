@@ -1,0 +1,35 @@
+#!/usr/bin/env dash
+
+# rsync -zrluP \
+# 	--exclude 'Executables/chromium-latest-linux' \
+# 	--exclude 'Executables/cargo/git' \
+# 	--exclude 'Executables/cargo/registry' \
+# 	--exclude 'Executables/go/pkg' \
+# 	--exclude 'Executables/go/src' \
+# 	--exclude '*.stack-work' \
+# 	--exclude 'Executables/stack/pantry' \
+# 	--exclude 'Executables/stack/snapshots' \
+# 	--exclude 'Executables/stack/programs' \
+# 	~/Executables rkumarlappie:/home/rkumar/
+
+cd || exit 1
+
+# Update dotfiles
+ssh rkumar@rkumarlappie 'git pull && git submodule update --init --recursive --force --remote'
+
+# Update binaries
+rsync -zlrupP ~/Executables/stack/bin rkumar@rkumarlappie:/home/rkumar/Executables/stack
+rsync -zlrupP ~/Executables/go/bin rkumar@rkumarlappie:/home/rkumar/Executables/go
+rsync -zlrupP ~/Executables/cargo/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo
+rsync -lrupP ~/.local/man rkumar@rkumarlappie:/home/rkumar/.local
+rsync -lrupP ~/.local/include rkumar@rkumarlappie:/home/rkumar/.local
+rsync -zlrupP ~/.local/libexec rkumar@rkumarlappie:/home/rkumar/.local
+rsync -zlrupP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/home/rkumar/.local
+rsync -lrupP ~/.local/share/man rkumar@rkumarlappie:/home/rkumar/.local/share
+rsync -zlrupP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share
+rsync -lrupP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share
+
+rsync -zlrupP --exclude "$(git ls-files .local/bin | tr '\n' ' ' | sed 's/ \./ --exclude \./g')" ~/.local/bin rkumar@rkumarlappie:/home/rkumar/.local
+
+# vi:ft=sh
+
