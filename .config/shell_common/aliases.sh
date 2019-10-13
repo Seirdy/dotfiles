@@ -12,6 +12,7 @@ alias llla='lll -a'
 alias a2c='aria2c' # fast aria2c downloading
 alias ytdl='youtube-dl'
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080]+bestaudio'"
+alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
 alias sdins='sudo dnf install'

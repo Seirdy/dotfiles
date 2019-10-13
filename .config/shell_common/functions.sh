@@ -12,9 +12,10 @@ mkcp() {
 
 wdir() {
 	# shellcheck disable=SC2230
-	PROGPATH=$(which "$1")
-	PROGDIR=$(dirname "$PROGPATH")
-	cd "$PROGDIR" || return
+	progpath=$(command -v "$1")
+	[ -f "$progpath" ] || echo "$1 does not seem to be a file."
+	progdir=$(dirname "$progpath")
+	cd "$progdir" || return
 }
 
 n() {
@@ -150,6 +151,10 @@ _ghsearch_starred_url() {
 
 gitssearch() {
 	$BROWSER "$(_ghsearch_starred_url "$*")"
+}
+
+unshorten() {
+	curl "https://unshorten.me/s/$1"
 }
 
 # shellcheck source=functions_ghq.sh
