@@ -43,6 +43,7 @@ alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +q
 alias nvimclean='nvim +PlugClean'
 # shellcheck disable=SC2142
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
+alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'time to empty|percentage'"
 
 # Aliases that change existing commands
 alias ddgr='ddgr -x'

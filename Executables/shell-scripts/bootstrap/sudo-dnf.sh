@@ -250,6 +250,7 @@ packages=(
 	"unar"      # FOSS reimplementation of unrar
 	"unibilium" # terminfo parsing and neovim dependency
 	"unzip"
+	"upower" # battery status of connected devices
 	"vim"
 	"vollkorn-fonts"
 	"w3m"
