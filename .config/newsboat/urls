@@ -1,5 +1,5 @@
 # vim: filetype=conf
-"query:All:age between 0:30" "0-query"
+"query:All:age between 0:60" "0-query"
 "query:All Unread:unread = \"yes\"" "0-query"
 "query:Excluding program updates:tags !# \"Programs\"" "0-query"
 "query:Excluding Reddit:tags !# \"Reddit\"" "0-query"
@@ -235,8 +235,8 @@ https://itsfoss.com/feed/ "Linux" "Dev"
 https://news.softpedia.com/newsRSS/Linux-7.xml "Linux" "Dev"
 https://blog.mozilla.org/thunderbird/feed/ "Programs" "Dev" "Thunderbird"
 https://blog.mozilla.org/calendar/feed/ "Programs" "Dev" "Thunderbird"
-https://old.reddit.com/r/vim+neovim/search.xml?q=coc&include_over_18=on&restrict_sr=on&t=all&sort=new "Reddit" "Programs" "Dev" "vim" "coc.nvim" "~Reddit:coc.nvim"
-https://old.reddit.com/r/C_programming+commandline+coolgithubprojects+cpp+golang+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "git repos" "Programs" "Dev" "~Reddit: git repos"
+https://www.reddit.com/r/vim+neovim/search.xml?q=coc&include_over_18=on&restrict_sr=on&t=all&sort=new "Reddit" "Programs" "Dev" "vim" "coc.nvim" "~Reddit:coc.nvim"
+https://www.reddit.com/r/C_programming+commandline+coolgithubprojects+cpp+golang+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "git repos" "Programs" "Dev" "~Reddit: git repos"
 https://www.questionablecontent.net/QCRSS.xml "Comics" "NonDev"
 https://www.bloodsplatteredsocks.com/rss "Comics" "NonDev"
 https://feeds.feedburner.com/sandraandwoo "Comics" "NonDev"
@@ -248,6 +248,7 @@ https://what-if.xkcd.com/feed.atom "NonDev" "Favorite"
 https://blog.xkcd.com/feed/ "Comics" "NonDev" "Favorite" "Blog"
 https://feeds.feedburner.com/oatmealfeed "Comics" "NonDev"
 https://github.com/ytdl-org/youtube-dl/releases.atom "git repos" "Programs" "Dev"
+http://helpful.cat-v.org/Blog/index.atom "Dev" "Favorite"
 https://www.economist.com/briefing/rss.xml "Economist" "NonDev"
 https://www.economist.com/science-and-technology/rss.xml "Economist" "NonDev" "Favorite"
 https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "Favorite"
@@ -285,6 +286,8 @@ https://gnuworldorder.info/ogg.atom.xml "Audio" "Media" "Linux"
 https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux"
 # This Week in Linux (TuxDigital)
 https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
+# Tales of the Unattested
+http://unattested.club/feed/mp3/ "Audio" "Media" "NonDev"
 
 # Video
 
