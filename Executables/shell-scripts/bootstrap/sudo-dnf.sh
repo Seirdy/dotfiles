@@ -224,6 +224,7 @@ packages=(
 	"sshfs" # mount another computer
 	"stack"
 	"startup-notification-devel"
+	"strace" # monitor program execution
 	"swaybg"
 	"swayidle"
 	"swaylock"
