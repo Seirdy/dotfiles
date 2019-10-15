@@ -235,15 +235,15 @@ elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIF
 	#  Don't run redshift if it's already running.
 	if [ "$XDG_CURRENT_DESKTOP" = 'GNOME' ] || pgrep redshift >/dev/null; then
 		export REDSHIFT_RUNNING=1
-	elif command -v redshift; then
+	elif command -v redshift >/dev/null; then
 		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
 		longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
 		redshift -l "$latitude:$longitude" -t 6500:2800 &
 	else
 		echo 'redshift not found. Install redshift to warm your screen at night.'
 	fi
-elif ps -ef | sed 1d | awk '{print $8}' | grep '^sway$'; then
-	if command -v redshift; then
+elif ps -ef | sed 1d | awk '{print $8}' | grep '^sway$' >/dev/null && pgrep redshift >/dev/null; then
+	if command -v redshift >/dev/null; then
 		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
 		longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
 		redshift -l "$latitude:$longitude" -t 6500:2800 -m wayland &
