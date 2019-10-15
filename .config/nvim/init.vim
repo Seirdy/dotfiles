@@ -31,10 +31,10 @@ set smartindent
 set shiftwidth=2
 set tabstop=2  " Anything more than that is distracting.
 " I like splitting windows side-by-side.
-" On a laptop screen, my terminal often has 95 columns.
-" 95 cols - 2 diagnostic cols - 4 number cols - 1 sign col - 1 folding col
-" - 1 padding col - 1 cursorcolumn = 86 cols
-set colorcolumn=86
+" On a laptop screen, my terminal often has 91 columns.
+" 91 cols - 2 sign cols - 4 number cols
+" - 1 padding col = 84 cols
+set colorcolumn=85
 
 " Spellfile
 set spellfile=~/.config/nvim/spell/en.utf-8.add
@@ -442,7 +442,7 @@ let g:table_mode_align_char='+'
 " go here.
 
 let g:pandoc#after#modules#enabled = ["vim-table-mode"]
-let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python", "sh", "asm", "yaml", "html", "css", "vim", "go", "haskell"]
+let g:pandoc#syntax#codeblocks#embeds#langs=["c", "python", "sh", "asm", "yaml", "html", "css", "vim", "go", "haskell", "scheme", "prolog", "elisp", "ruby", "javascript", "zsh", "ocaml", "rust"]
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ["folding","formatting"]
 let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}

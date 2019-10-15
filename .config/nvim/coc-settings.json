@@ -112,7 +112,7 @@
 				"--from=markdown",
 				"--to=markdown",
 				"-s",
-				"--columns=87",
+				"--columns=84",
 				"--preserve-tabs"
 			]
 		},

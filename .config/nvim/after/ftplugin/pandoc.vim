@@ -1,4 +1,3 @@
-setlocal colorcolumn=89
 " :IndentLinesDisable
 let s:cchars = {
                 \"newline": "↵",
