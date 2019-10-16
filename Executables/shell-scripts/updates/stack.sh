@@ -11,8 +11,14 @@ stack_local() {
 
 stack_install_git() {
 	ghq_get_cd "$1" \
-		&& STACK_YAML="./stack.yaml" stack_local --resolver nightly setup \
-		&& STACK_YAML="./stack.yaml" stack_local --resolver nightly install
+		&& STACK_YAML="./stack.yaml" stack_local setup \
+		&& STACK_YAML="./stack.yaml" stack_local install
+}
+
+stack_install_git_nightly() {
+	ghq_get_cd "$1" \
+		&& STACK_YAML="./stack.yaml" stack_local --resolver=nightly setup \
+		&& STACK_YAML="./stack.yaml" stack_local --resolver=nightly install
 }
 
 stack_local config set resolver nightly
@@ -30,9 +36,11 @@ stack_install_git https://github.com/owickstrom/pandoc-emphasize-code.git
 # Shell script linter
 stack_install_git https://github.com/koalaman/shellcheck.git
 # Haskell language server; faster than haskell-ide-engine
-stack_install_git https://github.com/digital-asset/ghcide.git
+ghq_get_cd https://github.com/digital-asset/ghcide.git \
+	&& STACK_YAML="./stack88.yaml" stack_local setup \
+	&& STACK_YAML="./stack88.yaml" stack_local install
 # source code grepper
-stack_install_git https://github.com/awgn/cgrep.git
+stack_install_git_nightly https://github.com/awgn/cgrep.git
 # Dockerfile linter
 stack_install_git https://github.com/hadolint/hadolint
 
