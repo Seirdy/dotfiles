@@ -288,6 +288,10 @@ https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux"
 https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
 # Tales of the Unattested
 http://unattested.club/feed/mp3/ "Audio" "Media" "NonDev"
+# Linux For The Rest Of Us
+http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
+# Going Linux
+http://goinglinux.com/mp3_64podcast.xml "Audio" "Media" "Linux"
 
 # Video
 
