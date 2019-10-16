@@ -1,0 +1,4 @@
+#!/usr/bin/env dash
+grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" "$@"
+# vi:ft=sh
+
