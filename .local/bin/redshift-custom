@@ -1,0 +1,6 @@
+#!/usr/bin/env dash
+latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
+longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
+redshift -l "$latitude:$longitude" -t 6500:2800 -m wayland &
+# vi:ft=sh
+

@@ -219,17 +219,7 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 EDITOR=$(find_alt nvim vim vi nvi nano emacs)
 export EDITOR
 
-if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
-	export KITTY_ENABLE_WAYLAND=1
-	export EGL_PLATFORM=wayland
-	export CLUTTER_BACKEND=wayland
-	export QT_QPA_PLATFORM=wayland-egl
-	export QT_WAYLAND_FORCE_DPI=physical
-	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
-	export GDK_BACKEND=wayland
-	export TERMINAL='alacritty'
-	# export GDK_BACKEND="wayland"  # Commented bc some apps aren't ready
-elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
+if [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
 	#  Don't run redshift on GNOME (it has its own Night Light)
 	#  Don't run redshift on Wayland
 	#  Don't run redshift if it's already running.
@@ -242,12 +232,16 @@ elif [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIF
 	else
 		echo 'redshift not found. Install redshift to warm your screen at night.'
 	fi
-elif ps -ef | sed 1d | awk '{print $8}' | grep '^sway$' >/dev/null && pgrep redshift >/dev/null; then
-	if command -v redshift >/dev/null; then
-		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
-		longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
-		redshift -l "$latitude:$longitude" -t 6500:2800 -m wayland &
-	fi
+else
+	export KITTY_ENABLE_WAYLAND=1
+	export EGL_PLATFORM=wayland
+	export CLUTTER_BACKEND=wayland
+	export QT_QPA_PLATFORM=wayland
+	export QT_WAYLAND_FORCE_DPI=physical
+	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
+	export GDK_BACKEND=wayland
+	export TERMINAL='alacritty'
+	export GDK_BACKEND="wayland" # Commented bc some apps aren't ready
 fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
