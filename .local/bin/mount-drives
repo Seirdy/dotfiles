@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+sudo mkdir -p /run/media/rkumar/bigssd /run/media/rkumar/HDD1 /run/media/rkumar/LC-GD
+sudo cryptsetup luksOpen /dev/sda1 bigssd
+sudo mount /dev/mapper/bigssd /run/media/rkumar/bigssd
+sudo cryptsetup luksOpen /dev/md/raid HDD1
+sudo mount /dev/mapper/HDD1 /run/media/rkumar/HDD1
+# vi:ft=sh
+
