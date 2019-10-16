@@ -1,5 +1,10 @@
 font = "Hasklug Nerd Font"
-icons = "awesome"
+
+[icons]
+name = "awesome"
+[icons.overrides]
+music = " "
+time = " "
 
 [theme]
 name="slick"
@@ -8,7 +13,7 @@ idle_bg = "#232629"
 
 [[block]]
 block = "focused_window"
-max_width = 100
+max_width = 115
 
 [[block]]
 block = "battery"
