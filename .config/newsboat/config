@@ -22,7 +22,7 @@ reload-threads 400
 download-retries 4
 
 # Notifications
-notify-always yes
+notify-always no
 notify-program notify-send
 notify-format "Newsboat: %n unread articles in %f feeds"
 
@@ -64,5 +64,5 @@ macro r set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u"
 # Podcast downloading
 download-path "~/Podcasts/%h/%n"
 max-downloads 30
-player "mpv --speed=1.6 --save-position-on-quit --no-audio-display"
+player "mpv --speed=1.7 --save-position-on-quit --no-audio-display"
 podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %10S %F"

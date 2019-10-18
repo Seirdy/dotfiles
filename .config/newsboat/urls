@@ -293,6 +293,8 @@ http://unattested.club/feed/mp3/ "Audio" "Media" "NonDev"
 http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
 # Going Linux
 http://goinglinux.com/mp3_64podcast.xml "Audio" "Media" "Linux"
+# Linux Lads
+https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
 
 # Video
 
