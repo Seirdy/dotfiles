@@ -279,7 +279,7 @@ live_config_reload: false
 #   - (Linux/macOS) /bin/bash --login
 #   - (Windows) powershell
 shell:
-  program: /bin/zsh
+  program: /home/rkumar/.local/bin/zsh
 #  args:
 #    - --login
 

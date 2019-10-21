@@ -106,6 +106,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		log_bg 'newsboat'          # compile newsboat from git
 		log_bg 'neovim'            # compile neovim from git
 		log_bg 'small-cc-programs' # compile imv from git
+		log_bg 'zsh'               # compile zsh
 		log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
 		log_bg 'in-containers'     # Updates running inside containers
 	fi

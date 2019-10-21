@@ -95,8 +95,8 @@ zplugin light https://github.com/eth-p/bat-extras
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light TheLocehiliosan/yadm
 
-zi_program has'podman' pick'toolbox'
-zplugin light https://github.com/debarshiray/toolbox
+zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh'
+zplugin light https://github.com/containers/toolbox
 
 zi_program has'jq'
 zplugin snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
@@ -209,6 +209,7 @@ finish_setup() {
 	if command -v conda >/dev/null; then
 		eval "$(conda 'shell.zsh' 'hook' 2>/dev/null)"
 	fi
+	export PATH="$HOME/.local/bin:$PATH"
 	zpcompinit
 	zpcdreplay
 	# dircolors

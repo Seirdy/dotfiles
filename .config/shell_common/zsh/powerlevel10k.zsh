@@ -14,7 +14,8 @@ fi
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
 	root_indicator background_jobs history command_execution_time time
 )
-if [ -n "$SSH_CONNECTION" ]; then
+
+if [ -n "$SSH_CONNECTION" ] || hostname | grep -q 'toolbox'; then
 	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS)
 fi
 POWERLEVEL9K_MODE='nerdfont-complete'
