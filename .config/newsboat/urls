@@ -43,7 +43,7 @@ https://gitlab.com/pycqa/pep8-naming/commits/master/CHANGELOG.rst?format=atom "P
 https://github.com/tox-dev/tox/releases.atom "Python" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/rubik/xenon/releases.atom "Python" "git repos" "Programs" "Dev"
 https://github.com/andreafrancia/trash-cli/releases.atom "git repos" "Programs" "Dev"
-https://github.com/DavidAnson/markdownlint/releases.atom "git repos" "Programs" "Dev"
+https://github.com/DavidAnson/markdownlint/commits/master/README.md.atom "git repos" "Programs" "Dev" "~markdownlint changelog"
 https://github.com/igorshubovych/markdownlint-cli/releases.atom "git repos" "Programs" "Dev"
 https://weechat.org/blog/feed/atom "Programs" "Dev" "Favorite"
 https://github.com/cjbassi/gotop/releases.atom "git repos" "Programs" "Dev"
@@ -295,6 +295,8 @@ http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linu
 http://goinglinux.com/mp3_64podcast.xml "Audio" "Media" "Linux"
 # Linux Lads
 https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
+# The Binary Times
+https://thebinarytimes.net/rss-ogg.xml "Audio" "Media" "Linux"
 
 # Video
 
