@@ -16,11 +16,6 @@ block = "focused_window"
 max_width = 115
 
 [[block]]
-block = "battery"
-driver = "upower"
-format = "{percentage}%"
-
-[[block]]
 block = "sound"
 driver = "pulseaudio"
 on_click = "pavucontrol-qt"
@@ -28,16 +23,6 @@ on_click = "pavucontrol-qt"
 [[block]]
 block = "music"
 buttons = ["play", "next"]
-
-[[block]]
-block = "bluetooth"
-mac = "BC:F2:92:CA:6A:3F"
-
-[[block]]
-block="net"
-device = "wlp2s0"
-signal_strength = true
-interval = 3
 
 [[block]]
 block = "time"

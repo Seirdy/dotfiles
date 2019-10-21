@@ -104,4 +104,9 @@ if [ -d "$alacritty_confdir" ]; then
 else
 	echo "Failed to find alacritty config in \"$alacritty_confdir\"; skipping."
 fi
+
+i3status_file="$XDG_CONFIG_HOME/sway/status.toml"
+i3status_file_custom="$XDG_CONFIG_HOME/sway/status_$new_display.toml"
+
+cp "$i3status_file_custom" "$i3status_file" || echo 'failed to update i3status config'
 # vim: filetype=sh
