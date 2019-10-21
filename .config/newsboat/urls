@@ -179,6 +179,7 @@ https://mozillagfx.wordpress.com/feed/ "Firefox" "Dev"
 https://feed.theregister.co.uk/atom?q=fedora "Fedora" "Linux" "Dev"
 https://feed.theregister.co.uk/atom?q=firefox "Firefox" "Dev"
 https://queryfeed.net/twitter?q=%40FirefoxNightly+from%3AFirefoxNightly++-weeks+-newsletter+-blog&title-type=user-name-both&geocode= "Firefox" "Dev"
+http://queryfeed.net/tw?q=%40ZdharmaI "zsh" "Programs" "Dev"
 https://neopythonic.blogspot.com/feeds/posts/default "Python" "Dev"
 https://medium.com/feed/instagram-engineering/tagged/python "Python" "Dev"
 https://medium.com/feed/wemake-services/tagged/python "Python" "Dev"
@@ -297,6 +298,8 @@ http://goinglinux.com/mp3_64podcast.xml "Audio" "Media" "Linux"
 https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
 # The Binary Times
 https://thebinarytimes.net/rss-ogg.xml "Audio" "Media" "Linux"
+# Command Line Heros
+https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
 
 # Video
 
