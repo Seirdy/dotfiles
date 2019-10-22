@@ -300,6 +300,10 @@ https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
 https://thebinarytimes.net/rss-ogg.xml "Audio" "Media" "Linux"
 # Command Line Heros
 https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
+# The Economist: Babbage
+https://rss.acast.com/theeconomistbabbage/ "Audio" "Economist" "Media" "NonDev"
+# Hacker Public Radio
+http://www.hackerpublicradio.org/hpr_total_spx_rss.php "Audio" "Media" "Dev"
 
 # Video
 
