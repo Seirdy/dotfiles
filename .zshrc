@@ -1,5 +1,8 @@
 #!/bin/zsh
-export QT_QPA_PLATFORMTHEME='qt5ct'
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then  
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"           
+fi
+# export QT_QPA_PLATFORMTHEME='qt5ct'
 # export MANPATH="/usr/local/man:$MANPATH"
 # export MANPATH="$HOME/.local/man:$MANPATH"
 # export MANPATH="$HOME/.local/venvs/*/share/man:$MANPATH"
