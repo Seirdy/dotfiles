@@ -6,7 +6,7 @@ grim "$tmpbg"
 corrupter -add 0 -bheight 8 -boffset 2 -lag 0.0001 -lb 0 -lr 0 -mag 4 -meanabber 0 -stdabber 2 -stdoffset 0 -stride 0.1 "$tmpbg" "$tmpbg"
 rsvg-convert -z 3 '/usr/share/icons/Papirus/64x64/apps/gnome-lockscreen.svg' >"$tmpfg"
 composite -gravity center "$tmpfg" "$tmpbg" "$tmpbg"
-swaylock -i -f "$tmpbg"
+swaylock -f -i "$tmpbg"
 rm "$tmpbg" "$tmpfg"
 
 # vi:ft=sh

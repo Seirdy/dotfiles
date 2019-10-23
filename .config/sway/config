@@ -33,9 +33,9 @@ exec ~/startup.sh
 exec mako
 # idle config
 exec swayidle -w \
-	timeout 300 'swaylock-fancy' \
-	timeout 600 'swaymsg "output * dpms off"' \
+	timeout 180 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
+	timeout 360 'swaylock-fancy' \
 	before-sleep 'swaylock-fancy'
 exec redshift-custom
 
