@@ -31,6 +31,12 @@ default_border pixel 3
 exec ~/startup.sh
 # notifications
 exec mako
+# idle config
+exec swayidle -w \
+	timeout 180 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+	timeout 360 'swaylock-fancy' \
+	before-sleep 'swaylock-fancy'
 exec redshift-custom
 
 ### Output configuration
