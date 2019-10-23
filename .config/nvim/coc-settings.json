@@ -83,26 +83,6 @@
 				"warning": "warning",
 				"note": "info"
 			}
-		},
-		"markdownlint": {
-			"command": "markdownlint",
-			"isStderr": true,
-			"debounce": 100,
-			"args": [
-				"--stdin"
-			],
-			"offsetLine": 0,
-			"offsetColumn": 0,
-			"sourceName": "markdownlint",
-			"formatLines": 1,
-			"formatPattern": [
-				"^.*?:\\s+(\\d+):\\s+(.*)$",
-				{
-					"line": 1,
-					"column": -1,
-					"message": 2
-				}
-			]
 		}
 	},
 	"diagnostic-languageserver.formatters": {
@@ -135,8 +115,7 @@
 		}
 	},
 	"diagnostic-languageserver.filetypes": {
-		"sh": "shellcheck",
-		"pandoc": "markdownlint"
+		"sh": "shellcheck"
 	},
 	"diagnostic-languageserver.formatFiletypes": {
 		"pandoc": "pandoc-md",
