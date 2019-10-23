@@ -35,6 +35,8 @@ go_update github.com/mikefarah/yq
 go_update github.com/rs/curlie
 # Alternative to urlview
 go_update github.com/imwally/linkview
+# corrupts images for fancy lockscreen
+go_update github.com/r00tman/corrupter
 # Alternative terminal emulator
 # github.com/liamg/aminal
 # Advanced file manager (like ranger)
