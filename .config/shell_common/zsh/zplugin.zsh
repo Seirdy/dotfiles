@@ -108,8 +108,10 @@ zplugin light https://github.com/Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
 zplugin light https://github.com/Seirdy/stpv
 
-zi_program has'perl'
-zplugin snippet https://github.com/bobrippling/perlbin/blob/master/xurls
+zi_program has'perl' pick'xurls'
+zplugin light bobrippling/perlbin
+zi_program has'perl' pick'exiftool'
+zplugin light exiftool/exiftool
 
 # }}}
 
