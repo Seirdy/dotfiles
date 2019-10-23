@@ -21,6 +21,7 @@
     "coc-vimlsp": ">=0.4.0",
     "coc-yaml": ">=1.0.2",
     "coc-yank": ">=1.1.2",
-    "coc-go": ">=0.5.2"
+    "coc-go": ">=0.5.2",
+    "coc-markdownlint": ">=0.3.2"
   }
 }

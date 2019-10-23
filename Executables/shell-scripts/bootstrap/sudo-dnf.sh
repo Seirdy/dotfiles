@@ -185,7 +185,6 @@ packages=(
 	"patch"
 	"pavucontrol-qt"
 	"perl-ExtUtils-Embed"
-	"perl-Image-ExifTool" # For viewing exif metadata, esp. in stpv
 	"pkgconfig"
 	"pkgconfig(json-c)"     # newsboat compilation
 	"pkgconfig(libcrypto)"  # newsboat compilation
