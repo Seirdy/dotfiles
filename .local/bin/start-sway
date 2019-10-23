@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-ssh-add "$HOME/.ssh/id_ed25519"
+ssh-agent
 unset PROFILE_SET && XDG_SESSION_TYPE=wayland sway
 
 # vi:ft=sh
