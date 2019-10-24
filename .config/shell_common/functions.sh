@@ -131,8 +131,14 @@ hnopen() {
 	done
 }
 
+# dnf search, filtering out bad stuff
 dnfss() {
-	dnf search "$@" | rg -v "i686|\-doc|debuginfo|\.src "
+	dnf search "$@" | rg -v "i686|\-doc|debuginfo|\.src"
+}
+
+# Even more heavily filtered dnf search
+dnfsss() {
+	dnf search "$@" | awk '{print $1}' | rgv '^(R-|lib|perl|python|texlive)|(\.(src|i686)|(-(devel|doc|common)|debug(info|source))\.(x86_64|noarch))$'
 }
 
 _ghsearch_url() {

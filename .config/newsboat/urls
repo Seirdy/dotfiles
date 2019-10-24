@@ -21,6 +21,16 @@ http://blog.supertuxkart.net/feeds/posts/default "game" "Programs" "Blog" "Favor
 https://github.com/viewizard/astromenace/releases.atom "game" "Programs" "git repos"
 https://maunium.net/blog/index.xml "Matrix" "Blog" "Dev"
 https://leafo.net/feed.xml "Blog" "Dev" "Favorite"
+https://github.com/emersion/mako/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/swaywm/sway/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/r00tman/corrupter/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/swaywm/swaylock/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/swaywm/swayidle/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/bugaevc/wl-clipboard/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/emersion/grim/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/emersion/slurp/releases.atom "Sway" "git repos" "Programs" "Dev"
+https://github.com/greshake/i3status-rust/commits/master/NEWS.md.atom "Sway" "git repos" "Programs" "Dev" "~i3status-rust changelog"
+ "Sway" "git repos" "Programs" "Dev"
 https://repo.or.cz/minetest_hudbars.git/atom "Minetest" "game" "git repos" "Programs" "Dev"
 https://github.com/daviddoesminetest/Minerdream_mod/commits/master.atom "Minetest" "game" "git repos" "Programs" "Dev"
 https://github.com/minetest-mods/mesecons/commits/master.atom "game" "git repos" "Minetest" "Programs" "Dev"
@@ -294,7 +304,7 @@ http://unattested.club/feed/mp3/ "Audio" "Media" "NonDev"
 # Linux For The Rest Of Us
 http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
 # Going Linux
-http://goinglinux.com/mp3_64podcast.xml "Audio" "Media" "Linux"
+https://goinglinux.com/oggpodcast.xml "Audio" "Media" "Linux"
 # Linux Lads
 https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
 # The Binary Times
@@ -305,6 +315,12 @@ https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
 https://rss.acast.com/theeconomistbabbage/ "Audio" "Economist" "Media" "NonDev"
 # Hacker Public Radio
 http://www.hackerpublicradio.org/hpr_total_spx_rss.php "Audio" "Media" "Dev"
+# Choose Linux
+https://chooselinux.show/rss "Audio" "Media" "Linux"
+# Linux for Everyone
+https://feeds.fireside.fm/linuxforeveryone/rss "Audio" "Media" "Linux"
+# Reality 2.0
+https://feeds.fireside.fm/reality2/rss "Audio" "Media" "Linux"
 
 # Video
 
