@@ -189,13 +189,13 @@ zplugin snippet https://github.com/chubin/cheat.sh/blob/master/share/zsh.txt
 zi_completion has'buku'
 zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completioud/zsh/_buku
 
-zi_completion has'hub'
-zplugin snippet https://github.com/github/hub/blob/master/etc/hub.zsh_completion
+zi_completion has'hub' mv'hub.zsh_completion -> _hub'
+zplugin snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
 
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'
-	zplugin snippet https://github.com/flatpak/flatpak/blob/master/completion/_flatpak
+	zplugin snippet $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 
