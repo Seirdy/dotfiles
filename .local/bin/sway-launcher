@@ -22,7 +22,7 @@ HIST_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/sway-launcher-history.txt"
 
 # This may include the occasional non-executable file
 
-command_list=$(bash -c 'compgen -c' | sort -u)
+command_list=$(stest -flx $(echo "$PATH" | tr : ' ' | sort -u))
 
 # read existing command history
 
