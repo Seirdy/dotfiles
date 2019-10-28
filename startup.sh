@@ -103,6 +103,11 @@ export STACK_YAML="$XDG_CONFIG_HOME/stack/stack.yaml"
 export STACK_ROOT="$HOME/Executables/stack"
 export GHQ_ROOT="$HOME/Executables/ghq"
 export ZPLG_HOME="$HOME/Executables/zplugin"
+# perl
+export PERL_LOCAL_LIB_ROOT="$HOME/Executables/perl5"
+export PERL_MB_OPT="--install_base \"$PERL_LOCAL_LIB_ROOT\""
+export PERL_MM_OPT="INSTALL_BASE=$PERL_LOCAL_LIB_ROOT"
+export PERL5LIB="$PERL_LOCAL_LIB_ROOT/lib/perl5"
 
 # Set XDG_DATA_DIRS
 xdgdataadd_head() {
@@ -153,6 +158,7 @@ pathadd_tail '/usr/bin'
 pathadd_tail '/sbin'
 pathadd_tail '/bin'
 pathadd_head "$GEM_HOME/bin"                  # rubygems (ruby)
+pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"       # cpanm (perl)
 pathadd_head "$NPM_PACKAGES/bin"              # npm (javascript)
 pathadd_head "$HOME/Executables/luarocks/bin" # luarocks (lua)
 pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
