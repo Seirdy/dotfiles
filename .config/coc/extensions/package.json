@@ -22,6 +22,6 @@
     "coc-yaml": ">=1.0.2",
     "coc-yank": ">=1.1.2",
     "coc-go": ">=0.6.0",
-    "coc-markdownlint": ">=0.3.3"
+    "coc-markdownlint": ">=0.4.0"
   }
 }
