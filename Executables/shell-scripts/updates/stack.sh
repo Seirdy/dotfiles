@@ -24,7 +24,8 @@ stack_install_git_nightly() {
 stack_install_nightly_fallback() {
 	stack_install_git_nightly "$1" \
 		|| {
-			echo "Failed to update with nightly resolver; trying with specified resolver" && stack_install_git "$1"
+			echo "Failed to update with nightly resolver; trying with specified resolver" \
+				&& stack_install_git "$1"
 		}
 }
 
@@ -41,15 +42,19 @@ stack_install_nightly_fallback https://github.com/lierdakil/pandoc-crossref.git
 stack_install_nightly_fallback https://github.com/owickstrom/pandoc-emphasize-code.git
 
 # Shell script linter
-stack_install_git https://github.com/koalaman/shellcheck.git
+stack_install_nightly_fallback https://github.com/koalaman/shellcheck.git
+# Dockerfile linter
+stack_install_nightly_fallback https://github.com/hadolint/hadolint.git
+
 # Haskell language server; faster than haskell-ide-engine
 ghq_get_cd https://github.com/digital-asset/ghcide.git \
 	&& STACK_YAML="./stack88.yaml" stack_local setup \
 	&& STACK_YAML="./stack88.yaml" stack_local install
 # source code grepper
 stack_install_nightly_fallback https://github.com/awgn/cgrep.git
-# Dockerfile linter
-stack_install_nightly_fallback https://github.com/hadolint/hadolint
+
+# pdf management
+stack_install_nightly_fallback https://github.com/2mol/pboy.git
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
