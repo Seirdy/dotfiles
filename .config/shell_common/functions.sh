@@ -163,5 +163,9 @@ unshorten() {
 	curl "https://unshorten.me/s/$1"
 }
 
+unshorten-clip() {
+	unshorten "$(wl-paste)" | head -n 1 | wl-copy
+}
+
 # shellcheck source=functions_ghq.sh
 . "$(dirname "$0")/functions_ghq.sh"

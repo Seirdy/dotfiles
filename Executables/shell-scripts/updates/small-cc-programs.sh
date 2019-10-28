@@ -22,6 +22,13 @@ ghq_get_cd https://github.com/containers/crun.git \
 # mpv-mpris
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make install
 
+ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
+	&& mkdir -p build \
+	&& cd build \
+	&& cmake -DCMAKE_INSTALL_PREFIX=/home/rkumar/.local -DCMAKE_BUILD_TYPE=Release .. \
+	&& make \
+	&& make install
+
 # imv
 ghq_get_cd https://github.com/eXeC64/imv.git && make && make install
 
