@@ -30,17 +30,18 @@ packages=(
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
-	"atool" # file extraction util used by stpv
-	"autoconf"
+	"atool"    # file extraction util used by stpv
+	"autoconf" # build many things
 	"automake" # build things like podman
 	"bash-completion"
+	"keepassxc" # password manager until I migrate to `pass`
 	"bc"
 	"bison" # build many programs' docs
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
 	"calc"
-	"cargo"
+	"cargo" # rust package manager. used to install itself; then uninstalled.
 	"catimg"
 	"ccls"
 	"chafa"
@@ -72,7 +73,6 @@ packages=(
 	"egl-wayland-devel"
 	"elfutils"
 	"enchant"
-	"exif" # useful for stpv
 	"extra-cmake-modules"
 	"feh"
 	"ffmpeg-libs"
@@ -132,13 +132,13 @@ packages=(
 	"libappstream-glib-devel" # build flatpak
 	"libarchive-devel"        # build flatpak
 	"libassuan-devel"         # building skopeo and others
-	"libcanberra-devel"       # Required to build kitty
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
 	"libdbusmenu-gtk3" # enable global app menu
 	"libmatthew-java"  # signal-cli
 	"libpng-devel"     # build imv and others
 	"librsvg2-devel"   # Compiling imv
+	"librsvg2-tools"   # work with svg files; used for swaylock icon
 	"libseccomp"       # build runc
 	"libseccomp-devel" # build runc, slirp4netns, and others
 	"libsoup-devel"    # build flatpak
@@ -193,10 +193,8 @@ packages=(
 	"pkgconfig(ncursesw)"   # newsboat compilation
 	"pkgconfig(sqlite3)"    # newsboat compilation
 	"pkgconfig(stfl)"       # newsboat compilation
-	"plasma-browser-integration"
-	"plasma-nm"
-	"plasma-widget-menubar"
-	"plasma-workspace-wayland"
+	"plasma-breeze"         # preferred qt5 theme
+	"plasma-breeze-common"  # preferred qt5 theme
 	"playerctl"
 	"polkit-devel" # build flatpak
 	"powerline-fonts"
@@ -221,12 +219,12 @@ packages=(
 	"selinux-policy-devel" # build flatpak
 	"sqlitebrowser"
 	"sshfs" # mount another computer
-	"stack"
+	"stack" # haskell package maanger. Used to download itself; then I uninstall it.
 	"startup-notification-devel"
-	"strace" # monitor program execution
-	"swaybg"
-	"swayidle"
-	"swaylock"
+	"strace"   # monitor syscalls during program execution
+	"swaybg"   # sway: wallpaper
+	"swayidle" # sway: execute commands after idle periods
+	"swaylock" # sway: lockscreen
 	"taglib"
 	"tar"
 	"terminus-fonts"
