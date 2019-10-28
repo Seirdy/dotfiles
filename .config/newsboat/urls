@@ -7,10 +7,13 @@
 "query:Podcasts:tags # \"Audio\"" "0-query"
 https://www.sonniesedge.net/posts.xml "Advocacy" "Blog" "Favorite"
 # https://sonniesedge.co.uk/bookmarks.xml "Blog"
-https://boingboing.net/tag/copyfight/feed "NonDev"
+https://boingboing.net/tag/copyfight/feed "Advocacy" "NonDev"
 # Nondev because it usually isn't technical
 https://www.theguardian.com/profile/stallman-richard/rss "Advocacy" "Blog" "NonDev" "Favorite"
-https://www.laquadrature.net/en/feed/ "NonDev"
+https://static.fsf.org/fsforg/rss/news.xml "Advocacy" "NonDev" "Favorite"
+https://sfconservancy.org/feeds/blog/ "Advocacy" "NonDev" "Favorite"
+https://www.laquadrature.net/en/feed/ "Advocacy" "NonDev"
+https://www.lesswrong.com/feed.xml?view=curated-rss "NonDev" "Favorite"
 https://mikegerwitz.com/rss.xml "Blog" "Dev" "Favorite"
 https://people.kernel.org/bleung/feed/ "Blog" "Dev"
 https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev"
@@ -175,7 +178,8 @@ https://dolphin-emu.org/blog/feeds/ "Programs" "Dev"
 https://calibre-ebook.com/changelog.rss "Programs" "Dev"
 https://github.com/johnfactotum/foliate/releases.atom "git repos" "Programs" "Dev"
 https://gitlab.gnome.org/World/fractal/tags?format=atom "Programs" "Dev"
-https://about.gitlab.com/atom.xml "Programs" "Dev"
+https://about.gitlab.com/atom.xml "Corporate feed" "Programs" "Dev"
+https://opensource.com/feed "Corporate feed" "Linux" "Dev"
 https://neovim.io/news.xml "Programs" "Dev" "Favorite"
 https://github.com/tridactyl/tridactyl/commits/master/CHANGELOG.md.atom "Firefox" "git repos" "Programs" "Dev" "~tridactyl changelog"
 https://blog.nightly.mozilla.org/feed/ "Firefox" "Dev"
@@ -320,6 +324,8 @@ https://chooselinux.show/rss "Audio" "Media" "Linux"
 https://feeds.fireside.fm/linuxforeveryone/rss "Audio" "Media" "Linux"
 # Reality 2.0
 https://feeds.fireside.fm/reality2/rss "Audio" "Media" "Linux"
+# Late Night Linux
+https://latenightlinux.com/feed/ogg "Audio" "Media" "Linux"
 
 # Video
 
