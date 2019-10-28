@@ -2,9 +2,9 @@
   "dependencies": {
     "coc-ccls": ">=0.0.5",
     "coc-css": ">=1.2.2",
-    "coc-diagnostic": ">=0.0.13",
+    "coc-diagnostic": ">=0.0.14",
     "coc-docker": ">=0.2.1",
-    "coc-git": ">=1.6.13",
+    "coc-git": ">=1.6.14",
     "coc-gitignore": ">=0.0.4",
     "coc-highlight": ">=1.2.5",
     "coc-html": ">=1.2.1",
@@ -13,15 +13,15 @@
     "coc-lua": ">=0.2.0",
     "coc-marketplace": ">=1.5.0",
     "coc-python": ">=1.2.6",
-    "coc-rls": ">=1.1.2",
+    "coc-rls": ">=1.1.4",
     "coc-sh": "^0.2.1",
     "coc-snippets": ">=2.1.13",
     "coc-stylelint": ">=1.1.0",
     "coc-texlab": ">=1.9.6",
-    "coc-vimlsp": ">=0.4.1",
+    "coc-vimlsp": ">=0.4.2",
     "coc-yaml": ">=1.0.2",
     "coc-yank": ">=1.1.2",
-    "coc-go": ">=0.5.2",
+    "coc-go": ">=0.6.0",
     "coc-markdownlint": ">=0.3.3"
   }
 }
