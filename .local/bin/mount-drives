@@ -1,8 +1,9 @@
 #!/usr/bin/env dash
-sudo mkdir -p /run/media/rkumar/bigssd /run/media/rkumar/HDD1 /run/media/rkumar/LC-GD
+sudo mkdir -p "/run/media/$USER/bigssd" "/run/media/$USER/HDD1" "/run/media/$USER/LC-GD"
+sudo chown "$USER" "/run/media/$USER/LC-GD"
 sudo cryptsetup luksOpen /dev/sda1 bigssd
-sudo mount /dev/mapper/bigssd /run/media/rkumar/bigssd
+sudo mount /dev/mapper/bigssd "/run/media/$USER/bigssd"
 sudo cryptsetup luksOpen /dev/md/raid HDD1
-sudo mount /dev/mapper/HDD1 /run/media/rkumar/HDD1
+sudo mount /dev/mapper/HDD1 "/run/media/$USER/HDD1"
 # vi:ft=sh
 
