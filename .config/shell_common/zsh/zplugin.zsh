@@ -63,7 +63,7 @@ zi0a has'fzf' pick'fzf-finder.plugin.zsh'
 zplugin light leophys/zsh-plugin-fzf-finder
 
 zi0a has'fzf' pick'key-bindings.zsh'
-zplugin light %"$GOPATH"/src/github.com/junegunn/fzf/shell
+zplugin light $GOPATH/src/github.com/junegunn/fzf/shell
 # }}}
 
 ############
@@ -107,6 +107,9 @@ zi_program pick'stpv'
 zplugin light https://github.com/Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
 zplugin light https://github.com/Seirdy/stpv
+
+zi_program pick'farge'
+zplugin light 'Seirdy/farge'
 
 zi_program has'perl' pick'xurls'
 zplugin light bobrippling/perlbin
@@ -190,12 +193,12 @@ zi_completion has'buku'
 zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completioud/zsh/_buku
 
 zi_completion has'hub' mv'hub.zsh_completion -> _hub'
-zplugin snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
+zplugin light $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
 
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'
-	zplugin snippet $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
+	zplugin light $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 
@@ -209,7 +212,7 @@ fi
 
 finish_setup() {
 	if command -v conda >/dev/null; then
-		eval "$(conda 'shell.zsh' 'hook' 2>/dev/null)"
+		alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
 	fi
 	export PATH="$HOME/.local/bin:$PATH"
 	zpcompinit
