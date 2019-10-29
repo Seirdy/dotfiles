@@ -30,9 +30,10 @@ packages=(
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
-	"atool"    # file extraction util used by stpv
-	"autoconf" # build many things
-	"automake" # build things like podman
+	"atool"            # file extraction util used by stpv
+	"autoconf"         # build many things
+	"autoconf-archive" # building xdg-dbus-proxy
+	"automake"         # build things like podman
 	"bash-completion"
 	"keepassxc" # password manager until I migrate to `pass`
 	"bc"

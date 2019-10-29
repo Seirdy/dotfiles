@@ -12,6 +12,14 @@ export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
 export CONFIGPREFIX="$HOME/.config"
 
+export CFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
+export CXXFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
+export FFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
+export FCFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
+export LDFLAGS='-Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld'
+
+set -e
+
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
@@ -53,6 +61,13 @@ ghq_get_cd https://github.com/openSUSE/catatonit.git \
 	&& autoreconf -fi \
 	&& ./configure --prefix="$PREFIX" \
 	&& make
+
+# xdg-dbus-proxy: runtime dep for flatpak programs
+ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
+	&& env NOCONFIGURE=1 ./autogen.sh \
+	&& ./configure --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --prefix="$PREFIX" --exec-prefix="$PREFIX" --bindir="$BINPREFIX" --datadir="$XDG_DATA_HOME" --includedir="$HOME/.local/include" --libdir="$HOME/.local/lib64" --libexecdir="$HOME/.local/libexec" --mandir="$MANPREFIX" --infodir="$HOME/.local/share/info" \
+	&& make -O -j6 \
+	&& make install
 
 # bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
