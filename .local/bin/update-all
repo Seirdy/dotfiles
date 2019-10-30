@@ -98,25 +98,17 @@ if [ -z "$litemode" ]; then
 	log_bg 'go'     # build go packages installed with "go get"
 	log_bg 'go-big' # same as above, but for larger packages (slow)
 	log_bg 'cargo'  # rust packages (extremely cpu-heavy)
-	log_bg 'kitty'  # compile kitty from git
 fi
 
 if [ "$MACHINE" = 'Linux' ]; then
 	if [ -z "$litemode" ]; then
-		log_bg 'newsboat'          # compile newsboat from git
-		log_bg 'neovim'            # compile neovim from git
 		log_bg 'small-cc-programs' # compile imv from git
-		log_bg 'zsh'               # compile zsh
 		log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
 		log_bg 'in-containers'     # Updates running inside containers
 	fi
 	log_bg 'flatpak'  # repair and update user-installed flatpaks
 	log_bg 'chromium' # tertiary browser (after Firefox Nightly, Falkon)
 	log_fg 'dnf'      # system-wide update, autoremoval, and repo caching.
-
-elif [ "$MACHINE" = 'Darwin' ]; then
-	echo
-	log_fg 'homebrew' # repo-caching and updating of homebrew formulae and casks
 
 else
 	echo 'Unsupported machine for system package updates'

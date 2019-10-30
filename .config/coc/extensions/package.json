@@ -4,7 +4,7 @@
     "coc-css": ">=1.2.2",
     "coc-diagnostic": ">=0.0.14",
     "coc-docker": ">=0.2.1",
-    "coc-git": ">=1.6.14",
+    "coc-git": ">=1.6.16",
     "coc-gitignore": ">=0.0.4",
     "coc-highlight": ">=1.2.5",
     "coc-html": ">=1.2.1",

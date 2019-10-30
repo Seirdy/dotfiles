@@ -246,7 +246,7 @@ else
 	export QT_WAYLAND_FORCE_DPI=physical
 	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
 	export GDK_BACKEND=wayland
-	export TERMINAL='alacritty'
+	export TERMINAL='kitty'
 	export GDK_BACKEND="wayland" # Commented bc some apps aren't ready
 fi
 # set the QT5 theme with qt5ct if I'm not running KDE

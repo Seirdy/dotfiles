@@ -11,14 +11,16 @@ export BINPREFIX="$PREFIX/bin"
 export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
 export CONFIGPREFIX="$HOME/.config"
+export CONFIGPREFIX="$HOME/.config"
+export CMAKE_INSTALL_PREFIX="$PREFIX"
+export CMAKE_INSTALL_MANDIR="$MANPREFIX"
 
+export LIBLDFLAGS='-z lazy'
 export CFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
 export CXXFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
 export FFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
 export FCFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
 export LDFLAGS='-Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld'
-
-set -e
 
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
@@ -86,9 +88,43 @@ ghq_get_cd https://github.com/rootless-containers/slirp4netns \
 # flatpak
 ghq_get_cd https://github.com/flatpak/flatpak \
 	&& ./autogen.sh \
-	&& ./configure --prefix="$HOME/.local" --with-system-bubblewrap --with-system-dbus-proxy \
-	&& make \
+	&& LDFLAGS='' ./configure --prefix="$HOME/.local" --with-system-bubblewrap --with-system-dbus-proxy \
+	&& LDFLAGS='' make \
+	&& LDFLAGS='' make install
+
+# kitty
+ghq_get_cd https://github.com/kovidgoyal/kitty.git \
+	&& python3 ./setup.py linux-package --update-check-interval=0 \
+	&& cp -r ./linux-package/* "$PREFIX"
+
+# newsboat
+ghq_get_cd https://github.com/newsboat/newsboat.git \
+	&& make prefix="$PREFIX" \
+	&& make install prefix="$PREFIX"
+
+# neovim
+ghq_get_cd https://github.com/neovim/neovim.git \
+	&& make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_INSTALL_MANDIR=$CMAKE_INSTALL_MANDIR" \
 	&& make install
+
+# zsh
+export zsh_cv_sys_nis=no
+ghq_get_cd git://git.code.sf.net/p/zsh/code \
+	&& autoreconf -fiv \
+	&& sed -e 's|^\.NOTPARALLEL|#.NOTPARALLEL|' -i 'Config/defs.mk.in' \
+	&& ./Util/preconfig \
+	&& ./configure \
+		--prefix="$PREFIX" \
+		--mandir="$MANPREFIX" \
+		--bindir="$BINPREFIX" \
+		--build=x86_64-redhat-linux-gnu \
+		--host=x86_64-redhat-linux-gnu \
+		--with-tcsetpgrp --enable-maildir-support --enable-pcre \
+	&& make -C Src headers \
+	&& make -C Src -f Makemod zshpaths.h zshxmods.h version.h \
+	&& make -j6 \
+	&& set +e \
+	&& make install-strip
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

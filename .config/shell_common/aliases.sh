@@ -44,8 +44,6 @@ alias nvimclean='nvim +PlugClean'
 # shellcheck disable=SC2142
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
 alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'time to empty|percentage'"
-# switch to rawhide; keep my $HOME but make the rest of the system (besides the kernel) Fedora Rawhide by entering a podman container.
-alias toolbox-rawhide='toolbox run --release f32 "$(command -v zsh)"'
 
 # Aliases that change existing commands
 alias ddgr='ddgr -x'

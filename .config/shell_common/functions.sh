@@ -120,8 +120,7 @@ bcalc() {
 
 imgurup() {
 	curl -H "Referer: https://imgur.com/upload" -F "Filedata=@$1" https://imgur.com/upload \
-		| jq '.data' \
-		| yq - r \
+		| jq \
 		| $PAGER
 }
 

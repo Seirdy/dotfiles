@@ -48,6 +48,8 @@ go_update github.com/zaquestion/lab || echo "failed to install lab"
 go_update github.com/motemen/ghq
 # matrix client, for when I get bored of weechat-matrix
 go_update github.com/tulir/gomuks
+# MPRIS bridge for MPD
+go_update github.com/natsukagami/mpd-mpris
 
 # Development tools
 #
