@@ -22,20 +22,35 @@ export FFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=
 export FCFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
 export LDFLAGS='-Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld'
 
+fancy_configure() {
+	./configure \
+		--program-prefix= \
+		--prefix="$PREFIX" \
+		--exec-prefix="$PREFIX" \
+		--bindir="$BINPREFIX" \
+		--datadir="$XDG_DATA_HOME" \
+		--includedir="$HOME/.local/include" \
+		--libdir="$HOME/.local/lib64" \
+		--libexecdir="$HOME/.local/libexec" \
+		--mandir="$MANPREFIX" \
+		--infodir="$HOME/.local/share/info" "$@"
+}
+set -e
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
-	&& ./configure --prefix="$PREFIX" \
-	&& make \
+	&& LDFLAGS='' fancy_configure \
+	&& LDFLAGS='' make \
 	&& make install
 
 # mpv-mpris
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make install
 
+# j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
 	&& mkdir -p build \
 	&& cd build \
-	&& cmake -DCMAKE_INSTALL_PREFIX=/home/rkumar/.local -DCMAKE_BUILD_TYPE=Release .. \
+	&& cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release .. \
 	&& make \
 	&& make install
 
@@ -67,14 +82,14 @@ ghq_get_cd https://github.com/openSUSE/catatonit.git \
 # xdg-dbus-proxy: runtime dep for flatpak programs
 ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& ./configure --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --prefix="$PREFIX" --exec-prefix="$PREFIX" --bindir="$BINPREFIX" --datadir="$XDG_DATA_HOME" --includedir="$HOME/.local/include" --libdir="$HOME/.local/lib64" --libexecdir="$HOME/.local/libexec" --mandir="$MANPREFIX" --infodir="$HOME/.local/share/info" \
+	&& fancy_configure \
 	&& make -O -j6 \
 	&& make install
 
 # bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib64" \
+	&& fancy_configure \
 	&& make \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
 	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
@@ -82,13 +97,13 @@ ghq_get_cd https://github.com/containers/bubblewrap.git \
 # slirp4netns: required for many rootless container setups and Flatpak
 ghq_get_cd https://github.com/rootless-containers/slirp4netns \
 	&& ./autogen.sh \
-	&& ./configure --prefix="$PREFIX" \
+	&& fancy_configure \
 	&& make && make install
 
 # flatpak
 ghq_get_cd https://github.com/flatpak/flatpak \
 	&& ./autogen.sh \
-	&& LDFLAGS='' ./configure --prefix="$HOME/.local" --with-system-bubblewrap --with-system-dbus-proxy \
+	&& LDFLAGS='' fancy_configure --with-system-bubblewrap --with-system-dbus-proxy \
 	&& LDFLAGS='' make \
 	&& LDFLAGS='' make install
 
@@ -107,19 +122,34 @@ ghq_get_cd https://github.com/neovim/neovim.git \
 	&& make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_INSTALL_MANDIR=$CMAKE_INSTALL_MANDIR" \
 	&& make install
 
+# file(1)
+ghq_get_cd https://github.com/file/file.git \
+	&& autoreconf -fiv \
+	&& fancy_configure \
+	&& make -j6 \
+	&& make install
+
+# dash shell
+ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
+	&& env NOCONFIGURE=1 ./autogen.sh \
+	&& fancy_configure \
+	&& make -O -j6 \
+	&& make install-strip
+
+# atool
+ghq_get_cd https://repo.or.cz/atool.git \
+	&& autoreconf -fiv \
+	&& fancy_configure \
+	&& make -j6 \
+	&& make install
+
 # zsh
 export zsh_cv_sys_nis=no
 ghq_get_cd git://git.code.sf.net/p/zsh/code \
 	&& autoreconf -fiv \
 	&& sed -e 's|^\.NOTPARALLEL|#.NOTPARALLEL|' -i 'Config/defs.mk.in' \
 	&& ./Util/preconfig \
-	&& ./configure \
-		--prefix="$PREFIX" \
-		--mandir="$MANPREFIX" \
-		--bindir="$BINPREFIX" \
-		--build=x86_64-redhat-linux-gnu \
-		--host=x86_64-redhat-linux-gnu \
-		--with-tcsetpgrp --enable-maildir-support --enable-pcre \
+	&& fancy_configure --with-tcsetpgrp --enable-maildir-support --enable-pcre \
 	&& make -C Src headers \
 	&& make -C Src -f Makemod zshpaths.h zshxmods.h version.h \
 	&& make -j6 \
