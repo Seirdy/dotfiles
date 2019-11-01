@@ -25,17 +25,14 @@ packages=(
 	"SDL2-devel"
 	"SDL2_ttf-devel"
 	"abduco"
-	"adapta-backgrounds"
 	"adobe-*-fonts"
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
-	"atool"            # file extraction util used by stpv
 	"autoconf"         # build many things
 	"autoconf-archive" # building xdg-dbus-proxy
 	"automake"         # build things like podman
 	"bash-completion"
-	"keepassxc" # password manager until I migrate to `pass`
 	"bc"
 	"bison" # build many programs' docs
 	"breeze-gtk"
@@ -47,7 +44,7 @@ packages=(
 	"ccls"
 	"chafa"
 	"clang"
-	"clang-devel" # compile compilers like tinygo
+	"clang-devel" # build compilers like tinygo
 	"cmake"
 	"cmake(KDecoration2)"
 	"cmake(KF5ConfigWidgets)"
@@ -75,7 +72,6 @@ packages=(
 	"elfutils"
 	"enchant"
 	"extra-cmake-modules"
-	"feh"
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"firefox-nightly"
@@ -83,6 +79,7 @@ packages=(
 	"fontawesome-fonts"
 	"fontconfig"
 	"fontconfig-devel"
+	"fontconfig-devel" # build kitty
 	"fortune-mod"
 	"fpaste"
 	"freeimage-devel" # Compiling imv
@@ -97,6 +94,7 @@ packages=(
 	"gettext-devel" # build flatpak
 	"git"
 	"git-email"
+	"glib2-devel" # building many packages including xdg-dbus-proxy and flatpak
 	"glibc"
 	"glibc-all-langpacks"
 	"glibc-devel"
@@ -107,6 +105,7 @@ packages=(
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
 	"gnu-free-mono-fonts"
+	"gobject-introspection-devel" # building many packages
 	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
@@ -115,6 +114,7 @@ packages=(
 	"gtk-doc"     # building flatpak
 	"gtk3-devel"
 	"harfbuzz-devel"
+	"harfbuzz-devel" # build kitty
 	"haskell-platform"
 	"hostname" # required for yadm
 	"ht-*-fonts"
@@ -125,6 +125,7 @@ packages=(
 	"java-latest-openjdk-devel"
 	"jq"
 	"json-glib-devel" # build flatpak
+	"keepassxc"       # password manager until I migrate to `pass`
 	"latexmk"
 	"libXcursor-devel"
 	"libXi-devel"
@@ -138,6 +139,7 @@ packages=(
 	"libdbusmenu-gtk3" # enable global app menu
 	"libmatthew-java"  # signal-cli
 	"libpng-devel"     # build imv and others
+	"libpng-devel"     # build kitty
 	"librsvg2-devel"   # Compiling imv
 	"librsvg2-tools"   # work with svg files; used for swaylock icon
 	"libseccomp"       # build runc
@@ -154,7 +156,7 @@ packages=(
 	"libxcb-devel"
 	"libxkbcommon-x11-devel"
 	"llvm"
-	"llvm-devel" # compile compilers like tinygo
+	"llvm-devel" # build compilers like tinygo
 	"lm_sensors"
 	"lua-devel"
 	"luajit"
@@ -204,7 +206,7 @@ packages=(
 	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
 	"qrencode"
-	"qt5-qtmultimedia-devel" # compile quotient
+	"qt5-qtmultimedia-devel" # build quotient
 	"radeontop"
 	"rc"
 	"readline-devel" # build nnn and others
