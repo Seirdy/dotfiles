@@ -1,12 +1,6 @@
 #!/usr/bin/env dash
 
-# Regex to match multiline strings, beginning at the start of a line.
-badstart='^(\n\n(\n| )| (- (When|Time|Is read|Action)| ( |Type: [A-Z])))'
-alias noblank="rg -v \"$badstart\" --multiline"
-
-rg -v "Id:.*==|Profile key" \
-	| rg -v "^Envelope from.*\nTimestamp.*\n(Received|Got receipt)" --multiline \
-	| rg -v "^(Received.*\nFrom|^Received)" --multiline \
-	| noblank \
+rg -v 'Id:.*==|Profile key|^Message timestamp: [0-9]' \
+	| rg -v '^(Envelope from.*\nTimestamp.*\n(Received|Got receipt)|Received.*\nFrom|(\n\n(\n| )| (- (When|Time|Is read|Action)| ( |Type: [A-Z]))))' --multiline \
 	| rg -v '^\n .*\n' --multiline \
 	| uniq
