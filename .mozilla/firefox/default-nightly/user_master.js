@@ -74,6 +74,7 @@ user_pref("browser.onboarding.enabled", false);
 user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.getAddons.cache.enabled", false);
 user_pref("extensions.getAddons.discovery.api_url", "");
+user_pref("lightweightThemes.update.enabled", false);
 user_pref("extensions.webservice.discoverURL", "");
 user_pref("extensions.getAddons.get.url", "");
 user_pref("extensions.getAddons.discovery.api_url", "");
@@ -102,6 +103,7 @@ user_pref("signon.storeWhenAutocompleteOff", false);
 /*disale captive portal phoning home to detectportal.firefox.com*/
 user_pref("network.captive-portal-service.enabled", false);
 user_pref("captivedetect.canonicalURL", "");
+user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0809: disable location bar suggesting "preloaded" top websites (FF54+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1211726 ***/
 user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
@@ -218,6 +220,7 @@ user_pref("extensions.pocket.site", "");
 user_pref("extensions.pocket.oAuthConsumerKey", "");
 user_pref("extensions.pocket.api", "");
 user_pref("extensions.screenshots.disabled", true);
+user_pref("extensions.screenshots.upload-disabled", true);
 user_pref("beacon.enabled", false);
 /*allow addons on AMO*/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
@@ -316,6 +319,7 @@ user_pref("browser.contentblocking.report.monitor.enabled", false);
 // DNS should obey my system settings, thank you very much.
 user_pref("network.trr.mode", 5);
 user_pref("network.trr.resolvers", "");
+user_pref("network.trr.bootstrapAddress", "");
 user_pref("network.trr.uri", "");
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
