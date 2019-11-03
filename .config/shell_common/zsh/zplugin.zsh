@@ -114,6 +114,9 @@ zplugin light th3lusive/chrome-extension-dl
 zi_program pick'farge'
 zplugin light 'sdushantha/farge'
 
+zi_program has'lspci' pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
+zplugin light dylanaraps/neofetch
+
 zi_program has'perl' pick'xurls'
 zplugin light bobrippling/perlbin
 zi_program has'perl' pick'exiftool'

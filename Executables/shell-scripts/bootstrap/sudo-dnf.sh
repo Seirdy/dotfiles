@@ -172,7 +172,6 @@ packages=(
 	"msgpack" # neovim dependency
 	"ncdu"
 	"ncurses-devel"
-	"neofetch" # installing it from here because it comes loaded with deps
 	"ninja-build"
 	"nmap" # network exploration
 	"npm"
@@ -187,6 +186,7 @@ packages=(
 	"papirus-icon-theme"
 	"patch"
 	"pavucontrol-qt"
+	"pciutils" # used by neofetch
 	"perl-ExtUtils-Embed"
 	"pkgconfig"
 	"pkgconfig(json-c)"     # newsboat compilation
