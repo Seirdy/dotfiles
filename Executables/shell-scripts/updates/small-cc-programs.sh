@@ -40,7 +40,7 @@ set -e
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
 	&& LDFLAGS='' fancy_configure \
-	&& LDFLAGS='' make \
+	&& LDFLAGS='' make -j6 \
 	&& make install
 
 # mpv-mpris
@@ -71,7 +71,7 @@ ghq_get_cd https://github.com/jarun/bcal.git && make && make install
 ghq_get_cd https://github.com/jarun/nnn.git && make && make install
 
 # conmon; necessary for building OCI container stack
-ghq_get_cd https://github.com/containers/conmon.git && make podman
+ghq_get_cd https://github.com/containers/conmon.git && make podman -j6
 
 # catatonit; used as container init system
 ghq_get_cd https://github.com/openSUSE/catatonit.git \
@@ -90,7 +90,7 @@ ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& fancy_configure \
-	&& make \
+	&& make -j10 \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
 	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
 
@@ -98,13 +98,13 @@ ghq_get_cd https://github.com/containers/bubblewrap.git \
 ghq_get_cd https://github.com/rootless-containers/slirp4netns \
 	&& ./autogen.sh \
 	&& fancy_configure \
-	&& make && make install
+	&& make -j10 && make install
 
 # flatpak
 ghq_get_cd https://github.com/flatpak/flatpak \
 	&& ./autogen.sh \
 	&& LDFLAGS='' fancy_configure --with-system-bubblewrap --with-system-dbus-proxy \
-	&& LDFLAGS='' make \
+	&& LDFLAGS='' make -j10 \
 	&& LDFLAGS='' make install
 
 # kitty
@@ -113,12 +113,12 @@ ghq_get_cd https://github.com/kovidgoyal/kitty.git \
 
 # newsboat
 ghq_get_cd https://github.com/newsboat/newsboat.git \
-	&& make prefix="$PREFIX" \
+	&& make -j10 prefix="$PREFIX" \
 	&& make install prefix="$PREFIX"
 
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
-	&& make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_INSTALL_MANDIR=$CMAKE_INSTALL_MANDIR" \
+	&& make -j10 CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_INSTALL_MANDIR=$CMAKE_INSTALL_MANDIR" \
 	&& make install
 
 # file(1)
