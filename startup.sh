@@ -123,6 +123,8 @@ xdgdataadd_head "$XDG_DATA_HOME"
 xdgdataadd_head "$HOME/.local/var/lib/flatpak/exports/share"
 xdgdataadd_head "$HOME/.local/share/flatpak/exports/share"
 
+export XDG_DATA_DIRS
+
 # Set MANPATH
 manpathadd_head() {
 	if [ -d "$1" ] && ! echo "$MANPATH" | grep -q "$1" >/dev/null; then
