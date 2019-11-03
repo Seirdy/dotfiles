@@ -108,6 +108,9 @@ zplugin light https://github.com/Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
 zplugin light https://github.com/Seirdy/stpv
 
+zi_program has'chromium-browser-privacy' pick'chrome-extension-dl'
+zplugin light th3lusive/chrome-extension-dl
+
 zi_program pick'farge'
 zplugin light 'sdushantha/farge'
 

@@ -38,11 +38,12 @@ packages=(
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
-	"calc"
+	"calc"  # really small/fast CLI calculator
 	"cargo" # rust package manager. used to install itself; then uninstalled.
 	"catimg"
-	"ccls"
-	"chafa"
+	"ccls"                     # C/C++/Objective-C language server
+	"chafa"                    # display images with 24bit color unicode in the terminal
+	"chromium-browser-privacy" # ungoogled-chromium
 	"clang"
 	"clang-devel" # build compilers like tinygo
 	"cmake"
@@ -105,7 +106,6 @@ packages=(
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
 	"gnu-free-mono-fonts"
-	"gobject-introspection-devel" # building many packages
 	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
