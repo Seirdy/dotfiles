@@ -20,6 +20,7 @@ bindsym $mod+z exec --no-startup-id kitty --class launcher sway-launcher
 bindsym $mod+d exec --no-startup-id kitty --class launcher app-launcher
 for_window [app_id="^launcher$"] floating enable
 for_window [app_id="^keepassxc$"] floating enable
+for_window [app_id="^pavucontrol-qt$"] floating enable
 # images and windows should float above other programs since their dimensions should
 # not be limited by the WM.
 for_window [app_id="^imv$"] floating enable
@@ -253,10 +254,12 @@ bar {
 	position top
 	colors {
 		statusline #ffffff
-		background #31363b
+		background #31363b00
 		inactive_workspace #32323200 #32323200 #5c5c5c
 	}
-		status_command i3status-rs ~/.config/sway/status.toml
+	status_command i3status-rs ~/.config/sway/status.toml
+	font Hasklug Nerd Font, FontAwesome 12
+	height 22
 }
 
 include /etc/sway/config.d/*

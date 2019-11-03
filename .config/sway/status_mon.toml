@@ -1,29 +1,18 @@
-font = "Hasklug Nerd Font"
-
-[icons]
-name = "awesome"
-[icons.overrides]
-music = " "
-time = " "
-
-[theme]
-name="slick"
-[theme.overrides]
-idle_bg = "#232629"
-
 [[block]]
 block = "focused_window"
-max_width = 115
+max_width = 135
 
 [[block]]
-block = "sound"
-driver = "pulseaudio"
-on_click = "pavucontrol-qt"
+block = "net"
+device = "enp8s0u1"
+ip = false
+interval = 5
 
 [[block]]
-block = "music"
-buttons = ["play", "next"]
+block = "load"
+interval = 5
+format = "{1m}"
 
 [[block]]
 block = "time"
-format = "%m-%d %H:%M"
+format = "%a %m-%d %R%:z"

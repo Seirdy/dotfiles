@@ -54,59 +54,56 @@ gtk_confdir="$XDG_CONFIG_HOME/gtk-3.0"
 termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
 alacritty_confdir="$XDG_CONFIG_HOME/alacritty"
 nvim_confdir="$XDG_CONFIG_HOME/nvim"
+sway_confdir="$XDG_CONFIG_HOME/sway"
 
 # TODO: update settings for gtk2 and gtk4
 if [ -d "$kitty_confdir" ]; then
-	# shellcheck disable=SC2164
-	cd "$kitty_confdir"
-	cat ./kitty_master.conf "./kitty_$new_display.conf" >kitty.conf
-	echo "updated kitty settings"
+	cd "$kitty_confdir" \
+		&& cat ./kitty_master.conf "./kitty_$new_display.conf" >kitty.conf \
+		&& echo "updated kitty settings"
 else
 	echo "Failed to find kitty config in \"$kitty_confdir\"; skipping."
 fi
 if [ -d "$ff_confdir" ]; then
-	# shellcheck disable=SC2164
-	cd "$ff_confdir"
-	cat ./user_master.js "./user_$new_display.js" >./user.js
-	echo "updated Firefox Nighty settings"
+	cd "$ff_confdir" \
+		&& cat ./user_master.js "./user_$new_display.js" >./user.js \
+		&& echo "updated Firefox Nighty settings"
 else
 	echo "Failed to find Firefox Nightly config in \"$ff_confdir\"; skipping."
 fi
 if [ -d "$gtk_confdir" ]; then
-	# shellcheck disable=SC2164
-	cd "$gtk_confdir"
-	cat ./settings_master.ini "./settings_$new_display.ini" >settings.ini
-	echo "updated gtk3 settings"
+	cd "$gtk_confdir" \
+		&& cat ./settings_master.ini "./settings_$new_display.ini" >settings.ini \
+		&& echo "updated gtk3 settings"
 else
 	echo "Failed to find GTK3 config in \"$gtk_confdir\"; skipping."
 fi
 if [ -d "$nvim_confdir" ]; then
-	# shellcheck disable=SC2164
-	cd "$nvim_confdir"
-	cat "./ginit_master.vim" "./ginit_$new_display.vim" >ginit.vim
-	echo "updated nvim gui settings"
+	cd "$nvim_confdir" \
+		&& cat "./ginit_master.vim" "./ginit_$new_display.vim" >ginit.vim \
+		&& echo "updated nvim gui settings"
 else
 	echo "Failed to find nvim config in \"$nvim_confdir\"; skipping."
 fi
 if [ -d "$termset_confdir" ]; then
-	# shellcheck disable=SC2164
-	cd "$termset_confdir"
-	cp "./st-vars_$new_display" ./st-vars
-	echo "updated st settings"
+	cd "$termset_confdir" \
+		&& cp "./st-vars_$new_display" ./st-vars \
+		&& echo "updated st settings"
 else
 	echo "Failed to find st config in \"$termset_confdir\"; skipping."
 fi
 if [ -d "$alacritty_confdir" ]; then
-	# shellcheck disable=SC2164
-	cd "$alacritty_confdir"
-	cat ./alacritty_master.yml "./alacritty_$new_display.yml" >alacritty.yml
-	echo "updated alacritty settings"
+	cd "$alacritty_confdir" \
+		&& cat ./alacritty_master.yml "./alacritty_$new_display.yml" >alacritty.yml \
+		&& echo "updated alacritty settings"
 else
 	echo "Failed to find alacritty config in \"$alacritty_confdir\"; skipping."
 fi
 
-i3status_file="$XDG_CONFIG_HOME/sway/status.toml"
-i3status_file_custom="$XDG_CONFIG_HOME/sway/status_$new_display.toml"
+if [ -d "$sway_confdir" ]; then
+	cd "$sway_confdir" \
+		&& cat ./status_master.toml "./status_$new_display.toml" >status.toml \
+		&& echo "updated i3status-rs settings"
+fi
 
-cp "$i3status_file_custom" "$i3status_file" || echo 'failed to update i3status config'
 # vim: filetype=sh

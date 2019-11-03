@@ -1,0 +1,28 @@
+font = "Hasklug Nerd Font"
+
+[icons]
+name = "awesome"
+[icons.overrides]
+music = " "
+# time = " "
+net_wired = " "
+net_vpn = " "
+music_play = " 契"
+music_pause = " "
+music_prev = " 玲"
+music_next = " 怜"
+
+[theme]
+name="slick"
+[theme.overrides]
+idle_bg = "#232629"
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+on_click = "echo"
+
+[[block]]
+block = "music"
+buttons = ["play", "next"]
+
