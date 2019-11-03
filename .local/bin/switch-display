@@ -103,6 +103,7 @@ fi
 if [ -d "$sway_confdir" ]; then
 	cd "$sway_confdir" \
 		&& cat ./status_master.toml "./status_$new_display.toml" >status.toml \
+		&& cat ./config_master "./config_$new_display" >config \
 		&& echo "updated i3status-rs settings"
 fi
 

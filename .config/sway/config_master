@@ -246,6 +246,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+
+include /etc/sway/config.d/*
+
 #
 # Status Bar:
 #
@@ -258,8 +261,3 @@ bar {
 		inactive_workspace #32323200 #32323200 #5c5c5c
 	}
 	status_command i3status-rs ~/.config/sway/status.toml
-	font Hasklug Nerd Font, FontAwesome 12
-	height 22
-}
-
-include /etc/sway/config.d/*
