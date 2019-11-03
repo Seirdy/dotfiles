@@ -18,7 +18,7 @@
     "coc-snippets": ">=2.1.13",
     "coc-stylelint": ">=1.1.0",
     "coc-texlab": ">=1.9.6",
-    "coc-vimlsp": ">=0.4.2",
+    "coc-vimlsp": ">=0.4.3",
     "coc-yaml": ">=1.0.2",
     "coc-yank": ">=1.1.2",
     "coc-go": ">=0.6.0",
