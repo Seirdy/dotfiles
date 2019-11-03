@@ -26,6 +26,8 @@ https://www.lesswrong.com/feed.xml?view=curated-rss "NonDev" "Favorite"
 https://mikegerwitz.com/rss.xml "Blog" "Dev" "Favorite"
 https://people.kernel.org/bleung/feed/ "Blog" "Dev"
 https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev"
+# toolbox is one of my favorite programs, and this is the primary dev's blog
+https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://blogs.gnome.org/mclasen/feed/ "Fedora" "Linux" "Blog" "Dev"
 https://solar.lowtechmagazine.com/feeds/all.rss.xml "Advocacy" "NonDev" "Favorite"
 https://feeds.feedburner.com/0AdNews "git repos" "Programs" "Dev"
