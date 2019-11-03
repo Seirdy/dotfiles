@@ -8,6 +8,7 @@ go_update() {
 	echo "###"
 	echo "### Updating $* ###"
 	echo "###"
+	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 
@@ -55,6 +56,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 	# update podman again, this time without all the flags from its makefile
 	echo 'Building podman without flags'
 	go build -o "$GOPATH/bin/podman" "$GOPATH/src/github.com/containers/libpod/cmd/podman"
+	cd || exit 1
 	go_update github.com/containers/buildah/cmd/buildah \
 		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
 		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \

@@ -6,6 +6,7 @@ go_update() {
 	echo "###"
 	echo "### Updating $* ###"
 	echo "###"
+	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 # update go itself
@@ -49,7 +50,7 @@ go_update github.com/motemen/ghq
 # matrix client, for when I get bored of weechat-matrix
 go_update github.com/tulir/gomuks
 # MPRIS bridge for MPD
-go_update github.com/natsukagami/mpd-mpris
+go_update github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
 
 # Development tools
 #

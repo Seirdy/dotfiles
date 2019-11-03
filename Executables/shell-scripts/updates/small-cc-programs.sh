@@ -109,7 +109,7 @@ ghq_get_cd https://github.com/flatpak/flatpak \
 
 # kitty
 ghq_get_cd https://github.com/kovidgoyal/kitty.git \
-	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$HOME/.local" \
+	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$HOME/.local"
 
 # newsboat
 ghq_get_cd https://github.com/newsboat/newsboat.git \
