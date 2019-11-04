@@ -67,6 +67,9 @@ ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 # bcal
 ghq_get_cd https://github.com/jarun/bcal.git && make && make install
 
+# scdoc
+ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && make && make install
+
 # nnn
 ghq_get_cd https://github.com/jarun/nnn.git && make && make install
 

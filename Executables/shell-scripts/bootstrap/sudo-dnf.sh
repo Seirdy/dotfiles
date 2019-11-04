@@ -57,7 +57,6 @@ packages=(
 	"cmake(Qt5Gui)"
 	"cmake(Qt5X11Extras)"
 	"cmake-data"
-	"containers-common" # build podman, skopeo, buildah
 	"cryptsetup"
 	"ctags"
 	"ctags-etags"
@@ -217,7 +216,6 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
-	"scdoc"                # Build aerc docs
 	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
 	"sqlitebrowser"
