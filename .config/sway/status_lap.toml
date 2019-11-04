@@ -1,6 +1,3 @@
-[[block]]
-block = "focused_window"
-max_width = 100
 
 [[block]]
 block = "battery"
@@ -16,3 +13,8 @@ interval = 3
 [[block]]
 block = "time"
 format = "%m-%d %H:%M"
+
+[[block]]
+block = "focused_window"
+max_width = 60
+
