@@ -306,13 +306,13 @@ https://www.badvoltage.org/feed/ogg/ "Audio" "Media" "Dev"
 # Tech Policy
 https://feed.podbean.com/podcast.techfreedom.org/feed.xml "Audio" "Advocacy" "Media" "Dev"
 # Gnu World Order
-https://gnuworldorder.info/ogg.atom.xml "Audio" "Media" "Linux"
+https://gnuworldorder.info/ogg.atom.xml "Audio" "Media" "Linux" "Dev"
 # Destination Linux
 https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux"
 # This Week in Linux (TuxDigital)
 https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
-# Tales of the Unattested
-http://unattested.club/feed/mp3/ "Audio" "Media" "NonDev"
+# FLOSS Weekly
+http://feeds.twit.tv/floss.xml "Audio" "Media" "Dev"
 # Linux For The Rest Of Us
 http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
 # Going Linux
