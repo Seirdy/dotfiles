@@ -95,8 +95,8 @@ zplugin light https://github.com/eth-p/bat-extras
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light TheLocehiliosan/yadm
 
-zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e ".1.md" -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)'' atpull'%atclone"
-zplugin light https://github.com/containers/toolbox
+zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
+zplugin light https://github.com/Seirdy/toolbox
 
 zi_program has'jq'
 zplugin snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'

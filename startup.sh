@@ -54,6 +54,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
+export TOOLBOX_PROFILE_DIR="$XDG_DATA_HOME/toolbox"
 export HGPYTHON3=1
 # Disable the golang google proxy
 export GOPROXY=direct
