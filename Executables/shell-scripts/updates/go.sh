@@ -6,45 +6,79 @@ go_update() {
 	echo "###"
 	echo "### Updating $* ###"
 	echo "###"
-	for url in "$@"; do
-		cd "$GOPATH/src/$url" && git reset --hard HEAD && cd - || echo "$url doesn't seem to be installed yet."
-	done
-	go get -u -v "$@" 2>&1 # verbose output is sent to stderr for some reason
+	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
+	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 # update go itself
 go_update golang.org/dl/gotip
 HOME=$GOPATH gotip download
 
-go_update \
-	github.com/cpuguy83/go-md2man \
-	github.com/Code-Hex/Neo-cowsay/cmd/cowsay \
-	github.com/Code-Hex/Neo-cowsay/cmd/cowthink \
-	github.com/junegunn/fzf \
-	github.com/ddo/fast \
-	github.com/mvdan/sh/cmd/shfmt \
-	github.com/jessfraz/dockfmt \
-	github.com/tigrawap/slit/cmd/slit \
-	github.com/imwally/linkview \
-	github.com/natsukagami/mpd-mpris/cmd/mpd-mpris \
-	github.com/cjbassi/gotop \
-	github.com/ddo/fast \
-	github.com/mikefarah/yq \
-	github.com/rs/curlie \
-	github.com/r00tman/corrupter \
-	github.com/gokcehan/lf \
-	github.com/github/hub \
-	github.com/motemen/ghq \
-	github.com/tulir/gomuks \
-	mvdan.cc/gofumpt mvdan.cc/gofumpt/gofumports \
-	github.com/kisielk/godepgraph \
-	github.com/boyter/scc \
-	golang.org/x/tools/gopls golang.org/x/tour golang.org/x/tools/cmd/godoc \
-	github.com/golangci/golangci-lint/cmd/golangci-lint \
-	github.com/tinygo-org/tinygo \
-	github.com/zricethezav/gitleaks \
-	github.com/zabio3/godolint
-
+# building docs for some golang packages
+go_update github.com/cpuguy83/go-md2man
+# Critical programs for my workflow; computer is useless without them
+go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
+go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
+# If htop wasn't pretty enough
+go_update github.com/cjbassi/gotop
+# fzf
+go_update github.com/junegunn/fzf
+# Test dl speed
+go_update github.com/ddo/fast
+# Quickly share files between computers
+go_update github.com/schollz/croc
+# Pager for log files
+go_update github.com/tigrawap/slit/cmd/slit
+# shell script formatter
+go_update github.com/mvdan/sh/cmd/shfmt
+# like jq but for yaml
+go_update github.com/mikefarah/yq
+# curlie: better than httpie
+go_update github.com/rs/curlie
+# Alternative to urlview
+go_update github.com/imwally/linkview
+# corrupts images for fancy lockscreen
+go_update github.com/r00tman/corrupter
+# Alternative terminal emulator
+# github.com/liamg/aminal
+# Advanced file manager (like ranger)
+go_update github.com/gokcehan/lf
+# github and gitlab CLI
+go_update github.com/github/hub
 go_update github.com/zaquestion/lab || echo "failed to install lab"
+# used to clone repos into a nice directory tree like "go get" does
+go_update github.com/motemen/ghq
+# matrix client, for when I get bored of weechat-matrix
+go_update github.com/tulir/gomuks
+# MPRIS bridge for MPD
+go_update github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
+
+# Development tools
+#
+
+# More strict than gofmt
+go_update mvdan.cc/gofumpt
+go_update mvdan.cc/gofumpt/gofumports
+# Dependency graph
+go_update github.com/kisielk/godepgraph
+# best sloc cloc and code counter
+go_update github.com/boyter/scc
+# language server
+go_update golang.org/x/tools/gopls
+# Learn go
+go_update golang.org/x/tour
+# godoc webserver
+go_update golang.org/x/tools/cmd/godoc
+# linting
+go_update github.com/golangci/golangci-lint/cmd/golangci-lint
+# compiler for embedded go
+go_update github.com/tinygo-org/tinygo
+# check git repo for secrets
+go_update github.com/zricethezav/gitleaks
+# lint dockerfiles; companion to hadolint
+go_update github.com/zabio3/godolint
+# format dockerfiles
+go_update github.com/jessfraz/dockfmt
+
 # my mail client
 update_aerc() {
 	aerc_dir="$GOPATH/src/git.sr.ht/~sircmpwn/aerc"
