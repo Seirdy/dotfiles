@@ -28,7 +28,7 @@ rsync -zlrupP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/h
 rsync -lrupP ~/.local/share/man rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -zlrupP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -lrupP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share
-
+rsync -zlrupP ~/.local/bin/fuse-overlayfs ~/.local/bin/fusermount3 rkumar@rkumarlappie:/home/rkumar/.local/bin
 # rsync -zlrupP --exclude "$(git ls-files .local/bin | tr '\n' ' ' | sed 's/ \./ --exclude \./g')" ~/.local/bin rkumar@rkumarlappie:/home/rkumar/.local
 
 # vi:ft=sh

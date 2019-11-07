@@ -115,7 +115,7 @@ ghq_get_cd https://github.com/kovidgoyal/kitty.git \
 
 # newsboat
 ghq_get_cd https://github.com/newsboat/newsboat.git \
-	&& make -j10 prefix="$PREFIX" \
+	&& LDFLAGS='' make -j10 prefix="$PREFIX" \
 	&& make install prefix="$PREFIX"
 
 # neovim
