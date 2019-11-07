@@ -1,0 +1,12 @@
+# vi:ft=conf
+[input]
+method = pulse
+
+[output]
+channels = mono
+
+[color]
+gradient = 1
+gradient_count = 2
+gradient_color_1 = '#1d99f3'
+gradient_color_2 = '#1abc9c'
