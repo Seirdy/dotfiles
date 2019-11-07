@@ -1,6 +1,6 @@
 #!/bin/zsh
 # powerlevel9k
-export POWERLEVEL9K_GITSTATUS_DIR="$ZPLGM[PLUGINS_DIR]/romkatv---powerlevel10k/gitstatus"
+export POWERLEVEL9K_GITSTATUS_DIR="$GHQ_ROOT/github.com/romkatv/gitstatus"
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
 if [ "$CONDA_PREFIX" = '/usr' ]; then
 	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(

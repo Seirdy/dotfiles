@@ -157,6 +157,44 @@ ghq_get_cd git://git.code.sf.net/p/zsh/code \
 	&& set +e \
 	&& make install-strip
 
+# gitstatus for powerlevel10k
+DIR="$GHQ_ROOT/github.com/romkatv"
+# adapted from https://github.com/romkatv/gitstatus/blob/master/build.zsh
+build_libgit2() {
+	ghq get -u https://github.com/romkatv/libgit2.git \
+		&& cd "$DIR" \
+		&& mkdir -p libgit2/build \
+		&& cd libgit2/build \
+		&& cmake \
+			-DCMAKE_BUILD_TYPE=Release \
+			-DTHREADSAFE=ON \
+			-DUSE_BUNDLED_ZLIB=ON \
+			-DREGEX_BACKEND=builtin \
+			-DBUILD_CLAR=OFF \
+			-DUSE_SSH=OFF \
+			-DUSE_HTTPS=OFF \
+			-DBUILD_SHARED_LIBS=OFF \
+			-DUSE_EXT_HTTP_PARSER=OFF \
+			-DZERO_NSEC=ON \
+			.. \
+		&& make -j 10
+}
+
+build_gitstatus() {
+	ghq get -u https://github.com/romkatv/gitstatus.git \
+		&& cd "$DIR" \
+		&& cd gitstatus \
+		&& cxxflags="$CXXFLAGS -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
+		&& ldflags=" -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
+		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make -j 10 \
+		&& strip gitstatusd \
+		&& local target="$BINPREFIX/gitstatusd" \
+		&& install -m 0755 gitstatusd "$target" \
+		&& echo "built: $target" >&2
+}
+
+build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
+
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"
