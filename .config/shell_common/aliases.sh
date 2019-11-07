@@ -147,4 +147,5 @@ if [ -n "$ZSH_VERSION" ]; then
 		alias -g rofl='| lolcat'
 	fi
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
+	alias -g 'wlp'='"$(wl-paste)"'
 fi
