@@ -102,13 +102,13 @@ fi
 
 if [ "$MACHINE" = 'Linux' ]; then
 	if [ -z "$litemode" ]; then
-		log_bg 'small-cc-programs' # compile imv from git
-		log_bg 'stack'             # haskell packages (infrequent updates, cpu-heavy, slow)
-		log_bg 'in-containers'     # Updates running inside containers
+		log_bg 'stack'         # haskell packages (infrequent updates, cpu-heavy, slow)
+		log_bg 'in-containers' # Updates running inside containers
 	fi
-	log_bg 'flatpak'  # repair and update user-installed flatpaks
-	log_bg 'chromium' # tertiary browser (after Firefox Nightly, Falkon)
-	log_fg 'dnf'      # system-wide update, autoremoval, and repo caching.
+	log_bg 'small-cc-programs' # compile several programs with gcc -O3 -mcpu
+	log_bg 'flatpak'           # repair and update user-installed flatpaks
+	log_bg 'chromium'          # tertiary browser (after Firefox Nightly, Falkon)
+	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
 
 else
 	echo 'Unsupported machine for system package updates'

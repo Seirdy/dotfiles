@@ -16,10 +16,10 @@ export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
 
 export LIBLDFLAGS='-z lazy'
-export CFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
-export CXXFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
-export FFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
-export FCFLAGS='-O3 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
+export CFLAGS='-O3 -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
+export CXXFLAGS='-O3 -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
+export FFLAGS='-O3 -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
+export FCFLAGS='-O3 -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
 export LDFLAGS='-Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld'
 
 fancy_configure() {
@@ -35,7 +35,6 @@ fancy_configure() {
 		--mandir="$MANPREFIX" \
 		--infodir="$HOME/.local/share/info" "$@"
 }
-set -e
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
@@ -55,7 +54,7 @@ ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
 	&& make install
 
 # imv
-ghq_get_cd https://github.com/eXeC64/imv.git && make && make install
+ghq_get_cd https://github.com/eXeC64/imv.git && LDFLAGS='' make && make install
 
 # cmatrix
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
@@ -74,7 +73,7 @@ ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && make && make install
 ghq_get_cd https://github.com/jarun/nnn.git && make && make install
 
 # conmon; necessary for building OCI container stack
-ghq_get_cd https://github.com/containers/conmon.git && make podman -j6
+ghq_get_cd https://github.com/containers/conmon.git && LDFLAGS='' make podman -j6
 
 # catatonit; used as container init system
 ghq_get_cd https://github.com/openSUSE/catatonit.git \
@@ -101,14 +100,14 @@ ghq_get_cd https://github.com/containers/bubblewrap.git \
 ghq_get_cd https://github.com/rootless-containers/slirp4netns \
 	&& ./autogen.sh \
 	&& fancy_configure \
-	&& make -j10 && make install
+	&& LDFLAGS='' make -j10 && make install
 
 # flatpak
 ghq_get_cd https://github.com/flatpak/flatpak \
 	&& ./autogen.sh \
 	&& LDFLAGS='' fancy_configure --with-system-bubblewrap --with-system-dbus-proxy \
 	&& LDFLAGS='' make -j10 \
-	&& LDFLAGS='' make install
+	&& make install
 
 # kitty
 ghq_get_cd https://github.com/kovidgoyal/kitty.git \

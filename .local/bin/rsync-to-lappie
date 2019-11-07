@@ -29,7 +29,7 @@ rsync -lrupP ~/.local/share/man rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -zlrupP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -lrupP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share
 
-rsync -zlrupP --exclude "$(git ls-files .local/bin | tr '\n' ' ' | sed 's/ \./ --exclude \./g')" ~/.local/bin rkumar@rkumarlappie:/home/rkumar/.local
+# rsync -zlrupP --exclude "$(git ls-files .local/bin | tr '\n' ' ' | sed 's/ \./ --exclude \./g')" ~/.local/bin rkumar@rkumarlappie:/home/rkumar/.local
 
 # vi:ft=sh
 
