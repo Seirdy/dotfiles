@@ -257,6 +257,7 @@ include /etc/sway/config.d/*
 # Read `man 5 sway-bar` for more information about this section.
 bar {
 	position top
+	gaps 10 10
 	colors {
 		statusline #ffffff
 		background #31363b00

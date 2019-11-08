@@ -11,7 +11,7 @@ interval = 5
 [[block]]
 block = "load"
 interval = 5
-format = "{1m}"
+format = "{1m} {5m} {15m}"
 
 [[block]]
 block = "time"
