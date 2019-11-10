@@ -64,6 +64,8 @@ zplugin light leophys/zsh-plugin-fzf-finder
 
 zi0a has'fzf' pick'key-bindings.zsh'
 zplugin light $GOPATH/src/github.com/junegunn/fzf/shell
+zi0b has'fzf' pick'completion.zsh'
+zplugin light $GOPATH/src/github.com/junegunn/fzf/shell
 # }}}
 
 ############
@@ -117,8 +119,6 @@ zplugin light 'sdushantha/farge'
 zi_program has'lspci' pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light dylanaraps/neofetch
 
-zi_program has'perl' pick'xurls'
-zplugin light bobrippling/perlbin
 zi_program has'perl' pick'exiftool'
 zplugin light exiftool/exiftool
 

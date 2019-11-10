@@ -24,6 +24,7 @@ go_update github.com/cjbassi/gotop
 go_update github.com/junegunn/fzf
 # Test dl speed
 go_update github.com/ddo/fast
+go_update github.com/showwin/speedtest-go
 # Quickly share files between computers
 go_update github.com/schollz/croc
 # Pager for log files
@@ -34,7 +35,8 @@ go_update github.com/mvdan/sh/cmd/shfmt
 go_update github.com/mikefarah/yq
 # curlie: better than httpie
 go_update github.com/rs/curlie
-# Alternative to urlview
+# url pickers
+go_update mvdan.cc/xurls/cmd/xurls
 go_update github.com/imwally/linkview
 # corrupts images for fancy lockscreen
 go_update github.com/r00tman/corrupter
