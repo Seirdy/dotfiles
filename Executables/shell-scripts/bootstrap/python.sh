@@ -8,6 +8,7 @@ pipx install black &
 pipx install buku --spec git+https://github.com/jarun/Buku.git &
 pipx install consolemd &
 pipx install ddgr --spec git+https://github.com/jarun/ddgr.git &
+pipx install emoji-fzf --spec git+https://github.com/noahp/emoji-fzf.git
 pipx install flake8 &
 pipx install gcalcli &
 pipx install glances &
@@ -19,6 +20,7 @@ pipx install myqr &
 pipx install ncmpy &
 pipx install neovim-remote &
 pipx install pockyt --spec git+https://github.com/arvindch/pockyt.git &
+pipx install podman-compose
 pipx install poku --spec git+https://github.com/shanedabes/poku.git &
 pipx install proselint &
 pipx install ptpython --spec git+https://github.com/prompt-toolkit/ptpython.git &
