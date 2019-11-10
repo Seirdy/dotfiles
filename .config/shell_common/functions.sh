@@ -162,7 +162,7 @@ unshorten() {
 	curl "https://unshorten.me/s/$1"
 }
 
-unshorten-clip() {
+unshorten_clip() {
 	unshorten "$(wl-paste)" | head -n 1 | wl-copy
 }
 
