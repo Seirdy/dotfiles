@@ -164,8 +164,8 @@ pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"       # cpanm (perl)
 pathadd_head "$NPM_PACKAGES/bin"              # npm (javascript)
 pathadd_head "$HOME/Executables/luarocks/bin" # luarocks (lua)
 pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
-pathadd_head "$GOPATH/bin"                    # go
-pathadd_head "$GOPATH/sdk/gotip/bin"          # go
+pathadd_head "$GOPATH/bin"                    # go pacakages
+pathadd_head "$GOPATH/sdk/gotip/bin"          # golang nightly build
 pathadd_head "$STACK_ROOT/bin"                # stack (haskell)
 pathadd_head "$OPAM_SWITCH_PREFIX/bin"        # opam
 pathadd_head "$CARGO_HOME/bin"                # cargo (rust)
