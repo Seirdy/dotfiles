@@ -12,7 +12,7 @@ else
 	)
 fi
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-	root_indicator background_jobs history command_execution_time time
+	root_indicator background_jobs command_execution_time time
 )
 
 if [ -n "$SSH_CONNECTION" ] || hostname | grep -q 'toolbox'; then

@@ -30,8 +30,8 @@ zi0c() {
 
 # My fancy prompt needs at least 256 colors, preferably 24bit color
 if [ "${terminfo[colors]:?}" -gt 255 ]; then
-	z_lucid
-	zplugin load romkatv/powerlevel10k
+	z_lucid depth=1
+	zplugin light romkatv/powerlevel10k
 fi
 
 zi0b proto'git'
