@@ -9,7 +9,7 @@
  * chrome://global/content/xul.css
  * chrome://global/content/minimal-xul.css
  */
-:root {
+* {
 	/*My own variables, from the Breeze-Dark theme*/
 	--ui-basecolor: #31363B;
 	--ui-background: #232629;
