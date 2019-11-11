@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+export ZLE_RPROMPT_INDENT=0
 # powerlevel10k instant prompt
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
