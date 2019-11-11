@@ -127,8 +127,8 @@ zplugin light exiftool/exiftool
 # Git extensions {{{
 
 # has ICE-selector wait'0a' so it gets loaded before "forgit"
-zi0a as'program' pick'bin/git-dsf'
-zplugin light zdharma/zsh-diff-so-fancy
+# zi0a as'program' pick'bin/git-dsf'
+# zplugin light zdharma/zsh-diff-so-fancy
 
 zi0a
 zplugin light wfxr/emoji-cli
