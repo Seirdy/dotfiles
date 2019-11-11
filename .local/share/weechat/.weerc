@@ -1,0 +1,35 @@
+#
+# WeeChat 2.4 (compiled on Jul 27 2019 00:00:00)
+#
+# Use /autoconf load or cat this file to the FIFO pipe.
+#
+# For more info, see https://weechat.org/scripts/source/autoconf.py.html
+#
+
+*/set Option changed: weechat.look.mouse on
+*/set Option changed: weechat.bar.buflist.items "buflist"
+*/set Option changed: weechat.bar.fset.items "fset"
+*/set Option changed: weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],input_text,[vi_buffer]"
+*/set Option changed: weechat.bar.nicklist.items "chatters,buffer_nicklist"
+*/set Option changed: weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
+*/set Option changed: weechat.bar.vi_line_numbers.items "line_numbers"
+*/set Option changed: script.look.sort "d"
+*/set Option changed: matrix.server.matrix_org.address "matrix.org"
+*/set Option changed: weechat.look.mouse on
+*/set Option changed: weechat.bar.buflist.items "buflist"
+*/set Option changed: weechat.bar.fset.items "fset"
+*/set Option changed: weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],input_text,[vi_buffer]"
+*/set Option changed: weechat.bar.nicklist.items "chatters,buffer_nicklist"
+*/set Option changed: weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
+*/set Option changed: weechat.bar.vi_line_numbers.items "line_numbers"
+*/set Option changed: script.look.sort "d"
+*/set Option changed: matrix.server.matrix_org.address "matrix.org"
+*/set weechat.look.mouse on
+*/set weechat.bar.buflist.items "buflist"
+*/set weechat.bar.fset.items "fset"
+*/set weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],input_text,[vi_buffer]"
+*/set weechat.bar.nicklist.items "chatters,buffer_nicklist"
+*/set weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
+*/set weechat.bar.vi_line_numbers.items "line_numbers"
+*/set script.look.sort "d"
+*/set matrix.server.matrix_org.address "matrix.org"

@@ -50,6 +50,8 @@ alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host |
 alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'time to empty|percentage'"
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
+alias weechat-matrix='source $GHQ_ROOT/github.com/poljar/weechat-matrix/venv/bin/activate && weechat -r "/script load matrix.py; /matrix connect matrix_org"
+'
 # Aliases that change existing commands
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
@@ -118,7 +120,6 @@ alias yadd='yadm add'
 alias ydd='yadm diff'
 alias yds='ydd --staged'
 alias yopen='yadm open'
-# alias weechat-matrix='source $HOME/Downloads/gitclone/weechat-matrix/venv/bin/activate && weechat -r '/script load matrix.py; /matrix connect matrix_org''
 alias bd='cd ..'
 # bookmarks
 alias cdsch='cd $HOME/Documents/Work/School'

@@ -94,8 +94,9 @@ log_fg() {
 log_bg 'pip-pipx'              # see https://pipxproject.github.io/pipx/
 log_bg 'rubygem-luarocks-node' # combine gem+luarocks+npm since they update quickly
 log_bg 'program-data'          # have some programs sync their data
+log_bg 'misc'                  # misc updates
 if [ -z "$litemode" ]; then
-	log_bg 'go'     # build go packages installed with "go get"
+	log_bg 'go'     # build go packages installed with "go get" (slow)
 	log_bg 'go-big' # same as above, but for larger packages (slow)
 	log_bg 'cargo'  # rust packages (extremely cpu-heavy)
 fi
@@ -103,7 +104,7 @@ fi
 if [ "$MACHINE" = 'Linux' ]; then
 	if [ -z "$litemode" ]; then
 		log_bg 'stack'         # haskell packages (infrequent updates, cpu-heavy, slow)
-		log_bg 'in-containers' # Updates running inside containers
+		log_bg 'in-containers' # Updates running inside containers (slow)
 	fi
 	log_bg 'small-cc-programs' # compile several programs with gcc -O3 -mcpu
 	log_bg 'flatpak'           # repair and update user-installed flatpaks
