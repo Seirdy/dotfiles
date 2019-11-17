@@ -87,6 +87,7 @@ packages=(
 	"freetype-devel"
 	"fuse-devel" # build flatpak
 	"gcc"
+	"curl-devel" # build ncmpcpp
 	"gcc-c++"
 	"gcc-gdb-plugin"
 	"gdb"
@@ -147,7 +148,11 @@ packages=(
 	"libtermkey"       # neovim dependency
 	"libtiff-devel"    # Build imv and others
 	"libtool"
-	"libva-utils" # provides commands for verifying that vaapi works
+	"alsa-lib-devel"        # build cava
+	"fftw-devel"            # build cava
+	"pulseaudio-libs-devel" # build cava
+	"iniparser-devel"       # build cava
+	"libva-utils"           # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
 	"libvterm"          # neovim dependency
 	"libwayland-client" # Compiling imv
@@ -167,6 +172,7 @@ packages=(
 	"mozilla-fira-mono-fonts"
 	"mpc"
 	"mpd"
+	"libmpdclient-devel" # build ncmpcpp and other mpd-related stuff
 	"mpv"
 	"msgpack" # neovim dependency
 	"ncdu"
@@ -208,7 +214,7 @@ packages=(
 	"qt5-qtmultimedia-devel" # build quotient
 	"radeontop"
 	"rc"
-	"readline-devel" # build nnn and others
+	"readline-devel" # build nnn, ncmpcpp, and others
 	"redshift"       # gumeri/wayland copr repo has patched version for wayland
 	"roboto-fontface-fonts"
 	"rsync"
@@ -227,6 +233,8 @@ packages=(
 	"swayidle" # sway: execute commands after idle periods
 	"swaylock" # sway: lockscreen
 	"taglib"
+	"taglib-devel" # build ncmpcpp
+	"boost-devel"  # build ncmpcpp
 	"tar"
 	"terminus-fonts"
 	"terminus-fonts-console"

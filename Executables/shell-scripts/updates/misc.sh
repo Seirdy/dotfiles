@@ -12,6 +12,8 @@ ghq_get_cd https://github.com/poljar/weechat-matrix.git && . ./venv/bin/activate
 
 ghq get -u https://github.com/keith/edit-weechat.git
 
+ghq get -u https://github.com/carnager/clerk.git
+
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"
