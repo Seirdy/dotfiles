@@ -35,6 +35,7 @@ alias fuck!='fuck --yeah' # auto-correct previous command
 alias cmdv='command -v'
 alias settmp='redshift -O'
 alias resettmp='redshift -x'
+alias dsks='diskus --size-format=binary'
 # compiler conveniences
 alias gccv='gcc -pedantic -Wall'
 alias gorun='go run .'
