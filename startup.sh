@@ -18,6 +18,7 @@
 if [ "$PROFILE_SET" = 1 ]; then
 	exit
 fi
+export DO_NOT_TRACK=1 # https://consoledonottrack.com/
 find_alt() {
 	for i; do
 		command -v "$i" >/dev/null && {
