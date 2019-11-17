@@ -151,7 +151,7 @@ https://github.com/wfxr/forgit/releases.atom "zsh" "git repos" "Programs" "Dev" 
 https://github.com/changyuheng/fz/commits/master.atom
 https://github.com/skywind3000/z.lua/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/leophys/zsh-plugin-fzf-finder/commits/master.atom "zsh" "git repos" "Programs" "Dev"
-https://github.com/junegunn/fzf/releases.atom "zsh" "git repos" "Programs" "Dev"
+https://github.com/junegunn/fzf/commits/master/CHANGELOG.md.atom "zsh" "git repos" "Programs" "Dev"
 https://github.com/LuRsT/hr/releases.atom "zsh" "git repos" "Programs" "Dev"
 https://github.com/so-fancy/diff-so-fancy/releases.atom "git repos" "Programs" "Dev"
 https://github.com/tj/git-extras/releases.atom "git repos" "Programs" "Dev"
