@@ -5,6 +5,7 @@ cargo_install_git() {
 	cargo install --git "$@" --force
 }
 cargo_install_git https://github.com/BurntSushi/ripgrep.git
+cargo_install_git https://github.com/Canop/broot.git
 cargo_install_git https://github.com/Freaky/cw.git
 cargo_install_git https://github.com/Peltoche/lsd.git
 cargo_install_git https://github.com/Y2Z/monolith.git
