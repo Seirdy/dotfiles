@@ -159,6 +159,11 @@ ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 	&& make -j "$threads" \
 	&& make install
 
+# mpdinfo: display current mpd track
+ghq_get_cd https://github.com/jduepmeier/mpdinfo.git \
+	&& make \
+	&& make install
+
 # zsh
 export zsh_cv_sys_nis=no
 ghq_get_cd git://git.code.sf.net/p/zsh/code \

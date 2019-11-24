@@ -122,6 +122,9 @@ zplugin light dylanaraps/neofetch
 zi_program has'perl' pick'exiftool'
 zplugin light exiftool/exiftool
 
+zi_program has'sxiv' pick'kunst'
+zplugin light sdushantha/kunst
+
 # }}}
 
 # Git extensions {{{

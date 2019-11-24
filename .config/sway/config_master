@@ -21,6 +21,7 @@ bindsym $mod+d exec --no-startup-id kitty --class launcher app-launcher
 for_window [app_id="^launcher$"] floating enable
 for_window [app_id="^org.keepassxc.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
+for_window [class="^Sxiv$"] floating enable
 for_window [app_id="^pinentry-qt$"] floating enable
 for_window [app_id="^Minetest$"] floating enable
 # images and windows should float above other programs since their dimensions should
