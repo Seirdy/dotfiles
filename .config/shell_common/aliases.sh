@@ -53,7 +53,6 @@ alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'tim
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
 alias weechat-matrix='source $GHQ_ROOT/github.com/poljar/weechat-matrix/venv/bin/activate && weechat -r "/script load matrix.py; /matrix connect matrix_org"'
-alias now-playing='mpc status; mpc sticker "$(mpc status -f "%file%" | sed 1q)" get rating'
 # Aliases that change existing commands
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
@@ -65,6 +64,12 @@ alias glances='glances --disable-webui --disable-bg --disable-check-update'
 if command -v roflcat >/dev/null; then
 	alias lolcat='roflcat -t'
 fi
+
+# mpd stuff
+alias now-playing='mpc status; mpc sticker "$(mpc status -f "%file%" | sed 1q)" list'
+# rate current track 1-10. A rating of 7 or higher puts it in my "Fav" dynamic playlist.
+# the "rating" sticker is used by clerk and Cantata. Cantata can write ratings to tags.
+alias rate-track='mpc sticker "$(mpc status -f "%file%" | sed 1q)" set rating'
 
 # Editing aliases
 alias edi='$EDITOR'
