@@ -98,7 +98,7 @@ zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%
 zplugin light TheLocehiliosan/yadm
 
 zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
-zplugin light https://github.com/Seirdy/toolbox
+zplugin light https://github.com/containers/toolbox
 
 zi_program has'jq'
 zplugin snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
@@ -124,6 +124,9 @@ zplugin light exiftool/exiftool
 
 zi_program has'sxiv' pick'kunst'
 zplugin light sdushantha/kunst
+
+zi_program has'perl' pick'inxi'
+zplugin light smxi/inxi
 
 # }}}
 
@@ -243,6 +246,7 @@ finish_setup() {
 	. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
 	# shellcheck source=../functions.sh
 	. "$SHELL_COMMON/functions.sh"
+	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 }
 
 zi_completion atload'finish_setup'
