@@ -161,8 +161,14 @@ ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 
 # mpdinfo: display current mpd track
 ghq_get_cd https://github.com/jduepmeier/mpdinfo.git \
-	&& make \
+	&& make -j "$threads" \
 	&& make install
+
+# very important utility; computer basically useless without
+ghq_get_cd https://github.com/mtoyoda/sl.git \
+	&& make -j "$threads" \
+	&& install -m0755 sl "$BINPREFIX" \
+	&& install -p -m644 sl.1 "$MANPREFIX/man1"
 
 # zsh
 export zsh_cv_sys_nis=no
