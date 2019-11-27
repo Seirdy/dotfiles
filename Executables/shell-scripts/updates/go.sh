@@ -24,7 +24,6 @@ go_update github.com/cjbassi/gotop
 go_update github.com/junegunn/fzf
 # Test dl speed
 go_update github.com/ddo/fast
-go_update github.com/showwin/speedtest-go
 # Quickly share files between computers
 go_update github.com/schollz/croc
 # Pager for log files
@@ -49,6 +48,8 @@ go_update github.com/github/hub
 go_update github.com/zaquestion/lab || echo "failed to install lab"
 # used to clone repos into a nice directory tree like "go get" does
 go_update github.com/motemen/ghq
+# extra commands for ghq
+go_update github.com/uetchy/gst
 # matrix client, for when I get bored of weechat-matrix
 go_update github.com/tulir/gomuks
 # MPRIS bridge for MPD

@@ -44,7 +44,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& make docs \
 		&& install -d "$HOME/.local/share/man/man1" \
 		&& install -m 0644 docs/*.1 "$HOME/.local/share/man/man1"
-	export GO111MODULE=on
+	# export GO111MODULE=on
 	# podman
 	printf '###\n### Updating podman ###\n###\n'
 	# Do not install podman binary when working with the Makefile
@@ -52,11 +52,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& cd "$GOPATH/src/github.com/containers/libpod" \
 		&& git pull \
 		&& make BUILDTAGS="seccomp" \
-		&& make PREFIX="$HOME/.local" BINDIR="$(mktemp -d)" ETCDIR="$XDG_CONFIG_HOME" install
-	# update podman again, this time without all the flags from its makefile
-	echo 'Building podman without flags'
-	go build -o "$GOPATH/bin/podman" "$GOPATH/src/github.com/containers/libpod/cmd/podman"
-	cd || exit 1
+		&& make PREFIX="$HOME/.local" BINDIR="$GOPATH/bin" ETCDIR="$XDG_CONFIG_HOME" install
 	go_update github.com/containers/buildah/cmd/buildah \
 		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
 		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
