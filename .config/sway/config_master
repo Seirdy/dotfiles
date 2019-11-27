@@ -3,7 +3,7 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-
+exec redshift-custom
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -38,10 +38,7 @@ exec mako
 # idle config
 exec swayidle -w \
 	timeout 180 'swaymsg "output * dpms off"' \
-		resume 'swaymsg "output * dpms on"' \
-	timeout 360 'swaylock-fancy' \
-	before-sleep 'swaylock-fancy'
-exec redshift-custom
+		resume 'swaymsg "output * dpms on"'
 
 ### Output configuration
 #
@@ -248,7 +245,6 @@ mode "resize" {
 	bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
 
 include /etc/sway/config.d/*
 
