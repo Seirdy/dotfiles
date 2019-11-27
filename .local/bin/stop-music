@@ -2,6 +2,8 @@
 
 # stop programs associated with my mpd setup
 pgrep -f '^bash .*/kunst$' | xargs kill -15 || echo 'kunst does not seem to be running'
+pgrep -f '^cava$' | xargs kill -15 || echo 'cava does not seem to be running'
+cantata-dynamic stop
 systemctl stop --user mpDris2
 systemctl stop --user mpd
 # vi:ft=sh
