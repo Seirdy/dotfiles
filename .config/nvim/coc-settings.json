@@ -39,7 +39,7 @@
 	"highlight.colors.enable": false,
 	"json.enable": true,
 	"json.format.enable": true,
-	"git.addGlameToVirtualText": true,
+	"git.addGBlameToVirtualText": true,
 	"git.virtualTextPrefix": " \ue729 ",
 	"list.indicator": "\uf054",
 	"list.source.grep.command": "rg",
