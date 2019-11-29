@@ -47,11 +47,6 @@ zplugin light zdharma/fast-syntax-highlighting
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
 zplugin light xvoland/Extract
 
-# Creates "thefuck" alias without slowing down startup
-#shellcheck disable=SC2016
-z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)fuc*]} ]]'
-zplugin light laggardkernel/thefuck
-
 zi0a blockf atload'_zsh_autosuggest_start'
 zplugin load zsh-users/zsh-autosuggestions
 
@@ -180,9 +175,6 @@ zplugin snippet OMZ::plugins/rust/_rust
 zi_completion has'docker'
 zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-zi_completion has'kitty'
-zplugin light %HOME/.config/shell_common/kitty_completions
-
 zi_completion has'rg'
 zplugin snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 
@@ -225,10 +217,9 @@ elif [ "$MACHINE" = 'Darwin' ]; then
 
 fi
 
+# the following will run after everything else happens
 finish_setup() {
-	if command -v conda >/dev/null; then
-		alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
-	fi
+	command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
 	zpcompinit
 	zpcdreplay
 	# dircolors
@@ -247,7 +238,9 @@ finish_setup() {
 	# shellcheck source=../functions.sh
 	. "$SHELL_COMMON/functions.sh"
 	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
+	command -v thefuck >/dev/null && eval $(thefuck --alias)
+	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
 }
 
-zi_completion atload'finish_setup'
+zi0c as'completion' blockf atload'finish_setup'
 zplugin light zsh-users/zsh-completions
