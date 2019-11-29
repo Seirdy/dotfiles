@@ -1,5 +1,16 @@
 #!/bin/zsh
 # powerlevel9k
+function yadm-gitstatus() {
+	emulate -L zsh
+	if [[ ${(%):-%~} == '~' ]]; then
+		GIT_DIR=~/.config/yadm/repo.git
+	else
+		unset GIT_DIR
+		fi
+	}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd yadm-gitstatus
+yadm-gitstatus
 export POWERLEVEL9K_GITSTATUS_DIR="$GHQ_ROOT/github.com/romkatv/gitstatus"
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
 if [ "$CONDA_PREFIX" = '/usr' ]; then
