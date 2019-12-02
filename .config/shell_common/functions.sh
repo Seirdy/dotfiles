@@ -18,6 +18,15 @@ wdir() {
 	cd "$progdir" || return
 }
 
+cdg() {
+	if [ -z "$1" ]; then
+		cdto=$(ghq list | fzf)
+	else
+		cdto=$(ghq list | fzf -q "$@")
+	fi
+	[ "$cdto" = '' ] || cd "$GHQ_ROOT/$cdto" || return 1
+}
+
 n() {
 	export NNN_TMPFILE="$XDG_CACHE_HOME/nnn/lastd"
 	nnn "$@"
