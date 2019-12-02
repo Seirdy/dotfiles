@@ -1,7 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 exec redshift-custom
 ### Variables
@@ -35,6 +31,8 @@ default_border pixel 3
 exec ~/startup.sh
 # notifications
 exec mako
+# overlay bar
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # idle config
 exec swayidle -w \
 	timeout 180 'swaymsg "output * dpms off"' \
@@ -68,7 +66,6 @@ input * {
 #
 # Other configs
 #
-gaps inner 10
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -107,22 +104,22 @@ gaps inner 10
 	bindsym $mod+shift+F exec org.kde.falkon
 	bindsym $mod+shift+p exec keepassxc
 
-		bindsym $mod+shift+R exec $term tuir
-		bindsym $mod+p exec $term nvim
-		bindsym $mod+n exec $term newsboat
+	bindsym $mod+shift+R exec $term tuir
+	bindsym $mod+p exec $term nvim
+	bindsym $mod+n exec $term newsboat
 
 #
 # Media keys
 #
 
-	# Pulse Audio controls
-		bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-		bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-		bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+	# Volume
+		bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+		bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+		bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
 
 	# Sreen brightness controls
-		bindsym XF86MonBrightnessUp exec light -A 0.5 # increase screen brightness
-		bindsym XF86MonBrightnessDown exec light -U 0.5 # decrease screen brightness
+		bindsym XF86MonBrightnessUp exec light -A 2 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+		bindsym XF86MonBrightnessDown exec light -U 2 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
 
 	# Touchpad controls
 		# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -252,6 +249,8 @@ include /etc/sway/config.d/*
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+# This is cut off intentionally; this file is concatenated with
+# ./config_lap or ./config_mon
 bar {
 	position top
 	gaps 10 10

@@ -54,6 +54,12 @@ ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
 	&& make \
 	&& make install
 
+# wob
+ghq_get_cd 'https://github.com/francma/wob.git' \
+	&& meson build-release --buildtype release --prefix "$PREFIX" \
+	&& ninja -C build-release \
+	&& ninja -C build-release install
+
 # imv
 ghq_get_cd https://github.com/eXeC64/imv.git && make && make install
 
@@ -86,6 +92,9 @@ ghq_get_cd https://github.com/openSUSE/catatonit.git \
 ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& fancy_configure \
+		--with-system-bubblewrap \
+		--with-system-dbus-proxy \
+		--with-priv-mode=none \
 	&& make -O -j "$threads" \
 	&& make install
 
