@@ -2,6 +2,7 @@
 
 start_time=$(date '+%s')
 
+# sometimes go.mod and go.sum files change locally, preventing a pull; reset to fix.
 go_update() {
 	echo "###"
 	echo "### Updating $* ###"
@@ -54,6 +55,8 @@ go_update github.com/uetchy/gst
 go_update github.com/tulir/gomuks
 # MPRIS bridge for MPD
 go_update github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
+# dictionary CLI
+go_update github.com/Rican7/define
 
 # Development tools
 #
