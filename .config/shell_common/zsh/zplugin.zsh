@@ -202,6 +202,9 @@ zplugin snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
 zi_completion has'podman'
 zplugin snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
 
+zi_completion pick'src/go' src'src/zsh'
+zplugin light zchee/zsh-completions
+
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'
@@ -242,5 +245,5 @@ finish_setup() {
 	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
 }
 
-zi0c as'completion' blockf atload'finish_setup'
+zi0c as'completion' atload'finish_setup'
 zplugin light zsh-users/zsh-completions
