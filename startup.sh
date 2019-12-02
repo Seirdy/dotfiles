@@ -15,7 +15,7 @@
 #	- TempleOS (fight me)
 
 # Don't re-run this
-if [ "$PROFILE_SET" = 1 ]; then
+if [ -n "$PROFILE_SET" ]; then
 	exit
 fi
 export DO_NOT_TRACK=1 # https://consoledonottrack.com/
@@ -249,8 +249,9 @@ else
 	export QT_WAYLAND_FORCE_DPI=physical
 	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
 	export GDK_BACKEND=wayland
-	export TERMINAL='kitty'
-	export GDK_BACKEND="wayland" # Commented bc some apps aren't ready
+	export TERMINAL=kitty
+	export MOZ_ENABLE_WAYLAND=1
+	export GDK_BACKEND='wayland' # Commented bc some apps aren't ready
 fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
