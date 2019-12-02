@@ -1,3 +1,3 @@
 #!/usr/bin/env dash
-xurls </dev/stdin | fzf | wl-copy -n
+xurls </dev/stdin | uniq | fzf | wl-copy -n
 # vim:ft=sh
