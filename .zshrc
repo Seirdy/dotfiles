@@ -29,7 +29,7 @@ zmodload zdharma/zplugin
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile
 	. "$HOME/.profile"
-	export PROFILE_SET=3
+	export PROFILE_SET='zshrc'
 fi
 
 export KEYTIMEOUT=1 # Reduces delay when entering vi-mode
