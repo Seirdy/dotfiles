@@ -13,6 +13,8 @@ alias lla='ll -a'
 alias llla='lll -a'
 
 alias a2c='aria2c' # fast aria2c downloading
+alias wlc='wl-copy -n'
+alias recopy='wl-paste -n | wl-copy'
 alias dlpaste='aria2c "$(wl-paste)"'
 alias dlopaste='dl-open "$(wl-paste)"'
 alias ytdl='youtube-dl'
@@ -56,7 +58,6 @@ alias weechat-matrix='source $GHQ_ROOT/github.com/poljar/weechat-matrix/venv/bin
 # Aliases that change existing commands
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
-alias z='z -I'
 alias tldr='tldr -p'
 alias tuir='tuir --enable-media'
 alias sub='tuir -s'
@@ -82,7 +83,7 @@ alias nvimrc='edi $XDG_CONFIG_HOME/nvim/init.vim'
 alias startuprc='edi $HOME/startup.sh'
 alias rssrc='edi $XDG_CONFIG_HOME/newsboat/urls'
 alias newsboatrc='edi $XDG_CONFIG_HOME/newsboat/config'
-alias swayrc='edi $XDG_CONFIG_HOME/sway/config'
+alias swayrc='edi $XDG_CONFIG_HOME/sway/config_master'
 alias i3statrc='edi $XDG_CONFIG_HOME/sway/status.toml'
 alias tridactylrc='edi $XDG_CONFIG_HOME/tridactyl/tridactylrc'
 alias kittyrc='edi $XDG_CONFIG_HOME/kitty/kitty_master.conf'
@@ -108,7 +109,6 @@ alias gdd='git diff'
 alias gds='gdd --staged'
 alias gopen='git open'
 # yadm aliases
-alias yadm='yadm -Y "$XDG_CONFIG_HOME/yadm"'
 alias ystat='yadm status'
 alias yco='yadm commit -S'
 alias ycoa='yco -a'
@@ -156,5 +156,5 @@ if [ -n "$ZSH_VERSION" ]; then
 		alias -g rofl='| lolcat'
 	fi
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
-	alias -g 'wlp'='"$(wl-paste)"'
+	alias -g 'wlp'='"$(wl-paste -n)"'
 fi
