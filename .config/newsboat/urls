@@ -56,6 +56,8 @@ https://github.com/swaywm/swayidle/releases.atom "Sway" "git repos" "Programs" "
 # wayland screenshot utils
 https://github.com/emersion/grim/releases.atom "Sway" "git repos" "Programs" "Dev"
 https://github.com/emersion/slurp/releases.atom "Sway" "git repos" "Programs" "Dev"
+# overlay volume/backlight/progress bar for Wayland
+https://github.com/francma/wob/releases.atom "Sway" "git repos" "Programs" "Dev"
 # better and simpler than classic i3status imho
 https://github.com/greshake/i3status-rust/commits/master/NEWS.md.atom "Sway" "git repos" "Programs" "Dev" "~i3status-rust changelog"
 # clerk embeds ncmpcpp and fzf-based library searching+rating in a tmux session. rating is a must-have for my music collection
