@@ -12,6 +12,10 @@ go_update() {
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 
+# update go itself
+go_update golang.org/dl/gotip
+HOME=$GOPATH gotip download
+
 go_update_cni() {
 	echo '##'
 	echo "## Installing CNI plugin $*"

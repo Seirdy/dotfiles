@@ -10,10 +10,6 @@ go_update() {
 	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
-# update go itself
-go_update golang.org/dl/gotip
-HOME=$GOPATH gotip download
-
 # building docs for some golang packages
 go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them

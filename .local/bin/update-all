@@ -107,6 +107,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		log_bg 'in-containers' # Updates running inside containers (slow)
 	fi
 	log_bg 'small-cc-programs' # compile several programs with gcc -O3 -mcpu
+	log_bg 'large-cc-programs' # compile several programs with gcc -O3 -mcpu
 	log_bg 'flatpak'           # repair and update user-installed flatpaks
 	log_bg 'chromium'          # tertiary browser (after Firefox Nightly, Falkon)
 	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.

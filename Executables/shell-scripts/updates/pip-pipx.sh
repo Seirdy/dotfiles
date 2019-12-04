@@ -10,7 +10,7 @@ pipx upgrade emoji-fzf --spec git+https://github.com/noahp/emoji-fzf.git
 pipx upgrade haxor-news --spec git+https://github.com/donnemartin/haxor-news.git
 pipx upgrade howmanypeoplearearound --spec git+https://github.com/schollz/howmanypeoplearearound.git
 pipx upgrade httpie --spec git+https://github.com/jakubroztocil/httpie.git
-pipx upgrade https://github.com/will8211/unimatrix --spec git+unimatrix.git
+pipx upgrade unimatrix --spec git+https://github.com/will8211/unimatrix.git
 pipx upgrade pockyt --spec git+https://github.com/arvindch/pockyt.git
 pipx upgrade poku --spec git+https://github.com/shanedabes/poku.git
 pipx upgrade ptpython --spec git+https://github.com/prompt-toolkit/ptpython.git

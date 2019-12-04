@@ -19,6 +19,7 @@ dnf copr enable jdoss/wireguard -y
 dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
+	"GConf2-devel" # build redshift
 	"ImageMagick"
 	"ImageMagick-libs"
 	"LibRaw"
@@ -26,6 +27,7 @@ packages=(
 	"SDL2_ttf-devel"
 	"abduco"
 	"adobe-*-fonts"
+	"alsa-lib-devel" # build cava
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
@@ -34,7 +36,8 @@ packages=(
 	"automake"         # build things like podman
 	"bash-completion"
 	"bc"
-	"bison" # build many programs' docs
+	"bison"       # build many programs' docs
+	"boost-devel" # build ncmpcpp
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
@@ -61,6 +64,7 @@ packages=(
 	"ctags"
 	"ctags-etags"
 	"curl"
+	"curl-devel" # build ncmpcpp
 	"dash"
 	"dbus-devel"
 	"dconf-devel"         # build flatpak
@@ -74,6 +78,7 @@ packages=(
 	"extra-cmake-modules"
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
+	"fftw-devel"        # build cava
 	"firefox-nightly"
 	"flatpak-builder"
 	"fontawesome-fonts"
@@ -87,12 +92,12 @@ packages=(
 	"freetype-devel"
 	"fuse-devel" # build flatpak
 	"gcc"
-	"curl-devel" # build ncmpcpp
 	"gcc-c++"
 	"gcc-gdb-plugin"
 	"gdb"
+	"geoclue2-devel" # build redshift
 	"gettext"
-	"gettext-devel" # build flatpak
+	"gettext-devel" # build flatpak, redshift
 	"git"
 	"git-email"
 	"glib2-devel" # building many packages including xdg-dbus-proxy and flatpak
@@ -120,7 +125,9 @@ packages=(
 	"ht-*-fonts"
 	"hunspell-en"
 	"hwinfo"
-	"iptables" # networking setup
+	"iniparser-devel" # build cava
+	"intltool"        # build redshift
+	"iptables"        # networking setup
 	"ituomi-hasklig-fonts"
 	"java-latest-openjdk-devel"
 	"jq"
@@ -131,28 +138,29 @@ packages=(
 	"libXi-devel"
 	"libXinerama-devel"
 	"libXrandr-devel"
+	"libXxf86vm-devel"
 	"libappstream-glib-devel" # build flatpak
 	"libarchive-devel"        # build flatpak
 	"libassuan-devel"         # building skopeo and others
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
-	"libdbusmenu-gtk3" # enable global app menu
-	"libmatthew-java"  # signal-cli
-	"libpng-devel"     # build imv and others
-	"libpng-devel"     # build kitty
-	"librsvg2-devel"   # Compiling imv
-	"librsvg2-tools"   # work with svg files; used for swaylock icon
-	"libseccomp"       # build runc
-	"libseccomp-devel" # build runc, slirp4netns, and others
-	"libsoup-devel"    # build flatpak
-	"libtermkey"       # neovim dependency
-	"libtiff-devel"    # Build imv and others
+	"libdbusmenu-gtk3"    # enable global app menu
+	"libdrm-devel"        # build redshift
+	"libevdev-devel"      # build sway
+	"libjpeg-turbo-devel" # build grim
+	"libmatthew-java"     # signal-cli
+	"libmpdclient-devel"  # build ncmpcpp and other mpd-related stuff
+	"libpng-devel"        # build imv and others
+	"libpng-devel"        # build kitty
+	"librsvg2-devel"      # Compiling imv
+	"librsvg2-tools"      # work with svg files; used for swaylock icon
+	"libseccomp"          # build runc
+	"libseccomp-devel"    # build runc, slirp4netns, and others
+	"libsoup-devel"       # build flatpak
+	"libtermkey"          # neovim dependency
+	"libtiff-devel"       # Build imv and others
 	"libtool"
-	"alsa-lib-devel"        # build cava
-	"fftw-devel"            # build cava
-	"pulseaudio-libs-devel" # build cava
-	"iniparser-devel"       # build cava
-	"libva-utils"           # provides commands for verifying that vaapi works
+	"libva-utils" # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
 	"libvterm"          # neovim dependency
 	"libwayland-client" # Compiling imv
@@ -172,7 +180,6 @@ packages=(
 	"mozilla-fira-mono-fonts"
 	"mpc"
 	"mpd"
-	"libmpdclient-devel" # build ncmpcpp and other mpd-related stuff
 	"mpv"
 	"msgpack" # neovim dependency
 	"ncdu"
@@ -206,7 +213,8 @@ packages=(
 	"playerctl"
 	"polkit-devel" # build flatpak
 	"powerline-fonts"
-	"pv" # monitor piping
+	"pulseaudio-libs-devel" # build cava
+	"pv"                    # monitor piping
 	"python3-devel"
 	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
@@ -234,7 +242,6 @@ packages=(
 	"swaylock" # sway: lockscreen
 	"taglib"
 	"taglib-devel" # build ncmpcpp
-	"boost-devel"  # build ncmpcpp
 	"tar"
 	"terminus-fonts"
 	"terminus-fonts-console"
@@ -270,13 +277,15 @@ packages=(
 	"wireguard-tools"
 	"wl-clipboard"
 	"wlc-devel"
+	"wlroots-devel" # build sway
 	"x264-libs"
 	"x265-libs"
 	"xbacklight"
 	"xdg-desktop-portal"
 	"xdotool"
-	"xmlto" # build many programs that use XML, inc. Flatpak
-	"xsel"  # Yank tool; used by yank-cli
+	"xmlto"                    # build many programs that use XML, inc. Flatpak
+	"xorg-x11-server-Xwayland" # xwayland, for running X apps in Wayland (sway)
+	"xsel"                     # Yank tool; used by yank-cli
 	"yacreader"
 	"yajl-devel" # building crun
 	"yank"       # Good yank tool; works with xsel

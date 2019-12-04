@@ -5,43 +5,12 @@ start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
 . "$HOME/.config/shell_common/functions_ghq.sh"
-
-export PREFIX="$HOME/.local"
-export BINPREFIX="$PREFIX/bin"
-export MANPREFIX="$PREFIX/man"
-export DATAPREFIX="$PREFIX/share"
-export CONFIGPREFIX="$HOME/.config"
-export CONFIGPREFIX="$HOME/.config"
-export CMAKE_INSTALL_PREFIX="$PREFIX"
-export CMAKE_INSTALL_MANDIR="$MANPREFIX"
-
-export LIBLDFLAGS='-z lazy'
-export CFLAGS='-O3 -mtune=native -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
-export CXXFLAGS='-O3 -mtune=native -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
-export FFLAGS='-O3 -mtune=native -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
-export FCFLAGS='-O3 -mtune=native -march=native -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules'
-
-threads=$(getconf _NPROCESSORS_ONLN)
-
-fancy_configure() {
-	./configure \
-		--program-prefix= \
-		--prefix="$PREFIX" \
-		--exec-prefix="$PREFIX" \
-		--bindir="$BINPREFIX" \
-		--datadir="$XDG_DATA_HOME" \
-		--includedir="$HOME/.local/include" \
-		--libdir="$HOME/.local/lib64" \
-		--libexecdir="$HOME/.local/libexec" \
-		--mandir="$MANPREFIX" \
-		--infodir="$HOME/.local/share/info" "$@"
-}
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
-	&& fancy_configure \
-	&& make -j "$threads" \
-	&& make install
+	&& configure_install
 
 # mpv-mpris
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make install
@@ -80,93 +49,38 @@ ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && make && make install
 ghq_get_cd https://github.com/jarun/nnn.git && make && make install
 
 # conmon; necessary for building OCI container stack
-ghq_get_cd https://github.com/containers/conmon.git && make podman -j "$threads"
-
+# commented out cuz it's causing problems; using version from repos.
+# ghq_get_cd https://github.com/containers/conmon.git && make podman -j "$threads"
 # catatonit; used as container init system
-ghq_get_cd https://github.com/openSUSE/catatonit.git \
-	&& autoreconf -fi \
-	&& ./configure --prefix="$PREFIX" \
-	&& make
 
-# xdg-dbus-proxy: runtime dep for flatpak programs
-ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
-	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& fancy_configure \
-		--with-system-bubblewrap \
-		--with-system-dbus-proxy \
-		--with-priv-mode=none \
-	&& make -O -j "$threads" \
-	&& make install
+ghq_get_cd https://github.com/openSUSE/catatonit.git && simple_autotools
 
-# bubblewrap: sandbox any command. Dependency of Flatpak
-ghq_get_cd https://github.com/containers/bubblewrap.git \
-	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& fancy_configure \
-	&& make -j "$threads" \
-	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
-	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
+# aria2: download accelerator
+ghq_get_cd 'https://github.com/aria2/aria2.git' \
+	&& aclocal \
+	&& simple_autotools --with-ca-bundle='/etc/ssl/certs/ca-bundle.crt'
 
-# slirp4netns: required for many rootless container setups and Flatpak
-ghq_get_cd https://github.com/rootless-containers/slirp4netns \
-	&& ./autogen.sh \
-	&& fancy_configure \
-	&& make -j "$threads" && make install
+# file(1)
+ghq_get_cd https://github.com/file/file.git && simple_autotools
 
-# flatpak
-ghq_get_cd https://github.com/flatpak/flatpak \
-	&& ./autogen.sh \
-	&& fancy_configure --with-system-bubblewrap --with-system-dbus-proxy \
-	&& make -j "$threads" \
-	&& make install
+# atool
+ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
 # kitty
 ghq_get_cd https://github.com/kovidgoyal/kitty.git \
 	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$HOME/.local"
 
-# newsboat
-ghq_get_cd https://github.com/newsboat/newsboat.git \
-	&& make -j "$threads" prefix="$PREFIX" \
-	&& make install prefix="$PREFIX"
-
-# neovim
-ghq_get_cd https://github.com/neovim/neovim.git \
-	&& make -j "$threads" CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_INSTALL_MANDIR=$CMAKE_INSTALL_MANDIR" \
-	&& make install
-
-# file(1)
-ghq_get_cd https://github.com/file/file.git \
-	&& autoreconf -fiv \
-	&& fancy_configure \
-	&& make -j "$threads" \
-	&& make install
-
 # dash shell
 ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& fancy_configure \
-	&& make -O -j "$threads" \
-	&& make install-strip
-
-# atool
-ghq_get_cd https://repo.or.cz/atool.git \
-	&& autoreconf -fiv \
-	&& fancy_configure \
 	&& make -j "$threads" \
-	&& make install
+	&& make install-strip
 
 # cava
 ghq_get_cd https://github.com/karlstav/cava.git \
 	&& ./autogen.sh \
-	&& fancy_configure \
-	&& make -j "$threads" \
-	&& make install
-
-# ncmpcpp, with only the features i use
-ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
-	&& ./autogen.sh \
-	&& fancy_configure --disable-static --with-taglib --with-curl \
-	&& make -j "$threads" \
-	&& make install
+	&& configure_install
 
 # mpdinfo: display current mpd track
 ghq_get_cd https://github.com/jduepmeier/mpdinfo.git \
@@ -179,18 +93,31 @@ ghq_get_cd https://github.com/mtoyoda/sl.git \
 	&& install -m0755 sl "$BINPREFIX" \
 	&& install -p -m644 sl.1 "$MANPREFIX/man1"
 
-# zsh
-export zsh_cv_sys_nis=no
-ghq_get_cd git://git.code.sf.net/p/zsh/code \
-	&& autoreconf -fiv \
-	&& sed -e 's|^\.NOTPARALLEL|#.NOTPARALLEL|' -i 'Config/defs.mk.in' \
-	&& ./Util/preconfig \
-	&& fancy_configure --with-tcsetpgrp --enable-maildir-support --enable-pcre \
-	&& make -C Src headers \
-	&& make -C Src -f Makemod zshpaths.h zshxmods.h version.h \
-	&& make -j "$threads" \
-	&& set +e \
-	&& make install-strip
+prepare_sway() {
+	if [ -d ./subprojects/wlroots ]; then
+		cd ./subprojects/wlroots && git pull
+		cd ../..
+	else
+		git clone 'https://github.com/swaywm/wlroots.git' ./subprojects/wlroots
+	fi
+}
+
+# swaywm
+ghq_get_cd 'https://github.com/swaywm/sway.git' && prepare_sway && simple_meson
+
+# sway-related utils: grim, slurp, swaybg, swaylock, swayidle, mako, wl-clipboard
+ghq_get_cd 'https://github.com/emersion/grim.git' && simple_meson
+ghq_get_cd 'https://github.com/emersion/slurp.git' && simple_meson
+ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson
+ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
+ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson
+ghq_get_cd 'https://github.com/emersion/mako.git' && simple_meson
+ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
+
+# redshift for Wayland
+ghq_get_cd 'https://github.com/minus7/redshift.git' \
+	&& ./bootstrap \
+	&& configure_install --with-systemduserunitdir="$HOME/.config/systemd/user"
 
 # gitstatus for powerlevel10k
 DIR="$GHQ_ROOT/github.com/romkatv"
@@ -226,6 +153,7 @@ build_gitstatus() {
 		&& local target="$BINPREFIX/gitstatusd" \
 		&& install -m 0755 gitstatusd "$target" \
 		&& echo "built: $target" >&2
+
 }
 
 build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
