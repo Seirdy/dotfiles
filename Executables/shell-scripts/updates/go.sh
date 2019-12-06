@@ -21,14 +21,16 @@ go_update github.com/cjbassi/gotop
 go_update github.com/junegunn/fzf
 # Test dl speed
 go_update github.com/ddo/fast
+# alternate pager
+go_update github.com/walles/moar
 # Quickly share files between computers
-go_update github.com/schollz/croc
+GO111MODULE=on go_update github.com/schollz/croc/v6
 # Pager for log files
 go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
 go_update github.com/mvdan/sh/cmd/shfmt
 # like jq but for yaml
-go_update github.com/mikefarah/yq
+GO111MODULE=on go_update github.com/mikefarah/yq
 # curlie: better than httpie
 go_update github.com/rs/curlie
 # url pickers
@@ -44,7 +46,7 @@ go_update github.com/gokcehan/lf
 go_update github.com/github/hub
 go_update github.com/zaquestion/lab || echo "failed to install lab"
 # used to clone repos into a nice directory tree like "go get" does
-go_update github.com/motemen/ghq
+GO111MODULE=on go_update github.com/motemen/ghq
 # extra commands for ghq
 go_update github.com/uetchy/gst
 # matrix client, for when I get bored of weechat-matrix
