@@ -17,9 +17,9 @@ export FCFLAGS='-O3 -mtune=native -march=native -g -pipe -Wall -Werror=format-se
 
 threads=$(getconf _NPROCESSORS_ONLN)
 
-simple_autotools() {
-	autoreconf -fi \
-		&& configure_install "$@"
+make_install() {
+	make -j "$threads" \
+		&& make install
 }
 
 fancy_configure() {
@@ -33,13 +33,16 @@ fancy_configure() {
 		--libdir="$HOME/.local/lib64" \
 		--libexecdir="$HOME/.local/libexec" \
 		--mandir="$MANPREFIX" \
-		--infodir="$HOME/.local/share/info" "$@"
+		--infodir="$HOME/.local/share/info" \
+		"$@"
 }
 
 configure_install() {
-	fancy_configure "$@" \
-		&& make -j "$threads" \
-		&& make install
+	fancy_configure "$@" && make_install
+}
+
+simple_autotools() {
+	autoreconf -fi && configure_install "$@"
 }
 
 simple_meson() {

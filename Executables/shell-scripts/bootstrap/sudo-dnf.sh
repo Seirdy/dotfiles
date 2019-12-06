@@ -87,7 +87,7 @@ packages=(
 	"fontconfig-devel" # build kitty
 	"fortune-mod"
 	"fpaste"
-	"freeimage-devel" # Compiling imv
+	"freeimage-devel" # build imv
 	"freetype"
 	"freetype-devel"
 	"fuse-devel" # build flatpak
@@ -114,7 +114,7 @@ packages=(
 	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
-	"gperf"       # neovim dependency
+	"gperf"       # build neovim
 	"gpgme-devel" # building skopeo and others
 	"gtk-doc"     # building flatpak
 	"gtk3-devel"
@@ -148,23 +148,26 @@ packages=(
 	"libdrm-devel"        # build redshift
 	"libevdev-devel"      # build sway
 	"libjpeg-turbo-devel" # build grim
-	"libmatthew-java"     # signal-cli
+	"libmatthew-java"     # dep for signal-cli
 	"libmpdclient-devel"  # build ncmpcpp and other mpd-related stuff
 	"libpng-devel"        # build imv and others
 	"libpng-devel"        # build kitty
-	"librsvg2-devel"      # Compiling imv
+	"librsvg2-devel"      # build imv
 	"librsvg2-tools"      # work with svg files; used for swaylock icon
-	"libseccomp"          # build runc
+	"libseccomp"          # build runc and other tools in the OCI stack
 	"libseccomp-devel"    # build runc, slirp4netns, and others
 	"libsoup-devel"       # build flatpak
-	"libtermkey"          # neovim dependency
+	"libtermkey"          # build neovim
+	"libtermkey-devel"    # build neovim
 	"libtiff-devel"       # Build imv and others
 	"libtool"
+	"libuv-devel" # build neovim
 	"libva-utils" # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
-	"libvterm"          # neovim dependency
-	"libwayland-client" # Compiling imv
-	"libwayland-egl"    # Compiling imv
+	"libvterm"          # build neovim
+	"libvterm-devel"    # build neovim
+	"libwayland-client" # build imv
+	"libwayland-egl"    # build imv
 	"libxcb-devel"
 	"libxkbcommon-x11-devel"
 	"llvm"
@@ -172,6 +175,7 @@ packages=(
 	"lm_sensors"
 	"lua-devel"
 	"luajit"
+	"luajit-devel"    # build neovim
 	"luarocks"
 	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
@@ -181,7 +185,8 @@ packages=(
 	"mpc"
 	"mpd"
 	"mpv"
-	"msgpack" # neovim dependency
+	"msgpack"       # build neovim
+	"msgpack-devel" # build neovim
 	"ncdu"
 	"ncurses-devel"
 	"ninja-build"
@@ -201,13 +206,13 @@ packages=(
 	"pciutils" # used by neofetch
 	"perl-ExtUtils-Embed"
 	"pkgconfig"
-	"pkgconfig(json-c)"     # newsboat compilation
-	"pkgconfig(libcrypto)"  # newsboat compilation
-	"pkgconfig(libcurl)"    # newsboat compilation
-	"pkgconfig(libxml-2.0)" # newsboat compilation
-	"pkgconfig(ncursesw)"   # newsboat compilation
-	"pkgconfig(sqlite3)"    # newsboat compilation
-	"pkgconfig(stfl)"       # newsboat compilation
+	"pkgconfig(json-c)"     # build newsboat
+	"pkgconfig(libcrypto)"  # build newsboat
+	"pkgconfig(libcurl)"    # build newsboat
+	"pkgconfig(libxml-2.0)" # build newsboat
+	"pkgconfig(ncursesw)"   # build newsboat
+	"pkgconfig(sqlite3)"    # build newsboat
+	"pkgconfig(stfl)"       # build newsboat
 	"plasma-breeze"         # preferred qt5 theme
 	"plasma-breeze-common"  # preferred qt5 theme
 	"playerctl"
@@ -261,7 +266,8 @@ packages=(
 	"torsocks" # tor
 	"turbojpeg-devel"
 	"unar"      # FOSS reimplementation of unrar
-	"unibilium" # terminfo parsing and neovim dependency
+	"unibilium" # terminfo parsing and building neovim
+	"unibilium-devel" # build neovim
 	"unzip"
 	"upower" # battery status of connected devices
 	"vim"

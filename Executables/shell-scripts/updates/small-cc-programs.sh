@@ -7,22 +7,22 @@ start_time=$(date '+%s')
 . "$HOME/.config/shell_common/functions_ghq.sh"
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
+
+# mpv-mpris
+# update this first; updating it kills all running mpv instances
+ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
+
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
 	&& configure_install
-
-# mpv-mpris
-ghq_get_cd https://github.com/hoyon/mpv-mpris && make install
 
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
 	&& mkdir -p build \
 	&& cd build \
 	&& cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release .. \
-	&& make \
-	&& make install
-
+	&& make_install
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& meson build-release --buildtype release --prefix "$PREFIX" \
@@ -30,7 +30,7 @@ ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& ninja -C build-release install
 
 # imv
-ghq_get_cd https://github.com/eXeC64/imv.git && make && make install
+ghq_get_cd https://github.com/eXeC64/imv.git && make_install
 
 # cmatrix
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
@@ -40,13 +40,13 @@ ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& cmake --build . --target install
 
 # bcal
-ghq_get_cd https://github.com/jarun/bcal.git && make && make install
+ghq_get_cd https://github.com/jarun/bcal.git && make_install
 
 # scdoc
-ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && make && make install
+ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && make_install
 
 # nnn
-ghq_get_cd https://github.com/jarun/nnn.git && make && make install
+ghq_get_cd https://github.com/jarun/nnn.git && make_install
 
 # conmon; necessary for building OCI container stack
 # commented out cuz it's causing problems; using version from repos.
@@ -68,7 +68,7 @@ ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
 # kitty
 ghq_get_cd https://github.com/kovidgoyal/kitty.git \
-	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$HOME/.local"
+	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$PREFIX"
 
 # dash shell
 ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
@@ -83,9 +83,7 @@ ghq_get_cd https://github.com/karlstav/cava.git \
 	&& configure_install
 
 # mpdinfo: display current mpd track
-ghq_get_cd https://github.com/jduepmeier/mpdinfo.git \
-	&& make -j "$threads" \
-	&& make install
+ghq_get_cd https://github.com/jduepmeier/mpdinfo.git && make_install
 
 # very important utility; computer basically useless without
 ghq_get_cd https://github.com/mtoyoda/sl.git \
@@ -150,10 +148,9 @@ build_gitstatus() {
 		&& ldflags=" -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
 		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make -j "$threads" \
 		&& strip gitstatusd \
-		&& local target="$BINPREFIX/gitstatusd" \
+		&& target="$BINPREFIX/gitstatusd" \
 		&& install -m 0755 gitstatusd "$target" \
 		&& echo "built: $target" >&2
-
 }
 
 build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
