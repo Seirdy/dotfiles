@@ -3,7 +3,7 @@
 function yadm-gitstatus() {
 	emulate -L zsh
 	if [[ ${(%):-%~} == '~' ]]; then
-		GIT_DIR=~/.config/yadm/repo.git
+		GIT_DIR="$XDG_CONFIG_HOME/yadm/repo.git"
 	else
 		unset GIT_DIR
 		fi
