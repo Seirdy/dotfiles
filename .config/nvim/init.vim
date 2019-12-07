@@ -74,6 +74,7 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 Plug 'nathanielc/vim-tickscript'
 Plug 'cespare/vim-toml'
 Plug 'zplugin/zplugin-vim-syntax', { 'for': 'zsh' }
+Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 
 call plug#end()
 
