@@ -95,7 +95,7 @@ https://github.com/liamg/aminal/releases.atom "git repos" "Programs" "Dev"
 # speed test using cloudflare's fastly
 https://github.com/ddo/fast/releases.atom "git repos" "Programs" "Dev"
 # identical to the python speedtest-cli but in a single golang binary
-https://github.com/showwin/speedtest-go.atom "git repos" "Programs" "Dev"
+https://github.com/showwin/speedtest-go/commits/master.atom "git repos" "Programs" "Dev"
 # some language servers. tagged under vim cuz that's where i use them.
 https://github.com/MaskRay/ccls/releases.atom "git repos" "Programs" "Dev"
 https://github.com/mads-hartmann/bash-language-server/releases.atom "git repos" "Programs" "Dev"
