@@ -1,5 +1,8 @@
 #!/usr/bin/env dash
 
-unset PROFILE_SET && XDG_SESSION_TYPE=wayland ssh-agent sway
+unset PROFILE_SET && export XDG_SESSION_TYPE=wayland
+# shellcheck source=../../startup.sh
+. ~/startup.sh
+ssh-agent sway
 
 # vi:ft=sh
