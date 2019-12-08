@@ -1,5 +1,5 @@
 #
-# WeeChat 2.4 (compiled on Jul 27 2019 00:00:00)
+# WeeChat 2.7-rc1 (compiled on Dec  6 2019 14:16:36)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -13,6 +13,7 @@
 */set Option changed: weechat.bar.nicklist.items "chatters,buffer_nicklist"
 */set Option changed: weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
 */set Option changed: weechat.bar.vi_line_numbers.items "line_numbers"
+*/set Option changed: exec.command.shell "sh"
 */set Option changed: script.look.sort "d"
 */set Option changed: matrix.server.matrix_org.address "matrix.org"
 */set weechat.look.mouse on
@@ -22,5 +23,6 @@
 */set weechat.bar.nicklist.items "chatters,buffer_nicklist"
 */set weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
 */set weechat.bar.vi_line_numbers.items "line_numbers"
+*/set exec.command.shell "sh"
 */set script.look.sort "d"
 */set matrix.server.matrix_org.address "matrix.org"
