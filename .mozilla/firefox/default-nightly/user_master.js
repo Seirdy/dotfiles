@@ -324,6 +324,8 @@ user_pref("network.trr.uri", "");
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
+user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
+user_pref("media.videocontrols.picture-in-picture.video-toggle.flyout-enabled", false);
 user_pref("browser.casting.enabled", false);
 // Appearance
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);

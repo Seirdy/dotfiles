@@ -1,3 +1,4 @@
+# vi:ft=i3config
 # Read `man 5 sway` for a complete reference.
 exec redshift-custom
 ### Variables
@@ -35,8 +36,7 @@ exec mako
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # idle config
 exec swayidle -w \
-	timeout 180 'swaymsg "output * dpms off"' \
-		resume 'swaymsg "output * dpms on"'
+	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 
 ### Output configuration
 #
