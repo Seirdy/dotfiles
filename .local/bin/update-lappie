@@ -1,0 +1,11 @@
+#!/usr/bin/env dash
+# updates my laptop from my desktop. Syncs many binaries compiled on my desktop.
+
+# sync binaries over in a detached session, in the background.
+# abduco -nf rsync-to-lappie rsync-to-lappie
+
+# Update dotfiles, packages, etc.
+ssh rkumar@rkumarlappie '. $HOME/startup.sh && $HOME/Executables/zplugin/plugins/TheLocehiliosan---yadm/yadm pull && $HOME/Executables/zplugin/plugins/TheLocehiliosan---yadm/yadm submodule update --init --recursive --force --remote && $HOME/startup.sh && abduco -nc update $HOME/.local/bin/update-all --lite'
+
+# vi:ft=sh
+

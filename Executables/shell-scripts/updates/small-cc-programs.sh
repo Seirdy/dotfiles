@@ -12,6 +12,10 @@ start_time=$(date '+%s')
 # update this first; updating it kills all running mpv instances
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
+# rsync
+ghq_get_cd https://git.samba.org/rsync.git \
+	&& configure_install --with-included-popt
+
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \
 	&& ./autogen.sh \
@@ -84,6 +88,12 @@ ghq_get_cd https://github.com/karlstav/cava.git \
 
 # mpdinfo: display current mpd track
 ghq_get_cd https://github.com/jduepmeier/mpdinfo.git && make_install
+
+# mpc: CLI for mpd
+ghq_get_cd https://github.com/MusicPlayerDaemon/mpc.git && simple_meson
+
+# playerctl: CLI for mpris and others
+ghq_get_cd https://github.com/altdesktop/playerctl.git && simple_meson
 
 # very important utility; computer basically useless without
 ghq_get_cd https://github.com/mtoyoda/sl.git \

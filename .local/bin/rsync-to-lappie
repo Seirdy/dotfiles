@@ -1,21 +1,8 @@
 #!/usr/bin/env dash
+# I compile slow/heavy packages on my desktop and rsync them over to my laptop
 
-# rsync -zrluP \
-# 	--exclude 'Executables/chromium-latest-linux' \
-# 	--exclude 'Executables/cargo/git' \
-# 	--exclude 'Executables/cargo/registry' \
-# 	--exclude 'Executables/go/pkg' \
-# 	--exclude 'Executables/go/src' \
-# 	--exclude '*.stack-work' \
-# 	--exclude 'Executables/stack/pantry' \
-# 	--exclude 'Executables/stack/snapshots' \
-# 	--exclude 'Executables/stack/programs' \
-# 	~/Executables rkumarlappie:/home/rkumar/
-
+# make sure we're in the right location
 cd || exit 1
-
-# Update dotfiles
-ssh rkumar@rkumarlappie 'git pull && git submodule update --init --recursive --force --remote'
 
 # Update binaries
 rsync -zlrupP ~/Executables/stack/bin rkumar@rkumarlappie:/home/rkumar/Executables/stack

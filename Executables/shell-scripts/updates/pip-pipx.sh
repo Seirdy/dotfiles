@@ -20,7 +20,7 @@ pipx upgrade thefuck --spec git+https://github.com/nvbn/thefuck.git
 pipx upgrade trash-cli --spec git+https://github.com/andreafrancia/trash-cli.git
 pipx upgrade tuir --spec git+https://gitlab.com/ajak/tuir.git
 pipx upgrade urlscan --spec git+https://github.com/firecat53/urlscan.git
-pipx upgrade youtube-dl --spec git+https://github.com/ytdl-org/youtube-dl.git
+pipx upgrade youtube-dl --spec "$GHQ_ROOT/github.com/ytdl-org/youtube-dl"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

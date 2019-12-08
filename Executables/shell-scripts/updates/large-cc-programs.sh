@@ -45,6 +45,21 @@ ghq_get_cd https://github.com/neovim/neovim.git \
 		-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
 	&& ninja install
 
+# weechat
+ghq_get_cd https://github.com/weechat/weechat.git \
+	&& mkdir -p build && cd build \
+	&& cmake .. \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
+		-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
+		-DENABLE_ENCHANT=ON \
+		-DENABLE_PHP=ON \
+		-DENABLE_PYTHON3=ON \
+		-DENABLE_MAN=ON \
+		-DENABLE_JAVASCRIPT=OFF \
+		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt \
+	&& make_install
+
 # newsboat
 ghq_get_cd https://github.com/newsboat/newsboat.git \
 	&& make -j "$threads" prefix="$PREFIX" \

@@ -46,7 +46,7 @@ simple_autotools() {
 }
 
 simple_meson() {
-	meson build --prefix "$PREFIX" \
+	meson build --prefix "$PREFIX" --libdir="$PREFIX/lib" \
 		&& ninja -C build \
 		&& ninja -C build install
 }
