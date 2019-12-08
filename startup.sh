@@ -126,6 +126,9 @@ xdgdataadd_head "$HOME/.local/share/flatpak/exports/share"
 
 export XDG_DATA_DIRS
 
+export LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
+export GI_TYPELIB_PATH="$HOME/.local/lib/:$GI_TYPELIB_PATH"
+
 # Set MANPATH
 manpathadd_head() {
 	if [ -d "$1" ] && ! echo "$MANPATH" | grep -q "$1" >/dev/null; then
@@ -256,6 +259,15 @@ fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
 	export QT_QPA_PLATFORMTHEME='qt5ct'
+fi
+# Start the gpg-agent if not already running
+if ! pgrep -xu "$USER" gpg-agent >/dev/null 2>&1; then
+	gpg-connect-agent /bye >/dev/null 2>&1
+fi
+gpg-connect-agent updatestartuptty /bye >/dev/null
+if [ -z "$SSH_AUTH_SOCK" ]; then
+	SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+	export SSH_AUTH_SOCK
 fi
 
 export FZF_DEFAULT_OPTS='-m --ansi'
