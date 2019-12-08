@@ -75,6 +75,8 @@ packages=(
 	"egl-wayland-devel"
 	"elfutils"
 	"enchant"
+	"enchant-devel" # build weechat
+	"zlib-devel"    # build weechat and others
 	"extra-cmake-modules"
 	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
@@ -97,7 +99,7 @@ packages=(
 	"gdb"
 	"geoclue2-devel" # build redshift
 	"gettext"
-	"gettext-devel" # build flatpak, redshift
+	"gettext-devel" # build flatpak, redshift, weechat
 	"git"
 	"git-email"
 	"glib2-devel" # building many packages including xdg-dbus-proxy and flatpak
@@ -123,6 +125,7 @@ packages=(
 	"haskell-platform"
 	"hostname" # required for yadm
 	"ht-*-fonts"
+	"http-parser-devel" # build romkatv's libgit2, used in gitstatus/powerlevel10k
 	"hunspell-en"
 	"hwinfo"
 	"iniparser-devel" # build cava
@@ -147,6 +150,8 @@ packages=(
 	"libdbusmenu-gtk3"    # enable global app menu
 	"libdrm-devel"        # build redshift
 	"libevdev-devel"      # build sway
+	"libgcrypt-devel"     # build weechat
+	"guile-devel"         # build weechat
 	"libjpeg-turbo-devel" # build grim
 	"libmatthew-java"     # dep for signal-cli
 	"libmpdclient-devel"  # build ncmpcpp and other mpd-related stuff
@@ -173,9 +178,9 @@ packages=(
 	"llvm"
 	"llvm-devel" # build compilers like tinygo
 	"lm_sensors"
-	"lua-devel"
+	"lua-devel" # build weechat and others
 	"luajit"
-	"luajit-devel"    # build neovim
+	"luajit-devel" # build neovim
 	"luarocks"
 	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
@@ -185,6 +190,7 @@ packages=(
 	"mpc"
 	"mpd"
 	"mpv"
+	"mpv-libs-devel"
 	"msgpack"       # build neovim
 	"msgpack-devel" # build neovim
 	"ncdu"
@@ -202,25 +208,36 @@ packages=(
 	"p7zip-plugins"
 	"papirus-icon-theme"
 	"patch"
+	"asciidoctor"  # build weechat
+	"gnutls-devel" # build weechat
 	"pavucontrol-qt"
-	"pciutils" # used by neofetch
-	"perl-ExtUtils-Embed"
+	"pciutils"            # used by neofetch
+	"perl-devel"          # build weechat
+	"tcl-devel"           # build weechat
+	"perl-ExtUtils-Embed" # build weechat and others
+	"source-highlight"    # build weechat
 	"pkgconfig"
+	"pkgconfig(freerdp2)"   # build sway (optional)
 	"pkgconfig(json-c)"     # build newsboat
+	"pkgconfig(libcares)"   # build aria2 (enables async DNS resolving or something)
 	"pkgconfig(libcrypto)"  # build newsboat
-	"pkgconfig(libcurl)"    # build newsboat
+	"pkgconfig(libcurl)"    # build newsboat, weechat
+	"pkgconfig(libssh2)"    # build aria2 (enables SFTP support)
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(ncursesw)"   # build newsboat
 	"pkgconfig(sqlite3)"    # build newsboat
 	"pkgconfig(stfl)"       # build newsboat
+	"pkgconfig(winpr2)"     # build sway (optional)
+	"pkgconfig(xcb-errors)" # build sway (optional)
+	"pkgconfig(xcb-icccm)"  # build sway (optional)
 	"plasma-breeze"         # preferred qt5 theme
 	"plasma-breeze-common"  # preferred qt5 theme
 	"playerctl"
 	"polkit-devel" # build flatpak
 	"powerline-fonts"
-	"pulseaudio-libs-devel" # build cava
-	"pv"                    # monitor piping
-	"python3-devel"
+	"pulseaudio-libs-devel"  # build cava
+	"pv"                     # monitor piping
+	"python3-devel"          # building weechat, among others
 	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
 	"qrencode"
@@ -228,7 +245,6 @@ packages=(
 	"radeontop"
 	"rc"
 	"readline-devel" # build nnn, ncmpcpp, and others
-	"redshift"       # gumeri/wayland copr repo has patched version for wayland
 	"roboto-fontface-fonts"
 	"rsync"
 	"ruby-devel"
@@ -241,10 +257,7 @@ packages=(
 	"sshfs" # mount another computer
 	"stack" # haskell package maanger. Used to download itself; then I uninstall it.
 	"startup-notification-devel"
-	"strace"   # monitor syscalls during program execution
-	"swaybg"   # sway: wallpaper
-	"swayidle" # sway: execute commands after idle periods
-	"swaylock" # sway: lockscreen
+	"strace" # monitor syscalls during program execution
 	"taglib"
 	"taglib-devel" # build ncmpcpp
 	"tar"
@@ -265,8 +278,8 @@ packages=(
 	"tor"      # tor
 	"torsocks" # tor
 	"turbojpeg-devel"
-	"unar"      # FOSS reimplementation of unrar
-	"unibilium" # terminfo parsing and building neovim
+	"unar"            # FOSS reimplementation of unrar
+	"unibilium"       # terminfo parsing and building neovim
 	"unibilium-devel" # build neovim
 	"unzip"
 	"upower" # battery status of connected devices
