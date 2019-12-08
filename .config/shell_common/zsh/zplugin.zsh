@@ -29,7 +29,7 @@ zi0c() {
 ###########
 
 # My fancy prompt needs at least 256 colors, preferably 24bit color
-if [ "${terminfo[colors]:?}" -gt 255 ]; then
+if [ "${terminfo[colors]:?}" -gt 255 ] || echo "$TERM" | grep '256c' >/dev/null; then
 	z_lucid depth=1
 	zplugin light romkatv/powerlevel10k
 fi
@@ -190,14 +190,17 @@ zplugin snippet OMZ::plugins/fd/_fd
 zi_completion has'exa' mv'completions.zsh -> _exa'
 zplugin snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
 
-zi_completion has'cht.sh' mv'zsh.txt -> _cht.sh'
-zplugin snippet https://github.com/chubin/cheat.sh/blob/master/share/zsh.txt
+zi_completion has'cht.sh'
+zplugin snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
 
 zi_completion has'buku'
 zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
 
 zi_completion has'hub' mv'hub.zsh_completion -> _hub'
 zplugin snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
+
+zi_completion has'youtube-dl' mv'youtube-dl.zsh -> _youtube-dl'
+zplugin snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.zsh
 
 zi_completion has'podman'
 zplugin snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
