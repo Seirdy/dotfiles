@@ -30,7 +30,7 @@ go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
 go_update github.com/mvdan/sh/cmd/shfmt
 # like jq but for yaml
-GO111MODULE=on go_update github.com/mikefarah/yq
+GO111MODULE=on go_update github.com/mikefarah/yq/v2
 # curlie: better than httpie
 go_update github.com/rs/curlie
 # url pickers
