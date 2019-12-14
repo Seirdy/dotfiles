@@ -306,9 +306,9 @@ https://wasmweekly.news/feed.xml "Dev"
 # hacker news
 https://hnrss.org/show.atom?points=370 "Hacker News" "Social" "Dev"
 https://hnrss.org/newest.atom?q=CLI+OR+Fedora&points=12 "Hacker News" "Social" "Dev"
-https://hnrss.org/newest.atom?q=vim+OR+neovim&points=10 "Hacker News" "Social" "Dev" "Favorite"
-https://hnrss.org/newest.atom?q=rtv+OR+newsboat+OR+zsh+OR+pandoc+OR+suckless&points=2&comments=1 "Hacker News" "Social" "Dev" "Favorite" "~HN: favorite programs"
-https://hnrss.org/newest?points=800 "Hacker News" "Social" "Dev"
+https://hnrss.org/newest.atom?q=vim+OR+neovim&points=10 "Hacker News" "Social" "Dev" "Favorite" "~HN: Vim"
+https://hnrss.org/newest.atom?q=rtv+OR+tuir+OR+newsboat+OR+zsh+OR+pandoc+OR+suckless+OR+swaywm+OR+silverblue&points=2&comments=1 "Hacker News" "Social" "Dev" "Favorite" "~HN: favorite programs"
+https://hnrss.org/newest?points=800 "Hacker News" "Social" "Dev" "~Hacker News: Top"
 # reddit feed of git repos
 https://www.reddit.com/r/C_programming+commandline+coolgithubprojects+cpp+golang+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
 # some of the best and most relatable satire in tech imo
