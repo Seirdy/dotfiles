@@ -1,0 +1,7 @@
+#!/usr/bin/env dash
+
+cd "$(mktemp -d)" \
+	&& curl-tor "$@" >/tmp/page.html && w3m-sandbox /tmp/page.html
+
+# vi:ft=sh
+

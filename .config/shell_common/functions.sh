@@ -176,7 +176,7 @@ unshorten_clip() {
 }
 
 isitup() {
-	curl "https://isitup.org/$1.json" -s | jq
+	curl-tor "https://isitup.org/$1.json" -s | jq
 }
 
 # shellcheck source=functions_ghq.sh
