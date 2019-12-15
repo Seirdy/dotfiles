@@ -50,15 +50,6 @@ packages=(
 	"clang"
 	"clang-devel" # build compilers like tinygo
 	"cmake"
-	"cmake(KDecoration2)"
-	"cmake(KF5ConfigWidgets)"
-	"cmake(KF5CoreAddons)"
-	"cmake(KF5GuiAddons)"
-	"cmake(KF5WindowSystem)"
-	"cmake(Qt5Core)"
-	"cmake(Qt5DBus)"
-	"cmake(Qt5Gui)"
-	"cmake(Qt5X11Extras)"
 	"cmake-data"
 	"cryptsetup"
 	"ctags"
@@ -70,7 +61,6 @@ packages=(
 	"dconf-devel"         # build flatpak
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
-	"dolphin-plugins"
 	"dvtm"
 	"egl-wayland-devel"
 	"elfutils"
@@ -78,14 +68,12 @@ packages=(
 	"enchant-devel" # build weechat
 	"zlib-devel"    # build weechat and others
 	"extra-cmake-modules"
-	"ffmpeg-libs"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"fftw-devel"        # build cava
 	"firefox-nightly"
 	"flatpak-builder"
 	"fontawesome-fonts"
 	"fontconfig"
-	"fontconfig-devel"
 	"fontconfig-devel" # build kitty
 	"fortune-mod"
 	"fpaste"
@@ -120,7 +108,6 @@ packages=(
 	"gpgme-devel" # building skopeo and others
 	"gtk-doc"     # building flatpak
 	"gtk3-devel"
-	"harfbuzz-devel"
 	"harfbuzz-devel" # build kitty
 	"haskell-platform"
 	"hostname" # required for yadm
@@ -137,7 +124,6 @@ packages=(
 	"json-glib-devel" # build flatpak
 	"keepassxc"       # password manager until I migrate to `pass`
 	"latexmk"
-	"libXcursor-devel"
 	"libXi-devel"
 	"libXinerama-devel"
 	"libXrandr-devel"
@@ -147,7 +133,6 @@ packages=(
 	"libassuan-devel"         # building skopeo and others
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
-	"libdbusmenu-gtk3"    # enable global app menu
 	"libdrm-devel"        # build redshift
 	"libevdev-devel"      # build sway
 	"libgcrypt-devel"     # build weechat
@@ -165,9 +150,8 @@ packages=(
 	"libtermkey"          # build neovim
 	"libtermkey-devel"    # build neovim
 	"libtiff-devel"       # Build imv and others
-	"libtool"
-	"libuv-devel" # build neovim
-	"libva-utils" # provides commands for verifying that vaapi works
+	"libuv-devel"         # build neovim
+	"libva-utils"         # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
 	"libvterm"          # build neovim
 	"libvterm-devel"    # build neovim
@@ -186,8 +170,7 @@ packages=(
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
 	"meson"
-	"mozilla-fira-mono-fonts"
-	"mpc"
+	"mozilla-*-fonts"
 	"mpd"
 	"mpv"
 	"mpv-libs-devel"
@@ -232,8 +215,7 @@ packages=(
 	"pkgconfig(xcb-icccm)"  # build sway (optional)
 	"plasma-breeze"         # preferred qt5 theme
 	"plasma-breeze-common"  # preferred qt5 theme
-	"playerctl"
-	"polkit-devel" # build flatpak
+	"polkit-devel"          # build flatpak
 	"powerline-fonts"
 	"pulseaudio-libs-devel"  # build cava
 	"pv"                     # monitor piping

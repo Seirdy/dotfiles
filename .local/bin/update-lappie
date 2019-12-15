@@ -7,7 +7,7 @@
 # Update dotfiles, packages, etc.
 ssh rkumar@rkumarlappie '. $HOME/startup.sh && $HOME/Executables/zplugin/plugins/TheLocehiliosan---yadm/yadm pull && $HOME/Executables/zplugin/plugins/TheLocehiliosan---yadm/yadm submodule update --init --recursive --force --remote && $HOME/startup.sh && abduco -nc update $HOME/.local/bin/update-all --lite'
 
-rsync-to-lappie
+# rsync-to-lappie
 
 # vi:ft=sh
 

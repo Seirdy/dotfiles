@@ -101,6 +101,9 @@ ghq_get_cd https://github.com/mtoyoda/sl.git \
 	&& install -m0755 sl "$BINPREFIX" \
 	&& install -p -m644 sl.1 "$MANPREFIX/man1"
 
+# another important tool
+ghq_get_cd https://github.com/jaseg/lolcat && DESTDIR=$PREFIX/bin make_install
+
 prepare_sway() {
 	if [ -d ./subprojects/wlroots ]; then
 		cd ./subprojects/wlroots && git pull
