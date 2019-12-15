@@ -34,7 +34,6 @@
 	--chrome-content-separator-color: var(--ui-basecolor) !important;
 	--url-and-searchbar-background-color: transparent !important;
 	--chrome-selection-background-color: var(--ui-accent) !important;
-	--toolbarbutton-border-radius: 20% !important;
 	--tab-loading-fill: var(--ui-accent) !important;
 	--autocomplete-popup-background: var(--ui-background) !important;
 	--arrowpanel-background: var(--ui-background) !important;
