@@ -117,7 +117,7 @@ ghq_get_cd 'https://github.com/swaywm/sway.git' && prepare_sway && simple_meson
 ghq_get_cd 'https://github.com/emersion/grim.git' && simple_meson
 ghq_get_cd 'https://github.com/emersion/slurp.git' && simple_meson
 ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson
-ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
+# ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
 ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson
 ghq_get_cd 'https://github.com/emersion/mako.git' && simple_meson
 ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
