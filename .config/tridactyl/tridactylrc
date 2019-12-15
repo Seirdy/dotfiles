@@ -64,9 +64,9 @@ set yankto both
 "
 
 " New reddit bad; old reddit good
-autocmd DocStart ^http(s?)://www\.reddit\.com js tri.excmds.urlmodify("-t", "www", "old")
-autocmd DocStart ^http(s?)://duckduckgo\.com js tri.excmds.urlmodify("-t", "duckduckgo", "next\.duckduckgo")
-autocmd DocStart ^http(s?)://go\.theregister\.com/i/cfa/ js tri.excmds.urlmodify("-t", "http(s?)://go\.theregister\.com/i/cfa/", "")
+" autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+" autocmd DocStart ^http(s?)://duckduckgo.com js tri.excmds.urlmodify("-t", "duckduckgo", "next.duckduckgo")
+" autocmd DocStart ^https://go\.theregister\.com/i/cfa/ js tri.excmds.urlmodify("-t", "http(s?)://go\.theregister\.com/i/cfa/", "")
 
 " Twitter minus bloat
 autocmd DocLoad ^http(s?)://twitter\.com/.*/status js tri.excmds.urlmodify("-t", "twitter", "mobile\.twitter")
