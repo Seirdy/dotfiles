@@ -16,7 +16,7 @@
     "coc-marketplace": ">=1.5.0",
     "coc-python": ">=1.2.6",
     "coc-rls": ">=1.1.4",
-    "coc-sh": ">=0.3.1",
+    "coc-sh": ">=0.4.0",
     "coc-snippets": ">=2.1.14",
     "coc-stylelint": ">=1.1.0",
     "coc-texlab": ">=1.9.9",
