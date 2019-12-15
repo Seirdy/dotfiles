@@ -11,12 +11,14 @@ alias lll='exa-fancy -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -A'
 alias lla='ll -a'
 alias llla='lll -a'
+alias sl='sl | lolcat'
 
 alias a2c='aria2c' # fast aria2c downloading
 alias wlc='wl-copy -n'
 alias recopy='wl-paste -n | wl-copy'
 alias dlpaste='aria2c "$(wl-paste)"'
 alias dlopaste='dl-open "$(wl-paste)"'
+alias broken-link='wl-paste -n | sd "\n" "" | url-picker'
 alias ytdl='youtube-dl'
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080]+bestaudio'"
 alias termbin='nc termbin.com 9999' # pastebin
@@ -62,9 +64,6 @@ alias tldr='tldr -p'
 alias tuir='tuir --enable-media'
 alias sub='tuir -s'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
-if command -v roflcat >/dev/null; then
-	alias lolcat='roflcat -t'
-fi
 
 # mpd stuff
 alias now-playing='mpc status; mpc sticker "$(mpc status -f "%file%" | sed 1q)" list'
