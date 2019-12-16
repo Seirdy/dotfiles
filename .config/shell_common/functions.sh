@@ -139,14 +139,16 @@ hnopen() {
 	done
 }
 
-# dnf search, filtering out bad stuff
-dnfss() {
-	dnf search "$@" | rg -v "i686|\-doc|debuginfo|\.src"
+dnfbadstr1='^(mingw(32|64)|R-)|(\.(src|i686)|debug(info|source)\..*)$'
+dnfbadstr2='^(mingw(32|64)|R-|lib|perl|python|texlive)|(\.(src|i686)|(\-(devel|doc|common)|debug(info|source)\..*))$'
+
+# filter the output of `dnf list` and `dnf search`
+dnf_filter() {
+	rg -v "$dnfbadstr1" </dev/stdin
 }
 
-# Even more heavily filtered dnf search
-dnfsss() {
-	dnf search "$@" | awk '{print $1}' | rgv '^(R-|lib|perl|python|texlive)|(\.(src|i686)|(-(devel|doc|common)|debug(info|source))\.(x86_64|noarch))$'
+dnf_filter_strict() {
+	awk '{print $1}' </dev/stdin | sed -e 's/\.x86_64$//' -e 's/\.noarch$//' | sort | uniq | rg -v "$dnfbadstr2"
 }
 
 _ghsearch_url() {
