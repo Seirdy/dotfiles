@@ -26,7 +26,6 @@
 # Note that rtv returns a list of urls for imgur albums, so we don't put quotes
 # around the `%s`
 # image/x-imgur-album; feh --scale-down -g 640x480 %s; test=test -n "$DISPLAY"
-image/gif; mpv '%s' --loop --speed=1
 image/x-imgur-album; dl-open %s
 image/*; dl-open %s
 
