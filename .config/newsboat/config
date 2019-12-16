@@ -66,5 +66,5 @@ macro R set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u"
 download-path "~/Podcasts/%Y/%N"
 download-filename-format "%F_%u"
 max-downloads 50
-player "mpv --speed=2.05 --save-position-on-quit --no-audio-display"
+player "mpv --profile=podcast"
 podlist-format "%4i [%6dMB/%6tMB] [%5p %%] %10S %F"
