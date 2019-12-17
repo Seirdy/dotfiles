@@ -82,6 +82,8 @@ https://github.com/DavidAnson/markdownlint/commits/master/README.md.atom "git re
 https://github.com/igorshubovych/markdownlint-cli/releases.atom "git repos" "Programs" "Dev"
 # jq for yaml; can convert between yaml and json as well.
 https://github.com/mikefarah/yq/releases.atom "git repos" "Programs" "Dev"
+# sh/shfmt for shell formatting
+https://github.com/mvdan/sh/commits/master.atom "git repos" "Programs" "Dev" "~shfmt changelog"
 # best mail client; should with fetchmail/sendmail
 https://git.sr.ht/~sircmpwn/aerc/refs/rss.xml "git repos" "Programs" "Dev" "Favorite" "~aerc refs"
 # my school gave me unlimited GDrive storage, so i have to use it for *something*.
@@ -423,6 +425,8 @@ https://latenightlinux.com/feed/ogg "Audio" "Media" "Linux"
 https://dlnxtend.com/rss "Audio" "Media" "Linux"
 # Saturday Morning Linux Review
 https://smlr.us/?feed=smlr-ogg "Audio" "Media" "Linux"
+# On the Metal
+https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "Audio" "Media" "Linux"
 
 # Video
 
