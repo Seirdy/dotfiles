@@ -57,12 +57,13 @@ alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'tim
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
 alias weechat-matrix='source $GHQ_ROOT/github.com/poljar/weechat-matrix/venv/bin/activate && weechat -r "/script load matrix.py; /matrix connect matrix_org"'
+alias sub='tuir -s'
 # Aliases that change existing commands
+alias tuir='tuir --enable-media'
+alias flatpak='flatpak --user'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
-alias tldr='tldr -p'
-alias tuir='tuir --enable-media'
-alias sub='tuir -s'
+alias tldr='tldr'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
 
 # mpd stuff
