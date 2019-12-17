@@ -123,6 +123,9 @@ zplugin light sdushantha/kunst
 zi_program has'perl' pick'inxi'
 zplugin light smxi/inxi
 
+zi_program has'grim' pick'grimshot'
+zplugin light $GHQ_ROOT/github.com/swaywm/sway/contrib
+
 # }}}
 
 # Git extensions {{{
@@ -135,6 +138,8 @@ zi0a
 zplugin light wfxr/emoji-cli
 
 # has ICE-selector wait'0b' so it gets loaded after diff-so-fancy
+export FORGIT_GI_REPO_LOCAL="$XDG_DATA_HOME/forgit/gi/repos/dvcs/gitignore"
+
 zi0b has'fzf' pick'forgit.plugin.zsh'
 zplugin light wfxr/forgit
 
@@ -204,6 +209,9 @@ zplugin snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.zsh
 
 zi_completion has'podman'
 zplugin snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
+
+zi_completion has'mpv'
+zplugin snippet https://github.com/mpv-player/mpv/blob/master/etc/_mpv.zsh
 
 zi_completion pick'src/go' src'src/zsh'
 zplugin light zchee/zsh-completions
