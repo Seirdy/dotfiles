@@ -12,7 +12,6 @@ cargo_install_git https://github.com/Y2Z/monolith.git
 cargo_install_git https://github.com/anordal/shellharden.git
 cargo_install_git https://github.com/chmln/sd.git
 cargo_install_git https://github.com/dandavison/delta.git
-cargo_install_git https://github.com/dbrgn/tealdeer.git
 cargo_install_git https://github.com/greshake/i3status-rust.git
 cargo_install_git https://github.com/jameslzhu/roflcat.git
 cargo_install_git https://github.com/lunaryorn/mdcat.git
