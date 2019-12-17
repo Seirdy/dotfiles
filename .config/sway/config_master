@@ -12,9 +12,11 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term kitty
-# Your preferred application launcher
-bindsym $mod+z exec --no-startup-id kitty --class launcher sway-launcher
-bindsym $mod+d exec --no-startup-id kitty --class launcher app-launcher
+
+# launchers
+bindsym $mod+z exec sway-launcher
+bindsym $mod+d exec app-launcher
+bindsym Mod1+Tab exec window-switcher
 for_window [app_id="^launcher$"] floating enable
 for_window [app_id="^org.keepassxc.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
@@ -125,10 +127,11 @@ input * {
 		# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 	# Media player controls
-		bindsym XF86AudioPlay exec playerctl play-pause
-		bindsym XF86AudioPause exec playerctl pause
-		bindsym XF86AudioNext exec playerctl next
-		bindsym XF86AudioPrev exec playerctl previous
+		set $playerctl LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH" GI_TYPELIB_PATH="$HOME/.local/lib/:$GI_TYPELIB_PATH" playerctl
+		bindsym XF86AudioPlay exec $playerctl play-pause
+		bindsym XF86AudioPause exec $playerctl pause
+		bindsym XF86AudioNext exec $playerctl next
+		bindsym XF86AudioPrev exec $playerctl previous
 
 #
 # Moving around:
@@ -260,3 +263,4 @@ bar {
 		inactive_workspace #32323200 #32323200 #5c5c5c
 	}
 	status_command i3status-rs ~/.config/sway/status.toml
+	icon_theme Papirus-Dark
