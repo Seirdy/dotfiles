@@ -303,6 +303,8 @@ dnf install ${packages[*]} --allowerasing --skip-broken -y
 iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 iptables -I INPUT -p udp --dport 60000:61000 -j ACCEPT
 
+echo 'Initial bootstrap finished. After running "update-all" successfully, uninstall stack and cargo'
+
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"
