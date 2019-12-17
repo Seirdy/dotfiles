@@ -1,3 +1,5 @@
 #!/usr/bin/env dash
-grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" "$@"
+grim -g \
+	"$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" \
+	"$@"
 # vi:ft=sh

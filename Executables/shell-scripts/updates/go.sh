@@ -28,7 +28,7 @@ GO111MODULE=on go_update github.com/schollz/croc/v6
 # Pager for log files
 go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
-go_update github.com/mvdan/sh/cmd/shfmt
+GO111MODULE=on go_update mvdan.cc/sh/v3/cmd/shfmt
 # like jq but for yaml
 GO111MODULE=on go_update github.com/mikefarah/yq/v2
 # curlie: better than httpie

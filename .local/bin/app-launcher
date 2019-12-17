@@ -1,7 +1,11 @@
 #!/usr/bin/env dash
 
 # launcher for .desktop files; used with app-runner script
-cmd=$(SHELL=$HOME/.local/bin/app-runner j4-dmenu-desktop --dmenu=fzf | sed -n 2p)
+
+# see my `term-dmenu` script in ~/.local/bin
+dmenu_program=term-dmenu
+
+cmd="$(SHELL=$HOME/.local/bin/app-runner j4-dmenu-desktop --dmenu=$dmenu_program | sed -n 2p)"
 [ -n "$cmd" ] && swaymsg exec "$cmd"
 
 # vi:ft=sh

@@ -12,6 +12,12 @@ start_time=$(date '+%s')
 # update this first; updating it kills all running mpv instances
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
+# tldr
+ghq_get_cd https://github.com/tldr-pages/tldr-cpp-client.git \
+	&& make -j "$threads" \
+	&& install -m0755 tldr "$BINPREFIX" \
+	&& install -p -m644 man/tldr.1 "$MANPREFIX/man1"
+
 # rsync
 ghq_get_cd https://git.samba.org/rsync.git \
 	&& configure_install --with-included-popt

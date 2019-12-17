@@ -56,6 +56,7 @@ export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
 export TOOLBOX_PROFILE_DIR="$XDG_DATA_HOME/toolbox"
+
 export HGPYTHON3=1
 # Disable the golang google proxy
 export GOPROXY=direct
@@ -85,6 +86,8 @@ export WAPM_PACKAGES="$HOME/Executables/wapm"
 export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config.lua"
 export PIPX_HOME="$HOME/Executables/pipx"
 export PIPX_BIN_DIR="$HOME/Executables/pipx/bin"
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 # Keep npm from polluting my $HOME
 export NPM_PACKAGES="$HOME/Executables/npm"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
