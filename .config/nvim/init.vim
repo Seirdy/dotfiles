@@ -443,7 +443,7 @@ let g:table_mode_align_char='+'
 " go here.
 
 let g:pandoc#after#modules#enabled = ["vim-table-mode"]
-let g:pandoc#syntax#codeblocks#embeds#langs=["c", "cpp", "python", "sh", "asm", "yaml", "html", "css", "vim", "go", "haskell", "scheme", "prolog", "elisp", "ruby", "javascript", "zsh", "ocaml", "rust"]
+let g:pandoc#syntax#codeblocks#embeds#langs=["c", "cpp", "python", "sh", "asm", "yaml", "html", "css", "vim", "go", "haskell", "scheme", "prolog", "elisp", "ruby", "javascript", "zsh", "ocaml", "rust", "sage"]
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ["folding","formatting"]
 let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}
