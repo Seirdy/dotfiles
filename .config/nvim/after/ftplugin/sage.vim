@@ -1,0 +1,1 @@
+setfiletype python
