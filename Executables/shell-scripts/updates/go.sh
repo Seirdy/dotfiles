@@ -18,7 +18,8 @@ go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
 # If htop wasn't pretty enough
 go_update github.com/cjbassi/gotop
 # fzf
-go_update github.com/junegunn/fzf
+go_update github.com/junegunn/fzf \
+	&& install -p -m644 "$GOPATH"/src/github.com/junegunn/fzf/man/man1/* "$MANPREFIX/man1"
 # Test dl speed
 go_update github.com/ddo/fast
 # alternate pager
