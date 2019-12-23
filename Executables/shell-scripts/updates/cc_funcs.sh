@@ -17,6 +17,15 @@ export FCFLAGS='-O3 -mtune=native -march=native -g -pipe -Wall -Werror=format-se
 
 threads=$(getconf _NPROCESSORS_ONLN)
 
+fancy_cmake() {
+	mkdir -p build && cd build \
+		&& cmake .. \
+			-DCMAKE_BUILD_TYPE=Release \
+			-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
+			-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
+			"$@"
+}
+
 make_install() {
 	make -j "$threads" \
 		&& make install

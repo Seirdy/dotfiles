@@ -29,9 +29,7 @@ ghq_get_cd https://github.com/containers/crun.git \
 
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
-	&& mkdir -p build \
-	&& cd build \
-	&& cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release .. \
+	&& fancy_cmake \
 	&& make_install
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
@@ -46,7 +44,7 @@ ghq_get_cd https://github.com/eXeC64/imv.git && make_install
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& mkdir -p build \
 	&& cd build \
-	&& cmake .. -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release \
+	&& fancy_cmake \
 	&& cmake --build . --target install
 
 # bcal
@@ -91,6 +89,11 @@ ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 ghq_get_cd https://github.com/karlstav/cava.git \
 	&& ./autogen.sh \
 	&& configure_install
+
+# cli-visualizer
+ghq_get_cd https://github.com/dpayne/cli-visualizer.git \
+	&& fancy_cmake \
+	&& make_install
 
 # mpdinfo: display current mpd track
 ghq_get_cd https://github.com/jduepmeier/mpdinfo.git && make_install
@@ -142,10 +145,8 @@ DIR="$GHQ_ROOT/github.com/romkatv"
 build_libgit2() {
 	ghq get -u https://github.com/romkatv/libgit2.git \
 		&& cd "$DIR" \
-		&& mkdir -p libgit2/build \
-		&& cd libgit2/build \
-		&& cmake \
-			-DCMAKE_BUILD_TYPE=Release \
+		&& mkdir -p libgit2 && cd libgit2 \
+		&& fancy_cmake \
 			-DTHREADSAFE=ON \
 			-DUSE_BUNDLED_ZLIB=ON \
 			-DREGEX_BACKEND=builtin \
