@@ -20,7 +20,7 @@ alias dlpaste='aria2c "$(wl-paste)"'
 alias dlopaste='dl-open "$(wl-paste)"'
 alias broken-link='wl-paste -n | sd "\n" "" | url-picker'
 alias ytdl='youtube-dl'
-alias ytdl-sm="ytdl -f 'bestvideo[height<=1080]+bestaudio'"
+alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
@@ -57,22 +57,30 @@ alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'tim
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
 alias weechat-matrix='source $GHQ_ROOT/github.com/poljar/weechat-matrix/venv/bin/activate && weechat -r "/script load matrix.py; /matrix connect matrix_org"'
+alias tarlz='tar -I "lzip --best" -cvf'
 alias sub='tuir -s'
 # Aliases that change existing commands
 alias tuir='tuir --enable-media'
 alias flatpak='flatpak --user'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
-alias tldr='tldr'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
 
 # mpd stuff
+# show current song, along with its rating
 alias now-playing='mpc status; mpc sticker "$(mpc status -f "%file%" | sed 1q)" list'
-# rate current track 1-10. A rating of 7 or higher puts it in my "Fav" dynamic playlist.
-# the "rating" sticker is used by clerk and Cantata. Cantata can write ratings to tags.
+# rate current track 1-10. A rating >=7 puts it in my "Fav" dynamic playlist.
+# the "rating" sticker is used by clerk and Cantata.
+# Cantata can write ratings to tags.
 alias rate-track='mpc sticker "$(mpc status -f "%file%" | sed 1q)" set rating'
+# rate a track and save a record of it to a note
+# shellcheck disable=SC2142 # this alias contains a function
+alias rtsv='_rtsv() {
+	rate-track "$1"
+	{ now-playing } >> "$HOME/Documents/Notes/Top Lists/music.txt" 2>&1
+}; _rtsv'
 
-# Editing aliases
+# $EDITOR aliases
 alias edi='$EDITOR'
 alias vdi='eval $TERMINAL $EDITOR'
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
