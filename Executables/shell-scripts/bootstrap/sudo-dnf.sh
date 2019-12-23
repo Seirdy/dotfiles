@@ -69,7 +69,7 @@ packages=(
 	"zlib-devel"    # build weechat and others
 	"extra-cmake-modules"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
-	"fftw-devel"        # build cava
+	"fftw-devel"        # build cava and cli-visualizer
 	"firefox-nightly"
 	"flatpak-builder"
 	"fontawesome-fonts"
@@ -134,6 +134,7 @@ packages=(
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
 	"libdrm-devel"        # build redshift
+	"libdwarf-devel"      # build flatpak-builder
 	"libevdev-devel"      # build sway
 	"libgcrypt-devel"     # build weechat
 	"guile-devel"         # build weechat
@@ -177,7 +178,7 @@ packages=(
 	"msgpack"       # build neovim
 	"msgpack-devel" # build neovim
 	"ncdu"
-	"ncurses-devel"
+	"ncurses-devel" # build several packages
 	"ninja-build"
 	"nmap" # network exploration
 	"npm"
@@ -217,7 +218,7 @@ packages=(
 	"plasma-breeze-common"  # preferred qt5 theme
 	"polkit-devel"          # build flatpak
 	"powerline-fonts"
-	"pulseaudio-libs-devel"  # build cava
+	"pulseaudio-libs-devel"  # build cava and cli-visualizer
 	"pv"                     # monitor piping
 	"python3-devel"          # building weechat, among others
 	"python3-libmount"       # building crun

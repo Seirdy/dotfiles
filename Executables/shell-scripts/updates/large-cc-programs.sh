@@ -33,25 +33,24 @@ ghq_get_cd https://github.com/flatpak/flatpak \
 	&& ./autogen.sh \
 	&& configure_install --with-system-bubblewrap --with-system-dbus-proxy
 
+ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
+	&& ./autogen.sh \
+	&& configure_install \
+		--enable-docbook-docs \
+		--with-dwarf-header=/usr/include/libdwarf
+
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
 	&& luarocks build --local mpack \
 	&& luarocks build --local lpeg \
 	&& luarocks build --local inspect \
-	&& mkdir -p build && cd build \
-	&& cmake .. \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
-		-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
+	&& fancy_cmake \
 	&& ninja install
 
 # weechat
 ghq_get_cd https://github.com/weechat/weechat.git \
-	&& mkdir -p build && cd build \
-	&& cmake .. \
+	&& fancy_cmake .. \
 		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
-		-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
 		-DENABLE_ENCHANT=ON \
 		-DENABLE_PHP=ON \
 		-DENABLE_PYTHON3=ON \
@@ -70,6 +69,9 @@ ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 	&& ./autogen.sh \
 	&& configure_install --disable-static --with-taglib --with-curl
 
+# projectM visualizer
+ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
+	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio
 # zsh
 # install-strip always fails at the last step, but the important steps succeed
 export zsh_cv_sys_nis=no
