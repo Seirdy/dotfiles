@@ -46,7 +46,9 @@
 	"python.jediEnabled": false,
 	"python.pythonPath": "python3",
 	"python.formatting.blackArgs": [
-		"-l 79"
+		"--line-length 79",
+		"--fast",
+		"--quiet"
 	],
 	"python.autoComplete.addBrackets": true,
 	"python.autoUpdateLanguageServer": true,
