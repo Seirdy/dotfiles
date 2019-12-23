@@ -111,6 +111,9 @@ zplugin light th3lusive/chrome-extension-dl
 zi_program pick'farge'
 zplugin light 'sdushantha/farge'
 
+zi_program has'fzf'
+zplugin light denisidoro/navi
+
 zi_program has'lspci' pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light dylanaraps/neofetch
 
@@ -130,17 +133,16 @@ zplugin light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
 # Git extensions {{{
 
-# has ICE-selector wait'0a' so it gets loaded before "forgit"
-# zi0a as'program' pick'bin/git-dsf'
-# zplugin light zdharma/zsh-diff-so-fancy
+# only used in fzf previews because delta's colors get messed up there
+zi0a as'program' pick'bin/git-dsf'
+zplugin light zdharma/zsh-diff-so-fancy
 
 zi0a
 zplugin light wfxr/emoji-cli
 
-# has ICE-selector wait'0b' so it gets loaded after diff-so-fancy
 export FORGIT_GI_REPO_LOCAL="$XDG_DATA_HOME/forgit/gi/repos/dvcs/gitignore"
 
-zi0b has'fzf' pick'forgit.plugin.zsh'
+zi0c has'fzf' pick'forgit.plugin.zsh'
 zplugin light wfxr/forgit
 
 zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
