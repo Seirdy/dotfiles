@@ -1,6 +1,8 @@
 # vi:ft=i3config
 # Read `man 5 sway` for a complete reference.
 exec redshift-custom
+# cursor theme
+seat seat0 xcursor_theme Adwaita 24
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -17,13 +19,14 @@ set $term kitty
 bindsym $mod+z exec sway-launcher
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
+for_window [app_id="^firefox$" title="^About Firefox Nightly$"] floating enable
 for_window [app_id="^launcher$"] floating enable
-for_window [app_id="^org.keepassxc.KeePassXC$"] floating enable
+for_window [app_id="^org\.keepassxc\.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
 for_window [class="^Sxiv$"] floating enable
 for_window [app_id="^pinentry-qt$"] floating enable
 for_window [app_id="^Minetest$"] floating enable
-# images and windows should float above other programs since their dimensions should
+# images and videos should float above other programs since their dimensions should
 # not be limited by the WM.
 for_window [app_id="^imv$"] floating enable
 for_window [app_id="^mpv$"] floating enable
@@ -31,14 +34,16 @@ for_window [app_id="^mpv$"] floating enable
 default_border pixel 3
 
 ### Autostart
-exec ~/startup.sh
+# exec ~/startup.sh
 # notifications
 exec mako
 # overlay bar
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # idle config
 exec swayidle -w \
-	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	before-sleep 'loginctl lock-session $XDG_SESSION_ID' \
+	lock 'swaylock-fancy'
 
 ### Output configuration
 #
@@ -93,6 +98,9 @@ input * {
 	# mouse button for dragging.
 	floating_modifier $mod normal
 
+	# sloppy focus
+	focus_follows_mouse yes
+
 	# reload the configuration file
 	bindsym $mod+Shift+c reload
 
@@ -127,11 +135,10 @@ input * {
 		# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 	# Media player controls
-		set $playerctl LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH" GI_TYPELIB_PATH="$HOME/.local/lib/:$GI_TYPELIB_PATH" playerctl
-		bindsym XF86AudioPlay exec $playerctl play-pause
-		bindsym XF86AudioPause exec $playerctl pause
-		bindsym XF86AudioNext exec $playerctl next
-		bindsym XF86AudioPrev exec $playerctl previous
+		bindsym XF86AudioPlay exec media-control play-pause
+		bindsym XF86AudioPause exec media-control pause
+		bindsym XF86AudioNext exec media-control next
+		bindsym XF86AudioPrev exec media-control previous
 
 #
 # Moving around:

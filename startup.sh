@@ -40,6 +40,7 @@ export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 export NVIM_GTK_PREFER_DARK_THEME=1
 export GIT_COLA_ICON_THEME="dark"
+export XCURSOR_THEME='Adwaita'
 export NNN_TMPFILE="$XDG_CACHE_HOME/nnn/lastd"
 export NNN_TRASH=1
 export ABDUCO_SOCKET_DIR="$XDG_DATA_HOME"
@@ -48,6 +49,7 @@ export HELM_HOME="$XDG_DATA_HOME/helm"
 export GRAFANA_THEME=dark
 export GTK_THEME=Breeze-Dark
 export GTK_THEME_VARIANT=dark
+export CALIBRE_USE_SYSTEM_THEME=1
 export BROWSER=firefox-nightly
 export GTK_USE_PORTAL=1 # KDE file-picker
 export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
@@ -248,13 +250,15 @@ if [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_
 		echo 'redshift not found. Install redshift to warm your screen at night.'
 	fi
 else
+	# Waylandify all the thing!!!!
+	# Covers apps written with the Qt, GTK, and SDL toolkits
 	export KITTY_ENABLE_WAYLAND=1
 	export EGL_PLATFORM=wayland
 	export CLUTTER_BACKEND=wayland
 	export QT_QPA_PLATFORM=wayland
+	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 	export QT_WAYLAND_FORCE_DPI=physical
-	export SDL_VIDEODRIVER=wayland # Makes imv use wayland backend
-	export GDK_BACKEND=wayland
+	export SDL_VIDEODRIVER=wayland
 	export TERMINAL=kitty
 	export MOZ_ENABLE_WAYLAND=1
 	export GDK_BACKEND='wayland' # Commented bc some apps aren't ready
