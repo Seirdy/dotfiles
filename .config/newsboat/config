@@ -16,7 +16,7 @@ feedlist-format "%4i %n %10T %9u %t"
 
 # Reloading
 refresh-on-startup no
-auto-reload yes
+auto-reload no
 reload-time 10
 reload-threads 400
 download-retries 4
