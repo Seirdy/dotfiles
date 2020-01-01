@@ -122,8 +122,14 @@ prepare_sway() {
 	fi
 }
 
-# swaywm
-ghq_get_cd 'https://github.com/swaywm/sway.git' && prepare_sway && simple_meson
+# All swaywm components except the `sway` executable itself are built
+# from source
+
+# swaywm: install swaybar, swaynag, swaymsg.
+ghq_get_cd 'https://github.com/swaywm/sway.git' \
+	&& prepare_sway \
+	&& simple_meson \
+	&& rm -f "$BINPREFIX/sway"
 
 # sway-related utils: grim, slurp, swaybg, swaylock, swayidle, mako, wl-clipboard
 ghq_get_cd 'https://github.com/emersion/grim.git' && simple_meson

@@ -1,8 +1,13 @@
 #!/usr/bin/env dash
 
+if [ -f /usr/bin/sway ]; then
+	sway_cmd=/usr/bin/sway
+else
+	sway_cmd="$(command -v sway)" || exit 1
+fi
 unset PROFILE_SET && export XDG_SESSION_TYPE=wayland
 # shellcheck source=../../startup.sh
 . ~/startup.sh
-ssh-agent sway
+ssh-agent "$sway_cmd"
 
 # vi:ft=sh
