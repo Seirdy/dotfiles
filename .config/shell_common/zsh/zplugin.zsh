@@ -76,6 +76,9 @@ zi_program() {
 zi_program has'trash' pick'rmtrash'
 zplugin light PhrozenByte/rmtrash
 
+zi_program has'jq' pick'reddio' from'gitlab'
+zplugin light aaronNG/reddio
+
 # git-open has a manpage that I want in my MANPATH
 zi_program has'git' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" atpull'%atclone'
 zplugin light paulirish/git-open
