@@ -1,0 +1,27 @@
+#!/usr/bin/env dash
+
+# some bits from https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/xdg-open
+
+case "${1%%:*}" in
+	*.pdf)
+		exec zathura "$1"
+		;;
+	mailto)
+		exec aerc "$1"
+		;;
+	*)
+		case "${MACHINE}" in
+			Linux)
+				exec /usr/bin/xdg-open "$@"
+				;;
+			Darwin)
+				exec open "$@"
+				;;
+			*)
+				echo "Unsupported machine. Your \$MACHINE is '$MACHINE'" 1>&2
+				;;
+		esac
+		;;
+esac
+
+# vi:ft=sh
