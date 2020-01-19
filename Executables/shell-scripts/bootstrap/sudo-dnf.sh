@@ -178,7 +178,7 @@ packages=(
 	"msgpack"       # build neovim
 	"msgpack-devel" # build neovim
 	"ncdu"
-	"ncurses-devel" # build several packages
+	"ncurses-devel" # build several packages inc. newsboat, tmux
 	"ninja-build"
 	"nmap" # network exploration
 	"npm"
@@ -201,6 +201,8 @@ packages=(
 	"perl-ExtUtils-Embed" # build weechat and others
 	"source-highlight"    # build weechat
 	"pkgconfig"
+	"pkgconfig(libevent)"   # build tmux
+	"libutempter-devel"     # build tmux
 	"pkgconfig(freerdp2)"   # build sway (optional)
 	"pkgconfig(json-c)"     # build newsboat
 	"pkgconfig(libcares)"   # build aria2 (enables async DNS resolving or something)
@@ -208,7 +210,6 @@ packages=(
 	"pkgconfig(libcurl)"    # build newsboat, weechat
 	"pkgconfig(libssh2)"    # build aria2 (enables SFTP support)
 	"pkgconfig(libxml-2.0)" # build newsboat
-	"pkgconfig(ncursesw)"   # build newsboat
 	"pkgconfig(sqlite3)"    # build newsboat
 	"pkgconfig(stfl)"       # build newsboat
 	"pkgconfig(winpr2)"     # build sway (optional)
