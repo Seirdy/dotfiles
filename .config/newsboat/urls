@@ -13,14 +13,23 @@
 # 	- YouTube channels (sent to youtube-dl via a macro)
 # 	- Podcasts (browsed in Podboat, played in mpv)
 
-# last 3 weeks
-"query:All:age between 0:21" "0-query"
+
+###############
+# Query Feeds #
+###############
+
+"query:All:age between 0:21" "0-query" # last 3 weeks
 "query:All Unread:unread = \"yes\"" "0-query"
 "query:Excluding program updates:tags !# \"Programs\"" "0-query"
 "query:Excluding Reddit:tags !# \"Reddit\"" "0-query"
 "query:Favorites:tags # \"Favorite\"" "0-query"
 # shownotes in newsboat tiled next to podboat/mpv is the best experience"
 "query:Podcasts:tags # \"Audio\"" "0-query"
+
+###################
+# Text-based news #
+###################
+
 https://www.sonniesedge.net/posts.xml "Advocacy" "Blog" "Favorite"
 # https://sonniesedge.co.uk/bookmarks.xml "Blog"
 https://boingboing.net/tag/copyfight/feed "Advocacy" "NonDev"
@@ -36,6 +45,9 @@ https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://blog.system76.com/rss "Hardware" "Corporate feed" "Linux"
 # toolbox is one of my favorite programs, and this is the primary dev's blog
 https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
+https://barthalion.blog/index.xml "GNOME" "Fedora" "Linux" "Blog" "Dev"
+https://blogs.gnome.org/alexl/feed/ "GNOME" "Fedora" "Linux" "Blog" "Dev"
+https://cubiclenate.com/feed/ "Blog" "Linux" "Dev"
 https://github.com/containers/toolbox/commits/master/NEWS.atom "Fedora" "Linux" "git repos" "Programs" "Favorite" "~toolbox changelog"
 https://blogs.gnome.org/mclasen/feed/ "Fedora" "Linux" "Blog" "Dev"
 https://www.forbes.com/sites/jasonevangelho/feed/ "Linux" "Blog" "Dev"
@@ -312,7 +324,7 @@ https://hnrss.org/newest.atom?q=vim+OR+neovim&points=10 "Hacker News" "Social" "
 https://hnrss.org/newest.atom?q=rtv+OR+tuir+OR+newsboat+OR+zsh+OR+pandoc+OR+suckless+OR+swaywm+OR+silverblue&points=2&comments=1 "Hacker News" "Social" "Dev" "Favorite" "~HN: favorite programs"
 https://hnrss.org/newest?points=800 "Hacker News" "Social" "Dev" "~Hacker News: Top"
 # reddit feed of git repos
-https://www.reddit.com/r/C_programming+commandline+coolgithubprojects+cpp+golang+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
+https://www.reddit.com/r/C_programming+commandline+coolgithubprojects+cpp+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
 # some of the best and most relatable satire in tech imo
 http://n-gate.com/index.atom "Hacker News" "Dev" "Favorite"
 # primary terminal emulator on X, tertiary terminal emulator on Wayland (since it's X-only).
@@ -361,28 +373,57 @@ https://www.economist.com/briefing/rss.xml "Economist" "NonDev"
 https://www.economist.com/science-and-technology/rss.xml "Economist" "NonDev" "Favorite"
 https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "Favorite"
 
-# Media
+       #########
+######## Media ########
+       #########
 
-# Podcasts
+############
+# Podcasts #
+############
 
 http://faif.us/feeds/cast-ogg/ "Audio" "Advocacy" "Media" "Linux" "Favorite"
 # Matrix Live
 https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w "Audio" "Media" "Dev" "Matrix"
-# Ask Noah
-https://feeds.fireside.fm/asknoah/rss "Audio" "Media" "Linux"
 # Librelounge
 https://librelounge.org/atom-feed.atom "Audio" "Media" "Linux"
-# Linux Action News
-https://feeds.fireside.fm/linuxactionnews/rss "Audio" "Media" "Linux"
-# User Errors
-https://feeds.fireside.fm/usererror/rss "Audio" "Media" "Linux"
-# Linux Unplugged
-https://feeds.fireside.fm/linuxunplugged/rss "Audio" "Media" "Linux" "Favorite"
-# The Linux Link Tech Show
-# https://feeds.feedburner.com/TheLinuxLinkTechShowOpusFeed "Audio" "Media" "Linux"
 
+#
+# Jupiter Broadcasting network
+#
+
+# Linux Action News
+https://feeds.fireside.fm/linuxactionnews/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
+# User Error
+https://feeds.fireside.fm/usererror/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
+# Linux Unplugged
+https://feeds.fireside.fm/linuxunplugged/rss "Audio" "Media" "Linux" "Favorite" "Jupiter Broadcasting"
 # TechSNAP
-https://feeds.fireside.fm/techsnap/rss "Audio" "Media" "Linux"
+https://feeds.fireside.fm/techsnap/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
+# Choose Linux
+https://feeds.fireside.fm/chooselinux/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
+
+
+#
+# Destination Linux network
+#
+
+# Destination Linux
+https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux" "DLN"
+# Linux for Everyone
+https://feeds.fireside.fm/linuxforeveryone/rss "Audio" "Media" "Linux" "DLN"
+# Linux Spotlight (BigDaddyLinux)
+https://feeds.fireside.fm/linuxspotlight/rss "Audio" "Media" "Linux" "DLN"
+# Ask Noah
+https://feeds.fireside.fm/asknoah/rss "Audio" "Media" "Linux" "DLN"
+# DLN Xtend: Destination Linux Network review
+https://dlnxtend.com/rss "Audio" "Media" "Linux" "DLN"
+# CubicleNate Noodlings
+https://cubiclenate.podomatic.com/rss2.xml "Audio" "Media" "Linux" "DLN"
+
+#
+# Independent Podcasts
+#
+
 # DistroWatch
 https://distrowatch.com/news/podcast.xml "Audio" "Media" "Linux"
 # Bad Voltage
@@ -393,42 +434,38 @@ https://feed.podbean.com/podcast.techfreedom.org/feed.xml "Audio" "Advocacy" "Me
 https://feeds.podtrac.com/Rtx2imr1qVdG "Audio" "Advocacy" "Media"
 # Gnu World Order
 https://gnuworldorder.info/opus.atom.xml "Audio" "Media" "Linux" "Dev"
-# Destination Linux
-https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux"
-# This Week in Linux (TuxDigital)
-https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
-# FLOSS Weekly
-http://feeds.twit.tv/floss.xml "Audio" "Media" "Dev"
-# Linux For The Rest Of Us
-http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
 # Going Linux
 https://goinglinux.com/oggpodcast.xml "Audio" "Media" "Linux"
 # Linux Lads
 https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
+# Linux For The Rest Of Us
+http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
+# LinuxLUGcast
+http://feeds.feedburner.com/Linuxlugcast-ogg "Audio" "Media" "Linux"
+# FLOSS Weekly
+http://feeds.twit.tv/floss.xml "Audio" "Media" "Dev"
 # The Binary Times
 https://thebinarytimes.net/rss-ogg.xml "Audio" "Media" "Linux"
 # Command Line Heros
 https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
+# This Week in Linux (TuxDigital)
+https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
 # The Economist: Babbage
 https://rss.acast.com/theeconomistbabbage/ "Audio" "Economist" "Media" "NonDev"
 # Hacker Public Radio
 http://www.hackerpublicradio.org/hpr_total_spx_rss.php "Audio" "Media" "Dev"
-# Choose Linux
-https://feeds.fireside.fm/chooselinux/rss "Audio" "Media" "Linux"
-# Linux for Everyone
-https://feeds.fireside.fm/linuxforeveryone/rss "Audio" "Media" "Linux"
 # Reality 2.0
 https://feeds.fireside.fm/reality2/rss "Audio" "Media" "Linux"
 # Late Night Linux
 https://latenightlinux.com/feed/ogg "Audio" "Media" "Linux"
-# DLN Xtend: Destination Linux Network review
-https://dlnxtend.com/rss "Audio" "Media" "Linux"
 # Saturday Morning Linux Review
 https://smlr.us/?feed=smlr-ogg "Audio" "Media" "Linux"
 # On the Metal
 https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "Audio" "Media" "Linux"
 
-# Video
+#########
+# Video #
+#########
 
 # LWT
 https://www.youtube.com/feeds/videos.xml?channel_id=UC3XTzVzaHQEd30rQbuvCtTQ "Video" "Media" "NonDev"
