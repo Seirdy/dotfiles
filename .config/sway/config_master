@@ -1,5 +1,6 @@
 # vi:ft=i3config
 # Read `man 5 sway` for a complete reference.
+include /etc/sway/config.d/*
 exec redshift-custom
 # cursor theme
 seat seat0 xcursor_theme Adwaita 24
@@ -13,19 +14,25 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term alacritty
 
 # launchers
 bindsym $mod+z exec sway-launcher
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
 for_window [app_id="^firefox$" title="^About Firefox Nightly$"] floating enable
+for_window [app_id="^firefox$" title="^Extension: \(Font Finder\) - Inspector :: Font Finder - Firefox Nightly$"] floating enable
 for_window [app_id="^launcher$"] floating enable
+# havoc is a terminal emulator that starts up quickly; I use it for floating menus
+for_window [title="^havoc$"] floating enable
+for_window [title="^havoc$"] border pixel 3
+
 for_window [app_id="^org\.keepassxc\.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
 for_window [class="^Sxiv$"] floating enable
 for_window [app_id="^pinentry-qt$"] floating enable
 for_window [app_id="^Minetest$"] floating enable
+for_window [app_id="^supertux2"] floating enable
 # images and videos should float above other programs since their dimensions should
 # not be limited by the WM.
 for_window [app_id="^imv$"] floating enable
@@ -42,7 +49,7 @@ exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # idle config
 exec swayidle -w \
 	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-	before-sleep 'loginctl lock-session $XDG_SESSION_ID' \
+	before-sleep 'loginctl lock-session' \
 	lock 'swaylock-fancy'
 
 ### Output configuration
@@ -253,8 +260,6 @@ mode "resize" {
 	bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-include /etc/sway/config.d/*
 
 #
 # Status Bar:

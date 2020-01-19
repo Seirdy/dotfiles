@@ -37,7 +37,7 @@ Mah stuff
 ---------
 
 Pretty much all my programs run in the terminal, with obvious exceptions (most
-notably my web browser).
+notably my web browser, image viewer (imv), and media player (mpv)).
 
 Stuff labeled with `*` is built from source from the latest git commit.
 
@@ -46,8 +46,8 @@ Stuff labeled with `*` is built from source from the latest git commit.
 -   WM: [Sway](https://swaywm.org/). SwayWM itself is from distro packages, but
     associated utilities are all built from source (e.g. swaybg, swayidle, grim,
     slurp)
--   Terminal emulator: [kitty\*](https://sw.kovidgoyal.net/kitty/) (Wayland) or
-    [st\*](https://st.suckless.org/) (X11)
+-   Terminal emulator: [Alacritty\*](https://github.com/alacritty/alacritty)
+    (Wayland) or [st\*](https://st.suckless.org/) (X11)
 -   News reader: [Newsboat\*](https://newsboat.org/)
 -   Mail client: [aerc\*](https://aerc-mail.org/)
 -   `$EDITOR`: Neovim\*
@@ -62,7 +62,7 @@ Stuff labeled with `*` is built from source from the latest git commit.
 ### Shell
 
 -   shell (non-interactive): `dash*`
--   shell (interactive): `zsh*`
+-   shell (interactive): `zsh*` inside `tmux*`
 -   plugin manager: [zplugin\*](https://github.com/zdharma/zplugin)
 -   prompt: [powerlevel10k\*](https://github.com/romkatv/powerlevel10k)
 

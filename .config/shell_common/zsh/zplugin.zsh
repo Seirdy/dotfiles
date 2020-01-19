@@ -40,9 +40,6 @@ zplugin light skywind3000/z.lua
 zi0c ''
 zplugin snippet https://github.com/changyuheng/fz/blob/master/fz.sh
 
-zi0a
-zplugin light zdharma/fast-syntax-highlighting
-
 #shellcheck disable=SC2016
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
 zplugin light xvoland/Extract
@@ -57,9 +54,7 @@ zplugin light hlissner/zsh-autopair
 zi0a has'fzf' pick'fzf-finder.plugin.zsh'
 zplugin light leophys/zsh-plugin-fzf-finder
 
-zi0a has'fzf' pick'key-bindings.zsh'
-zplugin light $GOPATH/src/github.com/junegunn/fzf/shell
-zi0b has'fzf' pick'completion.zsh'
+zi0b has'fzf' pick'completion.zsh' src'key-bindings.zsh'
 zplugin light $GOPATH/src/github.com/junegunn/fzf/shell
 # }}}
 
@@ -79,6 +74,9 @@ zplugin light PhrozenByte/rmtrash
 zi_program has'jq' pick'reddio' from'gitlab'
 zplugin light aaronNG/reddio
 
+zi_program pick'hURL'
+zplugin light 'fnord0/hURL'
+
 # git-open has a manpage that I want in my MANPATH
 zi_program has'git' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" atpull'%atclone'
 zplugin light paulirish/git-open
@@ -94,6 +92,9 @@ zplugin light https://github.com/eth-p/bat-extras
 
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light TheLocehiliosan/yadm
+
+zi_program has'tmux' pick'bin/xpanes'
+zplugin light greymd/tmux-xpanes
 
 zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
 zplugin light https://github.com/containers/toolbox
@@ -116,6 +117,9 @@ zplugin light 'sdushantha/farge'
 
 zi_program has'fzf'
 zplugin light denisidoro/navi
+
+zi_program has'fzf' pick'fzf-tmux'
+zplugin light $GOPATH/src/github.com/junegunn/fzf/bin
 
 zi_program has'lspci' pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zplugin light dylanaraps/neofetch
@@ -160,14 +164,21 @@ zplugin snippet $ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh
 # Completions #
 ###############
 
+# fzf-based tab-completion. Load after all other completion plugins
+z_lucid wait'1'
+zplugin light Aloxaf/fzf-tab
+
 zi_completion() {
 	zi0a as'completion' blockf "$@"
 }
 
+zi_completion has'tmux' pick'completion/zsh'
+zplugin light greymd/tmux-xpanes
+
 # Seems to only work on Linux and BSD
 if [ "$MACHINE" != 'Darwin' ]; then
 	zi0a
-	zplugin snippet https://github.com/changyuheng/zsh-interactive-cd/blob/master/zsh-interactive-cd.plugin.zsh
+	zplugin light changyuheng/zsh-interactive-cd
 fi
 
 zi_completion has'pip3'
@@ -218,8 +229,8 @@ zplugin snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
 zi_completion has'mpv'
 zplugin snippet https://github.com/mpv-player/mpv/blob/master/etc/_mpv.zsh
 
-zi_completion pick'src/go' src'src/zsh'
-zplugin light zchee/zsh-completions
+zi_completion has'se'
+zplugin snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
 
 if [ "$MACHINE" = 'Linux' ]; then
 
@@ -236,11 +247,18 @@ elif [ "$MACHINE" = 'Darwin' ]; then
 
 fi
 
+zi_completion has'rclone'
+zplugin light "$XDG_DATA_HOME/zsh/site-functions/_rclone"
+
+zi0b as'completion'
+zplugin light zsh-users/zsh-completions
+
+zi_completion pick'src/go' src'src/zsh'
+zplugin light zchee/zsh-completions
+
 # the following will run after everything else happens
 finish_setup() {
 	command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
-	zpcompinit
-	zpcdreplay
 	# dircolors
 	eval "$(dircolors)"
 	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -261,5 +279,5 @@ finish_setup() {
 	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
 }
 
-zi0c as'completion' atload'finish_setup'
-zplugin light zsh-users/zsh-completions
+zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
+zplugin light zdharma/fast-syntax-highlighting

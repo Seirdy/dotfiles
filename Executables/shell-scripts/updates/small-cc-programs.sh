@@ -113,6 +113,11 @@ ghq_get_cd https://github.com/mtoyoda/sl.git \
 # another important tool
 ghq_get_cd https://github.com/jaseg/lolcat && DESTDIR=$PREFIX/bin make_install
 
+# tmux
+ghq_get_cd https://github.com/tmux/tmux.git \
+	&& ./autogen.sh \
+	&& configure_install
+
 prepare_sway() {
 	if [ -d ./subprojects/wlroots ]; then
 		cd ./subprojects/wlroots && git pull
