@@ -7,8 +7,16 @@
 if mpc status >/dev/null 2>/dev/null; then
 	# translate playerctl commands to mpc commands
 	case "$1" in
-		play-pause) mpc toggle ;;
-		previous) mpc prev ;;
+		play-pause)
+			mpc toggle
+			;;
+		previous)
+			mpc prev
+			;;
+		next)
+			mpc next
+			mpc sticker "$(mpc status -f '%file%' | sed 1q)" list
+			;;
 		*) mpc "$@" ;;
 	esac
 elif command -v playerctl >/dev/null; then
@@ -21,4 +29,3 @@ else
 fi
 
 # vi:ft=sh
-
