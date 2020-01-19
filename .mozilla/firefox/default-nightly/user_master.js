@@ -7,6 +7,7 @@ user_pref("app.update.service.enabled", false);
 user_pref("app.update.BITS.enabled", false);
 user_pref("lightweightThemes.update.enabled", false);
 user_pref("browser.showQuitWarning", true);
+user_pref("apz.gtk.kinetic_scroll.enabled", false);
 // disable WebRTC
 user_pref("media.navigator.enabled", false);
 user_pref("media.navigator.video.enabled", false);

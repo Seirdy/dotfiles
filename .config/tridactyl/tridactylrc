@@ -58,6 +58,7 @@ set allowautofocus false
 set editorcmd kitty --class launcher $EDITOR
 set externalclipboardcmd wl-copy
 set yankto both
+set smoothscroll true
 
 "
 " URL redirects
@@ -105,11 +106,12 @@ set searchurls.d https://next.duckduckgo.com/?kmjx.menu=renderer%3ANativeMML%26%
 set searchengine d
 
 " Autocontain
-autocontain lclark\.edu School
-autocontain (classroom|mail|accounts|drive|docs|cloud|developers)\.google\.com Google
-autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
-autocontain questionablecontent\.net Webcomics
-autocontain getpocket\.com Pocket
-autocontain git(lab|hub)\.com Git
-autocontain (old|www|i)\.reddit\.com Reddit
+" autocontain lclark\.edu School
+" autocontain (classroom|mail|accounts|drive|docs|cloud|developers|myaccount|careers)\.google\.com Google
+" autocontain google\.com/(about/?)careers Google
+" autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
+" autocontain questionablecontent\.net Webcomics
+" autocontain getpocket\.com Pocket
+" autocontain git(lab|hub)\.com Git
+" autocontain (old|www|i)\.reddit\.com Reddit
 " vim:filetype=vim
