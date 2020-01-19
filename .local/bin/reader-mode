@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-pandoc -f html-native_divs-native_spans -t commonmark-raw_html --columns="$COLUMNS" "$1" \
+curl-tor "$1" | pandoc -f html-native_divs-native_spans -t commonmark-raw_html --columns="$COLUMNS" \
 	| mdcat --columns="$COLUMNS" \
 	| less
 
