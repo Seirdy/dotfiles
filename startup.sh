@@ -58,6 +58,8 @@ export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
 export TOOLBOX_PROFILE_DIR="$XDG_DATA_HOME/toolbox"
+export KUNST_MUSIC_DIR="$HOME/Music"
+export _ZL_HYPHEN=1 # fix for https://github.com/skywind3000/z.lua/wiki/FAQ#how-to-input-a-hyphen---in-the-keyword-
 
 export HGPYTHON3=1
 # Disable the golang google proxy
@@ -84,6 +86,7 @@ export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
 export GOPATH="$HOME/Executables/go"
 export CARGO_HOME="$HOME/Executables/cargo"
+export RUSTUP_HOME="$HOME/Executables/rustup"
 export WAPM_PACKAGES="$HOME/Executables/wapm"
 export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config.lua"
 export PIPX_HOME="$HOME/Executables/pipx"
@@ -252,16 +255,29 @@ if [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_
 else
 	# Waylandify all the thing!!!!
 	# Covers apps written with the Qt, GTK, and SDL toolkits
-	export KITTY_ENABLE_WAYLAND=1
 	export EGL_PLATFORM=wayland
 	export CLUTTER_BACKEND=wayland
-	export QT_QPA_PLATFORM=wayland
+	# Qt apps
+	export QT_QPA_PLATFORM=wayland-egl
 	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 	export QT_WAYLAND_FORCE_DPI=physical
+	# SDL apps
 	export SDL_VIDEODRIVER=wayland
+	# elementary apps
+	export ECORE_EVAS_ENGINE=wayland_egl
+	export ELM_ENGINE=wayland_egl
+	export ELM_DISPLAY=wl
+	export ELM_ACCEL=gl
+	# some java apps
+	export _JAVA_AWT_WM_NONREPARENTING=1
+	# use a wayland-native terminal emulator
 	export TERMINAL=kitty
+	export KITTY_ENABLE_WAYLAND=1
+	# firefox
 	export MOZ_ENABLE_WAYLAND=1
-	export GDK_BACKEND='wayland' # Commented bc some apps aren't ready
+	# some GTK apps.
+	# Commented out because (Ungoogled-)Chromium and Electron aren't ready
+	# export GDK_BACKEND='wayland'
 fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then

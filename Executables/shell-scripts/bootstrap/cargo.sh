@@ -1,6 +1,7 @@
 #!/usr/bin/env dash
 
-cargo install cargo cargo-update rls
+rustup update
+cargo install cargo-update
 cargo_install_git() {
 	cargo install --git "$@" --force
 }
