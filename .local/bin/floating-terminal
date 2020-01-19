@@ -1,6 +1,0 @@
-#!/usr/bin/env dash
-
-kitty --class launcher "$@"
-
-# vi:ft=sh
-

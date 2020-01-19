@@ -5,6 +5,9 @@ start_time=$(date '+%s')
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
 . "$HOME/.config/shell_common/functions_ghq.sh"
 
+# some launcher scripts of mine
+ghq_get_cd https://gitlab.com/Seirdy/term-dmenu.git && make install
+
 # youtube-dl manpage and zsh completion
 ghq_get_cd https://github.com/ytdl-org/youtube-dl.git \
 	&& make youtube-dl.1 \
@@ -15,7 +18,7 @@ ghq_get_cd https://github.com/ytdl-org/youtube-dl.git \
 
 # weechat-matrix
 # shellcheck source=/dev/null
-ghq_get_cd https://github.com/poljar/weechat-matrix.git && . ./venv/bin/activate \
+ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/python/venv/bin/activate" \
 	&& pip install -Ur ./requirements.txt \
 	&& make install \
 	&& deactivate
