@@ -41,12 +41,14 @@ alias cmdv='command -v'
 alias settmp='redshift -O'
 alias resettmp='redshift -x'
 alias dsks='diskus --size-format=binary'
+# curl
+alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.com'
 # compiler conveniences
 alias gccv='gcc -pedantic -Wall'
 alias gorun='go run .'
 alias gobld='go build'
 # flatpak app aliases to replicate non-flatpak CLI functionality
-alias ebook-convert='flatpak run --command=ebook-convert com.calibre_ebook.calibre'
+command -v ebook-viewer >/dev/null || alias ebook-convert='flatpak run --command=ebook-convert com.calibre_ebook.calibre'
 alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
 alias pdfify='loffcon pdf'
 alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
@@ -56,7 +58,7 @@ alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host |
 alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'time to empty|percentage'"
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
-alias weechat-matrix='source $GHQ_ROOT/github.com/poljar/weechat-matrix/venv/bin/activate && weechat -r "/script load matrix.py; /matrix connect matrix_org"'
+alias weechat-matrix='weechat -r "/script load matrix.py; /matrix connect matrix_org"'
 alias tarlz='tar -I "lzip --best" -cvf'
 alias sub='tuir -s'
 # Aliases that change existing commands
@@ -87,6 +89,7 @@ alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias funcrc='edi $XDG_CONFIG_HOME/shell_common/functions.sh'
 alias zshrc='edi $HOME/.zshrc'
 alias zpluginrc='edi $XDG_CONFIG_HOME/shell_common/zsh/zplugin.zsh'
+alias tmuxrc='edi $XDG_CONFIG_HOME/tmux/tmux.conf'
 alias nvimrc='edi $XDG_CONFIG_HOME/nvim/init.vim'
 alias startuprc='edi $HOME/startup.sh'
 alias rssrc='edi $XDG_CONFIG_HOME/newsboat/urls'
