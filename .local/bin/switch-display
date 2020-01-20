@@ -107,4 +107,6 @@ if [ -d "$sway_confdir" ]; then
 		&& echo "updated i3status-rs settings"
 fi
 
+[ -n "$SWAYSOCK" ] && swaymsg reload
+
 # vim: filetype=sh
