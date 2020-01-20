@@ -1,18 +1,55 @@
 #
-# WeeChat 2.8-dev (compiled on Dec 15 2019 12:51:43)
+# WeeChat 2.8-dev (compiled on Jan  3 2020 19:26:44)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
 # For more info, see https://weechat.org/scripts/source/autoconf.py.html
 #
 
+*/set Option changed: weechat.look.mouse on
+*/set Option changed: weechat.look.prefix_align_max 25
+*/set Option changed: weechat.completion.nick_completer ":"
+*/set Option changed: weechat.bar.buflist.items "buflist"
+*/set Option changed: weechat.bar.fset.items "fset"
+*/set Option changed: weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],input_text,[vi_buffer]"
+*/set Option changed: weechat.bar.isetbar.items "isetbar_help"
+*/set Option changed: weechat.bar.nicklist.items "chatters,buffer_nicklist"
+*/set Option changed: weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
+*/set Option changed: weechat.bar.vi_line_numbers.items "line_numbers"
+*/set Option changed: exec.command.shell "sh"
+*/set Option changed: spell.check.commands "ame,amsg,away,command,cycle,kick,kickban,me,msg,notice,part,query,quit,topic"
+*/set Option changed: spell.check.default_dict "en"
+*/set Option changed: spell.check.enabled on
+*/set Option changed: spell.dict.core.weechat "en_US"
+*/set Option changed: relay.weechat.commands "*,!exec,!upgrade,!quit"
+*/set Option changed: urlgrab.default.localcmd "nightly '%s'"
+*/set Option changed: urlgrab.default.url_log "~/.config/weechat/urls.log"
+*/set Option changed: script.look.sort "d"
+*/set Option changed: matrix.server.matrix_org.address "matrix.org"
+*/set Option changed: urlgrab.default.localcmd "wl-copy '%s'"
+*/set Option changed: urlgrab.default.localcmd "wl-copy -n '%s'"
+*/set Option changed: urlgrab.default.copycmd "wl-copy -n '%s'"
+*/set Option changed: urlgrab.default.localcmd "xdg-open '%s'"
+*/set Option changed: urlgrab.default.localcmd "xdg-open %s"
+*/set Option changed: urlgrab.default.copycmd "wl-copy -n %s"
 */set weechat.look.mouse on
+*/set weechat.look.prefix_align_max 25
+*/set weechat.completion.nick_completer ":"
 */set weechat.bar.buflist.items "buflist"
 */set weechat.bar.fset.items "fset"
 */set weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],input_text,[vi_buffer]"
+*/set weechat.bar.isetbar.items "isetbar_help"
 */set weechat.bar.nicklist.items "chatters,buffer_nicklist"
 */set weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),scroll,[lag],[hotlist],completion"
 */set weechat.bar.vi_line_numbers.items "line_numbers"
 */set exec.command.shell "sh"
+*/set spell.check.commands "ame,amsg,away,command,cycle,kick,kickban,me,msg,notice,part,query,quit,topic"
+*/set spell.check.default_dict "en"
+*/set spell.check.enabled on
+*/set spell.dict.core.weechat "en_US"
+*/set relay.weechat.commands "*,!exec,!upgrade,!quit"
+*/set urlgrab.default.copycmd "wl-copy -n %s"
+*/set urlgrab.default.localcmd "xdg-open %s"
+*/set urlgrab.default.url_log "~/.config/weechat/urls.log"
 */set script.look.sort "d"
 */set matrix.server.matrix_org.address "matrix.org"
