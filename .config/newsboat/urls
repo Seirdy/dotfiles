@@ -80,7 +80,7 @@ https://github.com/karlstav/cava/releases.atom "music programs" "git repos" "Pro
 https://github.com/CDrummond/cantata/releases.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~cantata releases"
 https://github.com/fmthoma/vgrep/releases.atom "git repos" "Programs" "Dev"
 # secondary terminal on Wayland, tertiary terminal on X
-https://github.com/jwilm/alacritty/releases.atom "git repos" "Programs" "Dev"
+https://github.com/alacritty/alacritty/releases.atom "git repos" "Programs" "Dev"
 # i don't use atom anymore but it's interesting
 https://github.com/atom/atom/releases.atom "git repos" "Programs" "Dev"
 # signal is the only privacy-respecting testing app i can get my friends to use.
@@ -180,7 +180,10 @@ https://github.com/paulirish/git-open/commits/master.atom "git repos" "Programs"
 https://newsboat.org/news.atom "Programs" "Dev" "Blog" "Favorite"
 https://github.com/newsboat/newsboat/commits/master/CHANGELOG.md.atom "git repos" "Programs" "Dev" "~newsboat changelog"
 https://github.com/ytdl-org/youtube-dl/releases.atom "git repos" "Programs" "Dev"
-https://github.com/mpv-player/mpv/releases.atom "git repos" "Programs" "Dev"
+https://github.com/mpv-player/mpv/releases.atom "mpv" "git repos" "Programs" "Dev"
+https://github.com/bloc97/Anime4K/commits/master/glsl.atom "mpv" "git repos" "Programs" "Dev"
+https://github.com/hoyon/mpv-mpris/releases.atom "mpv" "git repos" "Programs" "Dev"
+https://github.com/occivink/mpv-scripts/commits/master.atom "mpv" "git repos" "Programs" "Dev"
 # best way to browse reddit with vim keybindings.
 https://gitlab.com/ajak/tuir/commits/master/CHANGELOG.rst?format=atom "git repos" "Programs" "Dev" "Favorite" "~tuir changelog"
 # abandoned, but still listening in case the radio silence breaks
@@ -419,6 +422,8 @@ https://feeds.fireside.fm/asknoah/rss "Audio" "Media" "Linux" "DLN"
 https://dlnxtend.com/rss "Audio" "Media" "Linux" "DLN"
 # CubicleNate Noodlings
 https://cubiclenate.podomatic.com/rss2.xml "Audio" "Media" "Linux" "DLN"
+# Hardware Addicts
+https://feeds.fireside.fm/hardwareaddicts/rss "Audio" "Media" "Linux" "DLN"
 
 #
 # Independent Podcasts
