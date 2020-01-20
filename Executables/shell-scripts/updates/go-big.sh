@@ -27,6 +27,7 @@ go_update_cni() {
 }
 # Access cloud storage
 go_update github.com/rclone/rclone
+install -Dpm 0644 "$GOPATH/src/github.com/rclone/rclone/rclone.1" "$HOME/.local/man/man1"
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
 if [ "$MACHINE" = 'Linux' ]; then
