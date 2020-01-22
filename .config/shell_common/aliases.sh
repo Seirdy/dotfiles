@@ -55,7 +55,7 @@ alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +q
 alias nvimclean='nvim +PlugClean'
 # shellcheck disable=SC2142
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
-alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg 'time to empty|percentage'"
+alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg --color never 'time to (empty|full)|percentage'"
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
 alias weechat-matrix='weechat -r "/script load matrix.py; /matrix connect matrix_org"'
@@ -156,7 +156,7 @@ alias kicat='kitty +kitten icat'
 if [ -n "$ZSH_VERSION" ]; then
 	alias -g isotime='$(date -u -Iseconds)'
 	timefile() {
-		printf '%s%s' "$(date -u -Iseconds)" ".$1"
+		printf '%s%s' "$(date -Iseconds)" ".$1"
 	}
 	alias -g nnote='$(timefile md)'
 	alias -g todaynote='"$(date -u +%Y-%m-%d)"*'
