@@ -1,0 +1,14 @@
+#!/usr/bin/env dash
+
+newfile="$(date -Iseconds).md"
+printf '%s\ndate: %s\n---\n\n' '---' "$(date -I)" >"$newfile"
+$EDITOR "$newfile"
+
+# Example output:
+
+# ---
+# date: '2020-01-24'
+# ---
+#
+
+# vi:ft=sh
