@@ -43,14 +43,14 @@ stack_install_git_nightly() {
 	fi
 	export STACK_YAML
 	stack_local --resolver=nightly setup \
-		&& stack_local_optimized --resolver=nightly install
+		&& stack_local_optimized --resolver=nightly install "$2" "$3"
 }
 
 stack_install_nightly_fallback() {
-	stack_install_git_nightly "$1" \
+	stack_install_git_nightly "$@" \
 		|| {
 			echo 'Failed to update with nightly resolver; trying with specified resolver' \
-				&& stack_install_git "$1"
+				&& stack_install_git "$@"
 		}
 }
 
@@ -59,9 +59,9 @@ stack_local update
 stack_install_nightly_fallback https://github.com/commercialhaskell/stack.git
 
 # Pandoc and friends
-stack_install_nightly_fallback https://github.com/jgm/pandoc.git
+stack_install_nightly_fallback https://github.com/jgm/pandoc.git --flag 'pandoc:embed_data_files'
 # Pandoc filters
-stack_install_nightly_fallback https://github.com/jgm/pandoc-citeproc.git
+stack_install_nightly_fallback https://github.com/jgm/pandoc-citeproc.git --flag 'pandoc-citeproc:embed_data_files'
 stack_install_nightly_fallback https://github.com/owickstrom/pandoc-include-code.git
 stack_install_nightly_fallback https://github.com/lierdakil/pandoc-crossref.git
 stack_install_nightly_fallback https://github.com/owickstrom/pandoc-emphasize-code.git
