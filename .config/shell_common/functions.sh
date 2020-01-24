@@ -27,6 +27,15 @@ cdg() {
 	[ "$cdto" = '' ] || cd "$GHQ_ROOT/$cdto" || return 1
 }
 
+cdgo() {
+	if [ -z "$1" ]; then
+		cdto=$(go list "$GOPATH/src/..." | fzf)
+	else
+		cdto=$(go list "$GOPATH/src/..." | fzf -q "$@")
+	fi
+	[ "$cdto" = '' ] || cd "$GOPATH/src/$cdto" || return 1
+}
+
 n() {
 	export NNN_TMPFILE="$XDG_CACHE_HOME/nnn/lastd"
 	nnn "$@"
