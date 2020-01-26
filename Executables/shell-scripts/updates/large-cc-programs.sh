@@ -23,11 +23,6 @@ ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
 	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
 
-# slirp4netns: required for many rootless container setups and Flatpak
-ghq_get_cd https://github.com/rootless-containers/slirp4netns \
-	&& ./autogen.sh \
-	&& configure_install
-
 # flatpak
 ghq_get_cd https://github.com/flatpak/flatpak \
 	&& ./autogen.sh \
@@ -59,11 +54,6 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt \
 	&& make_install
 
-# newsboat
-ghq_get_cd https://github.com/newsboat/newsboat.git \
-	&& make -j "$threads" prefix="$PREFIX" \
-	&& make install prefix="$PREFIX"
-
 # ncmpcpp, with only the features i use
 ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 	&& ./autogen.sh \
@@ -85,6 +75,11 @@ ghq_get_cd git://git.code.sf.net/p/zsh/code \
 	&& make -j "$threads" \
 	&& set +e \
 	&& make install-strip
+
+# newsboat
+ghq_get_cd https://github.com/newsboat/newsboat.git \
+	&& make -j "$threads" prefix="$PREFIX" \
+	&& make install prefix="$PREFIX"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

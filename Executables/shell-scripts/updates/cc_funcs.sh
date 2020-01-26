@@ -1,21 +1,24 @@
 #!/bin/sh
 
-export PREFIX="$HOME/.local"
+[ -z "$PREFIX" ] && export PREFIX="$HOME/.local"
 export BINPREFIX="$PREFIX/bin"
 export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
-export CONFIGPREFIX="$HOME/.config"
 export CONFIGPREFIX="$HOME/.config"
 export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
 
 export LIBLDFLAGS='-z lazy'
-export CFLAGS='-O3 -mtune=native -march=native -flto -fuse-linker-plugin -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection'
+[ -z "$ARCH" ] && ARCH='native'
+export CFLAGS="-O3 -DNDEBUG -mtune=$ARCH -march=$ARCH -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 export CXXFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"
 export FCFLAGS="$FFLAGS"
+[ -z "$RUSTFLAGS" ] && export RUSTFLAGS='-C opt-level=3 -C target-cpu=native'
+[ -z "$CARGO_INSTALL_OPTS" ] && export CARGO_INSTALL_OPTS='--all-features -Z unstable-options'
 
 threads=$(getconf _NPROCESSORS_ONLN)
+export MAKEFLAGS="-j $threads"
 
 fancy_cmake() {
 	mkdir -p build && cd build \
@@ -27,8 +30,7 @@ fancy_cmake() {
 }
 
 make_install() {
-	make -j "$threads" \
-		&& make install
+	make && make install
 }
 
 fancy_configure() {
@@ -38,11 +40,11 @@ fancy_configure() {
 		--exec-prefix="$PREFIX" \
 		--bindir="$BINPREFIX" \
 		--datadir="$XDG_DATA_HOME" \
-		--includedir="$HOME/.local/include" \
-		--libdir="$HOME/.local/lib64" \
-		--libexecdir="$HOME/.local/libexec" \
+		--includedir="$PREFIX/include" \
+		--libdir="$PREFIX/lib64" \
+		--libexecdir="$PREFIX/libexec" \
 		--mandir="$MANPREFIX" \
-		--infodir="$HOME/.local/share/info" \
+		--infodir="$PREFIX/share/info" \
 		"$@"
 }
 

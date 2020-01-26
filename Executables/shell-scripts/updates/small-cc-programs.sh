@@ -22,11 +22,6 @@ ghq_get_cd https://github.com/tldr-pages/tldr-cpp-client.git \
 ghq_get_cd https://git.samba.org/rsync.git \
 	&& configure_install --with-included-popt
 
-# crun: container runtime. Better than runc.
-ghq_get_cd https://github.com/containers/crun.git \
-	&& ./autogen.sh \
-	&& configure_install
-
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
 	&& fancy_cmake \
@@ -62,11 +57,6 @@ ghq_get_cd https://github.com/jarun/nnn.git && make_install
 # catatonit; used as container init system
 
 ghq_get_cd https://github.com/openSUSE/catatonit.git && simple_autotools
-
-# aria2: download accelerator
-ghq_get_cd 'https://github.com/aria2/aria2.git' \
-	&& aclocal \
-	&& simple_autotools --with-ca-bundle='/etc/ssl/certs/ca-bundle.crt'
 
 # file(1)
 ghq_get_cd https://github.com/file/file.git && simple_autotools
@@ -185,6 +175,24 @@ build_gitstatus() {
 }
 
 build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
+
+# stuff that needs LDFLAGS empty
+unset LIBLDFLAGS
+
+# aria2: download accelerator
+ghq_get_cd 'https://github.com/aria2/aria2.git' \
+	&& aclocal \
+	&& simple_autotools --with-ca-bundle='/etc/ssl/certs/ca-bundle.crt'
+
+# crun: container runtime. Better than runc.
+ghq_get_cd https://github.com/containers/crun.git \
+	&& ./autogen.sh \
+	&& configure_install
+
+# slirp4netns: required for many rootless container setups and Flatpak
+ghq_get_cd https://github.com/rootless-containers/slirp4netns \
+	&& ./autogen.sh \
+	&& configure_install
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

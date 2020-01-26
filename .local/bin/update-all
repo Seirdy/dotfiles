@@ -98,13 +98,20 @@ log_bg 'misc'                  # misc updates
 if [ -z "$litemode" ]; then
 	log_bg 'go'     # build go packages installed with "go get" (slow)
 	log_bg 'go-big' # same as above, but for larger packages (slow)
-	log_bg 'cargo'  # rust packages (extremely cpu-heavy)
+
+	# rust: build normally. My desktop should also build binaries optimized for my laptop CPU in a separate directory
+	# see ~/.local/bin/rsync-to-lappie
+	log_bg 'cargo' # rust packages (extremely cpu-heavy)
+	if [ "$(hostname)" = 'rkumar-dekstop' ]; then
+		PKG_CONFIG_ALLOW_CROSS=1 RUSTFLAGS='-C opt-level=3 -C target-cpu=haswell' CARGO_HOME="$HOME/Executables/cargo_lappie" nohup "$script_dir/cargo.sh" >"$log_dir/cargo_lap-$time_start.log" 2>&1 &
+	fi
 fi
 
 if [ "$MACHINE" = 'Linux' ]; then
 	if [ -z "$litemode" ]; then
 		log_bg 'stack'         # haskell packages (infrequent updates, cpu-heavy, slow)
 		log_bg 'in-containers' # Updates running inside containers (slow)
+		true
 	fi
 	log_bg 'small-cc-programs' # compile several programs with gcc -O3 -mcpu
 	log_bg 'large-cc-programs' # compile several programs with gcc -O3 -mcpu
