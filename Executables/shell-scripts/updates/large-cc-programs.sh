@@ -47,7 +47,7 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 	&& fancy_cmake .. \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DENABLE_ENCHANT=ON \
-		-DENABLE_PHP=ON \
+		-DENABLE_PHP=OFF \
 		-DENABLE_PYTHON3=ON \
 		-DENABLE_MAN=ON \
 		-DENABLE_JAVASCRIPT=OFF \
