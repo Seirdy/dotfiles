@@ -58,7 +58,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& git pull \
 		&& make BUILDTAGS="seccomp" \
 		&& make PREFIX="$HOME/.local" BINDIR="$GOPATH/bin" ETCDIR="$XDG_CONFIG_HOME" install
-	go_update github.com/containers/buildah/cmd/buildah \
+	GOFLAGS='-mod=vendor' go_update github.com/containers/buildah/cmd/buildah \
 		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
 		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
 		&& install -d "$HOME/.local/share/man/man1" \
