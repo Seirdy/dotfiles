@@ -13,14 +13,14 @@ fi
 export COLUMNS
 export ROWS
 
-export ZPLG_HOME="$HOME/Executables/zplugin"
+export ZPLG_HOME="$HOME/Executables/zinit"
 export ZPFX="$ZPLG_HOME/polaris"
-declare -A ZPLGM
-export ZPLGM[HOME_DIR]="$ZPLG_HOME"
-export ZPLGM[BIN_DIR]="$ZPLGM[HOME_DIR]/bin"
-export ZPLGM[PLUGINS_DIR]="$ZPLGM[HOME_DIR]/plugins"
-export ZPLGM[COMPLETIONS_DIR]="$ZPLGM[HOME_DIR]/completions"
-export ZPLGM[SNIPPETS_DIR]="$ZPLGM[HOME_DIR]/snippets"
+declare -A ZINIT
+export ZINIT[HOME_DIR]="$ZPLG_HOME"
+export ZINIT[BIN_DIR]="$ZINIT[HOME_DIR]/bin"
+export ZINIT[PLUGINS_DIR]="$ZINIT[HOME_DIR]/plugins"
+export ZINIT[COMPLETIONS_DIR]="$ZINIT[HOME_DIR]/completions"
+export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 
 module_path+=("$ZPLG_HOME/bin/zmodules/Src")
 module_path+=("$ZPLG_HOME/mod-bin/zmodules/Src")

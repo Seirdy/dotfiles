@@ -85,6 +85,11 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
 export GOPATH="$HOME/Executables/go"
+# shellcheck disable=SC2086
+if $GOPATH/sdk/gotip/bin/go version >/dev/null; then
+	export GOROOT="$GOPATH/sdk/gotip"
+	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
+fi
 export CARGO_HOME="$HOME/Executables/cargo"
 export RUSTUP_HOME="$HOME/Executables/rustup"
 export WAPM_PACKAGES="$HOME/Executables/wapm"
@@ -111,7 +116,7 @@ export GEM_SPEC_CACHE="$GEM_HOME/specs"
 export GEMRC="$XDG_CONFIG_HOME/gem/config"
 export STACK_ROOT="$HOME/Executables/stack"
 export GHQ_ROOT="$HOME/Executables/ghq"
-export ZPLG_HOME="$HOME/Executables/zplugin"
+export ZPLG_HOME="$HOME/Executables/zinit"
 # perl
 export PERL_LOCAL_LIB_ROOT="$HOME/Executables/perl5"
 export PERL_MB_OPT="--install_base \"$PERL_LOCAL_LIB_ROOT\""

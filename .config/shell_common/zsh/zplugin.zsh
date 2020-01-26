@@ -1,16 +1,16 @@
 #!/bin/bash
-# I use zplugin for plugins
+# I use zinit for plugins
 # Except for powerlevel10k, all plugins are loaded after the prompt is displayed.
 # Some of my plugins only get loaded after I have typed some characters into the
 # prompt. For example, "thefuck" isn't loaded until after I type "fuc"
 
 # shellcheck source=/dev/null
-. "$ZPLG_HOME/bin/zplugin.zsh"
+. "$ZPLG_HOME/bin/zinit.zsh"
 
 # Common ICE modifiers
 
 z_lucid() {
-	zplugin ice lucid ver'master' "$@"
+	zinit ice lucid ver'master' "$@"
 }
 zi0a() {
 	z_lucid wait'0a' "$@"
@@ -31,31 +31,31 @@ zi0c() {
 # My fancy prompt needs at least 256 colors, preferably 24bit color
 if [ "${terminfo[colors]:?}" -gt 255 ] || echo "$TERM" | grep '256c' >/dev/null; then
 	z_lucid depth=1
-	zplugin light romkatv/powerlevel10k
+	zinit light romkatv/powerlevel10k
 fi
 
 zi0b proto'git'
-zplugin light skywind3000/z.lua
+zinit light skywind3000/z.lua
 
 zi0c ''
-zplugin snippet https://github.com/changyuheng/fz/blob/master/fz.sh
+zinit snippet https://github.com/changyuheng/fz/blob/master/fz.sh
 
 #shellcheck disable=SC2016
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
-zplugin light xvoland/Extract
+zinit light xvoland/Extract
 
 zi0a blockf atload'_zsh_autosuggest_start'
-zplugin load zsh-users/zsh-autosuggestions
+zinit load zsh-users/zsh-autosuggestions
 
 zi0a pick'autopair.zsh'
-zplugin light hlissner/zsh-autopair
+zinit light hlissner/zsh-autopair
 
 # fzf-related plugins {{{
 zi0a has'fzf' pick'fzf-finder.plugin.zsh'
-zplugin light leophys/zsh-plugin-fzf-finder
+zinit light leophys/zsh-plugin-fzf-finder
 
 zi0b has'fzf' pick'completion.zsh' src'key-bindings.zsh'
-zplugin light $GOPATH/src/github.com/junegunn/fzf/shell
+zinit light $GOPATH/src/github.com/junegunn/fzf/shell
 # }}}
 
 ############
@@ -69,72 +69,72 @@ zi_program() {
 }
 
 zi_program has'trash' pick'rmtrash'
-zplugin light PhrozenByte/rmtrash
+zinit light PhrozenByte/rmtrash
 
 zi_program has'jq' pick'reddio' from'gitlab'
-zplugin light aaronNG/reddio
+zinit light aaronNG/reddio
 
 zi_program pick'hURL'
-zplugin light 'fnord0/hURL'
+zinit light 'fnord0/hURL'
 
 # git-open has a manpage that I want in my MANPATH
 zi_program has'git' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" atpull'%atclone'
-zplugin light paulirish/git-open
+zinit light paulirish/git-open
 
 zi_program atclone"cp hr.1 $HOME/.local/man/man1" atpull'%atclone'
-zplugin light LuRsT/hr
+zinit light LuRsT/hr
 
 zi_program pick'prettyping' has'ping'
-zplugin light denilsonsa/prettyping
+zinit light denilsonsa/prettyping
 
 zi_program has'bat' pick'src/*'
-zplugin light https://github.com/eth-p/bat-extras
+zinit light https://github.com/eth-p/bat-extras
 
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
-zplugin light TheLocehiliosan/yadm
+zinit light TheLocehiliosan/yadm
 
 zi_program has'tmux' pick'bin/xpanes'
-zplugin light greymd/tmux-xpanes
+zinit light greymd/tmux-xpanes
 
 zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
-zplugin light https://github.com/containers/toolbox
+zinit light https://github.com/containers/toolbox
 
 zi_program has'jq'
-zplugin snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
+zinit snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
 
 zi_program has'ueberzug' pick'stpvimg'
-zplugin light https://github.com/Seirdy/stpv
+zinit light https://github.com/Seirdy/stpv
 zi_program pick'stpv'
-zplugin light https://github.com/Seirdy/stpv
+zinit light https://github.com/Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
-zplugin light https://github.com/Seirdy/stpv
+zinit light https://github.com/Seirdy/stpv
 
 zi_program has'chromium-browser-privacy' pick'chrome-extension-dl'
-zplugin light th3lusive/chrome-extension-dl
+zinit light th3lusive/chrome-extension-dl
 
 zi_program pick'farge'
-zplugin light 'sdushantha/farge'
+zinit light 'sdushantha/farge'
 
 zi_program has'fzf'
-zplugin light denisidoro/navi
+zinit light denisidoro/navi
 
 zi_program has'fzf' pick'fzf-tmux'
-zplugin light $GOPATH/src/github.com/junegunn/fzf/bin
+zinit light $GOPATH/src/github.com/junegunn/fzf/bin
 
 zi_program has'lspci' pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
-zplugin light dylanaraps/neofetch
+zinit light dylanaraps/neofetch
 
 zi_program has'perl' pick'exiftool'
-zplugin light exiftool/exiftool
+zinit light exiftool/exiftool
 
 zi_program has'sxiv' pick'kunst'
-zplugin light sdushantha/kunst
+zinit light sdushantha/kunst
 
 zi_program has'perl' pick'inxi'
-zplugin light smxi/inxi
+zinit light smxi/inxi
 
 zi_program has'grim' pick'grimshot'
-zplugin light $GHQ_ROOT/github.com/swaywm/sway/contrib
+zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
 # }}}
 
@@ -142,21 +142,21 @@ zplugin light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
 # only used in fzf previews because delta's colors get messed up there
 zi0a as'program' pick'bin/git-dsf'
-zplugin light zdharma/zsh-diff-so-fancy
+zinit light zdharma/zsh-diff-so-fancy
 
 zi0a
-zplugin light wfxr/emoji-cli
+zinit light wfxr/emoji-cli
 
 export FORGIT_GI_REPO_LOCAL="$XDG_DATA_HOME/forgit/gi/repos/dvcs/gitignore"
 
 zi0c has'fzf' pick'forgit.plugin.zsh'
-zplugin light wfxr/forgit
+zinit light wfxr/forgit
 
 zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
-zplugin light tj/git-extras
+zinit light tj/git-extras
 
 zi0b as'completion' has'git-extras' blockf
-zplugin snippet $ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh
+zinit snippet $ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh
 
 # }}}
 
@@ -166,95 +166,95 @@ zplugin snippet $ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh
 
 # fzf-based tab-completion. Load after all other completion plugins
 z_lucid wait'1'
-zplugin light Aloxaf/fzf-tab
+zinit light Aloxaf/fzf-tab
 
 zi_completion() {
 	zi0a as'completion' blockf "$@"
 }
 
 zi_completion has'tmux' pick'completion/zsh'
-zplugin light greymd/tmux-xpanes
+zinit light greymd/tmux-xpanes
 
 # Seems to only work on Linux and BSD
 if [ "$MACHINE" != 'Darwin' ]; then
 	zi0a
-	zplugin light changyuheng/zsh-interactive-cd
+	zinit light changyuheng/zsh-interactive-cd
 fi
 
 zi_completion has'pip3'
-zplugin snippet OMZ::plugins/pip/_pip
+zinit snippet OMZ::plugins/pip/_pip
 
 zi_completion has'pylint'
-zplugin snippet OMZ::plugins/pylint/_pylint
+zinit snippet OMZ::plugins/pylint/_pylint
 
 zi_completion has'cargo'
-zplugin snippet OMZ::plugins/cargo/_cargo
+zinit snippet OMZ::plugins/cargo/_cargo
 
 zi_completion has'rustc'
-zplugin snippet OMZ::plugins/rust/_rust
+zinit snippet OMZ::plugins/rust/_rust
 
 zi_completion has'docker'
-zplugin snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 zi_completion has'rg'
-zplugin snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
+zinit snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 
 zi_completion has'yadm' mv'yadm.zsh_completion -> _yadm'
-zplugin snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/yadm.zsh_completion
+zinit snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/yadm.zsh_completion
 
 zi_completion has'pandoc'
-zplugin light srijanshetty/zsh-pandoc-completion
+zinit light srijanshetty/zsh-pandoc-completion
 
 zi_completion has'fd'
-zplugin snippet OMZ::plugins/fd/_fd
+zinit snippet OMZ::plugins/fd/_fd
 
 zi_completion has'exa' mv'completions.zsh -> _exa'
-zplugin snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
+zinit snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
 
 zi_completion has'cht.sh'
-zplugin snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
+zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
 
 zi_completion has'buku'
-zplugin snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
+zinit snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
 
 zi_completion has'hub' mv'hub.zsh_completion -> _hub'
-zplugin snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
+zinit snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
 
 zi_completion has'youtube-dl' mv'youtube-dl.zsh -> _youtube-dl'
-zplugin snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.zsh
+zinit snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.zsh
 
 zi_completion has'podman'
-zplugin snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
+zinit snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
 
 zi_completion has'mpv'
-zplugin snippet https://github.com/mpv-player/mpv/blob/master/etc/_mpv.zsh
+zinit snippet https://github.com/mpv-player/mpv/blob/master/etc/_mpv.zsh
 
 zi_completion has'se'
-zplugin snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
+zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
 
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'
-	zplugin light $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
+	zinit light $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 
 	zi_completion has'brew'
-	zplugin snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew
+	zinit snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew
 
 	zi_completion has'brew'
-	zplugin snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew_cask
+	zinit snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew_cask
 
 fi
 
 zi_completion has'rclone'
-zplugin light "$XDG_DATA_HOME/zsh/site-functions/_rclone"
+zinit light "$XDG_DATA_HOME/zsh/site-functions/_rclone"
 
 zi0b as'completion'
-zplugin light zsh-users/zsh-completions
+zinit light zsh-users/zsh-completions
 
 zi_completion pick'src/go' src'src/zsh'
-zplugin light zchee/zsh-completions
+zinit light zchee/zsh-completions
 
 # the following will run after everything else happens
 finish_setup() {
@@ -280,4 +280,4 @@ finish_setup() {
 }
 
 zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
-zplugin light zdharma/fast-syntax-highlighting
+zinit light zdharma/fast-syntax-highlighting

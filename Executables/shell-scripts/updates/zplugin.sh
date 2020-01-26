@@ -3,10 +3,12 @@
 start_time=$(date '+%s')
 
 . "$HOME/.zshrc"
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
-zplugin self-update
-zplugin update --all
-zplugin module build
+zinit self-update
+zinit update --all
+zinit module build
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
