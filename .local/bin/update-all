@@ -123,6 +123,6 @@ else
 	echo "Your machine is $MACHINE"
 fi
 # zpmod is best compiled in the foreground since it uses tcsetpgrp
-log_fg 'zplugin' # update zplugin, its zsh plugins, and zpmod
+log_fg 'zinit' # update zinit, its zsh plugins, and zpmod
 
 # vim: filetype=sh

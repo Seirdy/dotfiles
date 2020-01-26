@@ -63,7 +63,7 @@ Stuff labeled with `*` is built from source from the latest git commit.
 
 -   shell (non-interactive): `dash*`
 -   shell (interactive): `zsh*` inside `tmux*`
--   plugin manager: [zplugin\*](https://github.com/zdharma/zplugin)
+-   plugin manager: [zinit\*](https://github.com/zdharma/zinit)
 -   prompt: [powerlevel10k\*](https://github.com/romkatv/powerlevel10k)
 
 ### Music

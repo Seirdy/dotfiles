@@ -134,5 +134,5 @@ SHELL_COMMON="$HOME/.config/shell_common"
 # shellcheck source=/dev/null
 . "$SHELL_COMMON/zsh/powerlevel10k.zsh"
 # source the plugins and start completions/autosuggestions.
-# shellcheck source=.config/shell_common/zsh/zplugin.zsh
-. "$SHELL_COMMON/zsh/zplugin.zsh"
+# shellcheck source=.config/shell_common/zsh/zinit.zsh
+. "$SHELL_COMMON/zsh/zinit.zsh"

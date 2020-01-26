@@ -160,8 +160,8 @@ https://github.com/zdharma/fast-syntax-highlighting/releases.atom "zsh" "git rep
 https://github.com/hlissner/zsh-autopair/releases.atom "zsh" "git repos" "Programs" "Dev"
 # hands-down the best, fastest, and most powerful zsh plugin manager
 # 	loads plugins and packages in background so they don't slow initialization and can serve as a fully-fleged package manager.
-https://github.com/zdharma/zplugin/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
-# the developers behind zplugin, fast-syntax-highlighting, and more
+https://github.com/zdharma/zinit/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
+# the developers behind zinit, fast-syntax-highlighting, and more
 https://zdharma.org/feed.xml "zsh" "Programs" "Dev" "Blog"
 # fzf + git
 https://github.com/wfxr/forgit/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
@@ -370,7 +370,8 @@ https://www.smbc-comics.com/comic/rss "Comics" "NonDev" "Favorite"
 https://what-if.xkcd.com/feed.atom "NonDev" "Favorite"
 https://blog.xkcd.com/feed/ "Comics" "NonDev" "Favorite" "Blog"
 https://feeds.feedburner.com/oatmealfeed "Comics" "NonDev"
-http://helpful.cat-v.org/Blog/index.atom "Dev" "Favorite"
+http://helpful.cat-v.org/Blog/index.atom "Blog" "Dev" "Favorite"
+http://harmful.cat-v.org/Blog/index.atom "Blog" "Dev" "Favorite"
 # the Economist
 https://www.economist.com/briefing/rss.xml "Economist" "NonDev"
 https://www.economist.com/science-and-technology/rss.xml "Economist" "NonDev" "Favorite"
@@ -446,7 +447,7 @@ https://linuxlads.com/feed_ogg.rss "Audio" "Media" "Linux"
 # Linux For The Rest Of Us
 http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
 # LinuxLUGcast
-http://feeds.feedburner.com/Linuxlugcast-ogg "Audio" "Media" "Linux"
+http://feeds.feedburner.com/Linuxlugcast-ogg "Audio" "Media" "Linux" "~Linuz LUGCast"
 # FLOSS Weekly
 http://feeds.twit.tv/floss.xml "Audio" "Media" "Dev"
 # The Binary Times

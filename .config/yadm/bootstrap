@@ -51,7 +51,7 @@ gem install neovim
 go get -u -v github.com/motemen/ghq
 
 # Everything else
-nohup dash "$bootstrap_dir/zplugin.sh" >"$HOME/bootstrap-logs/zplugin.log" 2>&1 &
+nohup dash "$bootstrap_dir/zinit.sh" >"$HOME/bootstrap-logs/zinit.log" 2>&1 &
 nohup dash "$updates_dir/node.sh" >"$HOME/bootstrap-logs/node.log" 2>&1 &
 nohup dash "$updates_dir/stack.sh" >"$HOME/bootstrap-logs/stack.log" 2>&1 &
 nohup dash "$updates_dir/opam.sh" >"$HOME/bootstrap-logs/opam.log" 2>&1 &
