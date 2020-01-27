@@ -20,7 +20,7 @@
     "coc-snippets": ">=2.1.17",
     "coc-stylelint": ">=1.1.0",
     "coc-texlab": ">=1.9.9",
-    "coc-vimlsp": ">=0.4.4",
+    "coc-vimlsp": ">=0.4.5",
     "coc-yaml": ">=1.0.2",
     "coc-yank": ">=1.1.3"
   }
