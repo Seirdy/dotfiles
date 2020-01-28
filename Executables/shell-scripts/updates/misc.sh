@@ -14,8 +14,6 @@ ghq_get_cd https://github.com/ytdl-org/youtube-dl.git \
 	&& install -m 644 youtube-dl.1 "$MANPREFIX/man1" \
 	&& ./devscripts/zsh-completion.py
 
-# these repos have items symlinked to other places
-
 # weechat-matrix
 # shellcheck source=/dev/null
 ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/python/venv/bin/activate" \
@@ -23,6 +21,9 @@ ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/pyth
 	&& make install \
 	&& deactivate
 
+# these repos have items symlinked to other places
+ghq get -u https://github.com/mpv-player/mpv.git
+ghq get -u https://github.com/occivink/mpv-scripts.git
 ghq get -u https://github.com/keith/edit-weechat.git
 ghq get -u https://github.com/carnager/clerk.git
 # I use this repo's "cantata-dynamic" perl script to generate playlists
