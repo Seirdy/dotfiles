@@ -276,7 +276,7 @@ else
 	# some java apps
 	export _JAVA_AWT_WM_NONREPARENTING=1
 	# use a wayland-native terminal emulator
-	export TERMINAL=kitty
+	export TERMINAL=alacritty
 	export KITTY_ENABLE_WAYLAND=1
 	# firefox
 	export MOZ_ENABLE_WAYLAND=1
