@@ -1,0 +1,7 @@
+#!/usr/bin/env dash
+file=$(basename "$1")
+dir=$(dirname "$1")
+cols=$(tput cols)
+bwrap --ro-bind /usr /usr --symlink usr/lib64 /lib64 --proc /proc --ro-bind "$dir" /data --unshare-all w3m -T text/html -cols "$cols" -o display_link=true -o display_link_number=true -o display_image=false "/data/$file"
+# vi:ft=sh
+
