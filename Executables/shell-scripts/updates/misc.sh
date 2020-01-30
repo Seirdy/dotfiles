@@ -22,9 +22,14 @@ ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/pyth
 	&& deactivate
 
 # these repos have items symlinked to other places
+
+# mpv scripts symlinked to places in ~/.config/mpv/
 ghq get -u https://github.com/mpv-player/mpv.git
 ghq get -u https://github.com/occivink/mpv-scripts.git
+# weechat scripts
 ghq get -u https://github.com/keith/edit-weechat.git
+ghq get -u https://github.com/s3rvac/weechat-notify-send.git
+# clerk.pl symlinked to ~/.local/bin/clerk
 ghq get -u https://github.com/carnager/clerk.git
 # I use this repo's "cantata-dynamic" perl script to generate playlists
 ghq get -u https://github.com/CDrummond/cantata.git
