@@ -103,7 +103,11 @@ if [ -z "$litemode" ]; then
 	# see ~/.local/bin/rsync-to-lappie
 	log_bg 'cargo' # rust packages (extremely cpu-heavy)
 	if [ "$(hostname)" = 'rkumar-dekstop' ]; then
-		PKG_CONFIG_ALLOW_CROSS=1 RUSTFLAGS='-C opt-level=3 -C target-cpu=haswell' CARGO_HOME="$HOME/Executables/cargo_lappie" nohup "$script_dir/cargo.sh" >"$log_dir/cargo_lap-$time_start.log" 2>&1 &
+		PKG_CONFIG_ALLOW_CROSS=1 \
+			ARCH='haswell' \
+			CARGO_HOME="$HOME/Executables/lappie/cargo" \
+			GHQ_ROOT="$HOME/Executables/lappie/ghq" \
+			nohup "$script_dir/cargo.sh" >"$log_dir/cargo_lap-$time_start.log" 2>&1 &
 	fi
 fi
 

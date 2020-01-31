@@ -34,6 +34,14 @@ ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
 		--enable-docbook-docs \
 		--with-dwarf-header=/usr/include/libdwarf
 
+# projectM visualizer
+ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
+	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio
+
+export CFLAGS="$CFLAGS_LTO"
+export CXXFLAGS="$CFLAGS_LTO"
+export CPPFLAGS="$CXXFLAGS"
+
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
 	&& luarocks build --local mpack \
@@ -59,9 +67,6 @@ ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 	&& ./autogen.sh \
 	&& configure_install --disable-static --with-taglib --with-curl
 
-# projectM visualizer
-ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
-	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio
 # zsh
 # install-strip always fails at the last step, but the important steps succeed
 export zsh_cv_sys_nis=no
@@ -72,14 +77,9 @@ ghq_get_cd git://git.code.sf.net/p/zsh/code \
 	&& fancy_configure --with-tcsetpgrp --enable-maildir-support --enable-pcre \
 	&& make -C Src headers \
 	&& make -C Src -f Makemod zshpaths.h zshxmods.h version.h \
-	&& make -j "$threads" \
+	&& make \
 	&& set +e \
 	&& make install-strip
-
-# newsboat
-ghq_get_cd https://github.com/newsboat/newsboat.git \
-	&& make -j "$threads" prefix="$PREFIX" \
-	&& make install prefix="$PREFIX"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

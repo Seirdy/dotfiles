@@ -1,5 +1,18 @@
 #!/usr/bin/env dash
 
+# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+. "$HOME/.config/shell_common/functions_ghq.sh"
+# shellcheck source=../updates/cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
+export RUSTFLAGS="$RUSTFLAGS -C linker-plugin-lto -L. -C linker=clang -C link-arg=-fuse-ld=lld"
+echo "Using RUSTFLAGS: $RUSTFLAGS"
+echo "Using CARGO_INSTALL_OPTS: $CARGO_INSTALL_OPTS"
+
+export CC=clang
+export CXX=clang++
+export CFLAGS="$CLANGFLAGS"
+export CXXFLAGS="$CLANGFLAGS"
+rustup default nightly
 rustup update
 cargo install cargo-update
 cargo_install_git() {
@@ -8,6 +21,7 @@ cargo_install_git() {
 cargo_install_git https://github.com/BurntSushi/ripgrep.git
 cargo_install_git https://github.com/Canop/broot.git
 cargo_install_git https://github.com/Freaky/cw.git
+cargo_install_git https://github.com/NerdyPepper/eva.git
 cargo_install_git https://github.com/Peltoche/lsd.git
 cargo_install_git https://github.com/Y2Z/monolith.git
 cargo_install_git https://github.com/anordal/shellharden.git

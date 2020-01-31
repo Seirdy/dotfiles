@@ -31,6 +31,7 @@ packages=(
 	"appmenu-qt5"
 	"aria2"
 	"asciidoc"
+	"asciidoctor"      # build weechat
 	"autoconf"         # build many things
 	"autoconf-archive" # building xdg-dbus-proxy
 	"automake"         # build things like podman
@@ -59,6 +60,7 @@ packages=(
 	"dash"
 	"dbus-devel"
 	"dconf-devel"         # build flatpak
+	"desktop-file-utils"  # build alacritty and others
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
 	"dvtm"
@@ -66,7 +68,6 @@ packages=(
 	"elfutils"
 	"enchant"
 	"enchant-devel" # build weechat
-	"zlib-devel"    # build weechat and others
 	"extra-cmake-modules"
 	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
 	"fftw-devel"        # build cava and cli-visualizer
@@ -101,6 +102,7 @@ packages=(
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
 	"gnu-free-mono-fonts"
+	"gnutls-devel"                # build weechat
 	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
@@ -108,6 +110,7 @@ packages=(
 	"gpgme-devel" # building skopeo and others
 	"gtk-doc"     # building flatpak
 	"gtk3-devel"
+	"guile-devel"    # build weechat
 	"harfbuzz-devel" # build kitty
 	"haskell-platform"
 	"hostname" # required for yadm
@@ -137,7 +140,6 @@ packages=(
 	"libdwarf-devel"      # build flatpak-builder
 	"libevdev-devel"      # build sway
 	"libgcrypt-devel"     # build weechat
-	"guile-devel"         # build weechat
 	"libjpeg-turbo-devel" # build grim
 	"libmatthew-java"     # dep for signal-cli
 	"libmpdclient-devel"  # build ncmpcpp and other mpd-related stuff
@@ -151,6 +153,7 @@ packages=(
 	"libtermkey"          # build neovim
 	"libtermkey-devel"    # build neovim
 	"libtiff-devel"       # Build imv and others
+	"libutempter-devel"   # build tmux
 	"libuv-devel"         # build neovim
 	"libva-utils"         # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
@@ -160,6 +163,7 @@ packages=(
 	"libwayland-egl"    # build imv
 	"libxcb-devel"
 	"libxkbcommon-x11-devel"
+	"lld" # llvm linker, used for LTO in packages containing Rust and C/C++
 	"llvm"
 	"llvm-devel" # build compilers like tinygo
 	"lm_sensors"
@@ -192,22 +196,17 @@ packages=(
 	"p7zip-plugins"
 	"papirus-icon-theme"
 	"patch"
-	"asciidoctor"  # build weechat
-	"gnutls-devel" # build weechat
 	"pavucontrol-qt"
 	"pciutils"            # used by neofetch
-	"perl-devel"          # build weechat
-	"tcl-devel"           # build weechat
 	"perl-ExtUtils-Embed" # build weechat and others
-	"source-highlight"    # build weechat
+	"perl-devel"          # build weechat
 	"pkgconfig"
-	"pkgconfig(libevent)"   # build tmux
-	"libutempter-devel"     # build tmux
 	"pkgconfig(freerdp2)"   # build sway (optional)
 	"pkgconfig(json-c)"     # build newsboat
 	"pkgconfig(libcares)"   # build aria2 (enables async DNS resolving or something)
 	"pkgconfig(libcrypto)"  # build newsboat
 	"pkgconfig(libcurl)"    # build newsboat, weechat
+	"pkgconfig(libevent)"   # build tmux
 	"pkgconfig(libssh2)"    # build aria2 (enables SFTP support)
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(sqlite3)"    # build newsboat
@@ -237,6 +236,7 @@ packages=(
 	"rust-std-static"
 	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
+	"source-highlight"     # build weechat
 	"sqlitebrowser"
 	"sshfs" # mount another computer
 	"stack" # haskell package maanger. Used to download itself; then I uninstall it.
@@ -245,6 +245,7 @@ packages=(
 	"taglib"
 	"taglib-devel" # build ncmpcpp
 	"tar"
+	"tcl-devel" # build weechat
 	"terminus-fonts"
 	"terminus-fonts-console"
 	"texlive-collection-basic"            # there are literally thousands of texlive packages
@@ -289,13 +290,13 @@ packages=(
 	"xmlto"                    # build many programs that use XML, inc. Flatpak
 	"xorg-x11-server-Xwayland" # xwayland, for running X apps in Wayland (sway)
 	"xsel"                     # Yank tool; used by yank-cli
-	"yacreader"
-	"yajl-devel" # building crun
-	"yank"       # Good yank tool; works with xsel
+	"yajl-devel"               # building crun
+	"yank"                     # Good yank tool; works with xsel
 	"zathura"
 	"zathura-plugins-all"
 	"zathura-zsh-completion"
 	"zip"
+	"zlib-devel" # build weechat and others
 	"zsh"
 )
 # shellcheck disable=SC2086

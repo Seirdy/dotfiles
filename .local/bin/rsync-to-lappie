@@ -7,7 +7,7 @@ cd || exit 1
 # Update binaries
 rsync -zlrupP ~/Executables/stack/bin rkumar@rkumarlappie:/home/rkumar/Executables/stack
 rsync -zlrupP ~/Executables/go/bin rkumar@rkumarlappie:/home/rkumar/Executables/go
-rsync -zlrupP ~/Executables/cargo_lappie/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo
+rsync -zlrupP ~/Executables/lappie/cargo/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo
 rsync -lrupP ~/.local/man rkumar@rkumarlappie:/home/rkumar/.local
 rsync -lrupP ~/.local/include rkumar@rkumarlappie:/home/rkumar/.local
 rsync -zlrupP ~/.local/libexec rkumar@rkumarlappie:/home/rkumar/.local
