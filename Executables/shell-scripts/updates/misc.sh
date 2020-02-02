@@ -17,7 +17,7 @@ ghq_get_cd https://github.com/ytdl-org/youtube-dl.git \
 # weechat-matrix
 # shellcheck source=/dev/null
 ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/python/venv/bin/activate" \
-	&& pip install -Ur ./requirements.txt \
+	&& pip install -Ur ./requirements.txt --user \
 	&& make install \
 	&& deactivate
 

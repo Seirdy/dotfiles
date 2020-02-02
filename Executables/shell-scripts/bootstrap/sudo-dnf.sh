@@ -149,6 +149,7 @@ packages=(
 	"librsvg2-tools"      # work with svg files; used for swaylock icon
 	"libseccomp"          # build runc and other tools in the OCI stack
 	"libseccomp-devel"    # build runc, slirp4netns, and others
+	"libshaderc-devel"    # build mpv
 	"libsoup-devel"       # build flatpak
 	"libtermkey"          # build neovim
 	"libtermkey-devel"    # build neovim
@@ -157,6 +158,7 @@ packages=(
 	"libuv-devel"         # build neovim
 	"libva-utils"         # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
+	"libvapoursynth"    # build mpv
 	"libvterm"          # build neovim
 	"libvterm-devel"    # build neovim
 	"libwayland-client" # build imv
@@ -181,6 +183,7 @@ packages=(
 	"mpv-libs-devel"
 	"msgpack"       # build neovim
 	"msgpack-devel" # build neovim
+	"nasm"          # build mvtools
 	"ncdu"
 	"ncurses-devel" # build several packages inc. newsboat, tmux
 	"ninja-build"
@@ -198,29 +201,83 @@ packages=(
 	"patch"
 	"pavucontrol-qt"
 	"pciutils"            # used by neofetch
+	"perl(Encode)"        # build mpv
+	"perl(Math::BigInt)"  # build mpv
+	"perl(Math::BigRat)"  # build mpv
 	"perl-ExtUtils-Embed" # build weechat and others
 	"perl-devel"          # build weechat
 	"pkgconfig"
-	"pkgconfig(freerdp2)"   # build sway (optional)
-	"pkgconfig(json-c)"     # build newsboat
-	"pkgconfig(libcares)"   # build aria2 (enables async DNS resolving or something)
-	"pkgconfig(libcrypto)"  # build newsboat
-	"pkgconfig(libcurl)"    # build newsboat, weechat
-	"pkgconfig(libevent)"   # build tmux
-	"pkgconfig(libssh2)"    # build aria2 (enables SFTP support)
+	"pkgconfig(alsa)"
+	"pkgconfig(caca)"
+	"pkgconfig(dvdnav)"
+	"pkgconfig(egl)"
+	"pkgconfig(enca)"
+	"pkgconfig(ffnvcodec)"
+	"pkgconfig(freerdp2)" # build sway (optional)
+	"pkgconfig(gbm)"
+	"pkgconfig(gl)"
+	"pkgconfig(jack)"
+	"pkgconfig(json-c)" # build newsboat
+	"pkgconfig(lcms2)"
+	"pkgconfig(libarchive)"
+	"pkgconfig(libass)"
+	"pkgconfig(libavcodec)"
+	"pkgconfig(libavfilter)"
+	"pkgconfig(libavformat)"
+	"pkgconfig(libavutil)"
+	"pkgconfig(libbluray)"
+	"pkgconfig(libcares)" # build aria2 (enables async DNS resolving or something)
+	"pkgconfig(libcdio)"
+	"pkgconfig(libcdio_paranoia)"
+	"pkgconfig(libcrypto)" # build newsboat
+	"pkgconfig(libcurl)"   # build newsboat, weechat
+	"pkgconfig(libdrm)"
+	"pkgconfig(libevent)" # build tmux
+	"pkgconfig(libguess)"
+	"pkgconfig(libjpeg)"
+	"pkgconfig(libplacebo)"
+	"pkgconfig(libpulse)"
+	"pkgconfig(libquvi-0.9)"
+	"pkgconfig(libssh2)" # build aria2 (enables SFTP support)
+	"pkgconfig(libswresample)"
+	"pkgconfig(libswscale)"
+	"pkgconfig(libva)"
 	"pkgconfig(libxml-2.0)" # build newsboat
-	"pkgconfig(sqlite3)"    # build newsboat
-	"pkgconfig(stfl)"       # build newsboat
-	"pkgconfig(winpr2)"     # build sway (optional)
+	"pkgconfig(luajit)"
+	"pkgconfig(mujs)"
+	"pkgconfig(rubberband)"
+	"pkgconfig(sdl2)"
+	"pkgconfig(smbclient)"
+	"pkgconfig(sqlite3)" # build newsboat
+	"pkgconfig(stfl)"    # build newsboat
+	"pkgconfig(uchardet)"
+	"pkgconfig(vdpau)"
+	"pkgconfig(vulkan)"
+	"pkgconfig(wayland-client)"
+	"pkgconfig(wayland-cursor)"
+	"pkgconfig(wayland-egl)"
+	"pkgconfig(wayland-protocols)"
+	"pkgconfig(wayland-scanner)"
+	"pkgconfig(winpr2)" # build sway (optional)
+	"pkgconfig(x11)"
 	"pkgconfig(xcb-errors)" # build sway (optional)
 	"pkgconfig(xcb-icccm)"  # build sway (optional)
-	"plasma-breeze"         # preferred qt5 theme
-	"plasma-breeze-common"  # preferred qt5 theme
-	"polkit-devel"          # build flatpak
+	"pkgconfig(xext)"
+	"pkgconfig(xinerama)"
+	"pkgconfig(xkbcommon)"
+	"pkgconfig(xrandr)"
+	"pkgconfig(xscrnsaver)"
+	"pkgconfig(xv)"
+	"pkgconfig(zimg)"
+	"pkgconfig(zlib)"
+	"plasma-breeze"        # preferred qt5 theme
+	"plasma-breeze-common" # preferred qt5 theme
+	"polkit-devel"         # build flatpak
 	"powerline-fonts"
 	"pulseaudio-libs-devel"  # build cava and cli-visualizer
 	"pv"                     # monitor piping
 	"python3-devel"          # building weechat, among others
+	"python3-docutils"       # build mpv docs
 	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
 	"qrencode"
@@ -268,10 +325,13 @@ packages=(
 	"unibilium-devel" # build neovim
 	"unzip"
 	"upower" # battery status of connected devices
+	"vapoursynth-devel"
+	"vapoursynth-tools"
 	"vim"
 	"vollkorn-fonts"
 	"w3m"
 	"w3m-img"
+	"waf-python3"
 	"watchman" # required for some language servers (like MPLS)
 	"wayland-devel"
 	"wayland-protocols-devel"

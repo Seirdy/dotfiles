@@ -27,7 +27,7 @@ tmpdir="/tmp/$ARCH"
 mkdir -p "$tmpdir"
 # Update cargo-update before using it to update everything else
 cargo_update cargo-update -t "$tmpdir"
-cargo_update -figa -t "$tmpdir"
+cargo_update -ga -t "$tmpdir"
 
 # newsboat
 ghq_get_cd https://github.com/newsboat/newsboat.git \

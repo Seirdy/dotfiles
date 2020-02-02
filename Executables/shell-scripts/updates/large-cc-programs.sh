@@ -42,6 +42,29 @@ export CFLAGS="$CFLAGS_LTO"
 export CXXFLAGS="$CFLAGS_LTO"
 export CPPFLAGS="$CXXFLAGS"
 
+ghq_get_cd https://github.com/mpv-player/mpv.git \
+	&& ./bootstrap.py \
+	&& ./waf configure \
+		--prefixe"$PREFIX" \
+		--datarootdir="$XDG_DATA_HOME" \
+		--mandir="$MANPREFIX" \
+		--confdir="$CONFIGPREFIX" \
+		--disable-build-date \
+		--enable-libmpv-shared \
+		--enable-sdl2 \
+		--enable-libarchive \
+		--enable-libsmbclient \
+		--enable-dvdnav \
+		--enable-cdda \
+		--enable-html-build \
+		--disable-debug-build \
+		--disable-android \
+		--disable-tvos \
+		--disable-egl-android \
+		--disable-swift \
+		--disable-win32-internal-pthreads \
+		--enable-dvbin \
+	&& ./waf && ./waf install
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
 	&& luarocks build --local mpack \
@@ -60,7 +83,7 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 		-DENABLE_MAN=ON \
 		-DENABLE_JAVASCRIPT=OFF \
 		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt \
-	&& make_install
+	&& make && make install/strip
 
 # ncmpcpp, with only the features i use
 ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
