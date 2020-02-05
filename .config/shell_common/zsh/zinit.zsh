@@ -40,6 +40,9 @@ zinit light skywind3000/z.lua
 zi0c ''
 zinit snippet https://github.com/changyuheng/fz/blob/master/fz.sh
 
+zi0a
+zinit light xPMo/zsh-toggle-command-prefix
+
 #shellcheck disable=SC2016
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
 zinit light xvoland/Extract
@@ -231,6 +234,9 @@ zinit snippet https://github.com/mpv-player/mpv/blob/master/etc/_mpv.zsh
 
 zi_completion has'se'
 zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
+
+zi_completion has'alacritty'
+zinit snippet $GHQ_ROOT/github.com/alacritty/alacritty/extra/completions/_alacritty
 
 if [ "$MACHINE" = 'Linux' ]; then
 
