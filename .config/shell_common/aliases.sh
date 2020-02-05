@@ -21,6 +21,7 @@ alias dlopaste='dl-open "$(wl-paste)"'
 alias broken-link='wl-paste -n | sd "\n" "" | url-picker'
 alias ytdl='youtube-dl'
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
+alias ytdl-720="ytdl -f 'best[height<1080]'"
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
@@ -125,7 +126,7 @@ alias yco='yadm commit -S'
 alias ycoa='yco -a'
 alias ycom='yco -m'
 alias ycoam='ycoa -m'
-alias yp='yadm push'
+alias yp='yadm pushall' # pushes to all remotes; see git config
 alias ypo='yp origin'
 alias ypom='ypo master'
 alias ym='yadm merge'
@@ -139,6 +140,7 @@ alias ydd='yadm diff'
 alias yds='ydd --staged'
 alias yopen='yadm open'
 alias ya="yadm diff --name-status | awk '{print \$2}' | fzf --preview 'yadm dsf -- {}' | xargs -r yadm add"
+alias yd="yadm diff --name-status | awk '{print \$2}' | fzf --preview 'yadm dsf -- {}' | xargs -r yadm diff"
 alias bd='cd ..'
 # bookmarks
 alias cdsch='cd $HOME/Documents/Work/School'
