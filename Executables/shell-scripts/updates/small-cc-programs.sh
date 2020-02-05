@@ -14,8 +14,7 @@ ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
-	&& fancy_cmake \
-	&& make_install
+	&& fancy_cmake
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& meson build-release --buildtype release --prefix "$PREFIX" \
@@ -24,10 +23,7 @@ ghq_get_cd 'https://github.com/francma/wob.git' \
 
 # cmatrix
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
-	&& mkdir -p build \
-	&& cd build \
-	&& fancy_cmake \
-	&& cmake --build . --target install
+	&& fancy_cmake
 
 # file(1)
 ghq_get_cd https://github.com/file/file.git && simple_autotools
@@ -83,8 +79,7 @@ ghq_get_cd https://github.com/karlstav/cava.git \
 
 # cli-visualizer
 ghq_get_cd https://github.com/dpayne/cli-visualizer.git \
-	&& fancy_cmake \
-	&& make && make install/strip
+	&& fancy_cmake
 
 # mpdinfo: display current mpd track
 ghq_get_cd https://github.com/jduepmeier/mpdinfo.git && make_install
@@ -145,10 +140,12 @@ ghq_get_cd 'https://github.com/minus7/redshift.git' \
 DIR="$GHQ_ROOT/github.com/romkatv"
 # adapted from https://github.com/romkatv/gitstatus/blob/master/build.zsh
 build_libgit2() {
-	ghq get -u https://github.com/romkatv/libgit2.git \
-		&& cd "$DIR" \
-		&& mkdir -p libgit2 && cd libgit2 \
-		&& fancy_cmake \
+	ghq_get_cd https://github.com/romkatv/libgit2.git \
+		&& mkdir -p build && cd build \
+		&& cmake .. \
+			-DCMAKE_BUILD_TYPE=Release \
+			-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
+			-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
 			-DTHREADSAFE=ON \
 			-DUSE_BUNDLED_ZLIB=ON \
 			-DREGEX_BACKEND=builtin \
@@ -158,17 +155,14 @@ build_libgit2() {
 			-DBUILD_SHARED_LIBS=OFF \
 			-DUSE_EXT_HTTP_PARSER=OFF \
 			-DZERO_NSEC=ON \
-			.. \
-		&& make
+			..
 }
 
 build_gitstatus() {
-	ghq get -u https://github.com/romkatv/gitstatus.git \
-		&& cd "$DIR" \
-		&& cd gitstatus \
+	ghq_get_cd https://github.com/romkatv/gitstatus.git \
 		&& cxxflags="$CXXFLAGS -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
 		&& ldflags=" -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
-		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make -j "$threads" \
+		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make \
 		&& strip gitstatusd \
 		&& target="$BINPREFIX/gitstatusd" \
 		&& install -m 0755 gitstatusd "$target" \

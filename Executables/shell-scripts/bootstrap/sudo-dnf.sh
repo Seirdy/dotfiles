@@ -13,7 +13,8 @@ dnf copr enable eklitzke/watchman -y
 dnf copr enable petersen/stack -y
 dnf copr enable oleastre/fonts -y # Hasklig and Fira Code
 dnf copr enable sramanujam/firefox-nightly -y
-dnf copr enable zawertun/kde -y # latest kde
+dnf copr enable zawertun/kde -y         # latest kde
+dnf copr enable zawertun/vapoursynth -y # for mpv and vapoursynth
 dnf copr enable gumieri/sway -y
 dnf copr enable jdoss/wireguard -y
 dnf upgrade --refresh --allowerasing -y
@@ -179,8 +180,6 @@ packages=(
 	"meson"
 	"mozilla-*-fonts"
 	"mpd"
-	"mpv"
-	"mpv-libs-devel"
 	"msgpack"       # build neovim
 	"msgpack-devel" # build neovim
 	"nasm"          # build mvtools
@@ -207,7 +206,7 @@ packages=(
 	"perl-ExtUtils-Embed" # build weechat and others
 	"perl-devel"          # build weechat
 	"pkgconfig"
-	"pkgconfig(alsa)"
+	"pkgconfig(alsa)" # build mpv
 	"pkgconfig(caca)"
 	"pkgconfig(dvdnav)"
 	"pkgconfig(egl)"

@@ -11,9 +11,9 @@ stack_local() {
 	stack --local-bin-path="$HOME/Executables/stack/bin" "$@"
 }
 
-if [ "$threads" -gt 4 ]; then
+if [ "$THREADS" -gt 4 ]; then
 	echo "using multiple threads"
-	ghc_opts="-O2 -optc-O3 -threaded -j$threads +RTS -A32m -RTS"
+	ghc_opts="-O2 -optc-O3 -threaded -j$THREADS +RTS -A32m -RTS"
 else
 	ghc_opts='-O2 -optc-O3 -threaded +RTS -A32m -RTS'
 fi

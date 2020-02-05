@@ -19,7 +19,7 @@ ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& fancy_configure \
-	&& make -j "$threads" \
+	&& make \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
 	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
 
@@ -70,8 +70,7 @@ ghq_get_cd https://github.com/neovim/neovim.git \
 	&& luarocks build --local mpack \
 	&& luarocks build --local lpeg \
 	&& luarocks build --local inspect \
-	&& fancy_cmake \
-	&& ninja install
+	&& fancy_cmake -DUSE_BUNDLED=OFF -DENABLE_LTO=ON
 
 # weechat
 ghq_get_cd https://github.com/weechat/weechat.git \
@@ -80,10 +79,10 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 		-DENABLE_ENCHANT=ON \
 		-DENABLE_PHP=OFF \
 		-DENABLE_PYTHON3=ON \
+		-DENABLE_DOC=ON \
 		-DENABLE_MAN=ON \
 		-DENABLE_JAVASCRIPT=OFF \
-		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt \
-	&& make && make install/strip
+		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 # ncmpcpp, with only the features i use
 ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
@@ -101,7 +100,6 @@ ghq_get_cd git://git.code.sf.net/p/zsh/code \
 	&& make -C Src headers \
 	&& make -C Src -f Makemod zshpaths.h zshxmods.h version.h \
 	&& make \
-	&& set +e \
 	&& make install-strip
 
 end_time=$(date '+%s')
