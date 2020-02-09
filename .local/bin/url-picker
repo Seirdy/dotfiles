@@ -1,3 +1,9 @@
 #!/usr/bin/env dash
-xurls </dev/stdin | uniq | fzf | wl-copy -n
+if [ -n "$TMUX" ]; then
+	fzf_cmd='fzf-tmux'
+else
+	fzf_cmd='fzf'
+fi
+
+xurls </dev/stdin | uniq | $fzf_cmd | wl-copy -n
 # vim:ft=sh
