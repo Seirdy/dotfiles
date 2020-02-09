@@ -1,0 +1,13 @@
+#!/usr/bin/env dash
+
+# Outputs a playlist (m3u) with songs greater than or equal to a given rating
+
+if [ "$1" = '10' ]; then
+	rating_regex='10'
+else
+	rating_regex="([$1-9]|10)"
+fi
+mpc sticker "" find rating | rg "rating=$rating_regex"
+
+# vi:ft=sh
+
