@@ -21,10 +21,6 @@ ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& ninja -C build-release \
 	&& ninja -C build-release install
 
-# cmatrix
-ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
-	&& fancy_cmake
-
 # file(1)
 ghq_get_cd https://github.com/file/file.git && simple_autotools
 
@@ -34,6 +30,10 @@ ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 export CFLAGS="$CFLAGS_LTO"
 export CXXFLAGS="$CFLAGS_LTO"
 export CPPFLAGS="$CXXFLAGS"
+
+# cmatrix
+ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
+	&& fancy_cmake
 
 # tldr
 ghq_get_cd https://github.com/tldr-pages/tldr-cpp-client.git \
