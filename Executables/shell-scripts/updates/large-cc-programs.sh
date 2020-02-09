@@ -45,7 +45,7 @@ export CPPFLAGS="$CXXFLAGS"
 ghq_get_cd https://github.com/mpv-player/mpv.git \
 	&& ./bootstrap.py \
 	&& ./waf configure \
-		--prefixe"$PREFIX" \
+		--prefix="$PREFIX" \
 		--datarootdir="$XDG_DATA_HOME" \
 		--mandir="$MANPREFIX" \
 		--confdir="$CONFIGPREFIX" \

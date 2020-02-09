@@ -61,21 +61,24 @@ alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -
 alias emoj-cp='emoj | wl-copy'
 alias weechat-matrix='weechat -r "/script load matrix.py; /matrix connect matrix_org"'
 alias tarlz='tar -I "lzip --best" -cvf'
-alias sub='tuir -s'
 # Aliases that change existing commands
-alias tuir='tuir --enable-media'
+alias tuir='LESS="-x 2 -ir" tuir --enable-media'
+alias sub='tuir -s'
 alias flatpak='flatpak --user'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
 
 # mpd stuff
+alias mpc-sticker='mpc sticker "$(mpc status -f "%file%" | sed 1q)" '
+alias show-rating='mpc-sticker get rating'
 # show current song, along with its rating
-alias now-playing='mpc status; mpc sticker "$(mpc status -f "%file%" | sed 1q)" list'
+alias now-playing='mpc status && show-rating'
 # rate current track 1-10. A rating >=7 puts it in my "Fav" dynamic playlist.
 # the "rating" sticker is used by clerk and Cantata.
 # Cantata can write ratings to tags.
-alias rate-track='mpc sticker "$(mpc status -f "%file%" | sed 1q)" set rating'
+alias rate-track='mpc-sticker set rating'
+alias skip-show='mpc next && show-rating'
 # rate a track and save a record of it to a note
 # shellcheck disable=SC2142 # this alias contains a function
 alias rtsv='_rtsv() {
@@ -99,6 +102,7 @@ alias swayrc='edi $XDG_CONFIG_HOME/sway/config_master'
 alias i3statrc='edi $XDG_CONFIG_HOME/sway/status.toml'
 alias tridactylrc='edi $XDG_CONFIG_HOME/tridactyl/tridactylrc'
 alias kittyrc='edi $XDG_CONFIG_HOME/kitty/kitty_master.conf'
+alias alacrittyrc='edi $XDG_CONFIG_HOME/alacritty/alacritty_master.yml'
 alias cocrc='nvim +CocConfig'
 
 # git aliases
@@ -126,7 +130,7 @@ alias yco='yadm commit -S'
 alias ycoa='yco -a'
 alias ycom='yco -m'
 alias ycoam='ycoa -m'
-alias yp='yadm pushall' # pushes to all remotes; see git config
+alias yp='yadm push origin; yadm push gh_mirror' # push dotfiles to GitLab and GitHub remotes
 alias ypo='yp origin'
 alias ypom='ypo master'
 alias ym='yadm merge'
@@ -139,7 +143,9 @@ alias yadd='yadm add'
 alias ydd='yadm diff'
 alias yds='ydd --staged'
 alias yopen='yadm open'
+# shellcheck disable=SC2142
 alias ya="yadm diff --name-status | awk '{print \$2}' | fzf --preview 'yadm dsf -- {}' | xargs -r yadm add"
+# shellcheck disable=SC2142
 alias yd="yadm diff --name-status | awk '{print \$2}' | fzf --preview 'yadm dsf -- {}' | xargs -r yadm diff"
 alias bd='cd ..'
 # bookmarks

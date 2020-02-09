@@ -17,7 +17,7 @@
     "coc-python": ">=1.2.7",
     "coc-rls": ">=1.1.4",
     "coc-sh": ">=0.4.0",
-    "coc-snippets": ">=2.1.17",
+    "coc-snippets": ">=2.1.18",
     "coc-stylelint": ">=1.1.0",
     "coc-texlab": ">=1.9.10",
     "coc-vimlsp": ">=0.4.5",

@@ -37,7 +37,9 @@ updates](https://gitlab.com/Seirdy/dotfiles/tree/master/Executables/shell-script
 
 C/C++ programs get compiled with the `-O3 -march=native` flags, among others. Most
 packages are also compiled using link-time optimization. Rust packages containing
-C/C++ code use LLVM instead of GCC.
+C/C++ code use LLVM instead of GCC. When possible, Rust packages are compiled to
+statically-linked executables with full link-time optimization in an Alpine-based
+container.
 
 I generally compile programs on my desktop and `rsync` them to my laptop.
 Compilation occurs in a Fedora Rawhide pet container, created and managed using
@@ -57,21 +59,21 @@ Stuff labeled with `*` is built from source from the latest git commit.
 ### General
 
 - WM: [Sway](https://swaywm.org/). SwayWM itself is from distro packages, but
-  associated utilities are all built from source (e.g. swaybg, swayidle, grim,
-  slurp)
+  associated utilities are all built from source (e.g. swaybg\*, swayidle\*, grim\*,
+  and slurp\*)
 - Terminal emulator: [Alacritty\*](https://github.com/alacritty/alacritty) (Wayland)
   or [st\*](https://st.suckless.org/) (X11)
 - Terminal multiplexer/session manager: [tmux\*](https://tmux.github.io/)
 - News reader: [Newsboat\*](https://newsboat.org/)
 - Mail client: [aerc\*](https://aerc-mail.org/)
 - `$EDITOR`: Neovim\*
-- Launcher:
-  [custom](https://gitlab.com/Seirdy/dotfiles/raw/master/.local/bin/sway-launcher)
-  (runs in a floating terminal window)
+- Launcher: [custom](https://gitlab.com/Seirdy/term-dmenu) (runs in a floating
+  terminal window)
 - File manager: [nnn\*](https://github.com/jarun/nnn)
 - Image viewer: [imv\*](https://github.com/eXeC64/imv)
-- IRC and Matrix: `weechat` and
-  [weechat-matrix\*](https://github.com/poljar/weechat-matrix), respectively.
+- IRC and Matrix: `weechat*` and
+  [weechat-matrix\*](https://github.com/poljar/weechat-matrix), respectively. I
+  prefer IRC.
 
 ### Shell
 
