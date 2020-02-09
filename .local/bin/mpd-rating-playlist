@@ -7,7 +7,7 @@ if [ "$1" = '10' ]; then
 else
 	rating_regex="([$1-9]|10)"
 fi
-mpc sticker "" find rating | rg "rating=$rating_regex"
+mpc sticker "" find rating | rg "rating=$rating_regex" | awk -NF : '{print $1}'
 
 # vi:ft=sh
 
