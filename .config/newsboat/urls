@@ -35,6 +35,7 @@ https://www.sonniesedge.net/posts.xml "Advocacy" "Blog" "Favorite"
 https://boingboing.net/tag/copyfight/feed "Advocacy" "NonDev"
 # Nondev because it usually isn't technical
 https://www.theguardian.com/profile/stallman-richard/rss "Advocacy" "Blog" "NonDev" "Favorite"
+https://medium.com/feed/@enkiv2 "Advocacy" "Blog" "NonDev" "Favorite"
 https://static.fsf.org/fsforg/rss/news.xml "Advocacy" "NonDev" "Favorite"
 https://sfconservancy.org/feeds/blog/ "Advocacy" "NonDev" "Favorite"
 https://www.laquadrature.net/en/feed/ "Advocacy" "NonDev"
@@ -81,8 +82,6 @@ https://github.com/CDrummond/cantata/releases.atom "music programs" "git repos" 
 https://github.com/fmthoma/vgrep/releases.atom "git repos" "Programs" "Dev"
 # secondary terminal on Wayland, tertiary terminal on X
 https://github.com/alacritty/alacritty/releases.atom "git repos" "Programs" "Dev"
-# i don't use atom anymore but it's interesting
-https://github.com/atom/atom/releases.atom "git repos" "Programs" "Dev"
 # signal is the only privacy-respecting testing app i can get my friends to use.
 https://github.com/AsamK/signal-cli/releases.atom "git repos" "Programs" "Dev"
 # one of my favorite hardware manufacturers to follow.
@@ -95,7 +94,7 @@ https://github.com/igorshubovych/markdownlint-cli/releases.atom "git repos" "Pro
 # jq for yaml; can convert between yaml and json as well.
 https://github.com/mikefarah/yq/releases.atom "git repos" "Programs" "Dev"
 # sh/shfmt for shell formatting
-https://github.com/mvdan/sh/commits/master.atom "git repos" "Programs" "Dev" "~shfmt changelog"
+https://github.com/mvdan/sh/commits/master/CHANGELOG.md.atom "git repos" "Programs" "Dev" "~shfmt changelog"
 # best mail client; should with fetchmail/sendmail
 https://git.sr.ht/~sircmpwn/aerc/refs/rss.xml "git repos" "Programs" "Dev" "Favorite" "~aerc refs"
 # my school gave me unlimited GDrive storage, so i have to use it for *something*.
@@ -221,7 +220,7 @@ https://lobste.rs/t/linux,vim,systemd,vcs,unix,show.rss "~Lobsters" "Social" "vi
 # i switched from KDE+kwin to plain swaywm, but i still recommend KDE to others.
 https://mgallienkde.wordpress.com/feed/ "Blog" "Programs" "Dev" "KDE"
 https://feverfew.home.blog/feed/ "KDE" "Linux" "Dev" "Blog"
-https://pointieststick.com/feed/ "KDE" "Linux" "Dev" "Blog" "Favorite"
+# https://pointieststick.com/feed/ "KDE" "Linux" "Dev" "Blog" "Favorite" # i don't use kde anymore
 https://drewdevault.com/feed.xml "Blog" "Dev" "Favorite"
 https://danluu.com/atom.xml "Blog" "Dev" "Favorite"
 https://www.dvratil.cz/feed.xml "KDE" "Linux" "Dev" "Blog"
@@ -301,7 +300,6 @@ https://feeds.feedburner.com/PyPyStatusBlog "Python" "Dev"
 https://pycoders.com/feed/0 "Digest" "Python" "Dev"
 https://realpython.com/atom.xml "Python" "Dev"
 https://blog.pytest.org/feeds/all.atom.xml "Python" "Dev"
-https://www.anaconda.com/feed/ "Corporate feed" "Python" "Dev"
 # python devtools
 https://gitlab.com/pycqa/flake8/commits/master/docs/source/release-notes?format=atom "Python" "git repos" "Programs" "Dev"
 https://gitlab.com/pycqa/flake8-docstrings/commits/master/HISTORY.rst?format=atom "Python" "git repos" "Programs" "Dev"
@@ -358,7 +356,6 @@ https://itsfoss.com/feed/ "Linux" "Dev"
 https://news.softpedia.com/newsRSS/Linux-7.xml "Linux" "Dev"
 https://podman.io/feed.xml "Containers" "Linux" "Programs" "Dev"
 https://www.scrivano.org/feed/ "Containers" "Linux" "Blog" "Dev"
-https://next.redhat.com/category/containers/feed/ "Containers" "Fedora" "Linux" "Dev"
 # webcomics!!
 https://www.questionablecontent.net/QCRSS.xml "Comics" "NonDev"
 https://www.bloodsplatteredsocks.com/rss "Comics" "NonDev"
