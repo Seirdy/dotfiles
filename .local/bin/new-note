@@ -1,7 +1,13 @@
 #!/usr/bin/env dash
 
 newfile="$(date -Iseconds).md"
-printf '%s\ndate: %s\n---\n\n' '---' "$(date -I)" >"$newfile"
+# shellcheck disable=SC2169
+echo "---
+author: Rohan Kumar
+date: '$(date -I)'
+---
+
+# " >"$newfile"
 $EDITOR "$newfile"
 
 # Example output:
