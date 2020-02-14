@@ -13,14 +13,20 @@ alias lla='ll -a'
 alias llla='lll -a'
 alias sl='sl | lolcat'
 
-alias a2c='aria2c' # fast aria2c downloading
+# wl-clipboard aliases
 alias wlc='wl-copy -n'
-alias recopy='wl-paste -n | wl-copy'
-alias dlpaste='aria2c "$(wl-paste)"'
-alias dlopaste='dl-open "$(wl-paste)"'
+alias yankit='yank-cli -- wl-copy -n'
+alias recopy='wl-paste -n | wl-copy -n'
+alias dlpaste='aria2c "$(wl-paste -n)"'
+alias dlopaste='dl-open "$(wl-paste -n)"'
 alias broken-link='wl-paste -n | sd "\n" "" | url-picker'
+
+# basic shorthands
+alias a2c='aria2c' # fast aria2c downloading
 alias ytdl='youtube-dl'
+# ytdl-sm: for my laptop which has mediocre hardware accel, esp. for vp8/vp9
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
+# anime4k scales up 720p best
 alias ytdl-720="ytdl -f 'best[height<1080]'"
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
@@ -28,7 +34,7 @@ alias sdrem='sudo dnf remove'
 alias sdins='sudo dnf install'
 alias stb='sudo tlp bat'
 alias rmm='rmtrash'
-alias rmhtm='rm *.html'
+alias rmhtm='rm *.html' # pandoc artifacts and stuff
 alias rgi='rg -i'
 alias rgv='rg -v'
 alias vim='vim -u NONE'
@@ -70,16 +76,16 @@ alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
 
 # mpd stuff
+# query sticker for current track
 alias mpc-sticker='mpc sticker "$(mpc status -f "%file%" | sed 1q)" '
+# show rating for current track
 alias show-rating='mpc-sticker get rating'
-# show current song, along with its rating
+# show normal info for current song, along with its rating
 alias now-playing='mpc status && show-rating'
-# rate current track 1-10. A rating >=7 puts it in my "Fav" dynamic playlist.
-# the "rating" sticker is used by clerk and Cantata.
-# Cantata can write ratings to tags.
+# rate current track 1-10.
 alias rate-track='mpc-sticker set rating'
+# skip current track and show rating of the next one.
 alias skip-show='mpc next && show-rating'
-# rate a track and save a record of it to a note
 # shellcheck disable=SC2142 # this alias contains a function
 alias rtsv='_rtsv() {
 	rate-track "$1"
