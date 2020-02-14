@@ -8,10 +8,13 @@ start_time=$(date '+%s')
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
 . "$HOME/.config/shell_common/functions_ghq.sh"
 
+podman pull registry.fedoraproject.org/fedora:rawhide
+podman pull alpine:edge
+
 ghq_get_cd https://github.com/containers/fuse-overlayfs.git
 cp Dockerfile.static.fedora Dockerfile.static.fedora.custom
 # speed up downloading
-sed -i 's/dnf /dnf --setopt=max_parallel_downloads=20 /g' ./Dockerfile.static.fedora.custom
+sed -i 's/dnf /dnf --setopt=max_parallel_downloads=20 --skip-broken /g' ./Dockerfile.static.fedora.custom
 sed -i 's#registry\.fedoraproject\.org/fedora:latest#registry.fedoraproject.org/fedora:rawhide#' ./Dockerfile.static.fedora.custom
 sed -i 's/meson -/meson -D useroot=false -/' ./Dockerfile.static.fedora.custom
 
