@@ -3,7 +3,9 @@
 start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
-. "$HOME/.config/shell_common/functions_ghq.sh"
+. "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 # some launcher scripts of mine
 ghq_get_cd https://gitlab.com/Seirdy/term-dmenu.git && make install

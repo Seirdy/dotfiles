@@ -4,6 +4,8 @@
 
 start_time=$(date '+%s')
 
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 go_update() {
 	echo "###"
 	echo "### Updating $* ###"
@@ -22,12 +24,12 @@ go_update_cni() {
 	echo '##'
 	echo "go get -u -v github.com/containernetworking/plugins/plugins/$1"
 	plgname=$(basename "$1")
-	go build -o "$HOME/.local/libexec/cni/$plgname" -mod=vendor "$GOPATH/src/$1"
+	go build -o "$PREFIX/libexec/cni/$plgname" -mod=vendor "$GOPATH/src/$1"
 
 }
 # Access cloud storage
 go_update github.com/rclone/rclone
-install -Dpm 0644 "$GOPATH/src/github.com/rclone/rclone/rclone.1" "$HOME/.local/man/man1"
+install -Dpm 0644 "$GOPATH/src/github.com/rclone/rclone/rclone.1" "$MANPREFIX/man1"
 # Run my CI/CD pipelines locally
 go_update gitlab.com/gitlab-org/gitlab-runner
 if [ "$MACHINE" = 'Linux' ]; then
@@ -47,8 +49,8 @@ if [ "$MACHINE" = 'Linux' ]; then
 	go_update github.com/containers/skopeo/cmd/skopeo \
 		&& cd "$GOPATH/src/github.com/containers/skopeo" \
 		&& make docs \
-		&& install -d "$HOME/.local/share/man/man1" \
-		&& install -m 0644 docs/*.1 "$HOME/.local/share/man/man1"
+		&& install -d "$MANPREFIX/man1" \
+		&& install -m 0644 docs/*.1 "$MANPREFIX/man1"
 	# export GO111MODULE=on
 	# podman
 	printf '###\n### Updating podman ###\n###\n'
@@ -57,12 +59,12 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& cd "$GOPATH/src/github.com/containers/libpod" \
 		&& git pull \
 		&& make BUILDTAGS="seccomp" \
-		&& make PREFIX="$HOME/.local" BINDIR="$GOPATH/bin" ETCDIR="$XDG_CONFIG_HOME" install
+		&& make BINDIR="$GOPATH/bin" ETCDIR="$CONFIGPREFIX" install
 	GOFLAGS='-mod=vendor' go_update github.com/containers/buildah/cmd/buildah \
 		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
 		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
-		&& install -d "$HOME/.local/share/man/man1" \
-		&& install -m 0644 buildah*.1 "$HOME/.local/share/man/man1"
+		&& install -d "$MANPREFIX/man1" \
+		&& install -m 0644 buildah*.1 "$MANPREFIX/man1"
 	# all the relevant CNI plugins
 	if [ -d "$GOPATH/src/github.com/containernetworking/plugins" ]; then
 		mkdir -p "$GOPATH/src/github.com/containernetworking/plugins" \

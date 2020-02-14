@@ -1,10 +1,10 @@
 #!/bin/sh
 
-[ -z "$PREFIX" ] && export PREFIX="$HOME/.local"
+[ -z "$PREFIX" ] && export PREFIX="$XDG_DATA_HOME"
 export BINPREFIX="$PREFIX/bin"
 export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
-export CONFIGPREFIX="$HOME/.config"
+export CONFIGPREFIX="$XDG_CONFIG_HOME"
 export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
 

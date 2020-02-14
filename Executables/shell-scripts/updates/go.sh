@@ -2,6 +2,8 @@
 
 start_time=$(date '+%s')
 
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 # sometimes go.mod and go.sum files change locally, preventing a pull; reset to fix.
 go_update() {
 	echo "###"
@@ -10,6 +12,7 @@ go_update() {
 	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
+go_update github.com/McKael/madonctl
 # building docs for some golang packages
 go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them
@@ -91,8 +94,8 @@ update_aerc() {
 	cd "$aerc_dir" || return 1
 	export GO111MODULE=on
 	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git reset --hard HEAD && git pull
-	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make
-	PREFIX=$HOME/.local BINDIR="$GOPATH/bin" make install
+	BINDIR="$GOPATH/bin" make
+	BINDIR="$GOPATH/bin" make install
 }
 
 update_aerc
