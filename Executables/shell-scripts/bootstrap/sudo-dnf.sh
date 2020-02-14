@@ -108,6 +108,7 @@ packages=(
 	"golang"
 	"google-*-fonts"
 	"gperf"       # build neovim
+	"gperftools-devel" # build i3status-rs
 	"gpgme-devel" # building skopeo and others
 	"gtk-doc"     # building flatpak
 	"gtk3-devel"
@@ -187,6 +188,7 @@ packages=(
 	"ncurses-devel" # build several packages inc. newsboat, tmux
 	"ninja-build"
 	"nmap" # network exploration
+	"notmuch-devel" # build i3status-rs
 	"npm"
 	"nprokopov-fira-code-fonts"
 	"nvi"
