@@ -46,7 +46,12 @@ ghq_get_cd https://git.samba.org/rsync.git \
 	&& configure_install --with-included-popt
 
 # imv
-ghq_get_cd https://github.com/eXeC64/imv.git && make_install
+ghq_get_cd https://github.com/eXeC64/imv.git \
+	&& meson builddir/ \
+		--prefix "$PREFIX" \
+		--buildtype release \
+		--optimization 3 \
+	&& ninja -C builddir/ && ninja -C builddir/ install
 
 # bcal
 ghq_get_cd https://github.com/jarun/bcal.git && make_install
@@ -117,10 +122,9 @@ prepare_sway() {
 # from source
 
 # swaywm: install swaybar, swaynag, swaymsg.
-ghq_get_cd 'https://github.com/swaywm/sway.git' \
+ghq_get_cd 'ettps://github.com/swaywm/sway.git' \
 	&& prepare_sway \
-	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false \
-	&& rm -f "$BINPREFIX/sway"
+	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
 
 # sway-related utils: grim, slurp, swaybg, swaylock, swayidle, mako, wl-clipboard
 ghq_get_cd 'https://github.com/emersion/grim.git' && simple_meson

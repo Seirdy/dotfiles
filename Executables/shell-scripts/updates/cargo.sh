@@ -29,7 +29,7 @@ musl_env() {
 	podman run --rm -it \
 		-v "$PWD:/root/src" \
 		-v "$CARGO_HOME/registry:/root/.cargo/registry" \
-		-e CFLAGS -e CXXFLAGS -e CPPFLAGS -e CC -e CXX -e LIBLDFLAGS -e MAKEFLAGS \
+		-e CFLAGS -e CXXFLAGS -e CPPFLAGS -e CC -e CXX -e LIBLDFLAGS -e MAKEFLAGS -e LDFLAGS \
 		-e RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" \
 		rust-static-desktop "$@"
 }

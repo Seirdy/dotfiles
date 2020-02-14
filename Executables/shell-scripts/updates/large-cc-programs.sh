@@ -38,6 +38,21 @@ ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
 ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
 	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio
 
+# weechat
+ghq_get_cd https://github.com/weechat/weechat.git \
+	&& fancy_cmake \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DENABLE_ENCHANT=ON \
+		-DENABLE_PHP=OFF \
+		-DENABLE_LUA=ON \
+		-DENABLE_TCL=ON \
+		-DENABLE_RUBY=ON \
+		-DENABLE_GUILE=ON \
+		-DENABLE_PYTHON3=ON \
+		-DENABLE_DOC=ON \
+		-DENABLE_MAN=ON \
+		-DENABLE_JAVASCRIPT=OFF \
+		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt
 export CFLAGS="$CFLAGS_LTO"
 export CXXFLAGS="$CFLAGS_LTO"
 export CPPFLAGS="$CXXFLAGS"
@@ -49,7 +64,6 @@ ghq_get_cd https://github.com/mpv-player/mpv.git \
 		--datarootdir="$CONFIGPREFIX" \
 		--mandir="$MANPREFIX" \
 		--confdir="$CONFIGPREFIX" \
-		--disable-build-date \
 		--enable-libmpv-shared \
 		--enable-sdl2 \
 		--enable-libarchive \
@@ -63,7 +77,33 @@ ghq_get_cd https://github.com/mpv-player/mpv.git \
 		--disable-egl-android \
 		--disable-swift \
 		--disable-win32-internal-pthreads \
+		--disable-coreaudio \
+		--disable-audiounit \
+		--disable-cocoa \
+		--disable-gl-cocoa \
+		--disable-gl-win32 \
+		--disable-gl-dxinterop \
+		--disable-egl-angle \
+		--disable-egl-angle-lib \
+		--disable-egl-angle-win32 \
+		--disable-direct3d \
+		--disable-wasapi \
+		--disable-d3d11 \
+		--disable-ios-gl \
+		--disable-d3d-hwaccel \
+		--disable-d3d9-hwaccel \
+		--disable-gl-dxinterop-d3d9 \
+		--disable-cuda-hwaccel \
+		--disable-cuda-interop \
 		--enable-dvbin \
+		--disable-macos-touchbar \
+		--disable-macos-10-11-features \
+		--disable-macos-10-12-2-features \
+		--disable-macos-10-14-features \
+		--disable-macos-media-player \
+		--disable-macos-cocoa-cb \
+		--disable-rpi-mmal \
+		--disable-rpi \
 	&& ./waf && ./waf install
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
@@ -71,18 +111,6 @@ ghq_get_cd https://github.com/neovim/neovim.git \
 	&& luarocks build --local lpeg \
 	&& luarocks build --local inspect \
 	&& fancy_cmake -DUSE_BUNDLED=OFF -DENABLE_LTO=ON
-
-# weechat
-ghq_get_cd https://github.com/weechat/weechat.git \
-	&& fancy_cmake .. \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DENABLE_ENCHANT=ON \
-		-DENABLE_PHP=OFF \
-		-DENABLE_PYTHON3=ON \
-		-DENABLE_DOC=ON \
-		-DENABLE_MAN=ON \
-		-DENABLE_JAVASCRIPT=OFF \
-		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 # ncmpcpp, with only the features i use
 ghq_get_cd https://github.com/arybczak/ncmpcpp.git \

@@ -141,6 +141,9 @@ imgurup() {
 		| jq -C \
 		| $PAGER
 }
+upl() {
+	curl -F"file=@$1" https://0x0.st
+}
 
 hnopen() {
 	for URL in "$@"; do
