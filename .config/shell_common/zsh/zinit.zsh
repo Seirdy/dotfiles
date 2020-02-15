@@ -178,12 +178,6 @@ zi_completion() {
 zi_completion has'tmux' pick'completion/zsh'
 zinit light greymd/tmux-xpanes
 
-# Seems to only work on Linux and BSD
-if [ "$MACHINE" != 'Darwin' ]; then
-	zi0a
-	zinit light changyuheng/zsh-interactive-cd
-fi
-
 zi_completion has'pip3'
 zinit snippet OMZ::plugins/pip/_pip
 
