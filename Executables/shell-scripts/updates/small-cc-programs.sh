@@ -4,7 +4,7 @@
 start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
-. "$HOME/.config/shell_common/functions_ghq.sh"
+. "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
@@ -138,7 +138,7 @@ ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
 # redshift for Wayland
 ghq_get_cd 'https://github.com/minus7/redshift.git' \
 	&& ./bootstrap \
-	&& configure_install --with-systemduserunitdir="$HOME/.config/systemd/user"
+	&& configure_install --with-systemduserunitdir="$CONFIGPREFIX/systemd/user"
 
 # gitstatus for powerlevel10k
 DIR="$GHQ_ROOT/github.com/romkatv"

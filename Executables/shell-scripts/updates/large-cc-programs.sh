@@ -3,7 +3,7 @@
 start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
-. "$HOME/.config/shell_common/functions_ghq.sh"
+. "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
@@ -21,7 +21,7 @@ ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& fancy_configure \
 	&& make \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
-	&& install -m 0644 bwrap.1 "$HOME/.local/share/man/man1"
+	&& install -m 0644 bwrap.1 "$MANPREFIX/man1"
 
 # flatpak
 ghq_get_cd https://github.com/flatpak/flatpak \
@@ -61,7 +61,7 @@ ghq_get_cd https://github.com/mpv-player/mpv.git \
 	&& ./bootstrap.py \
 	&& ./waf configure \
 		--prefix="$PREFIX" \
-		--datarootdir="$XDG_DATA_HOME" \
+		--datarootdir="$CONFIGPREFIX" \
 		--mandir="$MANPREFIX" \
 		--confdir="$CONFIGPREFIX" \
 		--enable-libmpv-shared \

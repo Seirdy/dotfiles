@@ -61,8 +61,16 @@ stack_install_nightly_fallback() {
 stack_local update
 stack_install_nightly_fallback https://github.com/commercialhaskell/stack.git
 
+#
 # Pandoc and friends
+#
+
 stack_install_git https://github.com/jgm/pandoc.git --flag 'pandoc:embed_data_files' --flag 'pandoc:static'
+# pandoc's manpage
+cd "$GHQ_ROOT/github.com/jgm/pandoc" \
+	&& make man/pandoc.1 \
+	&& install -m 0644 "man/pandoc.1" "$MANPREFIX/man1"
+
 stack_install_nightly_fallback https://github.com/owickstrom/pandoc-emphasize-code.git
 stack_install_nightly_fallback https://github.com/lierdakil/pandoc-crossref.git
 
@@ -73,8 +81,15 @@ export CPPFLAGS="$CXXFLAGS"
 stack_install_git https://github.com/jgm/pandoc-citeproc.git --flag 'pandoc-citeproc:embed_data_files'
 stack_install_nightly_fallback https://github.com/owickstrom/pandoc-include-code.git
 
+#
+# Stuff besides pandoc
+#
+
 # Shell script linter
 stack_install_nightly_fallback https://github.com/koalaman/shellcheck.git
+cd "$GHQ_ROOT/koalaman/shellcheck" \
+	&& pandoc -s -f markdown-smart -t man shellcheck.1.md -o shellcheck.1 \
+	&& install -m 0644 shellcheck.1 "$MANPREFIX/man1"
 # Dockerfile linter
 stack_install_nightly_fallback https://github.com/hadolint/hadolint.git
 

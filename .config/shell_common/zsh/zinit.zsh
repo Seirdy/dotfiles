@@ -159,7 +159,7 @@ zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
 zinit light tj/git-extras
 
 zi0b as'completion' has'git-extras' blockf
-zinit snippet $ZPLG_HOME/plugins/tj---git-extras/etc/git-extras-completion.zsh
+zinit snippet https://github.com/tj/git-extras/blob/master/etc/git-extras-completion.zsh
 
 # }}}
 

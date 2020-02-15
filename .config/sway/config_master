@@ -17,7 +17,7 @@ set $right l
 set $term alacritty
 
 # launchers
-bindsym $mod+z exec sway-launcher
+bindsym $mod+z exec dmenu-runner
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
 for_window [app_id="^firefox$" title="^About Firefox Nightly$"] floating enable
@@ -91,6 +91,7 @@ input * {
 #
 	# start a terminal
 	bindsym $mod+space exec $term
+	bindsym $mod+Mod1+space exec floating-terminal
 
 	# kill focused window
 	bindsym $mod+Shift+q kill

@@ -6,7 +6,9 @@
 start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
-. "$HOME/.config/shell_common/functions_ghq.sh"
+. "$CONFIGPREFIX/shell_common/functions_ghq.sh"
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 podman pull registry.fedoraproject.org/fedora:rawhide
 podman pull alpine:edge
@@ -18,12 +20,12 @@ sed -i 's/dnf /dnf --setopt=max_parallel_downloads=20 --skip-broken /g' ./Docker
 sed -i 's#registry\.fedoraproject\.org/fedora:latest#registry.fedoraproject.org/fedora:rawhide#' ./Dockerfile.static.fedora.custom
 sed -i 's/meson -/meson -D useroot=false -/' ./Dockerfile.static.fedora.custom
 
-export BUILDAH_RUNTIME="$HOME/.local/bin/crun"
+export BUILDAH_RUNTIME="$BINPREFIX/crun"
 buildah bud -t fuse-overlayfs -f ./Dockerfile.static.fedora.custom .
 podman run -v "/tmp:/root/share" --rm --entrypoint="[]" fuse-overlayfs cp /usr/bin/fuse-overlayfs /usr/bin/fusermount3 /root/share
 
-install -m 0755 "/tmp/fuse-overlayfs" "$HOME/.local/bin/fuse-overlayfs"
-install -m 0755 "/tmp/fusermount3" "$HOME/.local/bin/fusermount3"
+install -m 0755 "/tmp/fuse-overlayfs" "$BINPREFIX/fuse-overlayfs"
+install -m 0755 "/tmp/fusermount3" "$BINPREFIX/fusermount3"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

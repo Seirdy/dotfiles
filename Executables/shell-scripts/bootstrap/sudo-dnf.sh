@@ -107,9 +107,10 @@ packages=(
 	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
-	"gperf"       # build neovim
-	"gpgme-devel" # building skopeo and others
-	"gtk-doc"     # building flatpak
+	"gperf"            # build neovim
+	"gperftools-devel" # build i3status-rs
+	"gpgme-devel"      # building skopeo and others
+	"gtk-doc"          # building flatpak
 	"gtk3-devel"
 	"guile-devel"    # build weechat
 	"harfbuzz-devel" # build kitty
@@ -186,6 +187,7 @@ packages=(
 	"ncurses-devel" # build several packages inc. newsboat, tmux
 	"ninja-build"   # build tons of packages. Meson is installed using pipx.
 	"nmap"          # network exploration
+	"notmuch-devel" # build i3status-rs
 	"npm"
 	"nprokopov-fira-code-fonts"
 	"nvi"

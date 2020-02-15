@@ -5,7 +5,7 @@
 start_time=$(date '+%s')
 
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
-. "$HOME/.config/shell_common/functions_ghq.sh"
+. "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 export RUSTFLAGS="$RUSTFLAGS -C linker-plugin-lto -L. -C linker=clang -C link-arg=-fuse-ld=lld"
@@ -75,7 +75,7 @@ cd "$GHQ_ROOT/github.com/alacritty/alacritty" \
 		git reset --hard HEAD && git pull \
 			&& cargo build --release --all-features -Z unstable-options \
 			&& install -p -D -m644 extra/linux/alacritty.desktop "$DATAPREFIX/applications" \
-			&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1/alacritty.1" \
+			&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1" \
 			&& tic -xe alacritty,alacritty-direct extra/alacritty.info -o "$DATAPREFIX/terminfo" \
 			&& install -p -D -m644 extra/logo/alacritty-term.svg "$DATAPREFIX/pixmaps/Alacritty.svg" \
 			&& install -p -D -m755 target/release/alacritty "$CARGO_HOME/bin" \
