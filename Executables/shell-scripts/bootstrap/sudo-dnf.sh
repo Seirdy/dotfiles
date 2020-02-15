@@ -177,7 +177,6 @@ packages=(
 	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
-	"meson"
 	"mozilla-*-fonts"
 	"mpd"
 	"msgpack"       # build neovim
@@ -185,8 +184,8 @@ packages=(
 	"nasm"          # build mvtools
 	"ncdu"
 	"ncurses-devel" # build several packages inc. newsboat, tmux
-	"ninja-build"
-	"nmap" # network exploration
+	"ninja-build"   # build tons of packages. Meson is installed using pipx.
+	"nmap"          # network exploration
 	"npm"
 	"nprokopov-fira-code-fonts"
 	"nvi"

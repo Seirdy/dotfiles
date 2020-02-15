@@ -45,3 +45,4 @@ pipx install xenon &
 pipx install git+https://github.com/xonsh/xonsh.git
 pipx install git+https://github.com/ytdl-org/youtube-dl.git
 pipx install mercurial
+pipx install meson # build system for lots of stuff
