@@ -15,11 +15,12 @@ alias sl='sl | lolcat'
 
 # wl-clipboard aliases
 alias wlc='wl-copy -n'
+alias wlcv='wl-copy -n && wl-paste' # copies to stdin and then displays it anyway
 alias yankit='yank-cli -- wl-copy -n'
-alias recopy='wl-paste -n | wl-copy -n'
+alias recopy='wl-paste -n | wl-copy -n' # good for stripping newlines I guess
 alias dlpaste='aria2c "$(wl-paste -n)"'
 alias dlopaste='dl-open "$(wl-paste -n)"'
-alias broken-link='wl-paste -n | sd "\n" "" | url-picker'
+alias broken-link='wl-paste -n | sd "\n" "" | url-picker' # line breaks in links
 
 # basic shorthands
 alias a2c='aria2c' # fast aria2c downloading
@@ -50,6 +51,8 @@ alias resettmp='redshift -x'
 alias dsks='diskus --size-format=binary'
 # curl
 alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.com'
+alias clbin='curl-tor --progress -F "clbin=<-" https://clbin.com'
+alias 0x0='curl-tor --progress -F"file=<-" https://0x0.st'
 # compiler conveniences
 alias gccv='gcc -pedantic -Wall'
 alias gorun='go run .'
@@ -65,7 +68,6 @@ alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host |
 alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg --color never 'time to (empty|full)|percentage'"
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wl-copy'
-alias weechat-matrix='weechat -r "/script load matrix.py; /matrix connect matrix_org"'
 alias tarlz='tar -I "lzip --best" -cvf'
 # Aliases that change existing commands
 alias tuir='LESS="-x 2 -ir" tuir --enable-media'
@@ -184,3 +186,10 @@ if [ -n "$ZSH_VERSION" ]; then
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
 	alias -g 'wlp'='"$(wl-paste -n)"'
 fi
+# irc
+# i put this at the end because the "noisest-channels" alias tends to mess up
+# syntax highlighting for the rest of the file.
+alias weechat-matrix='weechat -r "/script load matrix.py; /matrix connect matrix_org"'
+# noisiest-channels lists all my IRC buffers in decreasing order of size after
+# filtering out join/leave msgs and bots.
+alias noisiest-channels='rg -v -c '\''(mockturtle|weebot|gonzobot|SubWatch|ShinyMetal|weebot|JARVIS|Internets|YT-info).*\||(\-\->.*has joined|<--.*has left).*#'\'' $WEECHAT_HOME/logs/irc.*.[#]*.weechatlog | tr '\'':'\'' '\'' '\'' | sort -n -k 2 -r | sed -e '\''s#.*irc\.##'\'' -e '\''s#\.weechatlog##'\'' | nl'
