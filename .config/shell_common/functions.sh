@@ -136,13 +136,27 @@ bcalc() {
 # shellcheck source=file_mngment.sh
 . "$XDG_CONFIG_HOME/shell_common/file_mngment.sh"
 
+# file uploading/pastebins
+
 imgurup() {
 	curl -H "Referer: https://imgur.com/upload" -F "Filedata=@$1" https://imgur.com/upload \
 		| jq -C \
 		| $PAGER
 }
+
 upl() {
-	curl -F"file=@$1" https://0x0.st
+	curl-tor --progress -F"file=@$1" https://0x0.st
+}
+
+# shareit: upload stdin to https://share.schollz.com.
+# Generates a random filename if one is not provided.
+shareit() {
+	[ -n "$1" ] && filename="$1" || filename="$(tr -dc A-Za-z0-9 </dev/urandom | head -c 10)"
+	curl-tor --progress --upload-file - "https://share.schollz.com/$filename" | sed 's#schollz\.com#schollz\.com/1#'
+}
+
+curlout() {
+	curl-tor --progress "$@" --output -
 }
 
 hnopen() {

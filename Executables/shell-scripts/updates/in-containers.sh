@@ -11,6 +11,7 @@ start_time=$(date '+%s')
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 podman pull registry.fedoraproject.org/fedora:rawhide
+podman pull registry.fedoraproject.org/f32/fedora-toolbox
 podman pull alpine:edge
 
 ghq_get_cd https://github.com/containers/fuse-overlayfs.git

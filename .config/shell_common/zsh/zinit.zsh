@@ -38,7 +38,7 @@ zi0b proto'git'
 zinit light skywind3000/z.lua
 
 zi0c ''
-zinit snippet https://github.com/changyuheng/fz/blob/master/fz.sh
+zinit light changyuheng/fz
 
 zi0a
 zinit light xPMo/zsh-toggle-command-prefix

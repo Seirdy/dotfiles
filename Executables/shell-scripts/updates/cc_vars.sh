@@ -9,9 +9,9 @@ export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
 
 export LIBLDFLAGS='-z lazy'
-export LDFLAGS='-s' # strip binaries
 [ -z "$ARCH" ] && ARCH='native'
 export CFLAGS="-O3 -DNDEBUG -mcpu=$ARCH -mtune=$ARCH -march=$ARCH -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s"
+export LDFLAGS="$CFLAGS" # strip binaries
 export CXXFLAGS="$CFLAGS"
 export CPPFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"

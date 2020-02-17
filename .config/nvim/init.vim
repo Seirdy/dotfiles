@@ -61,8 +61,9 @@ Plug 'rakr/vim-one'
 " Plug 'luochen1990/rainbow'  " Colorize brackets and operators
 " Coc Plugins
 " ~~~~~~~~~~~
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'tjdevries/coc-zsh', {'for': 'zsh'}
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'tjdevries/coc-zsh', {'for': 'zsh'}
+Plug 'neovim/nvim-lsp'
 " Language-specific
 " ~~~~~~~~~~~~~~~~~
 Plug 'vim-pandoc/vim-pandoc'
@@ -240,178 +241,206 @@ let g:terminal_color_15 = '#ffffff'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+" 			\ pumvisible() ? "\<C-n>" :
+" 			\ <SID>check_back_space() ? "\<TAB>" :
+" 			\ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" " Use <c-space> for trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current pos
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Navigation
-" ~~~~~~~~~~
+" " Navigation
+" " ~~~~~~~~~~
 
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" " Use `[c` and `]c` for navigate diagnostics
+" nmap <silent> [c <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" " Remap keys for gotos
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
-" navigate git chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
-" show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
-" show commit contains current position
-nmap gC <Plug>(coc-git-commit)
+" " navigate git chunks of current buffer
+" nmap [g <Plug>(coc-git-prevchunk)
+" nmap ]g <Plug>(coc-git-nextchunk)
+" " show chunk diff at current position
+" nmap gs <Plug>(coc-git-chunkinfo)
+" " show commit contains current position
+" nmap gC <Plug>(coc-git-commit)
 
-" codeAction
-" ~~~~~~~~~~
+" " codeAction
+" " ~~~~~~~~~~
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" vmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+" " Remap for do codeAction of current line
+" nmap <leader>ac  <Plug>(coc-codeaction)
 
-" Documentation
-" ~~~~~~~~~~~~~
+" " Documentation
+" " ~~~~~~~~~~~~~
 
-" Use K for show documentation in preview/floating window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" " Use K for show documentation in preview/floating window
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-	if &filetype == 'vim'
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
+" function! s:show_documentation()
+" 	if &filetype == 'vim'
+" 		execute 'h '.expand('<cword>')
+" 	else
+" 		call CocAction('doHover')
+" 	endif
+" endfunction
 
-function! s:OnTermOpen(buf)
-	setl nolist norelativenumber nonumber
-	if &buftype ==# 'terminal'
-		nnoremap <buffer> q :<C-U>bd!<CR>
-	endif
-endfunction
+" function! s:OnTermOpen(buf)
+" 	setl nolist norelativenumber nonumber
+" 	if &buftype ==# 'terminal'
+" 		nnoremap <buffer> q :<C-U>bd!<CR>
+" 	endif
+" endfunction
 
-augroup autocmds
-	autocmd!
-	" Update signature help on jump placeholder (useful for floating
-	" window)
-	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-	autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
-augroup end
+" augroup autocmds
+" 	autocmd!
+" 	" Update signature help on jump placeholder (useful for floating
+" 	" window)
+" 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" 	autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
+" augroup end
 
-" Formatting
-" ~~~~~~~~~~
+" " Formatting
+" " ~~~~~~~~~~
 
-" Use `:Format` for format current buffer
-command! -nargs=0 Format :call CocAction('format')
+" " Use `:Format` for format current buffer
+" command! -nargs=0 Format :call CocAction('format')
 
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
+" " use `:OR` for organize import of current buffer
+" command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
 
-" Remove trailing whitespace, format and write
-nmap <leader>w :%s/\s\+$//e<CR>:Format<CR>:w<CR>
+" " Remove trailing whitespace, format and write
+" nmap <leader>w :%s/\s\+$//e<CR>:Format<CR>:w<CR>
 
-" Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" " Remap for format selected region
+" vmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
-" Other
-" ~~~~~
+" " Other
+" " ~~~~~
 
-" Use `:Fold` for fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
+" " Use `:Fold` for fold current buffer
+" command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+" " Fix autofix problem of current line
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
-" don't give |ins-completion-menu| messages.
-" set shortmess+=c
+" " don't give |ins-completion-menu| messages.
+" " set shortmess+=c
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+" " Remap for rename current word
+" nmap <leader>rn <Plug>(coc-rename)
 
-" Coc Snippets
-" ~~~~~~~~~~~~
+" " Coc Snippets
+" " ~~~~~~~~~~~~
 
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" " Use <C-l> for trigger snippet expand.
+" imap <C-l> <Plug>(coc-snippets-expand)
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" " Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+" " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" let g:coc_snippet_prev = '<c-k>'
 
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" " Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" CocList
-" ~~~~~~~
+" " CocList
+" " ~~~~~~~
 
-" Open file found by ripgrep
-nnoremap <silent> <space>/  :<C-u>CocList grep<cr>
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Extension marketplace
-nnoremap <silent> <space>E  :<C-u>CocList marketplace<CR>
-" vim commands
-nnoremap <silent> <space>c  :<C-u>CocList vimcommands<cr>
-" coc.nvim commands
-nnoremap <silent> <space>C  :<C-u>CocList commands<cr>
-" Show maps
-nnoremap <silent> <space>m  :<C-u>CocList maps<CR>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" List snippets of current file
-nnoremap <silent> <space>n  :<C-u>CocList <cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" " Open file found by ripgrep
+" nnoremap <silent> <space>/  :<C-u>CocList grep<cr>
+" " Show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" " Extension marketplace
+" nnoremap <silent> <space>E  :<C-u>CocList marketplace<CR>
+" " vim commands
+" nnoremap <silent> <space>c  :<C-u>CocList vimcommands<cr>
+" " coc.nvim commands
+" nnoremap <silent> <space>C  :<C-u>CocList commands<cr>
+" " Show maps
+" nnoremap <silent> <space>m  :<C-u>CocList maps<CR>
+" " Find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" " List snippets of current file
+" nnoremap <silent> <space>n  :<C-u>CocList <cr>
+" " Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" ~~CocList Git~~
-" Git status
-nnoremap <silent> <space>gs :<C-u>CocList --normal gstatus<CR>
-" Git branches
-nnoremap <silent> <space>gb :<C-u>CocList branches<CR>
-" Files on different branches/commits/tags
-nnoremap <silent> <space>gf :<C-u>CocList gfiles<CR>
-" Commits
-nnoremap <silent> <space>gc :<C-u>CocList commits<CR>
+" " ~~CocList Git~~
+" " Git status
+" nnoremap <silent> <space>gs :<C-u>CocList --normal gstatus<CR>
+" " Git branches
+" nnoremap <silent> <space>gb :<C-u>CocList branches<CR>
+" " Files on different branches/commits/tags
+" nnoremap <silent> <space>gf :<C-u>CocList gfiles<CR>
+" " Commits
+" nnoremap <silent> <space>gc :<C-u>CocList commits<CR>
 
-" ~~CocList History~~
-" Most recently used files
-nnoremap <silent> <space>-r :<C-u>CocList mru<CR>
-" Search history
-nnoremap <silent> <space>-s :<C-u>CocList searchhistory<CR>
-" Yank history
-nnoremap <silent> <space>-y :<C-u>CocList yank<CR>
-" Command history
-nnoremap <silent> <space>-c :<C-u>CocList cmdhistory<CR>
+" " ~~CocList History~~
+" " Most recently used files
+" nnoremap <silent> <space>-r :<C-u>CocList mru<CR>
+" " Search history
+" nnoremap <silent> <space>-s :<C-u>CocList searchhistory<CR>
+" " Yank history
+" nnoremap <silent> <space>-y :<C-u>CocList yank<CR>
+" " Command history
+" nnoremap <silent> <space>-c :<C-u>CocList cmdhistory<CR>
 
+
+" nvim-lsp
+
+lua << EOF
+local nvim_lsp = require'nvim_lsp'
+local util = require 'nvim_lsp/util'
+nvim_lsp.bashls.setup{
+	filetypes = { "sh", "zsh" }
+}
+nvim_lsp.ccls.setup{}
+nvim_lsp.cssls.setup{
+	root_dir = util.root_pattern("package.json",".git")
+}
+nvim_lsp.gopls.setup{}
+nvim_lsp.dockerls.setup{}
+nvim_lsp.ghcide.setup{}
+require'nvim_lsp'.jsonls.setup{}
+require'nvim_lsp'.vimls.setup{}
+
+EOF
+
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
 " ==========
 " Table Mode

@@ -4,6 +4,10 @@ start_time=$(date '+%s')
 
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
+if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
+	export GOROOT="$GOPATH/sdk/gotip"
+	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
+fi
 # sometimes go.mod and go.sum files change locally, preventing a pull; reset to fix.
 go_update() {
 	echo "###"
@@ -50,7 +54,7 @@ go_update github.com/gokcehan/lf
 go_update github.com/github/hub
 go_update github.com/zaquestion/lab || echo "failed to install lab"
 # used to clone repos into a nice directory tree like "go get" does
-GO111MODULE=on go_update github.com/motemen/ghq
+GO111MODULE=on go_update github.com/x-motemen/ghq
 # extra commands for ghq
 go_update github.com/uetchy/gst
 # matrix client, for when I get bored of weechat-matrix

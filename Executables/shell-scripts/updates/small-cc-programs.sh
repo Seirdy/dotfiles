@@ -28,6 +28,7 @@ ghq_get_cd https://github.com/file/file.git && simple_autotools
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
 export CFLAGS="$CFLAGS_LTO"
+export LDFLAGS="$CFLAGS_LTO"
 export CXXFLAGS="$CFLAGS_LTO"
 export CPPFLAGS="$CXXFLAGS"
 
@@ -165,7 +166,7 @@ build_libgit2() {
 build_gitstatus() {
 	ghq_get_cd https://github.com/romkatv/gitstatus.git \
 		&& cxxflags="$CXXFLAGS -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
-		&& ldflags=" -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
+		&& ldflags="$LDFLAGS -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
 		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make \
 		&& strip gitstatusd \
 		&& target="$BINPREFIX/gitstatusd" \
