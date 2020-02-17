@@ -2,9 +2,8 @@
 
 # curl/curlie over tor
 
-command -v curlie >/dev/null && curl=curlie || curl=curl
 if pgrep -f /usr/bin/tor >/dev/null; then
-	$curl --socks5-hostname localhost:9050 "$@"
+	curl --socks5-hostname localhost:9050 "$@"
 else
 	echo "Error: tor is not running" 1>&2
 fi
