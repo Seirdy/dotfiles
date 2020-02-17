@@ -8,20 +8,25 @@ start_time=$(date '+%s')
 . "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
-export RUSTFLAGS="$RUSTFLAGS -C linker-plugin-lto -L. -C linker=clang -C link-arg=-fuse-ld=lld"
-echo "Using RUSTFLAGS: $RUSTFLAGS"
-echo "Using CARGO_INSTALL_OPTS: $CARGO_INSTALL_OPTS"
+
+export RUSTFLAGS="$RUSTFLAGS \
+	-L. \
+	-C linker-plugin-lto \
+	-C linker=clang \
+	-C link-arg=-fuse-ld=lld"
 
 export CC=clang
 export CXX=clang++
-export CFLAGS="$CLANGFLAGS"
-export CXXFLAGS="$CLANGFLAGS"
+export CFLAGS="$CLANGFLAGS_UNUSED_STUFF"
+export LDFLAGS="$CFLAGS"
+export CXXFLAGS="$CFLAGS"
 
 cargo_update() {
 	# shellcheck disable=SC2086
 	$CARGO_HOME/bin/cargo --color always install-update "$@"
 }
 
+# rust flags for building static binaries/libs with fat LTO optimization
 RUSTFLAGS_STATIC_LTO="$RUSTFLAGS -C target-feature=+crt-static -C lto=fat"
 
 # a container with a MUSL environment for building static binaries with full LTO
@@ -29,9 +34,10 @@ musl_env() {
 	podman run --rm -it \
 		-v "$PWD:/root/src" \
 		-v "$CARGO_HOME/registry:/root/.cargo/registry" \
-		-e CFLAGS -e CXXFLAGS -e CPPFLAGS -e CC -e CXX -e LIBLDFLAGS -e MAKEFLAGS -e LDFLAGS \
+		-e CFLAGS -e CXXFLAGS -e CPPFLAGS -e LIBLDFLAGS -e MAKEFLAGS -e LDFLAGS \
 		-e RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" \
-		rust-static-desktop "$@"
+		-e CC -e CXX \
+		quay.io/seirdy/rust-static "$@"
 }
 
 # basically cargo build --release for static binaries
