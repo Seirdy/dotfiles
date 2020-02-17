@@ -118,6 +118,7 @@ alias gcoa='gco -a'
 alias gcom='gco -m'
 alias gcoam='gcoa -m'
 alias gp='git push'
+alias gpp='git push origin; git push gh_mirror' # push to GitLab and GitHub remotes
 alias gpo='gp origin'
 alias gpom='gpo master'
 alias gm='git merge'

@@ -193,5 +193,12 @@ isitup() {
 	curl-tor "https://isitup.org/$1.json" -s | jq
 }
 
+# set up a git repo
+git_setup() {
+	git init
+	git remote add origin "https://gitlab.com/Seirdy/$1.git"
+	git remote add gh_mirror "https://gitlab.com/Seirdy/$1.git"
+}
+
 # shellcheck source=functions_ghq.sh
 . "$(dirname "$0")/functions_ghq.sh"
