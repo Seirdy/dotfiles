@@ -14,3 +14,4 @@ let s:cchars = {
                 \"li": "•",
                 \"html_c_s": "‹",
                 \"html_c_e": "›"}
+nmap <leader>w :%s/\s\+$//e<CR>:1,$!pandoc-format-md<CR>:w<CR>
