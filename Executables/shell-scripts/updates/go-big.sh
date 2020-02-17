@@ -6,6 +6,10 @@ start_time=$(date '+%s')
 
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
+if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
+	export GOROOT="$GOPATH/sdk/gotip"
+	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
+fi
 go_update() {
 	echo "###"
 	echo "### Updating $* ###"
@@ -57,9 +61,11 @@ if [ "$MACHINE" = 'Linux' ]; then
 	# Do not install podman binary when working with the Makefile
 	[ -d "$GOPATH/src/github.com/containers/libpod" ] || git clone https://github.com/containers/libpod/ "$GOPATH/src/github.com/containers/libpod" \
 		&& cd "$GOPATH/src/github.com/containers/libpod" \
+		&& git stash \
 		&& git pull \
 		&& make BUILDTAGS="seccomp" \
-		&& make BINDIR="$GOPATH/bin" ETCDIR="$CONFIGPREFIX" install
+		&& make BINDIR="$GOPATH/bin" ETCDIR="$CONFIGPREFIX" MANDIR="$MANPREFIX" install
+	# buildah
 	GOFLAGS='-mod=vendor' go_update github.com/containers/buildah/cmd/buildah \
 		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
 		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
