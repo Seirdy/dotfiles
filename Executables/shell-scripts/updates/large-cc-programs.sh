@@ -54,6 +54,7 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 		-DENABLE_JAVASCRIPT=OFF \
 		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt
 export CFLAGS="$CFLAGS_LTO"
+export LDFLAGS="$CFLAGS_LTO"
 export CXXFLAGS="$CFLAGS_LTO"
 export CPPFLAGS="$CXXFLAGS"
 
