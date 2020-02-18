@@ -314,17 +314,18 @@ inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " 	autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
 " augroup end
 
-" " Formatting
-" " ~~~~~~~~~~
+" Formatting
+" ~~~~~~~~~~
 
-" " Use `:Format` for format current buffer
-" command! -nargs=0 Format :call CocAction('format')
+" Use `:Format` for format current buffer
+command! -nargs=0 StripTrailingSpaces :%s/\s\+$//e
+command! -nargs=0 Format :StripTrailingSpaces
 
 " " use `:OR` for organize import of current buffer
 " command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
 
 " " Remove trailing whitespace, format and write
-" nmap <leader>w :%s/\s\+$//e<CR>:Format<CR>:w<CR>
+nmap <leader>w :Format<CR>:w<CR>
 
 " " Remap for format selected region
 " vmap <leader>f  <Plug>(coc-format-selected)
@@ -416,27 +417,12 @@ inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " nvim-lsp
 
-lua << EOF
-local nvim_lsp = require'nvim_lsp'
-local util = require 'nvim_lsp/util'
-nvim_lsp.bashls.setup{
-	filetypes = { "sh", "zsh" }
-}
-nvim_lsp.ccls.setup{}
-nvim_lsp.cssls.setup{
-	root_dir = util.root_pattern("package.json",".git")
-}
-nvim_lsp.gopls.setup{}
-nvim_lsp.dockerls.setup{}
-nvim_lsp.ghcide.setup{}
-require'nvim_lsp'.jsonls.setup{}
-require'nvim_lsp'.vimls.setup{}
-
-EOF
+luafile ~/.config/nvim/lsp.lua
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> D     <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>

@@ -1,1 +1,0 @@
-setfiletype python

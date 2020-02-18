@@ -14,4 +14,4 @@ let s:cchars = {
                 \"li": "•",
                 \"html_c_s": "‹",
                 \"html_c_e": "›"}
-nmap <leader>w :%s/\s\+$//e<CR>:1,$!pandoc-format-md<CR>:w<CR>
+nmap <leader>w :Format<CR>mz:1,$!pandoc --from=markdown --to=markdown-multiline_tables --standalone --columns=84 --preserve-tabs --tab-stop=2<CR>`z:w<CR>
