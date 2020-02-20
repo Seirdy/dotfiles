@@ -1,4 +1,6 @@
 #!/bin/bash
+# ^ bash shebang just so I can get shellcheck diagnostics
+
 # I use zinit for plugins
 # Except for powerlevel10k, all plugins are loaded after the prompt is displayed.
 # Some of my plugins only get loaded after I have typed some characters into the
@@ -42,6 +44,9 @@ zinit light changyuheng/fz
 
 zi0a
 zinit light xPMo/zsh-toggle-command-prefix
+
+zi0a
+zinit light leonjza/history-here
 
 #shellcheck disable=SC2016
 z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
