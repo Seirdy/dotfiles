@@ -53,7 +53,6 @@ ff_confdir="$HOME/.mozilla/firefox/default-nightly"
 gtk_confdir="$XDG_CONFIG_HOME/gtk-3.0"
 termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
 alacritty_confdir="$XDG_CONFIG_HOME/alacritty"
-nvim_confdir="$XDG_CONFIG_HOME/nvim"
 sway_confdir="$XDG_CONFIG_HOME/sway"
 
 # TODO: update settings for gtk2 and gtk4
@@ -77,13 +76,6 @@ if [ -d "$gtk_confdir" ]; then
 		&& echo "updated gtk3 settings"
 else
 	echo "Failed to find GTK3 config in \"$gtk_confdir\"; skipping."
-fi
-if [ -d "$nvim_confdir" ]; then
-	cd "$nvim_confdir" \
-		&& cat "./ginit_master.vim" "./ginit_$new_display.vim" >ginit.vim \
-		&& echo "updated nvim gui settings"
-else
-	echo "Failed to find nvim config in \"$nvim_confdir\"; skipping."
 fi
 if [ -d "$termset_confdir" ]; then
 	cd "$termset_confdir" \

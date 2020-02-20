@@ -41,6 +41,8 @@ GO111MODULE=on go_update mvdan.cc/sh/v3/cmd/shfmt
 GO111MODULE=on go_update github.com/mikefarah/yq/v2
 # curlie: better than httpie
 go_update github.com/rs/curlie
+# profile (neo)vim startuptime
+go_update github.com/rhysd/vim-startuptime
 # url pickers
 go_update mvdan.cc/xurls/cmd/xurls
 go_update github.com/imwally/linkview

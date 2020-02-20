@@ -8,7 +8,8 @@ set backspace=indent,eol,start
 set ignorecase                     " Case-insensitive search
 set smartcase
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=longest:full,full
+set wildoptions+=pum
 set mouse=a
 set regexpengine=2
 set undofile
@@ -44,6 +45,7 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/vim-plug'
+
 " General plugins
 " ~~~~~~~~~~~~~~~
 Plug 'tpope/vim-surround'  " Commands for matching pairs
@@ -52,26 +54,31 @@ Plug 'townk/vim-autoclose'  " Auto-match pairs in insert mode
 Plug 'tpope/vim-commentary'  " Polygot keybinds for commenting code
 Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tables
 Plug 'ConradIrwin/vim-bracketed-paste'  " Auto-sets paste
+
+" More powerful/sophisticated plugins
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Plug 'rhysd/git-messenger.vim'
+Plug 'mhinz/vim-signify'
+Plug 'neovim/nvim-lsp' " The most important plugin
+
+" FZF
+" ~~~
+Plug '/home/rkumar/Executables/go/src/github.com/junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
 " Appearance Plugins
 " ~~~~~~~~~~~~~~~~~~
 Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
 Plug 'vim-airline/vim-airline'  " Like powerline
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
-Plug 'rakr/vim-one'
-" Plug 'luochen1990/rainbow'  " Colorize brackets and operators
-" Coc Plugins
-" ~~~~~~~~~~~
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Plug 'tjdevries/coc-zsh', {'for': 'zsh'}
-Plug 'neovim/nvim-lsp'
-" Language-specific
+Plug 'norcalli/nvim-colorizer.lua'
+
+" Syntax highlighting
 " ~~~~~~~~~~~~~~~~~
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
-" Plug 'numirias/semshi', { 'for': 'python' }  " Better python syntax highlighting.
-Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
-Plug 'nathanielc/vim-tickscript'
 Plug 'cespare/vim-toml'
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
@@ -92,13 +99,6 @@ function! SwitchConcealLevel()
 		setlocal conceallevel=0
 	endif
 endfunction
-
-" Used in coc > Completions
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 
 " ============
 " Gen. Keymaps
@@ -168,6 +168,8 @@ endif
 " set cursorline  " Commented out because it slows (n)vim down.
 if exists('&pumblend')
 	set pumblend=15
+	set winblend=10
+	hi PmenuSel blend=10
 endif
 
 let g:one_allow_italics = 1
@@ -238,14 +240,6 @@ let g:terminal_color_15 = '#ffffff'
 
 " Completion
 " ~~~~~~~~~~
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" inoremap <silent><expr> <TAB>
-" 			\ pumvisible() ? "\<C-n>" :
-" 			\ <SID>check_back_space() ? "\<TAB>" :
-" 			\ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " " Use <c-space> for trigger completion.
 " inoremap <silent><expr> <c-space> coc#refresh()
@@ -327,10 +321,6 @@ command! -nargs=0 Format :StripTrailingSpaces
 " " Remove trailing whitespace, format and write
 nmap <leader>w :Format<CR>:w<CR>
 
-" " Remap for format selected region
-" vmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-
 " " Other
 " " ~~~~~
 
@@ -371,10 +361,6 @@ nmap <leader>w :Format<CR>:w<CR>
 " nnoremap <silent> <space>/  :<C-u>CocList grep<cr>
 " " Show all diagnostics
 " nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Extension marketplace
-" nnoremap <silent> <space>E  :<C-u>CocList marketplace<CR>
 " " vim commands
 " nnoremap <silent> <space>c  :<C-u>CocList vimcommands<cr>
 " " coc.nvim commands
@@ -417,7 +403,7 @@ nmap <leader>w :Format<CR>:w<CR>
 
 " nvim-lsp
 
-luafile ~/.config/nvim/lsp.lua
+luafile ~/.config/nvim/init.lua
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
