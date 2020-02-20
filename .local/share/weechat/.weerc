@@ -10,12 +10,13 @@
 */set buflist.look.display_conditions "${buffer.hidden}==0 && (${buffer.hotlist.priority}!=0 || ${type}==server || ${current_buffer} || ${buffer.full_name}=~(core.weechat|perl.highmon|fset|urlgrab|scripts))"
 */set exec.command.shell "sh"
 */set irc.look.server_buffer independent
+*/set irc.server_default.capabilities "account-notify,away-notify,capa-notify,extended-join,multi-prefix,server-time,userhost-in-names"
 */set irc.server_default.msg_part "👋 (WeeChat ${info:version})"
 */set irc.server_default.msg_quit "exiting ${info:version}"
 */set logger.file.color_lines on
 */set logger.look.backlog 1000
+*/set matrix.look.server_buffer independent
 */set matrix.server.matrix_org.address "matrix.org"
-*/set matrix.server.matrix_org.autoconnect on
 */set relay.weechat.commands "*,!exec,!upgrade,!quit"
 */set script.look.sort "d"
 */set spell.check.commands "ame,amsg,away,command,cycle,kick,kickban,me,msg,notice,part,query,quit,topic"
