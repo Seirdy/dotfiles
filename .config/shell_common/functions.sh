@@ -36,17 +36,6 @@ cdgo() {
 	[ "$cdto" = '' ] || cd "$GOPATH/src/$cdto" || return 1
 }
 
-n() {
-	export NNN_TMPFILE="$XDG_CACHE_HOME/nnn/lastd"
-	nnn "$@"
-
-	if [ -f "$NNN_TMPFILE" ]; then
-		# shellcheck source=/dev/null
-		. "$NNN_TMPFILE"
-		rm "$NNN_TMPFILE"
-	fi
-}
-
 history_stats() {
 	if [ -z "$1" ]; then
 		entries=1000
