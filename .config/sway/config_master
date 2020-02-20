@@ -1,7 +1,7 @@
 # vi:ft=i3config
 # Read `man 5 sway` for a complete reference.
 include /etc/sway/config.d/*
-exec redshift-custom
+# exec redshift-custom
 # cursor theme
 seat seat0 xcursor_theme Adwaita 24
 ### Variables
