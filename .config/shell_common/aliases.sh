@@ -61,7 +61,7 @@ alias gobld='go build'
 command -v ebook-viewer >/dev/null || alias ebook-convert='flatpak run --command=ebook-convert com.calibre_ebook.calibre'
 alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
 alias pdfify='loffcon pdf'
-alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +CocStart +CocUpdate +qa'
+alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +qa'
 alias nvimclean='nvim +PlugClean'
 # shellcheck disable=SC2142
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
