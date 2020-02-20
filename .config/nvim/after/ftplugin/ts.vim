@@ -1,1 +1,0 @@
-setlocal formatexpr=CocAction('formatSelected')

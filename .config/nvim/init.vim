@@ -11,6 +11,7 @@ set wildmenu
 set wildmode=longest:full,full
 set wildoptions+=pum
 set mouse=a
+set lazyredraw
 set regexpengine=2
 set undofile
 set undolevels=2000
@@ -255,19 +256,9 @@ inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " nmap <silent> [c <Plug>(coc-diagnostic-prev)
 " nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-" " Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
 " " navigate git chunks of current buffer
-" nmap [g <Plug>(coc-git-prevchunk)
-" nmap ]g <Plug>(coc-git-nextchunk)
 " " show chunk diff at current position
 " nmap gs <Plug>(coc-git-chunkinfo)
-" " show commit contains current position
-" nmap gC <Plug>(coc-git-commit)
 
 " " codeAction
 " " ~~~~~~~~~~
@@ -404,15 +395,6 @@ nmap <leader>w :Format<CR>:w<CR>
 " nvim-lsp
 
 luafile ~/.config/nvim/init.lua
-
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> D     <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
 " ==========
 " Table Mode

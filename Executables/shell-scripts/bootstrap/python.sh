@@ -3,7 +3,7 @@
 pip3 install -U --user pynvim pipx
 
 # curses mpd client
-pipx install beets &
+pipx install 'git+https://github.com/beetbox/beets.git#egg=beets[lyrics]'
 pipx install black &
 pipx install git+https://github.com/jarun/Buku.git &
 pipx install git+https://github.com/kneufeld/consolemd.git &
@@ -46,3 +46,5 @@ pipx install git+https://github.com/xonsh/xonsh.git
 pipx install git+https://github.com/ytdl-org/youtube-dl.git
 pipx install mercurial
 pipx install meson # build system for lots of stuff
+pipx install --system-site-packages 'python-language-server[all]'
+pipx install --system-site-packages --include-deps 'git+https://github.com/prompt-toolkit/ptpython.git#egg=ptpython[ptipython]'
