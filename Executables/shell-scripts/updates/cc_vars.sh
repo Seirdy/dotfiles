@@ -1,12 +1,14 @@
 #!/bin/sh
 
-[ -z "$PREFIX" ] && export PREFIX="$XDG_DATA_HOME"
+[ -z "$PREFIX" ] && export PREFIX="$HOME/.local"
 export BINPREFIX="$PREFIX/bin"
 export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
 export CONFIGPREFIX="$XDG_CONFIG_HOME"
 export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
+
+mkdir -p "$PREFIX" "$BINPREFIX" "$MANPREFIX" "$DATAPREFIX" "$CONFIGPREFIX"
 
 export LIBLDFLAGS='-z lazy'
 [ -z "$ARCH" ] && ARCH='native'
@@ -28,4 +30,3 @@ export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS -Wno-error=unused-parameter -Wno-err
 THREADS=$(getconf _NPROCESSORS_ONLN)
 export THREADS
 export MAKEFLAGS="-j $THREADS"
-
