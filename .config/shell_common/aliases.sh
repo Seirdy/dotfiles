@@ -38,6 +38,7 @@ alias rmm='rmtrash'
 alias rmhtm='rm *.html' # pandoc artifacts and stuff
 alias rgi='rg -i'
 alias rgv='rg -v'
+alias rgvi='rg -vi'
 alias vim='vim -u NONE'
 alias wcl='wc -l'
 alias psave='pockyt put -i'
@@ -111,7 +112,7 @@ alias i3statrc='edi $XDG_CONFIG_HOME/sway/status.toml'
 alias tridactylrc='edi $XDG_CONFIG_HOME/tridactyl/tridactylrc'
 alias kittyrc='edi $XDG_CONFIG_HOME/kitty/kitty_master.conf'
 alias alacrittyrc='edi $XDG_CONFIG_HOME/alacritty/alacritty_master.yml'
-alias cocrc='nvim +CocConfig'
+alias mpvrc='edi $XDG_CONFIG_HOME/mpv/mpv.conf'
 
 # git aliases
 alias gstat='git status'

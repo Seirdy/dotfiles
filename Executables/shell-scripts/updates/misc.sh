@@ -28,6 +28,10 @@ ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/pyth
 # mpv scripts symlinked to places in ~/.config/mpv/
 ghq get -u https://github.com/mpv-player/mpv.git
 ghq get -u https://github.com/occivink/mpv-scripts.git
+ghq get -u https://github.com/Dudemanguy/mpv-manga-reader.git
+ghq get -u https://github.com/bjin/mpv-prescalers.git
+ghq get -u https://github.com/bloc97/Anime4K.git
+ghq_get_cd https://github.com/classicjazz/mpv-config.git
 # weechat scripts
 ghq get -u https://github.com/keith/edit-weechat.git
 ghq get -u https://github.com/s3rvac/weechat-notify-send.git
