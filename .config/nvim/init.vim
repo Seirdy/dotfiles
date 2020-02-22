@@ -50,7 +50,7 @@ Plug 'junegunn/vim-plug'
 " General plugins
 " ~~~~~~~~~~~~~~~
 Plug 'tpope/vim-surround'  " Commands for matching pairs
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise' " auto-add 'endif', 'end', 'endfunction', etc.
 Plug 'townk/vim-autoclose'  " Auto-match pairs in insert mode
 Plug 'tpope/vim-commentary'  " Polygot keybinds for commenting code
 Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tables
@@ -58,8 +58,8 @@ Plug 'ConradIrwin/vim-bracketed-paste'  " Auto-sets paste
 
 " More powerful/sophisticated plugins
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plug 'rhysd/git-messenger.vim'
-Plug 'mhinz/vim-signify'
+Plug 'rhysd/git-messenger.vim' " git info in a floating window
+Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
 Plug 'neovim/nvim-lsp' " The most important plugin
 
 " FZF
@@ -72,7 +72,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
 Plug 'vim-airline/vim-airline'  " Like powerline
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'norcalli/nvim-colorizer.lua' " Fastest color-code colorizer
 
 " Syntax highlighting
 " ~~~~~~~~~~~~~~~~~
@@ -85,64 +85,6 @@ Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 
 call plug#end()
-
-" =========
-" Functions
-" =========
-
-" Easily switch conceal levels
-function! SwitchConcealLevel()
-	if &conceallevel == 0
-		setlocal conceallevel=1
-	elseif &conceallevel == 1
-		setlocal conceallevel=2
-	elseif &conceallevel == 2
-		setlocal conceallevel=0
-	endif
-endfunction
-
-" ============
-" Gen. Keymaps
-" ============
-
-" Keymaps for coc features are in a dedicated section.
-
-" 'Ex mode is fucking dumb' --sircmpwm
-nnoremap Q <Nop>
-
-let mapleader = ','  " better than backslash imo
-" hide search
-nmap <silent> <leader><Space> :nohls<CR>
-" If hiding search wasn't enough for you
-nnoremap <silent> <C-l> :nohl<CR>redraw<C-l>
-" Indent entire document with eqcmd. Alternative to :Format
-nnoremap <F7> gg=G<C-o><C-o>
-" Toggle conceal level
-nnoremap <silent> <C-c><C-y> :call SwitchConcealLevel() <CR>
-" Toggle invisible chars
-nnoremap <leader>l :set list!<CR>
-
-" keep text selected after indentation
-vnoremap < <gv
-vnoremap > >gv
-
-" Buffer management
-" ~~~~~~~~~~~~~~~~~
-
-" Buffer switching
-nnoremap gt :bnext<CR>
-nnoremap gT :bprevious<CR>
-nnoremap <tab> <C-w>l
-nnoremap <s-tab> <C-w>h
-" New buffer
-nnoremap <leader>bn :enew<cr>
-" close buffer
-nnoremap <leader>bq :bp <bar> bd! #<cr>
-" close all buffers
-nnoremap <leader>bQ :bufdo bd! #<cr>
-" List buffers
-nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
-
 
 " ==========
 " Appearance
@@ -160,11 +102,7 @@ if has('transparency')
 	set transparency=10
 endif
 
-if has('mac')
-	let g:python_host_prog = '/usr/local/bin/python3'
-else
-	let g:python_host_prog = '/usr/bin/python3'
-endif
+let g:python_host_prog = '/usr/bin/python3'
 
 " set cursorline  " Commented out because it slows (n)vim down.
 if exists('&pumblend')
@@ -188,10 +126,10 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#disable_rtp_load = 1
 let g:airline_highlighting_cache = 1
 let g:webdevicons_enable_airline_statusline = 1
-let g:airline_extensions = ['branch', 'tabline', 'coc']
+let g:airline_extensions = ['branch', 'tabline']
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 let g:rainbow_active = 1  " Rainbow brackets
 let g:indentLine_char = "\uE621"  " dotted line  from powerline-patched-fonts
 " Language-specific theme settings
@@ -235,19 +173,81 @@ let g:terminal_color_14 = '#16a085'
 let g:terminal_color_7 = '#eff0f1'
 let g:terminal_color_15 = '#ffffff'
 
-" ======================================================
-" Coc.nvim: Language Server Client and VSCode extensions
-" ======================================================
+" nvim-lsp
 
-" Completion
+lua << EOF
+require('lsp')
+EOF
+
+" =========
+" Functions
+" =========
+
+" Easily switch conceal levels
+function! SwitchConcealLevel()
+	if &conceallevel == 0
+		setlocal conceallevel=1
+	elseif &conceallevel == 1
+		setlocal conceallevel=2
+	elseif &conceallevel == 2
+		setlocal conceallevel=0
+	endif
+endfunction
+
+" ============
+" Gen. Keymaps
+" ============
+
+" Keymaps for coc features are in a dedicated section.
+
+" 'Ex mode is fucking dumb' --sircmpwm
+nnoremap Q <Nop>
+
+let mapleader = ','  " better than backslash imo
+" hide search
+nmap <silent> <leader><Space> :nohls<CR>
+" If hiding search wasn't enough for you
+nnoremap <silent> <C-l> :nohl<CR> :redraw<CR>
+" Indent entire document with eqcmd. Alternative to :Format
+nnoremap <F7> gg=G<C-o><C-o>
+" Toggle conceal level
+nnoremap <silent> <C-c><C-y> :call SwitchConcealLevel() <CR>
+" Toggle invisible chars
+nnoremap <leader>l :set list!<CR>
+
+" keep text selected after indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" Buffer management
+" ~~~~~~~~~~~~~~~~~
+
+" Buffer switching
+nnoremap gt :bnext<CR>
+nnoremap gT :bprevious<CR>
+nnoremap <tab> <C-w>l
+nnoremap <s-tab> <C-w>h
+" New buffer
+nnoremap <leader>bn :enew<cr>
+" close buffer
+nnoremap <leader>bq :bp <bar> bd! #<cr>
+" close all buffers
+nnoremap <leader>bQ :bufdo bd! #<cr>
+" List buffers
+nnoremap <silent> <space>b :<C-u>Buffers<cr>
+
+" Formatting
 " ~~~~~~~~~~
 
-" " Use <c-space> for trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
+" Use `:Format` for format current buffer
+command! -nargs=0 StripTrailingSpaces :%s/\s\+$//e
+" gets overridden in some filtypes
+command! -nargs=0 Format :StripTrailingSpaces
+" " Remove trailing whitespace, format and write
+nmap <leader>w :Format<CR>:w<CR>
 
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current pos
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Obsolete CoC.nvim configs that I have yet to replace
+" ====================================================
 
 " " Navigation
 " " ~~~~~~~~~~
@@ -256,7 +256,6 @@ inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " nmap <silent> [c <Plug>(coc-diagnostic-prev)
 " nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-" " navigate git chunks of current buffer
 " " show chunk diff at current position
 " nmap gs <Plug>(coc-git-chunkinfo)
 
@@ -270,47 +269,8 @@ inoremap <expr> <c-k> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " " Remap for do codeAction of current line
 " nmap <leader>ac  <Plug>(coc-codeaction)
 
-" " Documentation
-" " ~~~~~~~~~~~~~
-
-" " Use K for show documentation in preview/floating window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-" 	if &filetype == 'vim'
-" 		execute 'h '.expand('<cword>')
-" 	else
-" 		call CocAction('doHover')
-" 	endif
-" endfunction
-
-" function! s:OnTermOpen(buf)
-" 	setl nolist norelativenumber nonumber
-" 	if &buftype ==# 'terminal'
-" 		nnoremap <buffer> q :<C-U>bd!<CR>
-" 	endif
-" endfunction
-
-" augroup autocmds
-" 	autocmd!
-" 	" Update signature help on jump placeholder (useful for floating
-" 	" window)
-" 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" 	autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
-" augroup end
-
-" Formatting
-" ~~~~~~~~~~
-
-" Use `:Format` for format current buffer
-command! -nargs=0 StripTrailingSpaces :%s/\s\+$//e
-command! -nargs=0 Format :StripTrailingSpaces
-
 " " use `:OR` for organize import of current buffer
 " command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
-
-" " Remove trailing whitespace, format and write
-nmap <leader>w :Format<CR>:w<CR>
 
 " " Other
 " " ~~~~~
@@ -323,9 +283,6 @@ nmap <leader>w :Format<CR>:w<CR>
 
 " " don't give |ins-completion-menu| messages.
 " " set shortmess+=c
-
-" " Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
 
 " " Coc Snippets
 " " ~~~~~~~~~~~~
@@ -345,31 +302,32 @@ nmap <leader>w :Format<CR>:w<CR>
 " " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" " CocList
-" " ~~~~~~~
+" fzf.vim
+" ~~~~~~~
 
-" " Open file found by ripgrep
-" nnoremap <silent> <space>/  :<C-u>CocList grep<cr>
+" Fuzzy ripgrep
+nnoremap <silent> <space>/  <cmd>Rg<cr>
 " " Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " vim commands
-" nnoremap <silent> <space>c  :<C-u>CocList vimcommands<cr>
-" " coc.nvim commands
-" nnoremap <silent> <space>C  :<C-u>CocList commands<cr>
-" " Show maps
-" nnoremap <silent> <space>m  :<C-u>CocList maps<CR>
-" " Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " List snippets of current file
-" nnoremap <silent> <space>n  :<C-u>CocList <cr>
+" nnoremap <silent> <space>a  <cmd>CocList diagnostics<cr>
+" vim commands
+nnoremap <silent> <space>c  <cmd>Commands<cr>
+" Show maps
+nnoremap <silent> <space>m  <cmd>Maps<CR>
+" Find symbol of current document
+nnoremap <silent> <space>o  <cmd>BTags<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  <cmd>Tags<cr>
+" List files
+nnoremap <silent> <space>f  <cmd>Files<cr>
+" List buffers
+nnoremap <silent> <space>b  <cmd>Buffers<cr>
+" Help
+nnoremap <silent> <space>h  <cmd>Helptags<cr>
+
 " " Do default action for next item.
 " nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " " Do default action for previous item.
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " " ~~CocList Git~~
 " " Git status
@@ -390,11 +348,6 @@ nmap <leader>w :Format<CR>:w<CR>
 " nnoremap <silent> <space>-y :<C-u>CocList yank<CR>
 " " Command history
 " nnoremap <silent> <space>-c :<C-u>CocList cmdhistory<CR>
-
-
-" nvim-lsp
-
-luafile ~/.config/nvim/init.lua
 
 " ==========
 " Table Mode

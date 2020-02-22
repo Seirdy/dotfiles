@@ -75,6 +75,13 @@ Stuff labeled with `*` is built from source from the latest git commit.
   [weechat-matrix\*](https://github.com/poljar/weechat-matrix), respectively. I
   prefer IRC.
 
+### Neovim
+
+I use Neovim's built-in Language Server Protocol (LSP) client along with the
+official [nvim-lsp](github.com/neovim/nvim-lsp) plugin containing pre-made configs
+for popular language servers. Settings are split between an `init.vim` and
+`init.lua`. Over time, I'll migrate more configs from `init.vim` to Lua files.
+
 ### Shell
 
 - shell (non-interactive): `dash*`
