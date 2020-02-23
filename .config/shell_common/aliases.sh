@@ -29,6 +29,7 @@ alias ytdl='youtube-dl'
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
 # anime4k scales up 720p best
 alias ytdl-720="ytdl -f 'best[height<1080]'"
+alias ytdl-crs="ytdl-720 --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20"
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
@@ -188,10 +189,3 @@ if [ -n "$ZSH_VERSION" ]; then
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
 	alias -g 'wlp'='"$(wl-paste -n)"'
 fi
-# irc
-# i put this at the end because the "noisest-channels" alias tends to mess up
-# syntax highlighting for the rest of the file.
-alias weechat-matrix='weechat -r "/script load matrix.py; /matrix connect matrix_org"'
-# noisiest-channels lists all my IRC buffers in decreasing order of size after
-# filtering out join/leave msgs and bots.
-alias noisiest-channels='rg -v -c '\''(mockturtle|weebot|gonzobot|SubWatch|ShinyMetal|weebot|JARVIS|Internets|YT-info).*\||(\-\->.*has joined|<--.*has left).*#'\'' $WEECHAT_HOME/logs/irc.*.[#]*.weechatlog | tr '\'':'\'' '\'' '\'' | sort -n -k 2 -r | sed -e '\''s#.*irc\.##'\'' -e '\''s#\.weechatlog##'\'' | nl'
