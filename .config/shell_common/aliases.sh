@@ -29,7 +29,7 @@ alias ytdl='youtube-dl'
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
 # anime4k scales up 720p best
 alias ytdl-720="ytdl -f 'best[height<1080]'"
-alias ytdl-crs="ytdl-720 --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20"
+alias ytdl-crs="ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20"
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
@@ -51,6 +51,8 @@ alias cmdv='command -v'
 alias settmp='redshift -O'
 alias resettmp='redshift -x'
 alias dsks='diskus --size-format=binary'
+alias moshlap='mosh rkumar@rkumarlappie /home/rkumar/.local/bin/tmux'
+alias moshdesk='mosh rkumar@rkumar-dekstop /home/rkumar/.local/bin/tmux'
 # curl
 alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.com'
 alias clbin='curl-tor --progress -F "clbin=<-" https://clbin.com'
