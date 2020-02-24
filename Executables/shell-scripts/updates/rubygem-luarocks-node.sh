@@ -1,6 +1,9 @@
 #!/usr/bin/env dash
 start_time=$(date '+%s')
 
+# shellcheck source=./cc_funcs.sh
+. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
+
 # echo "===UPDATE: Upgrading: Lua======="
 luarocks install lcf --local
 luarocks install --server=http://luarocks.org/dev lua-lsp --local

@@ -32,10 +32,10 @@ set smartindent
 set shiftwidth=2
 set tabstop=2  " Anything more than that is distracting.
 " I like splitting windows side-by-side.
-" On a laptop screen, my terminal often has 91 columns.
-" 91 cols - 2 sign cols - 4 number cols
-" - 1 padding col = 84 cols
-set colorcolumn=85
+" On a laptop screen, my terminal often has 92 columns.
+" 92 cols - 2 sign cols - 3 number cols
+" - 1 padding col = 86 cols
+set colorcolumn=86
 
 " Spellfile
 set spellfile=~/.config/nvim/spell/en.utf-8.add
