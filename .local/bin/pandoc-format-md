@@ -1,3 +1,0 @@
-#!/usr/bin/env dash
-pandoc --from=markdown --to=markdown-multiline_tables --standalone --columns=84 --preserve-tabs --tab-stop=2
-# vi:ft=sh
