@@ -93,6 +93,8 @@ go_update github.com/zabio3/godolint
 # format dockerfiles
 go_update github.com/jessfraz/dockfmt
 
+# protonmail bridge
+go_update github.com/emersion/hydroxide/cmd/hydroxide
 # my mail client
 update_aerc() {
 	aerc_dir="$GOPATH/src/git.sr.ht/~sircmpwn/aerc"

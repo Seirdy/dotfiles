@@ -39,3 +39,18 @@
 	root = "~/Executables/ghq"
 [alias]
 	pushall = !git remote | xargs -L1 git push --all
+
+[credential "https://gitlab.com"]
+	username = Seirdy
+[credential "https://github.com"]
+	username = Seirdy
+
+; sendemail using https://github.com/emersion/hydroxide
+[sendemail]
+	smtpUser=seirdy
+	smtpserver=127.0.0.1
+	smtpserverport=1025
+	from=seirdy@protonmail.com
+	compose-encoding=UTF-8
+
+
