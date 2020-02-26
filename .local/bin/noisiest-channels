@@ -16,7 +16,7 @@ nick_prefix='\+|%|@'
 bots='gitter|Pelosi|ShinyMetal|mockturtle|weebot|gonzobot|SubWatch|JARVIS|Internets|YT-info'
 # filter out join/leave, channel messages, bots, and /away messages
 filter_out="^((\-\->?|<\-\-|($nick_prefix)?($bots))\s|\[.* away: .*]$)"
-date_start="$(date -d @"$(expr $(date +%s) - 86400)" '+%Y-%m-%d %H')"
+date_start="$(date -d @"$(expr $(date +%s) - 172800)" '+%Y-%m-%d %H')"
 channel_noise() {
 	for file in "$WEECHAT_HOME/logs/"irc.*.[#]*.weechatlog; do
 		echo "$(basename "$file") $(
