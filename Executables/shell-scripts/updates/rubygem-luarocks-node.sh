@@ -6,7 +6,8 @@ start_time=$(date '+%s')
 
 # echo "===UPDATE: Upgrading: Lua======="
 luarocks install lcf --local
-luarocks install --server=http://luarocks.org/dev lua-lsp --local
+luarocks install --server=https://luarocks.org/dev lua-lsp --local
+luarocks install --server=https://luarocks.org/dev croissant --local
 # echo "===UPDATE: Upgrading: Rubygems======="
 gem update --prerelease -V
 echo "===UPDATE: Upgrading: npm packages"
