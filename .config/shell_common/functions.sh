@@ -144,6 +144,7 @@ shareit() {
 	curl-tor --progress --upload-file - "https://share.schollz.com/$filename" | sed 's#schollz\.com#schollz\.com/1#'
 }
 
+# `curlout <url> | clbin` will mirror <url> to clbin.
 curlout() {
 	curl-tor --progress "$@" --output -
 }
