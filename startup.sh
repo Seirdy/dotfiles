@@ -86,7 +86,7 @@ export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
 export GOPATH="$HOME/Executables/go"
 # shellcheck disable=SC2086
-if $GOPATH/sdk/gotip/bin/go version >/dev/null; then
+if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
 	export GOROOT="$GOPATH/sdk/gotip"
 	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
 fi
