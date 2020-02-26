@@ -51,7 +51,9 @@ ghq_get_cd https://github.com/eXeC64/imv.git \
 	&& meson builddir/ \
 		--prefix "$PREFIX" \
 		--buildtype release \
+		--reconfigure \
 		--optimization 3 \
+		-Dwindows=wayland \
 	&& ninja -C builddir/ && ninja -C builddir/ install
 
 # bcal
@@ -123,7 +125,7 @@ prepare_sway() {
 # from source
 
 # swaywm: install swaybar, swaynag, swaymsg.
-ghq_get_cd 'ettps://github.com/swaywm/sway.git' \
+ghq_get_cd 'https://github.com/swaywm/sway.git' \
 	&& prepare_sway \
 	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
 
