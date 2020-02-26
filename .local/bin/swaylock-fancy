@@ -1,12 +1,27 @@
 #!/usr/bin/env dash
 
-tmpbg="/tmp/screenbg.png"
-tmpfg="/home/rkumar/.local/share/icons/swaylock-foreground.png"
-grim-monitor "$tmpbg"
-corrupter -add 0 -bheight 8 -boffset 3 -lag 0.0001 -lb 0 -lr 0 -mag 4.5 -meanabber 0 -stdabber 2 -stdoffset 0 -stride 0.1 "$tmpbg" "$tmpbg"
-[ -f "$tmpfg" ] || rsvg-convert -z 3 '/usr/share/icons/Papirus/64x64/apps/gnome-lockscreen.svg' >"$tmpfg"
-composite -gravity center "$tmpfg" "$tmpbg" "$tmpbg"
-swaylock -f -i "$tmpbg" --daemonize
-rm "$tmpbg"
+screenshot='/tmp/screenshot.ppm'
+fancy_background='/tmp/fancy_background.ppm'
+lock_icon="${XDG_DATA_HOME-${HOME-~}/.local/share}/icons/swaylock-foreground.ppm"
+ffmpeg_filters='scale=iw/6:ih/6,scale=6*iw:6*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
+
+# foreground: lock icon
+create_lock_icon() {
+	[ -f "$lock_icon" ] || rsvg-convert -z 3 '/usr/share/icons/Papirus/64x64/apps/gnome-lockscreen.svg' >"$lock_icon" &
+}
+create_lock_icon &
+
+# take screenshot
+# shellcheck source=~/.local/bin/grim-monitor
+grim-monitor -t ppm "$screenshot"
+# blur screenshot, overlay lock icon. FFmpeg can't edit images in-place, so save as a new image.
+ffmpeg \
+	-loglevel quiet \
+	-i "$screenshot" -i "$lock_icon" \
+	-filter_complex "$ffmpeg_filters" \
+	"$fancy_background"
+rm "$screenshot" &
+swaylock -i "$fancy_background" -C "${XDG_CONFIG_HOME-$HOME/.config}/swaylock/config"
+rm "$fancy_background"
 
 # vi:ft=sh
