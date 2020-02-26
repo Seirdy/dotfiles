@@ -3,6 +3,6 @@
 unset PROFILE_SET && export XDG_SESSION_TYPE=wayland
 # shellcheck source=../../startup.sh
 . ~/startup.sh
-ssh-agent ~/.local/bin/sway
+ssh-agent sway
 
 # vi:ft=sh
