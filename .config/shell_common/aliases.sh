@@ -55,6 +55,8 @@ alias moshlap='mosh rkumar@rkumarlappie /home/rkumar/.local/bin/tmux'
 alias moshdesk='mosh rkumar@rkumar-dekstop /home/rkumar/.local/bin/tmux'
 # curl
 alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.com'
+# check that tor works
+alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.icanhazip.com'
 alias clbin='curl-tor --progress -F "clbin=<-" https://clbin.com'
 alias 0x0='curl-tor --progress -F"file=<-" https://0x0.st'
 # compiler conveniences
