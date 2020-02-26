@@ -5,7 +5,7 @@
 # descending order of messages, excluding bots, join/leave, etc.
 # sample output of `noisiest-channels | sed 30q`: https://clbin.com/nBDKC
 # Should work on any POSIX that also supports "date -d"
-
+log_dir="${WEECHAT_HOME-${HOME-~}/.weechat}/logs"
 ansi_escape='\x1B\[[0-9;]*[JKmsu]'
 # example: 2020-02-22 19:43:20
 msg_prefix='^20[0-9].-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]\s*'
@@ -18,7 +18,7 @@ bots='gitter|Pelosi|ShinyMetal|mockturtle|weebot|gonzobot|SubWatch|JARVIS|Intern
 filter_out="^((\-\->?|<\-\-|($nick_prefix)?($bots))\s|\[.* away: .*]$)"
 date_start="$(date -d @"$(expr $(date +%s) - 172800)" '+%Y-%m-%d %H')"
 channel_noise() {
-	for file in "$WEECHAT_HOME/logs/"irc.*.[#]*.weechatlog; do
+	for file in "$log_dir"/irc.*.[#]*.weechatlog; do
 		echo "$(basename "$file") $(
 			sed -n -e "s/$ansi_escape//g" -e "/^$date_start/,\$p" "$file" \
 				| sed -e "s/$msg_prefix//g" \
