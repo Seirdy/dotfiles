@@ -60,7 +60,7 @@ https://solar.lowtechmagazine.com/feeds/all.rss.xml "Advocacy" "NonDev" "Favorit
 https://feeds.feedburner.com/0AdNews "git repos" "Programs" "Dev"
 http://blog.supertuxkart.net/feeds/posts/default "game" "Programs" "Blog" "Favorite"
 https://github.com/viewizard/astromenace/releases.atom "game" "Programs" "git repos"
-https://maunium.net/blog/index.xml "Matrix" "Blog" "Dev"
+https://maunium.net/blog/index.xml "IRC/Matrix" "Blog" "Dev"
 https://leafo.net/feed.xml "Blog" "Dev" "Favorite"
 # i use swaywm as my window manager.
 https://github.com/emersion/mako/releases.atom "Sway" "git repos" "Programs" "Dev"
@@ -80,9 +80,12 @@ https://github.com/greshake/i3status-rust/commits/master/NEWS.md.atom "Sway" "gi
 # clerk embeds ncmpcpp and fzf-based library searching+rating in a tmux session. rating is a must-have for my music collection
 https://github.com/carnager/clerk/commits/master.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~clerk commits"
 https://github.com/arybczak/ncmpcpp/commits/master.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~ncmpcpp changelog"
+https://www.musicpd.org/atom.xml "music programs" "Programs" "Dev" "Favorite"
 https://github.com/karlstav/cava/releases.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~cava releases"
 # I sometimes use cantata for a change of scenery.
 https://github.com/CDrummond/cantata/releases.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~cantata releases"
+# MPRIS controller
+https://github.com/altdesktop/playerctl/releases.atom "music programs" "git repos" "Programs" "Dev"
 https://github.com/fmthoma/vgrep/releases.atom "git repos" "Programs" "Dev"
 # secondary terminal on Wayland, tertiary terminal on X
 https://github.com/alacritty/alacritty/releases.atom "git repos" "Programs" "Dev"
@@ -101,6 +104,8 @@ https://github.com/mikefarah/yq/releases.atom "git repos" "Programs" "Dev"
 https://github.com/mvdan/sh/commits/master/CHANGELOG.md.atom "git repos" "Programs" "Dev" "~shfmt changelog"
 # best mail client; should with fetchmail/sendmail
 https://git.sr.ht/~sircmpwn/aerc/refs/rss.xml "git repos" "Programs" "Dev" "Favorite" "~aerc refs"
+# FOSS protonmail -> IMAP/SMTP/CardDAV bridge
+https://github.com/emersion/hydroxide/releases.atom "git repos" "Programs" "Dev" "Favorite"
 # my school gave me unlimited GDrive storage, so i have to use it for *something*.
 https://github.com/rclone/rclone/commits/master/docs/content/changelog.md.atom "git repos" "Programs" "Dev" "~rclone changelog"
 # sending files to computers i can't ssh into. P2P and E2EE, no external deps.
@@ -239,11 +244,12 @@ https://github.com/zealdocs/zeal/releases.atom "git repos" "Programs" "Dev"
 # preferred i2p implementation.
 https://github.com/PurpleI2P/i2pd/releases.atom "git repos" "Programs" "Dev"
 # best IRC+matrix client!
-https://weechat.org/blog/feed/atom "Programs" "Dev" "Favorite"
-https://github.com/poljar/weechat-matrix/releases.atom "Matrix" "git repos" "Programs" "Dev" "Favorite"
+https://weechat.org/blog/feed/atom "IRC/Matrix" "Programs" "Dev" "Favorite"
+https://github.com/poljar/weechat-matrix/releases.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
+https://github.com/tomoe-mami/weechat-scripts/commits/master.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/cjbassi/gotop/releases.atom "git repos" "Programs" "Dev"
-https://matrix.org/blog/feed/ "Matrix" "Programs" "Dev" "Favorite"
-https://matrix-team.pages.debian.net/blogue//atom.xml "Matrix" "Linux" "Dev"
+https://matrix.org/blog/feed/ "IRC/Matrix" "Programs" "Dev" "Favorite"
+https://matrix-team.pages.debian.net/blogue//atom.xml "IRC/Matrix" "Linux" "Dev"
 # wii emulator. playing super smash bros brawl with an xbox controller on an ultrawide 2K screen at 60fps, cuz why not.
 https://dolphin-emu.org/blog/feeds/ "Programs" "Dev"
 https://calibre-ebook.com/changelog.rss "Programs" "Dev"
@@ -360,7 +366,7 @@ https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "F
 
 http://faif.us/feeds/cast-ogg/ "Audio" "Advocacy" "Media" "Linux" "Favorite"
 # Matrix Live
-https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w "Audio" "Media" "Dev" "Matrix"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w "Audio" "Media" "Dev" "IRC/Matrix"
 # Librelounge
 https://librelounge.org/atom-feed.atom "Audio" "Media" "Linux"
 
