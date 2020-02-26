@@ -55,6 +55,7 @@ Plug 'townk/vim-autoclose'  " Auto-match pairs in insert mode
 Plug 'tpope/vim-commentary'  " Polygot keybinds for commenting code
 Plug 'dhruvasagar/vim-table-mode', {'for': ['rst', 'pandoc']}  " Build ascii tables
 Plug 'ConradIrwin/vim-bracketed-paste'  " Auto-sets paste
+Plug 'terryma/vim-expand-region' " syntax-aware expansion of visually-selected area
 
 " More powerful/sophisticated plugins
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,6 +74,7 @@ Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
 Plug 'vim-airline/vim-airline'  " Like powerline
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
 Plug 'norcalli/nvim-colorizer.lua' " Fastest color-code colorizer
+Plug 'justinmk/vim-syntax-extra' " C and bison syntax highlighting
 
 " Syntax highlighting
 " ~~~~~~~~~~~~~~~~~
@@ -177,6 +179,7 @@ let g:terminal_color_15 = '#ffffff'
 
 lua << EOF
 require('lsp')
+require('colorizer_settings')
 EOF
 
 " =========
