@@ -28,9 +28,9 @@ running underneath them. I worked out the following solution:
 
 If I use a program that runs in the terminal very often, I'll likely build it from
 source and update to the latest git commit. Git repositories get cloned using
-[ghq](https://github.com/motemen/ghq). This way, if a program has a bug or is
-missing a feature I want, I already have the latest snapshot of the repository
-cloned locally on my machine so I can fix the issue and push a patch upstream. My
+[ghq](https://github.com/motemen/ghq). This way, if a program has a bug or is missing
+a feature I want, I already have the latest snapshot of the repository cloned locally
+on my machine so I can fix the issue and push a patch upstream. My
 [`update-all`](https://gitlab.com/Seirdy/dotfiles/raw/master/.local/bin/update-all)
 script runs [these
 updates](https://gitlab.com/Seirdy/dotfiles/tree/master/Executables/shell-scripts/updates).
@@ -41,8 +41,8 @@ C/C++ code use LLVM instead of GCC. When possible, Rust packages are compiled to
 statically-linked executables with full link-time optimization in an Alpine-based
 container.
 
-I generally compile programs on my desktop and `rsync` them to my laptop.
-Compilation occurs in a Fedora Rawhide pet container, created and managed using
+I generally compile programs on my desktop and `rsync` them to my laptop. Compilation
+occurs in a Fedora Rawhide pet container, created and managed using
 [podman](https://podman.io/) and [toolbox](https://github.com/containers/toolbox).
 `rsync` along with the full container stack (podman, buildah, skopeo, crun,
 fuse-overlayfs, fusermount, conmon, bubblewrap, catatonit) are also built from
@@ -58,9 +58,8 @@ Stuff labeled with `*` is built from source from the latest git commit.
 
 ### General
 
-- WM: [Sway](https://swaywm.org/). SwayWM itself is from distro packages, but
-  associated utilities are all built from source (e.g. swaybg\*, swayidle\*, grim\*,
-  and slurp\*)
+- WM: [Sway\*](https://swaywm.org/). Associated utilities are also built from source
+  (e.g. swaybg\*, swayidle\*, grim\*, and slurp\*)
 - Terminal emulator: [Alacritty\*](https://github.com/alacritty/alacritty) (Wayland)
   or [st\*](https://st.suckless.org/) (X11)
 - Terminal multiplexer/session manager: [tmux\*](https://tmux.github.io/)
@@ -77,10 +76,10 @@ Stuff labeled with `*` is built from source from the latest git commit.
 
 ### Neovim
 
-I use Neovim's built-in Language Server Protocol (LSP) client along with the
-official [nvim-lsp](github.com/neovim/nvim-lsp) plugin containing pre-made configs
-for popular language servers. Settings are split between an `init.vim` and
-`init.lua`. Over time, I'll migrate more configs from `init.vim` to Lua files.
+I use Neovim's built-in Language Server Protocol (LSP) client along with the official
+[nvim-lsp](github.com/neovim/nvim-lsp) plugin containing pre-made configs for popular
+language servers. Settings are split between an `init.vim` and `init.lua`. Over time,
+I'll migrate more configs from `init.vim` to Lua files.
 
 ### Shell
 
