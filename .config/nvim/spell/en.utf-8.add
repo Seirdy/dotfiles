@@ -278,7 +278,6 @@ Java
 Groovy
 gitignore
 off
-Weechat
 Mandalorian
 dnf
 w3m
@@ -392,3 +391,7 @@ EVL
 WeeChat
 SourceHut
 xkcd's
+FFmpeg
+nvim-lsp
+ShellCheck
+Nitter
