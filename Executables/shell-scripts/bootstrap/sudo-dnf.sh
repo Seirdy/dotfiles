@@ -43,8 +43,9 @@ packages=(
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
-	"calc"  # really small/fast CLI calculator
-	"cargo" # rust package manager. used to install itself; then uninstalled.
+	"cairo-devel" # build imv
+	"calc"        # really small/fast CLI calculator
+	"cargo"       # rust package manager. used to install itself; then uninstalled.
 	"catimg"
 	"ccls"                     # C/C++/Objective-C language server
 	"chafa"                    # display images with 24bit color unicode in the terminal
@@ -120,6 +121,7 @@ packages=(
 	"http-parser-devel" # build romkatv's libgit2, used in gitstatus/powerlevel10k
 	"hunspell-en"
 	"hwinfo"
+	"icu"             # build imv
 	"iniparser-devel" # build cava
 	"intltool"        # build redshift
 	"iptables"        # networking setup
@@ -145,8 +147,7 @@ packages=(
 	"libjpeg-turbo-devel" # build grim
 	"libmatthew-java"     # dep for signal-cli
 	"libmpdclient-devel"  # build ncmpcpp and other mpd-related stuff
-	"libpng-devel"        # build imv and others
-	"libpng-devel"        # build kitty
+	"libpng-devel"        # build imv, kitty, and others
 	"librsvg2-devel"      # build imv
 	"librsvg2-tools"      # work with svg files; used for swaylock icon
 	"libseccomp"          # build runc and other tools in the OCI stack
@@ -293,6 +294,7 @@ packages=(
 	"rust-std-static"
 	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
+	"sendemail" # TODO: get from git using zinit
 	"source-highlight"     # build weechat
 	"sqlitebrowser"
 	"sshfs" # mount another computer
