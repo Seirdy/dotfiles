@@ -61,6 +61,8 @@ alias clbin='curl-tor --progress -F "clbin=<-" https://clbin.com'
 alias 0x0='curl-tor --progress -F"file=<-" https://0x0.st'
 # compiler conveniences
 alias gccv='gcc -pedantic -Wall'
+alias shchk='shellcheck'
+alias shchkv='shellcheck -xa -o all -e SC2250' # more strict shellcheck
 alias gorun='go run .'
 alias gobld='go build'
 # flatpak app aliases to replicate non-flatpak CLI functionality
