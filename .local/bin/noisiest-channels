@@ -14,12 +14,18 @@ nick_prefix='\+|%|@'
 # on freenode.#lobsters; JARVIS on 2600net; #weebot on freenode.#weechat,
 # Internets and YT-info on rizon.#chat,
 bots='gitter|Pelosi|ShinyMetal|mockturtle|weebot|gonzobot|SubWatch|JARVIS|Internets|YT-info'
+# entries starting with '--' are channel messages
+# entries starting with '-->' or '<--' are join or leave messages.
+join_leave_chanmsg='-->?|<--'
 # filter out join/leave, channel messages, bots, and /away messages
-filter_out="^((\-\->?|<\-\-|($nick_prefix)?($bots))\s|\[.* away: .*]$)"
-date_start="$(date -d @"$(expr $(date +%s) - 172800)" '+%Y-%m-%d %H')"
+filter_out="^(($join_leave_chanmsg|($nick_prefix)?($bots))\s|^\[.* away: .*]$)"
+date_start="$(date -d @"$(($(date +%s) - 172800))" '+%Y-%m-%d %H')"
+
 channel_noise() {
 	for file in "$log_dir"/irc.*.[#]*.weechatlog; do
-		echo "$(basename "$file") $(
+		# trim filename to strip leading "irc." and trailing ".weechatlog"
+		channel="${file#*irc.}"
+		echo "${channel%*.weechatlog}" "$(
 			sed -n -e "s/$ansi_escape//g" -e "/^$date_start/,\$p" "$file" \
 				| sed -e "s/$msg_prefix//g" \
 				| grep -Ecv "$filter_out"
@@ -29,4 +35,5 @@ channel_noise() {
 
 # sort output by number of lines, and number the result
 channel_noise | sort -n -k 2 -r | nl -w2 -s'. '
+
 # vi:ft=sh
