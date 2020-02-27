@@ -27,10 +27,10 @@ ghq_get_cd https://github.com/file/file.git && simple_autotools
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
-export CFLAGS="$CFLAGS_LTO"
-export LDFLAGS="$CFLAGS_LTO"
-export CXXFLAGS="$CFLAGS_LTO"
-export CPPFLAGS="$CXXFLAGS"
+export CFLAGS="$CFLAGS_LTO" \
+	LDFLAGS="$CFLAGS_LTO" \
+	CXXFLAGS="$CFLAGS_LTO" \
+	CPPFLAGS="$CFLAGS_LTO"
 
 # cmatrix
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
