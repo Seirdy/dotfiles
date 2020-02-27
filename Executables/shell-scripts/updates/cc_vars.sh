@@ -19,7 +19,7 @@ export CPPFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"
 export FCFLAGS="$FFLAGS"
 export RUSTFLAGS="-C opt-level=3 -C target-cpu=$ARCH"
-export CFLAGS_LTO="$CFLAGS -flto -fuse-linker-plugin -fuse-ld=gold"
+export CFLAGS_LTO="$CFLAGS -flto -fuse-linker-plugin"
 [ -z "$CARGO_INSTALL_OPTS" ] && export CARGO_INSTALL_OPTS='--all-features -Z unstable-options'
 
 # For builds using Clang instead of GCC, I replace C(XX)FLAGS with CLANGFLAGS
