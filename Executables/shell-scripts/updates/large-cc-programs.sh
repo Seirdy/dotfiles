@@ -43,7 +43,7 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 	&& fancy_cmake \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DENABLE_ENCHANT=ON \
-		-DENABLE_PHP=OFF \
+		-DENABLE_PHP=ON \
 		-DENABLE_LUA=ON \
 		-DENABLE_TCL=ON \
 		-DENABLE_RUBY=ON \
@@ -53,10 +53,11 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 		-DENABLE_MAN=ON \
 		-DENABLE_JAVASCRIPT=OFF \
 		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt
-export CFLAGS="$CFLAGS_LTO"
-export LDFLAGS="$CFLAGS_LTO"
-export CXXFLAGS="$CFLAGS_LTO"
-export CPPFLAGS="$CXXFLAGS"
+
+export CFLAGS="$CFLAGS_LTO" \
+	LDFLAGS="$CFLAGS_LTO" \
+	CXXFLAGS="$CFLAGS_LTO" \
+	CPPFLAGS="$CFLAGS_LTO"
 
 ghq_get_cd https://github.com/mpv-player/mpv.git \
 	&& ./bootstrap.py \
