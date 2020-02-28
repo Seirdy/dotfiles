@@ -117,6 +117,9 @@ zinit light https://github.com/Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
 zinit light https://github.com/Seirdy/stpv
 
+zi_program has'weechat' pick'chattiest-channels'
+zinit light $GHQ_ROOT/git.sr.ht/~seirdy/chattiest-channels
+
 zi_program has'chromium-browser-privacy' pick'chrome-extension-dl'
 zinit light th3lusive/chrome-extension-dl
 
