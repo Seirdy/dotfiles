@@ -2,7 +2,7 @@ Dotfiles
 ========
 
 [![sourcehut]](https://git.sr.ht/~seirdy/dotfiles)
-[![GitLab](https://img.shields.io/badge/mirror-GitLab-orange.svg?logo=gitlab)](https://gitlab.com/Seirdy/dotfiles)
+[![GitLab](https://img.shields.io/badge/mirror-GitLab-orange.svg?logo=gitlab)](https://git.sr.ht/~seirdy/dotfiles)
 [![GitHub
 mirror](https://img.shields.io/badge/mirror-GitHub-black.svg?logo=github)](https://github.com/Seirdy/dotfiles)
 
@@ -32,9 +32,9 @@ source and update to the latest git commit. Git repositories get cloned using
 [ghq](https://github.com/motemen/ghq). This way, if a program has a bug or is missing
 a feature I want, I already have the latest snapshot of the repository cloned locally
 on my machine so I can fix the issue and push a patch upstream. My
-[`update-all`](https://gitlab.com/Seirdy/dotfiles/raw/master/.local/bin/update-all)
+[`update-all`](https://git.sr.ht/~seirdy/dotfiles/tree/master/.local/bin/update-all)
 script runs [these
-updates](https://gitlab.com/Seirdy/dotfiles/tree/master/Executables/shell-scripts/updates).
+updates](https://git.sr.ht/~seirdy/dotfiles/tree/master/Executables/shell-scripts/updates).
 
 C/C++ programs get compiled with the `-O3 -march=native` flags, among others. Most
 packages are also compiled using link-time optimization. Rust packages containing
@@ -67,7 +67,7 @@ Stuff labeled with `*` is built from source from the latest git commit.
 - News reader: [Newsboat\*](https://newsboat.org/)
 - Mail client: [aerc\*](https://aerc-mail.org/)
 - `$EDITOR`: Neovim\*
-- Launcher: [custom](https://gitlab.com/Seirdy/term-dmenu) (runs in a floating
+- Launcher: [custom](https://git.sr.ht/~seirdy/term-dmenu) (runs in a floating
   terminal window)
 - File manager: [nnn\*](https://github.com/jarun/nnn)
 - Image viewer: [imv\*](https://github.com/eXeC64/imv)
@@ -78,9 +78,9 @@ Stuff labeled with `*` is built from source from the latest git commit.
 ### Neovim
 
 I use Neovim's built-in Language Server Protocol (LSP) client along with the official
-[nvim-lsp](github.com/neovim/nvim-lsp) plugin containing pre-made configs for popular
-language servers. Settings are split between an `init.vim` and `init.lua`. Over time,
-I'll migrate more configs from `init.vim` to Lua files.
+[nvim-lsp](https://github.com/neovim/nvim-lsp) plugin containing pre-made configs for
+popular language servers. Settings are split between an `init.vim` and `init.lua`.
+Over time, I'll migrate more configs from `init.vim` to Lua files.
 
 ### Shell
 
@@ -92,9 +92,9 @@ I'll migrate more configs from `init.vim` to Lua files.
 ### Music
 
 The scripts
-[`start-music`](https://gitlab.com/Seirdy/dotfiles/raw/master/.local/bin/start-music)
+[`start-music`](https://git.sr.ht/~seirdy/dotfiles/tree/master/.local/bin/start-music)
 and
-[`stop-music`](https://gitlab.com/Seirdy/dotfiles/raw/master/.local/bin/stop-music)
+[`stop-music`](https://git.sr.ht/~seirdy/dotfiles/tree/master/.local/bin/stop-music)
 are used to start/stop these programs, respectively.
 
 - Backend: `mpd`
@@ -120,7 +120,7 @@ are used to start/stop these programs, respectively.
 - Upscaling filter: [Anime4k\*](https://github.com/bloc97/Anime4K)
 - MPRIS bridge: [mpv-mpris\*](https://github.com/hoyon/mpv-mpris)
 - Other scripts:
-  [blur-edges.lua](github.com/occivink/mpv-scripts/blob/master/scripts/blur-edges.lua),
-  [autocrop.lua](github.com/mpv-player/mpv/TOOLS/lua/autocrop.lua)
+  [blur-edges.lua](https://github.com/occivink/mpv-scripts/blob/master/scripts/blur-edges.lua),
+  [autocrop.lua](https://github.com/mpv-player/mpv/TOOLS/lua/autocrop.lua)
 
 [sourcehut]: https://img.shields.io/badge/repository-sourcehut-lightgrey.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAACPVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9qcjBRAAAAvnRSTlMAAQIDBAUGBwgJCgsMDg8QERITFBUWFxgZGhscHR4fICEjJCYnKCkqKy0vMDM0NTY3ODk7PD1AQUNERkdISUtMTU5PUFFUV1hZWltcXV5fYGFkZmdoaW1ucHF0dXd4ent+f4CBgoOEhYaHiImKjZOUm5yeoaKjpKanqKmqq6ytsLGys7S2t7i6vL2+v8LDxMXGx8jJyszNzs/R0tPV1tjZ29/g4uPk5ebn6Orr7O3u7/Dx8vT19vf4+fr7/P3+A3PI6QAABcFJREFUGBntwflbVFUABuBvYtE0GWcgNUtCccncwzRU1KlwX3Mpc0vFBNtUzMowEFEJxRItAR0FN3AHNFBm5vvb+uWcO8u9M3PvnXN6np6H98WQIUOG/E/lf7hp/5Ha5tabHR03W5trj+zbON+P/8iw+Xvru2jh/uk9JbnQbMxn9S+YwvO6zQXQ5vV158NMK3xu9XDoUPTdM9r05NtCqPbeT2E6EDo+BSq9eyJCh8LVE6DKG1UDdKH/65FQ4pO7dOnOcmQu/1da6mo6un/bykBZWWDVtgNHL3TT0i9+ZGjxA5oMXqxYko8EBWUHm0M06SpFJrIOMVF/zYo8JOFdeWqACSIVWXDNd54J2rbkISXv1jYmOOuFSxNvMV7DAg/S8iw8y3jBIrgy8yHjNMyETbPPMU73DLhQ0sdYbQvhQOl1xuqZC8dKnjPGix3ZcCRn5z+M0TcPDs3sY4zmiXBs0p+M0fM+HJn4kFGRfVlwIbsiwqjuIjjgu8WoZ4vgUlkPo4Je2JZ1nlEdxXBtaiejGrJg1yFGXXsTGRjbxqgDsGkxo656kRHf3zRESmFLwQMarnmRIV87DV1+2PErDR1vImPjOmn4GTZ8SsOzYigwrZeGANJ64x6lyCIosYyGOyORThUN+6BIJQ2VSKPoJaXmLCiSfZnSQCFSO0HpxUQoU9xPqRopvRehtAMK7aIUnoJUfqLUlg2FcoKUqpFCUZjSQii1hFJoApL7jlID1PL8Tukwknr9GaWZUOwDSo+GIZl1lBqgXCOlFUjmPKUFUG4RpTNIYkyYQpsHynluUAj5Ye0zSlugwXZKG2GtnkJ/HjTwvaTwGywNe0GhBlrUUujLgZX5lFZAi7WU5sLKXgqDedDCF6awE1bqKVyEJi0UTsFKF4UKaFJF4TYs5FNaAk2WUcqD2YeU8qHJOEpzYLaJQhd08TyisAZm+yk0QZtLFHbD7AiFo9DmOIUfYFZLYT+0qaRwEmbNFLZBmy8oNMKslcJKaLOBQgvMblIIQJtyCu0w66BQBm0CFIIw66BQBm0CFIIwu0khAG3KKbTDrJXCKmizgUILzJopbIM2Oyg0wqyWwgFoU0XhJMyOUDgKbX6k8D3M9lG4AG0uUdgFs40UuqGL5zGF1TCbT6kAmrxFaTbM/JTKoMlySqNg4T6Fg9DkMIVOWDlNoRmaXKFQAyt7KIS80MIfofAlrJRQWgkt1lGaAyu5zymcghZ1FHqzYek0hQEvNPC/olADa5spbYUGn1NaD2sFYQptHijnCVIYHI0kzlFaCOUWU6pDMqspnYVyTZTKkczwJ5RmQ7ESSg9zkdS3lM5BLU8TpUokVxii9BGUWkppcDxSOE7peg4Uyr1F6RhSmRKmtBMK7aEUKkZK1ZT+mQRlJg9QOobUJvRT+iMbiuRcpdT/DtL4moYKKPINDQeRzsg7lCJlUOJjGm6PQFoBGnqmQoHpfTQshQ2/0NA5Fhl7+y4NJ2CHv4uGNh8ylH+DhnujYUtphIa/fMhIfisN4QWwqYJR7eOQgfE3GPUV7Mo6y6jOaXBt+l1GnX4NtnmDjOpdBpc+7mPU9VFwoOgBYxzKhgs53zDG/UI4MqOHMS4Xw7HJVxnj6XQ4NK+PMfp35cCR3D0DjNE7C47N62Gs4BLY51l6i7GezoILM7oZ5/cPYFNJE+Pcnw5XioKM17jIg7Q8i5sY73ohXPI2MMGN7T6k5P88yAT1o+BaVkWECV7WrvUhCf+6uldMEP7qNWSitIsm4ZaqZWMRz/PW8sNXIjS5twAZ8v9MS48uHa/8YkN5IFC+YUfVj5ce09KJ0chc4A5dur0USoysHKAL/QdHQJXC6jAdCh97BypNqQ7RgcFjxVBtwuFHtOlh5XjoMGzFmRDTGqwrz4U2/o2/9TGF3pr1o6FZztydp27TQmfNl3Oy8R/Jm7Nm9w8nG1vag8H2lsaT3+9aPXsUhgwZMuT/6V/RenbAjLiafgAAAABJRU5ErkJggg==
