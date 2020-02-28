@@ -9,17 +9,18 @@ start_time=$(date '+%s')
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
-export RUSTFLAGS="$RUSTFLAGS \
-	-L. \
-	-C linker-plugin-lto \
-	-C linker=clang \
-	-C link-arg=-fuse-ld=lld"
-
 export CC=clang
 export CXX=clang++
 export CFLAGS="$CLANGFLAGS_UNUSED_STUFF"
 export LDFLAGS="$CFLAGS"
 export CXXFLAGS="$CFLAGS"
+
+export RUSTFLAGS="$RUSTFLAGS \
+	-L. \
+	-C linker-plugin-lto \
+	-C linker=clang \
+	-C link-arg=-fuse-ld=lld \
+	-C link-arg=$CFLAGS"
 
 cargo_update() {
 	# shellcheck disable=SC2086
@@ -28,35 +29,6 @@ cargo_update() {
 
 # rust flags for building static binaries/libs with fat LTO optimization
 RUSTFLAGS_STATIC_LTO="$RUSTFLAGS -C target-feature=+crt-static -C lto=fat"
-
-# a container with a MUSL environment for building static binaries with full LTO
-musl_env() {
-	podman run --rm -it \
-		-v "$PWD:/root/src" \
-		-v "$CARGO_HOME/registry:/root/.cargo/registry" \
-		-e CFLAGS -e CXXFLAGS -e CPPFLAGS -e LIBLDFLAGS -e MAKEFLAGS -e LDFLAGS \
-		-e RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" \
-		-e CC -e CXX \
-		quay.io/seirdy/rust-static "$@"
-}
-
-# basically cargo build --release for static binaries
-cargo_static_lto() {
-	musl_env cargo build --release --all-features -Z unstable-options --target=x86_64-unknown-linux-musl \
-		&& strip "target/x86_64-unknown-linux-musl/release/$1" \
-		&& install -p -D -m755 target/x86_64-unknown-linux-musl/release/$1 "$CARGO_HOME/bin"
-}
-
-# basically "cargo install" for static binaries
-update_lto() {
-	if [ ! -d "$GHQ_ROOT/$1" ] || {
-		cd "$GHQ_ROOT/$1" && git fetch && git status | sed 2q | grep behind
-	}; then
-		{
-			ghq_get_cd "$1" && cargo_static_lto "$2" || echo "failed to build $2"
-		} || echo "$2 is up to date"
-	fi
-}
 
 tmpdir="/tmp/$ARCH"
 mkdir -p "$tmpdir"
@@ -68,12 +40,15 @@ cargo_update cargo-update -t "$tmpdir"
 cargo_update -ga -t "$tmpdir"
 
 # newsboat
-ghq_get_cd https://github.com/newsboat/newsboat.git \
-	&& make clean \
-	&& CFLAGS="$CLANGFLAGS_UNUSED_STUFF" CXXFLAGS="$CLANGFLAGS_UNUSED_STUFF" RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" make \
-	&& strip newsboat podboat \
-	&& make install prefix="$PREFIX" \
-	&& mv "$PREFIX/bin/newsboat" "$PREFIX/bin/podboat" "$CARGO_HOME/bin"
+cd "$GHQ_ROOT/github.com/newsboat/newsboat" \
+	&& git fetch && git status | sed 2q | grep behind \
+	&& {
+		git reset --hard HEAD && git pull && make clean \
+			&& RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" make \
+			&& strip newsboat podboat \
+			&& make install prefix="$PREFIX" \
+			&& mv "$PREFIX/bin/newsboat" "$PREFIX/bin/podboat" "$CARGO_HOME/bin"
+	} || echo "newsboat is up to date"
 
 cd "$GHQ_ROOT/github.com/alacritty/alacritty" \
 	&& git fetch && git status | sed 2q | grep behind \
@@ -87,13 +62,6 @@ cd "$GHQ_ROOT/github.com/alacritty/alacritty" \
 			&& install -p -D -m755 target/release/alacritty "$CARGO_HOME/bin" \
 			|| printf "try closing all alacritty terminals and running the following:\ncp %s/target/release/alacritty %s/.local/bin" "$PWD" "$HOME"
 	} || echo "alacritty is up to date"
-
-# static binaries built inside a container
-update_lto github.com/Peltoche/lsd lsd
-update_lto github.com/sharkdp/fd fd
-update_lto github.com/sharkdp/diskus diskus
-update_lto github.com/NerdyPepper/eva eva
-update_lto github.com/jameslzhu/roflcat roflcat
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
