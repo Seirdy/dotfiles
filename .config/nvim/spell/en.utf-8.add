@@ -396,3 +396,5 @@ nvim-lsp
 ShellCheck
 Nitter
 senpai
+coreutils
+BusyBox

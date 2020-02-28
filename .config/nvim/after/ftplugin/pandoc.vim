@@ -16,5 +16,5 @@ let s:cchars = {
 	\"html_c_e": "›"}
 
 command! -nargs=0 -buffer -range=% Format let b:winview = winsaveview() |
-	\ execute <line1> . "," . <line2> . "!pandoc --from=markdown --to=markdown-multiline_tables --standalone --columns=85 --preserve-tabs --tab-stop=2" |
+	\ execute <line1> . "," . <line2> . "!pandoc --from=markdown --to=markdown-multiline_tables-raw_attribute --standalone --columns=85 --preserve-tabs --tab-stop=2" |
 	\ call winrestview(b:winview)
