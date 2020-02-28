@@ -2,7 +2,8 @@ Dotfiles
 ========
 
 [![sourcehut]](https://git.sr.ht/~seirdy/dotfiles)
-[![GitLab](https://img.shields.io/badge/mirror-GitLab-orange.svg?logo=gitlab)](https://git.sr.ht/~seirdy/dotfiles)
+[![GitLab
+mirror](https://img.shields.io/badge/mirror-GitLab-orange.svg?logo=gitlab)](https://git.sr.ht/~seirdy/dotfiles)
 [![GitHub
 mirror](https://img.shields.io/badge/mirror-GitHub-black.svg?logo=github)](https://github.com/Seirdy/dotfiles)
 
