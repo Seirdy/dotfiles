@@ -86,16 +86,18 @@ alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
 
 # mpd stuff
+# filename of current track
+alias now-playing-file='mpc status -f "%file%" | sed 1q'
 # query sticker for current track
-alias mpc-sticker='mpc sticker "$(mpc status -f "%file%" | sed 1q)" '
-# show rating for current track
-alias show-rating='mpc-sticker get rating'
+alias mpc-sticker='mpc sticker "$(now-playing-file)" '
+# current track rating
+alias now-playing-rating='mpc-sticker get rating'
 # show normal info for current song, along with its rating
-alias now-playing='mpc status && show-rating'
+alias now-playing='mpc status && now-playing-rating'
 # rate current track 1-10.
 alias rate-track='mpc-sticker set rating'
 # skip current track and show rating of the next one.
-alias skip-show='mpc next && show-rating'
+alias skip-show='mpc next && now-playing-rating'
 # shellcheck disable=SC2142 # this alias contains a function
 alias rtsv='_rtsv() {
 	rate-track "$1"
