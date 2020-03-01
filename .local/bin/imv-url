@@ -1,0 +1,6 @@
+#!/usr/bin/env dash
+
+# opens a link to an image in imv
+curl-tor --progress "$@" --output - | imv -
+
+# vi:ft=sh
