@@ -99,7 +99,7 @@ zi_program pick'prettyping' has'ping'
 zinit light denilsonsa/prettyping
 
 zi_program has'bat' pick'src/*'
-zinit light https://github.com/eth-p/bat-extras
+zinit light eth-p/bat-extras
 
 zi_program has'git' pick'yadm' atclone"cp yadm.1 $HOME/.local/man/man1" atpull'%atclone'
 zinit light TheLocehiliosan/yadm
@@ -108,17 +108,17 @@ zi_program has'tmux' pick'bin/xpanes'
 zinit light greymd/tmux-xpanes
 
 zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
-zinit light https://github.com/containers/toolbox
+zinit light containers/toolbox
 
 zi_program has'jq'
 zinit snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
 
 zi_program has'ueberzug' pick'stpvimg'
-zinit light https://github.com/Seirdy/stpv
+zinit light Seirdy/stpv
 zi_program pick'stpv'
-zinit light https://github.com/Seirdy/stpv
+zinit light Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
-zinit light https://github.com/Seirdy/stpv
+zinit light Seirdy/stpv
 
 zi_program has'weechat' pick'chattiest-channels'
 zinit light $GHQ_ROOT/git.sr.ht/~seirdy/chattiest-channels
