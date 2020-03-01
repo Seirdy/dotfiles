@@ -1,0 +1,40 @@
+#
+# WeeChat 2.8-dev (compiled on Feb 27 2020 14:49:47)
+#
+# Use /autoconf load or cat this file to the FIFO pipe.
+#
+# For more info, see https://weechat.org/scripts/source/autoconf.py.html
+#
+
+*/set weechat.look.bar_more_left "◀"
+*/set weechat.look.bar_more_right "▶"
+*/set weechat.look.mouse on
+*/set weechat.look.prefix_align_max 25
+*/set weechat.look.prefix_same_nick "⤷"
+*/set weechat.completion.nick_completer ":"
+*/set weechat.bar.buflist.items "buflist"
+*/set weechat.bar.fset.items "fset"
+*/set weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],[input_olds],input_text,[vi_buffer]"
+*/set weechat.bar.isetbar.items "isetbar_help"
+*/set weechat.bar.nicklist.items "chatters,buffer_nicklist"
+*/set weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),buffer_nicklist_count,scroll,[lag],[hotlist],completion"
+*/set weechat.bar.vi_line_numbers.items "line_numbers"
+*/set logger.look.backlog 1000
+*/set logger.file.color_lines on
+*/set exec.command.shell "sh"
+*/set spell.check.commands "ame,amsg,away,command,cycle,kick,kickban,me,msg,notice,part,query,quit,topic"
+*/set spell.check.default_dict "en"
+*/set spell.check.enabled on
+*/set spell.dict.core.weechat "en_US"
+*/set buflist.look.display_conditions "${buffer.hidden}==0 && (${buffer.hotlist.priority}!=0 || ${type}==server || ${current_buffer} || ${buffer.full_name}=~(core.weechat|perl.highmon|fset|urlgrab|scripts))"
+*/set buflist.format.indent "${color:237}${if:${buffer.next_buffer.local_variables.type}=~^(channel|private)$?├─:└─}"
+*/set irc.look.server_buffer independent
+*/set irc.server_default.capabilities "account-notify,away-notify,capa-notify,extended-join,multi-prefix,server-time,userhost-in-names"
+*/set irc.server_default.msg_part "👋 (WeeChat ${info:version})"
+*/set irc.server_default.msg_quit "exiting ${info:version}"
+*/set relay.weechat.commands "*,!exec,!upgrade,!quit"
+*/set urlgrab.default.copycmd "wl-copy -n"
+*/set urlgrab.default.localcmd "firefox-nightly '%s'"
+*/set urlgrab.default.url_log "null"
+*/set script.look.sort "u"
+*/set script.scripts.hold "mnotify.py"
