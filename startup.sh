@@ -35,7 +35,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
 # export LC_TIME=en_ZA.UTF-8
-export TERMINAL="st" # Default terminal
 export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 export NVIM_GTK_PREFER_DARK_THEME=1
@@ -257,9 +256,12 @@ if [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_
 	else
 		echo 'redshift not found. Install redshift to warm your screen at night.'
 	fi
-else
+elif [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_DISPLAY" ]; then
 	# Waylandify all the thing!!!!
 	# Covers apps written with the Qt, GTK, and SDL toolkits
+
+	# if XDG_SESSION_TYPE wasn't set
+	export XDG_SESSION_TYPE=wayland
 	export EGL_PLATFORM=wayland
 	export CLUTTER_BACKEND=wayland
 	# Qt apps
@@ -275,8 +277,6 @@ else
 	export ELM_ACCEL=gl
 	# some java apps
 	export _JAVA_AWT_WM_NONREPARENTING=1
-	# use a wayland-native terminal emulator
-	export TERMINAL=alacritty
 	export KITTY_ENABLE_WAYLAND=1
 	# firefox
 	export MOZ_ENABLE_WAYLAND=1

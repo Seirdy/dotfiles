@@ -104,7 +104,7 @@ alias rtsv='_rtsv() {
 
 # $EDITOR aliases
 alias edi='$EDITOR'
-alias vdi='eval $TERMINAL $EDITOR'
+alias vdi='terminal $EDITOR'
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias funcrc='edi $XDG_CONFIG_HOME/shell_common/functions.sh'
 alias zshrc='edi $HOME/.zshrc'
