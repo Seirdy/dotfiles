@@ -79,6 +79,9 @@ zi_program() {
 zi_program has'trash' pick'rmtrash'
 zinit light PhrozenByte/rmtrash
 
+zi_program has'gpg'
+zinit light dylanaraps/pash
+
 zi_program has'jq' pick'reddio' from'gitlab'
 zinit light aaronNG/reddio
 

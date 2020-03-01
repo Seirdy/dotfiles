@@ -280,6 +280,9 @@ else
 	export KITTY_ENABLE_WAYLAND=1
 	# firefox
 	export MOZ_ENABLE_WAYLAND=1
+	export PASH_CLIP='wl-copy -n'
+	export PASH_TIMEOUT=7
+	export PASH_LENGH=50
 	# some GTK apps.
 	# Commented out because (Ungoogled-)Chromium and Electron aren't ready
 	# export GDK_BACKEND='wayland'
