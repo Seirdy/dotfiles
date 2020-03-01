@@ -4,7 +4,18 @@
 . "$HOME/.config/shell_common/functions_ghq.sh"
 # shellcheck source=../updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
-export RUSTFLAGS="$RUSTFLAGS -C linker-plugin-lto -L. -C linker=clang -C link-arg=-fuse-ld=lld"
+export CC=clang
+export CXX=clang++
+export CFLAGS="$CLANGFLAGS_UNUSED_STUFF"
+export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+
+export RUSTFLAGS="$RUSTFLAGS \
+	-L. \
+	-C linker-plugin-lto \
+	-C linker=clang \
+	-C link-arg=-fuse-ld=lld \
+	-C link-args=-s"
+
 echo "Using RUSTFLAGS: $RUSTFLAGS"
 echo "Using CARGO_INSTALL_OPTS: $CARGO_INSTALL_OPTS"
 
@@ -16,7 +27,7 @@ rustup default nightly
 rustup update
 cargo install cargo-update
 cargo_install_git() {
-	cargo install --git "$@" --force
+	cargo install --git "$@" --force --all-features -Z unstable-options
 }
 cargo_install_git https://github.com/BurntSushi/ripgrep.git
 cargo_install_git https://github.com/Canop/broot.git
@@ -38,3 +49,4 @@ cargo_install_git https://github.com/sharkdp/diskus.git
 cargo_install_git https://github.com/sharkdp/fd.git
 cargo_install_git https://github.com/sharkdp/hyperfine.git
 cargo_install_git https://github.com/timvisee/ffsend.git
+cargo_install_git https://github.com/dbrgn/tealdeer.git

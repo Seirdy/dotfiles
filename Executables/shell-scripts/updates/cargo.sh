@@ -12,15 +12,14 @@ start_time=$(date '+%s')
 export CC=clang
 export CXX=clang++
 export CFLAGS="$CLANGFLAGS_UNUSED_STUFF"
-export LDFLAGS="$CFLAGS"
-export CXXFLAGS="$CFLAGS"
+export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 
 export RUSTFLAGS="$RUSTFLAGS \
 	-L. \
 	-C linker-plugin-lto \
 	-C linker=clang \
 	-C link-arg=-fuse-ld=lld \
-	-C link-arg=$CFLAGS"
+	-C link-args=-s"
 
 cargo_update() {
 	# shellcheck disable=SC2086

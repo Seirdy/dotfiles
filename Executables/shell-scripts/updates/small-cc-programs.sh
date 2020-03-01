@@ -36,12 +36,6 @@ export CFLAGS="$CFLAGS_LTO" \
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& fancy_cmake
 
-# tldr
-ghq_get_cd https://github.com/tldr-pages/tldr-cpp-client.git \
-	&& make \
-	&& install -m0755 tldr "$BINPREFIX" \
-	&& install -p -m644 man/tldr.1 "$MANPREFIX/man1"
-
 # rsync
 ghq_get_cd https://git.samba.org/rsync.git \
 	&& configure_install --with-included-popt
