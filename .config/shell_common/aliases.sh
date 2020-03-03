@@ -57,8 +57,17 @@ alias moshdesk='mosh rkumar@rkumar-dekstop /home/rkumar/.local/bin/tmux'
 alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.com'
 # check that tor works
 alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.icanhazip.com'
+# pastebin/file-upload stuff
 alias clbin='curl-tor --progress -F "clbin=<-" https://clbin.com'
+alias clbincp='clbin | wlcv'
 alias 0x0='curl-tor --progress -F"file=<-" https://0x0.st'
+alias 0x0cp='0x0 | wlcv'
+# mirror the URL in the clipboard to 0x0.st
+alias mirror0x0='curlout "$(wl-paste -n)" >/tmp/img && upl /tmp/img'
+# mirror to 0x0.st and copy the 0x0.st URL
+alias mirror0x0cp='curlout "$(wl-paste -n)" >/tmp/img && upl /tmp/img | wlcv'
+# mirror to 0x0.st, copy the 0x0.st URL, and view the result ot make sure it worked
+alias mirror0x0check='mirror0x0cp && imv-url "$(wl-paste)"' # see ~/.local/bin/imv-url
 # compiler conveniences
 alias gccv='gcc -pedantic -Wall'
 alias shchk='shellcheck'
@@ -176,6 +185,11 @@ alias cded='cd $HOME/Documents/Work/School/ED'
 alias cdla='cd $HOME/Documents/Work/School/LINALG'
 alias cdcs='cd $HOME/Documents/Work/School/CS_277'
 alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/.'
+# like cdg function in functions.sh but for $GOPATH
+alias cdgo='GHQ_ROOT=$GOPATH/src cdg'
+
+# pash
+alias fashcp='fash copy'
 
 # kitty-specific
 alias kicat='kitty +kitten icat'

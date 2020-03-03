@@ -139,6 +139,17 @@ curlout() {
 	curl-tor --progress "$@" --output -
 }
 
+# save chattiest-channels to a pastebin
+share-chattiest-channels() {
+	{
+		chattiest-channels "$@"
+		printf "\nIf you run weechat then you can run this yourself: https://git.sr.ht/~seirdy/chattiest-channels"
+	} | curl-tor --progress -F "clbin=<-" https://clbin.com | wl-copy -n \
+		&& wl-paste \
+		&& curl-tor $(wl-paste)
+
+}
+
 hnopen() {
 	for URL in "$@"; do
 		hn view -bc "$URL"
