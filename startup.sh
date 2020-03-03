@@ -280,9 +280,6 @@ elif [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND
 	export KITTY_ENABLE_WAYLAND=1
 	# firefox
 	export MOZ_ENABLE_WAYLAND=1
-	export PASH_CLIP='wl-copy -n'
-	export PASH_TIMEOUT=7
-	export PASH_LENGH=50
 	# some GTK apps.
 	# Commented out because (Ungoogled-)Chromium and Electron aren't ready
 	# export GDK_BACKEND='wayland'
@@ -303,6 +300,14 @@ fi
 
 export FZF_DEFAULT_OPTS='-m --ansi'
 export FZF_DEFAULT_COMMAND='rg --files -g ""'
+
+export PASH_TIMEOUT=7
+export PASH_LENGH=50
+export PASH_DIR="$XDG_DATA_HOME/pash"
+export PASH_KEYID=25A69441
+export PASH_PATTERN=' -ÿ'
+export PASH_PATTERN_SIMPLE='[:punct:][:alnum:]'
+export PASH_PATTERN_NOSYMBOL='[:alnum]'
 
 SESSION_START="$(date -Iseconds)"
 export SESSION_START

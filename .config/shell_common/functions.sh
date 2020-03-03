@@ -1,12 +1,11 @@
-#!/usr/bin/env dash
-# No shebang line here; this file is meant to be sourced by a shell.
+#!/bin/sh
 mkcd() {
 	mkdir -p "$@"
 	cd "$@" || return
 }
 
 mkcp() {
-	mkdir -p "$(dirname $2)"
+	mkdir -p "$(dirname "$2")"
 	cp "$1" "$2"
 }
 
@@ -25,15 +24,6 @@ cdg() {
 		cdto=$(ghq list | fzf -q "$@")
 	fi
 	[ "$cdto" = '' ] || cd "$GHQ_ROOT/$cdto" || return 1
-}
-
-cdgo() {
-	if [ -z "$1" ]; then
-		cdto=$(go list "$GOPATH/src/..." | fzf)
-	else
-		cdto=$(go list "$GOPATH/src/..." | fzf -q "$@")
-	fi
-	[ "$cdto" = '' ] || cd "$GOPATH/src/$cdto" || return 1
 }
 
 history_stats() {
@@ -206,3 +196,4 @@ git_setup() {
 
 # shellcheck source=functions_ghq.sh
 . "$(dirname "$0")/functions_ghq.sh"
+. "$(dirname "$0")/pash.sh"
