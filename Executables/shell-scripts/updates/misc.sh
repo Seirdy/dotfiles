@@ -7,9 +7,6 @@ start_time=$(date '+%s')
 # shellcheck source=./cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
-# some launcher scripts of mine
-ghq_get_cd https://gitlab.com/Seirdy/term-dmenu.git && make install
-
 # youtube-dl manpage and zsh completion
 ghq_get_cd https://github.com/ytdl-org/youtube-dl.git \
 	&& make youtube-dl.1 \
@@ -23,7 +20,13 @@ ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/pyth
 	&& make install \
 	&& deactivate
 
+#
 # these repos have items symlinked to other places
+#
+
+ghq get -u git@git.sr.ht:~seirdy/mpd-scripts
+# some launcher scripts of mine
+ghq_get_cd git@git.sr.ht:~seirdy/term-dmenu && make install
 
 # mpv scripts symlinked to places in ~/.config/mpv/
 ghq get -u https://github.com/mpv-player/mpv.git

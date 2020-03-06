@@ -1,12 +1,1 @@
-#!/usr/bin/env dash
-# starts my mpd-based music setup.
-
-# background services
-systemctl start --user mpd
-systemctl start --user mpDris2
-# abduco -nf kunst "$ZPLG_HOME/plugins/sdushantha---kunst/kunst" # album art
-
-# frontend programs
-# abduco -cf clerk clerk # music searcher
-# kitty --detach cava  # music visualizer
-# vi:ft=sh
+/home/rkumar/Executables/ghq/git.sr.ht/~seirdy/mpd-scripts/start-music
