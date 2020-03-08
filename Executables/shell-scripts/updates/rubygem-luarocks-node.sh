@@ -17,6 +17,7 @@ mkdir -p $TMPDIR
 command -v pnpm >/dev/null || npm add -g pnpm && rm -rf "${NODE_PATH:?}/lib"
 pnpm add -g pnpm
 pnpm add -g bash-language-server
+pnpm add -g vscode-html-languageserver-bin
 pnpm add -g clean-mark
 pnpm add -g markdownlint-cli
 pnpm add -g neovim

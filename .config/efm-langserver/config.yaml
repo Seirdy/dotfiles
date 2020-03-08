@@ -11,7 +11,10 @@ tools:
     lint-command: 'rst-lint'
     lint-stdin: false
     lint-formats:
-      - '%l %f %m'
+      - '%tNFO %f:%l %m'
+      - '%tARNING %f:%l %m'
+      - '%tRROR %f:%l %m'
+      - '%tEVERE %f:%l %m'
   vim-vint: &vim-vint
     lint-command: 'vint'
     lint-formats:
@@ -22,6 +25,10 @@ tools:
       - '%f:%l:%c: %trror: %m'
       - '%f:%l:%c: %tarning: %m'
       - '%f:%l:%c: %tote: %m'
+  dockerfile-hadolint: &dockerfile-hadolint
+    lint-command: 'hadolint'
+    lint-formats:
+      - '%f:%l %m'
   yaml-yamllint: &yaml-yamllint
     lint-command: 'yamllint -f parsable -'
     lint-stdin: true
@@ -47,4 +54,6 @@ languages:
     - <<: *vim-vint
   yaml:
     - <<: *yaml-yamllint
+  dockerfile:
+    - <<: *dockerfile-hadolint
 ---

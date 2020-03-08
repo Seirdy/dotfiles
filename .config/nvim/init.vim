@@ -64,6 +64,7 @@ Plug 'terryma/vim-expand-region' " syntax-aware expansion of visually-selected a
 Plug 'rhysd/git-messenger.vim' " git info in a floating window
 Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
 Plug 'neovim/nvim-lsp' " The most important plugin
+Plug 'haorenW1025/diagnostic-nvim' " wrap LSP diagnostic config
 
 " FZF
 " ~~~
@@ -252,18 +253,17 @@ command! -nargs=0 Format :StripTrailingSpaces
 " takes time.
 nmap <leader>w :Format<CR>:sleep 100m<CR>:w<CR>
 
+" Navigation
+" ~~~~~~~~~~
+
+" Use `[d` and `]d` for navigate diagnostics
+nnoremap <silent> ]d :NextDiagnostic<CR>
+nnoremap <silent> [d :PrevDiagnostic<CR>
+nnoremap <silent> <leader>do :OpenDiagnostic<CR>
+
+
 " Obsolete CoC.nvim configs that I have yet to replace
 " ====================================================
-
-" " Navigation
-" " ~~~~~~~~~~
-
-" " Use `[c` and `]c` for navigate diagnostics
-" nmap <silent> [c <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" " show chunk diff at current position
-" nmap gs <Plug>(coc-git-chunkinfo)
 
 " " codeAction
 " " ~~~~~~~~~~

@@ -1,4 +1,5 @@
 scriptencoding utf-8
+command! -nargs=0 Format :lua vim.lsp.buf.formatting()
 " :IndentLinesDisable
 let s:cchars = {
 			\'newline': '↵',
@@ -15,5 +16,3 @@ let s:cchars = {
 			\'li': '•',
 			\'html_c_s': '‹',
 			\'html_c_e': '›'}
-
-command! -nargs=0 Format :lua vim.lsp.buf.formatting()
