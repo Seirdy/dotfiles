@@ -27,6 +27,7 @@ nvim_lsp.bashls.setup{
 	filetypes = { "sh", "zsh" }
 }
 nvim_lsp.ccls.setup{}
+nvim_lsp.html.setup{}
 nvim_lsp.cssls.setup{
 	on_attach = on_attach,
 	root_dir = util.root_pattern("package.json",".git")
@@ -44,6 +45,9 @@ nvim_lsp.jsonls.setup{
 	on_attach = on_attach
 }
 nvim_lsp.vimls.setup{
+	on_attach = on_attach
+}
+nvim_lsp.efm.setup{
 	on_attach = on_attach
 }
 nvim_lsp.pyls.setup{

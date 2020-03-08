@@ -92,6 +92,8 @@ go_update github.com/zricethezav/gitleaks
 go_update github.com/zabio3/godolint
 # format dockerfiles
 go_update github.com/jessfraz/dockfmt
+# generic language server
+go_update github.com/mattn/efm-langserver
 
 # protonmail bridge
 go_update github.com/emersion/hydroxide/cmd/hydroxide

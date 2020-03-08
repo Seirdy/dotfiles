@@ -1,0 +1,50 @@
+---
+tools:
+  # linters
+  markdown-markdownlint: &markdown-markdownlint
+    lint-command: 'markdownlint -c ~/.config/markdownlint/markdownlint.json -s'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l: %m'
+      - '%f:%l:%c %m'
+  rst-lint: &rst-lint
+    lint-command: 'rst-lint'
+    lint-stdin: false
+    lint-formats:
+      - '%l %f %m'
+  vim-vint: &vim-vint
+    lint-command: 'vint'
+    lint-formats:
+      - '%f:%l:%c: %m'
+  sh-shellcheck: &sh-shellcheck
+    lint-command: 'shellcheck -f gcc -x -o all -e SC2250'
+    lint-formats:
+      - '%f:%l:%c: %trror: %m'
+      - '%f:%l:%c: %tarning: %m'
+      - '%f:%l:%c: %tote: %m'
+  yaml-yamllint: &yaml-yamllint
+    lint-command: 'yamllint -f parsable -'
+    lint-stdin: true
+  # formatters
+  markdown-pandoc: &markdown-pandoc
+    format-command: 'pandoc -f markdown -t markdown-multiline_tables-raw_attribute -sp --columns=85 --tab-stop=2'
+  rst-pandoc: &rst-pandoc
+    format-command: 'pandoc -f rst -t rst -s --columns=79'
+  sh-shfmt: &sh-shfmt
+    format-command: 'shfmt -ci -s -bn'
+
+languages:
+  pandoc:
+    - <<: *markdown-markdownlint
+    - <<: *markdown-pandoc
+  rst:
+    - <<: *rst-lint
+    - <<: *rst-pandoc
+  sh:
+    - <<: *sh-shellcheck
+    - <<: *sh-shfmt
+  vim:
+    - <<: *vim-vint
+  yaml:
+    - <<: *yaml-yamllint
+---

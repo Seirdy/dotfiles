@@ -40,11 +40,14 @@ pipx install git+https://gitlab.com/ajak/tuir.git &
 pipx install twine &
 pipx install ueberzug &
 pipx install git+https://github.com/will8211/unimatrix.git
+pipx install vim-vint &
 pipx install virtualenv &
 pipx install xenon &
 pipx install git+https://github.com/xonsh/xonsh.git
+pipx install yamllint
 pipx install git+https://github.com/ytdl-org/youtube-dl.git
 pipx install mercurial
 pipx install meson # build system for lots of stuff
 pipx install --system-site-packages 'python-language-server[all]'
 pipx install --system-site-packages --include-deps 'git+https://github.com/prompt-toolkit/ptpython.git#egg=ptpython[ptipython]'
+pipx install --system-site-packages 'git+https://github.com/roddhjav/pass-import#egg=pass-import[keepass]'

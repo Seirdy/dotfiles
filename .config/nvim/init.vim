@@ -1,6 +1,8 @@
 " General Settings
 " ================
 
+set encoding=utf-8
+scriptencoding utf-8
 filetype plugin on
 set title
 set updatetime=300
@@ -212,7 +214,7 @@ nmap <silent> <leader><Space> :nohls<CR>
 " If hiding search wasn't enough for you
 nnoremap <silent> <C-l> :nohl<CR> :redraw<CR>
 " Indent entire document with eqcmd. Alternative to :Format
-nnoremap <F7> gg=G<C-o><C-o>
+nnoremap <F7> :Format<CR>:let b:winview = winsaveview()<CR>gg=G:call winrestview(b:winview)<CR>:w<CR>
 " Toggle conceal level
 nnoremap <silent> <C-c><C-y> :call SwitchConcealLevel() <CR>
 " Toggle invisible chars
@@ -246,8 +248,9 @@ nnoremap <silent> <space>b :<C-u>Buffers<cr>
 command! -nargs=0 StripTrailingSpaces :%s/\s\+$//e
 " gets overridden in some filtypes
 command! -nargs=0 Format :StripTrailingSpaces
-" " Remove trailing whitespace, format and write
-nmap <leader>w :Format<CR>:w<CR>
+" Remove trailing whitespace, format and write. Sleep 100ms in case formatting
+" takes time.
+nmap <leader>w :Format<CR>:sleep 100m<CR>:w<CR>
 
 " Obsolete CoC.nvim configs that I have yet to replace
 " ====================================================
@@ -380,9 +383,9 @@ let g:table_mode_align_char='+'
 " These are prefs that don't work well when run in autoload/ftplugin, so they
 " go here.
 
-let g:pandoc#after#modules#enabled = ["vim-table-mode"]
-let g:pandoc#syntax#codeblocks#embeds#langs=["c", "cpp", "python", "sh", "asm", "yaml", "html", "css", "vim", "go", "haskell", "scheme", "javascript", "zsh", "rust"]
+let g:pandoc#after#modules#enabled = ['vim-table-mode']
+let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'cpp', 'python', 'sh', 'asm', 'yaml', 'html', 'css', 'vim', 'go', 'haskell', 'scheme', 'javascript', 'zsh', 'rust']
 let g:pandoc#formatting#mode = 'h'
-let g:pandoc#modules#disabled = ["folding","formatting"]
-let g:pandoc#syntax#conceal#cchar_overrides = {"codelang": ""}
+let g:pandoc#modules#disabled = ['folding','formatting']
+let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ''}
 let g:vimtex_compiler_progname = 'nvr'
