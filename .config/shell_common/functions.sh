@@ -118,9 +118,10 @@ bcalc() {
 # file uploading/pastebins
 
 imgurup() {
-	curl -H "Referer: https://imgur.com/upload" -F "Filedata=@$1" https://imgur.com/upload \
-		| jq -C \
-		| $PAGER
+	json_data="$(curl -H "Referer: https://imgur.com/upload" -F "Filedata=@$1" https://imgur.com/upload | jq -r '.data')"
+	hash="$(echo "$json_data" | jq -r '.hashes | .[]')"
+	ext="$(echo "$json_data" | jq -r '.ext')"
+	echo "https://imgur.kageurufu.net/${hash}${ext}"
 }
 
 upl() {
