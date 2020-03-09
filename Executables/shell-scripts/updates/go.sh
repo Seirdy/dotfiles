@@ -2,7 +2,8 @@
 
 start_time=$(date '+%s')
 
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/startup.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
 	export GOROOT="$GOPATH/sdk/gotip"
@@ -16,7 +17,6 @@ go_update() {
 	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
-go_update github.com/McKael/madonctl
 # building docs for some golang packages
 go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them
@@ -92,8 +92,11 @@ go_update github.com/zricethezav/gitleaks
 go_update github.com/zabio3/godolint
 # format dockerfiles
 go_update github.com/jessfraz/dockfmt
+# lint makefiles
+GOFLAGS="$GOFLAGS -mod=vendor" go_update github.com/mrtazz/checkmake \
+	&& pandoc "$GOPATH/src/github.com/mrtazz/checkmake/man/man1/checkmake.1.md" -s -t man -o "$MANPREFIX/man1/checkmake.1"
 # generic language server
-go_update github.com/mattn/efm-langserver
+GO111MODULE=on go_update github.com/mattn/efm-langserver
 
 # protonmail bridge
 go_update github.com/emersion/hydroxide/cmd/hydroxide
