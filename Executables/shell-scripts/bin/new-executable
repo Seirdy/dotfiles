@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
-newfile="$HOME/.local/bin/$1"
+# vi:ft=sh
+newfile="$HOME/Executables/shell-scripts/bin/$1"
 printf '#!/usr/bin/env dash\n\n# vi:ft=sh' >"$newfile"
 chmod +x "$newfile"
+# shellcheck source=/home/rkumar/startup.sh
 $EDITOR "$newfile"
-
-# vi:ft=sh
