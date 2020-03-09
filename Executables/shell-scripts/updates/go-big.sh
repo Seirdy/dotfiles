@@ -66,7 +66,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		&& make BUILDTAGS="seccomp" \
 		&& make BINDIR="$GOPATH/bin" ETCDIR="$CONFIGPREFIX" MANDIR="$MANPREFIX" install
 	# buildah
-	GOFLAGS='-mod=vendor' go_update github.com/containers/buildah/cmd/buildah \
+	GOFLAGS="$GOFLAGS -mod=vendor" go_update github.com/containers/buildah/cmd/buildah \
 		&& cd "$GOPATH/src/github.com/containers/buildah/docs" \
 		&& GOMD2MAN="$GOPATH/bin/go-md2man" make \
 		&& install -d "$MANPREFIX/man1" \
