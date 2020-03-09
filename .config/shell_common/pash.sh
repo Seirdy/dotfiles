@@ -58,9 +58,7 @@ mypash() {
 					;;
 			esac
 			;;
-		*)
-			command pash "$@"
-			;;
+		*) command pash "$@" ;;
 	esac
 }
 
