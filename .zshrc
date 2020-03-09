@@ -2,17 +2,10 @@
 export ZLE_RPROMPT_INDENT=0
 # powerlevel10k instant prompt
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-$USER.zsh" ]]; then
+  source "$XDG_CACHE_HOME/p10k-instant-prompt-$USER.zsh"
 fi
-# export QT_QPA_PLATFORMTHEME='qt5ct'
-# export MANPATH="/usr/local/man:$MANPATH"
-# export MANPATH="$HOME/.local/man:$MANPATH"
-# export MANPATH="$HOME/.local/venvs/*/share/man:$MANPATH"
-# fortune -n 70 -s computers pets
-export COLUMNS
-export ROWS
-
+export COLUMNS ROWS
 export ZPLG_HOME="$HOME/Executables/zinit"
 export ZPFX="$ZPLG_HOME/polaris"
 declare -A ZINIT
@@ -59,8 +52,6 @@ setopt share_history
 setopt hist_find_no_dups
 # remove superfluous blanks
 setopt hist_reduce_blanks
-
-
 # Don't autocorrect when thefuck does it better.
 unsetopt correct_all
 # Muh globbing
@@ -70,8 +61,6 @@ setopt equals
 setopt prompt_subst
 # Comments in the interactive shell; useful for copy-pasting
 setopt interactivecomments
-# Use colors in auto-completion
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Send CONT signal automatically when disowning jobs
 setopt auto_continue
 setopt pushd_ignore_dups
@@ -88,8 +77,13 @@ zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 3 numeric
 
 # keybinds and functions
-function _z() { _zlua "$@"; }
+# z.lua stuff
+function _z() {
+	_zlua "$@";
+}
+export _ZL_MATCH_MODE=1
 
+# bind C-Z to "fg", so the same keybind suspends and resumes.
 function fancy_ctrl_z() {
 	if [[ $#BUFFER -eq 0 ]]; then
 		export BUFFER='fg'
@@ -102,9 +96,10 @@ function fancy_ctrl_z() {
 zle -N fancy_ctrl_z
 bindkey '^Z' fancy_ctrl_z
 autoload edit-command-line
+
+# vi-mode: open command in $EDITOR
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-export _ZL_MATCH_MODE=1
 
 # Print previous command with Alt-N, where N is the number of arguments
 bindkey -s '\e1' "!:0 \t"
@@ -113,6 +108,12 @@ bindkey -s '\e3' "!:0-2 \t"
 bindkey -s '\e4' "!:0-3 \t"
 bindkey -s '\e5' "!:0-4 \t"
 bindkey -s '\e`' "!:0- \t"     # all but the last word
+
+# automatically escape pasted URLs
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.

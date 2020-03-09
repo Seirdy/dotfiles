@@ -294,6 +294,7 @@ finish_setup() {
 	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 	command -v thefuck >/dev/null && eval $(thefuck --alias)
 	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
+	export GPG_TTY="$(tty)"
 }
 
 zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
