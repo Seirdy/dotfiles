@@ -51,6 +51,8 @@ alias cmdv='command -v'
 alias settmp='redshift -O'
 alias resettmp='redshift -x'
 alias dsks='diskus --size-format=binary'
+alias rsyncap='rsync -auP'
+alias rsyncapz='rsync -azuP'
 alias moshlap='mosh rkumar@rkumarlappie /home/rkumar/.local/bin/tmux'
 alias moshdesk='mosh rkumar@rkumar-dekstop /home/rkumar/.local/bin/tmux'
 # curl
@@ -190,6 +192,7 @@ alias cdgo='GHQ_ROOT=$GOPATH/src cdg'
 
 # pash
 alias fashcp='fash copy'
+alias encryptit='gpg --symmetric --cipher-algo=AES256 --compress-algo none --encrypt'
 
 # kitty-specific
 alias kicat='kitty +kitten icat'
