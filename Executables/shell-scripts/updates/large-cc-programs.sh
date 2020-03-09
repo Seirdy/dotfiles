@@ -69,7 +69,6 @@ ghq_get_cd https://github.com/mpv-player/mpv.git \
 		--enable-libmpv-shared \
 		--enable-sdl2 \
 		--enable-libarchive \
-		--enable-libsmbclient \
 		--enable-dvdnav \
 		--enable-cdda \
 		--enable-html-build \

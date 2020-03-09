@@ -3,9 +3,11 @@
 
 start_time=$(date '+%s')
 
+# shellcheck source=/home/rkumar/startup.sh
 # shellcheck source=../../../.config/shell_common/functions_ghq.sh
 . "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_vars.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 # mpv-mpris
@@ -14,7 +16,7 @@ ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
-	&& fancy_cmake
+	&& fancy_cmake ""
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& meson build-release --buildtype release --prefix "$PREFIX" \
@@ -26,6 +28,19 @@ ghq_get_cd https://github.com/file/file.git && simple_autotools
 
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
+
+# icmake is required to build yodl, which is required to build rsync docs
+ghq_get_cd https://gitlab.com/fbb-git/icmake \
+	&& cd ./icmake \
+	&& ./icm_prepare / \
+	&& ./icm_bootstrap x \
+	&& mkdir -p /tmp/icmake && ln -s "$PREFIX" /tmp/icmake/usr \
+	&& ./icm_install strip all /tmp/icmake
+
+# yodl is required to build rsync docs
+ghq_get_cd https://gitlab.com/fbb-git/yodl \
+	&& cd ./yodl \
+	&& icmake -qt/tmp/yodl ./build yodl
 
 export CFLAGS="$CFLAGS_LTO" \
 	LDFLAGS="$CFLAGS_LTO" \
@@ -173,7 +188,7 @@ build_gitstatus() {
 build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
 
 # back to regulat flags, no LTO
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 # stuff that needs LDFLAGS empty
 unset LIBLDFLAGS
