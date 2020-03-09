@@ -19,8 +19,11 @@ tools:
     lint-command: 'vint'
     lint-formats:
       - '%f:%l:%c: %m'
+  make-checkmake: &make-checkmake
+    lint-command: 'checkmake'
+    lint-stdin: true
   sh-shellcheck: &sh-shellcheck
-    lint-command: 'shellcheck -f gcc -x -o all -e SC2250'
+    lint-command: 'shellcheck -f gcc -xa -o all -e SC2250'
     lint-formats:
       - '%f:%l:%c: %trror: %m'
       - '%f:%l:%c: %tarning: %m'
@@ -39,6 +42,7 @@ tools:
     format-command: 'pandoc -f rst -t rst -s --columns=79'
   sh-shfmt: &sh-shfmt
     format-command: 'shfmt -ci -s -bn'
+    format-stdin: true
 
 languages:
   pandoc:
@@ -52,6 +56,8 @@ languages:
     - <<: *sh-shfmt
   vim:
     - <<: *vim-vint
+  make:
+    - <<: *make-checkmake
   yaml:
     - <<: *yaml-yamllint
   dockerfile:
