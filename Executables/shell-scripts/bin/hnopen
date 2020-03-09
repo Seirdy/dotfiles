@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+# open a list of hacker news IDs
+for id in "$@"; do
+	hn view -bc "$id"
+done
+
+# vi:ft=sh

@@ -1,0 +1,10 @@
+#!/usr/bin/env dash
+
+# Initialize a git repo and add my remotes
+# Remotes include the main sourcehut remote + GitLab/GitHub mirrors.
+git init
+git remote add origin "git@git.sr.ht:~seirdy/$1"
+git remote add gl_mirror "git@gitlab.com:Seirdy/$1.git"
+git remote add gh_mirror "git@github.com:Seirdy/$1.git"
+
+# vi:ft=sh

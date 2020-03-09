@@ -1,6 +1,7 @@
 #!/usr/bin/env dash
 
 new_display=$1 # Either "lap" or "mon"
+# shellcheck disable=SC2154
 display_cfg="$XDG_DATA_HOME/computer_state/current_display"
 
 if [ -z "$new_display" ]; then
@@ -31,9 +32,11 @@ else
 fi
 
 kdeglobals_update() {
+	# shellcheck disable=SC2154
 	kwriteconfig5 --file "$XDG_CONFIG_HOME/kdeglobals" "$@"
 }
 
+# shellcheck disable=SC2154
 if [ "$MACHINE" = "Linux" ] && [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
 	if command -v kwriteconfig5 >/dev/null; then
 		kdeglobals_update --group "General" --key "fixed" "$mono_font"

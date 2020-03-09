@@ -1,0 +1,6 @@
+#!/usr/bin/env dash
+
+# nobody likes typing "echo ... | bc -l" so this wraps that for convenience
+echo "$*" | bc -l
+
+# vi:ft=sh

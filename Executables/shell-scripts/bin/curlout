@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+# `curlout <url> | clbin` will mirror <url> to clbin.
+curlout() {
+	curl-tor --progress "$@" --output -
+}
+
+# vi:ft=sh

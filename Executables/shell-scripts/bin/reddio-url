@@ -1,5 +1,5 @@
 #!/usr/bin/env dash
 
 # Reddio command $1 on $2, $2 being a link to a Reddit thread
-reddio $1 "comments/${2#*/comments/}"
+reddio "$1" "comments/${2#*/comments/}"
 # vi:ft=sh

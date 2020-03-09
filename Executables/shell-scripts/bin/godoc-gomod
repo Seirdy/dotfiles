@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 # Runs godoc for a project using go modules instead of $GOPATH
 module=$(awk 'NR==1{print $2}' go.mod)
-docker run --rm -e "GOPATH=/tmp/go" -p 6060:6060 -v $(pwd):/tmp/go/src/$module golang:latest /bin/bash -c "awk 'END{print \"http://\"\$1\":6060/pkg/$module\"}' /etc/hosts && godoc -http=:6060"
+podman run --rm -e "GOPATH=/tmp/go" -p 6060:6060 -v "$(pwd):/tmp/go/src/$module" golang:latest /bin/bash -c "awk 'END{print \"http://\"\$1\":6060/pkg/$module\"}' /etc/hosts && godoc -http=:6060"
 
 # vim:ft=sh

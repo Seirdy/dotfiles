@@ -1,0 +1,6 @@
+#!/usr/bin/env dash
+
+# unshorten a short URL by using the unshorten.me service
+curl "https://unshorten.me/s/$1"
+
+# vi:ft=sh

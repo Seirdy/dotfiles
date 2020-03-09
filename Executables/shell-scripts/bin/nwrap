@@ -4,6 +4,7 @@ export NNN_BMS="D:~/Downloads;v:~/Videos"
 
 export NNN_CONTEXT_COLORS="5236"
 
+# shellcheck disable=SC2154
 alias nsel="cat \${XDG_CONFIG_HOME:-\$HOME/.config}/nnn/.selection | tr '\0' '\n'"
 
 # Unmask ^Q (if required, see `stty -a`) to Quit nnn

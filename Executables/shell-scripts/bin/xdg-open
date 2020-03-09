@@ -10,6 +10,7 @@ case "${1%%:*}" in
 		exec aerc "$1"
 		;;
 	*)
+		# shellcheck disable=SC2154
 		case "${MACHINE}" in
 			Linux)
 				exec /usr/bin/xdg-open "$@"

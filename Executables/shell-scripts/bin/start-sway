@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 
 unset PROFILE_SET && export XDG_SESSION_TYPE=wayland
-# shellcheck source=../../startup.sh
+# shellcheck source=/home/rkumar/startup.sh
 . ~/startup.sh
 ssh-agent sway
 

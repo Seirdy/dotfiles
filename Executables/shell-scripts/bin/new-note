@@ -8,6 +8,7 @@ date: '$(date -I)'
 ---
 
 # " >"$newfile"
+# shellcheck disable=SC2154
 $EDITOR "$newfile"
 
 # Example output:

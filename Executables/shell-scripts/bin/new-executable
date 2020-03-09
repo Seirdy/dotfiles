@@ -1,7 +1,11 @@
 #!/usr/bin/env dash
 # vi:ft=sh
 newfile="$HOME/Executables/shell-scripts/bin/$1"
+[ -e "$newfile" ] && echo "error: file exists" 1>&2 && exit 1
 printf '#!/usr/bin/env dash\n\n# vi:ft=sh' >"$newfile"
 chmod +x "$newfile"
-# shellcheck source=/home/rkumar/startup.sh
+# shellcheck disable=SC2154
 $EDITOR "$newfile"
+if [ "$2" = '-g' ]; then
+	yadm add "$newfile"
+fi
