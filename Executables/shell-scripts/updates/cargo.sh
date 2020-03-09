@@ -11,23 +11,24 @@ start_time=$(date '+%s')
 
 export CC=clang
 export CXX=clang++
-export CFLAGS="$CLANGFLAGS_UNUSED_STUFF"
+export CFLAGS="$CLANGFLAGS"
 export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
-
-export RUSTFLAGS="$RUSTFLAGS \
-	-L. \
-	-C linker-plugin-lto \
-	-C linker=clang \
-	-C link-arg=-fuse-ld=lld \
-	-C link-args=-s"
 
 cargo_update() {
 	# shellcheck disable=SC2086
 	$CARGO_HOME/bin/cargo --color always install-update "$@"
 }
 
-# rust flags for building static binaries/libs with fat LTO optimization
-RUSTFLAGS_STATIC_LTO="$RUSTFLAGS -C target-feature=+crt-static -C lto=fat"
+# Flags for building static binaries/libs with fat LTO optimization
+# Fat LTO optimization is slow, but it (theoretically) produces a
+# better result than thinLTO. Maybe just a placebo.
+export RUSTFLAGS_STATIC_LTO="$RUSTFLAGS \
+	-L. \
+	-C linker-plugin-lto \
+	-C linker=clang \
+	-C link-arg=-fuse-ld=lld \
+	-C target-feature=+crt-static \
+	-C lto=fat"
 
 tmpdir="/tmp/$ARCH"
 mkdir -p "$tmpdir"
@@ -43,8 +44,7 @@ cd "$GHQ_ROOT/github.com/newsboat/newsboat" \
 	&& git fetch && git status | sed 2q | grep behind \
 	&& {
 		git reset --hard HEAD && git pull && make clean \
-			&& RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" make \
-			&& strip newsboat podboat \
+			&& CFLAGS="$CLANGFLAGS_UNUSED_STUFF" CXXFLAGS="$CLANGFLAGS_UNUSED_STUFF" LDFLAGS="$CLANGFLAGS_UNUSED_STUFF" RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" make \
 			&& make install prefix="$PREFIX" \
 			&& mv "$PREFIX/bin/newsboat" "$PREFIX/bin/podboat" "$CARGO_HOME/bin"
 	} || echo "newsboat is up to date"
@@ -53,7 +53,7 @@ cd "$GHQ_ROOT/github.com/alacritty/alacritty" \
 	&& git fetch && git status | sed 2q | grep behind \
 	&& {
 		git reset --hard HEAD && git pull \
-			&& cargo build --release --all-features -Z unstable-options \
+			&& RUSTFLAGS="$RUSTFLAGS_OLD" cargo +nightly build --release --all-features -Z unstable-options \
 			&& install -p -D -m644 extra/linux/alacritty.desktop "$DATAPREFIX/applications" \
 			&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1" \
 			&& tic -xe alacritty,alacritty-direct extra/alacritty.info -o "$DATAPREFIX/terminfo" \
