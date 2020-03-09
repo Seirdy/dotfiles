@@ -80,7 +80,7 @@ export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GNUPGHOME="$HOME/.gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
 export GOPATH="$HOME/Executables/go"
@@ -185,6 +185,7 @@ pathadd_head "$GOPATH/sdk/gotip/bin"          # golang nightly build
 pathadd_head "$STACK_ROOT/bin"                # stack (haskell)
 pathadd_head "$OPAM_SWITCH_PREFIX/bin"        # opam
 pathadd_head "$CARGO_HOME/bin"                # cargo (rust)
+pathadd_head "$HOME/Executables/shell-scripts/bin" # my shell scripts
 pathadd_head "$HOME/.local/bin"               # local bin
 
 # Detect my OS
