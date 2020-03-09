@@ -50,9 +50,6 @@ cd "$HOME/.cheat.sh" \
 	&& git pull && git submodule update --init --recursive --force --remote \
 	&& sed -e 's#curl -s cheat.sh/:list#cht.sh :list#' "$HOME/.cheat.sh/share/zsh.txt" >"$XDG_CONFIG_HOME/shell_common/zsh/_cht.sh"
 
-# shellcheck source=./cc_funcs.sh
-. "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
-
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"
