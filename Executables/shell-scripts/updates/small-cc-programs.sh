@@ -40,7 +40,10 @@ ghq_get_cd https://gitlab.com/fbb-git/icmake \
 # yodl is required to build rsync docs
 ghq_get_cd https://gitlab.com/fbb-git/yodl \
 	&& cd ./yodl \
-	&& icmake -qt/tmp/yodl ./build yodl
+	&& for module in programs macros man; do
+		CXXFLAGS="$CXXFLAGS -std=c++2a" icmake -qt/tmp/yodl ./build "$module"
+		icmake -qt/tmp/yodl ./build install "$module" /tmp/icmake
+	done
 
 export CFLAGS="$CFLAGS_LTO" \
 	LDFLAGS="$CFLAGS_LTO" \
