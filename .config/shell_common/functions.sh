@@ -17,6 +17,17 @@ wdir() {
 	cd "$progdir" || return
 }
 
+cdg() {
+	# cd to a git repo managed by ghq
+	if [ -z "$1" ]; then
+		cdto=$(ghq list | fzf)
+	else
+		cdto=$(ghq list | fzf -q "$@")
+	fi
+	# shellcheck disable=SC2154
+	[ "$cdto" = '' ] || cd "$GHQ_ROOT/$cdto" || return 1
+}
+
 history_stats() {
 	if [ -z "$1" ]; then
 		entries=1000
