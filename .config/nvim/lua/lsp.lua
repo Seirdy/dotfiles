@@ -30,10 +30,10 @@ local custom_on_attach = function(_, bufnr)
 	require'diagnostic'.on_attach()
 end
 
-nvim_lsp.bashls.setup{
-	on_attach = custom_on_attach,
-	filetypes = { "sh", "zsh" }
-}
+-- nvim_lsp.bashls.setup{
+-- 	on_attach = custom_on_attach,
+-- 	filetypes = { "sh", "zsh" }
+-- }
 nvim_lsp.ccls.setup{}
 nvim_lsp.html.setup{}
 nvim_lsp.cssls.setup{
