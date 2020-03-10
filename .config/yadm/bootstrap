@@ -9,10 +9,11 @@ cd "$HOME"
 # shellcheck disable=2016
 echo 'Created some directories before adding to $PATH'
 if [ -z "$PROFILE_SET" ]; then
-	# shellcheck source=../../.profile
+	# shellcheck source=/home/rkumar/.profile
 	. "$HOME/.profile"
 	export PROFILE_SET=2
 	# make sure all the variables were set in .profile
+	# shellcheck disable=SC2154
 	[ "$GOPATH" = "$HOME/Executables/go" ] || exit 1
 fi
 echo "Running bootstrap for $MACHINE"
@@ -27,6 +28,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		# my scripts only work on Fedora atm. TODO: add support for Debian
 		# shellcheck source=/dev/null
 		. /usr/lib/os-release
+		# shellcheck disable=SC2154
 		if [ "$NAME" = 'Fedora' ]; then
 			echo 'Installing dnf packages for Fedora'
 			sudo bash "$bootstrap_dir/sudo-dnf.sh" | tee "$HOME/bootstrap-logs/dnf.log"
