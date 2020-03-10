@@ -245,10 +245,12 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 EDITOR=$(find_alt nvim vim vi nvi nano emacs)
 export EDITOR
 
+# shellcheck disable=SC2154
 if [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
 	#  Don't run redshift on GNOME (it has its own Night Light)
 	#  Don't run redshift on Wayland
 	#  Don't run redshift if it's already running.
+	# shellcheck disable=SC2154
 	if [ "$XDG_CURRENT_DESKTOP" = 'GNOME' ] || pgrep redshift >/dev/null; then
 		export REDSHIFT_RUNNING=1
 	elif command -v redshift >/dev/null; then
