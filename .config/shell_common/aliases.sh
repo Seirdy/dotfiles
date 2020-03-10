@@ -90,7 +90,6 @@ alias tarlz='tar -I "lzip --best" -cvf'
 # Aliases that change existing commands
 alias tuir='LESS="-x 2 -ir" tuir --enable-media'
 alias sub='tuir -s'
-alias flatpak='flatpak --user'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
