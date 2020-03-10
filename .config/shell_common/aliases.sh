@@ -45,6 +45,7 @@ alias wcl='wc -l'
 alias psave='pockyt put -i'
 alias :q='exit' # muh vim habits
 alias c='calc -p'
+# shellcheck disable=SC2154
 alias p='$PAGER'
 alias fuck!='fuck --yeah' # auto-correct previous command
 alias cmdv='command -v'
@@ -60,9 +61,7 @@ alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.co
 # check that tor works
 alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.icanhazip.com'
 # pastebin/file-upload stuff
-alias clbin='curl-tor --progress -F "clbin=<-" https://clbin.com'
 alias clbincp='clbin | wlcv'
-alias 0x0='curl-tor --progress -F"file=<-" https://0x0.st'
 alias 0x0cp='0x0 | wlcv'
 # mirror the URL in the clipboard to 0x0.st
 alias mirror0x0='curlout "$(wl-paste -n)" >/tmp/img && upl /tmp/img'
@@ -116,8 +115,10 @@ alias rtsv='_rtsv() {
 }; _rtsv'
 
 # $EDITOR aliases
+# shellcheck disable=SC2154
 alias edi='$EDITOR'
 alias vdi='terminal $EDITOR'
+# shellcheck disable=SC2154
 alias aliasrc='edi $XDG_CONFIG_HOME/shell_common/aliases.sh'
 alias funcrc='edi $XDG_CONFIG_HOME/shell_common/functions.sh'
 alias zshrc='edi $HOME/.zshrc'
@@ -174,9 +175,6 @@ alias ydd='yadm diff'
 alias yds='ydd --staged'
 alias yopen='yadm open'
 # shellcheck disable=SC2142
-alias ya="yadm diff --name-status | awk '{print \$2}' | fzf --preview 'yadm dsf -- {}' | xargs -r yadm add"
-# shellcheck disable=SC2142
-alias yd="yadm diff --name-status | awk '{print \$2}' | fzf --preview 'yadm dsf -- {}' | xargs -r yadm diff"
 alias bd='cd ..'
 # bookmarks
 alias cdsch='cd $HOME/Documents/Work/School'
@@ -186,18 +184,22 @@ alias cdnote='cd $HOME/Documents/Notes'
 alias cded='cd $HOME/Documents/Work/School/ED'
 alias cdla='cd $HOME/Documents/Work/School/LINALG'
 alias cdcs='cd $HOME/Documents/Work/School/CS_277'
+# shellcheck disable=SC2154
 alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/.'
 # like cdg function in functions.sh but for $GOPATH
+# shellcheck disable=SC2154
 alias cdgo='GHQ_ROOT=$GOPATH/src cdg'
 
 # pash
 alias fashcp='fash copy'
-alias encryptit='gpg --symmetric --cipher-algo=AES256 --compress-algo none --encrypt'
+# shellcheck disable=SC2154
+alias encryptit='gpg -r $PASH_KEYID --symmetric --cipher-algo=AES256 --compress-algo none --encrypt'
 
 # kitty-specific
 alias kicat='kitty +kitten icat'
 
 # zsh-specific
+# shellcheck disable=SC2154
 if [ -n "$ZSH_VERSION" ]; then
 	alias -g isotime='$(date -u -Iseconds)'
 	timefile() {

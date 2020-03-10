@@ -295,6 +295,9 @@ finish_setup() {
 	command -v thefuck >/dev/null && eval $(thefuck --alias)
 	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
 	export GPG_TTY="$(tty)"
+	# yadm equivalent of forgit commands
+	where forgit::diff | sed -e 's/git /yadm /g' -e 's/forgit::diff/yd/' | source /dev/stdin
+	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
 }
 
 zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
