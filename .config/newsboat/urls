@@ -26,6 +26,12 @@
 # shownotes in newsboat tiled next to podboat/mpv is the best experience"
 "query:Podcasts:tags # \"Audio\"" "0-query"
 
+#################
+# GitHub search #
+#################
+
+"exec:~/Executables/stack/bin/github-search-to-rss Seirdy" "git repos"
+
 # new music
 https://muspy.com/feed?id=mujrx4bx006cv6gywluu3gf12koq7d "NonDev" "Favorite"
 
