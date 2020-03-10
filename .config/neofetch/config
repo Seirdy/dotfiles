@@ -11,11 +11,11 @@ print_info() {
 	info title
 	info underline
 
+	info 'Packages' packages &
 	info 'OS' distro
 	info 'Model' model
 	info 'Kernel' kernel
 	info 'Uptime' uptime
-	info 'Packages' packages
 	info 'Shell' shell
 	info 'Resolution' resolution
 	info 'DE' de
@@ -33,16 +33,15 @@ print_info() {
 	info 'Disk' disk
 	# info 'Battery' battery
 	info 'Font' font
-	# info 'Song' song
+	info 'Song' song
 	# info 'Local IP' local_ip
 	# info 'Public IP' public_ip
 	# info 'Users' users
 	info 'Install Date' install_date
 	# info 'Locale' locale # This only works on glibc systems.
 
-	info line_break
+	wait
 	info cols
-	info line_break
 }
 
 # Kernel
@@ -662,7 +661,7 @@ scrot_cmd='auto'
 # Default: 'neofetch-$(date +%F-%I-%M-%S-${RANDOM}).png'
 # Values:  'string'
 # Flag:    --scrot_name
-scrot_name="neofetch-$(date +%F-%I-%M-%S-${RANDOM}).png"
+scrot_name="neofetch-$(date +%F-%I-%M-%S-"${RANDOM}").png"
 
 # Image upload host
 # Where to upload the image.
