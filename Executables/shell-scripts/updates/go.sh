@@ -2,7 +2,6 @@
 
 start_time=$(date '+%s')
 
-# shellcheck source=/home/rkumar/startup.sh
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then

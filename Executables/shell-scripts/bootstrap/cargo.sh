@@ -1,8 +1,8 @@
 #!/usr/bin/env dash
 
-# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh
 . "$HOME/.config/shell_common/functions_ghq.sh"
-# shellcheck source=../updates/cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 export CC=clang
 export CXX=clang++

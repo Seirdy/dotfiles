@@ -4,7 +4,7 @@
 # lightweight solution than socksify imo.
 exec bwrap --ro-bind /usr /usr --symlink usr/lib64 /lib64 --proc /proc --unshare-all w3m \
 	-T text/html \
-	-cols $(tput cols) \
+	-cols "$(tput cols)" \
 	-dump \
 	-o display_image=false \
 	-o display_link=true

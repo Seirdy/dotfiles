@@ -2,9 +2,9 @@
 
 start_time=$(date '+%s')
 
-# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh
 . "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 # youtube-dl manpage and zsh completion

@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 start_time=$(date '+%s')
 
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 # echo "===UPDATE: Upgrading: Lua======="
@@ -13,7 +13,7 @@ gem update --prerelease -V
 echo "===UPDATE: Upgrading: npm packages"
 # install pnpm if it doesn't already exist,
 export TMPDIR=/tmp/pnpm
-mkdir -p $TMPDIR
+mkdir -p "$TMPDIR"
 command -v pnpm >/dev/null || npm add -g pnpm && rm -rf "${NODE_PATH:?}/lib"
 pnpm add -g pnpm
 pnpm add -g bash-language-server

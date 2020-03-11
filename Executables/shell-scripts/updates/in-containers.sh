@@ -5,9 +5,9 @@
 
 start_time=$(date '+%s')
 
-# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh
 . "$CONFIGPREFIX/shell_common/functions_ghq.sh"
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 podman pull registry.fedoraproject.org/fedora:rawhide
@@ -33,4 +33,3 @@ elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"
 
 # vi:ft=sh
-

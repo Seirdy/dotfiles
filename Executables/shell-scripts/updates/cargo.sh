@@ -1,12 +1,9 @@
 #!/usr/bin/env dash
-
-# shellcheck disable=SC2086
-
 start_time=$(date '+%s')
 
-# shellcheck source=../../../.config/shell_common/functions_ghq.sh
+# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh disable=SC2154
 . "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
-# shellcheck source=./cc_funcs.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 export CC=clang
@@ -33,8 +30,8 @@ export RUSTFLAGS_STATIC_LTO="$RUSTFLAGS \
 tmpdir="/tmp/$ARCH"
 mkdir -p "$tmpdir"
 # Update cargo-update before using it to update everything else
-$CARGO_HOME/bin/rustup default nightly
-$CARGO_HOME/bin/rustup update
+"$CARGO_HOME/bin/rustup" default nightly
+"$CARGO_HOME/bin/rustup" update
 cargo_update cargo-update -t "$tmpdir"
 # update normal rust packages installed through "cargo install --git"
 cargo_update -ga -t "$tmpdir"
@@ -53,7 +50,7 @@ cd "$GHQ_ROOT/github.com/alacritty/alacritty" \
 	&& git fetch && git status | sed 2q | grep behind \
 	&& {
 		git reset --hard HEAD && git pull \
-			&& RUSTFLAGS="$RUSTFLAGS_OLD" cargo +nightly build --release --all-features -Z unstable-options \
+			&& cargo +nightly build --release --all-features -Z unstable-options \
 			&& install -p -D -m644 extra/linux/alacritty.desktop "$DATAPREFIX/applications" \
 			&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1" \
 			&& tic -xe alacritty,alacritty-direct extra/alacritty.info -o "$DATAPREFIX/terminfo" \

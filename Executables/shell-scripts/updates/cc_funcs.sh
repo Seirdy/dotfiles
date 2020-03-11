@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# shellcheck source=./cc_vars.sh
+# shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_vars.sh
 . "$HOME/Executables/shell-scripts/updates/cc_vars.sh"
 
 fancy_cmake() {
@@ -18,6 +18,7 @@ make_install() {
 }
 
 fancy_configure() {
+	# shellcheck disable=SC2154
 	./configure \
 		--program-prefix= \
 		--prefix="$PREFIX" \

@@ -1,5 +1,6 @@
 #!/usr/bin/env dash
 
+# shellcheck source=/home/rkumar/startup.sh
 ghq_get_cd() {
 	if [ -z "$GHQ_ROOT" ]; then
 		GHQ_ROOT=$(ghq root)

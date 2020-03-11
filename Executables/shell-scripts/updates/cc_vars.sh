@@ -1,9 +1,12 @@
 #!/bin/sh
 
+# shellcheck source=/home/rkumar/startup.sh
+. "$HOME/startup.sh"
 [ -z "$PREFIX" ] && export PREFIX="$HOME/.local"
 export BINPREFIX="$PREFIX/bin"
 export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
+# shellcheck disable=SC2154
 export CONFIGPREFIX="$XDG_CONFIG_HOME"
 export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
