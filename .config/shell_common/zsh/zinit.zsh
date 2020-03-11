@@ -48,10 +48,6 @@ zinit light xPMo/zsh-toggle-command-prefix
 zi0a
 zinit light leonjza/history-here
 
-#shellcheck disable=SC2016
-z_lucid wait'[[ -n ${ZLAST_COMMANDS[(r)extr*]} ]]' as'snippet' pick'extract.sh'
-zinit light xvoland/Extract
-
 zi0a blockf atload'_zsh_autosuggest_start'
 zinit load zsh-users/zsh-autosuggestions
 
@@ -151,7 +147,7 @@ zi_program has'grim' pick'grimshot'
 zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
 zi0a has'nnn'
-zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.zsh
+zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.bash_zsh
 
 # }}}
 
@@ -181,7 +177,7 @@ zinit snippet https://github.com/tj/git-extras/blob/master/etc/git-extras-comple
 # Completions #
 ###############
 
-# fzf-based tab-completion. Load after all other completion plugins
+fzf-based tab-completion. Load after all other completion plugins
 z_lucid wait'1'
 zinit light Aloxaf/fzf-tab
 
@@ -252,7 +248,7 @@ zinit snippet $GHQ_ROOT/github.com/alacritty/alacritty/extra/completions/_alacri
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'
-	zinit light $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
+	zinit light "$GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak"
 
 elif [ "$MACHINE" = 'Darwin' ]; then
 
@@ -285,16 +281,18 @@ finish_setup() {
 	. "$XDG_CONFIG_HOME/lf/lf_icons.sh"
 	# aliases
 	SHELL_COMMON="$HOME/.config/shell_common"
-	# shellcheck source=../aliases.sh
+	# shellcheck source=/home/.config/shell_common/aliases.sh
 	. "$SHELL_COMMON/aliases.sh"
-	# shellcheck source=../aliases_private.sh
+	# shellcheck source=/home/.config/shell_common/aliases_private.sh
 	. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
-	# shellcheck source=../functions.sh
+	# shellcheck source=/home/.config/shell_common/functions.sh
 	. "$SHELL_COMMON/functions.sh"
+	# shellcheck source=/dev/null
 	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
-	command -v thefuck >/dev/null && eval $(thefuck --alias)
+	command -v thefuck >/dev/null && eval "$(thefuck --alias)"
 	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
-	export GPG_TTY="$(tty)"
+	GPG_TTY="$(tty)"
+	export GPG_TTY
 	# yadm equivalent of forgit commands
 	where forgit::diff | sed -e 's/git /yadm /g' -e 's/forgit::diff/yd/' | source /dev/stdin
 	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
