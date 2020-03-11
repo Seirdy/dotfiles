@@ -11,7 +11,7 @@
 # 	- fd-find
 # 	- fzf
 # 	- bat
-# 	- openx (already included in dotfiles; see ~/.local/bin/openx)
+# 	- xdg-open
 
 _lsd_args='--color always --oneline'
 
@@ -35,24 +35,25 @@ fdf() {
 	_display "$(fpf "$@")"
 }
 
-_openx_if_set() {
-	[ -n "$1" ] && openx "$1"
+_open_if_set() {
+	[ -n "$1" ] && xdg-open "$1"
 }
 
 foa() {
-	_openx_if_set "$(fpa "$@")"
+	_open_if_set "$(fpa "$@")"
 }
 
 fof() {
-	_openx_if_set "$(fpf "$@")"
+	_open_if_set "$(fpf "$@")"
 }
 
 fod() {
-	_openx_if_set "$(fpd "$@")"
+	_open_if_set "$(fpd "$@")"
 }
 
 fef() {
 	to_open="$(fpf "$@")"
+	# shellcheck disable=SC2154
 	[ -n "$to_open" ] && $EDITOR "$to_open"
 }
 
