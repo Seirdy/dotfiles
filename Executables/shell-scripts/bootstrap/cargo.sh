@@ -27,7 +27,7 @@ rustup default nightly
 rustup update
 cargo install cargo-update
 cargo_install_git() {
-	cargo install --git "$@" --force --all-features -Z unstable-options
+	cargo +nightly install --git "$@" --force --all-features -Z unstable-options
 }
 cargo_install_git https://github.com/BurntSushi/ripgrep.git
 cargo_install_git https://github.com/Canop/broot.git
@@ -35,6 +35,7 @@ cargo_install_git https://github.com/Freaky/cw.git
 cargo_install_git https://github.com/NerdyPepper/eva.git
 cargo_install_git https://github.com/Peltoche/lsd.git
 cargo_install_git https://github.com/Y2Z/monolith.git
+cargo_install_git https://github.com/ajeetdsouza/zoxide.git
 cargo_install_git https://github.com/anordal/shellharden.git
 cargo_install_git https://github.com/chmln/sd.git
 cargo_install_git https://github.com/dandavison/delta.git

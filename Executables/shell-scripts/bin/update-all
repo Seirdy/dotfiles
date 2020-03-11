@@ -80,6 +80,21 @@ log_bg() {
 	nohup "$script_dir/$1.sh" >"$log_dir/$1-$time_start.log" 2>&1 &
 }
 
+# used to compile binaries optimized for my laptop's CPU from my desktop
+# installs files to ~/Executables/lappie instead of $HOME so I can rsync
+# everything to my laptop
+log_bg_lap() {
+	echo "Starting update for laptop packages: $1"
+	CROSS_COMPILING=1 \
+		PKG_CONFIG_ALLOW_CROSS=1 \
+		ARCH='haswell' \
+		CARGO_HOME="$HOME/Executables/lappie/Executables/cargo" \
+		PREFIX="$HOME/Executables/lappie/.local" \
+		CONFIGPREFIX="$HOME/Executables/lappie/.config" \
+		GHQ_ROOT="$HOME/Executables/lappie/Executables/ghq" \
+		nohup "$script_dir/$1.sh" >"$log_dir/$1_lap-$time_start.log" 2>&1 &
+}
+
 # Run and log in foreground (live-preview log file in interactive session)
 # Done in foreground so I can enter my password (dnf) and because some things need
 # a controlling tty for compilation.
@@ -102,13 +117,11 @@ if [ -z "$litemode" ]; then
 
 	# rust: build normally. My desktop should also build binaries optimized for my laptop CPU in a separate directory
 	# see ~/.local/bin/rsync-to-lappie
+	log_bg 'cross-cc-programs' # compile several programs with gcc -O3 -mcpu
 	log_bg 'cargo' # rust packages (extremely cpu-heavy)
 	if [ "$(hostname)" = 'rkumar-dekstop' ]; then
-		PKG_CONFIG_ALLOW_CROSS=1 \
-			ARCH='haswell' \
-			CARGO_HOME="$HOME/Executables/lappie/cargo" \
-			GHQ_ROOT="$HOME/Executables/lappie/ghq" \
-			nohup "$script_dir/cargo.sh" >"$log_dir/cargo_lap-$time_start.log" 2>&1 &
+		log_bg_lap 'cargo'
+		log_bg_lap 'cross-cc-programs'
 	fi
 fi
 
@@ -119,8 +132,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 		log_bg 'in-containers' # Updates running inside containers (slow)
 		true
 	fi
-	log_bg 'small-cc-programs' # compile several programs with gcc -O3 -mcpu
-	log_bg 'large-cc-programs' # compile several programs with gcc -O3 -mcpu
+	log_bg 'no-cross-cc-programs' # compile several programs with gcc -O3 -mcpu
 	log_bg 'flatpak'           # repair and update user-installed flatpaks
 	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
 
