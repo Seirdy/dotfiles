@@ -100,7 +100,7 @@ alias now-playing-file='mpc status -f "%file%" | sed 1q'
 # query sticker for current track
 alias mpc-sticker='mpc sticker "$(now-playing-file)" '
 # current track rating
-alias now-playing-rating='mpc-sticker get rating'
+alias now-playing-rating='mpc-sticker get rating || echo "unrated"'
 # show normal info for current song, along with its rating
 alias now-playing='mpc status && now-playing-rating'
 # rate current track 1-10.
