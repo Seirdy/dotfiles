@@ -73,12 +73,18 @@ fash() {
 		case $1 in
 			p* | u* | i*)
 				if [ -n "$3" ]; then
-					mypash "$1" "$2" "$(pash list | fzf -q ${@:3})" && return 0
+					field="$1"
+					cmd="$2"
+					shift
+					shift
+					mypash "$field" "$cmd" "$(pash list | fzf -q "$@")" && return 0
 				fi
 				;;
 			*)
 				if [ -n "$2" ]; then
-					mypash "$1" "$(pash list | fzf -q ${@:2})" && return 0
+					cmd="$1"
+					shift
+					mypash "$cmd" "$(pash list | fzf -q "$@")" && return 0
 				fi
 				;;
 		esac
