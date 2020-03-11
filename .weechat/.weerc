@@ -1,5 +1,5 @@
 #
-# WeeChat 2.8-dev (compiled on Mar  5 2020 22:54:40)
+# WeeChat 2.8-dev (compiled on Mar  9 2020 07:40:08)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -35,6 +35,5 @@
 */set relay.weechat.commands "*,!exec,!upgrade,!quit"
 */set urlgrab.default.copycmd "wl-copy -n"
 */set urlgrab.default.localcmd "firefox-nightly '%s'"
-*/set urlgrab.default.url_log "null"
 */set script.look.sort "u"
 */set script.scripts.hold "mnotify.py"
