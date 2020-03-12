@@ -1,5 +1,5 @@
 # vim: set ft=conf
-browser "firefox-nightly %u &"
+browser "$BROWSER %u &"
 prepopulate-query-feeds yes
 bookmark-cmd "$XDG_DATA_DIR/newsboat/send-to-pocket.sh"
 bookmark-autopilot yes
@@ -51,17 +51,17 @@ ignore-article https://lwn.net/headlines/newrss "title =~ \"Security updates for
 ignore-article https://lwn.net/headlines/newrss "title =~ \"stable kernel\""
 
 # Macros
-macro y set browser "echo -n %u | wl-copy"; open-in-browser ; set browser "$BROWSER %u"
-macro p set browser "pockyt put -i %u"; open-in-browser ; set browser "$BROWSER %u"
+macro y set browser "echo -n %u | wl-copy"; open-in-browser ; set browser "$BROWSER %u &"
+macro p set browser "pockyt put -i %u"; open-in-browser ; set browser "$BROWSER %u &"
 # Downloading stuff
-macro Y set browser "ytdl-rss %u"; open-in-browser ; set browser "$BROWSER %u"
-macro m set browser "mpv %u"; open-in-browser ; set browser "$BROWSER %u"
+macro Y set browser "ytdl-rss %u"; open-in-browser ; set browser "$BROWSER %u &"
+macro m set browser "mpv %u"; open-in-browser ; set browser "$BROWSER %u &"
 podcast-auto-enqueue yes
-macro E set browser "echo %u >> $XDG_DATA_DIR/newsboat/queue" ; open-in-browser ; set browser "$BROWSER %u"
-macro w set browser "w3m -o display_image=false" ; open-in-browser ; set browser "$BROWSER %u"
-macro W set browser "w3m-sandbox-tor" ; open-in-browser ; set browser "$BROWSER %u"
-macro r set browser "tuir" ; open-in-browser ; set browser "$BROWSER %u"
-macro R set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u"
+macro E set browser "echo %u >> $XDG_DATA_DIR/newsboat/queue" ; open-in-browser ; set browser "$BROWSER %u &"
+macro w set browser "w3m -o display_image=false" ; open-in-browser ; set browser "$BROWSER %u &"
+macro W set browser "w3m-sandbox-tor" ; open-in-browser ; set browser "$BROWSER %u &"
+macro r set browser "tuir" ; open-in-browser ; set browser "$BROWSER %u &"
+macro R set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u &"
 
 # Podcast downloading
 download-path "~/Podcasts/%Y/%N"

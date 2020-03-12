@@ -16,22 +16,18 @@ flatpak_remote_add flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak_install flathub \
 	'app/net.minetest.Minetest/x86_64' \
 	'org.gtk.Gtk3theme.Breeze-Dark' \
-	'app/org.keepassxc.KeePassXC' \
 	'app/org.libreoffice.LibreOffice/x86_64/stable' \
 	'app/org.qbittorrent.qBittorrent' \
 	'app/org.zealdocs.Zeal' \
 	'app/website.i2pd.i2pd' \
-	'app/org.signal.Signal' \
-	'app/com.github.johnfactonum.Foliate'
+	'app/org.signal.Signal'
 
 flatpak_install flathub-beta \
 	'app/net.supertuxkart.SuperTuxKart/x86_64/beta' \
-	'app/com.github.quaternion/x86_64/beta'
+	'app/com.github.quaternion/x86_64/beta' \
+	'app/org.mozilla.firefox/x86_64/beta'
 
 flatpak_install gnome-apps-nightly org.Epiphpany.Devel
 
 flatpak_install kdeapps \
-	'app/org.kde.falkon/x86_64' \
-	'app/org.kde.okular/x86_64' \
-	'app/org.kde.konqueror/x86_64' \
-	'app/org.kde.filelight/x86_64'
+	'app/org.kde.falkon/x86_64'
