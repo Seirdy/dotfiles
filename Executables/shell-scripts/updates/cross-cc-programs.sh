@@ -137,6 +137,11 @@ ghq_get_cd https://github.com/mpv-player/mpv.git \
 		--confdir="$CONFIGPREFIX" \
 		--enable-libmpv-shared \
 		--enable-sdl2 \
+		--enable-wayland \
+		--enable-wayland-scanner \
+		--enable-wayland-protocols \
+		--enable-gl-wayland \
+		--enable-vaapi-wayland \
 		--enable-libarchive \
 		--enable-dvdnav \
 		--enable-cdda \
