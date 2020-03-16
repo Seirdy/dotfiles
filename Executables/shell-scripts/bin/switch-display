@@ -53,7 +53,8 @@ fi
 # Config directories
 kitty_confdir="$XDG_CONFIG_HOME/kitty"
 ff_confdir="$HOME/.mozilla/firefox/default-nightly"
-gtk_confdir="$XDG_CONFIG_HOME/gtk-3.0"
+gtk3_confdir="$XDG_CONFIG_HOME/gtk-3.0"
+gtk2_confdir="$XDG_CONFIG_HOME/gtk-2.0"
 termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
 alacritty_confdir="$XDG_CONFIG_HOME/alacritty"
 sway_confdir="$XDG_CONFIG_HOME/sway"
@@ -73,12 +74,19 @@ if [ -d "$ff_confdir" ]; then
 else
 	echo "Failed to find Firefox Nightly config in \"$ff_confdir\"; skipping."
 fi
-if [ -d "$gtk_confdir" ]; then
-	cd "$gtk_confdir" \
+if [ -d "$gtk3_confdir" ]; then
+	cd "$gtk3_confdir" \
 		&& cat ./settings_master.ini "./settings_$new_display.ini" >settings.ini \
 		&& echo "updated gtk3 settings"
 else
-	echo "Failed to find GTK3 config in \"$gtk_confdir\"; skipping."
+	echo "Failed to find GTK3 config in \"$gtk3_confdir\"; skipping."
+fi
+if [ -d "$gtk2_confdir" ]; then
+	cd "$gtk2_confdir" \
+		&& cat ./gtkrc_master "./gtkrc_$new_display" >gtkrc \
+		&& echo "updated gtk2 settings"
+else
+	echo "Failed to find GTK2 config in \"$gtk2_confdir\"; skipping."
 fi
 if [ -d "$termset_confdir" ]; then
 	cd "$termset_confdir" \
