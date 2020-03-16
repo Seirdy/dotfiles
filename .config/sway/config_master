@@ -118,7 +118,7 @@ input * {
 #
 # Program launching
 #
-	bindsym $mod+f exec org.mozilla.firefox --new-window
+	bindsym $mod+f exec firefox-nightly --new-window
 	bindsym $mod+shift+F exec org.kde.falkon
 
 	bindsym $mod+shift+R exec $term tuir
