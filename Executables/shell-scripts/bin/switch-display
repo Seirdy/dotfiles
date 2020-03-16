@@ -22,10 +22,12 @@ if [ "$new_display" = "mon" ]; then
 	sans_font="Source Sans Pro,12,-1,5,50,0,0,0,0,0,Regular"
 	mono_font="Hasklig, 12,-1,5,50,0,0,0,0,0,Regular"
 	small_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
+	gsettings set org.gnome.desktop.interface font-name 'Source Sans Pro 12'
 elif [ "$new_display" = "lap" ]; then
 	sans_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
 	mono_font="Hasklig, 10,-1,5,50,0,0,0,0,0,Regular"
 	small_font="Source Sans Pro,8,-1,5,50,0,0,0,0,0,Regular"
+	gsettings set org.gnome.desktop.interface font-name 'Source Sans Pro 10'
 else
 	echo "Error; please specify mon or lap"
 	exit 1
