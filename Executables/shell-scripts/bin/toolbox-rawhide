@@ -2,6 +2,6 @@
 
 # switch to rawhide; keep my $HOME but make the rest of the system (besides the kernel) Fedora Rawhide by entering a podman container.
 unset LC_ALL LANG
-toolbox run --release f32 "$(command -v zsh)"
+toolbox run --release f33 "$(command -v zsh)"
 # vi:ft=sh
 
