@@ -198,6 +198,7 @@ packages=(
 	"ostree-devel" # build runc, skopeo, and others
 	"p7zip"
 	"p7zip-plugins"
+	"pam-devel" # build sway
 	"papirus-icon-theme"
 	"patch"
 	"pavucontrol-qt"
@@ -216,6 +217,7 @@ packages=(
 	"pkgconfig(ffnvcodec)"
 	"pkgconfig(freerdp2)" # build sway (optional)
 	"pkgconfig(gbm)"
+	"pkgconfig(gdk-pixbuf-2.0)" # build sway
 	"pkgconfig(gl)"
 	"pkgconfig(jack)"
 	"pkgconfig(json-c)" # build newsboat
@@ -236,6 +238,7 @@ packages=(
 	"pkgconfig(libevent)" # build tmux
 	"pkgconfig(libguess)"
 	"pkgconfig(libjpeg)"
+	"pkgconfig(libpcre)" # build sway
 	"pkgconfig(libplacebo)"
 	"pkgconfig(libpulse)"
 	"pkgconfig(libquvi-0.9)"
@@ -246,6 +249,7 @@ packages=(
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(luajit)"
 	"pkgconfig(mujs)"
+	"pkgconfig(pango)" # build sway
 	"pkgconfig(rubberband)"
 	"pkgconfig(sdl2)"
 	"pkgconfig(smbclient)"
@@ -294,7 +298,7 @@ packages=(
 	"rust-std-static"
 	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
-	"sendemail" # TODO: get from git using zinit
+	"sendemail"            # TODO: get from git using zinit
 	"source-highlight"     # build weechat
 	"sqlitebrowser"
 	"sshfs" # mount another computer
