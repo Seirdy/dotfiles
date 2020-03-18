@@ -38,7 +38,7 @@ export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
 export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 export NVIM_GTK_PREFER_DARK_THEME=1
-export GIT_COLA_ICON_THEME="dark"
+export GIT_COLA_ICON_THEME='dark'
 export XCURSOR_THEME='Adwaita'
 export NNN_TMPFILE="$XDG_CACHE_HOME/nnn/lastd"
 export NNN_TRASH=1
@@ -205,9 +205,9 @@ if [ "$MACHINE" = 'Linux' ]; then
 	pathadd_head "$XDG_DATA_HOME/flatpak/exports/bin" # flatpak (user)
 	pathadd_tail '/var/lib/flatpak/exports/bin'       # flatpak (global)
 	if [ -z "$TMPDIR" ]; then
-		export TMPDIR="/tmp"
+		export TMPDIR='/tmp'
 	fi
-elif [ "$MACHINE" = "Darwin" ]; then
+elif [ "$MACHINE" = 'Darwin' ]; then
 	# override macOS defaults with up-to-date/familiar versions
 	pathadd_head '/usr/local/opt/ruby/bin'
 	pathadd_head '/usr/local/opt/unzip/bin'
@@ -242,7 +242,7 @@ export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
 # Preferred editor
-EDITOR=$(find_alt nvim vim vi nvi nano emacs)
+EDITOR="$(find_alt nvim vim vi nvi nano emacs)"
 export EDITOR
 
 # shellcheck disable=SC2154
