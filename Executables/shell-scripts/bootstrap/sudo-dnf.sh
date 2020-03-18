@@ -8,6 +8,7 @@ if ! grep max_parallel_downloads /etc/dnf/dnf.conf >/dev/null; then
 fi
 # Enable rpmfusion-free and copr
 dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
+dnf module enable sway:rolling
 # copr repos
 dnf copr enable eklitzke/watchman -y
 dnf copr enable petersen/stack -y
