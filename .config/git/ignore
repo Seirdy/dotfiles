@@ -46,6 +46,7 @@ __pycache__/
 
 # C extensions
 *.so
+.ccls-cache/
 
 # Distribution / packaging
 .Python
