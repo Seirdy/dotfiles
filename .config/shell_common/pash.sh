@@ -1,7 +1,7 @@
 #!/bin/sh
 mypash() {
 	case $1 in
-		g*)
+		g*) # pash git; run git commands on the pash dir
 			cd "${PASH_DIR:=${XDG_DATA_HOME:=$HOME/.local/share}/pash}" || echo 'could not cd to PASH_DIR' >&2
 			shift
 			git "$@"

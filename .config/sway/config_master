@@ -120,7 +120,6 @@ input * {
 #
 	bindsym $mod+f exec firefox-nightly --new-window
 	bindsym $mod+shift+F exec org.kde.falkon
-	bindsym $mod+shift+p exec keepassxc
 
 	bindsym $mod+shift+R exec $term tuir
 	bindsym $mod+p exec $term nvim
