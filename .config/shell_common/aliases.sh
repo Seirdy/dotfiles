@@ -10,6 +10,8 @@ alias ll='exa-fancy -l --time-style=long-iso'              # Better output than 
 alias lll='exa-fancy -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -A'
 alias lla='ll -a'
+alias lls='ll -s size'
+alias llas='lla -s size'
 alias llla='lll -a'
 alias sl='sl | lolcat'
 
