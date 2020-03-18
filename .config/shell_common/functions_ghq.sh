@@ -9,6 +9,7 @@ ghq_get_cd() {
 	ghq get -u "$1" \
 		&& cd "${GHQ_ROOT}/$trimmed_url" \
 		&& git stash \
+		&& git reset --hard origin/master \
 		&& git pull \
 		&& git submodule update --init --recursive --remote
 }
