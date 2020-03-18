@@ -34,7 +34,7 @@ history_stats() {
 	else
 		entries="$1"
 	fi
-	history 1 \
+	history -15000 \
 		| awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
 		| rg -v "./" \
 		| column -c3 -s " " -t \
