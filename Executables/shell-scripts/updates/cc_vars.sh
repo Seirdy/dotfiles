@@ -16,7 +16,7 @@ mkdir -p "$PREFIX" "$BINPREFIX" "$MANPREFIX" "$DATAPREFIX" "$SYSTEMD_UNIT_PATH"
 
 export LIBLDFLAGS='-z lazy'
 [ -z "$ARCH" ] && ARCH='native'
-export CFLAGS="-O3 -DNDEBUG -mcpu=$ARCH -mtune=$ARCH -march=$ARCH -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-command-line-argument -Wno-error=unused-parameter -Wno-error=unused-variable -Wno-error=unused-private-field"
+export CFLAGS="-O3 -DNDEBUG -mcpu=$ARCH -mtune=$ARCH -march=$ARCH -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-parameter -Wno-error=unused-variable"
 export LDFLAGS="$CFLAGS" # strip binaries
 export CXXFLAGS="$CFLAGS"
 export CPPFLAGS="$CFLAGS"

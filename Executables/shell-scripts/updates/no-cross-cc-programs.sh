@@ -13,7 +13,7 @@ ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
-	&& fancy_cmake ""
+	&& fancy_cmake
 
 # shellcheck disable=SC2154
 # icmake is required to build yodl, which is required to build rsync docs
