@@ -96,6 +96,7 @@ alias sub='tuir -s'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
+alias chtsh='cht.sh --auto' # prefer offline cheat.sh
 
 # mpd stuff
 # filename of current track
