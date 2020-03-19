@@ -8,6 +8,7 @@ if ! grep max_parallel_downloads /etc/dnf/dnf.conf >/dev/null; then
 fi
 # Enable rpmfusion-free and copr
 dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
+dnf module enable sway:rolling
 # copr repos
 dnf copr enable eklitzke/watchman -y
 dnf copr enable petersen/stack -y
@@ -179,25 +180,27 @@ packages=(
 	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
-	"mozilla-*-fonts"
-	"mpd"
-	"msgpack"       # build neovim
-	"msgpack-devel" # build neovim
-	"nasm"          # build mvtools
-	"ncdu"
-	"ncurses-devel" # build several packages inc. newsboat, tmux
-	"ninja-build"   # build tons of packages. Meson is installed using pipx.
-	"nmap"          # network exploration
-	"notmuch-devel" # build i3status-rs
-	"npm"
-	"nprokopov-fira-code-fonts"
-	"nvi"
+	"moreutils"                 # todo: get needed ones with zinit
+	"mozilla-*-fonts"           # muh fonts
+	"mpd"                       # best music player
+	"msgpack"                   # build neovim
+	"msgpack-devel"             # build neovim
+	"nasm"                      # build mvtools
+	"ncdu"                      # disk usage analyzer; mostly replaced by nnn -S
+	"ncurses-devel"             # build several packages inc. newsboat, tmux
+	"ninja-build"               # build tons of packages. Meson is installed using pipx.
+	"nmap"                      # network exploration
+	"notmuch-devel"             # build i3status-rs
+	"npm"                       # eww
+	"nprokopov-fira-code-fonts" # muh fonts
+	"nvi"                       # in case vi/vim wasn't minimal enough
 	"opam"
 	"openssl-devel"
 	"ostree"
 	"ostree-devel" # build runc, skopeo, and others
 	"p7zip"
 	"p7zip-plugins"
+	"pam-devel" # build sway
 	"papirus-icon-theme"
 	"patch"
 	"pavucontrol-qt"
@@ -216,6 +219,7 @@ packages=(
 	"pkgconfig(ffnvcodec)"
 	"pkgconfig(freerdp2)" # build sway (optional)
 	"pkgconfig(gbm)"
+	"pkgconfig(gdk-pixbuf-2.0)" # build sway
 	"pkgconfig(gl)"
 	"pkgconfig(jack)"
 	"pkgconfig(json-c)" # build newsboat
@@ -236,6 +240,7 @@ packages=(
 	"pkgconfig(libevent)" # build tmux
 	"pkgconfig(libguess)"
 	"pkgconfig(libjpeg)"
+	"pkgconfig(libpcre)" # build sway
 	"pkgconfig(libplacebo)"
 	"pkgconfig(libpulse)"
 	"pkgconfig(libquvi-0.9)"
@@ -246,6 +251,7 @@ packages=(
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(luajit)"
 	"pkgconfig(mujs)"
+	"pkgconfig(pango)" # build sway
 	"pkgconfig(rubberband)"
 	"pkgconfig(sdl2)"
 	"pkgconfig(smbclient)"
@@ -294,7 +300,7 @@ packages=(
 	"rust-std-static"
 	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
-	"sendemail" # TODO: get from git using zinit
+	"sendemail"            # TODO: get from git using zinit
 	"source-highlight"     # build weechat
 	"sqlitebrowser"
 	"sshfs" # mount another computer

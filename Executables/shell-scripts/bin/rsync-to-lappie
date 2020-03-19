@@ -7,8 +7,8 @@ cd || exit 1
 # Update binaries
 rsync -azuP ~/Executables/stack/bin rkumar@rkumarlappie:/home/rkumar/Executables/stack &
 # rsync -auP ~/.local/include rkumar@rkumarlappie:/home/rkumar/.local &
+rsync -azuP --exclude 'bin/alacritty' ~/Executables/lappie/Executables/cargo/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo &
 rsync -azuP ~/Executables/go/bin rkumar@rkumarlappie:/home/rkumar/Executables/go
-rsync -azuP --exclude 'bin/alacritty' ~/Executables/lappie/Executables/cargo/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo
 # rsync -auP ~/.local/man rkumar@rkumarlappie:/home/rkumar/.local
 rsync -azuP ~/.local/libexec/cni ~/.local/libexec/revokefs-fuse rkumar@rkumarlappie:/home/rkumar/.local
 rsync -azuP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/home/rkumar/.local

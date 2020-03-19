@@ -13,7 +13,7 @@ ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
 # j4-dmenu-desktop
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
-	&& fancy_cmake ""
+	&& fancy_cmake
 
 # shellcheck disable=SC2154
 # icmake is required to build yodl, which is required to build rsync docs
@@ -22,7 +22,8 @@ ghq_get_cd https://gitlab.com/fbb-git/icmake \
 	&& ./icm_prepare / \
 	&& ./icm_bootstrap x \
 	&& mkdir -p /tmp/icmake && ln -s "$PREFIX" /tmp/icmake/usr \
-	&& ./icm_install strip all /tmp/icmake
+	&& ./icm_install strip all /tmp/icmake \
+	&& rm /tmp/icmake/usr
 
 # yodl is required to build rsync docs
 ghq_get_cd https://gitlab.com/fbb-git/yodl \
@@ -51,7 +52,7 @@ build_libgit2() {
 			-DBUILD_SHARED_LIBS=OFF \
 			-DUSE_EXT_HTTP_PARSER=OFF \
 			-DZERO_NSEC=ON \
-			..
+		&& cmake --build .
 }
 
 build_gitstatus() {
@@ -59,9 +60,9 @@ build_gitstatus() {
 		&& cxxflags="$CXXFLAGS -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
 		&& ldflags="$LDFLAGS -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
 		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make \
-		&& strip gitstatusd \
+		&& strip usrbin/gitstatusd \
 		&& target="$BINPREFIX/gitstatusd" \
-		&& install -m 0755 gitstatusd "$target" \
+		&& install -m 0755 usrbin/gitstatusd "$target" \
 		&& echo "built: $target" >&2
 }
 
@@ -136,7 +137,9 @@ ghq_get_cd 'https://github.com/emersion/slurp.git' && simple_meson
 ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson
 # ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
 ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
-ghq_get_cd 'https://github.com/emersion/mako.git' && simple_meson
+ghq_get_cd 'https://github.com/emersion/mako.git' \
+	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false -Dsystemd=false -Dicons=enabled -Dsystemd=disabled \
+	&& sed -e "s#@bindir@#$BINPREFIX#g" -e '/^ExecCondition/d' contrib/systemd/mako.service.in >"$CONFIGPREFIX/systemd/user/mako.service"
 ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
 
 end_time=$(date '+%s')

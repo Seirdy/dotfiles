@@ -43,7 +43,7 @@ default_border pixel 3
 ### Autostart
 # exec ~/startup.sh
 # notifications
-exec mako
+# exec mako # handled by systemd now
 # overlay bar
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # idle config
