@@ -77,7 +77,7 @@ fi
 # Run and log in background
 log_bg() {
 	echo "Starting update: $1"
-	nohup "$script_dir/$1.sh" >"$log_dir/$1-$time_start.log" 2>&1 &
+	nohup "$script_dir/$1.sh" 2>&1 | ts '%m-%d %H:%M:%S' >"$log_dir/$1-$time_start.log" 2>&1 &
 }
 
 # used to compile binaries optimized for my laptop's CPU from my desktop
@@ -92,7 +92,7 @@ log_bg_lap() {
 		PREFIX="$HOME/Executables/lappie/.local" \
 		CONFIGPREFIX="$HOME/Executables/lappie/.config" \
 		GHQ_ROOT="$HOME/Executables/lappie/Executables/ghq" \
-		nohup "$script_dir/$1.sh" >"$log_dir/$1_lap-$time_start.log" 2>&1 &
+		nohup "$script_dir/$1.sh" 2>&1 | ts '%m-%d %H:%M:%S' >"$log_dir/$1_lap-$time_start.log" 2>&1 &
 }
 
 # Run and log in foreground (live-preview log file in interactive session)
@@ -100,7 +100,7 @@ log_bg_lap() {
 # a controlling tty for compilation.
 log_fg() {
 	echo && echo "Starting update: $1"
-	"$script_dir/$1.sh" | tee "$log_dir/$1-$time_start.log"
+	"$script_dir/$1.sh" 2>&1 | ts '%m-%d %H:%M:%S' | tee "$log_dir/$1-$time_start.log"
 }
 
 ###############
@@ -118,7 +118,7 @@ if [ -z "$litemode" ]; then
 	# rust: build normally. My desktop should also build binaries optimized for my laptop CPU in a separate directory
 	# see ~/.local/bin/rsync-to-lappie
 	log_bg 'cross-cc-programs' # compile several programs with gcc -O3 -mcpu
-	log_bg 'cargo' # rust packages (extremely cpu-heavy)
+	log_bg 'cargo'             # rust packages (extremely cpu-heavy)
 	if [ "$(hostname)" = 'rkumar-dekstop' ]; then
 		log_bg_lap 'cargo'
 		log_bg_lap 'cross-cc-programs'
@@ -133,8 +133,8 @@ if [ "$MACHINE" = 'Linux' ]; then
 		true
 	fi
 	log_bg 'no-cross-cc-programs' # compile several programs with gcc -O3 -mcpu
-	log_bg 'flatpak'           # repair and update user-installed flatpaks
-	log_fg 'dnf'               # system-wide update, autoremoval, and repo caching.
+	log_bg 'flatpak'              # repair and update user-installed flatpaks
+	log_fg 'dnf'                  # system-wide update, autoremoval, and repo caching.
 
 else
 	echo 'Unsupported machine for system package updates'
