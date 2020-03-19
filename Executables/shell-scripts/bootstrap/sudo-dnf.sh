@@ -180,19 +180,20 @@ packages=(
 	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
-	"mozilla-*-fonts"
-	"mpd"
-	"msgpack"       # build neovim
-	"msgpack-devel" # build neovim
-	"nasm"          # build mvtools
-	"ncdu"
-	"ncurses-devel" # build several packages inc. newsboat, tmux
-	"ninja-build"   # build tons of packages. Meson is installed using pipx.
-	"nmap"          # network exploration
-	"notmuch-devel" # build i3status-rs
-	"npm"
-	"nprokopov-fira-code-fonts"
-	"nvi"
+	"moreutils"                 # todo: get needed ones with zinit
+	"mozilla-*-fonts"           # muh fonts
+	"mpd"                       # best music player
+	"msgpack"                   # build neovim
+	"msgpack-devel"             # build neovim
+	"nasm"                      # build mvtools
+	"ncdu"                      # disk usage analyzer; mostly replaced by nnn -S
+	"ncurses-devel"             # build several packages inc. newsboat, tmux
+	"ninja-build"               # build tons of packages. Meson is installed using pipx.
+	"nmap"                      # network exploration
+	"notmuch-devel"             # build i3status-rs
+	"npm"                       # eww
+	"nprokopov-fira-code-fonts" # muh fonts
+	"nvi"                       # in case vi/vim wasn't minimal enough
 	"opam"
 	"openssl-devel"
 	"ostree"
