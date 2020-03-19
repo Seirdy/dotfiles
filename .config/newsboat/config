@@ -51,7 +51,7 @@ ignore-article https://lwn.net/headlines/newrss "title =~ \"Security updates for
 ignore-article https://lwn.net/headlines/newrss "title =~ \"stable kernel\""
 
 # Macros
-macro y set browser "echo -n %u | wl-copy"; open-in-browser ; set browser "$BROWSER %u &"
+macro y set browser "echo %u | wl-copy -n"; open-in-browser ; set browser "$BROWSER %u &"
 macro p set browser "pockyt put -i %u"; open-in-browser ; set browser "$BROWSER %u &"
 # Downloading stuff
 macro Y set browser "ytdl-rss %u"; open-in-browser ; set browser "$BROWSER %u &"
@@ -62,6 +62,9 @@ macro w set browser "w3m -o display_image=false" ; open-in-browser ; set browser
 macro W set browser "w3m-sandbox-tor" ; open-in-browser ; set browser "$BROWSER %u &"
 macro r set browser "tuir" ; open-in-browser ; set browser "$BROWSER %u &"
 macro R set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u &"
+# switch the browser to an image-viewing program for articles with lots of images
+macro i set browser "dl-open-bkg %u & >/dev/null 2>/dev/null"
+macro b set browser "$BROWSER %u &"
 
 # Podcast downloading
 download-path "~/Podcasts/%Y/%N"

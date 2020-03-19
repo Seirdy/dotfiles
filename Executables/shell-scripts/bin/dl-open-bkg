@@ -1,0 +1,7 @@
+#!/usr/bin/env dash
+
+# used in newsboat: opens a file without stdout/stderr
+
+nohup dl-open "$@" >/dev/null 2>&1 &
+
+# vi:ft=sh
