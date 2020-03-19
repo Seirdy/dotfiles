@@ -1,3 +1,0 @@
-#!/usr/bin/env dash
-"$HOME/.local/bin/flatpak" --user "$@"
-# vi:ft=sh
