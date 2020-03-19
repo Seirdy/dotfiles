@@ -1,5 +1,9 @@
 // disable auto connections for updates, since I handle updates outside the browser
 user_pref("app.update.url", "");
+user_pref("widget.wayland-dmabuf-vaapi.enabled", true);
+user_pref("widget.wayland_vsync.enabled", true);
+user_pref("widget.wayland-dmabuf-basic-compositor.enabled", true);
+user_pref("widget.wayland-dmabuf-textures.enabled", true);
 user_pref("app.update.url.manual", "");
 user_pref("app.update.enabled", false);
 user_pref("app.update.auto", false);

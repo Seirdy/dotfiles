@@ -177,7 +177,7 @@ zinit snippet https://github.com/tj/git-extras/blob/master/etc/git-extras-comple
 # Completions #
 ###############
 
-fzf-based tab-completion. Load after all other completion plugins
+# fzf-based tab-completion. Load after all other completion plugins
 z_lucid wait'1'
 zinit light Aloxaf/fzf-tab
 

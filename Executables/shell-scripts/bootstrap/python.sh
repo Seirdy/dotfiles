@@ -20,7 +20,6 @@ pipx install git+https://github.com/arvindch/pockyt.git &
 pipx install git+https://github.com/containers/podman-compose.git &
 pipx install git+https://github.com/shanedabes/poku.git &
 pipx install proselint &
-pipx install git+https://github.com/prompt-toolkit/ptpython.git &
 pipx install pydiatra &
 pipx install pydocstyle &
 pipx install pygments &
@@ -48,6 +47,7 @@ pipx install yamllint
 pipx install git+https://github.com/ytdl-org/youtube-dl.git
 pipx install mercurial
 pipx install meson # build system for lots of stuff
+pipx install --system-site-packages git+https://github.com/prompt-toolkit/ptpython.git &
 pipx install --system-site-packages 'python-language-server[all]'
 pipx install --system-site-packages --include-deps 'git+https://github.com/prompt-toolkit/ptpython.git#egg=ptpython[ptipython]'
 pipx install --system-site-packages 'git+https://github.com/roddhjav/pass-import#egg=pass-import[keepass]'
