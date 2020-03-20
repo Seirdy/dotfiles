@@ -1,0 +1,29 @@
+#!/usr/bin/env dash
+
+# lsbin <DIR> lists ELF binaries in a directory, sorted by date modified.
+# useful for debugging my update-all scripts to make sure compilation occured.
+# <DIR> defaults to $HOME/.local/bin if no args are provided.
+
+# binls will list all ELF binaries in $PWD
+binls() {
+	fd -uu -t x -E 'zsh\.old' -E 'zsh-[0-9].*' -X file '{}' | rg -e 'ELF ' \
+		| sd ':\s*ELF .*$(\n)?' ' '
+}
+
+if [ -n "$1" ]; then
+	bindir="$1"
+else
+	bindir="$HOME/.local/bin"
+fi
+
+
+# ls the ELF binaries, sorted by date modified (reverse).
+# Display only these fields:
+# - human-readable size
+# - modification date
+# - filename
+cd "$bindir" \
+	&& LC_TIME=en_DK.UTF-8 ls -hort --time-style=+'%m-%d %H:%M:%S' $(binls) \
+	| cut -d' ' -f 4-
+
+# vi:ft=sh
