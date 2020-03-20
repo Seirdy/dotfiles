@@ -1,5 +1,5 @@
 #
-# WeeChat 2.8-dev (compiled on Mar 15 2020 18:57:35)
+# WeeChat 2.8-dev (compiled on Mar 18 2020 09:09:53)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -29,6 +29,7 @@
 */set buflist.look.display_conditions "${buffer.hidden}==0 && (${buffer.hotlist.priority}!=0 || ${type}==server || ${current_buffer} || ${buffer.full_name}=~(core.weechat|perl.highmon|fset|urlgrab|scripts))"
 */set buflist.format.indent "${color:237}${if:${buffer.next_buffer.local_variables.type}=~^(channel|private)$?├─:└─}"
 */set irc.look.server_buffer independent
+*/set irc.server_default.autoconnect on
 */set irc.server_default.capabilities "account-notify,away-notify,capa-notify,extended-join,multi-prefix,server-time,userhost-in-names"
 */set irc.server_default.msg_part "👋 (WeeChat ${info:version})"
 */set irc.server_default.msg_quit "exiting ${info:version}"
@@ -37,3 +38,5 @@
 */set urlgrab.default.localcmd "firefox-nightly '%s'"
 */set script.look.sort "u"
 */set script.scripts.hold "mnotify.py"
+*/set matrix.server.matrix_org.address "matrix.org"
+*/set matrix.server.matrix_org.autoconnect on
