@@ -13,7 +13,7 @@ export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 
 cargo_update() {
 	# shellcheck disable=SC2086
-	$CARGO_HOME/bin/cargo --color always install-update "$@"
+	$CARGO_HOME/bin/cargo +nightly --color always install-update "$@"
 }
 
 # Flags for building static binaries/libs with fat LTO optimization
