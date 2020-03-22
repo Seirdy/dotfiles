@@ -88,6 +88,7 @@ Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'cespare/vim-toml'
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
+Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
