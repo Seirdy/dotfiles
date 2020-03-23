@@ -1,0 +1,3 @@
+#!/usr/bin/env dash
+flatpak run --env=QT_STYLE_OVERRIDE=Breeze org.qbittorrent.qBittorrent
+# vi:ft=sh
