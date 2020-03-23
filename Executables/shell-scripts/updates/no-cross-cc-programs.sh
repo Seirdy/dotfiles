@@ -68,6 +68,11 @@ build_gitstatus() {
 
 build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
 
+# flatpak
+ghq_get_cd https://github.com/flatpak/flatpak \
+	&& ./autogen.sh \
+	&& configure_install --with-system-bubblewrap --with-system-dbus-proxy
+
 ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
 	&& ./autogen.sh \
 	&& configure_install \

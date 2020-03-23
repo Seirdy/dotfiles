@@ -34,11 +34,6 @@ ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& install -m 0755 ./bwrap "$BINPREFIX/bwrap" \
 	&& install -m 0644 bwrap.1 "$MANPREFIX/man1"
 
-# flatpak
-ghq_get_cd https://github.com/flatpak/flatpak \
-	&& ./autogen.sh \
-	&& configure_install --with-system-bubblewrap --with-system-dbus-proxy
-
 # weechat
 ghq_get_cd https://github.com/weechat/weechat.git \
 	&& fancy_cmake \
