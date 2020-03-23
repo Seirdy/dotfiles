@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2154
+root_dir="$GHQ_ROOT/github.com/Xonshiz/comic-dl"
+# trap deactivate EXIT
+
+[ -d "$root_dir" ] || ghq get -u https://github.com/Xonshiz/comic-dl.git
+[ -d "$root_dir/venv" ] || {
+	virtualenv "$root_dir/venv"
+	# shellcheck source=/dev/null
+	. "$root_dir/venv/bin/activate"
+	python -m pip install -Ur "$root_dir/requirements.txt"
+}
+# shellcheck source=/dev/null
+. "$root_dir/venv/bin/activate"
+"$root_dir/venv/bin/python" comic_dl/__main__.py "$@"
+
+# vi:ft=sh
