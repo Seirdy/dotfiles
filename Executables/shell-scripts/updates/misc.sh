@@ -35,12 +35,14 @@ ghq get -u https://github.com/tomoe-mami/weechat-scripts.git
 ghq get -u https://github.com/Dudemanguy/mpv-manga-reader.git
 ghq get -u https://github.com/bjin/mpv-prescalers.git
 ghq get -u https://github.com/bloc97/Anime4K.git
-ghq_get_cd https://github.com/classicjazz/mpv-config.git
+ghq get -u https://github.com/classicjazz/mpv-config.git
+ghq get -u https://github.com/jgreco/mpv-youtube-quality.git
 # weechat scripts
 ghq get -u https://github.com/keith/edit-weechat.git
 ghq get -u https://github.com/s3rvac/weechat-notify-send.git
 # clerk.pl symlinked to ~/.local/bin/clerk
-ghq get -u https://github.com/carnager/clerk.git
+ghq get -u https://github.com/carnager/clerk.git \
+	&& cpanm --installdeps "$GHQ_ROOT/github.com/carnager/clerk"
 # I use this repo's "cantata-dynamic" perl script to generate playlists
 ghq get -u https://github.com/CDrummond/cantata.git
 

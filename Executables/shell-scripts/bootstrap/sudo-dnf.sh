@@ -31,7 +31,6 @@ packages=(
 	"adobe-*-fonts"
 	"alsa-lib-devel" # build cava
 	"appmenu-qt5"
-	"aria2"
 	"asciidoc"
 	"asciidoctor"      # build weechat
 	"autoconf"         # build many things
@@ -84,7 +83,8 @@ packages=(
 	"freeimage-devel" # build imv
 	"freetype"
 	"freetype-devel"
-	"fuse-devel" # build flatpak
+	"fuse-devel"           # build flatpak
+	"game-music-emu-devel" # build ffmpeg
 	"gcc"
 	"gcc-c++"
 	"gcc-gdb-plugin"
@@ -112,6 +112,7 @@ packages=(
 	"gperf"            # build neovim
 	"gperftools-devel" # build i3status-rs
 	"gpgme-devel"      # building skopeo and others
+	"gsm-devel"        # build ffmpeg
 	"gtk-doc"          # building flatpak
 	"gtk3-devel"
 	"guile-devel"    # build weechat
@@ -123,6 +124,7 @@ packages=(
 	"hunspell-en"
 	"hwinfo"
 	"icu"             # build imv
+	"ilibc-devel"     # build ffmpeg
 	"iniparser-devel" # build cava
 	"intltool"        # build redshift
 	"iptables"        # networking setup
@@ -131,22 +133,29 @@ packages=(
 	"jq"
 	"json-glib-devel" # build flatpak
 	"keepassxc"       # password manager until I migrate to `pass`
+	"ladspa-devel"    # build ffmpeg
+	"lame-devel"      # build ffmpeg
 	"latexmk"
 	"libXi-devel"
 	"libXinerama-devel"
 	"libXrandr-devel"
 	"libXxf86vm-devel"
+	"libaom-devel"            # build ffmpeg
 	"libappstream-glib-devel" # build flatpak
 	"libarchive-devel"        # build flatpak
 	"libassuan-devel"         # building skopeo and others
+	"libavc1394-devel"        # build ffmpeg
+	"libbs2b-devel"           # build ffmpeg
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
+	"libdav1d-devel"      # build ffmpeg
 	"libdrm-devel"        # build redshift
 	"libdwarf-devel"      # build flatpak-builder
 	"libevdev-devel"      # build sway
 	"libgcrypt-devel"     # build weechat
 	"libjpeg-turbo-devel" # build grim
 	"libmatthew-java"     # dep for signal-cli
+	"libmodplug-devel"    # build ffmpeg
 	"libmpdclient-devel"  # build ncmpcpp and other mpd-related stuff
 	"libpng-devel"        # build imv, kitty, and others
 	"librsvg2-devel"      # build imv
@@ -180,6 +189,7 @@ packages=(
 	"lvm2" # handles logical volumes, useful for building containers
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
+	"mesa-libOpenCL"            # build Waifu2x-converter-cpp, ffmpeg
 	"moreutils"                 # todo: get needed ones with zinit
 	"mozilla-*-fonts"           # muh fonts
 	"mpd"                       # best music player
@@ -194,7 +204,11 @@ packages=(
 	"npm"                       # eww
 	"nprokopov-fira-code-fonts" # muh fonts
 	"nvi"                       # in case vi/vim wasn't minimal enough
+	"ocl-icd-devel"             # build Waifu2x-converter-cpp, ffmpeg
 	"opam"
+	"openal-soft-devel" # build ffmpeg
+	"opencl-devel"      # build Waifu2x-converter-cpp, ffmpeg
+	"opencl-headers"    # build ffmpeg
 	"openssl-devel"
 	"ostree"
 	"ostree-devel" # build runc, skopeo, and others
@@ -210,56 +224,70 @@ packages=(
 	"perl(Math::BigRat)"  # build mpv
 	"perl-ExtUtils-Embed" # build weechat and others
 	"perl-devel"          # build weechat
-	"pkgconfig"
-	"pkgconfig(alsa)" # build mpv
+	"pkgconfig"           # build tons of stuff
+	"pkgconfig(alsa)"     # build mpv
 	"pkgconfig(caca)"
-	"pkgconfig(dvdnav)"
 	"pkgconfig(egl)"
 	"pkgconfig(enca)"
 	"pkgconfig(ffnvcodec)"
 	"pkgconfig(freerdp2)" # build sway (optional)
+	"pkgconfig(frei0r)"   # build ffmpeg
 	"pkgconfig(gbm)"
 	"pkgconfig(gdk-pixbuf-2.0)" # build sway
 	"pkgconfig(gl)"
-	"pkgconfig(jack)"
+	"pkgconfig(jack)"   # build ffmpeg
 	"pkgconfig(json-c)" # build newsboat
 	"pkgconfig(lcms2)"
-	"pkgconfig(libarchive)"
-	"pkgconfig(libass)"
+	"pkgconfig(libarchive)" # build mpv and others
+	"pkgconfig(libass)"     # build ffmpeg
 	"pkgconfig(libavcodec)"
 	"pkgconfig(libavfilter)"
 	"pkgconfig(libavformat)"
 	"pkgconfig(libavutil)"
-	"pkgconfig(libbluray)"
-	"pkgconfig(libcares)" # build aria2 (enables async DNS resolving or something)
-	"pkgconfig(libcdio)"
-	"pkgconfig(libcdio_paranoia)"
-	"pkgconfig(libcrypto)" # build newsboat
-	"pkgconfig(libcurl)"   # build newsboat, weechat
-	"pkgconfig(libdrm)"
-	"pkgconfig(libevent)" # build tmux
+	"pkgconfig(libcares)"         # build aria2 (enables async DNS resolving or something)
+	"pkgconfig(libcdio)"          # build ffmpeg
+	"pkgconfig(libcdio_paranoia)" # build ffmpeg
+	"pkgconfig(libcrypto)"        # build newsboat
+	"pkgconfig(libcurl)"          # build newsboat, weechat
+	"pkgconfig(libdrm)"           # build ffmpeg
+	"pkgconfig(libevent)"         # build tmux
 	"pkgconfig(libguess)"
 	"pkgconfig(libjpeg)"
-	"pkgconfig(libpcre)" # build sway
+	"pkgconfig(libmfx)"     # build ffmpeg
+	"pkgconfig(libopenjp2)" # build ffmpeg
+	"pkgconfig(libpcre)"    # build sway
 	"pkgconfig(libplacebo)"
 	"pkgconfig(libpulse)"
 	"pkgconfig(libquvi-0.9)"
+	"pkgconfig(libssh)"  # build ffmpeg
 	"pkgconfig(libssh2)" # build aria2 (enables SFTP support)
 	"pkgconfig(libswresample)"
 	"pkgconfig(libswscale)"
+	"pkgconfig(libv4l2)" # build ffmpeg
 	"pkgconfig(libva)"
+	"pkgconfig(libvmaf)"    # build ffmpeg
+	"pkgconfig(libwebp)"    # build ffmpeg
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(luajit)"
 	"pkgconfig(mujs)"
-	"pkgconfig(pango)" # build sway
-	"pkgconfig(rubberband)"
+	"pkgconfig(opencv)"     # build Waifu2x-converter-cpp, ffmpeg
+	"pkgconfig(opus)"       # build ffmpeg
+	"pkgconfig(pango)"      # build sway
+	"pkgconfig(rubberband)" # build mpv
 	"pkgconfig(sdl2)"
 	"pkgconfig(smbclient)"
+	"pkgconfig(soxr)"
+	"pkgconfig(speex)"
 	"pkgconfig(sqlite3)" # build newsboat
 	"pkgconfig(stfl)"    # build newsboat
+	"pkgconfig(theora)"  # build ffmpeg
+	"pkgconfig(twolame)" # build ffmpeg
 	"pkgconfig(uchardet)"
 	"pkgconfig(vdpau)"
+	"pkgconfig(vidstab)" # build ffmpeg
+	"pkgconfig(vorbis)"
 	"pkgconfig(vulkan)"
+	"pkgconfig(wavpack)" # build ffmpeg
 	"pkgconfig(wayland-client)"
 	"pkgconfig(wayland-cursor)"
 	"pkgconfig(wayland-egl)"
@@ -267,6 +295,8 @@ packages=(
 	"pkgconfig(wayland-scanner)"
 	"pkgconfig(winpr2)" # build sway (optional)
 	"pkgconfig(x11)"
+	"pkgconfig(x264)"       # build ffmpeg. From rpmfusion-free
+	"pkgconfig(x265)"       # build ffmpeg. From rpmfusion-free
 	"pkgconfig(xcb-errors)" # build sway (optional)
 	"pkgconfig(xcb-icccm)"  # build sway (optional)
 	"pkgconfig(xext)"
@@ -275,8 +305,9 @@ packages=(
 	"pkgconfig(xrandr)"
 	"pkgconfig(xscrnsaver)"
 	"pkgconfig(xv)"
-	"pkgconfig(zimg)"
-	"pkgconfig(zlib)"
+	"pkgconfig(zimg)"      # build ffmpeg and others
+	"pkgconfig(zlib)"      # build ffmpeg and others
+	"pkgconfig(zvbi-0.2)"  # build ffmpeg
 	"plasma-breeze"        # preferred qt5 theme
 	"plasma-breeze-common" # preferred qt5 theme
 	"polkit-devel"         # build flatpak
@@ -358,11 +389,13 @@ packages=(
 	"xmlto"                    # build many programs that use XML, inc. Flatpak
 	"xorg-x11-server-Xwayland" # xwayland, for running X apps in Wayland (sway)
 	"xsel"                     # Yank tool; used by yank-cli
+	"xvidcore-devel"           # build ffmpeg. From rpmfusion-free
 	"yajl-devel"               # building crun
 	"yank"                     # Good yank tool; works with xsel
 	"zathura"
 	"zathura-plugins-all"
 	"zathura-zsh-completion"
+	"zeromq-devel" # build ffmpeg
 	"zip"
 	"zlib-devel" # build weechat and others
 	"zsh"

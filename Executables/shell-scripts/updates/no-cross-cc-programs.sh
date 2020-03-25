@@ -109,6 +109,10 @@ ghq_get_cd https://github.com/neovim/neovim.git \
 	&& luarocks build --local inspect \
 	&& fancy_cmake -DUSE_BUNDLED=OFF -DENABLE_LTO=ON
 
+# waifu2x-converter-cpp
+ghq_get_cd https://github.com/DeadSix27/waifu2x-converter-cpp.git \
+	&& fancy_cmake -DINSTALL_MODELS=true
+
 # imv
 ghq_get_cd https://github.com/eXeC64/imv.git \
 	&& meson builddir/ \

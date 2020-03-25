@@ -1,0 +1,1 @@
+/home/rkumar/Executables/ghq/github.com/jgreco/mpv-youtube-quality/youtube-quality.lua
