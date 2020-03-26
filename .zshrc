@@ -93,6 +93,7 @@ function fancy_ctrl_z() {
 		zle clear-screen
 	fi
 }
+bindkey ' ' magic-space # history expansion
 zle -N fancy_ctrl_z
 bindkey '^Z' fancy_ctrl_z
 autoload edit-command-line
