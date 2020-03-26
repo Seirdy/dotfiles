@@ -111,11 +111,6 @@ alias now-playing='mpc status && now-playing-rating'
 alias rate-track='mpc-sticker set rating'
 # skip current track and show rating of the next one.
 alias skip-show='mpc next && now-playing-rating'
-# shellcheck disable=SC2142 # this alias contains a function
-alias rtsv='_rtsv() {
-	rate-track "$1"
-	{ now-playing } >> "$HOME/Documents/Notes/Top Lists/music.txt" 2>&1
-}; _rtsv'
 
 # $EDITOR aliases
 # shellcheck disable=SC2154
