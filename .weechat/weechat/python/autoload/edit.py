@@ -1,1 +1,0 @@
-/home/rkumar/Executables/ghq/github.com/keith/edit-weechat/edit.py

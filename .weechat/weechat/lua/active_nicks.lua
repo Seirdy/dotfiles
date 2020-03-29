@@ -1,1 +1,0 @@
-/home/rkumar/Executables/ghq/github.com/tomoe-mami/weechat-scripts/active_nicks/active_nicks.lua
