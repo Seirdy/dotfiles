@@ -130,6 +130,7 @@ ghq_get_cd git@git.sr.ht:~seirdy/zsh-bin \
 	&& dash ./build -d podman -g latest || echo 'done'
 tar -xzf ./zsh-*-linux-x86_64.tar.gz \
 	&& outdir="$(echo zsh-*-linux-x86_64)" \
+	&& mkdir -p "$EXECUTABLES/zsh-bin/bin" \
 	&& install -m 0755 "$outdir/bin/zsh" "$EXECUTABLES/zsh-bin/bin/zsh" \
 	&& cp -r "$outdir/share" "$EXECUTABLES/zsh-bin/" \
 	&& version="${outdir#*-}" && version="${version%-l*}" \

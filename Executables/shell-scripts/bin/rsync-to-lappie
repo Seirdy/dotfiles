@@ -16,5 +16,9 @@ rsync -azuP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/hom
 rsync -azuP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -auP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -azuP ~/.local/bin/fuse-overlayfs ~/.local/bin/fusermount3 rkumar@rkumarlappie:/home/rkumar/.local/bin
-rsync -azuP ~/Executables/lappie/.config ~/Executables/lappie/.local  rkumar@rkumarlappie:/home/rkumar
+rsync -azuP ~/Executables/lappie/.config ~/Executables/lappie/.local rkumar@rkumarlappie:/home/rkumar
+zsh_bin_path=~/Executables/lappie/Executables/zsh-bin
+zsh_version="$("$zsh_bin_path/bin/zsh" --version | awk '{print $2}')"
+rsync -azuP ~/Executables/lappie/Executables/zsh-bin rkumar@rkumarlappie:/home/rkumar/Executables/
+ssh rkumar@rkumarlappie "/home/rkumar/Executables/zsh-bin/share/zsh/$zsh_version/scripts/relocate"
 # vi:ft=sh
