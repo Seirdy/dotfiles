@@ -17,7 +17,7 @@ export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 
 module_path+=("$ZPLG_HOME/bin/zmodules/Src")
 module_path+=("$ZPLG_HOME/mod-bin/zmodules/Src")
-zmodload zdharma/zplugin
+# zmodload zdharma/zplugin # used for studying time spent sourcing files
 
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile

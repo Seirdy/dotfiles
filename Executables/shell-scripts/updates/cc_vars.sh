@@ -16,6 +16,13 @@ mkdir -p "$PREFIX" "$BINPREFIX" "$MANPREFIX" "$DATAPREFIX" "$SYSTEMD_UNIT_PATH"
 
 export LIBLDFLAGS='-z lazy'
 [ -z "$ARCH" ] && ARCH='native'
+
+# shellcheck disable=SC2154
+if [ "$CROSS_COMPILING" = 1 ]; then
+	export EXECUTABLES="$HOME/Executables/lappie/Executables"
+else
+	export EXECUTABLES="$HOME/Executables"
+fi
 export CFLAGS="-O3 -DNDEBUG -mcpu=$ARCH -mtune=$ARCH -march=$ARCH -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-parameter -Wno-error=unused-variable"
 export LDFLAGS="$CFLAGS" # strip binaries
 export CXXFLAGS="$CFLAGS"
@@ -29,7 +36,7 @@ export CFLAGS_LTO="$CFLAGS -flto -fuse-linker-plugin"
 # For builds using Clang instead of GCC, I replace C(XX)FLAGS with CLANGFLAGS
 CLANGFLAGS=$(echo "$CXXFLAGS -fuse-ld=lld -L. -Wno-error=unused-command-line-argument -Wno-error=unused-parameter -Wno-error=unused-variable -Wno-error=unused-private-field" | sed 's/ -fstack-clash-protection//g')
 export CLANGFLAGS
-export CLANGFLAGS_LTO="$CLANGFLAGS -flto"
+export CLANGFLAGS_LTO="$CLANGFLAGS -flto -fuse-linker-plugin"
 export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO"
 
 export GOFLAGS='-ldflags=-s -ldflags=-w'

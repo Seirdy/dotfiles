@@ -81,26 +81,12 @@ ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
 
 # projectM visualizer
 ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
-	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio
+	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio --enable-qt --enable-gles --enable-preset-subdirs
 
 export CFLAGS="$CFLAGS_LTO" \
 	LDFLAGS="$CFLAGS_LTO" \
 	CXXFLAGS="$CFLAGS_LTO" \
 	CPPFLAGS="$CFLAGS_LTO"
-
-
-# zsh
-# install-strip always fails at the last step, but the important steps succeed
-export zsh_cv_sys_nis=no
-ghq_get_cd git://git.code.sf.net/p/zsh/code \
-	&& autoreconf -fi \
-	&& sed -e 's|^\.NOTPARALLEL|#.NOTPARALLEL|' -i 'Config/defs.mk.in' \
-	&& ./Util/preconfig \
-	&& fancy_configure --with-tcsetpgrp --enable-maildir-support --enable-pcre \
-	&& make -C Src headers \
-	&& make -C Src -f Makemod zshpaths.h zshxmods.h version.h \
-	&& make \
-	&& make install-strip
 
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \

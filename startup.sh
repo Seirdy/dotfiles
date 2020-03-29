@@ -150,11 +150,13 @@ manpathadd_head() {
 }
 manpathadd_head "/usr/share/man"
 manpathadd_head "/usr/local/share/man"
-manpathadd_head "$HOME/.local/man"
-manpathadd_head "$HOME/.local/share/man"
 manpathadd_head "$NPM_PACKAGES/share/man"
 manpathadd_head "$OPAM_SWITCH_PREFIX/man"
 MANPATH="$PIPX_HOME/venvs/*/share/man:$PIPX_HOME/venvs/*/man:$MANPATH"
+manpathadd_head "$PERL_LOCAL_LIB_ROOT/man"
+manpathadd_head "$HOME/Executables/zsh-bin/share/man"
+manpathadd_head "$HOME/.local/man"
+manpathadd_head "$HOME/.local/share/man"
 export MANPATH
 export INFOPATH="/usr/local/share/info:$INFOPATH"
 # Set PATH
@@ -186,6 +188,7 @@ pathadd_head "$GOPATH/sdk/gotip/bin"               # golang nightly build
 pathadd_head "$STACK_ROOT/bin"                     # stack (haskell)
 pathadd_head "$OPAM_SWITCH_PREFIX/bin"             # opam
 pathadd_head "$CARGO_HOME/bin"                     # cargo (rust)
+pathadd_head "$HOME/Executables/zsh-bin/bin"       # static portable zsh
 pathadd_head "$HOME/.local/bin"                    # local bin
 pathadd_head "$HOME/Executables/shell-scripts/bin" # my shell scripts
 

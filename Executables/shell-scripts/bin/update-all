@@ -79,6 +79,11 @@ log_bg() {
 	echo "Starting update: $1"
 	nohup "$script_dir/$1.sh" 2>&1 | ts '%m-%d %H:%M:%S' >"$log_dir/$1-$time_start.log" 2>&1 &
 }
+get_arch() {
+	gcc -c -Q -march=native --help=target | grep -E '^(\s*)?-march=' | awk '{print $2}'
+}
+ARCH="$(get_arch)"
+export ARCH
 
 # used to compile binaries optimized for my laptop's CPU from my desktop
 # installs files to ~/Executables/lappie instead of $HOME so I can rsync
