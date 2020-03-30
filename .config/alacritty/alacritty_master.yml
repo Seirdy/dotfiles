@@ -13,21 +13,6 @@
   #TERM: xterm-256color
 
 window:
-  # Window dimensions (changes require restart)
-  #
-  # Specified in number of columns/lines, not pixels.
-  # If both are `0`, this setting is ignored.
-  dimensions:
-    columns: 0
-    lines: 0
-
-  # Window position (changes require restart)
-  #
-  # Specified in number of pixels.
-  # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
 
   # Window padding (changes require restart)
   #
@@ -148,7 +133,7 @@ colors:
   #   `- { index: 16, color: '0xff00ff' }`
   #
   indexed_colors:
-    - { index: 16, color: '0x232629' }
+    - {index: 16, color: '0x232629'}
 
 # Visual Bell
 #
@@ -198,7 +183,7 @@ background_opacity: 0.93
 # All available `mods` and `action` values are documented in the key binding
 # section.
 mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+  - {mouse: Middle, action: PasteSelection}
 
 mouse:
   # Click settings
@@ -206,8 +191,8 @@ mouse:
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
+  double_click: {threshold: 300}
+  triple_click: {threshold: 300}
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
@@ -281,7 +266,7 @@ shell:
 #
 # Alacritty will fall back to the WinPTY automatically if the ConPTY
 # backend cannot be initialized.
-enable_experimental_conpty_backend: false
+# enable_experimental_conpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true
