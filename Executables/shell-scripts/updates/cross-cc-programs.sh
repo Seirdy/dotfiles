@@ -70,6 +70,10 @@ export CFLAGS="$CFLAGS_LTO" \
 
 cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 	&& dash ./scripts/mpv-config && dash ./scripts/mpv-build && dash ./install
+
+# czmod, used by z.lua for a speedup
+ghq_get_cd 'https://github.com/skywind3000/czmod.git' && ./build.sh
+
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& meson build-release --buildtype release --prefix "$PREFIX" \

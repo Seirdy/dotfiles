@@ -34,42 +34,25 @@ HISTSIZE=99999
 # shellcheck disable=SC2034
 SAVEHIST=90000
 ## History command configuration
-# record timestamp of command in HISTFILE
-setopt extended_history
+setopt extended_history # record timestamp of command in HISTFILE
 # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_expire_dups_first
-# Don't add duplicate entries
-setopt hist_ignore_dups
-# ignore commands that start with space
-setopt hist_ignore_space
+setopt hist_ignore_dups # Don't add duplicate entries
+setopt hist_ignore_space # ignore commands that start with space
 # show command with history expansion to user before running it
 setopt hist_verify
-# add commands to HISTFILE in order of execution
-setopt inc_append_history
-# share command history data
-setopt share_history
-# don't display duplicates in reverse search
-setopt hist_find_no_dups
-# remove superfluous blanks
-setopt hist_reduce_blanks
-# Don't autocorrect when thefuck does it better.
-unsetopt correct_all
-# Muh globbing
-setopt extended_glob
-setopt equals
-# Expansion
-setopt prompt_subst
-# Comments in the interactive shell; useful for copy-pasting
-setopt interactivecomments
-# Send CONT signal automatically when disowning jobs
-setopt auto_continue
+setopt inc_append_history # add commands to HISTFILE in order of execution
+setopt share_history # share command history data
+setopt hist_find_no_dups # don't display duplicates in reverse search
+setopt hist_reduce_blanks # remove superfluous blanks
+unsetopt correct_all # Don't autocorrect when thefuck does it better.
+setopt extended_glob # Muh globbing
+setopt equals # use "=" to point to the path of an executable
+setopt prompt_subst # Expansion
+setopt interactivecomments # Comments in the interactive shell
+setopt auto_continue # Send CONT signal automatically when disowning jobs
 setopt pushd_ignore_dups
-
-# Compilation flags
-export ARCHFLAGS='-arch x86_64'
-
-export _ZL_MATCH_MODE=1
-export _ZL_ECHO=1
+setopt auto_param_slash
 
 # Completion prefs
 # Completion initialization happens asynchrously when loading plugins.
@@ -82,7 +65,7 @@ function _z() {
 	_zlua "$@";
 }
 export _ZL_MATCH_MODE=1
-
+export _ZL_ECHO=1
 # bind C-Z to "fg", so the same keybind suspends and resumes.
 function fancy_ctrl_z() {
 	if [[ $#BUFFER -eq 0 ]]; then

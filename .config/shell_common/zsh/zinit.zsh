@@ -31,13 +31,16 @@ zi0c() {
 ###########
 
 # My fancy prompt needs at least 256 colors, preferably 24bit color
-if [ "${terminfo[colors]:?}" -gt 255 ] || echo "$TERM" | grep '256c' >/dev/null; then
+if echo "$TERM" | grep '256c' >/dev/null || [ "${terminfo[colors]:?}" -gt 255 ]; then
 	z_lucid depth=1
 	zinit light romkatv/powerlevel10k
 fi
 
-zi0b proto'git'
+zi0a
 zinit light skywind3000/z.lua
+
+zi0b src'czmod.zsh'
+zinit light "$GHQ_ROOT/github.com/skywind3000/czmod"
 
 zi0c ''
 zinit light changyuheng/fz
@@ -245,6 +248,11 @@ zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/com
 zi_completion has'alacritty'
 zinit snippet $GHQ_ROOT/github.com/alacritty/alacritty/extra/completions/_alacritty
 
+zi_completion has'wl-copy'
+zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-copy
+zi_completion has'wl-paste'
+zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-paste
+
 if [ "$MACHINE" = 'Linux' ]; then
 
 	zi_completion has'flatpak'
@@ -295,7 +303,10 @@ finish_setup() {
 	export GPG_TTY
 	# yadm equivalent of forgit commands
 	where forgit::diff | sed -e 's/git /yadm /g' -e 's/forgit::diff/yd/' | source /dev/stdin
-	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
+	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /_ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
+	function ya() {
+		yadm add "$(_ya | awk '{print $2}')"
+	}
 }
 
 zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
