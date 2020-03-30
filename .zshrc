@@ -15,9 +15,10 @@ export ZINIT[PLUGINS_DIR]="$ZINIT[HOME_DIR]/plugins"
 export ZINIT[COMPLETIONS_DIR]="$ZINIT[HOME_DIR]/completions"
 export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 
-module_path+=("$ZPLG_HOME/bin/zmodules/Src")
-module_path+=("$ZPLG_HOME/mod-bin/zmodules/Src")
-# zmodload zdharma/zplugin # used for studying time spent sourcing files
+module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
+module_path+=("$ZINIT[HOME_DIR]/mod-bin/zmodules/Src")
+# study time spent sourcing files 
+# zmodload zdharma/zplugin # doesn't work with static zsh-bin
 
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile

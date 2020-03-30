@@ -11,6 +11,7 @@ print_info() {
 	info title
 	info underline
 
+	# listing packages takes time, so run it asynchrously
 	info 'Packages' packages &
 	info 'OS' distro
 	info 'Model' model
