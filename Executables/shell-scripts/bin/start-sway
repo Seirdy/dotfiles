@@ -3,6 +3,9 @@
 unset PROFILE_SET && export XDG_SESSION_TYPE=wayland
 # shellcheck source=/home/rkumar/startup.sh
 . ~/startup.sh
+if [ "$PROFILE_SET" = 'startup.sh' ]; then
+	export PROFILE_SET='start-sway'
+fi
 ssh-agent sway
 
 # vi:ft=sh

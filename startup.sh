@@ -84,6 +84,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export GNUPGHOME="$HOME/.gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:$HOME/.terminfo:/usr/share/terminfo"
 export GOPATH="$HOME/Executables/go"
 # shellcheck disable=SC2086
 if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
@@ -321,4 +322,4 @@ export PASH_PATTERN_NOSYMBOL='[:alnum]'
 SESSION_START="$(date -Iseconds)"
 export SESSION_START
 
-export PROFILE_SET=1
+export PROFILE_SET="startup.sh"
