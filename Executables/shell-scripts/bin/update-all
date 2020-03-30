@@ -127,6 +127,7 @@ if [ -z "$litemode" ]; then
 	if [ "$(hostname)" = 'rkumar-dekstop' ]; then
 		log_bg_lap 'cargo'
 		log_bg_lap 'cross-cc-programs'
+		log_bg_lap 'in-containers'
 	fi
 fi
 

@@ -121,21 +121,6 @@ ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& configure_install
 
-# static, portable zsh
-ghq_get_cd git@git.sr.ht:~seirdy/zsh-bin \
-	&& {
-		oldfile="$(echo ./zsh-*-linux-x86_64.tar.gz)" \
-			&& [ -e "$oldfile" ] && mv "$oldfile" "${oldfile%.*.*}.old.tar.gz"
-	} || echo 'no previous builds' \
-	&& dash ./build -d podman -g latest || echo 'done'
-tar -xzf ./zsh-*-linux-x86_64.tar.gz \
-	&& outdir="$(echo zsh-*-linux-x86_64)" \
-	&& mkdir -p "$EXECUTABLES/zsh-bin/bin" \
-	&& install -m 0755 "$outdir/bin/zsh" "$EXECUTABLES/zsh-bin/bin/zsh" \
-	&& cp -r "$outdir/share" "$EXECUTABLES/zsh-bin/" \
-	&& version="${outdir#*-}" && version="${version%-l*}" \
-	&& dash "$EXECUTABLES/zsh-bin/share/zsh/$version/scripts/relocate" \
-	&& rm -rf "$outdir"
 # cava
 ghq_get_cd https://github.com/karlstav/cava.git \
 	&& ./autogen.sh \
