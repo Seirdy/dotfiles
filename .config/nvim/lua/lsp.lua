@@ -28,6 +28,7 @@ local custom_on_attach = function(_, bufnr)
 	vim.g['diagnostic_enable_virtual_text'] = 1
 	-- api.nvim_set_var('diagnostic_enable_virtual_text','1')
 	require'diagnostic'.on_attach()
+	require'completion'.on_attach()
 end
 
 -- nvim_lsp.bashls.setup{

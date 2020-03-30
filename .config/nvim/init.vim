@@ -65,7 +65,7 @@ Plug 'rhysd/git-messenger.vim' " git info in a floating window
 Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
 Plug 'neovim/nvim-lsp' " The most important plugin
 Plug 'haorenW1025/diagnostic-nvim' " wrap LSP diagnostic config
-
+Plug 'haorenW1025/completion-nvim' " sets up async autocomplete for LSP
 " FZF
 " ~~~
 Plug '/home/rkumar/Executables/go/src/github.com/junegunn/fzf'
@@ -221,6 +221,16 @@ nnoremap <F7> :Format<CR>:let b:winview = winsaveview()<CR>gg=G:call winrestview
 nnoremap <silent> <C-c><C-y> :call SwitchConcealLevel() <CR>
 " Toggle invisible chars
 nnoremap <leader>l :set list!<CR>
+
+" Completions
+" ~~~~~~~~~~~
+" Auto close popup menu when finish completion
+augroup completionstuff
+	autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup END
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
 
 " keep text selected after indentation
 vnoremap < <gv
