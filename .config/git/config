@@ -11,6 +11,7 @@
 	historybrowser = git-dag
 [diff]
 	tool = xxdiff
+	algorithm = histogram
 [merge]
 	tool = xxdiff
 [gpg]
