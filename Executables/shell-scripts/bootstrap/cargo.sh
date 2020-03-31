@@ -26,28 +26,33 @@ export CXXFLAGS="$CLANGFLAGS"
 rustup default nightly
 rustup update
 cargo install cargo-update
-cargo_install_git() {
-	cargo +nightly install --git "$@" --force --all-features -Z unstable-options
+install_git() {
+	cargo +nightly install --git "$@" --force -Z unstable-options
 }
-cargo_install_git https://github.com/BurntSushi/ripgrep.git
-cargo_install_git https://github.com/Canop/broot.git
-cargo_install_git https://github.com/Freaky/cw.git
-cargo_install_git https://github.com/NerdyPepper/eva.git
-cargo_install_git https://github.com/Peltoche/lsd.git
-cargo_install_git https://github.com/Y2Z/monolith.git
-cargo_install_git https://github.com/ajeetdsouza/zoxide.git
-cargo_install_git https://github.com/anordal/shellharden.git
-cargo_install_git https://github.com/chmln/sd.git
-cargo_install_git https://github.com/dandavison/delta.git
-cargo_install_git https://github.com/greshake/i3status-rust.git
-cargo_install_git https://github.com/jameslzhu/roflcat.git
-cargo_install_git https://github.com/lunaryorn/mdcat.git
-cargo_install_git https://github.com/o2sh/onefetch.git
-cargo_install_git https://github.com/ogham/exa.git
-cargo_install_git https://github.com/phiresky/ripgrep-all.git
-cargo_install_git https://github.com/sharkdp/bat.git
-cargo_install_git https://github.com/sharkdp/diskus.git
-cargo_install_git https://github.com/sharkdp/fd.git
-cargo_install_git https://github.com/sharkdp/hyperfine.git
-cargo_install_git https://github.com/timvisee/ffsend.git
-cargo_install_git https://github.com/dbrgn/tealdeer.git
+install_git_allfeat() {
+	install_git "$@" --all-features
+}
+install_git_allfeat https://github.com/BurntSushi/ripgrep.git
+install_git_allfeat https://github.com/Canop/broot.git
+install_git_allfeat https://github.com/Freaky/cw.git
+install_git_allfeat https://github.com/NerdyPepper/eva.git
+install_git_allfeat https://github.com/Peltoche/lsd.git
+install_git_allfeat https://github.com/Y2Z/monolith.git
+install_git_allfeat https://github.com/ajeetdsouza/zoxide.git
+install_git_allfeat https://github.com/anordal/shellharden.git
+install_git_allfeat https://github.com/chmln/sd.git
+install_git_allfeat https://github.com/dandavison/delta.git
+install_git_allfeat https://github.com/greshake/i3status-rust.git
+install_git_allfeat https://github.com/jameslzhu/roflcat.git
+install_git_allfeat https://github.com/lunaryorn/mdcat.git
+install_git_allfeat https://github.com/o2sh/onefetch.git
+install_git_allfeat https://github.com/ogham/exa.git
+install_git_allfeat https://github.com/phiresky/ripgrep-all.git
+install_git_allfeat https://github.com/sharkdp/bat.git
+install_git_allfeat https://github.com/sharkdp/diskus.git
+install_git_allfeat https://github.com/sharkdp/fd.git
+install_git_allfeat https://github.com/sharkdp/hyperfine.git
+install_git_allfeat https://github.com/dbrgn/tealdeer.git
+
+install_git https://github.com/alacritty/alacritty.git --no-default-features --features "wayland" -Z unstable-options
+install_git https://gitlab.com/timvisee/ffsend.git --features "archive history infer-command qrcode send2 send3 urlshorten" -Z unstable-options
