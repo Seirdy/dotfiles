@@ -43,6 +43,9 @@ bindurl git\.sr\.ht/.*/.*/tree ;F hint -Jbc .name > a
 bindurl git\.sr\.ht/.*/.*/log ;f hint -Jc .event > div > a:nth-of-type(1)
 bindurl git\.sr\.ht/.*/.*/log ;f hint -Jbc .event > div > a:nth-of-type(1)
 
+bindurl searx\.semipvt\.com ;f hint -Jc .result_header > a
+bindurl searx\.semipvt\.com ;F hint -Jbc .result_header > a
+
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
 
@@ -100,4 +103,4 @@ set searchengine d
 " autocontain getpocket\.com Pocket
 " autocontain git(lab|hub)\.com Git
 " autocontain (old|www|i)\.reddit\.com Reddit
-" vim:filetype=vim
+" vi:ft=vim
