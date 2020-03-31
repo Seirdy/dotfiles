@@ -18,6 +18,10 @@ ghq_get_cd 'https://github.com/francma/wob.git' \
 # file(1)
 ghq_get_cd https://github.com/file/file.git && simple_autotools
 
+# chafa
+ghq_get_cd https://github.com/hpjansson/chafa.git \
+	&& ./autogen.sh && configure_install
+
 # xdg-dbus-proxy: runtime dep for flatpak programs
 ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \

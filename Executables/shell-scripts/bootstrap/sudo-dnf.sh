@@ -21,8 +21,6 @@ dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
 	"GConf2-devel" # build redshift
-	"ImageMagick"
-	"ImageMagick-libs"
 	"LibRaw"
 	"SDL2_ttf-devel"
 	"abduco"
@@ -42,7 +40,6 @@ packages=(
 	"cargo" # rust package manager. used to install itself; then uninstalled.
 	"catimg"
 	"ccls"                     # C/C++/Objective-C language server
-	"chafa"                    # display images with 24bit color unicode in the terminal
 	"chromium-browser-privacy" # ungoogled-chromium
 	"clang"
 	"clang-devel" # build compilers like tinygo
@@ -208,20 +205,21 @@ packages=(
 	"papirus-icon-theme"
 	"patch"
 	"pavucontrol-qt"
-	"pciutils"             # used by neofetch
-	"perl(Encode)"         # build mpv
-	"perl(Math::BigInt)"   # build mpv
-	"perl(Math::BigRat)"   # build mpv
-	"perl-ExtUtils-Embed"  # build weechat and others
-	"perl-devel"           # build weechat
-	"pkgconfig"            # build tons of stuff
-	"pkgconfig(Qt5Core)"   # build projectm
-	"pkgconfig(Qt5OpenGL)" # build projectm
-	"pkgconfig(alsa)"      # build mpv, cava
-	"pkgconfig(aom)"          # build ffmpeg
-	"pkgconfig(caca)"      # build projectm
-	"pkgconfig(cairo)"     # build imv
-	"pkgconfig(dav1d)"     # build mpv
+	"pciutils"               # used by neofetch
+	"perl(Encode)"           # build mpv
+	"perl(Math::BigInt)"     # build mpv
+	"perl(Math::BigRat)"     # build mpv
+	"perl-ExtUtils-Embed"    # build weechat and others
+	"perl-devel"             # build weechat
+	"pkgconfig"              # build tons of stuff
+	"pkgconfig(ImageMagick)" # build chafa and others
+	"pkgconfig(Qt5Core)"     # build projectm
+	"pkgconfig(Qt5OpenGL)"   # build projectm
+	"pkgconfig(alsa)"        # build mpv, cava
+	"pkgconfig(aom)"         # build ffmpeg
+	"pkgconfig(caca)"        # build projectm
+	"pkgconfig(cairo)"       # build imv
+	"pkgconfig(dav1d)"       # build mpv
 	"pkgconfig(egl)"
 	"pkgconfig(enca)"
 	"pkgconfig(ffnvcodec)"
@@ -270,13 +268,13 @@ packages=(
 	"pkgconfig(pango)"      # build sway
 	"pkgconfig(rubberband)" # build mpv
 	"pkgconfig(sdl2)"
-	"pkgconfig(shaderc)"  # build mpv
+	"pkgconfig(shaderc)" # build mpv
 	"pkgconfig(smbclient)"
 	"pkgconfig(soxr)"
 	"pkgconfig(speex)"
 	"pkgconfig(sqlite3)" # build newsboat
 	"pkgconfig(stfl)"    # build newsboat
-	"pkgconfig(termkey)"  # build neovim
+	"pkgconfig(termkey)" # build neovim
 	"pkgconfig(theora)"  # build ffmpeg
 	"pkgconfig(twolame)" # build ffmpeg
 	"pkgconfig(uchardet)"
