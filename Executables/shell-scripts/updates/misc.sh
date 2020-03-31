@@ -46,12 +46,6 @@ ghq get -u https://github.com/carnager/clerk.git \
 # I use this repo's "cantata-dynamic" perl script to generate playlists
 ghq get -u https://github.com/CDrummond/cantata.git
 
-# cheat.sh local installation
-# update git repo, recreate zsh completion
-cd "$HOME/.cheat.sh" \
-	&& git pull && git submodule update --init --recursive --force --remote \
-	&& sed -e 's#curl -s cheat.sh/:list#cht.sh :list#' "$HOME/.cheat.sh/share/zsh.txt" >"$XDG_CONFIG_HOME/shell_common/zsh/_cht.sh"
-
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"
