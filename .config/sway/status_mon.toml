@@ -4,9 +4,9 @@ max_width = 135
 
 [[block]]
 block = "net"
-device = "enp8s0u1"
+device = "wlp3s0"
 ip = false
-interval = 5
+interval = 3
 use_bits = true
 
 [[block]]
