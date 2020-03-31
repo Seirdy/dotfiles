@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# fedora has bash installed by default
+# this script should be run with superuser/sudo/root permissions
 start_time=$(date '+%s')
 
 # dnf can do many parallel downloads
@@ -10,12 +11,10 @@ fi
 dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
 dnf module enable sway:rolling
 # copr repos
-dnf copr enable eklitzke/watchman -y
 dnf copr enable petersen/stack -y
 dnf copr enable oleastre/fonts -y # Hasklig and Fira Code
 dnf copr enable sramanujam/firefox-nightly -y
-dnf copr enable zawertun/kde -y         # latest kde
-dnf copr enable zawertun/vapoursynth -y # for mpv and vapoursynth
+dnf copr enable zawertun/kde -y # latest kde
 dnf copr enable gumieri/sway -y
 dnf copr enable jdoss/wireguard -y
 dnf upgrade --refresh --allowerasing -y
@@ -25,14 +24,10 @@ packages=(
 	"ImageMagick"
 	"ImageMagick-libs"
 	"LibRaw"
-	"SDL2-devel"
 	"SDL2_ttf-devel"
 	"abduco"
 	"adobe-*-fonts"
-	"alsa-lib-devel" # build cava
-	"appmenu-qt5"
 	"asciidoc"
-	"asciidoctor"      # build weechat
 	"autoconf"         # build many things
 	"autoconf-archive" # building xdg-dbus-proxy
 	"automake"         # build things like podman
@@ -43,9 +38,8 @@ packages=(
 	"breeze-gtk"
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
-	"cairo-devel" # build imv
-	"calc"        # really small/fast CLI calculator
-	"cargo"       # rust package manager. used to install itself; then uninstalled.
+	"calc"  # really small/fast CLI calculator
+	"cargo" # rust package manager. used to install itself; then uninstalled.
 	"catimg"
 	"ccls"                     # C/C++/Objective-C language server
 	"chafa"                    # display images with 24bit color unicode in the terminal
@@ -140,7 +134,6 @@ packages=(
 	"libXinerama-devel"
 	"libXrandr-devel"
 	"libXxf86vm-devel"
-	"libaom-devel"            # build ffmpeg
 	"libappstream-glib-devel" # build flatpak
 	"libarchive-devel"        # build flatpak
 	"libassuan-devel"         # building skopeo and others
@@ -148,7 +141,6 @@ packages=(
 	"libbs2b-devel"           # build ffmpeg
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
-	"libdav1d-devel"      # build ffmpeg
 	"libdrm-devel"        # build redshift
 	"libdwarf-devel"      # build flatpak-builder
 	"libevdev-devel"      # build sway
@@ -162,16 +154,13 @@ packages=(
 	"librsvg2-tools"      # work with svg files; used for swaylock icon
 	"libseccomp"          # build runc and other tools in the OCI stack
 	"libseccomp-devel"    # build runc, slirp4netns, and others
-	"libshaderc-devel"    # build mpv
 	"libsoup-devel"       # build flatpak
 	"libtermkey"          # build neovim
-	"libtermkey-devel"    # build neovim
 	"libtiff-devel"       # Build imv and others
 	"libutempter-devel"   # build tmux
 	"libuv-devel"         # build neovim
 	"libva-utils"         # provides commands for verifying that vaapi works
 	"libva-vdpau-driver"
-	"libvapoursynth"    # build mpv
 	"libvterm"          # build neovim
 	"libvterm-devel"    # build neovim
 	"libwayland-client" # build imv
@@ -187,6 +176,7 @@ packages=(
 	"luajit-devel" # build neovim
 	"luarocks"
 	"lvm2" # handles logical volumes, useful for building containers
+	"lzip" # best LZMA-based archiving solution. Works well with tar.
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
 	"mesa-libOpenCL"            # build Waifu2x-converter-cpp, ffmpeg
@@ -218,15 +208,20 @@ packages=(
 	"papirus-icon-theme"
 	"patch"
 	"pavucontrol-qt"
-	"pciutils"            # used by neofetch
-	"perl(Encode)"        # build mpv
-	"perl(Math::BigInt)"  # build mpv
-	"perl(Math::BigRat)"  # build mpv
-	"perl-ExtUtils-Embed" # build weechat and others
-	"perl-devel"          # build weechat
-	"pkgconfig"           # build tons of stuff
-	"pkgconfig(alsa)"     # build mpv
-	"pkgconfig(caca)"
+	"pciutils"             # used by neofetch
+	"perl(Encode)"         # build mpv
+	"perl(Math::BigInt)"   # build mpv
+	"perl(Math::BigRat)"   # build mpv
+	"perl-ExtUtils-Embed"  # build weechat and others
+	"perl-devel"           # build weechat
+	"pkgconfig"            # build tons of stuff
+	"pkgconfig(Qt5Core)"   # build projectm
+	"pkgconfig(Qt5OpenGL)" # build projectm
+	"pkgconfig(alsa)"      # build mpv, cava
+	"pkgconfig(aom)"          # build ffmpeg
+	"pkgconfig(caca)"      # build projectm
+	"pkgconfig(cairo)"     # build imv
+	"pkgconfig(dav1d)"     # build mpv
 	"pkgconfig(egl)"
 	"pkgconfig(enca)"
 	"pkgconfig(ffnvcodec)"
@@ -256,8 +251,8 @@ packages=(
 	"pkgconfig(libmfx)"     # build ffmpeg
 	"pkgconfig(libopenjp2)" # build ffmpeg
 	"pkgconfig(libpcre)"    # build sway
-	"pkgconfig(libplacebo)"
-	"pkgconfig(libpulse)"
+	"pkgconfig(libplacebo)" # build mpv and others
+	"pkgconfig(libpulse)"   # build projectM, cava, and cli-visualizer
 	"pkgconfig(libquvi-0.9)"
 	"pkgconfig(libssh)"  # build ffmpeg
 	"pkgconfig(libssh2)" # build aria2 (enables SFTP support)
@@ -275,14 +270,18 @@ packages=(
 	"pkgconfig(pango)"      # build sway
 	"pkgconfig(rubberband)" # build mpv
 	"pkgconfig(sdl2)"
+	"pkgconfig(shaderc)"  # build mpv
 	"pkgconfig(smbclient)"
 	"pkgconfig(soxr)"
 	"pkgconfig(speex)"
 	"pkgconfig(sqlite3)" # build newsboat
 	"pkgconfig(stfl)"    # build newsboat
+	"pkgconfig(termkey)"  # build neovim
 	"pkgconfig(theora)"  # build ffmpeg
 	"pkgconfig(twolame)" # build ffmpeg
 	"pkgconfig(uchardet)"
+	"pkgconfig(vapoursynth)"        # build mpv
+	"pkgconfig(vapoursynth-script)" # build mpv
 	"pkgconfig(vdpau)"
 	"pkgconfig(vidstab)" # build ffmpeg
 	"pkgconfig(vorbis)"
@@ -306,20 +305,18 @@ packages=(
 	"pkgconfig(xscrnsaver)"
 	"pkgconfig(xv)"
 	"pkgconfig(zimg)"      # build ffmpeg and others
-	"pkgconfig(zlib)"      # build ffmpeg and others
+	"pkgconfig(zlib)"      # build ffmpeg, weechat, and others
 	"pkgconfig(zvbi-0.2)"  # build ffmpeg
 	"plasma-breeze"        # preferred qt5 theme
 	"plasma-breeze-common" # preferred qt5 theme
 	"polkit-devel"         # build flatpak
 	"powerline-fonts"
-	"pulseaudio-libs-devel"  # build cava and cli-visualizer
 	"pv"                     # monitor piping
 	"python3-devel"          # building weechat, among others
 	"python3-docutils"       # build mpv docs
 	"python3-libmount"       # building crun
 	"python3-matplotlib-qt5" # plotting in python
 	"qrencode"
-	"qt5-qtmultimedia-devel" # build quotient
 	"radeontop"
 	"rc"
 	"readline-devel" # build nnn, ncmpcpp, and others
@@ -364,14 +361,11 @@ packages=(
 	"unibilium-devel" # build neovim
 	"unzip"
 	"upower" # battery status of connected devices
-	"vapoursynth-devel"
-	"vapoursynth-tools"
 	"vim"
 	"vollkorn-fonts"
 	"w3m"
 	"w3m-img"
 	"waf-python3"
-	"watchman" # required for some language servers (like MPLS)
 	"wayland-devel"
 	"wayland-protocols-devel"
 	"wget"
@@ -397,7 +391,6 @@ packages=(
 	"zathura-zsh-completion"
 	"zeromq-devel" # build ffmpeg
 	"zip"
-	"zlib-devel" # build weechat and others
 	"zsh"
 )
 # shellcheck disable=SC2086
