@@ -39,7 +39,7 @@
 [ghq]
 	root = "~/Executables/ghq"
 [alias]
-	pushall = !git remote | xargs -L1 git push --all
+	pushall = !git remote | parallel -L1 git push --all
 
 [credential "https://gitlab.com"]
 	username = Seirdy
