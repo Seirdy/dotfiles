@@ -1,28 +1,33 @@
 #!/usr/bin/env dash
 
-# some bits from https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/xdg-open
-
-case "${1%%:*}" in
-	*.pdf)
-		exec zathura "$1"
-		;;
-	mailto)
-		exec aerc "$1"
-		;;
-	*)
-		# shellcheck disable=SC2154
-		case "${MACHINE}" in
-			Linux)
-				exec /usr/bin/xdg-open "$@"
-				;;
-			Darwin)
-				exec open "$@"
-				;;
-			*)
-				echo "Unsupported machine. Your \$MACHINE is '$MACHINE'" 1>&2
-				;;
-		esac
-		;;
-esac
+# if this is being called by tmux-fzf-url, then copy it instead of opening it
+pppid="$(ps -o args= "$(ps -o ppid= "$PPID" | awk '{print $1}')")"
+if [ "${pppid#*fzf-url/}" = 'fzf-url.sh' ]; then
+	exec wl-copy -n "$1"
+else
+	# some bits from https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/xdg-open
+	case "${1%%:*}" in
+		*.pdf)
+			exec zathura "$1"
+			;;
+		mailto)
+			exec aerc "$1"
+			;;
+		*)
+			# shellcheck disable=SC2154
+			case "${MACHINE}" in
+				Linux)
+					exec /usr/bin/xdg-open "$@"
+					;;
+				Darwin)
+					exec open "$@"
+					;;
+				*)
+					echo "Unsupported machine. Your \$MACHINE is '$MACHINE'" 1>&2
+					;;
+			esac
+			;;
+	esac
+fi
 
 # vi:ft=sh

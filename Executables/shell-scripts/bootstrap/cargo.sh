@@ -37,11 +37,13 @@ install_git_allfeat https://github.com/Canop/broot.git
 install_git_allfeat https://github.com/Freaky/cw.git
 install_git_allfeat https://github.com/NerdyPepper/eva.git
 install_git_allfeat https://github.com/Peltoche/lsd.git
+install_git_allfeat https://github.com/Roger/tmux-hints.git
 install_git_allfeat https://github.com/Y2Z/monolith.git
 install_git_allfeat https://github.com/ajeetdsouza/zoxide.git
 install_git_allfeat https://github.com/anordal/shellharden.git
 install_git_allfeat https://github.com/chmln/sd.git
 install_git_allfeat https://github.com/dandavison/delta.git
+install_git_allfeat https://github.com/dbrgn/tealdeer.git
 install_git_allfeat https://github.com/greshake/i3status-rust.git
 install_git_allfeat https://github.com/jameslzhu/roflcat.git
 install_git_allfeat https://github.com/lunaryorn/mdcat.git
@@ -52,7 +54,6 @@ install_git_allfeat https://github.com/sharkdp/bat.git
 install_git_allfeat https://github.com/sharkdp/diskus.git
 install_git_allfeat https://github.com/sharkdp/fd.git
 install_git_allfeat https://github.com/sharkdp/hyperfine.git
-install_git_allfeat https://github.com/dbrgn/tealdeer.git
 
 install_git https://github.com/alacritty/alacritty.git --no-default-features --features "wayland" -Z unstable-options
 install_git https://gitlab.com/timvisee/ffsend.git --features "archive history infer-command qrcode send2 send3 urlshorten" -Z unstable-options
