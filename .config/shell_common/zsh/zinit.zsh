@@ -240,7 +240,7 @@ zi_completion has'podman'
 zinit snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
 
 zi_completion has'mpv'
-zinit snippet https://github.com/mpv-player/mpv/blob/master/etc/_mpv.zsh
+zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv-build/mpv/etc/_mpv.zsh
 
 zi_completion has'se'
 zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
