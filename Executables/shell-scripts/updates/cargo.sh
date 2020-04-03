@@ -35,9 +35,9 @@ mkdir -p "$tmpdir"
 cargo_update cargo-update
 # programs with custom feature flags.
 # ffsend doesn't play nice with the clipboard feature for some reason
-CARGO_INSTALL_OPTS='--features "archive history infer-command qrcode send2 send3 urlshorten" -Z unstable-options' cargo_update ffsend
+CARGO_INSTALL_OPTS='--features "archive history infer-command qrcode send2 send3 urlshorten" -Z unstable-options' cargo_update -g ffsend
 # I only use alacritty on wayland; on X I use st.
-CARGO_INSTALL_OPTS='--features "wayland" -Z unstable-options' cargo_update alacritty
+CARGO_INSTALL_OPTS='--features "wayland" -Z unstable-options' cargo_update -g alacritty
 # update normal rust packages installed through "cargo install --git"
 cargo_update -ga
 
