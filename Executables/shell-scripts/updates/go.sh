@@ -13,7 +13,7 @@ go_update() {
 	echo "###"
 	echo "### Updating $* ###"
 	echo "###"
-	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
+	cd "$GOPATH/src/$1" && git reset --hard HEAD && git clean -fx && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 # building docs for some golang packages
@@ -45,6 +45,8 @@ go_update github.com/rhysd/vim-startuptime
 # url pickers
 go_update mvdan.cc/xurls/cmd/xurls
 go_update github.com/imwally/linkview
+# "reader mode"
+go_update github.com/go-shiori/go-readability/cmd/...
 # corrupts images for fancy lockscreen
 go_update github.com/r00tman/corrupter
 # Alternative terminal emulator
