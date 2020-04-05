@@ -208,29 +208,7 @@ if [ "$MACHINE" = 'Linux' ]; then
 	pathadd_tail '/usr/lib64/qt5/bin'                 # qt programs
 	pathadd_head "$XDG_DATA_HOME/flatpak/exports/bin" # flatpak (user)
 	pathadd_tail '/var/lib/flatpak/exports/bin'       # flatpak (global)
-	if [ -z "$TMPDIR" ]; then
-		export TMPDIR='/tmp'
-	fi
-elif [ "$MACHINE" = 'Darwin' ]; then
-	# override macOS defaults with up-to-date/familiar versions
-	pathadd_head '/usr/local/opt/ruby/bin'
-	pathadd_head '/usr/local/opt/unzip/bin'
-	# A whole GNU $PAAAAAAAAATH!
-	pathadd_head '/usr/local/opt/binutils/bin'
-	pathadd_head '/usr/local/opt/coreutils/libexec/gnubin'
-	pathadd_head '/usr/local/opt/ed/libexec/gnubin'
-	pathadd_head '/usr/local/opt/findutils/libexec/gnubin'
-	pathadd_head '/usr/local/opt/gnu-indent/libexec/gnubin'
-	pathadd_head '/usr/local/opt/gnu-sed/libexec/gnubin'
-	pathadd_head '/usr/local/opt/gnu-tar/libexec/gnubin'
-	pathadd_head '/usr/local/opt/gnu-which/libexec/gnubin'
-	pathadd_head '/usr/local/opt/grep/libexec/gnubin'
-	pathadd_head '/usr/local/opt/make/libexec/gnubin'
-	pathadd_head '/usr/local/opt/file-formula/bin'
-	pathadd_head '/usr/local/opt/gettext/bin'
-	pathadd_head '/usr/local/opt/libxml2/lib/pkgconfig'
-	pathadd_head '/usr/local/opt/sqlite/bin'
-	export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+	[ -z "$TMPDIR" ] && export TMPDIR='/tmp'
 fi
 
 export PATH
@@ -250,21 +228,7 @@ EDITOR="$(find_alt nvim vim vi nvi nano emacs)"
 export EDITOR
 
 # shellcheck disable=SC2154
-if [ "$XDG_SESSION_TYPE" = 'x11' ] || [ "$MACHINE" = 'Darwin' ] && [ "$REDSHIFT_RUNNING" != 1 ]; then
-	#  Don't run redshift on GNOME (it has its own Night Light)
-	#  Don't run redshift on Wayland
-	#  Don't run redshift if it's already running.
-	# shellcheck disable=SC2154
-	if [ "$XDG_CURRENT_DESKTOP" = 'GNOME' ] || pgrep redshift >/dev/null; then
-		export REDSHIFT_RUNNING=1
-	elif command -v redshift >/dev/null; then
-		latitude=$(sed -n 1p "$XDG_DATA_HOME/computer_state/coordinates")
-		longitude=$(sed -n 2p "$XDG_DATA_HOME/computer_state/coordinates")
-		redshift -l "$latitude:$longitude" -t 6500:2800 &
-	else
-		echo 'redshift not found. Install redshift to warm your screen at night.'
-	fi
-elif [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+if [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_DISPLAY" ]; then
 	# Waylandify all the thing!!!!
 	# Covers apps written with the Qt, GTK, and SDL toolkits
 
@@ -295,6 +259,7 @@ elif [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND
 	# export GDK_BACKEND='wayland'
 fi
 # set the QT5 theme with qt5ct if I'm not running KDE
+# shellcheck disable=SC2154
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
 	export QT_QPA_PLATFORMTHEME='qt5ct'
 fi
@@ -311,6 +276,8 @@ fi
 export FZF_DEFAULT_OPTS='-m --ansi'
 export FZF_DEFAULT_COMMAND='rg --files -g ""'
 
+# the pash passsword manager is best girl
+# https://github.com/dylanaraps/pash
 export PASH_TIMEOUT=7
 export PASH_LENGH=255
 export PASH_DIR="$XDG_DATA_HOME/pash"
