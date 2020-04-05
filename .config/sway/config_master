@@ -122,7 +122,7 @@ input * {
 	bindsym $mod+shift+F exec org.kde.falkon
 
 	bindsym $mod+shift+R exec $term tuir
-	bindsym $mod+p exec $term nvim
+	bindsym $mod+p exec xdg-open-paste
 	bindsym $mod+n exec $term newsboat
 
 #

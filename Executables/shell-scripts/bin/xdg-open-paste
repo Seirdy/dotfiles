@@ -1,0 +1,5 @@
+#!/usr/bin/env dash
+
+# just open what's in the clipboard. useful for launching copied URLs
+xdg-open "$(wl-paste -n)"
+# vi:ft=sh
