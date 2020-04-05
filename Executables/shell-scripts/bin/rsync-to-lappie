@@ -12,13 +12,13 @@ rsync -azuP ~/Executables/go/bin rkumar@rkumarlappie:/home/rkumar/Executables/go
 # rsync -auP ~/.local/man rkumar@rkumarlappie:/home/rkumar/.local
 rsync -azuP ~/.local/libexec/cni ~/.local/libexec/revokefs-fuse rkumar@rkumarlappie:/home/rkumar/.local
 rsync -azuP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/home/rkumar/.local
-# rsync -auP ~/.local/share/man rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -azuP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -auP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -azuP ~/.local/bin/fuse-overlayfs ~/.local/bin/fusermount3 rkumar@rkumarlappie:/home/rkumar/.local/bin
 rsync -azuP ~/Executables/lappie/.config ~/Executables/lappie/.local rkumar@rkumarlappie:/home/rkumar
-zsh_bin_path=~/Executables/lappie/Executables/zsh-bin
+zsh_bin_path="$HOME/Executables/lappie/Executables/zsh-bin"
 zsh_version="$("$zsh_bin_path/bin/zsh" --version | awk '{print $2}')"
-rsync -azuP ~/Executables/lappie/Executables/zsh-bin rkumar@rkumarlappie:/home/rkumar/Executables/
+rsync -azuP "$zsh_bin_path" rkumar@rkumarlappie:/home/rkumar/Executables/
+# shellcheck disable=SC2029 # I want this to expand on the client side
 ssh rkumar@rkumarlappie "/home/rkumar/Executables/zsh-bin/share/zsh/$zsh_version/scripts/relocate"
 # vi:ft=sh
