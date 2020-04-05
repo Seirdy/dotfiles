@@ -50,14 +50,14 @@ echo # newline
 # On my laptop, I run in lite mode. I rsync binaries from my more powerful desktop to
 # my laptop.
 if [ "$1" = '-lite' ] || [ "$1" = '--lite' ]; then
-	export litemode=1
+	export LITEMODE=1
 else
 	if [ "$(hostname)" = "rkumarlappie" ]; then
-		[ "$1" != "--full" ] && [ "$1" != "-full" ] && export litemode=1
+		[ "$1" != "--full" ] && [ "$1" != "-full" ] && export LITEMODE=1
 	fi
 fi
 
-if [ -z "$litemode" ]; then
+if [ -z "$LITEMODE" ]; then
 	echo 'Running full upgrade, including compilation of large programs'
 else
 	echo 'Running lite upgrade, skipping compilation of large programs'
@@ -116,7 +116,7 @@ log_bg 'pip-pipx'              # see https://pipxproject.github.io/pipx/
 log_bg 'rubygem-luarocks-node' # combine gem+luarocks+npm since they update quickly
 log_bg 'program-data'          # have some programs sync their data
 log_bg 'misc'                  # misc updates
-if [ -z "$litemode" ]; then
+if [ -z "$LITEMODE" ]; then
 	log_bg 'go'     # build go packages installed with "go get" (slow)
 	log_bg 'go-big' # same as above, but for larger packages (slow)
 
@@ -133,7 +133,7 @@ fi
 
 # shellcheck disable=SC2154
 if [ "$MACHINE" = 'Linux' ]; then
-	if [ -z "$litemode" ]; then
+	if [ -z "$LITEMODE" ]; then
 		log_bg 'stack'         # haskell packages (infrequent updates, cpu-heavy, slow)
 		log_bg 'in-containers' # Updates running inside containers (slow)
 		true

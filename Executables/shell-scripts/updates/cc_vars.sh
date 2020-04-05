@@ -41,6 +41,11 @@ export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO"
 
 export GOFLAGS='-ldflags=-s -ldflags=-w'
 
-THREADS=$(getconf _NPROCESSORS_ONLN)
+THREADS="$(getconf _NPROCESSORS_ONLN)"
+# if we're not in litemode, then lots of tasks will be running in parallel; some will
+# parallelize across $THREADS threads. Reduce $THREADS a bit to account for this.
+# shellcheck disable=SC2154
+[ "$LITEMODE" = 1 ] || THREADS="$((THREADS / 2))"
 export THREADS
 export MAKEFLAGS="-j $THREADS"
+export CARGO_BUILD_JOBS="$THREADS"
