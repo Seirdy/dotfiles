@@ -4,10 +4,11 @@
 # useful for debugging my update-all scripts to make sure compilation occured.
 # <DIR> defaults to $HOME/.local/bin if no args are provided.
 
-# binls will list all ELF binaries in $PWD
+# binls will list all ELF binaries in the given directory, excluding old zsh versions
 binls() {
-	fd -uu -t x -E 'zsh\.old' -E 'zsh-[0-9].*' -X file '{}' | rg -e 'ELF ' \
-		| sd ':\s*ELF .*$(\n)?' ' '
+	# shellcheck disable=SC2016 # these are regexes, not shell expansions
+	fd -uu -t x -E 'zsh\.old' -E 'zsh-[0-9].*' -X file '{}' \
+		| rg -e ':\s*ELF 64-bit LSB.*$' --replace '' | tr '\n' ' '
 }
 
 if [ -n "$1" ]; then
@@ -16,14 +17,13 @@ else
 	bindir="$HOME/.local/bin"
 fi
 
-
 # ls the ELF binaries, sorted by date modified (reverse).
 # Display only these fields:
 # - human-readable size
 # - modification date
 # - filename
 cd "$bindir" \
-	&& LC_TIME=en_DK.UTF-8 ls -hort --time-style=+'%m-%d %H:%M:%S' $(binls) \
+	&& LC_TIME=en_DK.UTF-8 binls | xargs -L1 ls -hort --time-style=+'%m-%d %H:%M:%S' \
 	| cut -d' ' -f 4-
 
 # vi:ft=sh
