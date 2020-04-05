@@ -55,5 +55,6 @@ install_git_allfeat https://github.com/sharkdp/diskus.git
 install_git_allfeat https://github.com/sharkdp/fd.git
 install_git_allfeat https://github.com/sharkdp/hyperfine.git
 
+install_git https://github.com/xiph/rav1e.git
 install_git https://github.com/alacritty/alacritty.git --no-default-features --features "wayland" -Z unstable-options
 install_git https://gitlab.com/timvisee/ffsend.git --features "archive history infer-command qrcode send2 send3 urlshorten" -Z unstable-options
