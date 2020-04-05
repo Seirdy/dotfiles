@@ -69,9 +69,9 @@ alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.
 alias clbincp='clbin | wlcv'
 alias 0x0cp='0x0 | wlcv'
 # mirror the URL in the clipboard to 0x0.st
-alias mirror0x0='curlout "$(wl-paste -n)" >/tmp/img && upl /tmp/img'
+alias mirror0x0='curl "$(wl-paste -n)" >/tmp/img && upl /tmp/img'
 # mirror to 0x0.st and copy the 0x0.st URL
-alias mirror0x0cp='curlout "$(wl-paste -n)" >/tmp/img && upl /tmp/img | wlcv'
+alias mirror0x0cp='curl "$(wl-paste -n)" >/tmp/img && upl /tmp/img | wlcv'
 # mirror to 0x0.st, copy the 0x0.st URL, and view the result ot make sure it worked
 alias mirror0x0check='mirror0x0cp && imv-url "$(wl-paste)"' # see ~/.local/bin/imv-url
 # compiler conveniences
