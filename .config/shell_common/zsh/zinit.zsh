@@ -31,7 +31,7 @@ zi0c() {
 ###########
 
 # My fancy prompt needs at least 256 colors, preferably 24bit color
-if echo "$TERM" | grep '256c' >/dev/null || [ "${terminfo[colors]:?}" -gt 255 ]; then
+if [ "${TERM##*-}" = '256color' ] || [ "${terminfo[colors]:?}" -gt 255 ]; then
 	z_lucid depth=1
 	zinit light romkatv/powerlevel10k
 fi
@@ -279,7 +279,7 @@ zinit light zchee/zsh-completions
 
 # the following will run after everything else happens
 finish_setup() {
-	command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
+	# command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
 	# dircolors
 	eval "$(dircolors)"
 	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}

@@ -1,27 +1,27 @@
 #!/bin/zsh
 # powerlevel9k
-function yadm-gitstatus() {
-	emulate -L zsh
-	if [[ ${(%):-%~} == '~' ]]; then
-		GIT_DIR="$XDG_CONFIG_HOME/yadm/repo.git"
-	else
-		unset GIT_DIR
-		fi
-	}
+# function yadm-gitstatus() {
+# 	emulate -L zsh
+# 	if [[ ${(%):-%~} == '~' ]]; then
+# 		GIT_DIR="$XDG_CONFIG_HOME/yadm/repo.git"
+# 	else
+# 		unset GIT_DIR
+# 	fi
+# }
 autoload -Uz add-zsh-hook
-add-zsh-hook chpwd yadm-gitstatus
-yadm-gitstatus
+# add-zsh-hook chpwd yadm-gitstatus
+# yadm-gitstatus
 export POWERLEVEL9K_GITSTATUS_DIR="$GHQ_ROOT/github.com/romkatv/gitstatus"
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
-if [ "$CONDA_PREFIX" = '/usr' ]; then
-	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-		dir_writable dir anaconda virtualenv vcs newline vi_mode status
-	)
-else
-	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-		dir_writable dir virtualenv vcs newline vi_mode status
-	)
-fi
+# if [ "$CONDA_PREFIX" = '/usr' ]; then
+# 	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+# 		dir_writable dir anaconda virtualenv vcs newline vi_mode status
+# 	)
+# else
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+	dir_writable dir virtualenv vcs newline vi_mode status
+)
+# fi
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
 	root_indicator background_jobs command_execution_time time
 )
