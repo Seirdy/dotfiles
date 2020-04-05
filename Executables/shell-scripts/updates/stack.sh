@@ -65,7 +65,7 @@ stack_install_nightly_fallback https://github.com/commercialhaskell/stack.git
 # Pandoc and friends
 #
 
-stack_install_git https://github.com/jgm/pandoc.git --flag 'pandoc:embed_data_files' --flag 'pandoc:static'
+stack_install_git https://github.com/jgm/pandoc.git --flag 'pandoc:embed_data_files'
 # pandoc's manpage
 cd "$GHQ_ROOT/github.com/jgm/pandoc" \
 	&& make man/pandoc.1 \
