@@ -10,7 +10,7 @@ colorscheme dark
 
 " Comment toggler
 bind ;c hint -c summary,[class*="expand"],[class="togg"]
-bindurl lobste\.rs ;c hint -c [class*="comment_folder"]
+bindurl lobste\.rs ;c hint -c .comment label.comment_folder
 
 
 " Make gu take you back to subreddit from comments
@@ -93,14 +93,3 @@ bind D tabduplicate
 set searchurls.dl https://duckduckgo.com/lite/?q=%s
 set searchurls.d https://next.duckduckgo.com/?kmjx.menu=renderer%3ANativeMML%26%3Bsemantics%3Atrue%26%3Bcontext%3ABrowser%26%3Bzoom%3ANone&kp=-2&kc=-1&k1=-1&kam=osm&kak=-1&kax=-1&kaq=-1&kao=-1&kap=-1&kau=-1&t=ffab&ia=web&q=%s
 set searchengine d
-
-" Autocontain
-" autocontain lclark\.edu School
-" autocontain (classroom|mail|accounts|drive|docs|cloud|developers|myaccount|careers)\.google\.com Google
-" autocontain google\.com/(about/?)careers Google
-" autocontain (bloodsplatteredsocks|sandraandwoo)\.com Webcomics
-" autocontain questionablecontent\.net Webcomics
-" autocontain getpocket\.com Pocket
-" autocontain git(lab|hub)\.com Git
-" autocontain (old|www|i)\.reddit\.com Reddit
-" vi:ft=vim
