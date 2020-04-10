@@ -6,14 +6,14 @@ cd || exit 1
 
 # Update binaries
 rsync -azuP ~/Executables/stack/bin rkumar@rkumarlappie:/home/rkumar/Executables/stack &
-# rsync -auP ~/.local/include rkumar@rkumarlappie:/home/rkumar/.local &
 rsync -azuP --exclude 'bin/alacritty' ~/Executables/lappie/Executables/cargo/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo &
+ssh rkumar@rkumarlappie mkdir -p /home/rkumar/Executables/ghq/github.com/skywind3000/
+rsync -azuP ~/Executables/lappie/Executables/ghq/github.com/skywind3000/czmod rkumar@rkumarlappie:/home/rkumar/Executables/ghq/github.com/skywind3000 &
+rsync -azuP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share &
+rsync -auP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share &
 rsync -azuP ~/Executables/go/bin rkumar@rkumarlappie:/home/rkumar/Executables/go
-# rsync -auP ~/.local/man rkumar@rkumarlappie:/home/rkumar/.local
 rsync -azuP ~/.local/libexec/cni ~/.local/libexec/revokefs-fuse rkumar@rkumarlappie:/home/rkumar/.local
 rsync -azuP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/home/rkumar/.local
-rsync -azuP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share
-rsync -auP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share
 rsync -azuP ~/.local/bin/fuse-overlayfs ~/.local/bin/fusermount3 rkumar@rkumarlappie:/home/rkumar/.local/bin
 rsync -azuP ~/Executables/lappie/.config ~/Executables/lappie/.local rkumar@rkumarlappie:/home/rkumar
 zsh_bin_path="$HOME/Executables/lappie/Executables/zsh-bin"
