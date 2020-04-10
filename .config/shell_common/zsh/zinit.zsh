@@ -134,7 +134,7 @@ zinit light denisidoro/navi
 zi_program has'fzf' pick'fzf-tmux'
 zinit light $GOPATH/src/github.com/junegunn/fzf/bin
 
-zi_program has'lspci' pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
+zi_program pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zinit light dylanaraps/neofetch
 
 zi_program has'perl' pick'exiftool'
