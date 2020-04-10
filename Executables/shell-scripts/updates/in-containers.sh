@@ -14,7 +14,7 @@ start_time=$(date '+%s')
 # cross-compilation for laptop happens at the same time as native builds for desktop
 if [ "$CROSS_COMPILING" != 1 ]; then
 	podman pull registry.fedoraproject.org/fedora:rawhide
-	podman pull registry.fedoraproject.org/f32/fedora-toolbox
+	podman pull registry.fedoraproject.org/f33/fedora-toolbox
 	podman pull alpine:edge
 fi
 
@@ -45,8 +45,7 @@ BUILDAH_RUNTIME="$(command -v crun)"
 export BUILDAH_RUNTIME
 buildah bud -v "$PWD":/build/fuse-overlayfs -t fuse-overlayfs -f ./Dockerfile.static.fedora.custom .
 podman run \
-	-e CFLAGS="-DNDEBUG -O2 -flto -g -pipe -fasynchronous-unwind-tables -s -march=$ARCH" \
-	-v "/tmp:/root/share:Z" \
+	-v /tmp:/root/share:Z \
 	--rm \
 	--entrypoint="[]" \
 	fuse-overlayfs cp /usr/bin/fuse-overlayfs /usr/bin/fusermount3 /root/share
