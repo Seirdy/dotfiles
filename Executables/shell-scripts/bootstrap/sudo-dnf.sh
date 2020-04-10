@@ -16,6 +16,7 @@ dnf copr enable oleastre/fonts -y # Hasklig and Fira Code
 dnf copr enable sramanujam/firefox-nightly -y
 dnf copr enable zawertun/kde -y # latest kde
 dnf copr enable gumieri/sway -y
+dnf copr enable taocris/musl -y # musl stuff
 dnf copr enable jdoss/wireguard -y
 dnf upgrade --refresh --allowerasing -y
 packages=(
@@ -90,8 +91,8 @@ packages=(
 	"glibc-all-langpacks"
 	"glibc-devel"
 	"glibc-headers"
-	"glibc-static"
-	"gmp-static" # required for building Cabal/Stack packages like Hadolint
+	"glibc-static" # build static programs
+	"gmp-static"   # required for building Cabal/Stack packages like Hadolint
 	"gnome-themes"
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
@@ -182,6 +183,7 @@ packages=(
 	"mpd"                       # best music player
 	"msgpack"                   # build neovim
 	"msgpack-devel"             # build neovim
+	"musl-gcc"                  # build some musl programs
 	"nasm"                      # build mvtools
 	"ncdu"                      # disk usage analyzer; mostly replaced by nnn -S
 	"ncurses-devel"             # build several packages inc. newsboat, tmux
