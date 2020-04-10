@@ -135,6 +135,10 @@ alias kittyrc='edi $XDG_CONFIG_HOME/kitty/kitty_master.conf'
 alias alacrittyrc='edi $XDG_CONFIG_HOME/alacritty/alacritty_master.yml'
 alias mpvrc='edi $XDG_CONFIG_HOME/mpv/mpv.conf'
 
+# mpv aliases
+alias mpva='mpv --profile=anime'
+alias mpvah='mpv --profile=anime-hq'
+
 # git aliases
 alias gstat='git status'
 alias gco='git commit'
