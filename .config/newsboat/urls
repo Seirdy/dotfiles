@@ -253,6 +253,8 @@ https://github.com/PurpleI2P/i2pd/releases.atom "git repos" "Programs" "Dev"
 https://weechat.org/blog/feed/atom "IRC/Matrix" "Programs" "Dev" "Favorite"
 https://github.com/poljar/weechat-matrix/releases.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/tomoe-mami/weechat-scripts/commits/master.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
+# some IRC networks have a news section
+https://www.gotham.chat/feed/ "IRC/Matrix" "Favorite"
 # keeping track of upstream buffer_dmenu to keep my fork up-to-date
 https://github.com/weechat/scripts/commits/master/python/buffer_dmenu.py.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/cjbassi/gotop/releases.atom "git repos" "Programs" "Dev"
