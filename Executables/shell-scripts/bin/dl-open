@@ -6,13 +6,23 @@ dl_dir="$HOME/.local/share/dl-open"
 mkdir -p "$dl_dir" && cd "$dl_dir"
 rm -f ./*
 
+# download all URLs in parallel. Each download is also parallelized.
+# gotta max out that internet connection.
 for url in "$@"; do
-	aria2c "$url"
+	aria2c "$url" &
 done
-if fd -t f -e png -e jpg -e jpeg -e gif -e svg -e tiff -e psd; then
-	imv ./*
-else
-	openx ./*
+wait
+images="$(fd -t f -x dash -c "file --dereference --mime-type '{}' | grep ':\s*image/.*' | sed 's#:\s*image/.*##'")"
+if [ -n "$images" ]; then
+	echo "$images" | imv
 fi
+# this line should open non-images with xdg-open or something
+# for file in $(list-images-1); do
+# xdg-open $file &
+# done
+_images_regex() {
+	printf '%s' $images | tr '\n' '|'
+}
+fd -t f | grep -Ev "$(_images_regex)"
 
 # vim: filetype=sh

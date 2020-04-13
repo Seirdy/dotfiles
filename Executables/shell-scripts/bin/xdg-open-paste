@@ -1,5 +1,11 @@
 #!/usr/bin/env dash
 
 # just open what's in the clipboard. useful for launching copied URLs
-xdg-open "$(wl-paste -n)"
+# if the option "-d" is supplied then download the URL with aria2c and xdg-open it
+urls="$(wl-paste -n)"
+if [ "$1" = '-d' ]; then
+	dl-open $urls
+else
+	xdg-open $urls
+fi
 # vi:ft=sh
