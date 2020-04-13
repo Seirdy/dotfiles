@@ -4,6 +4,8 @@
 [ -z "$PROFILE_SET" ] && . "$HOME/startup.sh"
 [ -z "$PREFIX" ] && export PREFIX="$HOME/.local"
 export BINPREFIX="$PREFIX/bin"
+export INCLUDEPREFIX="$PREFIX/include"
+export LIBPREFIX="$PREFIX/lib"
 export MANPREFIX="$PREFIX/man"
 export DATAPREFIX="$PREFIX/share"
 # shellcheck disable=SC2154

@@ -9,6 +9,13 @@ start_time=$(date '+%s')
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
+# lua
+ghq_get_cd 'https://github.com/lua/lua.git' \
+	&& make CFLAGS="$CFLAGS -DLUA_USE_LINUX" \
+	&& strip lua \
+	&& install -m 0755 lua "$BINPREFIX" \
+	&& install -m 0644 lua.h luaconf.h lualib.h lauxlib.h "$INCLUDEPREFIX" \
+	&& install -m 0644 liblua.a "$LIBPREFIX"
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& meson build-release --buildtype release --prefix "$PREFIX" \
@@ -107,6 +114,10 @@ ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 # cmatrix
 ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
 	&& fancy_cmake
+
+# cxxmatrix: much more advanced than cmatrix
+# uses hankaku kana characters + different sahdes + different scenes.
+ghq_get_cd https://github.com/akinomyoga/cxxmatrix && make_install
 
 # rsync
 ghq_get_cd git://git.samba.org/rsync.git \
