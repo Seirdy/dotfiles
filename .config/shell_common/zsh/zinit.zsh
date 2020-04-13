@@ -109,6 +109,9 @@ zinit light greymd/tmux-xpanes
 zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
 zinit light containers/toolbox
 
+zi_program has'python3' pick'imguralbum.py'
+zinit light alexgisby/imgur-album-downloader
+
 zi_program has'jq'
 zinit snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
 
