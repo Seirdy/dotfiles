@@ -34,24 +34,33 @@ tar -xzf ./zsh-*-linux-x86_64.tar.gz \
 	&& dash "$EXECUTABLES/zsh-bin/share/zsh/$version/scripts/relocate" \
 	&& rm -rf "$outdir"
 
+# fusermount3 and fuse-overlayfs static binaries
 ghq_get_cd https://github.com/containers/fuse-overlayfs.git
-cp Dockerfile.static.fedora Dockerfile.static.fedora.custom
-# speed up downloading
-sed -i 's/dnf /dnf --setopt=max_parallel_downloads=20 --skip-broken /g' ./Dockerfile.static.fedora.custom
-sed -i 's#registry\.fedoraproject\.org/fedora:latest#registry.fedoraproject.org/fedora:rawhide#' ./Dockerfile.static.fedora.custom
-sed -i 's/meson -/meson -D useroot=false -/' ./Dockerfile.static.fedora.custom
-
+# Some patches:
+# - speed up dnf with parallel downloads
+# - don't clone a repo that already exists
+# - use Fedora Rawhide
+# - don't do unnecessary fuse installation in root; I just want
+#   fusermount3 and fuse-overlayfs
+sed \
+	-e 's/dnf /dnf --setopt=max_parallel_downloads=20 --skip-broken /g' \
+	-e 's#git clone https://github.com/containers/fuse-overlayfs #echo #' \
+	-e 's/cd fuse-overlayfs/& \&\& git pull/' \
+	-e 's#registry\.fedoraproject\.org/fedora:latest#registry.fedoraproject.org/fedora:rawhide#' \
+	-e 's/meson -/meson -D useroot=false -/' \
+	Dockerfile.static.fedora >Dockerfile.static.fedora.custom
 BUILDAH_RUNTIME="$(command -v crun)"
 export BUILDAH_RUNTIME
-buildah bud -v "$PWD":/build/fuse-overlayfs -t fuse-overlayfs -f ./Dockerfile.static.fedora.custom .
-podman run \
-	-v /tmp:/root/share:Z \
-	--rm \
-	--entrypoint="[]" \
-	fuse-overlayfs cp /usr/bin/fuse-overlayfs /usr/bin/fusermount3 /root/share
+buildah bud -v "$PWD":/build/fuse-overlayfs -t fuse-overlayfs -f ./Dockerfile.static.fedora.custom . \
+	&& mkdir -p bin && cd bin \
+	&& podman run \
+		-v "$PWD":/root/share:Z \
+		--rm \
+		--entrypoint="[]" \
+		fuse-overlayfs cp /usr/bin/fuse-overlayfs /usr/bin/fusermount3 /root/share
 
-install -m 0755 "/tmp/fuse-overlayfs" "$BINPREFIX/fuse-overlayfs"
-install -m 0755 "/tmp/fusermount3" "$BINPREFIX/fusermount3"
+install -m 0755 fuse-overlayfs "$BINPREFIX/fuse-overlayfs"
+install -m 0755 fusermount3 "$BINPREFIX/fusermount3"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
