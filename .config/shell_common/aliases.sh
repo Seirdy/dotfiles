@@ -34,7 +34,8 @@ alias ytdl-720="ytdl -f 'bestvideo[height<1080]+bestaudio/best[height<1080]'"
 alias ytdl-crs="ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20"
 alias ffmpeg-copy='ffmpeg -c:v copy -c:a copy'
 alias oxipng-max='oxipng -Z -o 6 --strip all'
-alias oxipng-maxthreads='ls *.png | parallel -j4 oxipng-max'
+# desktop has 16 cores, 32 threads
+alias oxipng-maxthreads='ls *.png | parallel -j6 oxipng-max'
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
@@ -179,6 +180,7 @@ alias ydd='yadm diff'
 alias yds='ydd --staged'
 alias yopen='yadm open'
 alias yurl='sed "s#/home/rkumar#https://git.sr.ht/~seirdy/dotfiles/tree/master#"' # URL to a file in my dotfile repo
+alias yurlc='yurl | wlcv'
 # shellcheck disable=SC2142
 alias bd='cd ..'
 # bookmarks
