@@ -39,8 +39,8 @@ fi
 zi0a
 zinit light skywind3000/z.lua
 
-zi0b src'czmod.zsh'
-zinit light "$GHQ_ROOT/github.com/skywind3000/czmod"
+# zi0b src'czmod.zsh'
+# zinit light "$GHQ_ROOT/github.com/skywind3000/czmod"
 
 zi0c ''
 zinit light changyuheng/fz
