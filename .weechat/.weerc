@@ -1,5 +1,5 @@
 #
-# WeeChat 2.9-dev (compiled on Apr  8 2020 17:40:28)
+# WeeChat 2.9-dev (compiled on Apr 12 2020 17:40:39)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -33,6 +33,10 @@
 */set irc.server_default.capabilities "account-notify,away-notify,capa-notify,extended-join,multi-prefix,server-time,userhost-in-names"
 */set irc.server_default.msg_part "👋 (WeeChat ${info:version})"
 */set irc.server_default.msg_quit "exiting ${info:version}"
+*/set relay.color.status_active lightblue
+*/set relay.color.status_auth_failed lightred
+*/set relay.color.status_connecting yellow
+*/set relay.color.status_waiting_auth brown
 */set relay.weechat.commands "*,!exec,!upgrade,!quit"
 */set urlgrab.default.copycmd "wl-copy -n"
 */set urlgrab.default.localcmd "firefox-nightly '%s'"
