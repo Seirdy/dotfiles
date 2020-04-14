@@ -3,18 +3,22 @@
 screenshot='/tmp/screenshot.ppm'
 fancy_background='/tmp/fancy_background.ppm'
 lock_icon="${XDG_DATA_HOME-${HOME-~}/.local/share}/icons/swaylock-foreground.ppm"
-#
-ffmpeg_filters='boxblur=12:1,scale=iw/12:ih/12,scale=12*iw:12*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
-# ffmpeg_filters='overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
+# ffmpeg filters shrink/grow the image to pixelate it before overlaying the lock icon
+ffmpeg_filters='scale=iw/15:ih/15,scale=15*iw:15*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
 
-# foreground: lock icon
-create_lock_icon() {
-	[ -f "$lock_icon" ] || rsvg-convert -z 3 '/usr/share/icons/Papirus/64x64/apps/gnome-lockscreen.svg' >"$lock_icon" &
+cleanup() {
+	rm "$screenshot" &
+	rm "$fancy_background" &
 }
-create_lock_icon &
+trap cleanup EXIT
+
+# foreground: lock icon needs to be a raster (ppm)
+{
+	[ -f "$lock_icon" ] || rsvg-convert -z 3 '/usr/share/icons/Papirus/64x64/apps/gnome-lockscreen.svg' >"$lock_icon"
+} &
 
 # take screenshot
-# shellcheck source=~/.local/bin/grim-monitor
+# shellcheck source=/home/rkumar/Executables/shell-scripts/bin/grim-monitor
 grim-monitor -t ppm "$screenshot"
 # blur screenshot, overlay lock icon. FFmpeg can't edit images in-place, so save as a new image.
 ffmpeg \
@@ -22,9 +26,7 @@ ffmpeg \
 	-i "$screenshot" -i "$lock_icon" \
 	-filter_complex "$ffmpeg_filters" \
 	"$fancy_background"
-rm "$screenshot" &
 swaylock -i "$fancy_background"
 # imv -f "$fancy_background"
-rm "$fancy_background"
 
 # vi:ft=sh
