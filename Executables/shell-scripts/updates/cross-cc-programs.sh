@@ -135,10 +135,10 @@ ghq_get_cd https://github.com/openSUSE/catatonit.git && simple_autotools
 ghq_get_cd https://github.com/kovidgoyal/kitty.git \
 	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$PREFIX"
 
-# dash shell
+# dash shell, static binary
 ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& configure_install
+	&& CC='musl-gcc -static' CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" configure_install
 
 # cava
 ghq_get_cd https://github.com/karlstav/cava.git \
