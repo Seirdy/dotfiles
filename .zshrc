@@ -15,8 +15,7 @@ export ZINIT[PLUGINS_DIR]="$ZINIT[HOME_DIR]/plugins"
 export ZINIT[COMPLETIONS_DIR]="$ZINIT[HOME_DIR]/completions"
 export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 
-module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
-module_path+=("$ZINIT[HOME_DIR]/mod-bin/zmodules/Src")
+# module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
 # study time spent sourcing files 
 # zmodload zdharma/zplugin # doesn't work with static zsh-bin
 
@@ -52,8 +51,11 @@ setopt equals # use "=" to point to the path of an executable
 setopt prompt_subst # Expansion
 setopt interactivecomments # Comments in the interactive shell
 setopt auto_continue # Send CONT signal automatically when disowning jobs
+setopt auto_param_slash # implicit "cd" if the command is a path
+# pushd stuff
 setopt pushd_ignore_dups
-setopt auto_param_slash
+export DIRSTACKSIZE=20
+setopt auto_pushd
 
 # Completion prefs
 # Completion initialization happens asynchrously when loading plugins.
@@ -114,6 +116,13 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
 	fd --type d --hidden --follow --exclude ".git" . "$1"
 }
+
+# add some items to bash-insulter
+export CMD_NOT_FOUND_MSGS_APPEND=(
+	"B-BAKA!!!"
+	"Omae wa mou shindeiru"
+	"Nani?!"
+)
 
 SHELL_COMMON="$HOME/.config/shell_common"
 # source the theme

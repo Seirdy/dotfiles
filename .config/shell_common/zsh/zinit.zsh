@@ -43,7 +43,7 @@ zinit light skywind3000/z.lua
 # zinit light "$GHQ_ROOT/github.com/skywind3000/czmod"
 
 zi0c ''
-zinit light changyuheng/fz
+zinit light ZoeFiri/fz
 
 zi0a
 zinit light xPMo/zsh-toggle-command-prefix
@@ -56,6 +56,10 @@ zinit load zsh-users/zsh-autosuggestions
 
 zi0a pick'autopair.zsh'
 zinit light hlissner/zsh-autopair
+
+# insult me if i type a command wrong
+zi0a pick'src/bash.command-not-found'
+zinit light hkbakke/bash-insulter
 
 # fzf-related plugins {{{
 zi0a has'fzf' pick'fzf-finder.plugin.zsh'
@@ -283,9 +287,9 @@ zinit light zchee/zsh-completions
 # the following will run after everything else happens
 finish_setup() {
 	# command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
-	# dircolors
-	eval "$(dircolors)"
-	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+	# dircolors: commented out cuz it's useless with fzf-tab, fz, and z.lua
+	# eval "$(dircolors)"
+	# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 	# give less pretty colors
 	# shellcheck source=../../less/less_termcap.sh
 	. "$XDG_CONFIG_HOME/less/less_termcap.sh"
@@ -302,8 +306,8 @@ finish_setup() {
 	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 	command -v thefuck >/dev/null && eval "$(thefuck --alias)"
 	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
-	GPG_TTY="$(tty)"
-	export GPG_TTY
+	GPG_TTY="$(tty)" && export GPG_TTY
+	[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
 	# yadm equivalent of forgit commands
 	where forgit::diff | sed -e 's/git /yadm /g' -e 's/forgit::diff/yd/' | source /dev/stdin
 	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /_ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
