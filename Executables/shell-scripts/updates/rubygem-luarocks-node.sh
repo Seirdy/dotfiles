@@ -18,8 +18,8 @@ command -v pnpm >/dev/null || npm add -g pnpm && rm -rf "${NODE_PATH:?}/lib"
 pnpm add -g pnpm
 pnpm add -g bash-language-server
 pnpm add -g vscode-html-languageserver-bin
-pnpm add -g clean-mark
-pnpm add -g markdownlint-cli
+pnpm add -g git+https://github.com/croqaz/clean-mark.git
+pnpm add -g git+https://github.com/igorshubovych/markdownlint-cli.git
 pnpm add -g neovim
 pnpm add -g vscode-css-languageserver-bin
 pnpm add -g vscode-json-languageserver
