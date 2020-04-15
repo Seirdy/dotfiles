@@ -57,7 +57,7 @@ ghq_get_cd github.com/alacritty/alacritty.git \
 	&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1" \
 	&& tic -xe alacritty,alacritty-direct extra/alacritty.info -o "$DATAPREFIX/terminfo" \
 	&& install -p -D -m644 extra/logo/alacritty-term.svg "$DATAPREFIX/pixmaps/Alacritty.svg" \
-	|| printf "try closing all alacritty terminals and running the following:\ncp %s/target/release/alacritty %s/.local/bin" "$PWD" "$HOME"
+	|| printf "try closing all alacritty terminals and running the following:\ncp %s/target/release/alacritty %s/.local/bin\n" "$PWD" "$HOME"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
