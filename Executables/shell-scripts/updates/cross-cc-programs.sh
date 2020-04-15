@@ -85,6 +85,9 @@ cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 # czmod, used by z.lua for a speedup
 ghq_get_cd 'https://github.com/skywind3000/czmod.git' && ./build.sh
 
+# wf-recorder: wlroots screen recording
+ghq_get_cd 'https://github.com/ammen99/wf-recorder.git' && simple_meson -Dopencl=enabled
+
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
 	&& meson build-release --buildtype release --prefix "$PREFIX" \
