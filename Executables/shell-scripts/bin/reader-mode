@@ -1,11 +1,10 @@
 #!/usr/bin/env dash
 
-clean-mark "$1" --stdout \
+curl-tor "$1" | clean-mark --stdout \
 	| pandoc \
 		-f markdown \
-		-t markdown-raw_html+yaml_metadata_block-multiline_tables-fenced_code_attributes-raw_attribute \
-		-s --columns=999 \
-	| mdcat --columns="$COLUMNS" \
-	| less
+		-t markdown-raw_html-yaml_metadata_block-multiline_tables-fenced_code_attributes-raw_attribute \
+		-s --columns="$COLUMNS" \
+	| mdcat --columns="$COLUMNS"
 
 # vim: filetype=sh
