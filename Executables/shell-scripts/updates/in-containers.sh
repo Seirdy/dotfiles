@@ -24,15 +24,14 @@ cd "$GHQ_ROOT/git.sr.ht/~seirdy/zsh-bin" \
 		oldfile="$(echo ./zsh-*-linux-x86_64.tar.gz)" \
 			&& [ -e "$oldfile" ] && mv "$oldfile" "${oldfile%.*.*}.old.tar.gz"
 	} || echo 'no previous builds' \
-	&& dash ./build -d podman -g latest || echo 'done'
-tar -xzf ./zsh-*-linux-x86_64.tar.gz \
-	&& outdir="$(echo zsh-*-linux-x86_64)" \
+	&& dash ./build -d podman -g latest || echo 'done' \
+	&& mkdir -p out && tar xzf zsh-*-linux-x86_64.tar.gz -C out \
 	&& mkdir -p "$EXECUTABLES/zsh-bin/bin" \
-	&& install -m 0755 "$outdir/bin/zsh" "$EXECUTABLES/zsh-bin/bin/zsh" \
-	&& cp -r "$outdir/share" "$EXECUTABLES/zsh-bin/" \
-	&& version="${outdir#*-}" && version="${version%-l*}" \
+	&& install -m 0755 'out/bin/zsh' "$EXECUTABLES/zsh-bin/bin/zsh" \
+	&& cp -r 'out/share' "$EXECUTABLES/zsh-bin/" \
+	&& version="$(ls 'out/share/zsh')" \
 	&& dash "$EXECUTABLES/zsh-bin/share/zsh/$version/scripts/relocate" \
-	&& rm -rf "$outdir"
+	&& rm -rf "out"
 
 # fusermount3 and fuse-overlayfs static binaries
 ghq_get_cd https://github.com/containers/fuse-overlayfs.git

@@ -84,7 +84,8 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export GNUPGHOME="$HOME/.gnupg"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
-export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:$HOME/.terminfo:/usr/share/terminfo"
+export TERMINFO="$HOME/Executables/zsh-bin/share/terminfo"
+export TERMINFO_DIRS="$HOME/Executables/zsh-bin/share/terminfo:/usr/share/terminfo"
 export GOPATH="$HOME/Executables/go"
 # shellcheck disable=SC2086
 if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
