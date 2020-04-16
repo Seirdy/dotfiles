@@ -83,13 +83,14 @@ Plug 'justinmk/vim-syntax-extra' " C and bison syntax highlighting
 " Syntax highlighting
 " ~~~~~~~~~~~~~~~~~
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
-Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc', { 'for': [ 'pandoc' ] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'cespare/vim-toml'
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 Plug 'tikhomirov/vim-glsl'
+Plug 'tridactyl/vim-tridactyl', { 'for': 'tridactyl' }
 
 call plug#end()
 
