@@ -1,0 +1,79 @@
+#!/usr/bin/env dash
+# name: teknik-upload
+# based on script by KittyKatt:
+# 	https://git.teknik.io/Teknikode/Tools/src/branch/master/Upload/upload.sh
+# changes:
+# - switch to POSIX sh
+# - support other mimetypes
+# - make shellcheck+shellharden happy.
+# requires: POSIX utilities (sh, grep), file, curl
+
+# Common Functions/Variables
+displayUsage() {
+	printf "
+Teknik Upload Script in BASH
+
+Usage : %s -[ e (s) | d  | h ]
+Options:
+  -h, --help\t Display this help message.
+  -d, --deletion\t Generate a deletion key." "$(basename "${0}")"
+}
+
+# Options
+while getopts ":heds" flags; do
+	case $flags in
+		h)
+			displayUsage
+			exit 0
+			;;
+		d)
+			deletion="1"
+			shift
+			;;
+		*)
+			printf "Error! That flag doesn't exist."
+			exit 1
+			;;
+	esac
+done
+
+# Let's build our request
+# Defaults: encryption, server-side savekey
+encrypt="true"
+savekey="true"
+deletionkey="false"
+if [ "$deletion" = '1' ]; then
+	deletionkey="true"
+fi
+
+# Main
+if [ "$#" = 0 ]; then
+	printf 'You must submit a file to be uploaded!\n'
+	exit 1
+else
+	printf 'Uploading file(s) now!'
+	n=1
+	for i in "$@"; do
+		# Upload those files!
+		printf "\nUploading file #%s . . . " "$n"
+		# Special case for .png files
+		mime="$(file -bL --mime-type "$i")"
+		out=$(curl -F "contentType=$mime" -F "encrypt=$encrypt" -F "saveKey=$savekey" -F "genDeletionKey=$deletionkey" -F"expireunit=never" -F file="@$i" https://api.teknik.io/v1/Upload)
+		if echo "$out" | grep error >/dev/null; then
+			printf 'error uploading file!\nfull output:\n%s\n' "$out"
+			exit 1
+		else
+			id="${out##*Name\":\"}"
+			id="${id%%\"*}"
+			printf 'uploaded! Your file can be found at https://u.teknik.io/%s\n' "$id"
+			if [ "$deletionkey" = "true" ]; then
+				dkey="${out##*deletionKey\":\"}"
+				dkey="${dkey%%\"*}"
+				printf '(Deletion Key: %s)' "$dkey"
+			fi
+			printf 'full output:\n%s\n' "$out" >&2
+		fi
+		n="$((n += 1))"
+	done
+fi
+# vi:ft=sh
