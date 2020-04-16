@@ -66,6 +66,7 @@ Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunk
 Plug 'neovim/nvim-lsp' " The most important plugin
 Plug 'haorenW1025/diagnostic-nvim' " wrap LSP diagnostic config
 Plug 'haorenW1025/completion-nvim' " sets up async autocomplete for LSP
+Plug 'vigoux/completion-treesitter' " tree-sitter source for completion-nvim
 " FZF
 " ~~~
 Plug '/home/rkumar/Executables/go/src/github.com/junegunn/fzf'
@@ -231,6 +232,25 @@ augroup END
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+
+" completion chains
+let g:completion_chain_complete_list = {
+			\'default' : {
+			\	'default' : [
+			\		{'complete_items' : ['lsp', 'snippet']},
+			\		{'mode' : 'file'}
+			\	],
+			\	},
+			\'c' : [
+			\	{'complete_items': ['ts', 'lsp', 'snippet']}
+			\	],
+			\'python' : [
+			\	{'complete_items': ['ts', 'lsp', 'snippet']}
+			\	],
+			\'lua' : [
+			\	{'complete_items': ['ts', 'lsp', 'snippet']}
+			\	],
+			\}
 
 " keep text selected after indentation
 vnoremap < <gv
