@@ -214,7 +214,7 @@ fi
 
 export PATH
 
-export TUIR_EDITOR="nvim -c ':set filetype=pandoc'"
+export TUIR_EDITOR="nvim -c ':set filetype=pandoc.gfm'"
 export TUIR_BROWSER="$BROWSER"
 export TUIR_PAGER="less -x 2 -ir"
 
