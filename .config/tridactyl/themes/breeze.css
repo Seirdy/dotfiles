@@ -1,0 +1,66 @@
+:root.TridactylThemeBreeze {
+	--tridactyl-status-bg: var(--dark-background);
+	--tridactyl-status-fg: var(--primary-light-color);
+	--tridactyl-hintspan-fg: var(--primary-light-color);
+	--tridactyl-hintspan-bg: var(--dark-background);
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace .container-main,
+:root.TridactylThemeBreeze.TridactylOwnNamespace body,
+:root.TridactylThemeBreeze.TridactylOwnNamespace html,
+:root.minimal.no-js.TridactylThemeBreeze html,
+:root.minimal.no-js.TridactylThemeBreeze body {
+		background: var(--in-content-page-background)!important
+}
+:root.minimal.no-js.TridactylThemeBreeze .tsd-panel,
+:root.TridactylThemeBreeze.TridactylOwnNamespace .tsd-panel {
+		background: var(--in-content-box-background)!important
+}
+:root.minimal.no-js.TridactylThemeBreeze .tsd-page-title,
+:root.minimal.no-js.TridactylThemeBreeze .tsd-page-toolbar,
+:root.minimal.no-js.TridactylThemeBreeze footer,
+:root.TridactylThemeBreeze.TridactylOwnNamespace .tsd-page-title,
+:root.TridactylThemeBreeze.TridactylOwnNamespace .tsd-page-toolbar,
+:root.TridactylThemeBreeze.TridactylOwnNamespace footer {
+		background: var(--in-content-category-header-background)!important;
+		border-color: var(--in-content-category-header-background)!important
+}
+:root.minimal.no-js.TridactylThemeBreeze body,
+:root.minimal.no-js.TridactylThemeBreeze table,
+:root.TridactylThemeBreeze.TridactylOwnNamespace body,
+:root.TridactylThemeBreeze.TridactylOwnNamespace table {
+		color: var(--in-content-page-color)!important
+}
+:root.minimal.no-js.TridactylThemeBreeze a:link,
+:root.minimal.no-js.TridactylThemeBreeze .tsd-navigation a,
+:root.TridactylThemeBreeze.TridactylOwnNamespace a:link {
+		color: var(--in-content-link-color)!important
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace #completions .sectionHeader {
+		background: var(--in-content-category-header-background)!important;
+		color: var(--in-content-text-color)!important
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace #completions {
+		background: var(--in-content-page-background)!important;
+		border-color: var(--in-content-box-border-color)!important
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace #completions .focused {
+	background: var(--in-content-category-text-selected)!important;
+	color: var(--in-content-category-text-selected-active)!important;
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace .option:not(.focused) .url {
+		color: var(--code-green)!important;
+		background: var(--in-content-page-background)!important
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace input {
+		background: var(--in-content-category-header-background)!important;
+		color: var(--in-content-text-color)!important
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace .focused,
+:root.TridactylThemeBreeze.TridactylOwnNamespace .focused .url {
+		background: var(--warning-background-color)!important;
+		color: var(--warning-color)!important
+}
+:root.TridactylThemeBreeze.TridactylOwnNamespace .spoiler {
+		background-color: var(--in-content-box-background)!important;
+		border-color: var(--in-content-box-border-color)!important
+}

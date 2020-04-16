@@ -69,104 +69,45 @@
 	--in-content-dark-header-background: var(--tone-9)!important;
 }
 
-/* View Source */
-/* @-moz-document url-prefix(view-source) { */
-/* 	:root { */
-/* 		background-color: var(--in-content-page-background)!important; */
-/* 		color: var(--in-content-page-color)!important; */
-/* 	} */
-/* 	pre[id]:before, */
-/* 	span[id]:before { */
-/* 		color: var(--in-content-page-color)!important; */
-/* 	} */
-/* 	.highlight .end-tag, */
-/* 	.highlight .start-tag { */
-/* 		color: var(--theme-highlight-purple)!important; */
-/* 	} */
-/* 	.highlight .comment { */
-/* 		color: var(--theme-highlight-green)!important; */
-/* 	} */
-/* 	.highlight .cdata { */
-/* 		color: #c06!important; */
-/* 	} */
-/* 	.highlight .doctype { */
-/* 		color: #4682b4!important; */
-/* 	} */
-/* 	.highlight .pi { */
-/* 		color: var(--theme-highlight-red)!important; */
-/* 	} */
-/* 	.highlight .entity { */
-/* 		color: #dea174!important; */
-/* 	} */
-/* 	.highlight .attribute-name { */
-/* 		color: var(--theme-highlight-green)!important; */
-/* 	} */
-/* 	.highlight .attribute-value { */
-/* 		color: var(--theme-highlight-blue)!important; */
-/* 	} */
-/* 	.highlight .markupdeclaration { */
-/* 		color: #4682b4!important; */
-/* 	} */
-/* 	.highlight .error, */
-/* 	.highlight .error > :-moz-any(.start-tag, .end-tag, .comment, .cdata, .doctype, .pi, .entity, .attribute-name, .attribute-value) { */
-/* 		color: #de7474!important; */
-/* 	} */
-/* } */
-
-/* Tridactyl */
-@-moz-document url-prefix("moz-extension://54c74a00-4141-4ab1-9d9a-f9aa335dad81/"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/") {
-	.container-main,
-	body,
-	html {
-		background: var(--in-content-page-background)!important;
-	}
-	.tsd-panel {
-		background: var(--in-content-box-background)!important;
-	}
-	.tsd-page-title,
-	.tsd-page-toolbar,
-	footer {
-		background: var(--in-content-category-header-background)!important;
-		border-color: var(--in-content-category-header-background)!important;
-	}
-	body,
-	table {
-		color: var(--in-content-page-color)!important;
-	}
-	a:link {
-		color: var(--in-content-link-color)!important;
-	}
-	#completions .sectionHeader {
-		background: var(--in-content-category-header-background)!important;
-		color: var(--in-content-text-color)!important;
-	}
-	#completions {
-		background: var(--in-content-page-background)!important;
-		border-color: var(--in-content-box-border-color)!important;
-	}
-	.option:not(.focused) .url {
-		color: var(--code-green)!important;
-		background: var(--in-content-page-background)!important;
-	}
-	input {
-		background: var(--in-content-category-header-background)!important;
-		color: var(--in-content-text-color)!important;
-	}
-	.focused,
-	.focused .url {
-		background: var(--warning-background-color)!important;
-		color: var(--warning-color)!important;
-	}
-	.spoiler {
-		background-color: var(--in-content-box-background)!important;
-		border-color: var(--in-content-box-border-color)!important;
-	}
-}
-
-
-@-moz-document url-prefix("moz-extension://54c74a00-4141-4ab1-9d9a-f9aa335dad81/static/newtab.html"), url-prefix("moz-extension://00ef94fc-7aa4-5049-881c-e176ee3b1e87/static/newtab.html") {
-	body {
-		background-color: var(--primary-dark-color) !important;
-		color: var(--primary-light-color) !important;
-	}
+@-moz-document url-prefix(view-source) {
+  :root {
+    background-color: var(--in-content-page-background)!important;
+    color: var(--in-content-page-color)!important
+  }
+  pre[id]:before,
+  span[id]:before {
+    color: var(--in-content-page-color)!important
+  }
+  .highlight .end-tag,
+  .highlight .start-tag {
+    color: var(--theme-highlight-purple)!important
+  }
+  .highlight .comment {
+    color: var(--theme-highlight-green)!important
+  }
+  .highlight .cdata {
+    color: #c06!important
+  }
+  .highlight .doctype {
+    color: #4682b4!important
+  }
+  .highlight .pi {
+    color: var(--theme-highlight-red)!important
+  }
+  .highlight .entity {
+    color: #dea174!important
+  }
+  .highlight .attribute-name {
+    color: var(--theme-highlight-green)!important
+  }
+  .highlight .attribute-value {
+    color: var(--theme-highlight-blue)!important
+  }
+  .highlight .markupdeclaration {
+    color: #4682b4!important
+  }
+  .highlight .error,
+  .highlight .error > :-moz-any(.start-tag,.end-tag,.comment,.cdata,.doctype,.pi,.entity,.attribute-name,.attribute-value) {
+    color: #de7474!important
+  }
 }
