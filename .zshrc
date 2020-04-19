@@ -16,7 +16,7 @@ export ZINIT[COMPLETIONS_DIR]="$ZINIT[HOME_DIR]/completions"
 export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 
 # module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
-# study time spent sourcing files 
+# study time spent sourcing files
 # zmodload zdharma/zplugin # doesn't work with static zsh-bin
 
 if [ -z "$PROFILE_SET" ]; then
@@ -118,11 +118,13 @@ _fzf_compgen_dir() {
 }
 
 # add some items to bash-insulter
-export CMD_NOT_FOUND_MSGS_APPEND=(
+custom_insults=(
 	"B-BAKA!!!"
 	"Omae wa mou shindeiru"
 	"Nani?!"
 )
+# increase the probability of my custom additions showing by duplicating them
+export CMD_NOT_FOUND_MSGS_APPEND=("${custom_insults[@]}" "${custom_insults[@]}")
 
 SHELL_COMMON="$HOME/.config/shell_common"
 # source the theme
