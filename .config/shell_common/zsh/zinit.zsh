@@ -249,8 +249,8 @@ zinit snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
 zi_completion has'mpv'
 zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv-build/mpv/etc/_mpv.zsh
 
-zi_completion has'se'
-zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
+# zi_completion has'se'
+# zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
 
 zi_completion has'alacritty'
 zinit snippet $GHQ_ROOT/github.com/alacritty/alacritty/extra/completions/_alacritty
