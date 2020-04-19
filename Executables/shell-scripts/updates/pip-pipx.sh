@@ -2,8 +2,8 @@
 
 start_time=$(date '+%s')
 
-pip3 install -U --user git+https://github.com/pipxproject/pipx.git
-pip3 install -U --user pynvim
+python -m pip install -U --user git+https://github.com/pipxproject/pipx.git
+python -m pip install -U --user pynvim
 pipx upgrade-all --verbose
 
 update_comicdl() {
@@ -29,7 +29,7 @@ update_cheatsh() {
 		&& git pull && git submodule update --init --recursive --force --remote \
 		&& sed -e 's#curl -s cheat.sh/:list#cht.sh :list#' ./share/zsh.txt >"$XDG_CONFIG_HOME/shell_common/zsh/_cht.sh" \
 		&& {
-			[ -d "./ve" ] || virtualenv ./ve
+			[ -d "./ve" ] || virtualenv --system-site-packages ./ve # use system python-Levenshtein
 		} \
 		&& . ./ve/bin/activate \
 		&& python -m pip install -Ur ./requirements.txt \
