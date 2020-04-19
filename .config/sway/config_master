@@ -46,6 +46,9 @@ default_border pixel 3
 # exec mako # handled by systemd now
 # overlay bar
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+# daemons to download whatever gets sent to a named pipe
+exec mkfifo /tmp/dldaemon && tail -f /tmp/dldaemon | xargs -L1 -P 0 aria2c -d "$XDG_DATA_HOME/dldaemon"
+exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-dl -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
 # idle config
 exec swayidle -w \
 	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
@@ -123,7 +126,7 @@ input * {
 
 	bindsym $mod+shift+R exec $term tuir
 	bindsym $mod+p exec xdg-open-paste
-	bindsym $mod+shift+P exec xdg-open-paste
+	bindsym $mod+shift+P exec xdg-open-paste -d
 	bindsym $mod+n exec $term newsboat
 
 #
