@@ -1,8 +1,9 @@
 #!/usr/bin/env dash
 
-pip3 install -U --user pynvim pipx
+python3 -m ensurepip
+python3 -m pip install -U --user pip
+python3 -m pip install -U --user pynvim pipx
 
-# curses mpd client
 pipx install virtualenv
 pipx install 'git+https://github.com/beetbox/beets.git#egg=beets[lyrics]' &
 pipx install git+https://github.com/asciinema/asciinema.git &
@@ -13,9 +14,7 @@ pipx install git+https://github.com/kneufeld/consolemd.git &
 pipx install git+https://github.com/jarun/ddgr.git &
 pipx install git+https://github.com/noahp/emoji-fzf.git
 pipx install flake8 &
-pipx install git+https://github.com/nicolargo/glances.git &
 pipx install git+https://github.com/donnemartin/haxor-news.git &
-pipx install git+https://github.com/jakubroztocil/httpie.git &
 pipx install mypy &
 pipx install git+https://github.com/cykerway/ncmpy.git &
 pipx install neovim-remote &
@@ -53,7 +52,8 @@ pipx install mercurial
 pipx install meson # build system for lots of stuff
 # pipx install --system-site-packages git+https://github.com/prompt-toolkit/ptpython.git &
 pipx install --system-site-packages 'python-language-server[all]'
+pipx inject python-language-server pyls-mypy pyls-black
 pipx install --system-site-packages --include-deps 'git+https://github.com/prompt-toolkit/ptpython.git#egg=ptpython[ptipython]'
 pipx install --system-site-packages 'git+https://github.com/roddhjav/pass-import#egg=pass-import[keepass]'
 pipx install --system-site-packages 'git+https://github.com/qutebrowser/qutebrowser.git'
-pipx inject ptpython konch
+pipx inject --include-apps ptpython konch
