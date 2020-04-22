@@ -156,6 +156,9 @@ zinit light smxi/inxi
 zi_program has'grim' pick'grimshot'
 zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
+zi_program has'vipe' pick'ssh-mpv.sh'
+zinit light djblue/ssh-mpv
+
 zi0a has'nnn'
 zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.bash_zsh
 
