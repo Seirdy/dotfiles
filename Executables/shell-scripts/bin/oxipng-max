@@ -1,0 +1,12 @@
+#!/usr/bin/env dash
+# run oxipng with max possible Zopfli-based compression. Hella slow.
+# run `oxipng-max -p` to max out all CPU threads for multiple images
+
+if [ "$1" != '-p' ]; then
+	oxipng --fix -Z -o 6 --strip all "$@"
+else
+	shift
+	threads="$(($(getconf _NPROCESSORS_ONLN) / 6 + 1))"
+	parallel -j"$threads" oxipng --fix -Z -o 6 --strip all {} ::: "$@"
+fi
+# vi:ft=sh

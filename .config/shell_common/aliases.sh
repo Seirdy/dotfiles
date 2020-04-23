@@ -31,11 +31,8 @@ alias ytdl='youtube-dl'
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
 # anime4k scales up 720p best
 alias ytdl-720="ytdl -f 'bestvideo[height<1080]+bestaudio/best[height<1080]'"
-alias ytdl-crs="ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20"
+alias ytdl-crs='ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20'
 alias ffmpeg-copy='ffmpeg -c:v copy -c:a copy'
-alias oxipng-max='oxipng -Z -o 6 --strip all'
-# desktop has 16 cores, 32 threads
-alias oxipng-maxthreads='ls *.png | parallel -j6 oxipng-max'
 alias termbin='nc termbin.com 9999' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
@@ -43,6 +40,9 @@ alias sdins='sudo dnf install'
 alias stb='sudo tlp bat'
 alias rmm='rmtrash'
 alias rmhtm='rm *.html' # pandoc artifacts and stuff
+# curl follow redirect
+alias curll='curl -L'
+alias curltl='curl-tor -L'
 alias rgi='rg -i'
 alias rgv='rg -v'
 alias rgvi='rg -vi'
