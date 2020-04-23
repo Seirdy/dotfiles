@@ -31,7 +31,9 @@ go_update github.com/ddo/fast
 # alternate pager
 go_update github.com/walles/moar
 # Quickly share files between computers
-GO111MODULE=on go_update github.com/schollz/croc/v6
+GO111MODULE=on go_update github.com/schollz/croc/v8
+# like croc but with qr codes
+go_update github.com/claudiodangelis/qrcp
 # Pager for log files
 go_update github.com/tigrawap/slit/cmd/slit
 # shell script formatter
