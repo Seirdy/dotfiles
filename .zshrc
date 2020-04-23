@@ -68,8 +68,10 @@ function _z() {
 	_zlua "$@";
 }
 export _ZL_MATCH_MODE=1
-export _ZL_ECHO=1
+export _ZL_ECHO=0 # my prompt shows the pwd
+export _ZL_NO_CHECK=1 # unmounting and re-mounting drives shouldn't mess up history
 # bind C-Z to "fg", so the same keybind suspends and resumes.
+#
 function fancy_ctrl_z() {
 	if [[ $#BUFFER -eq 0 ]]; then
 		export BUFFER='fg'
