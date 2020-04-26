@@ -64,6 +64,25 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
+# aom reference impl.
+ghq_get_cd https://aomedia.googlesource.com/aom.git \
+	&& fancy_cmake -DENABLE_CCACHE=1 -DCONFIG_HIGHBITDEPTH=1
+
+# avif encoding and decoding (converting to png)
+ghq get -u https://github.com/link-u/cavif.git && ghq get -u https://github.com/link-u/davif.git
+# prepare cavif deps that don't get cloned
+[ -d "$GHQ_ROOT/github.com/link-u/cavif/external/Little-CMS" ] \
+	|| git clone --recurse-submodules --recursive \
+		git@github.com:mm2/Little-CMS.git \
+		"$GHQ_ROOT/github.com/link-u/cavif/external/Little-CMS"
+[ -d "$GHQ_ROOT/github.com/link-u/davif/external/Little-CMS" ] \
+	|| {
+		mkdir -p "$GHQ_ROOT/github.com/link-u/davif/external/" \
+			&& cp -r "$GHQ_ROOT/github.com/link-u/cavif/external/Little-CMS" "$GHQ_ROOT/github.com/link-u/davif/external/Little-CMS"
+	}
+cd "$GHQ_ROOT/github.com/link-u/davif" && fancy_cmake
+cd "$GHQ_ROOT/github.com/link-u/cavif" && fancy_cmake
+
 # mpv, with ffmpeg/libass statically linked
 # shellcheck disable=SC2169
 ghq_get_cd https://github.com/mpv-player/mpv-build.git \
@@ -81,6 +100,8 @@ export CFLAGS="$CFLAGS_LTO" \
 
 cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 	&& dash ./scripts/mpv-config && dash ./scripts/mpv-build && dash ./install
+
+ghq_get_cd 'https://github.com/martanne/abduco.git' && CC='musl-gcc -static' CFLAGS="$CFLAGS -static" configure_install
 
 # czmod, used by z.lua for a speedup
 ghq_get_cd 'https://github.com/skywind3000/czmod.git' && ./build.sh
@@ -147,6 +168,19 @@ ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 ghq_get_cd https://github.com/karlstav/cava.git \
 	&& ./autogen.sh \
 	&& FONT_DIR="$DATAPREFIX/fonts" configure_install
+
+# radeontop
+needs_radeontop() {
+	lspci -mm \
+		| awk -F '\"|\" \"|\\(' \
+			'/"Display|"3D|"VGA/ {a[$0] = $1 " " $3 " " $4}
+			END {for(i in a) {if(!seen[a[i]]++) print a[i]}}' \
+		| grep -i radeon >/dev/null
+}
+
+needs_radeontop \
+	&& ghq_get_cd https://github.com/clbr/radeontop.git \
+	&& make amdgpu=1 xcb=1 nls=0 install
 
 # cli-visualizer
 ghq_get_cd https://github.com/dpayne/cli-visualizer.git \

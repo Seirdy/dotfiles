@@ -45,7 +45,7 @@ pipx install vim-vint &
 pipx install xenon &
 pipx install git+https://github.com/ihabunek/toot.git &
 pipx install git+https://github.com/magicalraccoon/tootstream.git &
-pipx install git+https://github.com/xonsh/xonsh.git
+pipx install git+https://github.com/xonsh/xonsh.git &
 pipx install yamllint
 pipx install git+https://github.com/ytdl-org/youtube-dl.git
 pipx install mercurial
@@ -54,6 +54,7 @@ pipx install meson # build system for lots of stuff
 pipx install --system-site-packages 'python-language-server[all]'
 pipx inject python-language-server pyls-mypy pyls-black
 pipx install --system-site-packages --include-deps 'git+https://github.com/prompt-toolkit/ptpython.git#egg=ptpython[ptipython]'
-pipx install --system-site-packages 'git+https://github.com/roddhjav/pass-import#egg=pass-import[keepass]'
+pipx install --system-site-packages 'git+https://github.com/master-of-zen/Av1an.git'
+# pipx install --system-site-packages 'git+https://github.com/roddhjav/pass-import#egg=pass-import[keepass]'
 pipx install --system-site-packages 'git+https://github.com/qutebrowser/qutebrowser.git'
 pipx inject --include-apps ptpython konch
