@@ -56,6 +56,8 @@ macro p set browser "pockyt put -i %u"; open-in-browser ; set browser "$BROWSER 
 # Downloading stuff
 macro Y set browser "ytdl-rss %u"; open-in-browser ; set browser "$BROWSER %u &"
 macro m set browser "mpv %u"; open-in-browser ; set browser "$BROWSER %u &"
+macro M set browser "mpv --profile=manga %u" # for viewing comics upscaled n stuff
+macro d set browser "echo %u >>/tmp/dldaemon" # my download daemon downloads
 podcast-auto-enqueue yes
 macro E set browser "echo %u >> $XDG_DATA_DIR/newsboat/queue" ; open-in-browser ; set browser "$BROWSER %u &"
 macro w set browser "w3m -o display_image=false" ; open-in-browser ; set browser "$BROWSER %u &"
@@ -64,7 +66,7 @@ macro r set browser "tuir" ; open-in-browser ; set browser "$BROWSER %u &"
 macro R set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u &"
 # switch the browser to an image-viewing program for articles with lots of images
 macro i set browser "dl-open-bkg %u & >/dev/null 2>/dev/null"
-macro b set browser "$BROWSER %u &"
+macro B set browser "$BROWSER %u &"
 
 # Podcast downloading
 download-path "~/Podcasts/%Y/%N"
