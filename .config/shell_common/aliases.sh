@@ -17,7 +17,7 @@ alias sl='sl | lolcat'
 
 # wl-clipboard aliases
 alias wlc='wl-copy -n'
-alias wlcv='wl-copy -n && wl-paste' # copies to stdin and then displays it anyway
+alias wlcv='wl-copy -n -t text/plain && wl-paste' # copies to stdin and then displays it anyway
 alias yankit='yank-cli -- wl-copy -n'
 alias recopy='wl-paste -n | wl-copy -n' # good for stripping newlines I guess
 alias dlpaste='aria2c "$(wl-paste -n)"'
@@ -33,7 +33,8 @@ alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best
 alias ytdl-720="ytdl -f 'bestvideo[height<1080]+bestaudio/best[height<1080]'"
 alias ytdl-crs='ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20'
 alias ffmpeg-copy='ffmpeg -c:v copy -c:a copy'
-alias termbin='nc termbin.com 9999' # pastebin
+alias chafa-best='chafa --symbols all-braille-extra --zoom -w 9 -c full --color-space din99d'
+alias tb='nc termbin.com 9999 | tr -d "\n"' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
 alias sdins='sudo dnf install'
@@ -69,6 +70,7 @@ alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.
 # pastebin/file-upload stuff
 alias clbincp='clbin | wlcv'
 alias 0x0cp='0x0 | wlcv'
+alias tbcp='tb | wlcv'
 # mirror the URL in the clipboard to 0x0.st
 alias mirror0x0='curl "$(wl-paste -n)" >/tmp/img && upl /tmp/img'
 # mirror to 0x0.st and copy the 0x0.st URL
@@ -101,19 +103,7 @@ alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
 alias chtsh='cht.sh --auto' # prefer offline cheat.sh
 
-# mpd stuff
-# filename of current track
-alias now-playing-file='mpc status -f "%file%" | sed 1q'
-# query sticker for current track
-alias mpc-sticker='mpc sticker "$(now-playing-file)" '
-# current track rating
-alias now-playing-rating='mpc-sticker get rating || echo "unrated"'
-# show normal info for current song, along with its rating
-alias now-playing='mpc status && now-playing-rating'
-# rate current track 1-10.
-alias rate-track='mpc-sticker set rating'
-# skip current track and show rating of the next one.
-alias skip-show='mpc next && now-playing-rating'
+# mpd stuff moved to dedicated repo
 
 # $EDITOR aliases
 # shellcheck disable=SC2154
