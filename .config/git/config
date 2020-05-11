@@ -20,7 +20,7 @@
 	gpgsign = true
 [core]
 	editor = nvim
-	pager = delta --dark --theme='base16' --tabs 2 | less --tabs=2 -RFX
+	pager = delta --theme='ansi-dark' --tabs 2
 	commitGraph = true
 [color]
 	ui = true
