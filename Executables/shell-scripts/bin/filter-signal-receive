@@ -1,6 +1,8 @@
 #!/usr/bin/env dash
+# rgv '^()$' | 
 
-rg -v 'Id:.*==|Profile key|^Message timestamp: [0-9]' \
+rg -v 'Id:.*==|Profile key|^(Message timestamp: [0-9]|(Received a .* message| - Is delivery receipt|Envelope from: unknown source|Sent by unidentified/sealed sender)$)' \
 	| rg -v '^(Envelope from.*\nTimestamp.*\n(Received|Got receipt)|Received.*\nFrom|(\n\n(\n| )| (- (When|Time|Is read|Action)| ( |Type: [A-Z]))))' --multiline \
-	| rg -v '^\n .*\n' --multiline \
+	| rg -v --multiline '^(Exception: org\.whispersystems\.libsignal\.DuplicateMessageException:.*\)$\nFailed to decrypt message|Timestamp: [0-9]* \(.*$\nSender: .*\)$\n)( |$)' \
+	| sd '\n\nEnvelope from.*\n$' '' \
 	| uniq
