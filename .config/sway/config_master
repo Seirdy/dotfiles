@@ -37,6 +37,11 @@ for_window [app_id="^supertux2"] floating enable
 # not be limited by the WM.
 for_window [app_id="^imv$"] floating enable
 for_window [app_id="^mpv$"] floating enable
+
+# muh latency
+for_window [app_id="^alacritty$"] max_render_time 1
+for_window [class="^st-256color$"] max_render_time 1
+for_window [class="^st-256color$"] opacity 0.92
 # disable titlebar
 default_border pixel 3
 
