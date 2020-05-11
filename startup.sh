@@ -50,7 +50,7 @@ export GTK_THEME=Breeze-Dark
 export GTK_THEME_VARIANT=dark
 export CALIBRE_USE_SYSTEM_THEME=1
 export BROWSER=firefox-nightly
-export GTK_USE_PORTAL=1 # KDE file-picker
+# export GTK_USE_PORTAL=1 # KDE file-picker
 export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
@@ -99,6 +99,7 @@ export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config.lua"
 export PIPX_HOME="$HOME/Executables/pipx"
 export PIPX_BIN_DIR="$HOME/Executables/pipx/bin"
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export NIMBLE_DIR="$HOME/Executables/nimble"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 # Keep npm from polluting my $HOME
 export NPM_PACKAGES="$HOME/Executables/npm"
@@ -187,6 +188,7 @@ pathadd_head "$HOME/Executables/luarocks/bin"      # luarocks (lua)
 pathadd_head "$PIPX_BIN_DIR"                       # pipx (python)
 pathadd_head "$GOPATH/bin"                         # go pacakages
 pathadd_head "$GOPATH/sdk/gotip/bin"               # golang nightly build
+pathadd_head "$NIMBLE_DIR/bin"                     # nim packages
 pathadd_head "$STACK_ROOT/bin"                     # stack (haskell)
 pathadd_head "$OPAM_SWITCH_PREFIX/bin"             # opam
 pathadd_head "$CARGO_HOME/bin"                     # cargo (rust)
