@@ -116,6 +116,9 @@ zinit light containers/toolbox
 zi_program has'python3' pick'imguralbum.py'
 zinit light alexgisby/imgur-album-downloader
 
+zi_program has'signal-cli' pick'scli'
+zinit light isamert/scli
+
 zi_program has'jq'
 zinit snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
 
@@ -156,9 +159,6 @@ zinit light smxi/inxi
 zi_program has'grim' pick'grimshot'
 zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
-zi_program has'vipe' pick'ssh-mpv.sh'
-zinit light djblue/ssh-mpv
-
 zi0a has'nnn'
 zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.bash_zsh
 
@@ -198,20 +198,20 @@ zi_completion() {
 	zi0a as'completion' blockf "$@"
 }
 
+zi_completion has'ghq'
+zinit snippet https://github.com/x-motemen/ghq/blob/master/misc/zsh/_ghq
+
 zi_completion has'tmux' pick'completion/zsh'
 zinit light greymd/tmux-xpanes
 
-zi_completion has'pip3'
-zinit snippet OMZ::plugins/pip/_pip
-
 zi_completion has'pylint'
-zinit snippet OMZ::plugins/pylint/_pylint
+zinit snippet OMZP::pylint/_pylint
 
 zi_completion has'cargo'
-zinit snippet OMZ::plugins/cargo/_cargo
+zinit snippet https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 
 zi_completion has'rustc'
-zinit snippet OMZ::plugins/rust/_rust
+zinit snippet OMZP::rust/_rust
 
 zi_completion has'docker'
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
@@ -307,15 +307,17 @@ finish_setup() {
 	. "$SHELL_COMMON/functions.sh"
 	# shellcheck source=/dev/null
 	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
-	command -v thefuck >/dev/null && eval "$(thefuck --alias)"
-	command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
+	command -v thefuck >/dev/null && . <(thefuck --alias)
+	command -v kitty >/dev/null && . <(kitty + complete setup zsh)
+	command -v pip >/dev/null && . <(pip completion --zsh)
+	# command -v rustup >/dev/null && . <(rustup completions zsh)
 	GPG_TTY="$(tty)" && export GPG_TTY
 	[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
 	# yadm equivalent of forgit commands
 	where forgit::diff | sed -e 's/git /yadm /g' -e 's/forgit::diff/yd/' | source /dev/stdin
 	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /_ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
 	function ya() {
-		yadm add "$(_ya | awk '{print $2}')"
+		yadm add "$HOME/$(_ya | awk '{print $2}')"
 	}
 }
 
