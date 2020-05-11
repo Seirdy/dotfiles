@@ -62,7 +62,10 @@ set editorcmd alacritty --class launcher -e $EDITOR
 
 set externalclipboardcmd wl-copy
 set yankto both
-set smoothscroll true
+set smoothscroll false
+
+bind j scrollline 4
+bind k scrollline -4
 
 " Custom binds
 
