@@ -93,6 +93,9 @@ else
 	go_update https://github.com/boot2podman/machine/cmd/podman-machine
 fi
 
+# linting
+go_update github.com/golangci/golangci-lint/cmd/golangci-lint
+
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"

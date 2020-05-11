@@ -22,12 +22,15 @@ go_update github.com/cpuguy83/go-md2man
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
 # If htop wasn't pretty enough
-go_update github.com/cjbassi/gotop
+go_update github.com/xxxserxxx/gotop
+# encode avif
+go_update github.com/Kagami/go-avif
 # fzf
 go_update github.com/junegunn/fzf \
 	&& install -p -m644 "$GOPATH"/src/github.com/junegunn/fzf/man/man1/* "$MANPREFIX/man1"
 # Test dl speed
-go_update github.com/ddo/fast
+go_update github.com/ddo/fast # fast.com
+go_update github.com/m-lab/ndt7-client-go/cmd/ndt7-client # measurement lab
 # alternate pager
 go_update github.com/walles/moar
 # Quickly share files between computers
@@ -83,10 +86,6 @@ go_update github.com/boyter/scc
 go_update golang.org/x/tools/gopls
 # Learn go
 go_update golang.org/x/tour
-# godoc webserver
-go_update golang.org/x/tools/cmd/godoc
-# linting
-go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 # compiler for embedded go
 go_update github.com/tinygo-org/tinygo
 # check git repo for secrets
