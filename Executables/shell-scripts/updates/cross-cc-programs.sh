@@ -101,6 +101,12 @@ export CFLAGS="$CFLAGS_LTO" \
 cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 	&& dash ./scripts/mpv-config && dash ./scripts/mpv-build && dash ./install
 
+# nim
+ghq get -u https://github.com/nim-lang/Nim.git \
+	&& cd "$GHQ_ROOT/github.com/nim-lang/Nim" \
+	&& dash ./build_all.sh \
+	&& cp build/* "$NIMBLE_DIR/bin"
+
 ghq_get_cd 'https://github.com/martanne/abduco.git' && CC='musl-gcc -static' CFLAGS="$CFLAGS -static" configure_install
 
 # czmod, used by z.lua for a speedup
@@ -131,6 +137,9 @@ ghq_get_cd https://github.com/facebook/zstd.git \
 
 # file(1)
 ghq_get_cd https://github.com/file/file.git && simple_autotools
+
+# speedtest cli
+ghq_get_cd https://github.com/taganaka/SpeedTest.git && fancy_cmake
 
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
