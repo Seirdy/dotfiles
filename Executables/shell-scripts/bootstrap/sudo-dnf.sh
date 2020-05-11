@@ -11,12 +11,11 @@ fi
 dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
 dnf module enable sway:rolling
 # copr repos
-dnf copr enable petersen/stack -y
+dnf copr enable petersen/stack -y # stack will build itself and then this will be removed.
 dnf copr enable oleastre/fonts -y # Hasklig and Fira Code
 dnf copr enable sramanujam/firefox-nightly -y
 dnf copr enable zawertun/kde -y # latest kde
-dnf copr enable gumieri/sway -y
-dnf copr enable taocris/musl -y # musl stuff
+# dnf copr enable gumieri/sway -y # unmaintained
 dnf copr enable jdoss/wireguard -y
 dnf upgrade --refresh --allowerasing -y
 packages=(
@@ -24,21 +23,20 @@ packages=(
 	"GConf2-devel" # build redshift
 	"LibRaw"
 	"SDL2_ttf-devel"
-	"abduco"
 	"adobe-*-fonts"
 	"asciidoc"
 	"autoconf"         # build many things
 	"autoconf-archive" # building xdg-dbus-proxy
 	"automake"         # build things like podman
 	"bash-completion"
-	"bc"
-	"bison"       # build many programs' docs
-	"boost-devel" # build ncmpcpp
-	"breeze-gtk"
+	"bc"                # arbitrary precision calculator
+	"bison"             # build many programs' docs
+	"boost-devel"       # build ncmpcpp
+	"breeze-gtk"        # preferred GTK theme
+	"brotli-devel"      # build wget2
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
-	"calc"  # really small/fast CLI calculator
-	"cargo" # rust package manager. used to install itself; then uninstalled.
+	"calc" # really small/fast CLI calculator
 	"catimg"
 	"ccls"                     # C/C++/Objective-C language server
 	"chromium-browser-privacy" # ungoogled-chromium
@@ -97,13 +95,11 @@ packages=(
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
 	"gnu-free-mono-fonts"
-	"gnutls-devel"                # build weechat
 	"gobject-introspection-devel" # building many packages, including flatpak
 	"golang"
 	"google-*-fonts"
 	"gperf"            # build neovim
 	"gperftools-devel" # build i3status-rs
-	"gpgme-devel"      # building skopeo and others
 	"gsm-devel"        # build ffmpeg
 	"gtk-doc"          # building flatpak
 	"gtk3-devel"
@@ -124,7 +120,6 @@ packages=(
 	"java-latest-openjdk-devel"
 	"jq"
 	"json-glib-devel" # build flatpak
-	"keepassxc"       # password manager until I migrate to `pass`
 	"ladspa-devel"    # build ffmpeg
 	"lame-devel"      # build ffmpeg
 	"latexmk"
@@ -136,10 +131,10 @@ packages=(
 	"libarchive-devel"        # build flatpak
 	"libassuan-devel"         # building skopeo and others
 	"libavc1394-devel"        # build ffmpeg
+	"libbrotli"               # build wget2
 	"libbs2b-devel"           # build ffmpeg
 	"libcap-devel"            # building bubblewrap, slirp4netns
 	"libcmocka-devel"
-	"libdrm-devel"        # build redshift
 	"libdwarf-devel"      # build flatpak-builder
 	"libevdev-devel"      # build sway
 	"libgcrypt-devel"     # build weechat
@@ -163,7 +158,6 @@ packages=(
 	"libvterm-devel"    # build neovim
 	"libwayland-client" # build imv
 	"libwayland-egl"    # build imv
-	"libxcb-devel"
 	"libxkbcommon-x11-devel"
 	"lld" # llvm linker, used for LTO in packages containing Rust and C/C++
 	"llvm"
@@ -174,7 +168,7 @@ packages=(
 	"luajit-devel" # build neovim
 	"luarocks"
 	"lvm2" # handles logical volumes, useful for building containers
-	"lzip" # best LZMA-based archiving solution. Works well with tar.
+	"lzip" # best LZMA-based archiving solution. Works well with tar. Build wget2
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
 	"mesa-libOpenCL"            # build Waifu2x-converter-cpp, ffmpeg
@@ -221,15 +215,19 @@ packages=(
 	"pkgconfig(aom)"         # build ffmpeg
 	"pkgconfig(caca)"        # build projectm
 	"pkgconfig(cairo)"       # build imv
+	"pkgconfig(criu)"        # build crun
 	"pkgconfig(dav1d)"       # build mpv
 	"pkgconfig(egl)"
 	"pkgconfig(enca)"
 	"pkgconfig(ffnvcodec)"
+	"pkgconfig(fmt)"      # build sway
 	"pkgconfig(freerdp2)" # build sway (optional)
 	"pkgconfig(frei0r)"   # build ffmpeg
 	"pkgconfig(gbm)"
 	"pkgconfig(gdk-pixbuf-2.0)" # build sway
 	"pkgconfig(gl)"
+	"pkgconfig(gnutls)" # build weechat, wget2
+	"pkgconfig(gpgme)"  # building skopeo, wget2, and others
 	"pkgconfig(jack)"   # build ffmpeg
 	"pkgconfig(json-c)" # build newsboat
 	"pkgconfig(lcms2)"
@@ -245,13 +243,17 @@ packages=(
 	"pkgconfig(libcrypto)"        # build newsboat
 	"pkgconfig(libcurl)"          # build newsboat, weechat
 	"pkgconfig(libdrm)"           # build ffmpeg
+	"pkgconfig(libdrm)"           # build redshift, radeontop
 	"pkgconfig(libevent)"         # build tmux
 	"pkgconfig(libguess)"
+	"pkgconfig(libidn2)" # build wget2
 	"pkgconfig(libjpeg)"
 	"pkgconfig(libmfx)"     # build ffmpeg
+	"pkgconfig(libnghttp2)" # build wget2
 	"pkgconfig(libopenjp2)" # build ffmpeg
 	"pkgconfig(libpcre)"    # build sway
 	"pkgconfig(libplacebo)" # build mpv and others
+	"pkgconfig(libpsl)"     # build wget2
 	"pkgconfig(libpulse)"   # build projectM, cava, and cli-visualizer
 	"pkgconfig(libquvi-0.9)"
 	"pkgconfig(libssh)"  # build ffmpeg
@@ -263,14 +265,17 @@ packages=(
 	"pkgconfig(libvmaf)"    # build ffmpeg
 	"pkgconfig(libwebp)"    # build ffmpeg
 	"pkgconfig(libxml-2.0)" # build newsboat
+	"pkgconfig(libzstd)"    # build wget2
 	"pkgconfig(luajit)"
 	"pkgconfig(mujs)"
 	"pkgconfig(opencv)"     # build Waifu2x-converter-cpp, ffmpeg
 	"pkgconfig(opus)"       # build ffmpeg
 	"pkgconfig(pango)"      # build sway
+	"pkgconfig(pciaccess)"  # build radeontop
 	"pkgconfig(rubberband)" # build mpv
 	"pkgconfig(sdl2)"
 	"pkgconfig(shaderc)" # build mpv
+	"pkgconfig(slirp)"   # build slirp4netns
 	"pkgconfig(smbclient)"
 	"pkgconfig(soxr)"
 	"pkgconfig(speex)"
@@ -294,10 +299,10 @@ packages=(
 	"pkgconfig(wayland-scanner)"
 	"pkgconfig(winpr2)" # build sway (optional)
 	"pkgconfig(x11)"
-	"pkgconfig(x264)"       # build ffmpeg. From rpmfusion-free
-	"pkgconfig(x265)"       # build ffmpeg. From rpmfusion-free
-	"pkgconfig(xcb-errors)" # build sway (optional)
-	"pkgconfig(xcb-icccm)"  # build sway (optional)
+	"pkgconfig(x264)"      # build ffmpeg. From rpmfusion-free
+	"pkgconfig(x265)"      # build ffmpeg. From rpmfusion-free
+	"pkgconfig(xcb)"       # build radeontop and a few others
+	"pkgconfig(xcb-icccm)" # build sway (optional)
 	"pkgconfig(xext)"
 	"pkgconfig(xinerama)"
 	"pkgconfig(xkbcommon)"
@@ -312,6 +317,7 @@ packages=(
 	"polkit-devel"         # build flatpak
 	"powerline-fonts"
 	"pv"                     # monitor piping
+	"python3-Levenshtein"    # speed up cheat.sh a bit
 	"python3-devel"          # building weechat, among others
 	"python3-docutils"       # build mpv docs
 	"python3-libmount"       # building crun
@@ -326,7 +332,6 @@ packages=(
 	"rubygems"
 	"rust-analysis"
 	"rust-std-static"
-	"scrot"                # Screenshots on X11
 	"selinux-policy-devel" # build flatpak
 	"sendemail"            # TODO: get from git using zinit
 	"source-highlight"     # build weechat
@@ -379,10 +384,8 @@ packages=(
 	"x265-libs"
 	"xbacklight"
 	"xdg-desktop-portal"
-	"xdotool"
 	"xmlto"                    # build many programs that use XML, inc. Flatpak
 	"xorg-x11-server-Xwayland" # xwayland, for running X apps in Wayland (sway)
-	"xsel"                     # Yank tool; used by yank-cli
 	"xvidcore-devel"           # build ffmpeg. From rpmfusion-free
 	"yajl-devel"               # building crun
 	"yank"                     # Good yank tool; works with xsel
@@ -392,6 +395,7 @@ packages=(
 	"zeromq-devel" # build ffmpeg
 	"zip"
 	"zsh"
+	# "pkgconfig(xcb-errors)" # build sway (optional)
 )
 # shellcheck disable=SC2086
 dnf install ${packages[*]} --allowerasing --skip-broken -y
