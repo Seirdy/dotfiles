@@ -2,7 +2,12 @@
 --fixup detect_or_warn
 --all-subs
 --embed-subs
+# --embed-thumbnail # not yet supported for many formats
 --console-title
+# speed things up a bit
 --external-downloader aria2c
 --audio-quality 0
---format "bestvideo[width>1920][ext=webm]+bestaudio[ext=webm]/bestvideo[width>1920]+bestaudio/bestvideo[ext=webm]+bestaudio[ext=webm]/bestvideo+bestaudio/best"
+--xattrs
+# --merge-output-format mkv
+# choose format only based on codec, height, and FPS. Probably overkill
+--format "(bestvideo[vcodec^=av01][height>1080][fps>30]/bestvideo[vcodec=vp9.2][height>1080][fps>30]/bestvideo[vcodec=vp9][height>1080][fps>30]/bestvideo[vcodec^=av01][height>1080]/bestvideo[vcodec=vp9.2][height>1080]/bestvideo[vcodec=vp9][height>1080]/bestvideo[height>1080]/bestvideo[vcodec^=av01][height>720][fps>30]/bestvideo[vcodec=vp9.2][height>720][fps>30]/bestvideo[vcodec=vp9][height>720][fps>30]/bestvideo[vcodec^=av01][height>720]/bestvideo[vcodec=vp9.2][height>720]/bestvideo[vcodec=vp9][height>720]/bestvideo[height>720]/bestvideo[vcodec^=av01][height>=720][fps>30]/bestvideo[vcodec=vp9.2][height>=720][fps>30]/bestvideo[vcodec=vp9][height>=720][fps>30]/bestvideo[vcodec^=av01][height>=720]/bestvideo[vcodec=vp9.2][height>=720]/bestvideo[vcodec=vp9][height>=720]/bestvideo[height>=720]/bestvideo)+(bestaudio[acodec=opus]/bestaudio)/best"
