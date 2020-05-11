@@ -412,6 +412,8 @@ tabbrowser-tabpanels,
 browser[type=content-primary],
 #appcontent > #content,
 browser[type=content] > html,
+browser[type=content],
+#main-window,
 .browserContainer {
 	background-color: var(--ui-background) !important;
 }

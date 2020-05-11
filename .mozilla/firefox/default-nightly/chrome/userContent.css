@@ -111,3 +111,11 @@
     color: #de7474!important
   }
 }
+@-moz-document url(about:newtab),
+url(about:home),
+url(moz-extension://3da4b3e5-cef3-4ac8-a546-ffdb24813469/static/newtab.html) {
+	body {
+		background-color:var(--primary-dark-color)!important;
+		color:var(--in-content-page-color)!important;
+	}
+}
