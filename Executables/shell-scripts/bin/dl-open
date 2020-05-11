@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 # Downloads a list of URLS listed in $@, and opens them all at once.
 # Especially useful for viewing images/albums in rtv/tuir
-dl_dir="$HOME/.local/share/dl-open"
+dl_dir="/tmp/dl-open"
 # shellcheck disable=SC2164
 mkdir -p "$dl_dir" && cd "$dl_dir"
 rm -f ./*
