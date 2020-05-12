@@ -119,6 +119,24 @@ _fzf_compgen_dir() {
 	fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+export _EXTRACT="
+# trim input
+in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
+# get ctxt for current completion
+local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
+"
+zstyle ':fzf-tab:*' single-group ''
+zstyle ':fzf-tab:complete:_zlua:*' query-string input
+zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$_EXTRACT'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
+lsd_preview() {
+zstyle "$1" extra-opts --preview=$_EXTRACT'lsd --group-dirs first --color always --icon always --icon-theme fancy ${~ctxt[hpre]}$in'
+}
+lsd_preview ':fzf-tab:complete:cd:*'
+lsd_preview ':fzf-tab:complete:lsd:*'
+lsd_preview ':fzf-tab:complete:exa:*'
+lsd_preview ':fzf-tab:complete:ls:*'
+lsd_preview ':fzf-tab:complete:_fzz:*'
+zstyle ':fzf-tab:complete:man:*' extra-opts --preview=$_EXTRACT'man ${~ctxt[hpre]}$in'
 # add some items to bash-insulter
 custom_insults=(
 	"B-BAKA!!!"

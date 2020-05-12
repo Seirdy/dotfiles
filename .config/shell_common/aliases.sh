@@ -212,4 +212,6 @@ if [ -n "$ZSH_VERSION" ]; then
 	fi
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
 	alias -g 'wlp'='"$(wl-paste -n)"'
+	unalias zf
+	alias zf="FZF_DEFAULT_OPTS=\"$FZF_DEFAULT_OPTS --preview='lsd --group-dirs first --color always --icon always --icon-theme fancy {2}'\" z -I"
 fi

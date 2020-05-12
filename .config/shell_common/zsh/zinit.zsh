@@ -287,6 +287,13 @@ zinit light zsh-users/zsh-completions
 zi_completion pick'src/go' src'src/zsh'
 zinit light zchee/zsh-completions
 
+zi_completion mv'git-completion.zsh -> _git'
+zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
+
+# load system completions
+zi_completion is-snippet for \
+	/usr/share/zsh/site-functions/_*
+
 # the following will run after everything else happens
 finish_setup() {
 	# command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
@@ -319,6 +326,9 @@ finish_setup() {
 	function ya() {
 		yadm add "$HOME/$(_ya | awk '{print $2}')"
 	}
+	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
+	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
+		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
 }
 
 zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
