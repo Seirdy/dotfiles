@@ -71,6 +71,7 @@ export GOPROXY=direct
 # In addition to this spec, I use ~/Executables to keep packages installed by
 # 3rd-party package managers.
 export INFLUXDB_CONFIG_PATH="$XDG_CONFIG_HOME/influxdb/influxdb.conf"
+export PKG_CONFIG_PATH="$XDG_DATA_HOME/pkgconfig:$(pkg-config --variable pc_path pkg-config)"
 export INFLUXDB_DATA_DIR="$XDG_DATA_HOME/influxdb/data"
 export INFLUXDB_DATA_WAL_DIR="$XDG_DATA_HOME/influxdb/wal"
 export INFLUXDB_META_DIR="$XDG_DATA_HOME/influxdb/meta"
@@ -142,7 +143,7 @@ xdgdataadd_head "$HOME/.local/share/flatpak/exports/share"
 
 export XDG_DATA_DIRS
 
-export LD_LIBRARY_PATH="$HOME/.local/lib/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib/:$HOME/.local/lib64:$LD_LIBRARY_PATH"
 export GI_TYPELIB_PATH="$HOME/.local/lib/:$GI_TYPELIB_PATH"
 
 # Set MANPATH
