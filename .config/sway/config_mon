@@ -1,4 +1,4 @@
-	font Hasklug Nerd Font, FontAwesome 12
-	height 23
+	font Source Code Pro for Powerline, Hasklug Nerd Font, FontAwesome 11
+	height 22
 }
-gaps inner 14
+gaps inner 20

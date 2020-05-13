@@ -278,7 +278,7 @@ bindsym $mod+r mode "resize"
 # ./config_lap or ./config_mon
 bar {
 	position top
-	gaps 10 10
+	# gaps 0 15
 	colors {
 		statusline #ffffff
 		background #31363b00

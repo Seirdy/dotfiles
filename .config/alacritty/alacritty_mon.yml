@@ -10,7 +10,7 @@ font:
     #   - (Linux) monospace
     #   - (Windows) Consolas
   normal:
-    family: Hasklug Nerd Font
+    family: monospace
     style: Medium
 
   # Bold font face
@@ -26,7 +26,7 @@ font:
 
   # Italic font face
   italic:
-    family: Hasklug Nerd Font
+    family: monospace
     style: Medium Italic
     # Font family
     #
