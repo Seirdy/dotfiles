@@ -22,7 +22,7 @@ go_update github.com/cpuguy83/go-md2man
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
 # If htop wasn't pretty enough
-go_update github.com/xxxserxxx/gotop
+go_update github.com/xxxserxxx/gotop/cmd/gotop
 # encode avif
 go_update github.com/Kagami/go-avif
 # fzf
