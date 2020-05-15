@@ -84,6 +84,7 @@ nvim_lsp.pyls.setup{
 				pylint = { enabled = false },
 				rope_completion = { enabled = true },
 				black = { enabled = true },
+				isort = { enabled = true }
 			}
 		}
 	}
