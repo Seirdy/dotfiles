@@ -1,26 +1,21 @@
 #!/bin/zsh
-# powerlevel9k
-# function yadm-gitstatus() {
-# 	emulate -L zsh
-# 	if [[ ${(%):-%~} == '~' ]]; then
-# 		GIT_DIR="$XDG_CONFIG_HOME/yadm/repo.git"
-# 	else
-# 		unset GIT_DIR
-# 	fi
-# }
 autoload -Uz add-zsh-hook
-# add-zsh-hook chpwd yadm-gitstatus
-# yadm-gitstatus
+# use transient prompt. Set it to "off" since I don't want
+# to use its default elements; I want to use the same elements as line 2
+export POWERLEVEL9K_TRANSIENT_PROMPT=off
 export POWERLEVEL9K_GITSTATUS_DIR="$GHQ_ROOT/github.com/romkatv/gitstatus"
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
-# if [ "$CONDA_PREFIX" = '/usr' ]; then
-# 	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-# 		dir_writable dir anaconda virtualenv vcs newline vi_mode status
-# 	)
-# else
+# add invisible execution time to left prompt
+# in order to show it in the right-side transient prompt
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 	dir_writable dir virtualenv vcs newline vi_mode status
 )
+export POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=true
+function p10k-on-pre-prompt() { p10k display '1'=show}
+function p10k-on-post-prompt() {
+  [[ $last_prompt_dir == $PWD ]] && p10k display '1'=hide
+  last_prompt_dir=$PWD
+}
 # fi
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
 	root_indicator background_jobs command_execution_time time

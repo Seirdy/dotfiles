@@ -312,11 +312,6 @@ finish_setup() {
 	. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
 	# shellcheck source=/home/.config/shell_common/functions.sh
 	. "$SHELL_COMMON/functions.sh"
-	# shellcheck source=/dev/null
-	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
-	command -v thefuck >/dev/null && . <(thefuck --alias)
-	command -v kitty >/dev/null && . <(kitty + complete setup zsh)
-	command -v pip >/dev/null && . <(pip completion --zsh)
 	# command -v rustup >/dev/null && . <(rustup completions zsh)
 	GPG_TTY="$(tty)" && export GPG_TTY
 	[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
@@ -326,10 +321,15 @@ finish_setup() {
 	function ya() {
 		yadm add "$HOME/$(_ya | awk '{print $2}')"
 	}
+	# shellcheck source=/dev/null
+	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
+	command -v thefuck >/dev/null && . <(thefuck --alias)
+	command -v kitty >/dev/null && . <(kitty + complete setup zsh)
+	command -v pip >/dev/null && . <(pip completion --zsh)
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
 	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
 }
 
-zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
+zi0c atload'time finish_setup' atinit'zpcompinit; zpcdreplay'
 zinit light zdharma/fast-syntax-highlighting

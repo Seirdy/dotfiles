@@ -15,9 +15,13 @@ export ZINIT[PLUGINS_DIR]="$ZINIT[HOME_DIR]/plugins"
 export ZINIT[COMPLETIONS_DIR]="$ZINIT[HOME_DIR]/completions"
 export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 
-# module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
-# study time spent sourcing files
-# zmodload zdharma/zplugin # doesn't work with static zsh-bin
+# user-loaded modules don't work on the statically-linked zsh build I use.
+# only load them if I use the standard distro package
+if [ "$0" = '/bin/zsh' ]; then
+	module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
+	# study time spent sourcing files
+	zmodload zdharma/zplugin # doesn't work with static zsh-bin
+fi
 
 if [ -z "$PROFILE_SET" ]; then
 	# shellcheck source=.profile
