@@ -1,0 +1,4 @@
+#!/usr/bin/env dash
+# fixes the warning when invoking pip as a script wrapper
+python3 -m pip "$@"
+# vi:ft=sh
