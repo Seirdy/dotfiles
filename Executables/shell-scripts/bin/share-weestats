@@ -1,0 +1,12 @@
+#!/usr/bin/env dash
+
+# save chattiest-channels to a pastebin
+{
+	weestats "$@" --exclude-channels 'darwin.#darwin' &&
+	echo && echo "If you use WeeChat then you can generate this yourself: https://git.sr.ht/~seirdy/weestats"
+	printf "If you'd like your channel excluded from this list, message me. My nick is Seirdy on Freenode, Snoonet, OFTC, Rizon, and others."
+} | nc termbin.com 9999 | tr -d "\n" | wl-copy -n -t text/plain \
+	&& wl-paste \
+	&& curl "$(wl-paste)" | less
+
+# vi:ft=sh
