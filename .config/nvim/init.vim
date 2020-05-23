@@ -66,6 +66,7 @@ Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunk
 Plug 'neovim/nvim-lsp' " The most important plugin
 Plug 'haorenW1025/diagnostic-nvim' " wrap LSP diagnostic config
 Plug 'haorenW1025/completion-nvim' " sets up async autocomplete for LSP
+Plug 'nvim-treesitter/nvim-treesitter' " tree-sitter support
 Plug 'nvim-treesitter/completion-treesitter' " tree-sitter source for completion-nvim
 " FZF
 " ~~~
@@ -186,6 +187,7 @@ let g:terminal_color_15 = '#ffffff'
 lua << EOF
 require('lsp')
 require('colorizer_settings')
+require('treesitter')
 EOF
 
 " =========
