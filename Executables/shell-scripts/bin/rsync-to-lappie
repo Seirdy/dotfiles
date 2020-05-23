@@ -9,7 +9,7 @@ rsync -azuP ~/Executables/stack/bin rkumar@rkumarlappie:/home/rkumar/Executables
 rsync -azuP --exclude 'bin/alacritty' ~/Executables/lappie/Executables/cargo/bin rkumar@rkumarlappie:/home/rkumar/Executables/cargo &
 ssh rkumar@rkumarlappie mkdir -p /home/rkumar/Executables/ghq/github.com/skywind3000/
 rsync -azuP ~/Executables/lappie/Executables/ghq/github.com/skywind3000/czmod rkumar@rkumarlappie:/home/rkumar/Executables/ghq/github.com/skywind3000 &
-rsync -azuP --skip-compress=cmdline/search/queue ~/.local/share/newsboat rkumar@rkumarlappie:/home/rkumar/.local/share &
+rsync -azuP ~/.local/share/newsboat/cache.db rkumar@rkumarlappie:/home/rkumar/.local/share/newsboat &
 rsync -auP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share &
 rsync -azuP ~/Executables/go/bin rkumar@rkumarlappie:/home/rkumar/Executables/go
 rsync -azuP ~/.local/libexec/cni ~/.local/libexec/revokefs-fuse rkumar@rkumarlappie:/home/rkumar/.local
