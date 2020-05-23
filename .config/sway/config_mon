@@ -1,4 +1,4 @@
-	font Source Code Pro for Powerline, Hasklug Nerd Font, FontAwesome 11
-	height 22
+	font monospace term 11
+	height 20
 }
 gaps inner 20

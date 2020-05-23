@@ -1,4 +1,4 @@
-	font Hasklug Nerd Font, FontAwesome 10
+	font monospace term, Hasklug Nerd Font, FontAwesome 10
 	height 20
 }
 gaps inner 10

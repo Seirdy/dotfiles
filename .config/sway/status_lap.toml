@@ -8,6 +8,7 @@ format = "{percentage}%"
 block="net"
 device = "wlo1"
 signal_strength = true
+use_bits = true
 interval = 3
 
 [[block]]

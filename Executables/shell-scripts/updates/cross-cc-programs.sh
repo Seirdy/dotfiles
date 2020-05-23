@@ -64,6 +64,18 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
+# premake; build-time dependency of otfcc
+ghq_get_cd https://github.com/premake/premake-core.git \
+	&& make -f Bootstrap.mak linux \
+	&& install -m 0755 bin/release/premake5 "$BINPREFIX"
+
+# otfcc
+ghq_get_cd https://github.com/caryll/otfcc.git \
+	&& premake5 gmake \
+	&& cd build/gmake \
+	&& make config=release_x64 \
+	&& install -m 0755 "$GHQ_ROOT/github.com/caryll/otfcc/bin/release-x64"/otfcc* "$BINPREFIX"
+
 # aom reference impl.
 ghq_get_cd https://aomedia.googlesource.com/aom.git \
 	&& fancy_cmake -DENABLE_CCACHE=1 -DCONFIG_HIGHBITDEPTH=1

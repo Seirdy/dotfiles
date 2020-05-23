@@ -7,6 +7,7 @@ block = "net"
 device = "wlp3s0"
 ip = false
 interval = 3
+signal_strength = true
 use_bits = true
 
 [[block]]
