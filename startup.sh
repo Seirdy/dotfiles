@@ -71,7 +71,8 @@ export GOPROXY=direct
 # In addition to this spec, I use ~/Executables to keep packages installed by
 # 3rd-party package managers.
 export INFLUXDB_CONFIG_PATH="$XDG_CONFIG_HOME/influxdb/influxdb.conf"
-export PKG_CONFIG_PATH="$XDG_DATA_HOME/pkgconfig:$(pkg-config --variable pc_path pkg-config)"
+PKG_CONFIG_PATH="$XDG_DATA_HOME/pkgconfig:$(pkg-config --variable pc_path pkg-config)"
+export PKG_CONFIG_PATH
 export INFLUXDB_DATA_DIR="$XDG_DATA_HOME/influxdb/data"
 export INFLUXDB_DATA_WAL_DIR="$XDG_DATA_HOME/influxdb/wal"
 export INFLUXDB_META_DIR="$XDG_DATA_HOME/influxdb/meta"
