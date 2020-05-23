@@ -358,8 +358,9 @@ packages=(
 	"tig"                                 # tui for git. TODO: compile from source
 	"tlp"                                 # power saving on lappie
 	"tmux"
-	"tor"      # tor
-	"torsocks" # tor
+	"tor"         # tor
+	"torsocks"    # tor
+	"ttfautohint" # build iosevka
 	"turbojpeg-devel"
 	"unar"            # FOSS reimplementation of unrar
 	"unibilium"       # terminfo parsing and building neovim

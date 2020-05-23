@@ -17,6 +17,7 @@ pipx install 'git+https://github.com/beetbox/beets.git#egg=beets[lyrics]' &
 pipx install git+https://github.com/asciinema/asciinema.git &
 pipx install git+https://github.com/aboul3la/Sublist3r.git &
 pipx install black &
+pipx install afdko &
 pipx install git+https://github.com/jarun/Buku.git &
 pipx install git+https://github.com/kneufeld/consolemd.git &
 pipx install git+https://github.com/jarun/ddgr.git &
