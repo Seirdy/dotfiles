@@ -4,6 +4,14 @@ python3 -m ensurepip
 python3 -m pip install -U --user pip
 python3 -m pip install -U --user pynvim pipx
 
+pipx_pypy() {
+	if [ "$(pypy3 --version | sed 1q | awk '{print $2}' | cut -d'.' -f2)" -ge 6 ]; then
+		pipx install --python pypy3 "$@"
+	else
+		pipx install "$@"
+	fi
+}
+
 pipx install virtualenv
 pipx install 'git+https://github.com/beetbox/beets.git#egg=beets[lyrics]' &
 pipx install git+https://github.com/asciinema/asciinema.git &
@@ -15,7 +23,8 @@ pipx install git+https://github.com/jarun/ddgr.git &
 pipx install git+https://github.com/noahp/emoji-fzf.git
 pipx install flake8 &
 pipx install isort &
-pipx install git+https://github.com/donnemartin/haxor-news.git &
+pipx_pypy git+https://github.com/donnemartin/haxor-news.git &
+pipx_pypy git+https://git.sr.ht/~seirdy/weestats &
 pipx install --system-site-packages mypy &
 pipx install git+https://github.com/cykerway/ncmpy.git &
 pipx install neovim-remote &
@@ -38,7 +47,7 @@ pipx install git+https://github.com/standardebooks/tools.git &
 pipx install git+https://github.com/nvbn/thefuck.git &
 pipx install tox &
 pipx install git+https://github.com/andreafrancia/trash-cli.git &
-pipx install git+https://gitlab.com/ajak/tuir.git &
+pipx_pypy git+https://gitlab.com/ajak/tuir.git &
 pipx install twine &
 pipx install ueberzug &
 pipx install git+https://github.com/will8211/unimatrix.git
@@ -48,7 +57,7 @@ pipx install git+https://github.com/ihabunek/toot.git &
 pipx install git+https://github.com/magicalraccoon/tootstream.git &
 pipx install git+https://github.com/xonsh/xonsh.git &
 pipx install yamllint
-pipx install git+https://github.com/ytdl-org/youtube-dl.git
+pipx_pypy git+https://github.com/ytdl-org/youtube-dl.git
 pipx install mercurial
 pipx install meson # build system for lots of stuff
 # pipx install --system-site-packages git+https://github.com/prompt-toolkit/ptpython.git &
