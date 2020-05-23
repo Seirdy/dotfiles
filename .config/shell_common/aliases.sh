@@ -34,6 +34,7 @@ alias ytdl-720="ytdl -f 'bestvideo[height<1080]+bestaudio/best[height<1080]'"
 alias ytdl-crs='ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20'
 alias ffmpeg-copy='ffmpeg -c:v copy -c:a copy'
 alias chafa-best='chafa --symbols all-braille-extra --zoom -w 9 -c full --color-space din99d'
+alias cwebp-max='cwebp -lossless -m 6 -z 9 -q 100'
 alias tb='nc termbin.com 9999 | tr -d "\n"' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
