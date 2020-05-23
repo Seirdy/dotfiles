@@ -110,8 +110,8 @@ zinit light TheLocehiliosan/yadm
 zi_program has'tmux' pick'bin/xpanes'
 zinit light greymd/tmux-xpanes
 
-zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
-zinit light containers/toolbox
+# zi_program has'podman' pick'toolbox' src'profile.d/toolbox.sh' atclone"fd -t f -e '.1.md' -x sh -c 'go-md2man -in {} -out $HOME/.local/man/man1/\$(basename {} .md)' && mkdir -p $TOOLBOX_PROFILE_DIR && cp profile.d/toolbox.sh $TOOLBOX_PROFILE_DIR" atpull'%atclone'
+# zinit light containers/toolbox
 
 zi_program has'python3' pick'imguralbum.py'
 zinit light alexgisby/imgur-album-downloader
@@ -205,13 +205,13 @@ zi_completion has'tmux' pick'completion/zsh'
 zinit light greymd/tmux-xpanes
 
 zi_completion has'pylint'
-zinit snippet OMZP::pylint/_pylint
+zinit snippet OMZP::pylint
 
 zi_completion has'cargo'
 zinit snippet https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 
 zi_completion has'rustc'
-zinit snippet OMZP::rust/_rust
+zinit snippet OMZP::rust
 
 zi_completion has'docker'
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
@@ -229,7 +229,7 @@ zi_completion has'pandoc'
 zinit light srijanshetty/zsh-pandoc-completion
 
 zi_completion has'fd'
-zinit snippet OMZ::plugins/fd/_fd
+zinit snippet OMZ::plugins/fd
 
 zi_completion has'exa' mv'completions.zsh -> _exa'
 zinit snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
@@ -292,7 +292,7 @@ zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-comp
 
 # load system completions
 zi_completion is-snippet for \
-	/usr/share/zsh/site-functions/_*
+	/usr/share/zsh/site-functions/_{calibre,*ctl}
 
 # the following will run after everything else happens
 finish_setup() {
@@ -331,5 +331,5 @@ finish_setup() {
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
 }
 
-zi0c atload'time finish_setup' atinit'zpcompinit; zpcdreplay'
+zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
 zinit light zdharma/fast-syntax-highlighting
