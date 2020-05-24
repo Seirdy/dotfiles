@@ -1,0 +1,122 @@
+#!/usr/bin/env dash
+# Sanitze and condense messy URLs. Ideal for link sharing.
+# depends on:
+# - a POSIX environemnt ()
+# - either ripgrep or perl 5 (see https://github.com/chmln/sd)
+# - either ripgrep, the silver searcher, or ack.
+# you do NOT need ripgrep to have PCRE2 support.
+
+# Usage/Flags {{{
+# ---------------
+displayUsage() {
+	printf "sanitize-url - sanitize and condense a URL for sharing.
+
+Usage: %s [OPTIONS] URL
+
+OPTIONS:
+  -h, --help\t Display this help message.
+  -m, --mirror\t Prefer mirrors of user-hostile sites (e.g., YouTube -> Invidious).
+
+ARGS:
+  URL\t the URL to sanitize.
+" "$(basename "${0}")"
+}
+
+# Options
+while getopts "hm" flags; do
+	case $flags in
+		h)
+			displayUsage
+			exit 0
+			;;
+		m)
+			mirror="1"
+			shift
+			;;
+		*)
+			printf "Error! That flag doesn't exist."
+			exit 1
+			;;
+	esac
+done
+# }}}
+
+# helper functions {{{
+# ----------------
+# gnu grep with -E isn't enough here.
+# we need to use a greplike program that supports more advanced regexes.
+# there are 3 good options I know of: rg, ag, ack. pick the fist in $PATH.
+find_alt() {
+	for prg; do
+		command -v "$prg" >/dev/null && {
+			echo "$prg" && return 0 # we found a greplike program!
+		}
+	done
+	return 1
+}
+greplike_prg="$(find_alt rg ag ack)"
+greplike() {
+	"$greplike_prg" "$@"
+}
+
+# sed -E isn't always enough; we need something more advanced
+# find_replace <find> <replace>
+find_replace() {
+	if [ "$greplike_prg" = 'rg' ]; then
+		rg "$1" --replace "$2"
+	else
+		perl -p -e"s#$1#$2#"
+	fi
+}
+# }}}
+
+# generic shortening {{{
+# ------------------
+# remove URL parameters and trailing slash
+# TODO: make a list of okay parameters for Reddit, YouTube, etc.
+url="$(echo "$1" | sed -E 's#/(\?.*)?$##')"
+# }}}
+
+# shorten Reddit links {{{
+# --------------------
+# https://old.reddit.com/r/Programming -> https://reddit.com/r/Programming
+# https://old.reddit.com/r/programming/comments/aqjbvn/regex_variablelength_lookbehinds_actually/ -> https://redd.it/aqjbvn (shortlink)
+# https://old.reddit.com/r/programming/comments/aqjbvn/regex_variablelength_lookbehinds_actually/egiluge/ -> https://reddit.com/comments/aqjbvn/_/egiluge
+
+# subreddit charset from https://github.com/reddit-archive/reddit/blob/master/r2/r2/models/subreddit.py
+reddit_re_simple='^https?://(?:(?:www|np|new|old)\.)?reddit\.com/r/[A-Za-z0-9][A-Za-z0-9_]{2,20}'
+
+if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
+	# the big fat regex we'll use to split up reddit URLs
+	reddit_re='^https?://(?:(?:www|np|new|old)\.)?reddit\.com/(r/[A-Za-z0-9][A-Za-z0-9_]{2,20}/)(comments/)(.*)$'
+	# split the reddit URL into its parts.
+	reddit_dotcom='https://reddit.com/' # we don't need "www|old|new|i|np"
+	# shellcheck disable=SC2016
+	r_slash="$(echo "$url" | find_replace "$reddit_re" '$1')" # r/Python
+	# comments="$(echo "$url" | find_replace "$reddit_re" '$2')" # should be a literal "comments/". added this comment for completeness
+	# shellcheck disable=SC2016
+	comment_id="$(echo "$url" | find_replace "$reddit_re" '$3')"
+	if [ "$r_slash" = "$comment_id" ]; then # it's just a link to a subreddit
+		echo "the following is a subreddit"
+		url="${reddit_dotcom}r/${url##*/}"
+	else
+		post_id="${comment_id%%/*}"
+		slashes_in_comment_id="$(echo "$comment_id" | awk -F'/' '{print NF-1}')"
+		if [ "$slashes_in_comment_id" -lt 2 ]; then
+			url="https://redd.it/$post_id"
+		else
+			thread_id="${comment_id##*/}"
+			url="${reddit_dotcom}comments/$post_id/_/$thread_id"
+		fi
+	fi
+	echo "$url" && exit 0
+fi
+# }}}
+
+# TODO: condense/sanitize youtube URLS
+# TODO: replace youtube URLS with invidio.us if given `-m` flag
+# TODO: twitter -> nitter if given `-m` flag
+
+printf '%s' "$url"
+
+# vi:ft=sh

@@ -132,6 +132,8 @@ input * {
 	bindsym $mod+shift+R exec $term tuir
 	bindsym $mod+p exec xdg-open-paste
 	bindsym $mod+shift+P exec xdg-open-paste -d
+	# sanitize whatever's in the clipboard
+	bindsym $mod+u exec 'wl-paste | xargs sanitize-url | wl-copy -n'
 	bindsym $mod+n exec $term newsboat
 
 #
