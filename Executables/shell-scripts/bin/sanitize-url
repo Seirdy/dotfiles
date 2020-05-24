@@ -1,10 +1,12 @@
-#!/usr/bin/env dash
+#!/bin/sh
 # Sanitze and condense messy URLs. Ideal for link sharing.
 # depends on:
-# - a POSIX environemnt ()
-# - either ripgrep or perl 5 (see https://github.com/chmln/sd)
+# - a POSIX environemnt
+# - either ripgrep or perl 5
 # - either ripgrep, the silver searcher, or ack.
 # you do NOT need ripgrep to have PCRE2 support.
+# NOTE: this currently removes all URL params (?=...) 
+# so it'll mess up your YouTube links. YouTube support coming soon^TM
 
 # Usage/Flags {{{
 # ---------------
