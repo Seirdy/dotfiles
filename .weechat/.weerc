@@ -1,5 +1,5 @@
 #
-# WeeChat 2.9-dev (compiled on May 11 2020 15:25:46)
+# WeeChat 2.9-dev (compiled on May 22 2020 14:26:01)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -37,6 +37,8 @@
 */set relay.color.status_auth_failed lightred
 */set relay.color.status_connecting yellow
 */set relay.color.status_waiting_auth brown
+*/set relay.irc.backlog_max_minutes 1440
+*/set relay.irc.backlog_max_number 256
 */set relay.weechat.commands "*,!exec,!upgrade,!quit"
 */set urlgrab.default.copycmd "wl-copy -n"
 */set urlgrab.default.localcmd "firefox-nightly '%s'"
