@@ -90,10 +90,14 @@ export CFLAGS="$CFLAGS_LTO" \
 
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
-	&& luarocks build --local mpack \
-	&& luarocks build --local lpeg \
-	&& luarocks build --local inspect \
-	&& fancy_cmake -DUSE_BUNDLED=OFF -DENABLE_LTO=ON
+	&& fancy_cmake \
+	-DLUA_PRG=/usr/bin/luajit \
+	-DPREFER_LUA=OFF \
+	-DUSE_BUNDLED=OFF \
+	-DENABLE_LTO=ON \
+	-DLIBLUV_LIBRARY=/usr/lib64/lua/5.1/luv.so \
+	-DLIBLUV_INCLUDE_DIR=/usr/include/lua-5.1 \
+	-DENABLE_JEMALLOC=ON
 
 # waifu2x-converter-cpp
 ghq_get_cd https://github.com/DeadSix27/waifu2x-converter-cpp.git \

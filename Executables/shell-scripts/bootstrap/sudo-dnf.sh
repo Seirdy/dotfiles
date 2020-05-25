@@ -163,9 +163,12 @@ packages=(
 	"llvm"
 	"llvm-devel" # build compilers like tinygo
 	"lm_sensors"
-	"lua-devel" # build weechat and others
+	"lua-devel"        # build weechat and others
+	"lua5.1-lpeg"      # build neovim
+	"lua5.1-luv"       # build neovim
+	"lua5.1-luv-devel" # build neovim
+	"lua5.1-mpack"     # build neovim
 	"luajit"
-	"luajit-devel" # build neovim
 	"luarocks"
 	"lvm2" # handles logical volumes, useful for building containers
 	"lzip" # best LZMA-based archiving solution. Works well with tar. Build wget2
@@ -226,10 +229,11 @@ packages=(
 	"pkgconfig(gbm)"
 	"pkgconfig(gdk-pixbuf-2.0)" # build sway
 	"pkgconfig(gl)"
-	"pkgconfig(gnutls)" # build weechat, wget2
-	"pkgconfig(gpgme)"  # building skopeo, wget2, and others
-	"pkgconfig(jack)"   # build ffmpeg
-	"pkgconfig(json-c)" # build newsboat
+	"pkgconfig(gnutls)"   # build weechat, wget2
+	"pkgconfig(gpgme)"    # building skopeo, wget2, and others
+	"pkgconfig(jack)"     # build ffmpeg
+	"pkgconfig(jemalloc)" # build neovim
+	"pkgconfig(json-c)"   # build newsboat
 	"pkgconfig(lcms2)"
 	"pkgconfig(libarchive)" # build mpv and others
 	"pkgconfig(libass)"     # build ffmpeg
@@ -266,7 +270,7 @@ packages=(
 	"pkgconfig(libwebp)"    # build ffmpeg
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(libzstd)"    # build wget2
-	"pkgconfig(luajit)"
+	"pkgconfig(luajit)"     # build neovim
 	"pkgconfig(mujs)"
 	"pkgconfig(opencv)"     # build Waifu2x-converter-cpp, ffmpeg
 	"pkgconfig(opus)"       # build ffmpeg
