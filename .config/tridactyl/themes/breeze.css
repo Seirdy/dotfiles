@@ -3,6 +3,8 @@
 	--tridactyl-status-fg: var(--primary-light-color);
 	--tridactyl-hintspan-fg: var(--primary-light-color);
 	--tridactyl-hintspan-bg: var(--dark-background);
+	--tridactyl-font-family: monospace !important;
+	--tridactyl-hintspan-font-family: var(--tridactyl-font-family) !important;
 }
 :root.TridactylThemeBreeze.TridactylOwnNamespace .container-main,
 :root.TridactylThemeBreeze.TridactylOwnNamespace body,

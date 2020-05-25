@@ -1,4 +1,4 @@
-font = "monospace"
+font = "monospace term"
 
 [icons]
 name = "awesome"
