@@ -15,6 +15,7 @@ ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
 	&& fancy_cmake
 
+# icmake and yodl {{{
 # shellcheck disable=SC2154
 # icmake is required to build yodl, which is required to build rsync docs
 ghq_get_cd https://gitlab.com/fbb-git/icmake \
@@ -23,7 +24,6 @@ ghq_get_cd https://gitlab.com/fbb-git/icmake \
 	&& ./icm_bootstrap x \
 	&& mkdir -p /tmp/icmake && ln -s "$PREFIX" /tmp/icmake/usr \
 	&& ./icm_install strip all /tmp/icmake \
-	&& rm /tmp/icmake/usr
 
 # yodl is required to build rsync docs
 ghq_get_cd https://gitlab.com/fbb-git/yodl \
@@ -32,6 +32,10 @@ ghq_get_cd https://gitlab.com/fbb-git/yodl \
 		CXXFLAGS="$CXXFLAGS -std=c++2a" icmake -qt/tmp/yodl ./build "$module"
 		icmake -qt/tmp/yodl ./build install "$module" /tmp/icmake
 	done
+
+cp -r /tmp/icmake/usr/* "$PREFIX/" && rm -rf /tmp/icmake
+
+# }}}
 
 # gitstatus for powerlevel10k
 DIR="$GHQ_ROOT/github.com/romkatv"
@@ -91,13 +95,13 @@ export CFLAGS="$CFLAGS_LTO" \
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
 	&& fancy_cmake \
-	-DLUA_PRG=/usr/bin/luajit \
-	-DPREFER_LUA=OFF \
-	-DUSE_BUNDLED=OFF \
-	-DENABLE_LTO=ON \
-	-DLIBLUV_LIBRARY=/usr/lib64/lua/5.1/luv.so \
-	-DLIBLUV_INCLUDE_DIR=/usr/include/lua-5.1 \
-	-DENABLE_JEMALLOC=ON
+		-DLUA_PRG=/usr/bin/luajit \
+		-DPREFER_LUA=OFF \
+		-DUSE_BUNDLED=OFF \
+		-DENABLE_LTO=ON \
+		-DLIBLUV_LIBRARY=/usr/lib64/lua/5.1/luv.so \
+		-DLIBLUV_INCLUDE_DIR=/usr/include/lua-5.1 \
+		-DENABLE_JEMALLOC=ON
 
 # waifu2x-converter-cpp
 ghq_get_cd https://github.com/DeadSix27/waifu2x-converter-cpp.git \
@@ -112,9 +116,6 @@ ghq_get_cd https://github.com/eXeC64/imv.git \
 		--optimization 3 \
 		-Dwindows=wayland \
 	&& ninja -C builddir/ && ninja -C builddir/ install
-
-# scdoc
-ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && make_install
 
 # conmon; necessary for building OCI container stack
 # commented out cuz it's causing problems; using version from repos.

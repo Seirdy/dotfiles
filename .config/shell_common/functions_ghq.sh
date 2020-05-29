@@ -6,10 +6,13 @@ ghq_get_cd() {
 		GHQ_ROOT=$(ghq root)
 	fi
 	trimmed_url=$(trim-git-url "$1")
+	if [ -d "${GHQ_ROOT}/$trimmed_url" ]; then
+		cd "${GHQ_ROOT}/$trimmed_url" \
+			&& git stash \
+			&& git reset --hard origin/HEAD
+	fi
 	ghq get -u "$1" \
 		&& cd "${GHQ_ROOT}/$trimmed_url" \
-		&& git stash \
-		&& git reset --hard origin/master \
 		&& git pull \
 		&& git submodule update --init --recursive --remote
 }

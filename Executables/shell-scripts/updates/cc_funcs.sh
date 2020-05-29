@@ -41,8 +41,12 @@ simple_autotools() {
 	autoreconf -fi && configure_install "$@"
 }
 
-simple_meson() {
-	meson build --reconfigure --prefix "$PREFIX" --libdir "$PREFIX/lib" --buildtype release --optimization 3 "$@" \
+_simple_meson_no_reconfigure() {
+	meson build --prefix "$PREFIX" --libdir "$PREFIX/lib" --buildtype release --optimization 3 "$@"  \
 		&& ninja -C build \
 		&& ninja -C build install
+}
+# try reconfiguring. if it hasn't been configured yet, then don't reconfigure.
+simple_meson() {
+	_simple_meson_no_reconfigure --reconfigure "$@" || _simple_meson_no_reconfigure "$@"
 }

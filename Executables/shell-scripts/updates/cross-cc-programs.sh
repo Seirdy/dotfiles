@@ -95,6 +95,13 @@ ghq get -u https://github.com/link-u/cavif.git && ghq get -u https://github.com/
 cd "$GHQ_ROOT/github.com/link-u/davif" && fancy_cmake
 cd "$GHQ_ROOT/github.com/link-u/cavif" && fancy_cmake
 
+# waifu2x-ncnn-vulkan
+ghq_get_cd https://github.com/nihui/waifu2x-ncnn-vulkan.git \
+	&& mkdir -p build && cd build \
+	&& cmake ../src -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" -DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
+	&& cmake --build . --target install \
+	&& install -m 0755 ./waifu2x-ncnn-vulkan "$BINPREFIX"
+
 # mpv, with ffmpeg/libass statically linked
 # shellcheck disable=SC2169
 ghq_get_cd https://github.com/mpv-player/mpv-build.git \
@@ -126,6 +133,9 @@ ghq_get_cd 'https://github.com/skywind3000/czmod.git' && ./build.sh
 
 # wf-recorder: wlroots screen recording
 ghq_get_cd 'https://github.com/ammen99/wf-recorder.git' && simple_meson -Dopencl=enabled
+
+# scdoc
+ghq_get_cd https://git.sr.ht/~sircmpwn/scdoc && sed -E 's/ ?-Werror//g' Makefile >Makefile.noerr && make -f Makefile.noerr && make install
 
 # wob
 ghq_get_cd 'https://github.com/francma/wob.git' \
@@ -190,7 +200,7 @@ ghq_get_cd https://github.com/karlstav/cava.git \
 	&& ./autogen.sh \
 	&& FONT_DIR="$DATAPREFIX/fonts" configure_install
 
-# radeontop
+# radeontop if a Radeon GPU is detected
 needs_radeontop() {
 	lspci -mm \
 		| awk -F '\"|\" \"|\\(' \
@@ -231,7 +241,7 @@ ghq_get_cd https://github.com/jaseg/lolcat && DESTDIR=$PREFIX/bin make_install
 # ncmpcpp, with only the features i use
 ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 	&& ./autogen.sh \
-	&& configure_install --disable-static --with-taglib --with-curl
+	&& configure_install --disable-static --with-taglib --with-gnu-ld
 
 # back to regular flags, no LTO
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
