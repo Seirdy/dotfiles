@@ -55,6 +55,7 @@ packages=(
 	"desktop-file-utils"  # build alacritty and others
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
+	"dotnet" # for Microsoft Python Language Server
 	"dvtm"
 	"egl-wayland-devel"
 	"elfutils"
@@ -89,8 +90,9 @@ packages=(
 	"glibc-all-langpacks"
 	"glibc-devel"
 	"glibc-headers"
-	"glibc-static" # build static programs
-	"gmp-static"   # required for building Cabal/Stack packages like Hadolint
+	"glibc-static"          # build static programs
+	"gmp-static"            # required for building Cabal/Stack packages like Hadolint
+	"gnome-settings-daemon" # set gnome settings for xdg-desktop-portal so flatpak GTK-based apps have correct settings
 	"gnome-themes"
 	"gnome-themes-extra"
 	"gnu-free-fonts-common"
@@ -116,6 +118,7 @@ packages=(
 	"iniparser-devel" # build cava
 	"intltool"        # build redshift
 	"iptables"        # networking setup
+	"ipython"         # python notebook
 	"ituomi-hasklig-fonts"
 	"java-latest-openjdk-devel"
 	"jq"
@@ -174,7 +177,9 @@ packages=(
 	"lzip" # best LZMA-based archiving solution. Works well with tar. Build wget2
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
-	"mesa-libOpenCL"            # build Waifu2x-converter-cpp, ffmpeg
+	"mesa-libOpenCL" # build Waifu2x-converter-cpp, ffmpeg
+	"mesa-vulkan-devel"
+	"mesa-vulkan-drivers"
 	"moreutils"                 # todo: get needed ones with zinit
 	"mozilla-*-fonts"           # muh fonts
 	"mpd"                       # best music player
@@ -216,6 +221,7 @@ packages=(
 	"pkgconfig(Qt5OpenGL)"   # build projectm
 	"pkgconfig(alsa)"        # build mpv, cava
 	"pkgconfig(aom)"         # build ffmpeg
+	"pkgconfig(bzip2)"       # build lrzip
 	"pkgconfig(caca)"        # build projectm
 	"pkgconfig(cairo)"       # build imv
 	"pkgconfig(criu)"        # build crun
@@ -252,6 +258,7 @@ packages=(
 	"pkgconfig(libguess)"
 	"pkgconfig(libidn2)" # build wget2
 	"pkgconfig(libjpeg)"
+	"pkgconfig(liblz4)"     # build zstd
 	"pkgconfig(libmfx)"     # build ffmpeg
 	"pkgconfig(libnghttp2)" # build wget2
 	"pkgconfig(libopenjp2)" # build ffmpeg
@@ -271,6 +278,7 @@ packages=(
 	"pkgconfig(libxml-2.0)" # build newsboat
 	"pkgconfig(libzstd)"    # build wget2
 	"pkgconfig(luajit)"     # build neovim
+	"pkgconfig(lzo2)"       # build lrzip
 	"pkgconfig(mujs)"
 	"pkgconfig(opencv)"     # build Waifu2x-converter-cpp, ffmpeg
 	"pkgconfig(opus)"       # build ffmpeg
@@ -313,19 +321,29 @@ packages=(
 	"pkgconfig(xrandr)"
 	"pkgconfig(xscrnsaver)"
 	"pkgconfig(xv)"
-	"pkgconfig(zimg)"      # build ffmpeg and others
-	"pkgconfig(zlib)"      # build ffmpeg, weechat, and others
-	"pkgconfig(zvbi-0.2)"  # build ffmpeg
-	"plasma-breeze"        # preferred qt5 theme
-	"plasma-breeze-common" # preferred qt5 theme
-	"polkit-devel"         # build flatpak
-	"powerline-fonts"
-	"pv"                     # monitor piping
-	"python3-Levenshtein"    # speed up cheat.sh a bit
-	"python3-devel"          # building weechat, among others
-	"python3-docutils"       # build mpv docs
-	"python3-libmount"       # building crun
-	"python3-matplotlib-qt5" # plotting in python
+	"pkgconfig(zimg)"           # build ffmpeg and others
+	"pkgconfig(zlib)"           # build ffmpeg, weechat, and others
+	"pkgconfig(zvbi-0.2)"       # build ffmpeg
+	"plasma-breeze"             # preferred qt5 theme
+	"plasma-breeze-common"      # preferred qt5 theme
+	"poetry"                    # the last word in python dependency management
+	"polkit-devel"              # build flatpak
+	"powerline-fonts"           # fallback fonts for muh fancy powerline symbols
+	"pv"                        # monitor piping
+	"pypy3-devel"               # yay now python has a good concurrency model (stackless) and isn't unbearably slow...unless you're using C extensions.
+	"python3-Levenshtein"       # speed up cheat.sh a bit
+	"python3-devel"             # building weechat, among others
+	"python3-docutils"          # build mpv docs
+	"python3-libmount"          # building crun
+	"python3-matplotlib-qt5"    # plotting in python
+	"python3-opencv"            # build Av1an
+	"python3dist(protobuf)"     # dependency for some datsci/ML packages; precompiled distro pkg speeds up installs
+	"python3dist(regex)"        # used in a lot of packages; precompiled distro pkg speeds up installs
+	"python3dist(scikit-learn)" # My datsci/ML development; precompiled distro pkg speeds up installs
+	"python3dist(statsmodels)"  # my datsci/ML development; precompiled distro pkg speeds up installs. comes with numpy, scipy, pandas
+	"python3dist(Cython)"       # used in a lot of packages; precompiled distro pkg speeds up installs
+	"python3dist(grpcio)"       # used in a lot of packages; precompiled distro pkg speeds up installs
+	"python3-pyephem"           # my datsci/ML development; precompiled distro pkg speeds up installs. comes with numpy, scipy, pandas
 	"qrencode"
 	"radeontop"
 	"rc"
@@ -373,6 +391,8 @@ packages=(
 	"upower" # battery status of connected devices
 	"vim"
 	"vollkorn-fonts"
+	"vulkan-headers"
+	"vulkan-loader-devel"
 	"w3m"
 	"w3m-img"
 	"waf-python3"
