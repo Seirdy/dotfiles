@@ -94,6 +94,13 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# copy the active line from the command line buffer
+copybuffer () {
+	printf "%s" "$BUFFER" | wl-copy -n
+}
+zle -N copybuffer
+bindkey "^O" copybuffer
+
 # Print previous command with Alt-N, where N is the number of arguments
 bindkey -s '\e1' "!:0 \t"
 bindkey -s '\e2' "!:0-1 \t"
@@ -105,8 +112,8 @@ bindkey -s '\e`' "!:0- \t"     # all but the last word
 # automatically escape pasted URLs
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
+# autoload -Uz url-quote-magic
+# zle -N self-insert url-quote-magic
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
@@ -133,7 +140,7 @@ zstyle ':fzf-tab:*' single-group ''
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$_EXTRACT'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
 lsd_preview() {
-zstyle "$1" extra-opts --preview=$_EXTRACT'lsd --group-dirs first --color always --icon always --icon-theme fancy ${~ctxt[hpre]}$in'
+	zstyle "$1" extra-opts --preview=$_EXTRACT'lsd --group-dirs first --color always --icon always --icon-theme fancy ${~ctxt[hpre]}$in'
 }
 lsd_preview ':fzf-tab:complete:cd:*'
 lsd_preview ':fzf-tab:complete:lsd:*'
@@ -141,6 +148,21 @@ lsd_preview ':fzf-tab:complete:exa:*'
 lsd_preview ':fzf-tab:complete:ls:*'
 lsd_preview ':fzf-tab:complete:_fzz:*'
 zstyle ':fzf-tab:complete:man:*' extra-opts --preview=$_EXTRACT'man ${~ctxt[hpre]}$in'
+
+# reload the zsh session. From OMZ:plugins/zsh_reload
+zreload() {
+	local cache="$ZSH_CACHE_DIR"
+	autoload -U compinit zrecompile
+	compinit -i -d "$cache/zcomp-$HOST"
+
+	for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
+		zrecompile -p $f && command rm -f $f.zwc.old
+	done
+
+	# Use $SHELL if available; remove leading dash if login shell
+	[[ -n "$SHELL" ]] && exec ${SHELL#-} || exec zsh
+}
+
 # add some items to bash-insulter
 custom_insults=(
 	"B-BAKA!!!"
