@@ -19,8 +19,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 3
-    y: 3
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -167,7 +167,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.94
+background_opacity: 0.6
 
 # Mouse bindings
 #
@@ -241,7 +241,7 @@ cursor:
   unfocused_hollow: true
 
 # Live config reload (changes require restart)
-live_config_reload: false
+live_config_reload: true
 
 # Shell
 #
@@ -252,7 +252,7 @@ live_config_reload: false
 #   - (Linux/macOS) /bin/bash --login
 #   - (Windows) powershell
 shell:
-  program: /home/rkumar/.local/bin/tmux
+  program: /home/rkumar/Executables/zsh-bin/bin/zsh
 #  args:
 #    - --login
 
@@ -495,7 +495,7 @@ font:
     #   - (Windows) Consolas
   normal:
     family: monospace term
-    ## style: Medium
+    style: Regular
 
   ## Bold font face
   #bold:
@@ -520,3 +520,18 @@ font:
 
     ## The `style` can be specified to pick a specific face.
     ##style: Italic
+  # Point size
+  size: 6
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+    x: -1 
+    y: -2
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  glyph_offset:
+    x: 0
+    y: 0
