@@ -16,16 +16,25 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+	gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
+	gsettings set $gnome-schema icon-theme 'Breeze-Dark'
+	gsettings set $gnome-schema cursor-theme 'Adwaita'
+}
+
 # launchers
 bindsym $mod+z exec dmenu-runner
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
 for_window [app_id="^firefox$" title="^About Firefox Nightly$"] floating enable
 for_window [app_id="^firefox$" title="^Extension: \(Font Finder\) - Inspector :: Font Finder - Firefox Nightly$"] floating enable
+for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Firefox Nightly$"] floating enable
 for_window [app_id="^launcher$"] floating enable
 # havoc is a terminal emulator that starts up quickly; I use it for floating menus
 for_window [title="^havoc$"] floating enable
 for_window [title="^havoc$"] border pixel 3
+for_window [title="^cava$"] border pixel 1
 
 for_window [app_id="^org\.keepassxc\.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
@@ -60,10 +69,18 @@ exec swayidle -w \
 	before-sleep 'loginctl lock-session' \
 	lock 'swaylock-fancy'
 
+#colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #3daee6 #2980b9 #ffffff #3daee9   #2980b9
+client.focused_inactive #3b4045 #31363b #ffffff #4d4d4d   #31363b
+client.unfocused        #3b4045 #232629 #888888 #292d2e   #232629
+# client.urgent           #27ae60 #900000 #ffffff #900000   #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/bluewalls/breeze/Ztliu1d.jpg fill
+output '*' bg ~/Pictures/animewalls/cropped3.png fill
 #
 # Example configuration:
 #
