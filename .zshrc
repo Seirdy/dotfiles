@@ -168,8 +168,11 @@ custom_insults=(
 	"B-BAKA!!!"
 	"Omae wa mou shindeiru"
 	"Nani?!"
+	"REEEEEEEEEEEE"
 )
 # increase the probability of my custom additions showing by duplicating them
+custom_insults=("${custom_insults[@]}" "${custom_insults[@]}")
+custom_insults=("${custom_insults[@]}" "${custom_insults[@]}")
 export CMD_NOT_FOUND_MSGS_APPEND=("${custom_insults[@]}" "${custom_insults[@]}")
 
 SHELL_COMMON="$HOME/.config/shell_common"
