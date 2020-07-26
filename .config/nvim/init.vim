@@ -63,11 +63,16 @@ Plug 'terryma/vim-expand-region' " syntax-aware expansion of visually-selected a
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'rhysd/git-messenger.vim' " git info in a floating window
 Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
+Plug 'psf/black', { 'branch': 'stable', 'for': ['python'] }
+" Neovim's builtin LSP and treesitter impl. make it a very lightweight IDE
 Plug 'neovim/nvim-lsp' " The most important plugin
-Plug 'haorenW1025/diagnostic-nvim' " wrap LSP diagnostic config
-Plug 'haorenW1025/completion-nvim' " sets up async autocomplete for LSP
+Plug 'nvim-lua/diagnostic-nvim' " wrap LSP diagnostic config
+Plug 'pierreglaser/folding-nvim', { 'for': ['python', 'lua', 'c', 'cpp', 'go'] } " LSP-powered folding
 Plug 'nvim-treesitter/nvim-treesitter' " tree-sitter support
+" Completion sources
+Plug 'nvim-lua/completion-nvim' " sets up async autocomplete for LSP
 Plug 'nvim-treesitter/completion-treesitter' " tree-sitter source for completion-nvim
+Plug 'steelsojka/completion-buffers' " buffer source for completion-nvim
 " FZF
 " ~~~
 Plug '/home/rkumar/Executables/go/src/github.com/junegunn/fzf'
@@ -209,8 +214,6 @@ endfunction
 " Gen. Keymaps
 " ============
 
-" Keymaps for coc features are in a dedicated section.
-
 " 'Ex mode is fucking dumb' --sircmpwm
 nnoremap Q <Nop>
 
@@ -240,7 +243,7 @@ set completeopt=menuone,noinsert,noselect
 let g:completion_chain_complete_list = {
 			\'default' : {
 			\	'default' : [
-			\		{'complete_items' : ['lsp', 'snippet']},
+			\		{'complete_items' : ['lsp', 'snippet', 'buffer']},
 			\		{'mode' : 'file'}
 			\	],
 			\	},
@@ -254,7 +257,6 @@ let g:completion_chain_complete_list = {
 			\	{'complete_items': ['ts', 'lsp', 'snippet']}
 			\	],
 			\}
-
 " keep text selected after indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -295,7 +297,6 @@ nnoremap <silent> ]d :NextDiagnostic<CR>
 nnoremap <silent> [d :PrevDiagnostic<CR>
 nnoremap <silent> <leader>do :OpenDiagnostic<CR>
 
-
 " Obsolete CoC.nvim configs that I have yet to replace
 " ====================================================
 
@@ -308,9 +309,6 @@ nnoremap <silent> <leader>do :OpenDiagnostic<CR>
 
 " " Remap for do codeAction of current line
 " nmap <leader>ac  <Plug>(coc-codeaction)
-
-" " use `:OR` for organize import of current buffer
-" command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgnizeImport')
 
 " " Other
 " " ~~~~~
@@ -369,16 +367,6 @@ nnoremap <silent> <space>h  <cmd>Helptags<cr>
 " " Do default action for previous item.
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 
-" " ~~CocList Git~~
-" " Git status
-" nnoremap <silent> <space>gs :<C-u>CocList --normal gstatus<CR>
-" " Git branches
-" nnoremap <silent> <space>gb :<C-u>CocList branches<CR>
-" " Files on different branches/commits/tags
-" nnoremap <silent> <space>gf :<C-u>CocList gfiles<CR>
-" " Commits
-" nnoremap <silent> <space>gc :<C-u>CocList commits<CR>
-
 " " ~~CocList History~~
 " " Most recently used files
 " nnoremap <silent> <space>-r :<C-u>CocList mru<CR>
@@ -423,3 +411,4 @@ let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ['folding','formatting']
 let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ''}
 let g:vimtex_compiler_progname = 'nvr'
+let g:black_virtualenv = '~/Executables/pipx/venvs/black'

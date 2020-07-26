@@ -11,7 +11,7 @@
 	},
 	"no-inline-html": false,
 	"ul-indent": {
-		"indent": 4
+		"indent": 2
 	},
 	"hard_tab": false
 }

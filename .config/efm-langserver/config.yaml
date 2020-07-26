@@ -28,6 +28,11 @@ tools:
       - '%f:%l:%c: %trror: %m'
       - '%f:%l:%c: %tarning: %m'
       - '%f:%l:%c: %tote: %m'
+  python-flake8: &python-flake8
+    lint-command: '~/Executables/pipx/bin/flake8 --stdin-display-name ${INPUT} -'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m'
   dockerfile-hadolint: &dockerfile-hadolint
     lint-command: 'hadolint'
     lint-formats:
@@ -45,6 +50,8 @@ tools:
 languages:
   pandoc:
     - <<: *markdown-markdownlint
+  python:
+    - <<: *python-flake8
   rst:
     - <<: *rst-lint
     - <<: *rst-pandoc
