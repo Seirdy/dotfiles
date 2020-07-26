@@ -25,6 +25,7 @@ ghq_get_cd https://github.com/poljar/weechat-matrix.git && . "$WEECHAT_HOME/pyth
 #
 
 ghq get -u git@git.sr.ht:~seirdy/mpd-scripts
+ghq get -u https://github.com/sunaku/dasht.git
 # some launcher scripts of mine
 ghq_get_cd git@git.sr.ht:~seirdy/term-dmenu && make install
 

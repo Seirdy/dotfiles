@@ -72,6 +72,7 @@ export GOPROXY=direct
 # 3rd-party package managers.
 export INFLUXDB_CONFIG_PATH="$XDG_CONFIG_HOME/influxdb/influxdb.conf"
 PKG_CONFIG_PATH="$XDG_DATA_HOME/pkgconfig:$(pkg-config --variable pc_path pkg-config)"
+export DASHT_DOCSETS_DIR="$XDG_DATA_HOME/Zeal/Zeal/docsets"
 export PKG_CONFIG_PATH
 export INFLUXDB_DATA_DIR="$XDG_DATA_HOME/influxdb/data"
 export INFLUXDB_DATA_WAL_DIR="$XDG_DATA_HOME/influxdb/wal"
