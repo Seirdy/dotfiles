@@ -5,7 +5,7 @@
 # - either ripgrep or perl 5
 # - either ripgrep, the silver searcher, or ack.
 # you do NOT need ripgrep to have PCRE2 support.
-# NOTE: this currently removes all URL params (?=...) 
+# NOTE: this currently removes all URL params (?=...)
 # so it'll mess up your YouTube links. YouTube support coming soon^TM
 
 # Usage/Flags {{{
@@ -64,10 +64,11 @@ greplike() {
 # sed -E isn't always enough; we need something more advanced
 # find_replace <find> <replace>
 find_replace() {
-	if [ "$greplike_prg" = 'rg' ]; then
-		rg "$1" --replace "$2"
-	else
+	# on my benchmarks, the perl version is slightly faster than ripgrep at find/replace.
+	if command -v perl >/dev/null; then
 		perl -p -e"s#$1#$2#"
+	else
+		rg "$1" --replace "$2"
 	fi
 }
 # }}}
@@ -103,6 +104,7 @@ if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 		url="${reddit_dotcom}r/${url##*/}"
 	else
 		post_id="${comment_id%%/*}"
+		# count the slashes in $comment_id
 		slashes_in_comment_id="$(echo "$comment_id" | awk -F'/' '{print NF-1}')"
 		if [ "$slashes_in_comment_id" -lt 2 ]; then
 			url="https://redd.it/$post_id"
@@ -114,6 +116,17 @@ if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 	echo "$url" && exit 0
 fi
 # }}}
+
+# imgur mirror: imgur.kageurufu.net displays albums and gifv without the BS
+if [ -n "$mirror" ]; then
+	imgur_re='^https?://(?:[A-Za-z0-9]*\.)?imgur\.com/(.*)$'
+	if echo "$url" | greplike "$imgur_re" >/dev/null; then
+		# shellcheck disable=SC2016
+		page_path="$(echo "$url" | find_replace "$imgur_re" '$1')"
+		url="https://imgur.kageurufu.net/$page_path"
+		echo "$url" && exit 0
+	fi
+fi
 
 # TODO: condense/sanitize youtube URLS
 # TODO: replace youtube URLS with invidio.us if given `-m` flag

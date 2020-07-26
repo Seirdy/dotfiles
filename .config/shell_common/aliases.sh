@@ -13,18 +13,22 @@ alias lla='ll -a'
 alias lls='ll -s size'
 alias llas='lla -s size'
 alias llla='lll -a'
+
+# misspellings
 alias sl='sl | lolcat'
+alias httop='htop'
 
 # wl-clipboard aliases
-alias wlc='wl-copy -n'
-alias wlcv='wl-copy -n -t text/plain && wl-paste' # copies to stdin and then displays it anyway
-alias yankit='yank-cli -- wl-copy -n'
+alias wlc='wl-copy -n -t text/plain'
+alias wlcv='wlc && wl-paste' # copies to stdin and then displays it anyway
+alias yankit='yank-cli -- wl-copy -n -t text/plain'
 alias recopy='wl-paste -n | wl-copy -n' # good for stripping newlines I guess
 alias dlpaste='aria2c "$(wl-paste -n)"'
 alias dlopaste='dl-open "$(wl-paste -n)"'
 alias broken-link='wl-paste -n | sd "\n" "" | url-picker' # line breaks in links
 
 # basic shorthands
+alias pcat='pee cat' # make `pee` from moreutils send to stdout like tee
 alias a2c='aria2c' # fast aria2c downloading
 alias ytdl='youtube-dl'
 # ytdl-sm: for my laptop which has mediocre hardware accel, esp. for vp8/vp9
@@ -94,8 +98,10 @@ alias nvimclean='nvim +PlugClean'
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
 alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'time to (empty|full)|percentage' | sd '.*:\s*' ''"
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
-alias emoj-cp='emoj | wl-copy'
+alias emoj-cp='emoj | wlc'
 alias tarlz='tar -I "lzip --best" -cvf'
+# nnn-based ncdu alternative
+alias nnncdu='n -T d -dH'
 # Aliases that change existing commands
 alias tuir='LESS="-x 2 -ir" tuir --enable-media'
 alias sub='tuir -s'
@@ -129,7 +135,7 @@ alias mpvrc='edi $XDG_CONFIG_HOME/mpv/mpv.conf'
 
 # mpv aliases
 alias mpva='mpv --profile=anime'
-alias mpvah='mpv --profile=anime-hq'
+alias mpvah='mpv --profile=anime-hq-1080'
 
 # git aliases
 alias gstat='git status'
@@ -176,8 +182,6 @@ alias yurlc='yurl | wlcv'
 alias bd='cd ..'
 # bookmarks
 alias cdsch='cd $HOME/Documents/Work/School'
-alias cdpy='cd $HOME/Documents/programming/python'
-alias cdpyc='cd $HOME/Documents/programming/python/calc/func-analysis'
 alias cdnote='cd $HOME/Documents/Notes'
 alias cded='cd $HOME/Documents/Work/School/ED'
 alias cdla='cd $HOME/Documents/Work/School/LINALG'
@@ -187,6 +191,12 @@ alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/.'
 # like cdg function in functions.sh but for $GOPATH
 # shellcheck disable=SC2154
 alias cdgo='GHQ_ROOT=$GOPATH/src cdg'
+
+# development
+alias pcrun='pre-commit run'
+alias poetrun='poetry run'  # for python projects
+alias ppcrun='poetry run pre-commit run'  # yodawg.jpg
+alias ppcall='poetry run pre-commit run --all-files'
 
 # pash
 alias fashcp='fash copy'

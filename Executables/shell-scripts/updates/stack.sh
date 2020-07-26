@@ -14,7 +14,7 @@ stack_local() {
 if [ "$THREADS" -gt 6 ]; then
 	echo "using multiple threads"
 	# using too many threads can consume a LOT of memory.
-	ghc_opts="-O2 -optc-O3 -threaded -j4 +RTS -A32m -RTS"
+	ghc_opts="-O2 -optc-O3 -threaded -j2 +RTS -A32m -RTS"
 else
 	ghc_opts='-O2 -optc-O3 -threaded +RTS -A32m -RTS'
 fi

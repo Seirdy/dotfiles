@@ -32,13 +32,13 @@ export CPPFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"
 export FCFLAGS="$FFLAGS"
 export RUSTFLAGS="-C opt-level=3 -C target-cpu=$ARCH -C link-arg=-s"
-export CFLAGS_LTO="$CFLAGS -flto -fuse-linker-plugin"
+export CFLAGS_LTO="$CFLAGS -flto"
 [ -z "$CARGO_INSTALL_OPTS" ] && export CARGO_INSTALL_OPTS='--all-features -Z unstable-options'
 
 # For builds using Clang instead of GCC, I replace C(XX)FLAGS with CLANGFLAGS
 CLANGFLAGS=$(echo "$CXXFLAGS -fuse-ld=lld -L. -Wno-error=unused-command-line-argument -Wno-error=unused-parameter -Wno-error=unused-variable -Wno-error=unused-private-field" | sed 's/ -fstack-clash-protection//g')
 export CLANGFLAGS
-export CLANGFLAGS_LTO="$CLANGFLAGS -flto -fuse-linker-plugin"
+export CLANGFLAGS_LTO="$CLANGFLAGS -flto"
 export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO"
 
 export GOFLAGS='-ldflags=-s -ldflags=-w'

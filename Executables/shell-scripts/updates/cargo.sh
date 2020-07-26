@@ -33,12 +33,6 @@ mkdir -p "$tmpdir"
 "$CARGO_HOME/bin/rustup" default nightly
 "$CARGO_HOME/bin/rustup" update
 cargo_update cargo-update
-# programs with custom feature flags.
-# ffsend doesn't play nice with the clipboard feature for some reason
-CARGO_INSTALL_OPTS='--features "archive history infer-command qrcode send2 send3 urlshorten" -Z unstable-options' cargo_update -g ffsend
-# I only use alacritty on wayland; on X I use st.
-CARGO_INSTALL_OPTS='--features "wayland" -Z unstable-options' cargo_update -g alacritty
-# update normal rust packages installed through "cargo install --git"
 cargo_update -ga
 
 # newsboat
@@ -53,7 +47,7 @@ cd "$GHQ_ROOT/github.com/newsboat/newsboat" \
 
 # we've already update the alacritty binary; this is everything else
 ghq_get_cd github.com/alacritty/alacritty.git \
-	&& install -p -D -m644 extra/linux/alacritty.desktop "$DATAPREFIX/applications" \
+	&& install -p -D -m644 extra/linux/Alacritty.desktop "$DATAPREFIX/applications" \
 	&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1" \
 	&& tic -xe alacritty,alacritty-direct extra/alacritty.info -o "$DATAPREFIX/terminfo" \
 	&& install -p -D -m644 extra/logo/alacritty-term.svg "$DATAPREFIX/pixmaps/Alacritty.svg" \
