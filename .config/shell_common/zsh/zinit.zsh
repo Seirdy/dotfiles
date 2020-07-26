@@ -288,11 +288,15 @@ zi_completion pick'src/go' src'src/zsh'
 zinit light zchee/zsh-completions
 
 zi_completion mv'git-completion.zsh -> _git'
-zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
+zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
 
 # load system completions
 zi_completion is-snippet for \
 	/usr/share/zsh/site-functions/_{calibre,*ctl}
+
+# dasht
+zi_completion is-snippet for \
+	$GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions/_*
 
 # the following will run after everything else happens
 finish_setup() {
@@ -326,6 +330,7 @@ finish_setup() {
 	command -v thefuck >/dev/null && . <(thefuck --alias)
 	command -v kitty >/dev/null && . <(kitty + complete setup zsh)
 	command -v pip >/dev/null && . <(pip completion --zsh)
+	command -v poetry >/dev/null && . <(poetry completions zsh) 2>/dev/null
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
 	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
