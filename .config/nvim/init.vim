@@ -67,7 +67,8 @@ Plug 'psf/black', { 'branch': 'stable', 'for': ['python'] }
 " Neovim's builtin LSP and treesitter impl. make it a very lightweight IDE
 Plug 'neovim/nvim-lsp' " The most important plugin
 Plug 'nvim-lua/diagnostic-nvim' " wrap LSP diagnostic config
-Plug 'pierreglaser/folding-nvim', { 'for': ['python', 'lua', 'c', 'cpp', 'go'] } " LSP-powered folding
+Plug 'pierreglaser/folding-nvim', { 'for': ['lua', 'c', 'cpp', 'go'] } " LSP-powered folding
+Plug 'nvim-lua/lsp-status.nvim'  " lsp items in the statusbar
 Plug 'nvim-treesitter/nvim-treesitter' " tree-sitter support
 " Completion sources
 Plug 'nvim-lua/completion-nvim' " sets up async autocomplete for LSP
@@ -136,11 +137,19 @@ endif
 " Airline
 " ~~~~~~~
 set noshowmode  " Airline handles this
+
+function! LspStatus() abort
+	if luaeval('#vim.lsp.buf_get_clients() > 0')
+		return luaeval("require('lsp-status').status()")
+	endif
+	return ''
+endfunction
+
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#disable_rtp_load = 1
 let g:airline_highlighting_cache = 1
 let g:webdevicons_enable_airline_statusline = 1
-let g:airline_extensions = ['branch', 'tabline']
+let g:airline_extensions = ['branch', 'tabline', 'fzf']
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
@@ -150,6 +159,9 @@ let g:indentLine_char = "\uE621"  " dotted line  from powerline-patched-fonts
 let g:pymode_python = 'python3'  " Make sure python3 is used
 let python_highlight_all = 1
 let g:airline_theme = 'breezy'
+
+call airline#parts#define_function('lsp', 'LspStatus')
+let g:airline_section_y = airline#section#create_right(['lsp'])
 
 " :terminal colors
 " ~~~~~~~~~~~~~~~~
@@ -409,6 +421,6 @@ let g:pandoc#after#modules#enabled = ['vim-table-mode']
 let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'cpp', 'python', 'sh', 'asm', 'yaml', 'html', 'css', 'vim', 'go', 'haskell', 'scheme', 'javascript', 'zsh', 'rust']
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ['folding','formatting']
-let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ''}
+let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ' '}
 let g:vimtex_compiler_progname = 'nvr'
 let g:black_virtualenv = '~/Executables/pipx/venvs/black'

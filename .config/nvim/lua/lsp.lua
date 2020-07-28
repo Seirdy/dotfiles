@@ -1,6 +1,9 @@
-local nvim_lsp = require'nvim_lsp'
-local util = require 'nvim_lsp/util'
+local nvim_lsp = require('nvim_lsp')
+local util = require('nvim_lsp/util')
+local lsp_status = require('lsp-status')
 local api = vim.api
+
+lsp_status.register_progress()
 
 local custom_on_attach_diagnostics = function(_, bufnr)
   -- Mappings.
@@ -19,7 +22,7 @@ local custom_on_attach_diagnostics = function(_, bufnr)
 	require'diagnostic'.on_attach()
 end
 
-local custom_on_attach = function(_, bufnr)
+local custom_on_attach = function(client, bufnr)
   api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -47,12 +50,13 @@ local custom_on_attach = function(_, bufnr)
 	-- api.nvim_set_var('diagnostic_enable_virtual_text','1')
 	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
+	lsp_status.on_attach(client)
 end
 
 --  efm doesn't like being told to fold, so only fold on buffers that
 --  don't have EFM but use an LSP server that supports folding.
-local custom_on_attach_folding = function(_, bufnr)
-	custom_on_attach(_, bufnr)
+local custom_on_attach_folding = function(client, bufnr)
+	custom_on_attach(client, bufnr)
 	require('folding').on_attach()
 end
 
@@ -95,61 +99,36 @@ nvim_lsp.vimls.setup{
 nvim_lsp.efm.setup{
 	on_attach = custom_on_attach_diagnostics,
 	-- only run on configured filetypes
-	filetypes = {'pandoc', 'rst','sh','vim','make','yaml','dockerfile'},
+	filetypes = {'pandoc', 'markdown', 'gfm', 'markdown.pandoc.gfm', 'rst','sh','vim','make','yaml','dockerfile'},
 }
 nvim_lsp.jedi_language_server.setup{
 	on_attach = custom_on_attach,
+	capabilities = lsp_status.capabilities
 }
--- nvim_lsp.pyls_ms.setup{
--- 	on_attach = custom_on_attach_folding,
--- 	init_options = {
--- 		InterpreterPath = "/usr/bin/python3",
--- 		Version = "3.8",
--- 	},
--- 	settings = {
--- 		python = {
--- 			formatting = {
--- 				provider = 'black'
--- 			},
--- 			workspaceSymbols = {
--- 				enabled = true,
--- 			},
--- 			linting = {
--- 				enabled = true,
--- 				lintOnSave = true,
--- 				pylintEnabled = true,
--- 				flake8Enabled = true,
--- 				mypyEnabled = true,
--- 			},
--- 		},
--- 	},
--- }
--- nvim_lsp.pyls.setup{
--- 	on_attach = custom_on_attach,
--- 	settings = {
--- 		pyls = {
--- 			plugins = {
--- 				jedi_completion = { enabled = true },
--- 				jedi_symbols = {
--- 					enabled = true,
--- 					all_scopes = true,
--- 				},
--- 				mccabe = { enabled = false },
--- 				preload = { enabled = true },
--- 				pydocstyle = {
--- 					enabled = true,
--- 				},
--- 				pyflakes = { enabled = true },
--- 				pylint = { enabled = false },
--- 				rope_completion = { enabled = true },
--- 				black = { enabled = true },
--- 				isort = { enabled = true }
--- 			}
--- 		}
--- 	}
--- }
+local custom_on_attach_sumneko_lua = function(client, bufnr)
+	lsp_status.config {
+		select_symbol = function(cursor_pos, symbol)
+			if symbol.valueRange then
+				local value_range = {
+					["start"] = {
+						character = 0,
+						line = vim.fn.byte2line(symbol.valueRange[1])
+					},
+					["end"] = {
+						character = 0,
+						line = vim.fn.byte2line(symbol.valueRange[2])
+					}
+				}
+
+				return require("lsp-status.util").in_range(cursor_pos, value_range)
+			end
+		end
+	}
+	custom_on_attach_folding(client, bufnr)
+end
 nvim_lsp.sumneko_lua.setup{
-	on_attach = custom_on_attach_folding,
+	on_attach = custom_on_attach_sumneko_lua,
+	capabilities = lsp_status.capabilities,
 	settings = {
 		Lua = {
 			runtime = {
