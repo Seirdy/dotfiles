@@ -1,0 +1,9 @@
+#!/usr/bin/env dash
+# this will prompt for a password for the weechat logs
+filename="$(date +'%Y-%m-%dT%H:%M:%S%:z').tar.lrz"
+backups_dir="$HOME/Backups"
+tar cvf "$backups_dir/WeeChat_logs/logs.tar" "${WEECHAT_HOME-${HOME-~}/.weechat}/logs" && tar cvfh "$backups_dir/Minetest/minetest.tar" "$HOME/.minetest" \
+	&& lrzip -Uzep 1 -L 9 "$backups_dir/WeeChat_logs/logs.tar" -o "$HOME/Backups/WeeChat_logs/$filename" && rm "$backups_dir/WeeChat_logs/logs.tar" \
+	&& lrzip -Uzp 4 -L 9 "$backups_dir/Minetest/minetest.tar" -o "$HOME/Backups/Minetest/$filename" && rm "$backups_dir/Minetest/minetest.tar"
+
+# vi:ft=sh
