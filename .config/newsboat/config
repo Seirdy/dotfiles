@@ -63,6 +63,7 @@ macro E set browser "echo %u >> $XDG_DATA_DIR/newsboat/queue" ; open-in-browser 
 macro w set browser "w3m -o display_image=false" ; open-in-browser ; set browser "$BROWSER %u &"
 macro W set browser "w3m-sandbox-tor" ; open-in-browser ; set browser "$BROWSER %u &"
 macro r set browser "tuir" ; open-in-browser ; set browser "$BROWSER %u &"
+macro u set browser "tuir --no-autologin" ; open-in-browser ; set browser "$BROWSER %u &"
 macro R set browser "reader-mode" ; open-in-browser ; set browser "$BROWSER %u &"
 # switch the browser to an image-viewing program for articles with lots of images
 macro i set browser "dl-open-bkg %u & >/dev/null 2>/dev/null"
