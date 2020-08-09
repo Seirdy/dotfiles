@@ -40,7 +40,7 @@ cd "$GHQ_ROOT/github.com/newsboat/newsboat" \
 	&& git fetch && git status | sed 2q | grep behind \
 	&& {
 		git reset --hard HEAD && git pull && make clean \
-			&& CFLAGS="$CLANGFLAGS_UNUSED_STUFF" CXXFLAGS="$CLANGFLAGS_UNUSED_STUFF" LDFLAGS="$CLANGFLAGS_UNUSED_STUFF" RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" make \
+			&& CFLAGS="$CLANGFLAGS_UNUSED_STUFF" CXXFLAGS="$CLANGFLAGS_UNUSED_STUFF" LDFLAGS="$CLANGFLAGS_UNUSED_STUFF" make \
 			&& make install prefix="$PREFIX" \
 			&& mv "$PREFIX/bin/newsboat" "$PREFIX/bin/podboat" "$CARGO_HOME/bin"
 	} || echo "newsboat is up to date"
