@@ -3,7 +3,7 @@ font = "monospace term"
 [icons]
 name = "awesome"
 [icons.overrides]
-music = " "
+music = "  "
 # time = " "
 net_wired = " "
 net_vpn = " "
@@ -25,4 +25,4 @@ on_click = "echo"
 [[block]]
 block = "music"
 buttons = ["play", "next"]
-
+max_width=30
