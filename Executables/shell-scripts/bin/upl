@@ -1,3 +1,33 @@
 #!/usr/bin/env dash
-curl -F"file=@$1" https://0x0.st
+# upload to https://0x0.st
+
+while [ $# -gt 0 ]; do
+	key="$1"
+	case $key in
+		-c | --copy)
+			copy_url=1
+			shift
+			;;
+		-p | --preview)
+			preview_url=1
+			shift
+			;;
+		*)
+			file_path="$1"
+			shift
+			;;
+	esac
+done
+output_url="$(curl -F"file=@$file_path" https://0x0.st)"
+
+if [ -n "$copy_url" ]; then
+	printf '%s' "$output_url" | wl-copy -n -t text/plain
+fi
+
+echo "$output_url"
+
+if [ -n "$preview_url" ]; then
+	curl "$output_url"
+fi
+
 # vi:ft=sh
