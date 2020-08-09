@@ -1,5 +1,5 @@
 #
-# WeeChat 2.9-dev (compiled on May 22 2020 14:26:01)
+# WeeChat 3.0-dev (compiled on Aug  2 2020 11:27:15)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -28,6 +28,7 @@
 */set spell.dict.core.weechat "en_US"
 */set buflist.look.display_conditions "${buffer.hidden}==0 && (${buffer.hotlist.priority}!=0 || ${type}==server || ${current_buffer} || ${buffer.full_name}=~(core.weechat|perl.highmon|fset|urlgrab|scripts))"
 */set buflist.format.indent "${color:237}${if:${buffer.next_buffer.local_variables.type}=~^(channel|private)$?├─:└─}"
+*/set irc.look.highlight_channel "$nick,weestats,clogstats,seirdy"
 */set irc.look.server_buffer independent
 */set irc.server_default.autoconnect on
 */set irc.server_default.capabilities "account-notify,away-notify,capa-notify,extended-join,multi-prefix,server-time,userhost-in-names"
@@ -41,7 +42,6 @@
 */set relay.irc.backlog_max_number 256
 */set relay.weechat.commands "*,!exec,!upgrade,!quit"
 */set urlgrab.default.copycmd "wl-copy -n"
-*/set urlgrab.default.localcmd "firefox-nightly '%s'"
 */set script.look.sort "u"
 */set script.scripts.hold "mnotify.py"
 */set matrix.server.matrix_org.address "matrix.org"

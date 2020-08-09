@@ -27,9 +27,9 @@ exec_always {
 bindsym $mod+z exec dmenu-runner
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
-for_window [app_id="^firefox$" title="^About Firefox Nightly$"] floating enable
-for_window [app_id="^firefox$" title="^Extension: \(Font Finder\) - Inspector :: Font Finder - Firefox Nightly$"] floating enable
-for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Firefox Nightly$"] floating enable
+for_window [app_id="^firefox$" title="^About Mozilla Firefox$"] floating enable
+for_window [app_id="^firefox$" title="^Inspector :: Font Finder - Mozilla Firefox$"] floating enable
+for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firefox$"] floating enable
 for_window [app_id="^launcher$"] floating enable
 # havoc is a terminal emulator that starts up quickly; I use it for floating menus
 for_window [title="^havoc$"] floating enable
@@ -40,8 +40,6 @@ for_window [app_id="^org\.keepassxc\.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
 for_window [class="^Sxiv$"] floating enable
 for_window [app_id="^pinentry-qt$"] floating enable
-for_window [app_id="^Minetest$"] floating enable
-for_window [app_id="^supertux2"] floating enable
 # images and videos should float above other programs since their dimensions should
 # not be limited by the WM.
 for_window [app_id="^imv$"] floating enable
@@ -143,7 +141,7 @@ input * {
 #
 # Program launching
 #
-	bindsym $mod+f exec firefox-nightly --new-window
+	bindsym $mod+f exec firefox --new-window
 	bindsym $mod+shift+F exec org.kde.falkon
 
 	bindsym $mod+shift+R exec $term tuir

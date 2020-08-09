@@ -1,5 +1,6 @@
 #!/usr/bin/env dash
 
+export BROWSER=firefox
 # if this is being called by tmux-fzf-url, then copy it instead of opening it
 pppid="$(ps -o args= "$(ps -o ppid= "$PPID" | awk '{print $1}')")"
 if [ "${pppid#*fzf-url/}" = 'fzf-url.sh' ]; then
