@@ -29,7 +29,7 @@ go_update github.com/Kagami/go-avif
 go_update github.com/junegunn/fzf \
 	&& install -p -m644 "$GOPATH"/src/github.com/junegunn/fzf/man/man1/* "$MANPREFIX/man1"
 # Test dl speed
-go_update github.com/ddo/fast # fast.com
+go_update github.com/ddo/fast                             # fast.com
 go_update github.com/m-lab/ndt7-client-go/cmd/ndt7-client # measurement lab
 # alternate pager
 go_update github.com/walles/moar
@@ -59,7 +59,12 @@ go_update github.com/r00tman/corrupter
 # Advanced file manager (like ranger)
 go_update github.com/gokcehan/lf
 # github and gitlab CLI
-go_update github.com/github/hub
+go_update github.com/github/hub \
+	&& cd "$GOPATH/src/github.com/github/hub" \
+	&& git clean -x \
+	&& git reset --hard origin/HEAD \
+	&& make man-pages \
+	&& install -p -m644 "$GOPATH"/src/github.com/github/hub/share/man/man1/* "$MANPREFIX/man1"
 go_update github.com/zaquestion/lab || echo "failed to install lab"
 # used to clone repos into a nice directory tree like "go get" does
 GO111MODULE=on go_update github.com/x-motemen/ghq
@@ -71,6 +76,10 @@ go_update github.com/tulir/gomuks
 go_update github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
 # dictionary CLI
 go_update github.com/Rican7/define
+# gemini/gopher/etc
+go_update tildegit.org/sloum/bombadillo \
+	&& install -p -m0644 "$GOPATH/src/tildegit.org/sloum/bombadillo/bombadillo.1" "$MANPREFIX/man1"
+GO111MODULE=on go_update github.com/makeworld-the-better-one/amfora@master
 
 # Development tools
 #
