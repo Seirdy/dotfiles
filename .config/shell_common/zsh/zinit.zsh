@@ -292,11 +292,11 @@ zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-comp
 
 # load system completions
 zi_completion is-snippet for \
-	/usr/share/zsh/site-functions/_{calibre,*ctl}
+	/usr/share/zsh/site-functions/_{calibre,*ctl} || true
 
 # dasht
 zi_completion is-snippet for \
-	$GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions/_*
+	$GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions/_* || true
 
 # the following will run after everything else happens
 finish_setup() {
@@ -313,7 +313,8 @@ finish_setup() {
 	# shellcheck source=/home/.config/shell_common/aliases.sh
 	. "$SHELL_COMMON/aliases.sh"
 	# shellcheck source=/home/.config/shell_common/aliases_private.sh
-	. "$SHELL_COMMON/aliases_private.sh" # Not committing private info
+	[ -f "$SHELL_COMMON/aliases_private.sh" ] \
+		&& . "$SHELL_COMMON/aliases_private.sh" # Not committing private info
 	# shellcheck source=/home/.config/shell_common/functions.sh
 	. "$SHELL_COMMON/functions.sh"
 	# command -v rustup >/dev/null && . <(rustup completions zsh)
