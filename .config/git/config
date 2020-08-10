@@ -1,14 +1,7 @@
 [user]
 	name = Rohan Kumar
-	email = seirdy@protonmail.com
-	signingkey = 82AEA0AC
-[cola]
-	fontdiff = Fira Code,10,-1,5,50,0,0,0,0,0,Regular
-	blameviewer = git gui blame
-	spellcheck = true
-[gui]
-	editor = kwrite
-	historybrowser = git-dag
+	email = seirdy@seirdy.one
+	signingkey = A5F84479
 [diff]
 	tool = xxdiff
 	algorithm = histogram
@@ -46,12 +39,12 @@
 [credential "https://github.com"]
 	username = Seirdy
 
-; sendemail using https://github.com/emersion/hydroxide
 [sendemail]
-	smtpUser=seirdy
-	smtpserver=127.0.0.1
-	smtpserverport=1025
-	from=seirdy@protonmail.com
-	compose-encoding=UTF-8
-
+	smtpuser = seirdy@seirdy.one
+	smtpserver = smtp.migadu.com
+	smtpencryption = tls
+	smtpserverport = 587
+	from = seirdy@seirdy.one
+	compose-encoding = UTF-8
+	smtpsslcertpath = /etc/ssl/certs
 

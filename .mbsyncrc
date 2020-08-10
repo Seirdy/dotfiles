@@ -1,0 +1,48 @@
+IMAPAccount seirdy
+CertificateFile /etc/ssl/certs/ca-bundle.crt
+Host imap.migadu.com
+Port 993
+User seirdy@seirdy.one
+PassCmd "pash show email/migadu"
+SSLType IMAPS
+PipelineDepth 50
+
+MaildirStore seirdy-local
+Path ~/mail/seirdy/
+Inbox ~/mail/seirdy/Inbox
+Subfolders Verbatim
+
+IMAPStore seirdy-remote
+Account seirdy
+
+Channel seirdy-default
+Master :seirdy-remote:
+Slave :seirdy-local:Inbox
+
+Channel seirdy-sent
+Master :seirdy-remote:"Sent"
+Slave :seirdy-local:Sent
+
+Channel seirdy-trash
+Master :seirdy-remote:"Trash"
+slave  :seirdy-local:Trash
+
+Channel seirdy-archive
+Master :seirdy-remote:"Archive"
+slave  :seirdy-local:Archive
+
+Channel seirdy-junk
+Master :seirdy-remote:"Junk"
+slave  :seirdy-local:Junk
+
+Create Both
+Expunge Both
+SyncState *
+
+Group seirdy
+Channel seirdy-default
+Channel seirdy-trash
+Channel seirdy-archive
+Channel seirdy-sent
+Channel seirdy-junk
+####################
