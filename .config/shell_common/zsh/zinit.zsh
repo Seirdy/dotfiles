@@ -291,11 +291,13 @@ zi_completion mv'git-completion.zsh -> _git'
 zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
 
 # load system completions
-zi_completion is-snippet for \
-	/usr/share/zsh/site-functions/_{calibre,*ctl} || true
+if [ -f /usr/share/zsh/site-functions/_systemctl ]; then
+	zi_completion is-snippet for \
+		/usr/share/zsh/site-functions/_{*ctl} || true
+fi
 
 # dasht
-zi_completion is-snippet for \
+command -v dasht && zi_completion is-snippet for \
 	$GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions/_* || true
 
 # the following will run after everything else happens
