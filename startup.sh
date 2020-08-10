@@ -184,6 +184,7 @@ pathadd_tail '/usr/sbin'
 pathadd_tail '/usr/bin'
 pathadd_tail '/sbin'
 pathadd_tail '/bin'
+pathadd_tail '/envs/bin' # envs.net
 pathadd_head "$GEM_HOME/bin"                       # rubygems (ruby)
 pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"            # cpanm (perl)
 pathadd_head "$NPM_PACKAGES/bin"                   # npm (javascript)
