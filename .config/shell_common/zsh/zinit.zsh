@@ -204,14 +204,11 @@ zinit snippet https://github.com/x-motemen/ghq/blob/master/misc/zsh/_ghq
 zi_completion has'tmux' pick'completion/zsh'
 zinit light greymd/tmux-xpanes
 
-zi_completion has'pylint'
-zinit snippet OMZP::pylint
-
 zi_completion has'cargo'
 zinit snippet https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 
 zi_completion has'rustc'
-zinit snippet OMZP::rust
+zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rust/_rust
 
 zi_completion has'docker'
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
@@ -229,7 +226,7 @@ zi_completion has'pandoc'
 zinit light srijanshetty/zsh-pandoc-completion
 
 zi_completion has'fd'
-zinit snippet OMZ::plugins/fd
+zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fd/_fd
 
 zi_completion has'exa' mv'completions.zsh -> _exa'
 zinit snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
