@@ -1,11 +1,11 @@
 IMAPAccount seirdy
-CertificateFile /etc/ssl/certs/ca-bundle.crt
 Host imap.migadu.com
 Port 993
 User seirdy@seirdy.one
 PassCmd "pash show email/migadu"
 SSLType IMAPS
 PipelineDepth 50
+CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 MaildirStore seirdy-local
 Path ~/mail/seirdy/
@@ -45,4 +45,50 @@ Channel seirdy-trash
 Channel seirdy-archive
 Channel seirdy-sent
 Channel seirdy-junk
-####################
+
+
+IMAPAccount school
+Host imap.gmail.com
+User rkumar@lclark.edu
+PassCmd "pash show school/lc"
+SSLType IMAPS
+PipelineDepth 50
+CertificateFile /etc/ssl/certs/ca-bundle.crt
+
+IMAPStore school-remote
+Account school
+
+MaildirStore school-local
+Path ~/mail/school/
+Inbox ~/mail/school/inbox
+
+Channel school-default
+Master :school-remote:
+Slave :school-local:Inbox
+
+Channel school-sent
+Master :school-remote:"[Gmail]/Sent Mail"
+slave  :school-local:Sent
+
+Channel school-trash
+Master :school-remote:"[Gmail]/Trash"
+slave  :school-local:Trash
+
+Channel school-archive
+Master :school-remote:"[Gmail]/All Mail"
+slave  :school-local:All
+
+Channel school-junk
+Master :school-remote:"[Gmail]/Spam"
+slave  :school-local:Junk
+
+Create Both
+Expunge Both
+SyncState *
+
+Group school
+Channel school-default
+Channel school-trash
+Channel school-archive
+Channel school-sent
+Channel school-junk
