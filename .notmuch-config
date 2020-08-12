@@ -12,7 +12,7 @@
 #
 
 [database]
-path=/home/rkumar/mail/seirdy
+path=/home/rkumar/mail
 
 # User configuration
 #
@@ -48,6 +48,8 @@ primary_email=seirdy@seirdy.one
 #		names will be ignored, independent of its depth/location
 #		in the mail store.
 #
+
+other_email=rkumar@lclark.edu;
 
 [new]
 tags=unread;inbox;

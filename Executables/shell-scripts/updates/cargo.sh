@@ -33,6 +33,7 @@ mkdir -p "$tmpdir"
 "$CARGO_HOME/bin/rustup" default nightly
 "$CARGO_HOME/bin/rustup" update
 cargo_update cargo-update
+CARGO_INSTALL_OPTS="--features pulseaudio notmuch" cargo_update i3status-rs
 cargo_update -ga
 
 # newsboat

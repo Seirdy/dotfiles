@@ -52,7 +52,7 @@ Host imap.gmail.com
 User rkumar@lclark.edu
 PassCmd "pash show school/lc"
 SSLType IMAPS
-PipelineDepth 50
+PipelineDepth 10
 CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 IMAPStore school-remote
@@ -61,6 +61,7 @@ Account school
 MaildirStore school-local
 Path ~/mail/school/
 Inbox ~/mail/school/inbox
+Subfolders Verbatim
 
 Channel school-default
 Master :school-remote:
@@ -82,6 +83,50 @@ Channel school-junk
 Master :school-remote:"[Gmail]/Spam"
 slave  :school-local:Junk
 
+Channel school-advising
+Master :school-remote:"Advising"
+slave  :school-local:Advising
+
+Channel school-newsletters
+Master :school-remote:"Newsletters"
+slave  :school-local:Newsletters
+
+Channel school-bookstore
+Master :school-remote:"Newsletters/Bookstore"
+slave  :school-local:"Newsletters/Bookstore"
+
+Channel school-clubs
+Master :school-remote:"Newsletters/Clubs"
+slave  :school-local:"Newsletters/Clubs"
+
+Channel school-reshall
+Master :school-remote:"ResHall"
+slave  :school-local:ResHall
+
+Channel school-cs
+Master :school-remote:"Classes/CS"
+slave  :school-local:"Classes/CS"
+
+Channel school-math
+Master :school-remote:"Classes/Math"
+slave  :school-local:"Classes/Math"
+
+Channel school-otherclasses
+Master :school-remote:"Classes/OtherClasses"
+slave  :school-local:"Classes/OtherClasses"
+
+Channel school-oldclasses
+Master :school-remote:"Classes/Old"
+slave  :school-local:"Classes/Old"
+
+Channel school-confirmations
+Master :school-remote:"Confirmations"
+slave  :school-local:"Confirmations"
+
+Channel school-personal
+Master :school-remote:"Personal"
+slave  :school-local:"Personal"
+
 Create Both
 Expunge Both
 SyncState *
@@ -92,3 +137,14 @@ Channel school-trash
 Channel school-archive
 Channel school-sent
 Channel school-junk
+Channel school-advising
+Channel school-newsletters
+Channel school-bookstore
+Channel school-clubs
+Channel school-reshall
+Channel school-cs
+Channel school-math
+Channel school-otherclasses
+Channel school-oldclasses
+Channel school-confirmations
+Channel school-personal
