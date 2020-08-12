@@ -1,5 +1,5 @@
 #
-# WeeChat 3.0-dev (compiled on Aug  2 2020 11:27:15)
+# WeeChat 3.0-dev (compiled on Aug 10 2020 19:56:34)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -44,5 +44,6 @@
 */set urlgrab.default.copycmd "wl-copy -n"
 */set script.look.sort "u"
 */set script.scripts.hold "mnotify.py"
+*/set matrix.server.envs_net.address "envs.net"
+*/set matrix.server.envs_net.autoconnect on
 */set matrix.server.matrix_org.address "matrix.org"
-*/set matrix.server.matrix_org.autoconnect on
