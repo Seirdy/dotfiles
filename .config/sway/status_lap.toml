@@ -15,10 +15,24 @@ use_bits = true
 interval = 3
 
 [[block]]
-block = "maildir"
-inboxes = ["~/mail/seirdy"]
-interval = 300
-display_type = "new"
+block = "notmuch"
+maildir = "/home/rkumar/mail"
+query = "tag:unread folder:seirdy/Inbox and not tag:archived"
+threshold_good = 1
+threshold_info = 3
+threshold_warning = 5
+threshold_critical = 10
+interval = 30
+
+[[block]]
+block = "notmuch"
+maildir = "/home/rkumar/mail"
+query = "tag:unread folder:school/Inbox and not tag:archived"
+threshold_good = 1
+threshold_info = 5
+threshold_warning = 8
+threshold_critical = 15
+interval = 30
 
 [[block]]
 block = "time"

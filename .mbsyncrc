@@ -127,6 +127,10 @@ Channel school-personal
 Master :school-remote:"Personal"
 slave  :school-local:"Personal"
 
+Channel school-reference
+Master :school-remote:"Reference"
+slave  :school-local:"Reference"
+
 Create Both
 Expunge Both
 SyncState *
@@ -148,3 +152,4 @@ Channel school-otherclasses
 Channel school-oldclasses
 Channel school-confirmations
 Channel school-personal
+Channel school-reference
