@@ -1,0 +1,52 @@
+#!/usr/bin/env dash
+
+# update my laptop's Walyland clipboard from my desktop, and vice versa
+# specify what the other computer's clipboard should be as an argument or via stdin
+# alternatively, make the other computer's clipboard match this one with the -c flag
+
+# uses wl-clipboard
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	key="$1"
+	case $key in
+		-r | --remote)
+			remote="$2"
+			shift
+			shift
+			;;
+		-c | --clipboard)
+			clipboard_contents="$(wl-paste -n)"
+			shift
+			;;
+		*)
+			clipboard_contents="$*"
+			;;
+	esac
+done
+
+# figure out which computer is going to have its clipboard updated
+if [ -z "$remote" ]; then
+	# shellcheck disable=SC2169  # we fall back to the hostname executable
+	hostname="${HOSTNAME:-$(hostname)}"
+	case "$hostname" in
+		'rkumar-dekstop')
+			remote='rkumar@rkumarlappie'
+			;;
+		'rkumarlappie')
+			remote='rkumar@rkumar-dekstop'
+			;;
+		*)
+			echo "error: unknown device" 1>&2
+			exit 1
+			;;
+	esac
+fi
+
+if [ -n "$clipboard_contents" ]; then
+	echo "$clipboard_contents" | ssh "$remote" tee /tmp/wl-copy-buffer-\*/stdin
+else
+	cat </dev/stdin | ssh "$remote" tee /tmp/wl-copy-buffer-\*/stdin
+fi
+
+# vi:ft=sh
