@@ -42,7 +42,7 @@ zinit light skywind3000/z.lua
 # zi0b src'czmod.zsh'
 # zinit light "$GHQ_ROOT/github.com/skywind3000/czmod"
 
-zi0c ''
+zi0c has'fzf' ''
 zinit light ZoeFiri/fz
 
 zi0a
@@ -122,10 +122,6 @@ zinit light isamert/scli
 zi_program has'jq'
 zinit snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
 
-zi_program has'ueberzug' pick'stpvimg'
-zinit light Seirdy/stpv
-zi_program pick'stpv'
-zinit light Seirdy/stpv
 zi_program has'fzf' pick'fzfp'
 zinit light Seirdy/stpv
 
@@ -135,8 +131,23 @@ zinit light $GHQ_ROOT/git.sr.ht/~seirdy/chattiest-channels
 zi_program has'chromium-browser-privacy' pick'chrome-extension-dl'
 zinit light th3lusive/chrome-extension-dl
 
-zi_program pick'farge'
-zinit light 'sdushantha/farge'
+zi_program has'ueberzug' pick'stpvimg'
+zinit light Seirdy/stpv
+
+zi_program pick'stpv'
+zinit light Seirdy/stpv
+
+if [ -n "$WAYLAND_DISPLAY" ]; then
+	zi_program pick'farge'
+	zinit light 'sdushantha/farge'
+
+	zi_program has'sxiv' pick'kunst'
+	zinit light sdushantha/kunst
+
+	zi_program has'grim' pick'grimshot'
+	zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
+
+fi
 
 zi_program has'fzf'
 zinit light denisidoro/navi
@@ -150,16 +161,10 @@ zinit light dylanaraps/neofetch
 zi_program has'perl' pick'exiftool'
 zinit light exiftool/exiftool
 
-zi_program has'sxiv' pick'kunst'
-zinit light sdushantha/kunst
-
 if [ -z "$SSH_CONNECTION" ]; then
 	zi_program has'perl' pick'inxi'
 	zinit light smxi/inxi
 fi
-
-zi_program has'grim' pick'grimshot'
-zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
 
 zi0a has'nnn'
 zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.bash_zsh
@@ -169,7 +174,7 @@ zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.bash_zsh
 # Git extensions {{{
 
 # only used in fzf previews because delta's colors get messed up there
-zi0a as'program' pick'bin/git-dsf'
+zi0a has'perl' as'program' pick'bin/git-dsf'
 zinit light zdharma/zsh-diff-so-fancy
 
 zi0a
