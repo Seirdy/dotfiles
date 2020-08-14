@@ -153,8 +153,10 @@ zinit light exiftool/exiftool
 zi_program has'sxiv' pick'kunst'
 zinit light sdushantha/kunst
 
-zi_program has'perl' pick'inxi'
-zinit light smxi/inxi
+if [ -z "$SSH_CONNECTION" ]; then
+	zi_program has'perl' pick'inxi'
+	zinit light smxi/inxi
+fi
 
 zi_program has'grim' pick'grimshot'
 zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
@@ -328,7 +330,7 @@ finish_setup() {
 	# shellcheck source=/dev/null
 	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 	command -v thefuck >/dev/null && . <(thefuck --alias)
-	command -v kitty >/dev/null && . <(kitty + complete setup zsh)
+	command -v kitty >/dev/null && . <(kitty + complete setup zsh 2>/dev/null)
 	command -v pip >/dev/null && . <(pip completion --zsh)
 	command -v poetry >/dev/null && . <(poetry completions zsh) 2>/dev/null
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
@@ -336,5 +338,5 @@ finish_setup() {
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
 }
 
-zi0c atload'finish_setup' atinit'zpcompinit; zpcdreplay'
+zi0c atinit'zpcompinit; zpcdreplay; finish_setup'
 zinit light zdharma/fast-syntax-highlighting
