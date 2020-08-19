@@ -1,9 +1,23 @@
 #!/usr/bin/env dash
 # this will prompt for a password for the weechat logs
-filename="$(date +'%Y-%m-%dT%H:%M:%S%:z').tar.lrz"
+set -e
+filename_prefix="$(date +'%Y-%m-%dT%H:%M:%S%:z')"
+filename="${filename_prefix}.tar.lrz"
 backups_dir="$HOME/Backups"
-tar cvf "$backups_dir/WeeChat_logs/logs.tar" "${WEECHAT_HOME-${HOME-~}/.weechat}/logs" && tar cvfh "$backups_dir/Minetest/minetest.tar" "$HOME/.minetest" \
-	&& lrzip -Uzep 1 -L 9 "$backups_dir/WeeChat_logs/logs.tar" -o "$HOME/Backups/WeeChat_logs/$filename" && rm "$backups_dir/WeeChat_logs/logs.tar" \
-	&& lrzip -Uzp 4 -L 9 "$backups_dir/Minetest/minetest.tar" -o "$HOME/Backups/Minetest/$filename" && rm "$backups_dir/Minetest/minetest.tar"
+minetest_backups="$backups_dir/Minetest"
+weechatlog_backups="$backups_dir/WeeChat_logs"
+histfile_backups="$backups_dir/histfiles"
+mkdir -p "$minetest_backups" "$weechatlog_backups" "$histfile_backups"
+stty -echo
+password="$(pash show backups/logfiles)"
+stty echo
+printf '\n'
+tar cvf "$weechatlog_backups/logs.tar" "${WEECHAT_HOME-${HOME-~}/.weechat}/logs" && tar cvfh "$minetest_backups/minetest.tar" "$HOME/.minetest"
+echo "backing up histfile"
+lrzip -Uzp 1 -L 9 --encrypt="$password" "$HOME/.zsh_history" -o "$histfile_backups/zsh_history_${filename_prefix}.lrz"
+echo "histfile backed up. backing up weechat logs"
+lrzip -Uzp 1 -L 9 --encrypt="$password" "$weechatlog_backups/logs.tar" -o "$weechatlog_backups/$filename" && rm "$weechatlog_backups/logs.tar"
+echo "weechat logs backed up. bakcing up minetest"
+lrzip -Uzp 4 -L 9 "$minetest_backups/minetest.tar" -o "$minetest_backups/$filename" && rm "$minetest_backups/minetest.tar"
 
 # vi:ft=sh
