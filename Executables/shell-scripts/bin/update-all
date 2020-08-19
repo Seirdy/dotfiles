@@ -117,36 +117,27 @@ log_bg 'rubygem-luarocks-node' # combine gem+luarocks+npm since they update quic
 log_bg 'program-data'          # have some programs sync their data
 log_bg 'misc'                  # misc updates
 if [ -z "$LITEMODE" ]; then
-	log_bg 'go'     # build go packages installed with "go get" (slow)
-	log_bg 'go-big' # same as above, but for larger packages (slow)
-
-	# rust: build normally. My desktop should also build binaries optimized for my laptop CPU in a separate directory
-	# see ~/.local/bin/rsync-to-lappie
+	log_bg 'go'                # build go packages installed with "go get" (slow)
+	log_bg 'go-big'            # same as above, but for larger packages (slow)
 	log_bg 'cross-cc-programs' # compile several programs with gcc -O3 -mcpu
-	log_bg 'cargo'             # rust packages (extremely cpu-heavy)
+	log_bg 'in-containers'     # Updates running inside containers (slow)
+	# run these in the foreground to reduce overlapping cpu-intensive updates
+	log_fg 'dnf'   # system-wide update, autoremoval, and repo caching.
+	log_fg 'zinit' # update zinit + zsh plugins + zpmod (uses tcsetpgrp, compile in foreground)
+	log_fg 'cargo' # rust packages (extremely cpu-heavy)
 	if [ "$(hostname)" = 'rkumar-dekstop' ]; then
+		# cross-compile for laptop
 		log_bg_lap 'cargo'
 		log_bg_lap 'cross-cc-programs'
 		log_bg_lap 'in-containers'
 	fi
+	log_bg 'stack' # haskell packages (infrequent updates, cpu-heavy, slow)
 fi
-
-# shellcheck disable=SC2154
-if [ "$MACHINE" = 'Linux' ]; then
-	if [ -z "$LITEMODE" ]; then
-		log_bg 'stack'         # haskell packages (infrequent updates, cpu-heavy, slow)
-		log_bg 'in-containers' # Updates running inside containers (slow)
-		true
-	fi
-	log_bg 'no-cross-cc-programs' # compile several programs with gcc -O3 -mcpu
-	log_bg 'flatpak'              # repair and update user-installed flatpaks
-	log_fg 'dnf'                  # system-wide update, autoremoval, and repo caching.
-
-else
-	echo 'Unsupported machine for system package updates'
-	echo "Your machine is $MACHINE"
+if [ -n "$LITEMODE" ]; then # these two haven't run yet in litemode
+	log_fg 'dnf'
+	log_fg 'zinit'
 fi
-# zpmod is best compiled in the foreground since it uses tcsetpgrp
-log_fg 'zinit' # update zinit, its zsh plugins, and zpmod
+log_bg 'no-cross-cc-programs' # compile several programs with gcc -O3 -mcpu
+log_bg 'flatpak'              # repair and update user-installed flatpaks
 
 # vim: filetype=sh
