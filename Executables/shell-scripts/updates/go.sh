@@ -118,7 +118,7 @@ update_aerc() {
 	cd "$aerc_dir" || return 1
 	export GO111MODULE=on
 	git clone 'https://git.sr.ht/~sircmpwn/aerc' . || git reset --hard HEAD && git pull
-	BINDIR="$GOPATH/bin" make
+	BINDIR="$GOPATH/bin" GOFLAGS="$GOFLAGS -tags=notmuch" make
 	BINDIR="$GOPATH/bin" make install
 }
 

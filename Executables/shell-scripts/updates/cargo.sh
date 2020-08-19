@@ -37,16 +37,14 @@ CARGO_INSTALL_OPTS="--features pulseaudio notmuch" cargo_update i3status-rs
 cargo_update -ga
 
 # newsboat
+ghq_get_cd https://github.com/newsboat/newsboat.git
 cd "$GHQ_ROOT/github.com/newsboat/newsboat" \
-	&& git fetch && git status | sed 2q | grep behind \
-	&& {
-		git reset --hard HEAD && git pull && make clean \
-			&& CFLAGS="$CLANGFLAGS_UNUSED_STUFF" CXXFLAGS="$CLANGFLAGS_UNUSED_STUFF" LDFLAGS="$CLANGFLAGS_UNUSED_STUFF" make \
-			&& make install prefix="$PREFIX" \
-			&& mv "$PREFIX/bin/newsboat" "$PREFIX/bin/podboat" "$CARGO_HOME/bin"
-	} || echo "newsboat is up to date"
+	&& git reset --hard origin/HEAD && git pull && make clean \
+	&& CFLAGS="$CLANGFLAGS_UNUSED_STUFF" CXXFLAGS="$CLANGFLAGS_UNUSED_STUFF" LDFLAGS="$CLANGFLAGS_UNUSED_STUFF" make \
+	&& make install prefix="$PREFIX" \
+	&& mv "$PREFIX/bin/newsboat" "$PREFIX/bin/podboat" "$CARGO_HOME/bin"
 
-# we've already update the alacritty binary; this is everything else
+# we've already updated the alacritty binary; this is everything else
 ghq_get_cd github.com/alacritty/alacritty.git \
 	&& install -p -D -m644 extra/linux/Alacritty.desktop "$DATAPREFIX/applications" \
 	&& install -p -D -m644 extra/alacritty.man "$MANPREFIX/man1" \
