@@ -46,6 +46,58 @@ Channel seirdy-archive
 Channel seirdy-sent
 Channel seirdy-junk
 
+##################
+
+# tildeverse!
+IMAPAccount envs.net
+Host mail.envs.net
+Port 993
+User seirdy@envs.net
+PassCmd "pash show email/envs.net"
+SSLType IMAPS
+PipelineDepth 5
+CertificateFile /etc/ssl/certs/ca-bundle.crt
+
+MaildirStore envs.net-local
+Path ~/mail/envs.net/
+Inbox ~/mail/envs.net/Inbox
+Subfolders Verbatim
+
+IMAPStore envs.net-remote
+Account envs.net
+
+Channel envs.net-default
+Master :envs.net-remote:
+Slave :envs.net-local:Inbox
+
+Channel envs.net-sent
+Master :envs.net-remote:"Sent"
+Slave :envs.net-local:Sent
+
+Channel envs.net-trash
+Master :envs.net-remote:"Trash"
+slave  :envs.net-local:Trash
+
+Channel envs.net-archive
+Master :envs.net-remote:"Archive"
+slave  :envs.net-local:Archive
+
+Channel envs.net-junk
+Master :envs.net-remote:"Junk"
+slave  :envs.net-local:Junk
+
+Create Both
+Expunge Both
+SyncState *
+
+Group envs.net
+Channel envs.net-default
+Channel envs.net-trash
+Channel envs.net-archive
+Channel envs.net-sent
+Channel envs.net-junk
+
+################
 
 IMAPAccount school
 Host imap.gmail.com
