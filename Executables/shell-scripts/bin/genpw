@@ -1,0 +1,7 @@
+#!/usr/bin/env dash
+# generate a random password, using characters selected from the set of
+# single-byte printable Unicode characters
+tr -dc "\40-\377" </dev/urandom \
+	| dd ibs=1 obs=1 count="${1:-hi}" 2>/dev/null \
+	| iconv -f ISO88591 -ct UTF8
+# vi:ft=sh

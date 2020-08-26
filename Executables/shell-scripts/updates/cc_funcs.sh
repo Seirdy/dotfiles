@@ -10,7 +10,7 @@ fancy_cmake() {
 			-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
 			-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
 			"$@" \
-		&& cmake --build . --target install
+		&& cmake --build . --target install/strip
 }
 
 make_install() {
@@ -42,7 +42,7 @@ simple_autotools() {
 }
 
 _simple_meson_no_reconfigure() {
-	meson build --prefix "$PREFIX" --libdir "$PREFIX/lib" --buildtype release --optimization 3 "$@"  \
+	meson build --prefix "$PREFIX" --libdir "$PREFIX/lib" --buildtype release --optimization 3 "$@" \
 		&& ninja -C build \
 		&& ninja -C build install
 }

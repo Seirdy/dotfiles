@@ -1,10 +1,17 @@
 #!/usr/bin/env dash
 # shellcheck disable=SC2154
+
 if [ -n "$TMUX" ]; then
 	fzf_cmd='fzf-tmux'
 else
 	fzf_cmd='fzf'
 fi
 
-xurls </dev/stdin | uniq | $fzf_cmd | wl-copy -n
+if [ "$1" = '-o' ]; then
+	url_handler="xargs ${BROWSER-xdg-open}"
+else
+	url_handler='wl-copy -n'
+fi
+
+xurls </dev/stdin | uniq | $fzf_cmd | $url_handler
 # vim:ft=sh

@@ -17,6 +17,6 @@ let s:cchars = {
 			\'html_c_s': '‹',
 			\'html_c_e': '›'}
 command! -nargs=0 -buffer -range=% Format2 let b:winview = winsaveview() |
-	\ execute <line1> . "," . <line2> . "!pandoc -f markdown -t markdown-multiline_tables -sp --columns=85 --tab-stop=2" |
-	\ call winrestview(b:winview)
+			\ execute <line1> . "," . <line2> . "!pandoc -f markdown -t markdown-multiline_tables-raw_attribute+link_attributes -sp --columns=85 --tab-stop=2" |
+			\ call winrestview(b:winview)
 cabbrev Format Format2

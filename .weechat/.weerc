@@ -1,5 +1,5 @@
 #
-# WeeChat 3.0-dev (compiled on Aug 10 2020 19:56:34)
+# WeeChat 3.0-dev (compiled on Aug 25 2020 18:40:05)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -12,6 +12,7 @@
 */set weechat.look.prefix_align_max 25
 */set weechat.look.prefix_same_nick "⤷"
 */set weechat.completion.nick_completer ":"
+*/set weechat.history.max_buffer_lines_number 1024
 */set weechat.bar.buflist.items "buflist"
 */set weechat.bar.fset.items "fset"
 */set weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],[input_olds],input_text,[vi_buffer]"
@@ -44,6 +45,3 @@
 */set urlgrab.default.copycmd "wl-copy -n"
 */set script.look.sort "u"
 */set script.scripts.hold "mnotify.py"
-*/set matrix.server.envs_net.address "envs.net"
-*/set matrix.server.envs_net.autoconnect on
-*/set matrix.server.matrix_org.address "matrix.org"

@@ -58,7 +58,11 @@ find_alt() {
 }
 greplike_prg="$(find_alt rg ag ack)"
 greplike() {
-	"$greplike_prg" "$@"
+	if [ "$greplike_prg" = 'rg' ]; then
+		"$greplike_prg" --pcre2 "$@"
+	else
+		"$greplike_prg" "$@"
+	fi
 }
 
 # sed -E isn't always enough; we need something more advanced
@@ -88,6 +92,7 @@ url="$(echo "$1" | sed -E 's#/(\?.*)?$##')"
 
 # subreddit charset from https://github.com/reddit-archive/reddit/blob/master/r2/r2/models/subreddit.py
 reddit_re_simple='^https?://(?:(?:www|np|new|old)\.)?reddit\.com/r/[A-Za-z0-9][A-Za-z0-9_]{2,20}'
+xkcd_img='^https?://imgs\.xkcd\.com/comics/(.*)(?!_2x)\.png$'
 
 if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 	# the big fat regex we'll use to split up reddit URLs
@@ -114,6 +119,8 @@ if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 		fi
 	fi
 	echo "$url" && exit 0
+elif echo "$url" | greplike "$xkcd_img" >/dev/null; then
+	url="$(echo "$url" | find_replace "$xkcd_img" 'https://imgs.xkcd.com/comics/$1_2x.png')"
 fi
 # }}}
 
@@ -122,8 +129,8 @@ if [ -n "$mirror" ]; then
 	imgur_re='^https?://(?:[A-Za-z0-9]*\.)?imgur\.com/(.*)$'
 	if echo "$url" | greplike "$imgur_re" >/dev/null; then
 		# shellcheck disable=SC2016
-		page_path="$(echo "$url" | find_replace "$imgur_re" '$1')"
-		url="https://imgur.kageurufu.net/$page_path"
+		url="$(echo "$url" | find_replace "$imgur_re" 'https://imgur.kageurufu.net/$1')"
+		# url="https://imgur.kageurufu.net/$page_path"
 		echo "$url" && exit 0
 	fi
 fi

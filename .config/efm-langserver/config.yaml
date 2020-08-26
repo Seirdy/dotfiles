@@ -50,6 +50,10 @@ tools:
 languages:
   pandoc:
     - <<: *markdown-markdownlint
+  markdown:
+    - <<: *markdown-markdownlint
+  gfm:
+    - <<: *markdown-markdownlint
   python:
     - <<: *python-flake8
   rst:

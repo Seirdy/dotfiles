@@ -4,6 +4,7 @@
 # undollar
 alias \$=''
 
+alias ls='ls --color=auto'
 alias exa-fancy='exa -h --icons --group-directories-first --color=always'
 alias l='lsd --group-dirs first --color always --icon always --icon-theme fancy'
 alias ll='exa-fancy -l --time-style=long-iso'              # Better output than ls -l

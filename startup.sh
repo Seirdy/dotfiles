@@ -37,6 +37,7 @@ export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
 # export LC_TIME=en_ZA.UTF-8
 export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
+export TZ="America/Los_Angeles"
 export NVIM_GTK_PREFER_DARK_THEME=1
 export GIT_COLA_ICON_THEME='dark'
 export XCURSOR_THEME='Adwaita'

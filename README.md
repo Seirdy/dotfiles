@@ -67,7 +67,7 @@ Stuff labeled with `*` is built from source from the latest git commit.
 - Terminal session manager: [tmux\*](https://tmux.github.io/)
 - News reader: [Newsboat\*](https://newsboat.org/)
 - Mail client: [aerc\*](https://aerc-mail.org/),
-  [sendEmail](http://caspian.dotconf.net/menu/Software/SendEmail/)
+  [mbsync](http://isync.sourceforge.net/), and [notmuch](https://notmuchmail.org/)
 - `$EDITOR`: Neovim\*
 - Launcher: [custom](https://git.sr.ht/~seirdy/term-dmenu) (runs in a floating
   terminal window)
@@ -80,13 +80,15 @@ Stuff labeled with `*` is built from source from the latest git commit.
   [Tridactyl](https://github.com/tridactyl/tridactyl),
   [uMatrix](https://github.com/gorhill/uMatrix), uBlock Origin, and others to make
   browsing slightly more tolerable.
+- Gopher/Gemini browser: [bombadillo\*](https://tildegit.org/sloum/bombadillo.git)
 
 ### Neovim
 
-I use Neovim's built-in Language Server Protocol (LSP) client along with the official
-[nvim-lsp](https://github.com/neovim/nvim-lsp) plugin containing pre-made configs for
-popular language servers. Settings are split between an `init.vim` and Lua files.
-Over time, I'll migrate more configs from Vim script to Lua.
+I use Neovim's built-in Tree-sitter implementation and Language Server Protocol (LSP)
+client along with the official [nvim-lsp](https://github.com/neovim/nvim-lsp) plugin
+containing pre-made configs for popular language servers. Settings are split between
+an `init.vim` and Lua files. Over time, I'll migrate more configs from Vim script to
+Lua.
 
 ### Shell
 
@@ -139,5 +141,4 @@ in the MPD sticker database.
 - MPRIS bridge: [mpv-mpris\*](https://github.com/hoyon/mpv-mpris)
 - Other scripts:
   [blur-edges.lua](https://github.com/occivink/mpv-scripts/blob/master/scripts/blur-edges.lua),
-  [autocrop.lua](https://github.com/mpv-player/mpv/TOOLS/lua/autocrop.lua)
   [autocrop.lua](https://github.com/mpv-player/mpv/TOOLS/lua/autocrop.lua)

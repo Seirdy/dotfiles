@@ -61,6 +61,7 @@ exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # daemons to download whatever gets sent to a named pipe
 exec mkfifo /tmp/dldaemon && tail -f /tmp/dldaemon | xargs -L1 -P 0 aria2c -d "$XDG_DATA_HOME/dldaemon"
 exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-dl -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
+exec mkfifo /tmp/paste && tail -f /tmp/paste | xargs -L1 wl-copy -n -t text/plain
 # idle config
 exec swayidle -w \
 	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
@@ -146,6 +147,7 @@ input * {
 
 	bindsym $mod+shift+R exec $term tuir
 	bindsym $mod+p exec xdg-open-paste
+	bindsym $mod+y exec 'mpv --profile=manga "$(wl-paste)"'
 	bindsym $mod+shift+P exec xdg-open-paste -d
 	# sanitize whatever's in the clipboard
 	bindsym $mod+u exec 'wl-paste | xargs sanitize-url | wl-copy -n'

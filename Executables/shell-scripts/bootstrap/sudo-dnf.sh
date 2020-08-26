@@ -9,14 +9,11 @@ if ! grep max_parallel_downloads /etc/dnf/dnf.conf >/dev/null; then
 fi
 # Enable rpmfusion-free and copr
 dnf install "dnf-plugins-core" "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" -y
-dnf module enable sway:rolling
-# copr repos
-dnf copr enable petersen/stack -y # stack will build itself and then this will be removed.
-dnf copr enable oleastre/fonts -y # Hasklig and Fira Code
-dnf copr enable sramanujam/firefox-nightly -y
-dnf copr enable zawertun/kde -y # latest kde
-# dnf copr enable gumieri/sway -y # unmaintained
-dnf copr enable jdoss/wireguard -y
+dnf module enable sway:rolling                          # latest swaywm
+dnf copr enable oleastre/fonts -y                       # Hasklig and Fira Code
+dnf copr enable zawertun/kde -y                         # latest kde
+dnf copr enable flatcap/neomutt -y                      # email client, alongside aerc
+dnf copr enable whot/high-resolution-wheel-scrolling -y # wayland/xorg patched for better wheel scrolling
 dnf upgrade --refresh --allowerasing -y
 packages=(
 	"@fonts"
@@ -36,35 +33,29 @@ packages=(
 	"brotli-devel"      # build wget2
 	"btrfs-progs-devel" # build podman, skopeo
 	"bzip2"
-	"calc" # really small/fast CLI calculator
-	"catimg"
+	"calc"                     # really small/fast CLI calculator
 	"ccls"                     # C/C++/Objective-C language server
 	"chromium-browser-privacy" # ungoogled-chromium
-	"clang"
-	"clang-devel" # build compilers like tinygo
-	"cmake"
+	"clang"                    # build lots of programs, inc. rust
+	"clang-devel"              # build compilers like tinygo
+	"cmake"                    # build system for lots of tools
 	"cmake-data"
 	"cryptsetup"
-	"ctags"
-	"ctags-etags"
-	"curl"
-	"curl-devel" # build ncmpcpp
-	"dash"
+	"ctags-etags" # essential for enhanced text editing
+	"curl-devel"  # build ncmpcpp
+	"dash"        # preferred non-interactive shell
 	"dbus-devel"
 	"dconf-devel"         # build flatpak
 	"desktop-file-utils"  # build alacritty and others
 	"device-mapper-devel" # build podman and others
 	"dnf-plugins-core"
 	"dotnet" # for Microsoft Python Language Server
-	"dvtm"
 	"egl-wayland-devel"
 	"elfutils"
 	"enchant"
 	"enchant-devel" # build weechat
 	"extra-cmake-modules"
-	"ffmpegthumbnailer" # generates thumbnails from videos, used for file preview
-	"fftw-devel"        # build cava and cli-visualizer
-	"firefox-nightly"
+	"fftw-devel" # build cava and cli-visualizer
 	"flatpak-builder"
 	"fontawesome-fonts"
 	"fontconfig"
@@ -84,7 +75,7 @@ packages=(
 	"gettext"
 	"gettext-devel" # build flatpak, redshift, weechat
 	"git"
-	"git-email"
+	"git-email"   # for email-based git workflow; works well with sr.ht
 	"glib2-devel" # building many packages including xdg-dbus-proxy and flatpak
 	"glibc"
 	"glibc-all-langpacks"
@@ -119,6 +110,7 @@ packages=(
 	"intltool"        # build redshift
 	"iptables"        # networking setup
 	"ipython"         # python notebook
+	"isync"           # maildir
 	"ituomi-hasklig-fonts"
 	"java-latest-openjdk-devel"
 	"jq"
@@ -171,10 +163,10 @@ packages=(
 	"lua5.1-luv"       # build neovim
 	"lua5.1-luv-devel" # build neovim
 	"lua5.1-mpack"     # build neovim
-	"luajit"
-	"luarocks"
-	"lvm2" # handles logical volumes, useful for building containers
-	"lzip" # best LZMA-based archiving solution. Works well with tar. Build wget2
+	"luajit"           # lua interpreter used by neovim, weechat, minetest, etc.
+	"luarocks"         # lua package manager
+	"lvm2"             # handles logical volumes, useful for building containers
+	"lzip"             # best LZMA-based archiving solution. Works well with tar. Build wget2
 	"mesa-libGL-devel"
 	"mesa-libGLU-devel"
 	"mesa-libOpenCL" # build Waifu2x-converter-cpp, ffmpeg
@@ -189,25 +181,26 @@ packages=(
 	"nasm"                      # build mvtools
 	"ncdu"                      # disk usage analyzer; mostly replaced by nnn -S
 	"ncurses-devel"             # build several packages inc. newsboat, tmux
-	"ninja-build"               # build tons of packages. Meson is installed using pipx.
+	"neomutt"                   # mail client, alongside aerc
+	"ninja-build"               # build many packages. Meson is installed using pipx.
 	"nmap"                      # network exploration
+	"notmuch-devel"             # build aerc, i3status with notmuch support
 	"notmuch-devel"             # build i3status-rs
 	"npm"                       # eww
 	"nprokopov-fira-code-fonts" # muh fonts
 	"nvi"                       # in case vi/vim wasn't minimal enough
 	"ocl-icd-devel"             # build Waifu2x-converter-cpp, ffmpeg
-	"opam"
-	"openal-soft-devel" # build ffmpeg
-	"opencl-devel"      # build Waifu2x-converter-cpp, ffmpeg
-	"opencl-headers"    # build ffmpeg
-	"openssl-devel"
-	"ostree"
-	"ostree-devel" # build runc, skopeo, and others
-	"p7zip"
-	"p7zip-plugins"
-	"pam-devel" # build sway
-	"papirus-icon-theme"
-	"patch"
+	"openal-soft-devel"         # build ffmpeg
+	"opencl-devel"              # build Waifu2x-converter-cpp, ffmpeg
+	"opencl-headers"            # build ffmpeg
+	"openssl-devel"             # build many packages
+	"ostree"                    # containershit
+	"ostree-devel"              # build runc, skopeo, and others
+	"p7zip"                     # handle 7z archive formats
+	"p7zip-plugins"             # more 7z goodies
+	"pam-devel"                 # build sway
+	"papirus-icon-theme"        # best icon theme
+	"patch"                     # basic necessity for git
 	"pavucontrol-qt"
 	"pciutils"               # used by neofetch
 	"perl(Encode)"           # build mpv
@@ -247,7 +240,7 @@ packages=(
 	"pkgconfig(libavfilter)"
 	"pkgconfig(libavformat)"
 	"pkgconfig(libavutil)"
-	"pkgconfig(libcares)"         # build aria2 (enables async DNS resolving or something)
+	"pkgconfig(libcares)"         # build aria2 (enables async DNS or something)
 	"pkgconfig(libcdio)"          # build ffmpeg
 	"pkgconfig(libcdio_paranoia)" # build ffmpeg
 	"pkgconfig(libcrypto)"        # build newsboat
@@ -337,16 +330,15 @@ packages=(
 	"python3-libmount"          # building crun
 	"python3-matplotlib-qt5"    # plotting in python
 	"python3-opencv"            # build Av1an
+	"python3dist(Cython)"       # used in a lot of packages; precompiled distro pkg speeds up installs
+	"python3dist(grpcio)"       # used in a lot of packages; precompiled distro pkg speeds up installs
 	"python3dist(protobuf)"     # dependency for some datsci/ML packages; precompiled distro pkg speeds up installs
+	"python3dist(pyephem)"      # my datsci/ML development; precompiled distro pkg speeds up installs. comes with numpy, scipy, pandas
 	"python3dist(regex)"        # used in a lot of packages; precompiled distro pkg speeds up installs
 	"python3dist(scikit-learn)" # My datsci/ML development; precompiled distro pkg speeds up installs
 	"python3dist(statsmodels)"  # my datsci/ML development; precompiled distro pkg speeds up installs. comes with numpy, scipy, pandas
-	"python3dist(Cython)"       # used in a lot of packages; precompiled distro pkg speeds up installs
-	"python3dist(grpcio)"       # used in a lot of packages; precompiled distro pkg speeds up installs
-	"python3-pyephem"           # my datsci/ML development; precompiled distro pkg speeds up installs. comes with numpy, scipy, pandas
 	"qrencode"
 	"radeontop"
-	"rc"
 	"readline-devel" # build nnn, ncmpcpp, and others
 	"roboto-fontface-fonts"
 	"rsync"
@@ -355,7 +347,6 @@ packages=(
 	"rust-analysis"
 	"rust-std-static"
 	"selinux-policy-devel" # build flatpak
-	"sendemail"            # TODO: get from git using zinit
 	"source-highlight"     # build weechat
 	"sqlitebrowser"
 	"sshfs" # mount another computer
@@ -377,7 +368,6 @@ packages=(
 	"texlive-collection-plaingeneric"     # why are you like this
 	"texlive-collection-publishers"       # do you actually need all of these texlive packages
 	"texlive-collection-xetex"            # STAHP
-	"tig"                                 # tui for git. TODO: compile from source
 	"tlp"                                 # power saving on lappie
 	"tmux"
 	"tor"         # tor

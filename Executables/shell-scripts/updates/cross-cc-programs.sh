@@ -105,18 +105,6 @@ ghq_get_cd https://github.com/nihui/waifu2x-ncnn-vulkan.git \
 	&& cmake --build . --target install \
 	&& install -m 0755 ./waifu2x-ncnn-vulkan "$BINPREFIX"
 
-# minetest
-ghq_get_cd 'https://github.com/minetest/minetest.git' \
-	&& git -C games/minetest_game pull \
-	&& fancy_cmake \
-		-DENABLE_LEVELDB=ON \
-		-DENABLE_SPATIAL=ON \
-		-DENABLE_REDIS=ON \
-		-DENABLE_POSTGRESQL=ON \
-		-DENABLE_LUAJIT=ON \
-		-DOPENGL_GL_PREFERENCE=GLVND \
-		-DBUILD_CLIENT=TRUE -DBUILD_SERVER=TRUE
-
 # mpv, with ffmpeg/libass statically linked
 # shellcheck disable=SC2169
 ghq_get_cd https://github.com/mpv-player/mpv-build.git \
@@ -134,6 +122,18 @@ export CFLAGS="$CFLAGS_LTO" \
 
 cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 	&& dash ./scripts/mpv-config && dash ./scripts/mpv-build && dash ./install
+
+# minetest
+ghq_get_cd 'https://github.com/minetest/minetest.git' \
+	&& git -C games/minetest_game pull \
+	&& fancy_cmake \
+		-DENABLE_LEVELDB=ON \
+		-DENABLE_SPATIAL=ON \
+		-DENABLE_REDIS=ON \
+		-DENABLE_POSTGRESQL=ON \
+		-DENABLE_LUAJIT=ON \
+		-DOPENGL_GL_PREFERENCE=GLVND \
+		-DBUILD_CLIENT=TRUE -DBUILD_SERVER=TRUE
 
 # nim
 ghq get -u https://github.com/nim-lang/Nim.git \
