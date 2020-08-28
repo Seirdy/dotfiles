@@ -1,7 +1,48 @@
-#!/usr/bin/env dash
+#!/bin/sh
 # generate a random password, using characters selected from the set of
 # single-byte printable Unicode characters
-tr -dc "\40-\377" </dev/urandom \
-	| dd ibs=1 obs=1 count="${1:-64}" 2>/dev/null \
-	| iconv -f ISO88591 -ct UTF8
+
+displayUsage() {
+	printf "genpw - generate a password from a set of 256 UTF-8 codepoints
+
+USAGE:
+  %s [OPTIONS] [LENGTH]
+
+OPTIONS:
+  -h, --help\t Display this help message.
+  -a, --ascii\t Restrict charset to ASCII.
+
+ARGS:
+  LENGTH\t The number of desired characters in the password. Defaults to 64
+" "$(basename "${0}")"
+}
+
+# Options
+while [ $# -gt 0 ]; do
+	case $1 in
+		-h | --help)
+			displayUsage
+			exit 0
+			;;
+		-a | --ascii)
+			ascii_only=1
+			;;
+		*)
+			length="$1"
+			;;
+	esac
+	shift
+done
+
+raw_pass() {
+	tr -dc "$1" </dev/urandom \
+		| dd ibs=1 obs=1 count="${length:-64}" 2>/dev/null
+}
+
+if [ -n "$ascii_only" ]; then
+	raw_pass ' -~'
+else
+	raw_pass '\40-\377' | iconv -f ISO88591 -ct UTF8
+fi
+
 # vi:ft=sh
