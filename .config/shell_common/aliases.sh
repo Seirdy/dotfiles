@@ -30,7 +30,7 @@ alias broken-link='wl-paste -n | sd "\n" "" | url-picker' # line breaks in links
 
 # basic shorthands
 alias pcat='pee cat' # make `pee` from moreutils send to stdout like tee
-alias a2c='aria2c' # fast aria2c downloading
+alias a2c='aria2c'   # fast aria2c downloading
 alias ytdl='youtube-dl'
 # ytdl-sm: for my laptop which has mediocre hardware accel, esp. for vp8/vp9
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
@@ -40,7 +40,6 @@ alias ytdl-crs='ytdl-720 --ignore-config --add-metadata --console-title --extern
 alias ffmpeg-copy='ffmpeg -c:v copy -c:a copy'
 alias chafa-best='chafa --symbols all-braille-extra --zoom -w 9 -c full --color-space din99d'
 alias cwebp-max='cwebp -lossless -m 6 -z 9 -q 100'
-alias tb='nc termbin.com 9999 | tr -d "\n"' # pastebin
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
 alias sdins='sudo dnf install'
@@ -76,7 +75,6 @@ alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.
 # pastebin/file-upload stuff
 alias clbincp='clbin | wlcv'
 alias 0x0cp='0x0 | wlcv'
-alias tbcp='tb | wlcv'
 # mirror the URL in the clipboard to 0x0.st
 alias mirror0x0='curl "$(wl-paste -n)" >/tmp/img && upl /tmp/img'
 # mirror to 0x0.st and copy the 0x0.st URL
@@ -112,6 +110,7 @@ alias glances='glances --disable-webui --disable-bg --disable-check-update'
 alias chtsh='cht.sh --auto' # prefer offline cheat.sh
 
 # mpd stuff moved to dedicated repo
+alias rate='rate-track'
 
 # $EDITOR aliases
 # shellcheck disable=SC2154
@@ -195,8 +194,8 @@ alias cdgo='GHQ_ROOT=$GOPATH/src cdg'
 
 # development
 alias pcrun='pre-commit run'
-alias poetrun='poetry run'  # for python projects
-alias ppcrun='poetry run pre-commit run'  # yodawg.jpg
+alias poetrun='poetry run'               # for python projects
+alias ppcrun='poetry run pre-commit run' # yodawg.jpg
 alias ppcall='poetry run pre-commit run --all-files'
 
 # pash

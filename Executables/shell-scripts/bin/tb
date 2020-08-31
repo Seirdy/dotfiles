@@ -1,0 +1,53 @@
+#!/usr/bin/env dash
+# termbin.com client to upload stdin
+# removes the control chars that appear in stdout for some reason
+# usage: tb <file, echo "upload text" | tb
+displayUsage() {
+	printf "tb - upload stdin to termbin.com with a sanitized output
+
+USAGE:
+  echo \"text to upload\" | %s [OPTIONS]
+	%s [OPTIONS] <FILE
+
+OPTIONS:
+  -h, --help\t Display this help message.
+  -c, --copy\t Copy result to Wayland clipboard
+
+ARGS:
+  LENGTH\t The number of desired characters in the password. Defaults to 64
+" "$(basename "${0}")"
+}
+
+# Options
+while [ $# -gt 0 ]; do
+	case $1 in
+		-c | --copy)
+			copy=1
+			;;
+		-h | --help)
+			displayUsage
+			exit 0
+			;;
+		*)
+			displayUsage
+			exit 1
+			;;
+	esac
+	shift
+done
+
+upload() {
+	nc termbin.com 9999 </dev/stdin | tr -dc "[:alnum:]:/.\n"
+}
+
+if [ -n "$copy" ]; then
+	if command -v pee >/dev/null; then
+		upload | pee cat "wl-copy -n"
+	else
+		upload | wl-copy -n && wl-paste
+	fi
+else
+	upload
+fi
+
+# vi:ft=sh
