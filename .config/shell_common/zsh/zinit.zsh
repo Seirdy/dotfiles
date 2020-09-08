@@ -303,6 +303,10 @@ fi
 # dasht
 zi_completion is-snippet for \
 	$GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions/_* || true
+zi_completion is-snippet for \
+	$GHQ_ROOT/codeberg.org/dnkl/foot/completions/zsh/_foot \
+	$GHQ_ROOT/codeberg.org/dnkl/foot/completions/zsh/_footclient
+
 
 # the following will run after everything else happens
 finish_setup() {

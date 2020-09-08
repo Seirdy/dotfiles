@@ -62,7 +62,7 @@ Stuff labeled with `*` is built from source from the latest git commit.
 
 - WM: [Sway\*](https://swaywm.org/). Associated utilities are also built from source
   (e.g. swaybg\*, swayidle\*, grim\*, and slurp\*)
-- Terminal emulator: [Alacritty\*](https://github.com/alacritty/alacritty) (Wayland)
+- Terminal emulator: [Foot\*](https://codeberg.org/dnkl/foot) (Wayland)
   or [st\*](https://st.suckless.org/) (X11)
 - Terminal session manager: [tmux\*](https://tmux.github.io/)
 - News reader: [Newsboat\*](https://newsboat.org/)
