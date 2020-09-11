@@ -18,14 +18,15 @@ fi
 echo "$new_display" >"$display_cfg"
 
 # KDE Fonts
+# i don't use kde anymore but what the hell
 if [ "$new_display" = "mon" ]; then
 	sans_font="Source Sans Pro,12,-1,5,50,0,0,0,0,0,Regular"
-	mono_font="Hasklig, 12,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="monospace, 12,-1,5,50,0,0,0,0,0,Regular"
 	small_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
 	gsettings set org.gnome.desktop.interface font-name 'Source Sans Pro 12'
 elif [ "$new_display" = "lap" ]; then
 	sans_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
-	mono_font="Hasklig, 10,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="monospace, 10,-1,5,50,0,0,0,0,0,Regular"
 	small_font="Source Sans Pro,8,-1,5,50,0,0,0,0,0,Regular"
 	gsettings set org.gnome.desktop.interface font-name 'Source Sans Pro 10'
 else
@@ -59,7 +60,14 @@ gtk3_confdir="$XDG_CONFIG_HOME/gtk-3.0"
 gtk2_confdir="$XDG_CONFIG_HOME/gtk-2.0"
 termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
 alacritty_confdir="$XDG_CONFIG_HOME/alacritty"
+foot_confdir="$XDG_CONFIG_HOME/foot"
 sway_confdir="$XDG_CONFIG_HOME/sway"
+
+if [ -d "$foot_confdir" ]; then
+	cd "$foot_confdir" \
+		&& cat "./foot_$new_display.ini" ./foot_master.ini >foot.ini \
+		&& echo "updated foot settings"
+fi
 
 # TODO: update settings for gtk2 and gtk4
 if [ -d "$kitty_confdir" ]; then

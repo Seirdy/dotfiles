@@ -3,11 +3,7 @@
 if [ "$XDG_SESSION_TYPE" = 'wayland' ] \
 	|| [ -n "$SWAYSOCK" ] \
 	|| [ -n "$WAYLAND_DISPLAY" ]; then
-	if [ $# -gt 0 ]; then
-		alacritty -e "$@"
-	else
-		alacritty
-	fi
+	foot "$@"
 else
 	st "$@"
 fi
