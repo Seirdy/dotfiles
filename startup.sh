@@ -92,7 +92,7 @@ export TERMINFO="$HOME/Executables/zsh-bin/share/terminfo"
 export TERMINFO_DIRS="$HOME/Executables/zsh-bin/share/terminfo:/usr/share/terminfo"
 export GOPATH="$HOME/Executables/go"
 # shellcheck disable=SC2086
-if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
+if "$GOPATH/sdk/gotip/bin/go" version >/dev/null 2>/dev/null; then
 	export GOROOT="$GOPATH/sdk/gotip"
 	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
 fi
@@ -185,7 +185,7 @@ pathadd_tail '/usr/sbin'
 pathadd_tail '/usr/bin'
 pathadd_tail '/sbin'
 pathadd_tail '/bin'
-pathadd_tail '/envs/bin' # envs.net
+pathadd_tail '/envs/bin'                           # envs.net
 pathadd_head "$GEM_HOME/bin"                       # rubygems (ruby)
 pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"            # cpanm (perl)
 pathadd_head "$NPM_PACKAGES/bin"                   # npm (javascript)
