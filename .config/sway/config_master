@@ -167,9 +167,10 @@ input * {
 #
 
 	# Volume
-		bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
-		bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
-		bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
+		bindsym XF86AudioRaiseVolume exec volumectl 2%+ unmute > $SWAYSOCK.wob
+		bindsym XF86AudioLowerVolume exec volumectl 2%- unmute > $SWAYSOCK.wob
+		bindsym XF86AudioMute exec volumectl toggle
+		bindsym shift+XF86AudioMute exec amixer sset 'Capture' toggle
 
 	# Sreen brightness controls
 		bindsym XF86MonBrightnessUp exec light -A 2 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob

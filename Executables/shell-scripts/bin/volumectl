@@ -1,0 +1,15 @@
+#!/usr/bin/env dash
+
+# Passes volume-setting cmds to amixer and prints the volume afterwards
+
+status="$(amixer sset Master "$@" | awk -F'[][]' '/[0-9]+%/ {print $2,$4}' | uniq)"
+muted="$(echo "$status" | awk '{print 2}')"
+
+# print current volume
+if [ "$muted" = 'off' ]; then
+	echo 0
+else
+	echo "$status" | awk '{print substr($1, 0, length($1)-1)}'
+fi
+
+# vi:ft=sh
