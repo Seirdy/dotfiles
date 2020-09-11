@@ -81,6 +81,8 @@ go_update tildegit.org/sloum/bombadillo \
 	&& install -p -m0644 "$GOPATH/src/tildegit.org/sloum/bombadillo/bombadillo.1" "$MANPREFIX/man1"
 GO111MODULE=on go_update github.com/makeworld-the-better-one/amfora@master
 
+GO111MODULE=on go_update github.com/RasmusLindroth/tut
+
 # Development tools
 #
 
