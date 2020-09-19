@@ -23,7 +23,7 @@ ghq_get_cd https://gitlab.com/fbb-git/icmake \
 	&& ./icm_prepare / \
 	&& ./icm_bootstrap x \
 	&& mkdir -p /tmp/icmake && ln -s "$PREFIX" /tmp/icmake/usr \
-	&& ./icm_install strip all /tmp/icmake \
+	&& ./icm_install strip all /tmp/icmake
 
 # yodl is required to build rsync docs
 ghq_get_cd https://gitlab.com/fbb-git/yodl \
@@ -122,9 +122,6 @@ ghq_get_cd https://github.com/eXeC64/imv.git \
 # ghq_get_cd https://github.com/containers/conmon.git && make podman -j "$threads"
 # catatonit; used as container init system
 
-# mpc: CLI for mpd
-ghq_get_cd https://github.com/MusicPlayerDaemon/mpc.git && simple_meson
-
 # playerctl: CLI for mpris and others
 ghq_get_cd https://github.com/altdesktop/playerctl.git && simple_meson -Dbash-completions=false
 
@@ -152,7 +149,7 @@ ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson
 # ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
 ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
 ghq_get_cd 'https://github.com/emersion/mako.git' \
-	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false -Dsystemd=false -Dicons=enabled -Dsystemd=disabled \
+	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false -Dicons=enabled -Dsystemd=disabled \
 	&& sed -e "s#@bindir@#$BINPREFIX#g" -e '/^ExecCondition/d' contrib/systemd/mako.service.in >"$CONFIGPREFIX/systemd/user/mako.service"
 ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
 
