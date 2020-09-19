@@ -1,0 +1,14 @@
+audio_output {
+	type                    "fifo"
+	name                    "my_fifo"
+	path                    "/tmp/mpd.fifo"
+	format                  "44100:16:2"
+}
+colors.scheme=blue
+visualizer.spectrum.smoothing.mode=monstercat
+visualizer.monstercat.smoothing.factor=1.8
+visualizer.spectrum.falloff.mode=fill
+visualizer.spectrum.bar.width=5
+visualizer.spectrum.bar.spacing=2
+visualizer.fps=60
+visualizer.spectrum.falloff.weight=95

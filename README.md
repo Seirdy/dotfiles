@@ -62,8 +62,8 @@ Stuff labeled with `*` is built from source from the latest git commit.
 
 - WM: [Sway\*](https://swaywm.org/). Associated utilities are also built from source
   (e.g. swaybg\*, swayidle\*, grim\*, and slurp\*)
-- Terminal emulator: [Foot\*](https://codeberg.org/dnkl/foot) (Wayland)
-  or [st\*](https://st.suckless.org/) (X11)
+- Terminal emulator: [Foot\*](https://codeberg.org/dnkl/foot) (Wayland) or
+  [st\*](https://st.suckless.org/) (X11)
 - Terminal session manager: [tmux\*](https://tmux.github.io/)
 - News reader: [Newsboat\*](https://newsboat.org/)
 - Mail client: [aerc\*](https://aerc-mail.org/),
@@ -118,7 +118,8 @@ in the MPD sticker database.
   [ncmpcpp\*](https://github.com/arybczak/ncmpcpp)
 - CLI control: [mpc\*](https://github.com/MusicPlayerDaemon/mpc) +
   [Playerctl\*](https://github.com/altdesktop/playerctl).
-- Visualizer: [cava\*](https://github.com/karlstav/cava) and
+- Visualizer: [cli-visualizer\*](https://github.com/dpayne/cli-visualizer),
+  [cava\*](https://github.com/karlstav/cava) and
   [projectM\*](https://github.com/projectM-visualizer/projectm)
 - Playlist dynamizer:
   [cantata-dynamic\*](https://github.com/CDrummond/cantata/blob/master/playlists/cantata-dynamic)
