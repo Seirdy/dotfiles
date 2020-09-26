@@ -32,7 +32,7 @@
 [ghq]
 	root = "~/Executables/ghq"
 [alias]
-	pushall = !git remote | xargs -L1 -P 0 git push --all --follow-tags
+	pushall = !git remote | grep -v upstream | xargs -L1 -P 0 git push --all --follow-tags
 
 [credential "https://gitlab.com"]
 	username = Seirdy
