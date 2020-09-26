@@ -61,11 +61,11 @@ Plug 'terryma/vim-expand-region' " syntax-aware expansion of visually-selected a
 
 " More powerful/sophisticated plugins
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plug 'rhysd/git-messenger.vim' " git info in a floating window
+Plug 'rhysd/git-messenger.vim' " git blame in a floating window
 Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
 Plug 'psf/black', { 'branch': 'stable', 'for': ['python'] }
 " Neovim's builtin LSP and treesitter impl. make it a very lightweight IDE
-Plug 'neovim/nvim-lsp' " The most important plugin
+Plug 'neovim/nvim-lspconfig' " The most important plugin
 Plug 'nvim-lua/diagnostic-nvim' " wrap LSP diagnostic config
 Plug 'pierreglaser/folding-nvim', { 'for': ['lua', 'c', 'cpp', 'go'] } " LSP-powered folding
 Plug 'nvim-lua/lsp-status.nvim'  " lsp items in the statusbar
@@ -84,11 +84,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
 Plug 'vim-airline/vim-airline'  " Like powerline
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
-Plug 'norcalli/nvim-colorizer.lua' " Fastest color-code colorizer
-Plug 'justinmk/vim-syntax-extra' " C and bison syntax highlighting
 
 " Syntax highlighting
 " ~~~~~~~~~~~~~~~~~
+Plug 'norcalli/nvim-colorizer.lua' " Fastest color-code colorizer
+Plug 'justinmk/vim-syntax-extra' " C and bison syntax highlighting
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 Plug 'vim-pandoc/vim-pandoc', { 'for': [ 'pandoc' ] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
@@ -418,7 +418,7 @@ let g:table_mode_align_char='+'
 " go here.
 
 let g:pandoc#after#modules#enabled = ['vim-table-mode']
-let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'cpp', 'python', 'sh', 'asm', 'yaml', 'html', 'css', 'vim', 'go', 'haskell', 'scheme', 'javascript', 'zsh', 'rust']
+let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'cpp', 'python', 'sh', 'yaml', 'html', 'css', 'vim', 'go', 'haskell', 'scheme', 'javascript', 'zsh', 'rust']
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ['folding','formatting']
 let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ' '}
