@@ -141,8 +141,8 @@ if [ -n "$WAYLAND_DISPLAY" ]; then
 	zi_program pick'farge'
 	zinit light 'sdushantha/farge'
 
-	zi_program has'sxiv' pick'kunst'
-	zinit light sdushantha/kunst
+	zi_program has'imv' pick'kunst'
+	zinit light $GHQ_ROOT/git.sr.ht/~seirdy/kunst
 
 	zi_program has'grim' pick'grimshot'
 	zinit light $GHQ_ROOT/github.com/swaywm/sway/contrib
