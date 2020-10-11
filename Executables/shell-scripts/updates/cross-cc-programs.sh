@@ -79,9 +79,16 @@ ghq_get_cd https://github.com/caryll/otfcc.git \
 	&& make config=release_x64 \
 	&& install -m 0755 "$GHQ_ROOT/github.com/caryll/otfcc/bin/release-x64"/otfcc* "$BINPREFIX"
 
+# cflags for building some libs
+cflags_old="$CFLAGS"
+export CFLAGS="-fPIC $CFLAGS_LTO" LDFLAGS="-fPIC $CFLAGS_LTO" CPPFLAGS="-fPIC $CFLAGS_LTO" CXXFLAGS="-fPIC $CFLAGS_LTO" 
 # aom reference impl.
 ghq_get_cd https://aomedia.googlesource.com/aom.git \
-	&& fancy_cmake -DENABLE_CCACHE=1 -DCONFIG_HIGHBITDEPTH=1
+	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0
+ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled
+ghq_get_cd https://code.videolan.org/videolan/dav1d.git && simple_meson -Denable_asm=true -Denable_avx512=true -Denable_tests=false --default-library=static
+
+export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old" 
 
 # avif encoding and decoding (converting to png)
 ghq get -u https://github.com/link-u/cavif.git && ghq get -u https://github.com/link-u/davif.git
@@ -108,20 +115,28 @@ ghq_get_cd https://github.com/nihui/waifu2x-ncnn-vulkan.git \
 # mpv, with ffmpeg/libass statically linked
 # shellcheck disable=SC2169
 ghq_get_cd https://github.com/mpv-player/mpv-build.git \
-	&& /bin/printf '--arch=x86_64\n--enable-version3\n--enable-bzlib\n--disable-crystalhd\n--enable-fontconfig\n--enable-frei0r\n--enable-gcrypt\n--enable-gnutls\n--enable-ladspa\n--enable-libaom\n--enable-libdav1d\n--enable-libass\n--enable-libcdio\n--enable-libdrm\n--enable-libjack\n--enable-libfreetype\n--enable-libfribidi\n--enable-libgsm\n--enable-libmp3lame\n--enable-nvenc\n--enable-openal\n--enable-opencl\n--enable-opengl\n--enable-libopenjpeg\n--enable-libopus\n--enable-libpulse\n--enable-librsvg\n--enable-libsoxr\n--enable-libspeex\n--enable-libssh\n--enable-libtheora\n--enable-libvorbis\n--enable-libv4l2\n--enable-libvidstab\n--enable-libvmaf\n--enable-libvpx\n--enable-libwebp\n--enable-libx264\n--enable-libx265\n--enable-libxvid\n--enable-libzimg\n--enable-libzvbi\n--enable-avfilter\n--enable-avresample\n--enable-postproc\n--enable-pthreads\n--enable-gpl\n--disable-debug\n--enable-libmfx\n--enable-runtime-cpudetect' >ffmpeg_options \
-	&& /bin/printf "--prefix=$PREFIX\n--datarootdir=$CONFIGPREFIX\n--mandir=$MANPREFIX\n--confdir=$CONFIGPREFIX\n--lua=luajit\n--disable-android\n--disable-audiounit\n--disable-caca\n--disable-cdda\n--disable-cocoa\n--disable-coreaudio\n--disable-cuda-hwaccel\n--disable-cuda-interop\n--disable-d3d-hwaccel\n--disable-d3d11\n--disable-d3d9-hwaccel\n--disable-debug-build\n--disable-direct3d\n--disable-dvdnav\n--disable-egl-android\n--disable-egl-angle\n--disable-egl-angle-lib\n--disable-egl-angle-win32\n--disable-egl-x11\n--disable-gl-cocoa\n--disable-gl-dxinterop\n--disable-gl-dxinterop-d3d9\n--disable-gl-win32\n--disable-gl-x11\n--disable-ios-gl\n--disable-libbluray\n--disable-macos-10-11-features\n--disable-macos-10-12-2-features\n--disable-macos-10-14-features\n--disable-macos-cocoa-cb\n--disable-macos-media-player\n--disable-macos-touchbar\n--disable-rpi\n--disable-rpi-mmal\n--disable-sdl2\n--disable-swift\n--disable-tvos\n--disable-vaapi-x-egl\n--disable-vaapi-x11\n--disable-vdpau-gl-x11\n--disable-videotoolbox-gl\n--disable-wasapi\n--disable-win32-internal-pthreads\n--disable-x11\n--disable-xv\n--enable-gl-wayland\n--enable-libarchive\n--enable-libmpv-shared\n--enable-vaapi-wayland\n--enable-wayland\n--enable-wayland-protocols\n--enable-wayland-scanner\n--enable-shaderc\n--enable-vulkan" >mpv_options \
+	&& /bin/printf '--arch=x86_64\n--enable-version3\n--enable-bzlib\n--disable-crystalhd\n--enable-fontconfig\n--enable-frei0r\n--enable-gcrypt\n--enable-gnutls\n--enable-ladspa\n--enable-libaom\n--enable-libdav1d\n--enable-libass\n--disable-libcdio\n--enable-libdrm\n--enable-libjack\n--enable-libfreetype\n--enable-libfribidi\n--enable-libgsm\n--enable-libmp3lame\n--enable-nvenc\n--enable-openal\n--enable-opencl\n--enable-opengl\n--enable-libopenjpeg\n--enable-libopus\n--enable-libpulse\n--enable-librsvg\n--enable-libsoxr\n--enable-libspeex\n--enable-libssh\n--enable-libtheora\n--enable-libvorbis\n--enable-libv4l2\n--enable-libvidstab\n--enable-libvmaf\n--enable-libvpx\n--enable-libwebp\n--enable-libx264\n--enable-libx265\n--enable-libxvid\n--enable-libzimg\n--enable-libzvbi\n--enable-avfilter\n--enable-avresample\n--enable-postproc\n--enable-pthreads\n--enable-gpl\n--disable-debug\n--enable-libmfx\n--enable-runtime-cpudetect' >ffmpeg_options \
+	&& /bin/printf "--prefix=$PREFIX\n--datarootdir=$CONFIGPREFIX\n--mandir=$MANPREFIX\n--confdir=$CONFIGPREFIX\n--lua=luajit\n--disable-android\n--disable-audiounit\n--disable-caca\n--disable-cdda\n--disable-cocoa\n--disable-coreaudio\n--disable-cuda-hwaccel\n--disable-cuda-interop\n--disable-d3d-hwaccel\n--disable-d3d11\n--disable-d3d9-hwaccel\n--disable-debug-build\n--disable-direct3d\n--disable-dvdnav\n--disable-egl-android\n--disable-egl-angle\n--disable-egl-angle-lib\n--disable-egl-angle-win32\n--disable-egl-x11\n--disable-gl-cocoa\n--disable-gl-dxinterop\n--disable-gl-dxinterop-d3d9\n--disable-gl-win32\n--disable-gl-x11\n--disable-ios-gl\n--disable-libbluray\n--disable-macos-10-11-features\n--disable-macos-10-12-2-features\n--disable-macos-10-14-features\n--disable-macos-cocoa-cb\n--disable-macos-media-player\n--disable-macos-touchbar\n--disable-rpi\n--disable-rpi-mmal\n--disable-sdl2\n--disable-swift\n--disable-tvos\n--disable-vaapi-x-egl\n--disable-vaapi-x11\n--disable-vdpau\n--disable-videotoolbox-gl\n--disable-wasapi\n--disable-win32-internal-pthreads\n--disable-x11\n--disable-xv\n--enable-gl-wayland\n--enable-libarchive\n--enable-libmpv-shared\n--enable-vaapi-wayland\n--enable-wayland\n--enable-wayland-protocols\n--enable-wayland-scanner\n--enable-shaderc\n--enable-vulkan" >mpv_options \
 	&& dash ./use-ffmpeg-release && dash ./use-mpv-master && dash ./use-libass-master \
 	&& dash ./update && dash ./clean \
 	&& dash ./scripts/libass-config && dash ./scripts/libass-build \
-	&& dash ./scripts/ffmpeg-config && dash ./scripts/ffmpeg-build
+	&& dash ./scripts/ffmpeg-config && dash ./scripts/ffmpeg-build \
+	&& export CFLAGS="$CFLAGS_LTO" \
+		LDFLAGS="$CFLAGS_LTO" \
+		CXXFLAGS="$CFLAGS_LTO" \
+		CPPFLAGS="$CFLAGS_LTO"
 
-export CFLAGS="$CFLAGS_LTO" \
-	LDFLAGS="$CFLAGS_LTO" \
-	CXXFLAGS="$CFLAGS_LTO" \
-	CPPFLAGS="$CFLAGS_LTO"
+# i tried a bunch of things, but liblua.a causes problems with programs that expect luajit or lua 5.{1,2}
+# so do this horrible hack instead: move liblua.a somewhere else, build those programs, and move it back.
+if [ -f "$LIBPREFIX/liblua.a" ]; then
+	luastatic="$LIBPREFIX/liblua.a"
+	mv "$luastatic" "${luastatic}_foo"
+fi
 
 cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 	&& dash ./scripts/mpv-config && dash ./scripts/mpv-build && dash ./install
+
+[ -n "$luastatic" ] && mv "${luastatic}_foo" "$luastatic"
 
 # mpc, CLI mpd client
 ghq_get_cd 'https://github.com/MusicPlayerDaemon/mpc.git' \
@@ -252,11 +267,6 @@ ghq_get_cd https://github.com/mtoyoda/sl.git \
 ghq_get_cd https://github.com/tmux/tmux.git \
 	&& ./autogen.sh \
 	&& configure_install
-
-# redshift for Wayland
-ghq_get_cd 'https://github.com/minus7/redshift.git' \
-	&& ./bootstrap \
-	&& configure_install --with-systemduserunitdir="$CONFIGPREFIX/systemd/user"
 
 # another important tool
 ghq_get_cd https://github.com/jaseg/lolcat && DESTDIR=$PREFIX/bin make_install

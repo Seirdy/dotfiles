@@ -134,8 +134,9 @@ in the MPD sticker database.
 ### mpv
 
 - Player: [mpv\*](https://mpv.io), built with VapourSynth support using
-  [mpv-build](https://github.com/mpv-player/mpv-build). FFmpeg and libass are also
-  built from master and statically linked with mpv.
+  [mpv-build](https://github.com/mpv-player/mpv-build). FFmpeg, dav1d, and libass are
+  also built from master and statically linked with mpv. Libaom, libvpx, and
+  libplacebo are built from master and dynamically linked in.
 - Upscaling filter: [Anime4k\*](https://github.com/bloc97/Anime4K) or
   [RAVU](https://github.com/bjin/mpv-prescalers), among
   [others](https://git.sr.ht/~seirdy/dotfiles/tree/master/.config/mpv/mpv.conf)

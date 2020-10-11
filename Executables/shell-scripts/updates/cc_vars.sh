@@ -13,6 +13,8 @@ export DATAPREFIX="$PREFIX/share"
 export CMAKE_INSTALL_PREFIX="$PREFIX"
 export CMAKE_INSTALL_MANDIR="$MANPREFIX"
 export SYSTEMD_UNIT_PATH="$CONFIGPREFIX/systemd/user"
+PKG_CONFIG_PATH="$DATAPREFIX/pkgconfig:$LIBPREFIX/pkgconfig:$PREFIX/lib64/pkgconfig:$(pkg-config --variable pc_path pkg-config)"
+export PKG_COFNIG_PATH
 
 mkdir -p "$PREFIX" "$BINPREFIX" "$MANPREFIX" "$DATAPREFIX" "$SYSTEMD_UNIT_PATH"
 
