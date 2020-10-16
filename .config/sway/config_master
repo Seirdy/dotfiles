@@ -1,7 +1,6 @@
 # vi:ft=i3config
 # Read `man 5 sway` for a complete reference.
-include /etc/sway/config.d/*
-# exec redshift-custom
+# include /etc/sway/config.d/*
 # cursor theme
 seat seat0 xcursor_theme Adwaita 24
 ### Variables
@@ -60,11 +59,12 @@ default_border pixel 3
 # exec ~/startup.sh
 # notifications
 # exec mako # handled by systemd now
+exec wlsunset-wrapper
 # overlay bar
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # daemons to download whatever gets sent to a named pipe
 exec mkfifo /tmp/dldaemon && tail -f /tmp/dldaemon | xargs -L1 -P 0 aria2c -d "$XDG_DATA_HOME/dldaemon"
-exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-dl -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
+exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-dlc -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
 exec mkfifo /tmp/paste && tail -f /tmp/paste | xargs -L1 wl-copy -n -t text/plain
 # idle config
 # exec swayidle -w \
@@ -298,7 +298,7 @@ mode "resize" {
 	bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 #
 # Status Bar:
 #
