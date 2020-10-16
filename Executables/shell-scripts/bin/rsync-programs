@@ -17,9 +17,9 @@ rsync -azuP ~/.local/share/newsboat/cache.db rkumar@rkumarlappie:/home/rkumar/.l
 rsync -auP ~/.local/share/buku rkumar@rkumarlappie:/home/rkumar/.local/share &
 rsync -azuP "$gobin" rkumar@rkumarlappie:/home/rkumar/Executables/go
 rsync -azuP ~/.local/libexec/cni ~/.local/libexec/revokefs-fuse rkumar@rkumarlappie:/home/rkumar/.local
-rsync -azuP --exclude '.local/lib/python*' ~/.local/lib rkumar@rkumarlappie:/home/rkumar/.local
+rsync -azuP --exclude '.local/lib/python*' "$prefix" rkumar@rkumarlappie:/home/rkumar
 rsync -azuP ~/.local/bin/fuse-overlayfs ~/.local/bin/fusermount3 rkumar@rkumarlappie:/home/rkumar/.local/bin
-rsync -azuP ~/Executables/lappie/.config ~/Executables/lappie/.local rkumar@rkumarlappie:/home/rkumar
+rsync -azuP ~/Executables/lappie/.config rkumar@rkumarlappie:/home/rkumar
 zsh_bin_path="$HOME/Executables/lappie/Executables/zsh-bin"
 zsh_version="$("$zsh_bin_path/bin/zsh" --version | awk '{print $2}')"
 rsync -azuP "$zsh_bin_path" rkumar@rkumarlappie:/home/rkumar/Executables/

@@ -81,14 +81,32 @@ ghq_get_cd https://github.com/caryll/otfcc.git \
 
 # cflags for building some libs
 cflags_old="$CFLAGS"
-export CFLAGS="-fPIC $CFLAGS_LTO" LDFLAGS="-fPIC $CFLAGS_LTO" CPPFLAGS="-fPIC $CFLAGS_LTO" CXXFLAGS="-fPIC $CFLAGS_LTO" 
+export CFLAGS="-fPIC $CFLAGS_LTO" LDFLAGS="-fPIC $CFLAGS_LTO" CPPFLAGS="-fPIC $CFLAGS_LTO" CXXFLAGS="-fPIC $CFLAGS_LTO"
 # aom reference impl.
 ghq_get_cd https://aomedia.googlesource.com/aom.git \
 	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0
 ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled
 ghq_get_cd https://code.videolan.org/videolan/dav1d.git && simple_meson -Denable_asm=true -Denable_avx512=true -Denable_tests=false --default-library=static
+ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
+	&& ./configure \
+		--enable-vp8 \
+		--enable-vp9 \
+		--enable-vp9-highbitdepth \
+		--enable-vp9-postproc \
+		--enable-pic \
+		--enable-temporal-denoising \
+		--enable-vp9-decoder \
+		--enable-vp9-encoder \
+		--enable-experimental \
+		--enable-shared \
+		--enable-static \
+		--enable-runtime-cpu-detect \
+		--enable-install-srcs \
+		--enable-multi-res-encoding \
+		--prefix="$PREFIX" \
+	&& make && make install-strip
 
-export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old" 
+export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old"
 
 # avif encoding and decoding (converting to png)
 ghq get -u https://github.com/link-u/cavif.git && ghq get -u https://github.com/link-u/davif.git
@@ -126,8 +144,9 @@ ghq_get_cd https://github.com/mpv-player/mpv-build.git \
 		CXXFLAGS="$CFLAGS_LTO" \
 		CPPFLAGS="$CFLAGS_LTO"
 
-# i tried a bunch of things, but liblua.a causes problems with programs that expect luajit or lua 5.{1,2}
-# so do this horrible hack instead: move liblua.a somewhere else, build those programs, and move it back.
+# i tried a bunch of things, but liblua.a causes problems with programs
+# that expect luajit or lua 5.{1,2} so do this horrible hack instead:
+# move liblua.a somewhere else, build those programs, and move it back.
 if [ -f "$LIBPREFIX/liblua.a" ]; then
 	luastatic="$LIBPREFIX/liblua.a"
 	mv "$luastatic" "${luastatic}_foo"
@@ -141,6 +160,9 @@ cd "$GHQ_ROOT/github.com/mpv-player/mpv-build" \
 # mpc, CLI mpd client
 ghq_get_cd 'https://github.com/MusicPlayerDaemon/mpc.git' \
 	&& simple_meson -Diconv=enabled
+
+# wlsunset, much simpler than gammastep/redshift
+get_cd ghq_get_cd 'https://git.sr.ht/~kennylevinsen/wlsunset' && simple_meson
 
 # minetest
 ghq_get_cd 'https://github.com/minetest/minetest.git' \

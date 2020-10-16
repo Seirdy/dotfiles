@@ -20,7 +20,6 @@ make_install() {
 fancy_configure() {
 	# shellcheck disable=SC2154
 	./configure \
-		--program-prefix= \
 		--prefix="$PREFIX" \
 		--exec-prefix="$PREFIX" \
 		--bindir="$BINPREFIX" \

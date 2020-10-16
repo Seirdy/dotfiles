@@ -20,6 +20,16 @@
 # TODO: determine number of cores and use it to run the max number of parallel
 # processes.
 
+set -e
+
+##################
+# are we online? #
+##################
+if ! ping -qc 1 1.1.1.1 >/dev/null 2>&1; then
+	echo "not connected"
+	exit 1
+fi
+
 ###########
 # Prepare #
 ###########
@@ -97,6 +107,7 @@ log_bg_lap() {
 		PREFIX="$HOME/Executables/lappie/.local" \
 		CONFIGPREFIX="$HOME/Executables/lappie/.config" \
 		GHQ_ROOT="$HOME/Executables/lappie/Executables/ghq" \
+		EXECUTABLES="$HOME/Executables/lappie/Executables" \
 		nohup "$script_dir/$1.sh" 2>&1 | ts '%m-%d %H:%M:%S' >"$log_dir/$1_lap-$time_start.log" 2>&1 &
 }
 
@@ -131,7 +142,7 @@ if [ -z "$LITEMODE" ]; then
 		log_bg_lap 'cross-cc-programs'
 		log_bg_lap 'in-containers'
 	fi
-	log_bg 'stack' # haskell packages (infrequent updates, cpu-heavy, slow)
+	log_bg 'stack' # haskell packages (cpu-heavy, memory-intensive, slow)
 else
 	log_fg 'dnf'
 	log_fg 'zinit'
@@ -139,5 +150,7 @@ else
 fi
 log_bg 'no-cross-cc-programs' # compile several programs with gcc -O3 -mcpu
 log_bg 'flatpak'              # repair and update user-installed flatpaks
+
+echo "Finished starting all updates; some might still be running in the background."
 
 # vim: filetype=sh

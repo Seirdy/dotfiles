@@ -25,6 +25,7 @@ pnpm add -g vscode-css-languageserver-bin
 pnpm add -g vscode-json-languageserver
 pnpm add -g vim-language-server
 pnpm add -g dockerfile-language-server-nodejs
+pnpm add -g webtorrent-cli
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
