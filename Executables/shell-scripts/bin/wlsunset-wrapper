@@ -3,7 +3,7 @@
 lat='37.5'
 lon='-122.0'
 duration='90'
-temp_night='3200'
+temp_night='3400'
 
 wlsunset -l "$lat" -L "$lon" -d "$duration" -t "$temp_night"
 # vi:ft=sh
