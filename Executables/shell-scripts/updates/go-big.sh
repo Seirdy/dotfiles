@@ -39,17 +39,11 @@ go_update gitlab.com/gitlab-org/gitlab-runner
 if [ "$MACHINE" = 'Linux' ]; then
 	# install the OCI stack along with its manpages
 	# This includes:
-	# - runc
 	# - podman
 	# - buildah
 	# - skopeo
 	# - all relevant CNI plugins
 	# components written in C (like fuse-overlayfs and conmon) are built elsewhere
-	runc_import_path="github.com/opencontainers/runc"
-	go_update "$runc_import_path" \
-		&& cd "$GOPATH/src/$runc_import_path" \
-		&& BUILDTAGS='seccomp' make && cp ./runc "$GOPATH/bin/runc" \
-		&& cd - || exit 1
 	go_update github.com/containers/skopeo/cmd/skopeo \
 		&& cd "$GOPATH/src/github.com/containers/skopeo" \
 		&& make docs \
