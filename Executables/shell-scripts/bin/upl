@@ -6,17 +6,15 @@ while [ $# -gt 0 ]; do
 	case $key in
 		-c | --copy)
 			copy_url=1
-			shift
 			;;
 		-p | --preview)
 			preview_url=1
-			shift
 			;;
 		*)
 			file_path="$1"
-			shift
 			;;
 	esac
+	shift
 done
 output_url="$(curl -F"file=@$file_path" https://0x0.st)"
 

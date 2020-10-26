@@ -3,7 +3,7 @@
 # run `oxipng-max -p` to max out all CPU threads for multiple images
 
 if [ "$1" != '-p' ]; then
-	oxipng --fix -Z -o 6 --strip all "$@"
+	oxipng --fix -Z -o max --strip all "$@"
 else
 	shift
 	# 6 threads per oxipng run.

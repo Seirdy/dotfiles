@@ -25,6 +25,7 @@ parallel pipx_pypy ::: \
 	git+https://github.com/sivel/speedtest-cli.git \
 	git+https://github.com/will8211/unimatrix.git \
 	git+https://github.com/ytdl-org/youtube-dl.git \
+	git+https://github.com/blackjack4494/yt-dlc.git \
 	git+https://gitlab.com/ajak/tuir.git
 
 parallel pipx install --system-site-packages ::: \

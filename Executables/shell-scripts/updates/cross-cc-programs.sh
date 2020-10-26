@@ -81,10 +81,11 @@ ghq_get_cd https://github.com/caryll/otfcc.git \
 
 # cflags for building some libs
 cflags_old="$CFLAGS"
-export CFLAGS="-fPIC $CFLAGS_LTO" LDFLAGS="-fPIC $CFLAGS_LTO" CPPFLAGS="-fPIC $CFLAGS_LTO" CXXFLAGS="-fPIC $CFLAGS_LTO"
+export CFLAGS="-fPIC $CFLAGS" LDFLAGS="-fPIC $CFLAGS" CPPFLAGS="-fPIC $CFLAGS" CXXFLAGS="-fPIC $CFLAGS"
 # aom reference impl.
 ghq_get_cd https://aomedia.googlesource.com/aom.git \
-	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0
+	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 \
+	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 -DBUILD_SHARED_LIBS=1
 ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled
 ghq_get_cd https://code.videolan.org/videolan/dav1d.git && simple_meson -Denable_asm=true -Denable_avx512=true -Denable_tests=false --default-library=static
 ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
@@ -104,7 +105,10 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 		--enable-install-srcs \
 		--enable-multi-res-encoding \
 		--prefix="$PREFIX" \
-	&& make && make install-strip
+	&& make && make install
+ghq_get_cd 'https://chromium.googlesource.com/webm/libwebp' \
+	&& env NOCONFIGURE=1 ./autogen.sh \
+	&& configure_install --enable-static --enable-shared --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --disable-neon
 
 export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old"
 
@@ -212,9 +216,6 @@ ghq_get_cd https://github.com/facebook/zstd.git \
 		--wipe \
 		builddir \
 	&& ninja -C builddir && ninja -C builddir install
-
-# file(1)
-ghq_get_cd https://github.com/file/file.git && simple_autotools
 
 # speedtest cli
 ghq_get_cd https://github.com/taganaka/SpeedTest.git && fancy_cmake
