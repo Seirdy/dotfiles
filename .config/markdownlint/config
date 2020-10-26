@@ -5,13 +5,11 @@
 	},
 	"ol-prefix": false,
 	"list-marker-space": false,
-	"line-length": {
-		"line_length": 88,
-		"code_blocks": false
-	},
+	"line-length": false,
 	"no-inline-html": false,
 	"ul-indent": {
 		"indent": 2
 	},
-	"hard_tab": false
+	"hard-tab": false,
+	"no-trailing-spaces": false,
 }
