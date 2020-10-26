@@ -18,6 +18,7 @@ alias llla='lll -a'
 # misspellings
 alias sl='sl | lolcat'
 alias httop='htop'
+alias 'htopu'='htop -u "$USER"'
 
 # wl-clipboard aliases
 alias wlc='wl-copy -n -t text/plain'
@@ -31,7 +32,7 @@ alias broken-link='wl-paste -n | sd "\n" "" | url-picker' # line breaks in links
 # basic shorthands
 alias pcat='pee cat' # make `pee` from moreutils send to stdout like tee
 alias a2c='aria2c'   # fast aria2c downloading
-alias ytdl='youtube-dl'
+alias ytdl='youtube-dlc'
 # ytdl-sm: for my laptop which has mediocre hardware accel, esp. for vp8/vp9
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
 # anime4k scales up 720p best
@@ -46,6 +47,8 @@ alias sdins='sudo dnf install'
 alias stb='sudo tlp bat'
 alias rmm='rmtrash'
 alias rmhtm='rm *.html' # pandoc artifacts and stuff
+alias tootn='toot notifications'
+alias tootnc='toot notifications --clear'
 # curl follow redirect
 alias curll='curl -L'
 alias curltl='curl-tor -L'
@@ -57,6 +60,7 @@ alias wcl='wc -l'
 alias psave='pockyt put -i'
 alias :q='exit' # muh vim habits
 alias c='calc -p'
+alias je='julia -e'
 # shellcheck disable=SC2154
 alias p='pash'
 alias fuck!='fuck --yeah' # auto-correct previous command
