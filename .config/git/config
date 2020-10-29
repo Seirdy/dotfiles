@@ -32,7 +32,7 @@
 [ghq]
 	root = "~/Executables/ghq"
 [alias]
-	pushall = !git remote | grep -v upstream | xargs -L1 -P 0 git push --all --follow-tags
+	pushall = !git remote | grep -E 'origin|mirror' | xargs -L1 -P 0 git push --all --follow-tags
 
 [credential "https://gitlab.com"]
 	username = Seirdy
@@ -44,7 +44,10 @@
 	smtpserver = smtp.migadu.com
 	smtpencryption = tls
 	smtpserverport = 587
-	from = seirdy@seirdy.one
+	from = Rohan Kumar <seirdy@seirdy.one>
 	compose-encoding = UTF-8
-	smtpsslcertpath = /etc/ssl/certs
+	confirm = always
+	; smtpsslcertpath = /etc/ssl/certs
 
+[credential "smtp://seirdy%40seirdy.one@smtp.migadu.com:587"]
+	helper = !pass git/seirdy@seirdy.one
