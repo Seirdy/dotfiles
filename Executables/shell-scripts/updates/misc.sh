@@ -38,6 +38,7 @@ ghq get -u https://github.com/bjin/mpv-prescalers.git
 ghq get -u https://github.com/bloc97/Anime4K.git
 ghq get -u https://github.com/classicjazz/mpv-config.git
 ghq get -u https://github.com/jgreco/mpv-youtube-quality.git
+ghq get -u https://github.com/noctuid/mpv-webtorrent-hook.git
 # weechat scripts
 ghq get -u https://github.com/keith/edit-weechat.git
 ghq get -u https://github.com/s3rvac/weechat-notify-send.git

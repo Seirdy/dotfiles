@@ -1,0 +1,28 @@
+#!/usr/bin/env dash
+
+# Stream a torrent with mpv and btfs. Download video chunks on-demand,
+# just like normal web video streaming. The video will be deleted afterwards.
+
+# nothing is stored in /tmp because I use tmpfs, so that could eat my memory.
+
+# the directory's temporary/disposable, can be named anything.
+randstr() {
+	tr -dc 'a-zA-Z0-9' </dev/urandom | dd ibs=1 obs=1 count=10 2>/dev/null
+}
+
+dirname="$(randstr)"
+pathname="$HOME/Downloads/btfs/$dirname"
+
+# when finished, unmount/close/remove all the data.
+cleanup() {
+	if [ -d "$pathname" ]; then
+		mountpoint "$pathname" && umount "$pathname"
+		rm -rf "$pathname"
+	fi
+}
+trap cleanup EXIT
+
+mkdir -p "$pathname"
+btfs "$@" "$pathname"
+mpv "$pathname"
+# vi:ft=sh
