@@ -20,41 +20,40 @@ rewritten.
 My scripts generally have the `#!/usr/bin/env dash` shebang, but the syntax is all
 POSIX sh compatible.
 
-![screenshot of awesomeness](https://i.imgur.com/IHidSxb.png)
+<picture> <source srcset="https://envs.net/~seirdy/pics/mpd2.webp" type="image/webp">
+<img src="https://envs.net/~seirdy/pics/mpd2.png" alt="screenshot of my tiling terminal music setup" style="max-width:100%;">
+</picture>
 
 Bleeding edge
 -------------
 
-I like to be on the bleeding edge of programs I use often, but I'd like a stable OS
+I like to be on the bleeding edge of programs I use often, but with a stable OS
 running underneath them. I worked out the following solution:
 
 If I use a program that runs in the terminal very often, I'll likely build it from
 source and update to the latest git commit. Git repositories get cloned using
 [ghq](https://github.com/motemen/ghq). This way, if a program has a bug or is missing
 a feature I want, I already have the latest snapshot of the repository cloned locally
-on my machine so I can fix the issue and push a patch upstream. My
+on my machine so I can better understand the issue, report the bug, and/or push a
+patch upstream. My
 [`update-all`](https://git.sr.ht/~seirdy/dotfiles/tree/master/.local/bin/update-all)
 script runs [these
 updates](https://git.sr.ht/~seirdy/dotfiles/tree/master/Executables/shell-scripts/updates).
 
 C/C++ programs get compiled with the `-march=native` flags, among others. Most
 packages are also compiled using link-time optimization. Rust packages containing
-C/C++ code use LLVM instead of GCC. When possible, Rust packages are compiled to
-statically-linked executables with full link-time optimization in an Alpine-based
-container.
+C/C++ code use Clang instead of GCC.
 
-I generally compile programs on my desktop and `rsync` them to my laptop. Compilation
-occurs in a Fedora Rawhide pet container, created and managed using
-[podman](https://podman.io/) and [toolbox](https://github.com/containers/toolbox).
-`rsync` along with the full container stack (podman, buildah, skopeo, crun,
-fuse-overlayfs, fusermount, conmon, bubblewrap, catatonit) are also built from
-master, of course.
+I generally compile programs on my desktop and `rsync` them to my laptop.
 
 Mah stuff
 ---------
 
-Pretty much all my programs run in the terminal, with obvious exceptions (most
-notably my web browser, image viewer (imv), and media player (mpv)).
+Pretty much all my programs run in the terminal. Exceptions include my web browser
+(if I [can't avoid it](https://bombadillo.colorfield.space/)), image viewer (imv),
+and media player (mpv)). If I'm not browsing heavy websites or playing high-res
+video, this setup is lightweight enough to use comfortably on a cheap single-board
+computer like the Raspberry Pi.
 
 Stuff labeled with `*` is built from source from the latest git commit.
 
@@ -93,7 +92,7 @@ Lua.
 ### Shell
 
 - shell (non-interactive): `dash*` for its ridiculously fast startup speed and
-  minimal extensions over the POSIX spec.
+  minimal extensions over the POSIX spec. Statically-linked.
 - shell (interactive): [custom static build](https://git.sr.ht/~seirdy/zsh-bin) of
   `zsh*` inside `tmux*`. By using a static binary with full link-time optimization
   that only sources user config files, my shell initialization time for the
@@ -107,7 +106,8 @@ Lua.
 
 ### Music
 
-I have an MPD-based music setup.
+I have an MPD-based music setup; this README includes a screenshot of it near the
+top.
 
 I've written several [scripts](https://git.sr.ht/~seirdy/mpd-scripts) to control MPD
 and build playlists. My setup depends heavily upon rating tracks on a scale of 1-10
@@ -115,28 +115,32 @@ in the MPD sticker database.
 
 - Backend: MPD
 - Frontend: [clerk\*](https://github.com/carnager/clerk) +
-  [ncmpcpp\*](https://github.com/arybczak/ncmpcpp)
+  [ncmpcpp\*](https://github.com/arybczak/ncmpcpp). I've been contemplating switching
+  to ncmpc since I don't really use any of ncmpcpp's special features.
 - CLI control: [mpc\*](https://github.com/MusicPlayerDaemon/mpc) +
   [Playerctl\*](https://github.com/altdesktop/playerctl).
 - Visualizer: [cli-visualizer\*](https://github.com/dpayne/cli-visualizer),
-  [cava\*](https://github.com/karlstav/cava) and
-  [projectM\*](https://github.com/projectM-visualizer/projectm)
+  [cava\*](https://github.com/karlstav/cava) and/or
+  [projectM\*](https://github.com/projectM-visualizer/projectm) depending on my mood.
 - Playlist dynamizer:
   [cantata-dynamic\*](https://github.com/CDrummond/cantata/blob/master/playlists/cantata-dynamic)
   builds playlists up to a defined size according to rules. It automatically removes
   and adds tracks after they are played. I don't use cantata; I just use that Perl
   script.
-- MPRIS 2 gateway and notification agent:
-  [mpDris2](https://github.com/eonpatapon/mpDris2). Allows media keys to control mpd
-  via Playerctl, and displays notifications.
-- Album art viewer: [kunst\*](https://github.com/sdushantha/kunst). Works with imv.
+- MPRIS 2 gateway: [mpd-mpris](https://github.com/natsukagami/mpd-mpris). Allows
+  media keys to control mpd via Playerctl, and integrates with other MPRIS-aware
+  software.
+- Album art viewer + notifier: [personal fork](https://git.sr.ht/~seirdy/kunst) of
+  [kunst\*](https://github.com/sdushantha/kunst). My fork works with `imv` and
+  displays notifications; I might re-name the project and spin it off into something
+  of its own.
 
 ### mpv
 
 - Player: [mpv\*](https://mpv.io), built with VapourSynth support using
   [mpv-build](https://github.com/mpv-player/mpv-build). FFmpeg, dav1d, and libass are
-  also built from master and statically linked with mpv. Libaom, libvpx, and
-  libplacebo are built from master and dynamically linked in.
+  also built from master and statically linked with mpv. libaom, libvpx, libplacebo,
+  and some others are built from master and dynamically linked in.
 - Upscaling filter: [Anime4k\*](https://github.com/bloc97/Anime4K) or
   [RAVU](https://github.com/bjin/mpv-prescalers), among
   [others](https://git.sr.ht/~seirdy/dotfiles/tree/master/.config/mpv/mpv.conf)
