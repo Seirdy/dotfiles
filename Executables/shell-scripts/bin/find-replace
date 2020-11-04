@@ -1,0 +1,40 @@
+#!/usr/bin/env dash
+# find-replace with regex, like sed, but prefers faster alternatives if
+# they exist
+
+set -e
+find_regex="$1"
+replace_regex="$2"
+# I sometimes use this with huge logs, so I try to use the fastest regex
+# find-replace program available, acc. to my benchmarks
+
+# figure out which program to use for find-replace
+find_alt() {
+	for i; do
+		if command -v "$i" >/dev/null; then
+			echo "$i"
+			return 0
+		fi
+	done
+}
+find_replace_prg="$(find_alt sd rg perl sed)"
+
+case "$find_replace_prg" in
+	sd)
+		sd -p "$find_regex" "$replace_regex"
+		;;
+	rg)
+		rg -a "$find_regex" -r "$replace_regex"
+		;;
+	perl)
+		perl -p -e"s/$find_regex/$replace_regex/g"
+		;;
+	sed)
+		sed -E "s/$find_regex/$replace_regex/g"
+		;;
+	*)
+		echo "no suitable find-replace program found" >&2
+		exit 1
+		;;
+esac
+# vi:ft=sh

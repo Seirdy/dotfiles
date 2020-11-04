@@ -1,0 +1,137 @@
+#!/bin/sh
+# new-sh - A POSIX sh script to make a templated POSIX sh script
+# Allows customizing the shebang and including a modeline.
+# Optionally add the script to git and/or open in your $EDTIOR.
+
+# vim and emacs don't alwasy detect the filetype with a custom shebang
+# (e.g. #!/usr/bin/env dash), in which case specifying a modeline can be
+# helpful.
+
+# Alternative: http://linuxcommand.org/lc3_new_script.php is a longer
+# Bash script, also included on envs.net at /envs/bin/new_script
+progname="$(basename "${0}")"
+help_text="Usage: $progname [OPTION...] NAME
+
+Create a simple shell script from a POSIX-compatible template
+
+  -t DIR, --target DIR            Target location of the script
+	-s SHEBANG, --shebang SHEBANG   Custom shebang line
+  -g, --git-add                   Add the script to git
+  -m, --modeline                  Include a modeline for your \$EDITOR
+  -e, --editor                    Open the script in your \$EDITOR
+  -v, --verbose                   Increase verbosity
+  -h, --help                      Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-t | --target)
+			target="$2"
+			shift
+			;;
+		-s | --shebang)
+			shebang="$2"
+			shift
+			;;
+		-m | --modeline)
+			modeline=1
+			;;
+		-g | --git)
+			git_add='1'
+			;;
+		-e | --editor)
+			editor='1'
+			;;
+		-v | --verbose)
+			verbose='1'
+			;;
+		-h | --help)
+			usage
+			;;
+		-*)
+			printf '%s: invalid option: %s\n' "$progname" "$*"
+			usage >&2
+			exit 1
+			;;
+		*)
+			filename="$1"
+			;;
+	esac
+	shift
+done
+
+log() {
+	[ -n "$verbose" ] && echo "$*" >&2
+}
+
+if [ -z "$filename" ]; then
+	echo "need to specify a filename" >&2
+	usage
+	exit 1
+fi
+newfile="${target-$PWD}/$filename"
+[ -e "$newfile" ] && echo "error: file exists" 1>&2 && exit 1
+
+echo "${shebang-'#!/bin/sh'}" >"$newfile"
+cat <<EOF >>"$newfile"
+# A helpful comment
+
+progname="\$(basename "\${0}")"
+help_text="Usage: \$progname [OPTION...]
+
+Summary
+
+  -h, --help            Print this help and exit
+"
+
+usage() {
+	printf '%s' "\$help_text"
+}
+
+# parse arguments
+original_args="\$@"
+while [ \$# -gt 0 ]; do
+	case "\$1" in
+		-h | --help)
+			usage
+			;;
+		*)
+			printf '%s: invalid option: %s\n' "\$progname" "\$*"
+			usage >&2
+			exit 1
+			;;
+	esac
+	shift
+done
+
+EOF
+
+if [ -n "$modeline" ]; then
+	if [ -n "$EDITOR" ]; then
+		case "$EDITOR" in
+			vi | vim | nvim | vis) printf "# vi:ft=sh" >>"$newfile" ;;
+			emacs) printf "# Local Variables:\n# mode: sh\n# End:" >>"$newfile" ;;
+			*) echo "$EDITOR unsupported, not adding modeline" >&2 ;;
+		esac
+	else
+		echo "$EDITOR unset, not adding modeline" >&2
+	fi
+fi
+
+chmod +x "$newfile"
+log "created $newfile"
+
+[ -n "$git_add" ] && git add "$newfile" && log "added to git"
+
+if [ -n "$editor" ]; then
+	log "opening editor"
+	"${EDITOR-vi}" "$newfile"
+	[ -n "$git_add" ] && git add "$newfile" && log "added updated version to git"
+fi
+
+# vi:ft=sh
