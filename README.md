@@ -20,8 +20,8 @@ rewritten.
 My scripts generally have the `#!/usr/bin/env dash` shebang, but the syntax is all
 POSIX sh compatible.
 
-<picture> <source srcset="https://envs.net/~seirdy/pics/mpd2.webp" type="image/webp">
-<img src="https://envs.net/~seirdy/pics/mpd2.png" alt="screenshot of my tiling terminal music setup" style="max-width:100%;">
+<picture> <source srcset="https://seirdy.one/misc/mpd.webp" type="image/webp">
+<img src="https://seirdy.one/misc/mpd.png" alt="screenshot of my tiling terminal music setup" style="max-width:100%;">
 </picture>
 
 Bleeding edge
