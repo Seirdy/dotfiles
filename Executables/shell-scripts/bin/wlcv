@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# Just a wrapper around wl-copy that also prints the text being copied
+# to stdout. Useful if you want to operate on text in pipelines but copy
+# it somewhere in the middle. Use it just like `wl-copy -nt text/plain`
+# with no additional options
+
+# One personal use-case: I sometimes want share a picture on IRC and
+# open it on a phone. I can do this by chaining three of my scripts
+# together:
+# $ upl path/to/a/meme.png | wlcv | qrview
+# this uploads the image to 0x0.st, copies the 0x0.st link to my
+# clipboard so I can past it into my IRC client, and opens a QR code for
+# the image URL so I can view it on a phone.
+
+# This only supports the text/plain mimetype.
+
+# TODO: make/find a very portable for wl-clipboard, xclip, xsel, pbcopy,
+# etc. to get a portable clipboard util, and use that instead.
+
+progname="$(basename "${0}")"
+help_text="Usage:
+  $progname [options] text to copy
+  $progname [options] <file-to-copy
+
+Copy text with wl-clipboard and send it to stdout.
+
+Options:
+  -h, --help
+      Print this help and exit
+  -n, --no-newline, --trim-newline
+      Do not print the trailing newline character
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-n | --trim-newline | --no-newline)
+			no_newline=1
+			shift
+			;;
+		-*)
+			printf '%s: invalid option: %s\n' "$progname" "$1" >&2
+			usage >&2
+			exit 1
+			;;
+		*)
+			no_stdin=1
+			break
+			;;
+	esac
+done
+
+if [ -z "$no_stdin" ]; then
+	to_copy="$(cat </dev/stdin)"
+else
+	to_copy="$*"
+fi
+
+wl-copy -nt "$to_copy"
+printf '%s' "$to_copy"
+[ -z "$no_newline" ] && echo
+
+# vi:ft=sh

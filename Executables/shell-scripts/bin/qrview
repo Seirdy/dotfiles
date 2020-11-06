@@ -1,0 +1,59 @@
+#!/usr/bin/env dash
+# A helpful comment
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+Wrap qrencode and imv to create and display a QR code.
+
+Options:
+  -i, --image-viewer <program>
+      Image viewer to use instead of imv. Must be able to display stdin.
+  -h, --help
+      Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-i | --image-viewer)
+			[ $# -lt 2 ] && bad_option "$1" 'requires parameter'
+			image_viewer="$2"
+			shift
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
+view_image_from_stdin() {
+	if [ -z "$image_viewer" ]; then
+		imv -
+	else
+		"$image_viewer"
+	fi
+}
+
+qrencode -o - | view_image_from_stdin
+
+# vi:ft=sh
