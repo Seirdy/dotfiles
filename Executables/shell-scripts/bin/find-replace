@@ -1,8 +1,44 @@
-#!/usr/bin/env dash
+#!/bin/sh
 # find-replace with regex, like sed, but prefers faster alternatives if
 # they exist
 
+progname="$(basename "${0}")"
+help_text="Usage:
+  $progname [options] <find> <replace-with> <file
+
+A simple wrapper around various find-replace programs with fallbacks.
+Prefers the fastest available program and falls back to slower, more
+advanced programs for less commonly available regex features.
+
+Options:
+  -h, --help
+      Print this help and exit
+"
+
 set -e
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-*)
+			printf '%s: invalid option: %s\n' "$progname" "$1" >&2
+			usage >&2
+			exit 1
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
 find_regex="$1"
 replace_regex="$2"
 
