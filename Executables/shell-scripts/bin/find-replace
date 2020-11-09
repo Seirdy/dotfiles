@@ -5,6 +5,30 @@
 set -e
 find_regex="$1"
 replace_regex="$2"
+
+# functions to replace $1 with $2, with fallbacks if it doesn't work.
+sed_fr() {
+	sed -E "s/$find_regex/$replace_regex/g"
+}
+
+perl_fr() {
+	perl -p -e"s/$find_regex/$replace_regex/g" || sed_fr
+}
+
+ripgrep_fr() {
+	# if my regex uses features like variable-length lookarounds
+	# then even PCRE2 won't support it; in that case, fall back to
+	# actual perl
+	rg -a --engine=auto --passthru "$find_regex" -r "$replace_regex" || perl_fr
+}
+
+sd_fr() {
+	# send stderr to /dev/null since this fails with some PCRE features
+	# and I don't need to see that error message when it can just fall back
+	# to ripgrep with --engine-auto, built with PCRE support
+	sd -p "$find_regex" "$replace_regex" 2>/dev/null || ripgrep_fr
+}
+
 # I sometimes use this with huge logs, so I try to use the fastest regex
 # find-replace program available, acc. to my benchmarks
 
@@ -18,19 +42,18 @@ find_alt() {
 	done
 }
 find_replace_prg="$(find_alt sd rg perl sed)"
-
 case "$find_replace_prg" in
 	sd)
-		sd -p "$find_regex" "$replace_regex"
+		sd_fr
 		;;
 	rg)
-		rg -a "$find_regex" -r "$replace_regex"
+		ripgrep_fr
 		;;
 	perl)
-		perl -p -e"s/$find_regex/$replace_regex/g"
+		perl_fr
 		;;
 	sed)
-		sed -E "s/$find_regex/$replace_regex/g"
+		sed_fr
 		;;
 	*)
 		echo "no suitable find-replace program found" >&2
