@@ -26,15 +26,18 @@ rsync -azuP "$zsh_bin_path" rkumar@rkumarlappie:/home/rkumar/Executables/
 # shellcheck disable=SC2029 # I want this to expand on the client side
 ssh rkumar@rkumarlappie "/home/rkumar/Executables/zsh-bin/share/zsh/$zsh_version/scripts/relocate"
 
-# send stuff to envs.sh.
+# send stuff to my remote servers
 # Since it also uses a haswell processor, I can use the same binaries as
 # the ones I optimized for my laptop CPU.
-rsync -azuP "$zsh_bin_path" seirdy@envs.sh:/home/seirdy/Executables/
-# shellcheck disable=SC2029 # I want this to expand on the client side
-ssh seirdy@envs.sh "/home/seirdy/Executables/zsh-bin/share/zsh/$zsh_version/scripts/relocate"
-rsync -azuP "$cargobin/bat" "$cargobin/broot" "$cargobin/cw" "$cargobin/delta" "$cargobin/diskus" "$cargobin/fd" "$cargobin/ffsend" "$cargobin/hyperfine" "$cargobin/lsd" "$cargobin/mdcat" "$cargobin/nomino" "$cargobin/onefetch" "$cargobin/sd" "$cargobin/shellharden" "$cargobin/tmux-hints" 'seirdy@envs.net:/home/seirdy/Executables/cargo/bin/'
-rsync -azuP "$gobin/croc" "$gobin/fzf" "$gobin/ghq" "$gobin/gitleaks" "$gobin/scc" "$gobin/shfmt" "$gobin/xurls" "$gobin/yq" seirdy@envs.sh:/home/seirdy/Executables/go/bin
-rsync -azuP "$prefixbin/abduco" "$prefixbin/acat" "$prefixbin/adiff" "$prefixbin/als" "$prefixbin/apack" "$prefixbin/arepack" "$prefixbin/atool" "$prefixbin/aunpack" "$prefixbin/gitstatusd" "$prefixbin/nnn" "$prefixbin/rsync" "$prefixbin/tmux" seirdy@envs.sh:/home/seirdy/.local/bin/
-rsync -azuP /home/rkumar/Executables/lappie/Executables/ghq/github.com/romkatv/gitstatus --exclude ".git" --exclude "bin/" seirdy@envs.sh:/home/seirdy/Executables/ghq/github.com/romkatv/
-rsync -azuP "$prefix/man" seirdy@envs.sh:/home/seirdy/.local/
+send_remote() {
+	rsync -azuP "$zsh_bin_path" seirdy@envs.sh:/home/seirdy/Executables/
+	# shellcheck disable=SC2029 # I want this to expand on the client side
+	ssh seirdy@envs.sh "/home/seirdy/Executables/zsh-bin/share/zsh/$zsh_version/scripts/relocate"
+	rsync -azuP "$cargobin/bat" "$cargobin/broot" "$cargobin/cw" "$cargobin/delta" "$cargobin/diskus" "$cargobin/fd" "$cargobin/ffsend" "$cargobin/hyperfine" "$cargobin/lsd" "$cargobin/mdcat" "$cargobin/nomino" "$cargobin/onefetch" "$cargobin/sd" "$cargobin/shellharden" "$cargobin/tmux-hints" 'seirdy@envs.net:/home/seirdy/Executables/cargo/bin/'
+	rsync -azuP "$gobin/croc" "$gobin/fzf" "$gobin/ghq" "$gobin/gitleaks" "$gobin/scc" "$gobin/shfmt" "$gobin/xurls" "$gobin/yq" seirdy@envs.sh:/home/seirdy/Executables/go/bin
+	rsync -azuP "$prefixbin/abduco" "$prefixbin/acat" "$prefixbin/adiff" "$prefixbin/als" "$prefixbin/apack" "$prefixbin/arepack" "$prefixbin/atool" "$prefixbin/aunpack" "$prefixbin/gitstatusd" "$prefixbin/nnn" "$prefixbin/rsync" "$prefixbin/tmux" seirdy@envs.sh:/home/seirdy/.local/bin/
+	rsync -azuP /home/rkumar/Executables/lappie/Executables/ghq/github.com/romkatv/gitstatus --exclude ".git" --exclude "bin/" seirdy@envs.sh:/home/seirdy/Executables/ghq/github.com/romkatv/
+	rsync -azuP "$prefix/man" seirdy@envs.sh:/home/seirdy/.local/
+}
+send_remote
 # vi:ft=sh
