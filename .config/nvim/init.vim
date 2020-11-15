@@ -64,11 +64,12 @@ Plug 'terryma/vim-expand-region' " syntax-aware expansion of visually-selected a
 Plug 'rhysd/git-messenger.vim' " git blame in a floating window
 Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
 Plug 'psf/black', { 'branch': 'stable', 'for': ['python'] }
+Plug 'tjdevries/nlua.nvim' " improve lua development
 " Neovim's builtin LSP and treesitter impl. make it a very lightweight IDE
 Plug 'neovim/nvim-lspconfig' " The most important plugin
 Plug 'nvim-lua/diagnostic-nvim' " wrap LSP diagnostic config
 Plug 'pierreglaser/folding-nvim', { 'for': ['lua', 'c', 'cpp', 'go'] } " LSP-powered folding
-Plug 'nvim-lua/lsp-status.nvim'  " lsp items in the statusbar
+" Plug 'nvim-lua/lsp-status.nvim'  " lsp items in the statusbar
 Plug 'nvim-treesitter/nvim-treesitter' " tree-sitter support
 " Completion sources
 Plug 'nvim-lua/completion-nvim' " sets up async autocomplete for LSP
@@ -81,12 +82,15 @@ Plug 'junegunn/fzf.vim'
 
 " Appearance Plugins
 " ~~~~~~~~~~~~~~~~~~
-Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
-Plug 'vim-airline/vim-airline'  " Like powerline
+" Plug 'ryanoasis/vim-devicons'  " File icons: works with vim-ariline.
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'fneu/breezy'  " Exactly like breeze theme for ktexteditor
+Plug 'glepnir/galaxyline.nvim'
+Plug 'akinsho/nvim-bufferline.lua'
 
 " Syntax highlighting
 " ~~~~~~~~~~~~~~~~~
+Plug 'euclidianAce/BetterLua.vim' " better lua syntax highlighting for 5.3/4
 Plug 'norcalli/nvim-colorizer.lua' " Fastest color-code colorizer
 Plug 'justinmk/vim-syntax-extra' " C and bison syntax highlighting
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
@@ -97,7 +101,11 @@ Plug 'cespare/vim-toml'
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 Plug 'tikhomirov/vim-glsl'
+Plug 'leafo/moonscript-vim'
 Plug 'tridactyl/vim-tridactyl', { 'for': 'tridactyl' }
+Plug 'gpanders/vim-scdoc'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'https://tildegit.org/sloum/gemini-vim-syntax.git'
 
 call plug#end()
 
@@ -138,19 +146,19 @@ endif
 " ~~~~~~~
 set noshowmode  " Airline handles this
 
-function! LspStatus() abort
-	if luaeval('#vim.lsp.buf_get_clients() > 0')
-		return luaeval("require('lsp-status').status()")
-	endif
-	return ''
-endfunction
+" function! LspStatus() abort
+" 	if luaeval('#vim.lsp.buf_get_clients() > 0')
+" 		return luaeval("require('lsp-status').status()")
+" 	endif
+" 	return ''
+" endfunction
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#disable_rtp_load = 1
-let g:airline_highlighting_cache = 1
-let g:webdevicons_enable_airline_statusline = 1
-let g:airline_extensions = ['branch', 'tabline', 'fzf']
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#disable_rtp_load = 1
+" let g:airline_highlighting_cache = 1
+" let g:webdevicons_enable_airline_statusline = 1
+" let g:airline_extensions = ['branch', 'tabline', 'fzf']
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 let g:rainbow_active = 1  " Rainbow brackets
@@ -158,10 +166,10 @@ let g:indentLine_char = "\uE621"  " dotted line  from powerline-patched-fonts
 " Language-specific theme settings
 let g:pymode_python = 'python3'  " Make sure python3 is used
 let python_highlight_all = 1
-let g:airline_theme = 'breezy'
+" let g:airline_theme = 'breezy'
 
-call airline#parts#define_function('lsp', 'LspStatus')
-let g:airline_section_y = airline#section#create_right(['lsp'])
+" call airline#parts#define_function('lsp', 'LspStatus')
+" let g:airline_section_y = airline#section#create_right(['lsp'])
 
 " :terminal colors
 " ~~~~~~~~~~~~~~~~
@@ -204,6 +212,7 @@ let g:terminal_color_15 = '#ffffff'
 lua << EOF
 require('lsp')
 require('colorizer_settings')
+require('line')
 require('treesitter')
 EOF
 
@@ -418,7 +427,7 @@ let g:table_mode_align_char='+'
 " go here.
 
 let g:pandoc#after#modules#enabled = ['vim-table-mode']
-let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'cpp', 'python', 'sh', 'yaml', 'html', 'css', 'vim', 'go', 'haskell', 'scheme', 'javascript', 'zsh', 'rust']
+let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'python', 'sh', 'html', 'css']
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ['folding','formatting']
 let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ' '}

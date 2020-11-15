@@ -1,9 +1,9 @@
 local nvim_lsp = require('nvim_lsp')
 local util = require('nvim_lsp/util')
-local lsp_status = require('lsp-status')
+-- local lsp_status = require('lsp-status')
 local api = vim.api
 
-lsp_status.register_progress()
+-- lsp_status.register_progress()
 
 local custom_on_attach_diagnostics = function(_, bufnr)
   -- Mappings.
@@ -50,7 +50,7 @@ local custom_on_attach = function(client, bufnr)
 	-- api.nvim_set_var('diagnostic_enable_virtual_text','1')
 	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
-	lsp_status.on_attach(client)
+	-- lsp_status.on_attach(client)
 end
 
 --  efm doesn't like being told to fold, so only fold on buffers that
@@ -103,32 +103,12 @@ nvim_lsp.efm.setup{
 }
 nvim_lsp.jedi_language_server.setup{
 	on_attach = custom_on_attach,
-	capabilities = lsp_status.capabilities
 }
-local custom_on_attach_sumneko_lua = function(client, bufnr)
-	lsp_status.config {
-		select_symbol = function(cursor_pos, symbol)
-			if symbol.valueRange then
-				local value_range = {
-					["start"] = {
-						character = 0,
-						line = vim.fn.byte2line(symbol.valueRange[1])
-					},
-					["end"] = {
-						character = 0,
-						line = vim.fn.byte2line(symbol.valueRange[2])
-					}
-				}
-
-				return require("lsp-status.util").in_range(cursor_pos, value_range)
-			end
-		end
-	}
+local custom_on_attach_nlua = function(client, bufnr)
 	custom_on_attach_folding(client, bufnr)
 end
-nvim_lsp.sumneko_lua.setup{
-	on_attach = custom_on_attach_sumneko_lua,
-	capabilities = lsp_status.capabilities,
+require('nlua.lsp.nvim').setup(nvim_lsp, {
+	on_attach = custom_on_attach_nlua,
 	settings = {
 		Lua = {
 			runtime = {
@@ -136,4 +116,4 @@ nvim_lsp.sumneko_lua.setup{
 			}
 		}
 	}
-}
+})
