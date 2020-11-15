@@ -1,5 +1,5 @@
 #
-# WeeChat 3.0-dev (compiled on Aug 25 2020 18:40:05)
+# WeeChat 3.0-rc1 (compiled on Nov  1 2020 15:54:06)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
@@ -32,7 +32,7 @@
 */set irc.look.highlight_channel "$nick,weestats,clogstats,seirdy"
 */set irc.look.server_buffer independent
 */set irc.server_default.autoconnect on
-*/set irc.server_default.capabilities "account-notify,away-notify,capa-notify,extended-join,multi-prefix,server-time,userhost-in-names"
+*/set irc.server_default.capabilities "account-notify,away-notify,capa-notify,chghost,extended-join,invite-notify,multi-prefix,server-time,userhost-in-names"
 */set irc.server_default.msg_part "👋 (WeeChat ${info:version})"
 */set irc.server_default.msg_quit "exiting ${info:version}"
 */set relay.color.status_active lightblue
