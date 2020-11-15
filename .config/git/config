@@ -11,6 +11,8 @@
 	program = gpg2
 [commit]
 	gpgsign = true
+[push]
+	gpgSign = if-asked
 [core]
 	editor = nvim
 	pager = delta --theme='ansi-dark' --tabs 2
