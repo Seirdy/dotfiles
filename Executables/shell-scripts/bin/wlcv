@@ -64,7 +64,7 @@ else
 	to_copy="$*"
 fi
 
-wl-copy -nt "$to_copy"
+wl-copy -nt 'text/plain' "$to_copy"
 printf '%s' "$to_copy"
 [ -z "$no_newline" ] && echo
 

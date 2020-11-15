@@ -22,7 +22,6 @@ alias 'htopu'='htop -u "$USER"'
 
 # wl-clipboard aliases
 alias wlc='wl-copy -n -t text/plain'
-alias wlcv='wlc && wl-paste' # copies to stdin and then displays it anyway
 alias yankit='yank-cli -- wl-copy -n -t text/plain'
 alias recopy='wl-paste -n | wl-copy -n' # good for stripping newlines I guess
 alias dlpaste='aria2c "$(wl-paste -n)"'
