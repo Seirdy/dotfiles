@@ -1,0 +1,70 @@
+#!/bin/sh
+# list threaded msgs in an inbox
+# based on https://github.com/haqistan/mblaze-tools/blob/master/minbox
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [PATH] [MLIST_ARGS ...]
+
+Args:
+  <PATH>                The path to the inbox
+  <MLIST_ARGS>          Arguments to pass to mlist. Can be delimited with '--'
+
+Options:
+  -h, --help            Print this help and exit
+"
+
+set -e
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+maildir_root="$HOME/mail/seirdy"
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		--)
+			shift
+			break
+			;;
+		-*)
+			bad_option "$1" 'invalid option'
+			;;
+		*)
+			given_inbox="$1"
+			shift
+			break
+			;;
+	esac
+done
+
+if [ -z "$given_inbox" ]; then
+	inbox="$HOME/mail/seirdy/Inbox"
+elif [ -d "$given_inbox" ]; then
+	inbox="$given_inbox"
+elif [ -d "$maildir_root/$given_inbox" ]; then
+	inbox="$maildir_root/$given_inbox"
+elif [ -d "$PWD/$given_inbox" ]; then
+	inbox="$PWD/$given_inbox"
+else
+	echo "$progname: could not find inbox $given_inbox" >&2 && exit 1
+fi
+
+mlist $* "$inbox" | mthread | mseq -S | mscan -I
+
+# vi:ft=sh

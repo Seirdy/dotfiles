@@ -1,0 +1,16 @@
+#!/usr/bin/env dash
+set -e
+matches() {
+	mlist ~/mail/seirdy/Inbox/cur | "$1" | wc -l
+}
+move() {
+	num_matches="$(matches "$1")"
+	echo "moving $num_matches" emails to "$2"
+	if [ "$num_matches" -gt 0 ]; then
+		mv $(mlist ~/mail/seirdy/Inbox/cur | "$1") "$2"
+	fi
+}
+move m-srht-lists ~/mail/seirdy/lists/sr.ht/cur/
+move m-github-lists ~/mail/seirdy/lists/github.com/cur/
+move m-codeberg-lists ~/mail/seirdy/lists/codeberg.org/cur/
+# vi:ft=sh

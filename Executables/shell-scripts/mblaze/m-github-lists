@@ -1,0 +1,3 @@
+#!/usr/bin/env dash
+mpick -t 'from =~ "notifications@github\.com" && subject =~ "\[.*/.*\]"'
+# vi:ft=sh

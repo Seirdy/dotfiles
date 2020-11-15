@@ -185,22 +185,23 @@ pathadd_tail '/usr/sbin'
 pathadd_tail '/usr/bin'
 pathadd_tail '/sbin'
 pathadd_tail '/bin'
-pathadd_tail '/envs/bin'                           # envs.net
-pathadd_head "$GEM_HOME/bin"                       # rubygems (ruby)
-pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"            # cpanm (perl)
-pathadd_head "$NPM_PACKAGES/bin"                   # npm (javascript)
-pathadd_head "$HOME/Executables/luarocks/bin"      # luarocks (lua)
-pathadd_head "$PIPX_BIN_DIR"                       # pipx (python)
-pathadd_head "$GOPATH/bin"                         # go pacakages
-pathadd_head "$GOPATH/sdk/gotip/bin"               # golang nightly build
-pathadd_head "$NIMBLE_DIR/bin"                     # nim packages
-pathadd_head "$STACK_ROOT/bin"                     # stack (haskell)
-pathadd_head "$OPAM_SWITCH_PREFIX/bin"             # opam
-pathadd_head "$CARGO_HOME/bin"                     # cargo (rust)
-pathadd_head "$HOME/Executables/zsh-bin/bin"       # static portable zsh
-pathadd_head "$HOME/.local/sbin"                   # local sbin
-pathadd_head "$HOME/.local/bin"                    # local bin
-pathadd_head "$HOME/Executables/shell-scripts/bin" # my shell scripts
+pathadd_tail '/envs/bin'                              # envs.net
+pathadd_head "$GEM_HOME/bin"                          # rubygems (ruby)
+pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"               # cpanm (perl)
+pathadd_head "$NPM_PACKAGES/bin"                      # npm (javascript)
+pathadd_head "$HOME/Executables/luarocks/bin"         # luarocks (lua)
+pathadd_head "$PIPX_BIN_DIR"                          # pipx (python)
+pathadd_head "$GOPATH/bin"                            # go pacakages
+pathadd_head "$GOPATH/sdk/gotip/bin"                  # golang nightly build
+pathadd_head "$NIMBLE_DIR/bin"                        # nim packages
+pathadd_head "$STACK_ROOT/bin"                        # stack (haskell)
+pathadd_head "$OPAM_SWITCH_PREFIX/bin"                # opam
+pathadd_head "$CARGO_HOME/bin"                        # cargo (rust)
+pathadd_head "$HOME/Executables/zsh-bin/bin"          # static portable zsh
+pathadd_head "$HOME/.local/sbin"                      # local sbin
+pathadd_head "$HOME/.local/bin"                       # local bin
+pathadd_head "$HOME/Executables/shell-scripts/bin"    # my shell scripts
+pathadd_head "$HOME/Executables/shell-scripts/mblaze" # my mblaze scripts
 
 # Detect my OS
 unameOut="$(uname -s)"

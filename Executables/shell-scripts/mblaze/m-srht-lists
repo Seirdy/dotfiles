@@ -1,0 +1,3 @@
+#!/usr/bin/env dash
+mpick -t 'to =~ "@lists.sr.ht" || "cc" =~ "@lists.sr.ht"'
+# vi:ft=sh
