@@ -11,10 +11,6 @@ start_time=$(date '+%s')
 # update this first; updating it kills all running mpv instances
 ghq_get_cd https://github.com/hoyon/mpv-mpris && make_install
 
-# j4-dmenu-desktop
-ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
-	&& fancy_cmake
-
 # icmake and yodl {{{
 # shellcheck disable=SC2154
 # icmake is required to build yodl, which is required to build rsync docs
@@ -37,6 +33,21 @@ cp -r /tmp/icmake/usr/* "$PREFIX/" && rm -rf /tmp/icmake
 
 # }}}
 
+# flatpak
+ghq_get_cd https://github.com/flatpak/flatpak \
+	&& ./autogen.sh \
+	&& configure_install --with-system-bubblewrap --with-system-dbus-proxy
+
+ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
+	&& ./autogen.sh \
+	&& configure_install \
+		--enable-docbook-docs \
+		--with-dwarf-header=/usr/include/libdwarf
+
+# projectM visualizer
+ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
+	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio --enable-qt --enable-gles --enable-preset-subdirs
+
 # gitstatus for powerlevel10k
 DIR="$GHQ_ROOT/github.com/romkatv"
 # adapted from https://github.com/romkatv/gitstatus/blob/master/build.zsh
@@ -56,41 +67,32 @@ build_libgit2() {
 			-DBUILD_SHARED_LIBS=OFF \
 			-DUSE_EXT_HTTP_PARSER=OFF \
 			-DZERO_NSEC=ON \
-		&& cmake --build .
+		&& CXX='g++ -static' cmake --build .
 }
 
 build_gitstatus() {
 	ghq_get_cd https://github.com/romkatv/gitstatus.git \
-		&& cxxflags="$CXXFLAGS -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
-		&& ldflags="$LDFLAGS -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
-		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags make \
+		&& cxxflags="$CXXFLAGS -static -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
+		&& ldflags="$LDFLAGS -static -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
+		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags CXX='g++ -static' make \
 		&& strip usrbin/gitstatusd \
 		&& target="$BINPREFIX/gitstatusd" \
 		&& install -m 0755 usrbin/gitstatusd "$target" \
 		&& echo "built: $target" >&2
 }
 
-build_libgit2 && build_gitstatus && echo 'built gitstatus successfully'
-
-# flatpak
-ghq_get_cd https://github.com/flatpak/flatpak \
-	&& ./autogen.sh \
-	&& configure_install --with-system-bubblewrap --with-system-dbus-proxy
-
-ghq_get_cd https://github.com/flatpak/flatpak-builder.git \
-	&& ./autogen.sh \
-	&& configure_install \
-		--enable-docbook-docs \
-		--with-dwarf-header=/usr/include/libdwarf
-
-# projectM visualizer
-ghq_get_cd https://github.com/projectM-visualizer/projectm.git \
-	&& simple_autotools --enable-sdl --enable-threading --enable-pulseaudio --enable-qt --enable-gles --enable-preset-subdirs
+build_libgit2
 
 export CFLAGS="$CFLAGS_LTO" \
 	LDFLAGS="$CFLAGS_LTO" \
 	CXXFLAGS="$CFLAGS_LTO" \
 	CPPFLAGS="$CFLAGS_LTO"
+
+build_gitstatus && echo 'built gitstatus successfully'
+
+# j4-dmenu-desktop
+ghq_get_cd 'https://github.com/enkore/j4-dmenu-desktop.git' \
+	&& fancy_cmake
 
 # neovim
 ghq_get_cd https://github.com/neovim/neovim.git \
@@ -125,32 +127,26 @@ ghq_get_cd https://github.com/eXeC64/imv.git \
 # playerctl: CLI for mpris and others
 ghq_get_cd https://github.com/altdesktop/playerctl.git && simple_meson -Dbash-completions=false
 
-prepare_sway() {
-	if [ -d ./subprojects/wlroots ]; then
-		cd ./subprojects/wlroots && git pull
-		cd ../..
-	else
-		git clone 'https://github.com/swaywm/wlroots.git' ./subprojects/wlroots
-	fi
-}
-
 # All swaywm components except the `sway` executable itself are built
 # from source
 
+ghq_get_cd 'https://github.com/swaywm/wlroots.git' \
+	&& simple_meson -Dexamples=false -Dxwayland=enabled -Dlogind-provider=systemd -Dlogind=enabled -Dxcb-errors=disabled -Dxcb-icccm=enabled -Dwerror=false --default-library both
+
 # swaywm: install swaybar, swaynag, swaymsg.
 ghq_get_cd 'https://github.com/swaywm/sway.git' \
-	&& prepare_sway \
-	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
+	&& simple_meson -Dzsh_completions=false -Dbash_completions=false -Dfish_completions=false -Dbash_completions=false -Dfish_completions=false -Dtray=enabled -Dgdk-pixbuf=enabled -Dman-pages=enabled
 
 # sway-related utils: grim, slurp, swaybg, swaylock, swayidle, mako, wl-clipboard
 ghq_get_cd 'https://github.com/emersion/grim.git' && simple_meson
 ghq_get_cd 'https://github.com/emersion/slurp.git' && simple_meson
-ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson
-# ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
-ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
+# my wallpaper is a png; no need for gdk-pixbuf
+ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson -Dgdk-pixbuf=disabled -Dman-pages=enabled
+ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
+# ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
 ghq_get_cd 'https://github.com/emersion/mako.git' \
 	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false -Dicons=enabled -Dsystemd=disabled \
-	&& sed -e "s#@bindir@#$BINPREFIX#g" -e '/^ExecCondition/d' contrib/systemd/mako.service.in >"$CONFIGPREFIX/systemd/user/mako.service"
+	&& sed -e "s#@bindir@#$BINPREFIX#g" -e '/^ExecCondition/d' contrib/systemd/mako.service.in >"$SYSTEMD_UNIT_PATH/mako.service"
 ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
 
 end_time=$(date '+%s')

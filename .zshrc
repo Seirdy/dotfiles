@@ -2,6 +2,7 @@
 export ZLE_RPROMPT_INDENT=0
 # powerlevel10k instant prompt
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+# export GITSTATUS_CACHE_DIR="$HOME/.local/bin"
 if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-$USER.zsh" ]]; then
   source "$XDG_CACHE_HOME/p10k-instant-prompt-$USER.zsh"
 fi

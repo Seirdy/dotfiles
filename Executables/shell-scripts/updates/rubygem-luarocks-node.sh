@@ -8,6 +8,7 @@ start_time=$(date '+%s')
 luarocks install lcf --local
 luarocks install --server=https://luarocks.org/dev lua-lsp --local
 luarocks install --server=https://luarocks.org/dev croissant --local
+luarocks install --server=https://luarocks.org/dev moonscript --local
 # echo "===UPDATE: Upgrading: Rubygems======="
 gem update --prerelease -V
 echo "===UPDATE: Upgrading: npm packages"
@@ -29,4 +30,4 @@ pnpm add -g webtorrent-cli
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
-echo "Time elapsed: $elapsed seconds"
+echo "Time elapsed: $elapsed seconds

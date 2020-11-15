@@ -41,7 +41,13 @@ simple_autotools() {
 }
 
 _simple_meson_no_reconfigure() {
-	meson build --prefix "$PREFIX" --libdir "$PREFIX/lib" --buildtype release --optimization 3 "$@" \
+	meson build \
+		--prefix "$PREFIX" \
+		--libdir "$PREFIX/lib" \
+		--buildtype release \
+		--optimization 3 \
+		--default-library both \
+		"$@" \
 		&& ninja -C build \
 		&& ninja -C build install
 }
