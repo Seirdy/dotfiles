@@ -18,6 +18,6 @@ lrzip -Uzp 1 -L 9 --encrypt="$password" "$HOME/.zsh_history" -o "$histfile_backu
 echo "histfile backed up. backing up weechat logs"
 lrzip -Uzp 1 -L 9 --encrypt="$password" "$weechatlog_backups/logs.tar" -o "$weechatlog_backups/$filename" && rm "$weechatlog_backups/logs.tar"
 echo "weechat logs backed up. bakcing up minetest"
-lrzip -Uzp 4 -L 9 "$minetest_backups/minetest.tar" -o "$minetest_backups/$filename" && rm "$minetest_backups/minetest.tar"
+lrzip -Up 4 -L 9 "$minetest_backups/minetest.tar" -o "$minetest_backups/$filename" && rm "$minetest_backups/minetest.tar"
 
 # vi:ft=sh
