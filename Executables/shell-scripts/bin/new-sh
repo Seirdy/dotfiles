@@ -9,11 +9,15 @@
 
 # Alternative: http://linuxcommand.org/lc3_new_script.php is a longer
 # Bash script, also included on envs.net at /envs/bin/new_script
+
+# the name of this program
 progname="$(basename "${0}")"
+
 help_text="Usage: $progname [OPTION...] NAME
 
 Create a simple shell script from a POSIX-compatible template
 
+Options:
   -t DIR, --target DIR            Target location of the script
 	-s SHEBANG, --shebang SHEBANG   Custom shebang line
   -g, --git-add                   Add the script to git
@@ -27,14 +31,23 @@ usage() {
 	printf '%s' "$help_text"
 }
 
+# when the user passess bad args, send a msg to stderr and exit
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
 # parse arguments
 while [ $# -gt 0 ]; do
 	case "$1" in
 		-t | --target)
+			[ $# -lt 2 ] && bad_option "$1" 'requires parameter'
 			target="$2"
 			shift
 			;;
 		-s | --shebang)
+			[ $# -lt 2 ] && bad_option "$1" 'requires parameter'
 			shebang="$2"
 			shift
 			;;
@@ -52,11 +65,10 @@ while [ $# -gt 0 ]; do
 			;;
 		-h | --help)
 			usage
+			exit 0
 			;;
 		-*)
-			printf '%s: invalid option: %s\n' "$progname" "$*"
-			usage >&2
-			exit 1
+			bad_option "$1" 'invalid option'
 			;;
 		*)
 			filename="$1"
@@ -75,17 +87,20 @@ if [ -z "$filename" ]; then
 	exit 1
 fi
 newfile="${target-$PWD}/$filename"
-[ -e "$newfile" ] && echo "error: file exists" 1>&2 && exit 1
+[ -e "$newfile" ] && echo "error: file exists: $newfile" 1>&2 && exit 1
 
 echo "${shebang-'#!/bin/sh'}" >"$newfile"
 cat <<EOF >>"$newfile"
 # A helpful comment
 
+# the name of this program
 progname="\$(basename "\${0}")"
+
 help_text="Usage: \$progname [OPTION...]
 
 Summary
 
+Options:
   -h, --help            Print this help and exit
 "
 
@@ -93,17 +108,23 @@ usage() {
 	printf '%s' "\$help_text"
 }
 
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "\$progname: option \$1: \$2" >&2
+	usage >&2
+	exit 1
+}
+
 # parse arguments
-original_args="\$@"
 while [ \$# -gt 0 ]; do
 	case "\$1" in
 		-h | --help)
 			usage
+			exit 0
 			;;
 		*)
-			printf '%s: invalid option: %s\n' "\$progname" "\$*"
-			usage >&2
-			exit 1
+			bad_option "\$1" 'invalid option'
 			;;
 	esac
 	shift
