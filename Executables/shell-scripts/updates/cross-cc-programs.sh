@@ -109,6 +109,12 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 ghq_get_cd 'https://chromium.googlesource.com/webm/libwebp' \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& configure_install --enable-static --enable-shared --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --disable-neon
+export CFLAGS="-fPIC $CFLAGS_LTO" LDFLAGS="-fPIC $CFLAGS" CPPFLAGS="-fPIC $CFLAGS" CXXFLAGS="-fPIC $CFLAGS"
+ghq_get_cd 'https://gitlab.freedesktop.org/pixman/pixman.git' \
+	&& simple_meson --auto-features=auto -Ddefault_library=both
+
+# neovim dep
+ghq_get_cd 'https://github.com/tree-sitter/tree-sitter.git' && make_install
 
 export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old"
 
@@ -244,9 +250,10 @@ ghq_get_cd https://github.com/kovidgoyal/kitty.git \
 	&& python3 ./setup.py linux-package --update-check-interval=0 --prefix="$PREFIX"
 
 # dash shell, static binary
+# GLOB_NOMAGIC still doesn't seem to be in Fedora's musl libc.
 ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& CC='musl-gcc -static' CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" configure_install
+	&& CC='musl-gcc -static' CFLAGS="$CFLAGS -static -Os" LDFLAGS="$LDFLAGS -static -Os" simple_autotools --enable-static --disable-glob
 
 # cava - I only use it with MPD FIFO, no need for ALSA/Pulse
 ghq_get_cd https://github.com/karlstav/cava.git \
