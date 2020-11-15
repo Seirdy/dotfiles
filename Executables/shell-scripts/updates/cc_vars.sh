@@ -44,6 +44,7 @@ export CLANGFLAGS
 export CLANGFLAGS_LTO="$CLANGFLAGS -flto"
 export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO"
 
+export GOOS=linux GOARCH=amd64
 export GOFLAGS='-ldflags=-s -ldflags=-w'
 
 THREADS="$(getconf _NPROCESSORS_ONLN)"

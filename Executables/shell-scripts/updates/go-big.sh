@@ -90,6 +90,11 @@ fi
 # linting
 go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 
+ghq_get_cd https://github.com/gohugoio/hugo.git \
+	&& GO111MODULE=on \
+		CGO_ENABLED=0 \
+		GOFLAGS="$GOFLAGS -buildmode=pie -tags=osuergo,netgo,static_build" go install -v -ldflags='-extldflags=-static -w -s'
+
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)
 echo "Time elapsed: $elapsed seconds"

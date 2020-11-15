@@ -16,6 +16,10 @@ go_update() {
 	cd "$GOPATH/src/$1" && git reset --hard HEAD && git clean -fx && cd - || echo "$1 doesn't seem to be installed yet."
 	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
+go_update_static() {
+	# shellcheck disable=SC2034 # CGO_ENABLED is in fact used by cmd/go.
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GOFLAGS="$GOFLAGS -buildmode=pie -tags=osusergo,netgo,static_build" go_update "$*"
+}
 # building docs for some golang packages
 go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them
@@ -29,35 +33,35 @@ go_update github.com/Kagami/go-avif
 go_update github.com/junegunn/fzf \
 	&& install -p -m644 "$GOPATH"/src/github.com/junegunn/fzf/man/man1/* "$MANPREFIX/man1"
 # Test dl speed
-go_update github.com/ddo/fast                             # fast.com
-go_update github.com/m-lab/ndt7-client-go/cmd/ndt7-client # measurement lab
+go_update github.com/ddo/fast                                            # fast.com
+GO111MODULE=on go_update github.com/m-lab/ndt7-client-go/cmd/ndt7-client # measurement lab
 # alternate pager
 go_update github.com/walles/moar
 # Quickly share files between computers
-GO111MODULE=on go_update github.com/schollz/croc/v8
+GO111MODULE=on go_update_static github.com/schollz/croc/v8
 # like croc but with qr codes
 go_update github.com/claudiodangelis/qrcp
 # Pager for log files
-go_update github.com/tigrawap/slit/cmd/slit
+GO111MODULE=on go_update_static github.com/tigrawap/slit/cmd/slit
 # shell script formatter
-GO111MODULE=on go_update mvdan.cc/sh/v3/cmd/shfmt
+GO111MODULE=on go_update_static mvdan.cc/sh/v3/cmd/shfmt
 # like jq but for yaml
-GO111MODULE=on go_update github.com/mikefarah/yq/v2
+GO111MODULE=on go_update_static github.com/mikefarah/yq/v2
 # curlie: better than httpie
 go_update github.com/rs/curlie
 # profile (neo)vim startuptime
 go_update github.com/rhysd/vim-startuptime
 # url pickers
-go_update mvdan.cc/xurls/cmd/xurls
+GO111MODULE=on go_update_static mvdan.cc/xurls/v2/cmd/xurls
 go_update github.com/imwally/linkview
 # "reader mode"
-go_update github.com/go-shiori/go-readability/cmd/...
+go_update_static github.com/go-shiori/go-readability/cmd/...
 # corrupts images for fancy lockscreen
 go_update github.com/r00tman/corrupter
 # Alternative terminal emulator
 # github.com/liamg/aminal
 # Advanced file manager (like ranger)
-go_update github.com/gokcehan/lf
+go_update_static github.com/gokcehan/lf
 # github and gitlab CLI
 go_update github.com/github/hub \
 	&& cd "$GOPATH/src/github.com/github/hub" \
