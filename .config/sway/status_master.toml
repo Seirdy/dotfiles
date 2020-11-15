@@ -15,14 +15,14 @@ music_next = " 怜"
 [theme]
 name="slick"
 [theme.overrides]
+separator=""
 idle_bg = "#232629"
 
 [[block]]
-block = "sound"
-driver = "pulseaudio"
-on_click = "echo"
-
-[[block]]
 block = "music"
+player = "mpd"
 buttons = ["play", "next"]
-max_width=30
+max_width=35
+smart_trim = true
+dynamic_width = true
+marquee=false

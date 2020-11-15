@@ -1,6 +1,6 @@
 daemonize
 ignore-empty-password
-font=Source Code Pro
+font=monospace term
 font-size=50
 indicator-radius=192
 indicator-thickness=75
@@ -12,3 +12,5 @@ separator-color=1d99f322
 text-color=ffffff
 text-clear-color=ffffff
 text-caps-lock-color=ffffff
+
+ignore-empty-password

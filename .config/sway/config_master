@@ -16,6 +16,7 @@ set $right l
 set $term foot
 
 set $gnome-schema org.gnome.desktop.interface
+exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 exec_always {
 	gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
 	gsettings set $gnome-schema icon-theme 'Breeze-Dark'
@@ -67,10 +68,10 @@ exec mkfifo /tmp/dldaemon && tail -f /tmp/dldaemon | xargs -L1 -P 0 aria2c -d "$
 exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-dlc -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
 exec mkfifo /tmp/paste && tail -f /tmp/paste | xargs -L1 wl-copy -n -t text/plain
 # idle config
-# exec swayidle -w \
-# 	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-# 	before-sleep 'loginctl lock-session' \
-# 	lock 'swaylock-fancy'
+exec swayidle \
+	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	before-sleep 'loginctl lock-session' \
+	lock 'swaylock-fancy'
 
 #colors
 # class                 border  backgr. text    indicator child_border

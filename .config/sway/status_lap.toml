@@ -9,30 +9,28 @@ format = "{percentage}%"
 
 [[block]]
 block="net"
-device = "wlo1"
+device = "wlp0s20u3u4"
 signal_strength = true
 use_bits = true
 interval = 3
 
 [[block]]
-block = "notmuch"
-maildir = "/home/rkumar/mail"
-query = "tag:unread folder:seirdy/Inbox and not tag:archived"
-threshold_good = 1
-threshold_info = 3
-threshold_warning = 5
+block = "maildir"
+interval = 30
+inboxes = ["/home/rkumar/mail/seirdy/Inbox"]
+threshold_warning = 1
 threshold_critical = 10
-interval = 30
+display_type = "new"
 
-[[block]]
-block = "notmuch"
-maildir = "/home/rkumar/mail"
-query = "tag:unread folder:school/Inbox and not tag:archived"
-threshold_good = 1
-threshold_info = 5
-threshold_warning = 8
-threshold_critical = 15
-interval = 30
+# [[block]]
+# block = "notmuch"
+# maildir = "/home/rkumar/mail"
+# query = "tag:unread folder:seirdy/Inbox and not tag:archived"
+# threshold_good = 1
+# threshold_info = 3
+# threshold_warning = 5
+# threshold_critical = 10
+# interval = 30
 
 [[block]]
 block = "time"
