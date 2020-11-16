@@ -1,0 +1,73 @@
+#!/usr/bin/env dash
+# Unshorten a link over Tor
+# Useful when a link is shortened or used as a redirect
+# with the intent of tracking a click.
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+Summary
+
+Options:
+  -h, --help            Print this help and exit
+  -c, --copy            Copy the unshortened url to the clipboard
+  -v, --verbose         Don't supress normal curl output
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-c | --copy)
+			copy_url=1
+			;;
+		-v | --verbose)
+			verbose=1
+			;;
+		-*)
+			bad_option "$1" 'invalid option'
+			;;
+		*)
+			url="$1"
+			;;
+	esac
+	shift
+done
+
+fetch_headers() {
+	if [ -z "$verbose" ]; then
+		curl-tor -I -s "$1" 2>/dev/null
+	else
+		curl-tor -I "$1"
+	fi
+}
+get_url() {
+	# shellcheck disable=SC2016 # $1 refers to a capture group not a shell expr
+	fetch_headers "$1" | rg '^location: (.*)$' --replace '$1' | xurls
+}
+
+unshortened_url="$(get_url "$url")"
+if [ -n "$copy_url" ]; then
+	printf '%s' "$unshortened_url" | wlcv
+else
+	printf '%s' "$unshortened_url"
+fi
+
+# vi:ft=sh
