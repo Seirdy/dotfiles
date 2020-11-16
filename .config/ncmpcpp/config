@@ -1,0 +1,3 @@
+ncmpcpp_directory = ~/.local/share/ncmpcpp
+store_lyrics_in_song_dir=yes
+mpd_music_dir = ~/Music
