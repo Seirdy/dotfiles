@@ -1,0 +1,52 @@
+#!/usr/bin/env dash
+# Add my ssh keys using ssh-agent
+
+set -e
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+Add my ssh keys for git and my VPS.
+Uses the clipboard; you have to manually paste passwords.
+
+Options:
+  -h, --help            Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
+pash c ssh
+ssh-add "$HOME/.ssh/id_ed25519"
+
+ssh-add "$HOME/.ssh/id_ed25519_deployme"
+
+pash c seirdy.one/ssh-seirdy.one
+ssh-add "$HOME/.ssh/id_ed25519_seirdy.one"
+
+# vi:ft=sh
