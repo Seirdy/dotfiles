@@ -1,23 +1,55 @@
 #!/usr/bin/env dash
 # this will prompt for a password for the weechat logs
-set -e
+set -e -u
 filename_prefix="$(date +'%Y-%m-%dT%H:%M:%S%:z')"
 filename="${filename_prefix}.tar.lrz"
 backups_dir="$HOME/Backups"
 minetest_backups="$backups_dir/Minetest"
 weechatlog_backups="$backups_dir/WeeChat_logs"
 histfile_backups="$backups_dir/histfiles"
-mkdir -p "$minetest_backups" "$weechatlog_backups" "$histfile_backups"
+gamesave_backups="$backups_dir/gamesaves"
+maildir_backups="$backups_dir/mail"
+mkdir -p "$minetest_backups" "$weechatlog_backups" "$histfile_backups" "$gamesave_backups" "$maildir_backups"
 stty -echo
 password="$(pash show backups/logfiles)"
 stty echo
+if [ "$password" = '' ]; then
+	echo "failed to read password"
+	exit 1
+fi
+
 printf '\n'
-tar cvf "$weechatlog_backups/logs.tar" "${WEECHAT_HOME-${HOME-~}/.weechat}/logs" && tar cvfh "$minetest_backups/minetest.tar" "$HOME/.minetest"
+
+# lrzip works best on whole files; piping a stream of data into it
+# will negatively impact the compression ratio
+
+echo "copying data to uncompressed TARs"
+tar cvfh "$gamesave_backups/saves.tar" "$HOME/Documents/saves"
+echo "copied game saves"
+tar cvf "$maildir_backups/mail.tar" "$HOME/mail"
+echo "copied maildir"
+tar cvf "$weechatlog_backups/logs.tar" "${WEECHAT_HOME-${HOME-~}/.weechat}/logs"
+echo "copied weechat logs"
+tar cvfh "$minetest_backups/minetest.tar" "$HOME/.minetest"
+echo "copied minetest homedir"
+
 echo "backing up histfile"
 lrzip -Uzp 1 -L 9 --encrypt="$password" "$HOME/.zsh_history" -o "$histfile_backups/zsh_history_${filename_prefix}.lrz"
-echo "histfile backed up. backing up weechat logs"
-lrzip -Uzp 1 -L 9 --encrypt="$password" "$weechatlog_backups/logs.tar" -o "$weechatlog_backups/$filename" && rm "$weechatlog_backups/logs.tar"
-echo "weechat logs backed up. bakcing up minetest"
-lrzip -Up 4 -L 9 "$minetest_backups/minetest.tar" -o "$minetest_backups/$filename" && rm "$minetest_backups/minetest.tar"
+
+echo "histfile backed up. compressing game saves"
+lrzip -Uzp 1 -L 9 "$gamesave_backups/saves.tar" -o "$gamesave_backups/$filename"
+rm "$gamesave_backups/saves.tar"
+
+echo "game saves compressed. backing up maildir"
+lrzip -Uzp 1 -L 9 --encrypt="$password" "$maildir_backups/mail.tar" -o "$maildir_backups/${filename_prefix}.lrz"
+rm "$maildir_backups/mail.tar"
+
+echo "maildir compressed. compressing weechat logs"
+lrzip -Uzp 2 -L 9 --encrypt="$password" "$weechatlog_backups/logs.tar" -o "$weechatlog_backups/$filename"
+rm "$weechatlog_backups/logs.tar"
+
+echo "weechat logs compressed. compressing minetest homedir"
+lrzip -Up 4 -L 9 "$minetest_backups/minetest.tar" -o "$minetest_backups/$filename"
+rm "$minetest_backups/minetest.tar"
 
 # vi:ft=sh
