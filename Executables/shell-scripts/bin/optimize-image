@@ -1,0 +1,58 @@
+#!/bin/sh
+# A helpful comment
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+Summary
+
+Options:
+  -h, --help            Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		*)
+			image="$1"
+			;;
+	esac
+	shift
+done
+
+mimetype="$(file --dereference --brief --mime-type -- "$image")"
+case "$mimetype" in
+	image/png)
+		oxipng -Z -o max --strip all "$image"
+		;;
+	image/webp)
+		cwebp -z 9 "$image" -o "$image"
+		;;
+	image/jpeg)
+		jpegoptim -s "$image"
+		;;
+	*)
+		echo "unsupported image format: $mimetype"
+		exit 1
+		;;
+esac
+
+# vi:ft=sh
