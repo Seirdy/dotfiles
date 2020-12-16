@@ -1,5 +1,6 @@
+---
 directory: ~/Music
-plugins: fetchart lyrics chroma acousticbrainz duplicates lastgenre spotify deezer
+plugins: deezer fetchart lyrics chroma acousticbrainz duplicates lastgenre spotify
 
-chrom:
-  auto: yes
+chroma:
+  auto: true

@@ -1,3 +1,4 @@
 ncmpcpp_directory = ~/.local/share/ncmpcpp
 store_lyrics_in_song_dir=yes
 mpd_music_dir = ~/Music
+lyrics_fetchers = genius, metrolyrics,  azlyrics, sing365, lyricsmania, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
