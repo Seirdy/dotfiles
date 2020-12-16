@@ -18,7 +18,7 @@ alias llla='lll -a'
 # misspellings
 alias sl='sl | lolcat'
 alias httop='htop'
-alias 'htopu'='htop -u "$USER"'
+alias htopu='htop -u "$USER"'
 
 # wl-clipboard aliases
 alias wlc='wl-copy -n -t text/plain'
@@ -110,6 +110,7 @@ alias sub='tuir -s'
 alias ddgr='ddgr -x'
 alias newsboat='echo -ne "\033]0;newsboat\007" && newsboat'
 alias glances='glances --disable-webui --disable-bg --disable-check-update'
+alias amfora='TERM=foot amfora'
 alias chtsh='cht.sh --auto' # prefer offline cheat.sh
 
 # mpd stuff moved to dedicated repo
@@ -190,7 +191,7 @@ alias cded='cd $HOME/Documents/Work/School/ED'
 alias cdla='cd $HOME/Documents/Work/School/LINALG'
 alias cdcs='cd $HOME/Documents/Work/School/CS_277'
 # shellcheck disable=SC2154
-alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/.'
+alias cdlog='cd $XDG_DATA_HOME/update-all/logs/*/'
 # like cdg function in functions.sh but for $GOPATH
 # shellcheck disable=SC2154
 alias cdgo='GHQ_ROOT=$GOPATH/src cdg'
