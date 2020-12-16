@@ -69,7 +69,7 @@ exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-
 exec mkfifo /tmp/paste && tail -f /tmp/paste | xargs -L1 wl-copy -n -t text/plain
 # idle config
 exec swayidle \
-	timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	before-sleep 'loginctl lock-session' \
 	lock 'swaylock-fancy'
 
@@ -181,10 +181,11 @@ input * {
 		# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 	# Media player controls
-		bindsym XF86AudioPlay exec media-control play-pause
-		bindsym XF86AudioPause exec media-control pause
-		bindsym XF86AudioNext exec media-control next
-		bindsym XF86AudioPrev exec media-control previous
+		bindsym XF86AudioPlay exec "mpris-ctl pp"
+		bindsym XF86AudioStop exec "mpris-ctl --player active stop"
+		bindsym XF86AudioNext exec "mpris-ctl --player active next"
+		bindsym XF86AudioPrev exec "mpris-ctl --player active prev"
+		bindsym XF86AudioPause exec "mpris-ctl --player active pause"
 
 #
 # Moving around:
