@@ -267,23 +267,14 @@ zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-copy
 zi_completion has'wl-paste'
 zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-paste
 
-if [ "$MACHINE" = 'Linux' ]; then
-
-	zi_completion has'flatpak'
-	zinit light "$GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak"
-
-elif [ "$MACHINE" = 'Darwin' ]; then
-
-	zi_completion has'brew'
-	zinit snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew
-
-	zi_completion has'brew'
-	zinit snippet https://github.com/Homebrew/brew/tree/master/completions/zsh/_brew_cask
-
-fi
+zi_completion has'flatpak'
+zinit light "$GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak"
 
 zi_completion has'rclone'
 zinit light "$XDG_DATA_HOME/zsh/site-functions/_rclone"
+
+zi_completion has'beet'
+zinit snippet 'https://github.com/beetbox/beets/blob/master/extra/_beet'
 
 zi0b as'completion'
 zinit light zsh-users/zsh-completions
@@ -293,12 +284,6 @@ zinit light zchee/zsh-completions
 
 zi_completion mv'git-completion.zsh -> _git'
 zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
-
-# load system completions
-if [ -f /usr/share/zsh/site-functions/_systemctl ]; then
-zi_completion is-snippet for \
-	/usr/share/zsh/site-functions/_*ctl
-fi
 
 # dasht
 zi_completion is-snippet for \
@@ -345,6 +330,12 @@ finish_setup() {
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
 	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
+	# load system completions
+	if [ -f /usr/share/zsh/site-functions/_systemctl ]; then
+	zi_completion is-snippet for \
+		/usr/share/zsh/site-functions/_*ctl
+	fi
+
 }
 
 zi0c atinit'zpcompinit; zpcdreplay; finish_setup'
