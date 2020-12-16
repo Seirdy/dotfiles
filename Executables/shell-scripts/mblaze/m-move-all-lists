@@ -11,6 +11,7 @@ move() {
 	fi
 }
 move m-srht-lists ~/mail/seirdy/lists/sr.ht/cur/
+move m-gemini-lists ~/mail/seirdy/lists/gemini/cur/
 move m-github-lists ~/mail/seirdy/lists/github.com/cur/
 move m-codeberg-lists ~/mail/seirdy/lists/codeberg.org/cur/
 # vi:ft=sh
