@@ -16,6 +16,14 @@ export RUSTFLAGS="$RUSTFLAGS \
 	-C link-arg=-fuse-ld=lld \
 	-C link-args=-s"
 
+export RUSTFLAGS_STATIC_LTO="$RUSTFLAGS \
+	-L. \
+	-C linker-plugin-lto \
+	-C linker=clang \
+	-C link-arg=-fuse-ld=lld \
+	-C target-feature=+crt-static \
+	-C lto=fat"
+
 echo "Using RUSTFLAGS: $RUSTFLAGS"
 echo "Using CARGO_INSTALL_OPTS: $CARGO_INSTALL_OPTS"
 
@@ -32,6 +40,8 @@ install_git() {
 install_git_allfeat() {
 	install_git "$@" --all-features
 }
+CARGO_INSTALL_OPTS="$CARGO_INSTALL_OPTS --target x86_64-unknown-linux-musl" RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" cargo install --git 'https://github.com/mbrubeck/agate.git' agate --target x86_64-unknown-linux-musl -Z unstable-options
+CARGO_INSTALL_OPTS="$CARGO_INSTALL_OPTS --target x86_64-unknown-linux-musl" RUSTFLAGS="$RUSTFLAGS_STATIC_LTO" cargo install --git 'https://github.com/RazrFalcon/svgcleaner.git' svgcleaner --target x86_64-unknown-linux-musl -Z unstable-options
 install_git_allfeat https://github.com/BurntSushi/ripgrep.git
 install_git_allfeat https://github.com/Canop/broot.git
 install_git_allfeat https://github.com/Freaky/cw.git
