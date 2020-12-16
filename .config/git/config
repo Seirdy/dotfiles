@@ -35,6 +35,7 @@
 	root = "~/Executables/ghq"
 [alias]
 	pushall = !git remote | grep -E 'origin|mirror' | xargs -L1 -P 0 git push --all --follow-tags
+	fetchall = !git remote | grep -E 'origin|mirror' | xargs -L1 -P 0 git fetch
 
 [credential "https://gitlab.com"]
 	username = Seirdy
@@ -52,4 +53,6 @@
 	; smtpsslcertpath = /etc/ssl/certs
 
 [credential "smtp://seirdy%40seirdy.one@smtp.migadu.com:587"]
-	helper = !pass git/seirdy@seirdy.one
+	helper = !pash show git/seirdy@seirdy.one
+[pull]
+	rebase = false
