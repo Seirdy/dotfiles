@@ -1,14 +1,20 @@
 #!/usr/bin/env dash
-
+set -e -u
 # save chattiest-channels to a pastebin
+cleanup() {
+	rm -f /tmp/clogstats
+}
+trap cleanup EXIT
+# 1. if a named pipe for term-dmenu doesn't exist, create it
 {
 	clogstats "$@" --exclude-channels 'darwin.#darwin' 'grepnet.#main' 'grepnet.#chats' \
 		&& echo && echo "If you use WeeChat then you can generate this yourself:" \
-		&& echo "	https://git.sr.ht/~seirdy/clogstats" \
+		&& echo "	https://sr.ht/~seirdy/clogstats" \
 		&& echo "	https://github.com/Seirdy/clogstats" \
-		&& echo "If you'd like your channel excluded from this list, message me. My nick is Seirdy on Freenode, Snoonet, OFTC, Rizon, and others."
-} | tee /tmp/clogstats.txt \
-	&& nc termbin.com 9999 </tmp/clogstats.txt | tr -d "\n" | wlcv \
-	&& curl "$(wl-paste)" | less
+		&& echo "If you'd like your channel excluded from this list, contact me.
+My contact info is at https://seirdy.one/about.html and gemini://seirdy.one/about/"
+} | tee /tmp/clogstats
+
+nc termbin.com 9999 </tmp/clogstats | tr -d "\n" | wlcv
 
 # vi:ft=sh
