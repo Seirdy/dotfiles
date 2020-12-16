@@ -33,10 +33,11 @@ set splitright " open vnew windows to the right
 set smartindent
 set shiftwidth=2
 set tabstop=2  " Anything more than that is distracting.
-" I like splitting windows side-by-side.
-" On a laptop screen, my terminal often has 92 columns.
-" 92 cols - 2 sign cols - 3 number cols
-" - 1 padding col = 86 cols
+" I like splitting windows with a tiling WM. Often, I have one wide window
+" column and two narrow window columns. The narrow window columns typically
+" fit 92 characters. Including the signcolumn, number column, and other parts
+" of the vim UI, that leaves 88 columns for content. Encourage wrapping at 86
+" columns to accomodate this.
 set colorcolumn=86
 
 " Spellfile
@@ -67,7 +68,7 @@ Plug 'psf/black', { 'branch': 'stable', 'for': ['python'] }
 Plug 'tjdevries/nlua.nvim' " improve lua development
 " Neovim's builtin LSP and treesitter impl. make it a very lightweight IDE
 Plug 'neovim/nvim-lspconfig' " The most important plugin
-Plug 'nvim-lua/diagnostic-nvim' " wrap LSP diagnostic config
+" Plug 'nvim-lua/diagnostic-nvim' " wrap LSP diagnostic config; deprecated
 Plug 'pierreglaser/folding-nvim', { 'for': ['lua', 'c', 'cpp', 'go'] } " LSP-powered folding
 " Plug 'nvim-lua/lsp-status.nvim'  " lsp items in the statusbar
 Plug 'nvim-treesitter/nvim-treesitter' " tree-sitter support
@@ -94,6 +95,7 @@ Plug 'euclidianAce/BetterLua.vim' " better lua syntax highlighting for 5.3/4
 Plug 'norcalli/nvim-colorizer.lua' " Fastest color-code colorizer
 Plug 'justinmk/vim-syntax-extra' " C and bison syntax highlighting
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
+Plug 'chikamichi/mediawiki.vim' " MediaWiki
 Plug 'vim-pandoc/vim-pandoc', { 'for': [ 'pandoc' ] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
@@ -309,14 +311,6 @@ command! -nargs=0 Format :StripTrailingSpaces
 " Remove trailing whitespace, format and write. Sleep 100ms in case formatting
 " takes time.
 nmap <leader>w :Format<CR>:sleep 100m<CR>:w<CR>
-
-" Navigation
-" ~~~~~~~~~~
-
-" Use `[d` and `]d` for navigate diagnostics
-nnoremap <silent> ]d :NextDiagnostic<CR>
-nnoremap <silent> [d :PrevDiagnostic<CR>
-nnoremap <silent> <leader>do :OpenDiagnostic<CR>
 
 " Obsolete CoC.nvim configs that I have yet to replace
 " ====================================================

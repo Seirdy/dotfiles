@@ -149,7 +149,7 @@ require('bufferline').setup{
     show_buffer_close_icons = false,
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = { '', '' },
+    separator_style = { '', '' },
     -- enforce_regular_tabs = false | true,
     always_show_bufferline = true,
     -- sort_by = 'extension' | 'directory' | function(buffer_a, buffer_b)

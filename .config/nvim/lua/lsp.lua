@@ -1,26 +1,9 @@
-local nvim_lsp = require('nvim_lsp')
-local util = require('nvim_lsp/util')
+local lspconfig = require('lspconfig')
+local util = require('lspconfig/util')
 -- local lsp_status = require('lsp-status')
 local api = vim.api
 
 -- lsp_status.register_progress()
-
-local custom_on_attach_diagnostics = function(_, bufnr)
-  -- Mappings.
-
-  local opts = {
-		noremap=true,
-		silent=true,
-	}
-	local function nmap_lsp(keys, cmd)
-		api.nvim_buf_set_keymap(
-			bufnr, 'n', keys, '<cmd>lua vim.lsp.'..cmd..'<CR>', opts
-		)
-	end
-  nmap_lsp('D',     'util.show_line_diagnostics()')
-	vim.g['diagnostic_enable_virtual_text'] = 1
-	require'diagnostic'.on_attach()
-end
 
 local custom_on_attach = function(client, bufnr)
   api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -46,9 +29,10 @@ local custom_on_attach = function(client, bufnr)
   nmap_lsp('gy',    'buf.type_definition()')
   nmap_lsp('pd',    'buf.peek_definition()')
   nmap_lsp('gr',    'buf.references()')
-	vim.g['diagnostic_enable_virtual_text'] = 1
+  nmap_lsp(']d',    'diagnostic.goto_next()')
+  nmap_lsp('[d',    'diagnostic.goto_prev()')
+  nmap_lsp('<leader>do',    'diagnostic.set_loclist()')
 	-- api.nvim_set_var('diagnostic_enable_virtual_text','1')
-	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
 	-- lsp_status.on_attach(client)
 end
@@ -60,22 +44,22 @@ local custom_on_attach_folding = function(client, bufnr)
 	require('folding').on_attach()
 end
 
--- nvim_lsp.bashls.setup{
+-- lspconfig.bashls.setup{
 -- 	on_attach = custom_on_attach,
 -- 	filetypes = { "sh", "zsh" }
 -- }
-nvim_lsp.ccls.setup{
+lspconfig.ccls.setup{
 	on_attach = custom_on_attach_folding,
 }
-nvim_lsp.html.setup{
+lspconfig.html.setup{
 	on_attach = custom_on_attach_folding,
 }
-nvim_lsp.cssls.setup{
+lspconfig.cssls.setup{
 	cmd = {"/home/rkumar/Executables/npm/bin/vscode-json-languageserver"},
 	on_attach = custom_on_attach_folding,
 	root_dir = util.root_pattern("package.json",".git")
 }
-nvim_lsp.gopls.setup{
+lspconfig.gopls.setup{
 	on_attach = custom_on_attach_folding,
 	init_options = {
 		linkTarget="pkg.go.dev",
@@ -84,30 +68,33 @@ nvim_lsp.gopls.setup{
 		fuzzyMatching=true
 	}
 }
-nvim_lsp.dockerls.setup{
+lspconfig.dockerls.setup{
 	on_attach = custom_on_attach_folding,
 }
-nvim_lsp.ghcide.setup{
+lspconfig.ghcide.setup{
 	on_attach = custom_on_attach_folding,
 }
-nvim_lsp.jsonls.setup{
+lspconfig.jsonls.setup{
 	on_attach = custom_on_attach_folding,
 }
-nvim_lsp.vimls.setup{
+lspconfig.vimls.setup{
 	on_attach = custom_on_attach
 }
-nvim_lsp.efm.setup{
-	on_attach = custom_on_attach_diagnostics,
+lspconfig.efm.setup{
+	on_attach = custom_on_attach,
 	-- only run on configured filetypes
 	filetypes = {'pandoc', 'markdown', 'gfm', 'markdown.pandoc.gfm', 'rst','sh','vim','make','yaml','dockerfile'},
 }
-nvim_lsp.jedi_language_server.setup{
-	on_attach = custom_on_attach,
+-- lspconfig.jedi_language_server.setup{
+-- 	on_attach = custom_on_attach,
+-- }
+lspconfig.pyright.setup{
+	on_attach=custom_on_attach,
 }
 local custom_on_attach_nlua = function(client, bufnr)
 	custom_on_attach_folding(client, bufnr)
 end
-require('nlua.lsp.nvim').setup(nvim_lsp, {
+require('nlua.lsp.nvim').setup(lspconfig, {
 	on_attach = custom_on_attach_nlua,
 	settings = {
 		Lua = {
