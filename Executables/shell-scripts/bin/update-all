@@ -38,7 +38,7 @@ fi
 
 script_dir="$HOME/Executables/shell-scripts/updates"
 cd "$script_dir" || return 1
-fd -t f -e sh -x chmod +x # So I can run the scripts with their shebangs
+chmod +x -- *.sh # So I can run the scripts with their shebangs
 # shellcheck disable=SC2154
 mkdir -p "$XDG_DATA_HOME/update-all/logs" "$GOPATH" && cd "$XDG_DATA_HOME/update-all/logs" || return 1
 echo 'Compressing old logs'

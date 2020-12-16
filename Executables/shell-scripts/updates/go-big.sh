@@ -4,6 +4,8 @@
 
 start_time=$(date '+%s')
 
+# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh disable=SC2154
+. "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 if "$GOPATH/sdk/gotip/bin/go" version >/dev/null; then
@@ -93,7 +95,9 @@ go_update github.com/golangci/golangci-lint/cmd/golangci-lint
 ghq_get_cd https://github.com/gohugoio/hugo.git \
 	&& GO111MODULE=on \
 		CGO_ENABLED=0 \
-		GOFLAGS="$GOFLAGS -buildmode=pie -tags=osuergo,netgo,static_build" go install -v -ldflags='-extldflags=-static -w -s'
+		GOFLAGS="$GOFLAGS -buildmode=pie -tags=osuergo,netgo,static_build" go install -v -ldflags='-extldflags=-static -w -s' \
+		&& hugo gen man \
+		&& install -Dp man/* -t "$MANDIR/man1"
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

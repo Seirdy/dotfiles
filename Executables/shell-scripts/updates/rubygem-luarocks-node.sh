@@ -27,7 +27,13 @@ pnpm add -g vscode-json-languageserver
 pnpm add -g vim-language-server
 pnpm add -g dockerfile-language-server-nodejs
 pnpm add -g webtorrent-cli
+pnpm add -g 'git+https://github.com/mozilla/observatory-cli.git'
+pnpm add -g hint
+pnpm add -g @hint/configuration-all
+pnpm add -g markdown-link-validator
+pnpm add -g 'git+https://github.com/GoogleChrome/lighthouse.git'
+pnpm add -g 'git+https://github.com/stylelint/stylelint.git'
 
-end_time=$(date '+%s')
-elapsed=$(echo "$end_time - $start_time" | bc)
-echo "Time elapsed: $elapsed seconds
+end_time="$(date '+%s')"
+elapsed="$(echo "$end_time - $start_time" | bc)"
+echo "Time elapsed: $elapsed seconds"

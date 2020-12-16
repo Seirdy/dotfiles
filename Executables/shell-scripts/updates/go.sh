@@ -20,21 +20,29 @@ go_update_static() {
 	# shellcheck disable=SC2034 # CGO_ENABLED is in fact used by cmd/go.
 	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GOFLAGS="$GOFLAGS -buildmode=pie -tags=osusergo,netgo,static_build" go_update "$*"
 }
+
+go_install_static() {
+	# shellcheck disable=SC2034 # CGO_ENABLED is in fact used by cmd/go.
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GOFLAGS="$GOFLAGS -buildmode=pie -tags=osusergo,netgo,static_build" go install "$*"
+}
+
 # building docs for some golang packages
 go_update github.com/cpuguy83/go-md2man
 # Critical programs for my workflow; computer is useless without them
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowsay
 go_update github.com/Code-Hex/Neo-cowsay/cmd/cowthink
 # If htop wasn't pretty enough
-go_update github.com/xxxserxxx/gotop/cmd/gotop
+ghq_get_cd https://github.com/xxxserxxx/gotop.git \
+	&& go_install_static ./cmd/gotop
 # encode avif
 go_update github.com/Kagami/go-avif
 # fzf
-go_update github.com/junegunn/fzf \
-	&& install -p -m644 "$GOPATH"/src/github.com/junegunn/fzf/man/man1/* "$MANPREFIX/man1"
+ghq_get_cd github.com/junegunn/fzf \
+	&& go_install_static . \
+	&& install -p -m644 "$PWD"/man/man1/* "$MANPREFIX/man1"
 # Test dl speed
 go_update github.com/ddo/fast                                            # fast.com
-GO111MODULE=on go_update github.com/m-lab/ndt7-client-go/cmd/ndt7-client # measurement lab
+go_install_static github.com/m-lab/ndt7-client-go/cmd/ndt7-client@master # measurement lab
 # alternate pager
 go_update github.com/walles/moar
 # Quickly share files between computers
@@ -75,17 +83,22 @@ GO111MODULE=on go_update github.com/x-motemen/ghq
 # extra commands for ghq
 go_update github.com/uetchy/gst
 # matrix client, for when I get bored of weechat-matrix
-go_update github.com/tulir/gomuks
+ghq_get_cd https://github.com/tulir/gomuks.git && go install
 # MPRIS bridge for MPD
 go_update github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
 # dictionary CLI
 go_update github.com/Rican7/define
 # gemini/gopher/etc
-go_update tildegit.org/sloum/bombadillo \
-	&& install -p -m0644 "$GOPATH/src/tildegit.org/sloum/bombadillo/bombadillo.1" "$MANPREFIX/man1"
-GO111MODULE=on go_update github.com/makeworld-the-better-one/amfora@master
+ghq get -u -b develop https://tildegit.org/sloum/bombadillo.git \
+	&& cd "$GHQ_ROOT/tildegit.org/sloum/bombadillo" \
+	&& GO111MODULE=on go install -v \
+	&& install -p -m0644 "bombadillo.1" "$MANPREFIX/man1" \
+	&& install -p -m0644 "bombadillo.desktop" "$DATAPREFIX/applications" \
+		ghq_get_cd https://github.com/makeworld-the-better-one/amfora.git && GO111MODULE=on go install && install -Dm 0644 amfora.desktop "$DATAPREFIX/applications/"
 
-GO111MODULE=on go_update github.com/RasmusLindroth/tut
+ghq_get_cd 'https://git.sr.ht/~adnano/astronaut' && BINDIR="$GOPATH/bin" make install
+
+ghq_get_cd https://github.com/RasmusLindroth/tut.git && go install
 
 # Development tools
 #
@@ -106,12 +119,13 @@ go_update github.com/tinygo-org/tinygo
 # check git repo for secrets
 go_update github.com/zricethezav/gitleaks
 # lint dockerfiles; companion to hadolint
-go_update github.com/zabio3/godolint
+ghq_get_cd github.com/zabio3/godolint && go install
 # format dockerfiles
 go_update github.com/jessfraz/dockfmt
 # lint makefiles
-GOFLAGS="$GOFLAGS -mod=vendor" go_update github.com/mrtazz/checkmake \
-	&& pandoc "$GOPATH/src/github.com/mrtazz/checkmake/man/man1/checkmake.1.md" -s -t man -o "$MANPREFIX/man1/checkmake.1"
+ghq_get_cd https://github.com/mrtazz/checkmake.git \
+	&& go_install_static . \
+	&& make checkmake.1
 # generic language server
 GO111MODULE=on go_update github.com/mattn/efm-langserver
 

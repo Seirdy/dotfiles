@@ -110,28 +110,18 @@ ghq_get_cd https://github.com/DeadSix27/waifu2x-converter-cpp.git \
 	&& fancy_cmake -DINSTALL_MODELS=true
 
 # imv
-ghq_get_cd https://github.com/eXeC64/imv.git \
-	&& meson builddir/ \
-		--prefix "$PREFIX" \
-		--buildtype release \
-		--reconfigure \
-		--optimization 3 \
-		-Dwindows=wayland \
-	&& ninja -C builddir/ && ninja -C builddir/ install
+ghq_get_cd https://github.com/eXeC64/imv.git && simple_meson
 
 # conmon; necessary for building OCI container stack
 # commented out cuz it's causing problems; using version from repos.
 # ghq_get_cd https://github.com/containers/conmon.git && make podman -j "$threads"
 # catatonit; used as container init system
 
-# playerctl: CLI for mpris and others
-ghq_get_cd https://github.com/altdesktop/playerctl.git && simple_meson -Dbash-completions=false
+# mpris-ctl: CLI for mpris
+ghq_get_cd https://git.sr.ht/~mariusor/mpris-ctl && make && make install INSTALL_PREFIX="$PREFIX"
 
 # All swaywm components except the `sway` executable itself are built
 # from source
-
-ghq_get_cd 'https://github.com/swaywm/wlroots.git' \
-	&& simple_meson -Dexamples=false -Dxwayland=enabled -Dlogind-provider=systemd -Dlogind=enabled -Dxcb-errors=disabled -Dxcb-icccm=enabled -Dwerror=false --default-library both
 
 # swaywm: install swaybar, swaynag, swaymsg.
 ghq_get_cd 'https://github.com/swaywm/sway.git' \
@@ -143,9 +133,9 @@ ghq_get_cd 'https://github.com/emersion/slurp.git' && simple_meson
 # my wallpaper is a png; no need for gdk-pixbuf
 ghq_get_cd 'https://github.com/swaywm/swaybg.git' && simple_meson -Dgdk-pixbuf=disabled -Dman-pages=enabled
 ghq_get_cd 'https://github.com/swaywm/swaylock.git' && simple_meson
-# ghq_get_cd 'https://github.com/swaywm/swayidle.git' && simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
+ghq_get_cd 'https://github.com/swaywm/swayidle.git' && CFLAGS="$CFLAGS -Wno-error=return-type" simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false
 ghq_get_cd 'https://github.com/emersion/mako.git' \
-	&& simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false -Dicons=enabled -Dsystemd=disabled \
+	&& CFLAGS="$CFLAGS -Wno-error=return-type" simple_meson -Dzsh-completions=false -Dbash-completions=false -Dfish-completions=false -Dicons=enabled -Dsystemd=disabled \
 	&& sed -e "s#@bindir@#$BINPREFIX#g" -e '/^ExecCondition/d' contrib/systemd/mako.service.in >"$SYSTEMD_UNIT_PATH/mako.service"
 ghq_get_cd 'https://github.com/bugaevc/wl-clipboard.git' && simple_meson
 

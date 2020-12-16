@@ -16,14 +16,14 @@ cd subprojects
 git clone https://codeberg.org/dnkl/tllist.git
 git clone https://codeberg.org/dnkl/fcft.git
 cd ..
-meson --prefix "$PREFIX" --buildtype release -Db_lto=true -Dfcft:text-shaping=disabled bld/release
+meson --prefix "$PREFIX" --buildtype release -Db_lto=true -Dime=false -Dfcft:text-shaping=disabled bld/release
 cd bld/release
 meson configure -Db_pgo=generate
 ninja
 foot_tmp_file=$(mktemp)
-./foot sh -c "../../scripts/generate-alt-random-writes.py --scroll --scroll-region --colors-regular --colors-bright --colors-rgb ${foot_tmp_file} && cat ${foot_tmp_file}"
+./foot sh -c "../../scripts/generate-alt-random-writes.py --scroll --scroll-region --colors-regular --colors-bright --colors-256 --colors-rgb --attr-bold --attr-italic --attr-underline ${foot_tmp_file} && cat ${foot_tmp_file}"
 rm "${foot_tmp_file}"
-meson configure -Db_pgo=use -Db_lto=true -Dfcft:text-shaping=disabled
+meson configure -Db_pgo=use -Db_lto=true -Dime=false -Dfcft:text-shaping=disabled
 ninja
 strip foot footclient
 ninja install

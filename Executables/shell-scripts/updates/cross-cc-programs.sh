@@ -9,20 +9,7 @@ start_time=$(date '+%s')
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
-# lua
-ghq_get_cd 'https://github.com/lua/lua.git' \
-	&& make CFLAGS="$CFLAGS -DLUA_USE_LINUX" \
-	&& strip lua \
-	&& install -m 0755 lua "$BINPREFIX" \
-	&& install -m 0644 lua.h luaconf.h lualib.h lauxlib.h "$INCLUDEPREFIX" \
-	&& install -m 0644 liblua.a "$LIBPREFIX"
-# wob
-ghq_get_cd 'https://github.com/francma/wob.git' \
-	&& meson build-release --buildtype release --prefix "$PREFIX" \
-	&& ninja -C build-release \
-	&& ninja -C build-release install
-
-# file(1)
+# file(1). Upstream gets updated with new formats more often.
 ghq_get_cd https://github.com/file/file.git && simple_autotools
 
 # chafa
@@ -81,13 +68,16 @@ ghq_get_cd https://github.com/caryll/otfcc.git \
 
 # cflags for building some libs
 cflags_old="$CFLAGS"
-export CFLAGS="-fPIC $CFLAGS" LDFLAGS="-fPIC $CFLAGS" CPPFLAGS="-fPIC $CFLAGS" CXXFLAGS="-fPIC $CFLAGS"
+export CFLAGS="$CFLAGS_LTO -fPIC -ffat-lto-objects"
+export LDFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
+ghq_get_cd 'https://github.com/swaywm/wlroots.git' \
+	&& simple_meson -Dexamples=false -Dxwayland=enabled -Dlogind-provider=systemd -Dlogind=enabled -Dxcb-errors=disabled -Dxcb-icccm=enabled -Dwerror=false --default-library both
 # aom reference impl.
 ghq_get_cd https://aomedia.googlesource.com/aom.git \
-	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 \
-	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 -DBUILD_SHARED_LIBS=1
-ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled
+	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 -DBUILD_SHARED_LIBS=0
+ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled --default-library=static
 ghq_get_cd https://code.videolan.org/videolan/dav1d.git && simple_meson -Denable_asm=true -Denable_avx512=true -Denable_tests=false --default-library=static
+ghq_get_cd https://github.com/matrix-org/olm.git && fancy_cmake
 ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 	&& ./configure \
 		--enable-vp8 \
@@ -99,7 +89,7 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 		--enable-vp9-decoder \
 		--enable-vp9-encoder \
 		--enable-experimental \
-		--enable-shared \
+		--disable-shared \
 		--enable-static \
 		--enable-runtime-cpu-detect \
 		--enable-install-srcs \
@@ -108,13 +98,14 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 	&& make && make install
 ghq_get_cd 'https://chromium.googlesource.com/webm/libwebp' \
 	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& configure_install --enable-static --enable-shared --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --disable-neon
-export CFLAGS="-fPIC $CFLAGS_LTO" LDFLAGS="-fPIC $CFLAGS" CPPFLAGS="-fPIC $CFLAGS" CXXFLAGS="-fPIC $CFLAGS"
+	&& configure_install --enable-static --disable-shared --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --disable-neon
 ghq_get_cd 'https://gitlab.freedesktop.org/pixman/pixman.git' \
-	&& simple_meson --auto-features=auto -Ddefault_library=both
-
+	&& simple_meson --auto-features=auto --default-library=static
 # neovim dep
 ghq_get_cd 'https://github.com/tree-sitter/tree-sitter.git' && make_install
+
+# for building statically-linked tmux
+ghq_get_cd 'https://github.com/libevent/libevent.git' && ./autogen.sh && configure_install --disable-shared --enable-static
 
 export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old"
 
@@ -143,12 +134,16 @@ ghq_get_cd https://github.com/nihui/waifu2x-ncnn-vulkan.git \
 # mpv, with ffmpeg/libass statically linked
 # shellcheck disable=SC2169
 ghq_get_cd https://github.com/mpv-player/mpv-build.git \
-	&& /bin/printf '--arch=x86_64\n--enable-version3\n--enable-bzlib\n--disable-crystalhd\n--enable-fontconfig\n--enable-frei0r\n--enable-gcrypt\n--enable-gnutls\n--enable-ladspa\n--enable-libaom\n--enable-libdav1d\n--enable-libass\n--disable-libcdio\n--enable-libdrm\n--enable-libjack\n--enable-libfreetype\n--enable-libfribidi\n--enable-libgsm\n--enable-libmp3lame\n--enable-nvenc\n--enable-openal\n--enable-opencl\n--enable-opengl\n--enable-libopenjpeg\n--enable-libopus\n--enable-libpulse\n--enable-librsvg\n--enable-libsoxr\n--enable-libspeex\n--enable-libssh\n--enable-libtheora\n--enable-libvorbis\n--enable-libv4l2\n--enable-libvidstab\n--enable-libvmaf\n--enable-libvpx\n--enable-libwebp\n--enable-libx264\n--enable-libx265\n--enable-libxvid\n--enable-libzimg\n--enable-libzvbi\n--enable-avfilter\n--enable-avresample\n--enable-postproc\n--enable-pthreads\n--enable-gpl\n--disable-debug\n--enable-libmfx\n--enable-runtime-cpudetect' >ffmpeg_options \
+	&& /bin/printf '--arch=x86_64\n--enable-version3\n--enable-bzlib\n--disable-crystalhd\n--enable-fontconfig\n--enable-frei0r\n--enable-gcrypt\n--enable-gnutls\n--enable-ladspa\n--enable-libaom\n--enable-libdav1d\n--enable-libass\n--disable-libcdio\n--enable-libdrm\n--enable-libjack\n--enable-libfreetype\n--enable-libfribidi\n--enable-libgsm\n--enable-libmp3lame\n--enable-nvenc\n--enable-openal\n--enable-opencl\n--enable-opengl\n--enable-libopenjpeg\n--enable-libopus\n--enable-libpulse\n--enable-librsvg\n--enable-libsoxr\n--enable-libspeex\n--enable-libssh\n--enable-libtheora\n--enable-libvorbis\n--enable-libv4l2\n--enable-libvidstab\n--enable-libvmaf\n--enable-libvpx\n--enable-libwebp\n--enable-libx264\n--enable-libx265\n--enable-libxvid\n--enable-libzimg\n--enable-libzvbi\n--enable-avfilter\n--disable-avresample\n--enable-postproc\n--enable-pthreads\n--enable-gpl\n--disable-debug\n--enable-libmfx\n--enable-runtime-cpudetect\n--disable-vdpau' >ffmpeg_options \
 	&& /bin/printf "--prefix=$PREFIX\n--datarootdir=$CONFIGPREFIX\n--mandir=$MANPREFIX\n--confdir=$CONFIGPREFIX\n--lua=luajit\n--disable-android\n--disable-audiounit\n--disable-caca\n--disable-cdda\n--disable-cocoa\n--disable-coreaudio\n--disable-cuda-hwaccel\n--disable-cuda-interop\n--disable-d3d-hwaccel\n--disable-d3d11\n--disable-d3d9-hwaccel\n--disable-debug-build\n--disable-direct3d\n--disable-dvdnav\n--disable-egl-android\n--disable-egl-angle\n--disable-egl-angle-lib\n--disable-egl-angle-win32\n--disable-egl-x11\n--disable-gl-cocoa\n--disable-gl-dxinterop\n--disable-gl-dxinterop-d3d9\n--disable-gl-win32\n--disable-gl-x11\n--disable-ios-gl\n--disable-libbluray\n--disable-macos-10-11-features\n--disable-macos-10-12-2-features\n--disable-macos-10-14-features\n--disable-macos-cocoa-cb\n--disable-macos-media-player\n--disable-macos-touchbar\n--disable-rpi\n--disable-rpi-mmal\n--disable-sdl2\n--disable-swift\n--disable-tvos\n--disable-vaapi-x-egl\n--disable-vaapi-x11\n--disable-vdpau\n--disable-videotoolbox-gl\n--disable-wasapi\n--disable-win32-internal-pthreads\n--disable-x11\n--disable-xv\n--enable-gl-wayland\n--enable-libarchive\n--enable-libmpv-shared\n--enable-vaapi-wayland\n--enable-wayland\n--enable-wayland-protocols\n--enable-wayland-scanner\n--enable-shaderc\n--enable-vulkan" >mpv_options \
 	&& dash ./use-ffmpeg-release && dash ./use-mpv-master && dash ./use-libass-master \
 	&& dash ./update && dash ./clean \
 	&& dash ./scripts/libass-config && dash ./scripts/libass-build \
+	&& cp "$LIBPREFIX/libpixman-1.a" ./build_libs/ \
 	&& dash ./scripts/ffmpeg-config && dash ./scripts/ffmpeg-build \
+	&& install -m 0755 ffmpeg_build/ffmpeg "$BINPREFIX" \
+	&& install -m 0755 ffmpeg_build/ffplay "$BINPREFIX" \
+	&& install -m 0755 ffmpeg_build/ffprobe "$BINPREFIX" \
 	&& export CFLAGS="$CFLAGS_LTO" \
 		LDFLAGS="$CFLAGS_LTO" \
 		CXXFLAGS="$CFLAGS_LTO" \
@@ -172,11 +167,14 @@ ghq_get_cd 'https://github.com/MusicPlayerDaemon/mpc.git' \
 	&& simple_meson -Diconv=enabled
 
 # wlsunset, much simpler than gammastep/redshift
-get_cd ghq_get_cd 'https://git.sr.ht/~kennylevinsen/wlsunset' && simple_meson
+ghq_get_cd 'https://git.sr.ht/~kennylevinsen/wlsunset' && simple_meson
 
 # minetest
 ghq_get_cd 'https://github.com/minetest/minetest.git' \
-	&& git -C games/minetest_game pull \
+	&& {
+		git -C games/minetest_game pull \
+			|| git clone 'https://github.com/minetest/minetest_game.git' games/minetest_game
+	} \
 	&& fancy_cmake \
 		-DENABLE_LEVELDB=ON \
 		-DENABLE_SPATIAL=ON \
@@ -219,19 +217,12 @@ ghq_get_cd https://github.com/facebook/zstd.git \
 		--optimization 3 \
 		-Dbin_programs=true \
 		-Dbin_contrib=true \
-		--wipe \
+		--default-library=static \
 		builddir \
 	&& ninja -C builddir && ninja -C builddir install
 
-# speedtest cli
-ghq_get_cd https://github.com/taganaka/SpeedTest.git && fancy_cmake
-
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
-
-# cmatrix
-ghq_get_cd https://github.com/abishekvashok/cmatrix.git \
-	&& fancy_cmake
 
 # cxxmatrix: much more advanced than cmatrix
 # uses hankaku kana characters + different sahdes + different scenes.
@@ -241,7 +232,7 @@ ghq_get_cd https://github.com/akinomyoga/cxxmatrix && make_install
 ghq_get_cd https://github.com/jarun/bcal.git && make_install
 
 # nnn
-ghq_get_cd https://github.com/jarun/nnn.git && make -O_ICONS=1 -O_PCRE=1 strip && make install
+ghq_get_cd https://github.com/jarun/nnn.git && make O_PCRE=1 strip && make install
 
 ghq_get_cd https://github.com/openSUSE/catatonit.git && simple_autotools
 
@@ -258,7 +249,7 @@ ghq_get_cd https://git.kernel.org/pub/scm/utils/dash/dash.git \
 # cava - I only use it with MPD FIFO, no need for ALSA/Pulse
 ghq_get_cd https://github.com/karlstav/cava.git \
 	&& ./autogen.sh \
-	&& FONT_DIR="$DATAPREFIX/fonts" CC='musl-gcc' configure_install \
+	&& FONT_DIR="$DATAPREFIX/fonts" configure_install \
 		--disable-input-alsa \
 		--disable-input-pulse \
 		--disable-input-portaudio \
@@ -295,8 +286,8 @@ ghq_get_cd https://github.com/mtoyoda/sl.git \
 
 # tmux
 ghq_get_cd https://github.com/tmux/tmux.git \
-	&& ./autogen.sh \
-	&& configure_install
+	&& CFLAGS="$CFLAGS -static" ./autogen.sh \
+	&& CFLAGS="$CFLAGS -static" configure_install --enable-static
 
 # another important tool
 ghq_get_cd https://github.com/jaseg/lolcat && DESTDIR=$PREFIX/bin make_install
@@ -315,7 +306,7 @@ unset LIBLDFLAGS
 # aria2: download accelerator
 ghq_get_cd 'https://github.com/aria2/aria2.git' \
 	&& aclocal \
-	&& simple_autotools --with-ca-bundle='/etc/ssl/certs/ca-bundle.crt'
+	&& simple_autotools --enable-gnutls-system-crypto-policy --enable-epoll --with-libcares --with-ca-bundle='/etc/ssl/certs/ca-bundle.crt'
 
 # crun: container runtime. Better than runc.
 ghq_get_cd https://github.com/containers/crun.git \

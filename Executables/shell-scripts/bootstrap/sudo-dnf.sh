@@ -195,7 +195,7 @@ packages=(
 	"openal-soft-devel"  # build ffmpeg
 	"opencl-devel"       # build Waifu2x-converter-cpp, ffmpeg
 	"opencl-headers"     # build ffmpeg
-	"pkgconfig(openssl)"      # build many packages
+	"pkgconfig(openssl)" # build many packages
 	"ostree"             # containershit
 	"ostree-devel"       # build runc, skopeo, and others
 	"p7zip"              # handle 7z archive formats
@@ -231,7 +231,8 @@ packages=(
 	"pkgconfig(gdk-pixbuf-2.0)" # build sway
 	"pkgconfig(gl)"
 	"pkgconfig(gnutls)"   # build weechat, wget2
-	"pkgconfig(gpgme)"    # building skopeo, wget2, and others
+	"pkgconfig(gpgme)"    # building skopeo, wget2, neomutt, and others
+	"gpgme"               # basic necessity
 	"pkgconfig(jack)"     # build ffmpeg
 	"pkgconfig(jemalloc)" # build neovim
 	"pkgconfig(json-c)"   # build newsboat
@@ -333,9 +334,12 @@ packages=(
 	"python3-matplotlib-qt5"    # plotting in python
 	"python3-opencv"            # build Av1an
 	"python3dist(Cython)"       # used in a lot of packages; precompiled distro pkg speeds up installs
+	"python3dist(python-lzo"    # used by pyglossary
+	"python3dist(ansiwrap)"     # some programs opportunistically use this if it's available.
 	"python3dist(grpcio)"       # used in a lot of packages; precompiled distro pkg speeds up installs
 	"python3dist(mutagen)"      # stuff for handling .mp3 metadata
 	"python3dist(protobuf)"     # dependency for some datsci/ML packages; precompiled distro pkg speeds up installs
+	"python3dist(gpg)"          # used by opgpcard
 	"python3dist(pyephem)"      # my datsci/ML development; precompiled distro pkg speeds up installs. comes with numpy, scipy, pandas
 	"python3dist(regex)"        # used in a lot of packages; precompiled distro pkg speeds up installs
 	"python3dist(scikit-learn)" # My datsci/ML development; precompiled distro pkg speeds up installs

@@ -33,10 +33,11 @@ parallel pipx install --system-site-packages ::: \
 	'git+https://git.sr.ht/~seirdy/clogstats#egg=clogstats[forecasting]' \
 	'git+https://github.com/beetbox/beets.git#egg=beets[thumbnails,mpdstats,lyrics,chroma,absubmit,embedart,fetchart,lastgenre,replaygain]' \
 	'git+https://github.com/prompt-toolkit/ptpython.git#egg=ptpython[ptipython]' \
-	git+https://github.com/master-of-zen/Av1an.git \
 	git+https://github.com/cykerway/ncmpy.git \
-	git+https://github.com/qutebrowser/qutebrowser.git \
+	git+https://github.com/master-of-zen/Av1an.git \
+	git+https://github.com/mnot/redbot.git \
 	git+https://github.com/nicolargo/glances.git \
+	git+https://github.com/qutebrowser/qutebrowser.git \
 	git+https://github.com/standardebooks/tools.git
 
 pipx inject --include-apps ptpython konch
