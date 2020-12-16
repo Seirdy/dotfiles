@@ -1,6 +1,8 @@
 #
 # System configuration file for NeoMutt
 #
+source ~/.config/neomutt/gpg.rc
+source ~/.config/neomutt/colors.rc
 
 # Default list of header fields to weed when displaying.
 # Ignore all lines by default...
@@ -10,7 +12,7 @@
 unignore from: subject to cc date x-mailer x-url user-agent
 
 # Display the fields in this order
-hdr_order date from to cc subject
+hdr_order date from to cc List-ID subject
 
 # imitate the old search-body function
 macro index \eb "<search>~b " "search in message bodies"
@@ -939,7 +941,7 @@ attachments   -I message/external-body
 # <decode-copy> or <decode-save> functions.
 #
 #
-# set crypt_autoencrypt=no
+set crypt_autoencrypt=no
 #
 # Name: crypt_autoencrypt
 # Type: boolean
@@ -969,7 +971,7 @@ attachments   -I message/external-body
 # $crypt_autosign, $crypt_replysign and $smime_is_default.
 #
 #
-# set crypt_autosign=no
+set crypt_autosign=yes
 #
 # Name: crypt_autosign
 # Type: boolean
@@ -1027,7 +1029,7 @@ set crypt_autosmime=yes
 # typos are concerned.
 #
 #
-# set crypt_opportunistic_encrypt=no
+set crypt_opportunistic_encrypt=no
 #
 # Name: crypt_opportunistic_encrypt
 # Type: boolean
@@ -1160,7 +1162,7 @@ set crypt_autosmime=yes
 # (Crypto only)
 #
 #
-# set crypt_replyencrypt=yes
+set crypt_replyencrypt=yes
 #
 # Name: crypt_replyencrypt
 # Type: boolean
@@ -1172,7 +1174,7 @@ set crypt_autosmime=yes
 # (Crypto only)
 #
 #
-# set crypt_replysign=no
+set crypt_replysign=yes
 #
 # Name: crypt_replysign
 # Type: boolean
@@ -1187,7 +1189,7 @@ set crypt_autosmime=yes
 # (Crypto only)
 #
 #
-# set crypt_replysignencrypted=no
+set crypt_replysignencrypted=yes
 #
 # Name: crypt_replysignencrypted
 # Type: boolean
@@ -1217,7 +1219,7 @@ set crypt_autosmime=yes
 # (Crypto only)
 #
 #
-# set crypt_use_gpgme=yes
+set crypt_use_gpgme=yes
 #
 # Name: crypt_use_gpgme
 # Type: boolean
@@ -1234,7 +1236,7 @@ set crypt_autosmime=yes
 # (traditional) PGP encrypted or signed messages (see $pgp_autoinline).
 #
 #
-# set crypt_use_pka=no
+set crypt_use_pka=yes
 #
 # Name: crypt_use_pka
 # Type: boolean
@@ -1246,7 +1248,7 @@ set crypt_autosmime=yes
 # verification (only supported by the GPGME backend).
 #
 #
-# set crypt_verify_sig=yes
+set crypt_verify_sig=yes
 #
 # Name: crypt_verify_sig
 # Type: quadoption
@@ -1454,7 +1456,7 @@ set crypt_autosmime=yes
 # in the thread tree.
 #
 #
-# set edit_headers=no
+set edit_headers=yes
 #
 # Name: edit_headers
 # Type: boolean
@@ -1893,7 +1895,7 @@ set folder="~/mail/seirdy"
 # a new one.
 #
 #
-# set from=""
+set from="seirdy@seirdy.one"
 #
 # Name: from
 # Type: e-mail address
@@ -4269,7 +4271,7 @@ set pgp_self_encrypt=yes
 # (PGP only)
 #
 #
-# set pgp_use_gpg_agent=yes
+set pgp_use_gpg_agent=yes
 #
 # Name: pgp_use_gpg_agent
 # Type: boolean
@@ -4547,7 +4549,7 @@ set pgp_self_encrypt=yes
 # Also see the $recall variable.
 #
 #
-# set postpone_encrypt=no
+# set postpone_encrypt=yes
 #
 # Name: postpone_encrypt
 # Type: boolean
@@ -5235,7 +5237,7 @@ set record="+Sent"
 # NeoMutt uses $charset as a fallback.
 #
 #
-set sendmail="/usr/sbin/sendmail -oem -oi"
+set sendmail="/usr/sbin/sendmail"
 #
 # Name: sendmail
 # Type: command
@@ -5538,7 +5540,7 @@ set sidebar_visible=yes
 # See also: $sidebar_format, $sidebar_width
 #
 #
-# set sidebar_width=30
+set sidebar_width=26
 #
 # Name: sidebar_width
 # Type: number
@@ -6120,7 +6122,7 @@ set sidebar_visible=yes
 # This variable defaults to your user name on the local machine.
 #
 #
-set sort=reverse-threads
+set sort=threads
 #
 # Name: sort
 # Type: sort order
@@ -7244,32 +7246,11 @@ set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
 # set pgp_decryption_okay="^\\[GNUPG:\\] DECRYPTION_OKAY"
 set pgp_check_gpg_decrypt_status_fd
 
-#
-# Color definitions
-#
-
-#color normal white default
-color hdrdefault red default
-color quoted brightblue default
-color signature red default
-color indicator brightyellow red
-color error brightred default
-color status yellow blue
-color tree magenta default	# the thread tree in the index menu
-color tilde magenta default
-color message brightcyan default
-color markers brightcyan default
-color attachment brightmagenta default
-color search default green	# how to hilite search patterns in the pager
-color warning brightyellow default
-
-color header brightred default "^(From|Subject):"
-color body magenta default "(ftp|http|https)://[^ ]+"	# point out URLs
-color body magenta default "[-a-z_0-9.\+]+@[-a-z_0-9.]+"	# e-mail addresses
-color underline brightgreen default
-
 # attributes when using a mono terminal
 #mono header underline ^(From|Subject):
 mono quoted bold
 
-mailboxes `find ~/mail/seirdy/ -type d -name cur | grep -v 'seirdy/cur' | sed -e 's:/cur/*$::' -e 's/ /\\ /g' | sort | tr '\n' ' '`
+mailboxes =Inbox
+mailboxes `find ~/mail/seirdy/ -type d -name cur | grep -Ev 'seirdy/cur|Inbox' | sed -e 's:/cur/*$::' -e 's/ /\\ /g' | sort | tr '\n' ' '`
+
+alternative_order text/plain text/enriched text/html

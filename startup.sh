@@ -19,6 +19,8 @@ if [ -n "$PROFILE_SET" ]; then
 	exit
 fi
 export DO_NOT_TRACK=1 # https://consoledonottrack.com/
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export HINT_TELEMETRY="off"
 find_alt() {
 	for i; do
 		command -v "$i" >/dev/null && {
@@ -53,7 +55,6 @@ export CALIBRE_USE_SYSTEM_THEME=1
 export BROWSER=firefox
 # export GTK_USE_PORTAL=1 # KDE file-picker
 export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
@@ -249,7 +250,7 @@ if [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_D
 	# Qt apps
 	export QT_QPA_PLATFORM=wayland-egl
 	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-	export QT_WAYLAND_FORCE_DPI=physical
+	# export QT_WAYLAND_FORCE_DPI=physical # breaks everything on qt 5.15
 	# SDL apps
 	export SDL_VIDEODRIVER=wayland
 	# elementary apps
