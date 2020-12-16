@@ -31,8 +31,9 @@ bindurl news\.ycombinator\.com/news ;F hint -Jbc .age > a
 bindurl news\.ycombinator\.com/item ;f hint -Jc .comment .commtext a
 bindurl news\.ycombinator\.com/item ;F hint -Jbc .comment .commtext a
 
-bindurl github\.com/search ;f hint -Jc  .repo-list-item * > a.v-align-middle
-bindurl github\.com/search ;F hint -Jbc .repo-list-item * > a.v-align-middle
+bindurl github\.com/search ;f hint -Jc .f4.text-normal a
+bindurl github\.com/search ;F hint -Jbc .f4.text-normal a
+
 bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
 bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
 bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
@@ -58,7 +59,7 @@ unbind --mode=ex <C-c>
 set csp clobber
 fixamo_quiet
 set allowautofocus false
-set editorcmd alacritty --class launcher -e $EDITOR
+set editorcmd floating-terminal $EDITOR
 
 set externalclipboardcmd wl-copy
 set yankto both
