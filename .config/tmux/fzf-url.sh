@@ -5,7 +5,7 @@ fzf_cmd() {
 	fzf-tmux -w 100% -h 35% -y 56 -- --multi --exit-0 --cycle --reverse --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --no-preview
 }
 
-urls="rg -o '(https?|ftp|file):/?//[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]'"
+urls="rg -o '(https?|ftp|file|gemini|gopher):/?//[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]'"
 wwws="rg -o 'www\.[a-zA-Z](-?[a-zA-Z0-9])+\.[a-zA-Z]{2,}(/\S+)*' --replace 'http://\$0'"
 ips="rg -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(:[0-9]{1,5})?(/\S+)*' --replace 'http://\$0'"
 gits="rg -o '(ssh://)?(git@)(\S*):(\S*)' --replace 'https://\$3/\$4'"
