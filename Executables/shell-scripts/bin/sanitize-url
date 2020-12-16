@@ -93,6 +93,11 @@ url="$(echo "$1" | sed -E 's#/(\?.*)?$##')"
 # subreddit charset from https://github.com/reddit-archive/reddit/blob/master/r2/r2/models/subreddit.py
 reddit_re_simple='^https?://(?:(?:www|np|new|old)\.)?reddit\.com/r/[A-Za-z0-9][A-Za-z0-9_]{2,20}'
 xkcd_img='^https?://imgs\.xkcd\.com/comics/(.*)(?!_2x)\.png$'
+sandraandwoo='^https?://www\.sandraandwoo\.com/(gaia/)?20.*'
+
+url_matches() {
+	echo "$url" | greplike "$1" >/dev/null
+}
 
 if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 	# the big fat regex we'll use to split up reddit URLs
@@ -121,6 +126,9 @@ if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 	echo "$url" && exit 0
 elif echo "$url" | greplike "$xkcd_img" >/dev/null; then
 	url="$(echo "$url" | find_replace "$xkcd_img" 'https://imgs.xkcd.com/comics/$1_2x.png')"
+elif url_matches "$sandraandwoo"; then
+	url="$(echo "$url" | find-replace '([0-9])/(?!$)' '$1-' | find-replace '/([0-9])' '/comics/$1' | find-replace '(/gaia/.*)/?$' '$1.jpg' | find-replace '(\.com/comics.*)$' '$1.png')"
+	echo
 fi
 # }}}
 
