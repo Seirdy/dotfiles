@@ -54,7 +54,7 @@ GO111MODULE=on go_update_static github.com/tigrawap/slit/cmd/slit
 # shell script formatter
 GO111MODULE=on go_update_static mvdan.cc/sh/v3/cmd/shfmt
 # like jq but for yaml
-GO111MODULE=on go_update_static github.com/mikefarah/yq/v2
+GO111MODULE=on go_install_static github.com/mikefarah/yq/v4@master
 # curlie: better than httpie
 go_update github.com/rs/curlie
 # profile (neo)vim startuptime
@@ -93,8 +93,9 @@ ghq get -u -b develop https://tildegit.org/sloum/bombadillo.git \
 	&& cd "$GHQ_ROOT/tildegit.org/sloum/bombadillo" \
 	&& GO111MODULE=on go install -v \
 	&& install -p -m0644 "bombadillo.1" "$MANPREFIX/man1" \
-	&& install -p -m0644 "bombadillo.desktop" "$DATAPREFIX/applications" \
-		ghq_get_cd https://github.com/makeworld-the-better-one/amfora.git && GO111MODULE=on go install && install -Dm 0644 amfora.desktop "$DATAPREFIX/applications/"
+	&& install -p -m0644 "bombadillo.desktop" "$DATAPREFIX/applications"
+
+ghq_get_cd https://github.com/makeworld-the-better-one/amfora.git && GO111MODULE=on go install -v && install -Dm 0644 amfora.desktop "$DATAPREFIX/applications/"
 
 ghq_get_cd 'https://git.sr.ht/~adnano/astronaut' && BINDIR="$GOPATH/bin" make install
 
