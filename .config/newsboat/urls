@@ -45,11 +45,11 @@ https://sonniesedge.net/articles/rss "Advocacy" "Blog" "Favorite"
 # Nondev because it usually isn't technical
 https://www.theguardian.com/profile/stallman-richard/rss "Advocacy" "Blog" "NonDev" "Favorite"
 https://static.fsf.org/fsforg/rss/news.xml "Advocacy" "NonDev" "Favorite"
-https://sfconservancy.org/feeds/blog/ "Advocacy" "NonDev" "Favorite"
 https://mikegerwitz.com/rss.xml "Blog" "Dev" "Favorite"
 https://people.kernel.org/bleung/feed/ "Blog" "Dev"
 https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://ethan.writeas.com/feed/ "Blog" "Favorite"
+https://evgenykuznetsov.org/en/single-language.xml "Blog"
 # toolbox is one of my favorite programs, and this is the primary dev's blog
 https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://barthalion.blog/index.xml "GNOME" "Fedora" "Linux" "Blog" "Dev"
@@ -214,8 +214,6 @@ https://dolphin-emu.org/blog/feeds/ "Programs" "Dev"
 https://gitlab.gnome.org/World/fractal/tags?format=atom "Programs" "Dev"
 # best text editor, and best IDE with nvim-lsp
 https://neovim.io/news.xml "Programs" "Dev" "Favorite"
-# turns firefox into something usable. supports script injection anad opening links in external programs.
-https://github.com/tridactyl/tridactyl/commits/master/CHANGELOG.md.atom "Firefox" "git repos" "Programs" "Dev" "~tridactyl changelog"
 # keeping up to date with the most bloated program on my computer: the web browser! (dun dun duuuun!)
 https://blog.nightly.mozilla.org/feed/ "Firefox" "Dev"
 # https://medium.com/feed/mozilla-tech/tagged/firefox "Firefox" "Dev"
@@ -240,7 +238,6 @@ https://gitlab.com/pycqa/flake8/commits/master/docs/source/release-notes?format=
 https://gitlab.com/pycqa/flake8-docstrings/commits/master/HISTORY.rst?format=atom "Python" "git repos" "Programs" "Dev"
 https://gitlab.com/pycqa/pydocstyle/commits/master/docs/release_notes.rst?format=atom "Python" "git repos" "Programs" "Dev"
 https://gitlab.com/pycqa/pep8-naming/commits/master/CHANGELOG.rst?format=atom "Python" "git repos" "Programs" "Dev" "~pep8-naming changelog"
-https://github.com/tox-dev/tox/releases.atom "Python" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/rubik/xenon/releases.atom "Python" "git repos" "Programs" "Dev"
 # https://lobste.rs/t/python.rss "Python" "Dev"  # Updates too frequently
 https://eli.thegreenplace.net/feeds/all.atom.xml "Python" "Dev" "Go" "Blog" "Favorite"
@@ -256,9 +253,9 @@ https://hnrss.org/show.atom?points=370 "Social" "Hacker News" "Dev"
 https://hnrss.org/newest.atom?q=CLI+OR+Fedora&points=12 "Social" "Hacker News" "Dev"
 https://hnrss.org/newest.atom?q=vim+OR+neovim&points=10 "Social" "Hacker News" "Dev" "Favorite" "~HN: Vim"
 https://hnrss.org/newest.atom?q=rtv+OR+tuir+OR+hugo+OR+gemini+OR+sway+OR+newsboat+OR+zsh+OR+pandoc+OR+suckless+OR+swaywm+OR+silverblue&points=2&comments=1 "Social" "Hacker News" "Dev" "Favorite" "~HN: favorite programs"
-https://hnrss.org/newest?points=800 "Social" "Hacker News" "Dev" "~Hacker News: Top"
+https://hnrss.org/newest?points=1200 "Social" "Hacker News" "Dev" "~Hacker News: Top"
 # reddit feed of git repos
-https://www.reddit.com/r/C_programming+commandline+coolgithubprojects+cpp+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
+https://www.reddit.com/r/C_programming+commandline+cpp+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
 # some of the best and most relatable satire in tech imo
 http://n-gate.com/index.atom "Social" "Hacker News" "Dev" "Favorite"
 # primary terminal emulator on X, tertiary terminal emulator on Wayland (since it's X-only).
@@ -291,7 +288,6 @@ http://helpful.cat-v.org/Blog/index.atom "Blog" "Dev" "Favorite"
 http://harmful.cat-v.org/Blog/index.atom "Blog" "Dev" "Favorite"
 # the Economist
 https://www.economist.com/briefing/rss.xml "Economist" "NonDev"
-https://www.economist.com/science-and-technology/rss.xml "Economist" "NonDev" "Favorite"
 https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "Favorite"
 
        #########
@@ -303,8 +299,6 @@ https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "F
 ############
 
 http://faif.us/feeds/cast-ogg/ "Audio" "Advocacy" "Media" "Linux" "Favorite"
-# Matrix Live
-https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w "Audio" "Media" "Dev" "IRC/Matrix"
 # Librelounge
 https://librelounge.org/atom-feed.atom "Audio" "Media" "Linux"
 
