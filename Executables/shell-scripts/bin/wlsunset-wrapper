@@ -1,9 +1,71 @@
 #!/usr/bin/env dash
 
+# Run or kill wlsunset with my preferred settings
+
+set -e
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+Run wlsunset with my preferred settings, or kill it.
+
+Options:
+  -h, --help               Print this help and exit
+  -k, --kill               Kill the running wlsunset instance and exit
+  -t TEMP, --temp TEMP     Run wlsunset with a different color temp
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+kill_wlsunset() {
+	if [ -f '/tmp/wlsunset.pid' ]; then
+		wlsunset_pid="$(cat /tmp/wlsunset.pid)"
+		rm /tmp/wlsunset.pid
+		kill -15 "$wlsunset_pid" || true
+	fi
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-k | --kill)
+			kill_wlsunset
+			exit 0
+			;;
+		-t | --temp)
+			shift
+			temp_night="$1"
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
 lat='37.5'
 lon='-122.0'
 # duration='90'
-temp_night='3600'
+[ -z "$temp_night" ] && temp_night='3800'
 
-wlsunset -l "$lat" -L "$lon" -t "$temp_night"
+# if wlsunset is running, kill it first
+kill_wlsunset
+wlsunset -l "$lat" -L "$lon" -t "$temp_night" &
+echo $! >/tmp/wlsunset.pid
+
 # vi:ft=sh
