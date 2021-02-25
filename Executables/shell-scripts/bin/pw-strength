@@ -1,0 +1,44 @@
+#!/usr/bin/env dash
+# POC for password-strength program
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...] [ENTROPY]
+
+Measure the strength of a password by the probability of it being
+brute-forced given a certain amount of energy.
+
+Options:
+  -h, --help            Print this help and exit
+	-e, --energy          The amount of energy available, in joules.
+	                      Defaults to the mass-energy of the universe.
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-e | --energy)
+			shift
+			energy="$1"
+			;;
+		*)
+			entropy="$1"
+			;;
+	esac
+	shift
+done
+
+[ -z "$energy" ] && energy="$(calc -p '299792458^5/(2*6.67408*10^-11*2.2*10^-18)')"
+
+calc -p "$energy/(2^$entropy*1.3806503*10^-23*2.7)"
+
+# vi:ft=sh

@@ -1,0 +1,71 @@
+#!/usr/bin/env dash
+# POC of Hydra Heads, a program to monitor multiple remotes
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...] [REMOTE_URLS...]
+
+Summary
+
+Options:
+  -h, --help            Print this help and exit
+	-b, --branchname      Specify the branch name to compare
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+# TODO: give each remote a name
+# TODO read these from files
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-b | --branch)
+			branch="$1"
+		*)
+			first_remote="$1"
+			shift
+			break
+			;;
+	esac
+	shift
+done
+
+tmp_dir="$(mktemp -d)"
+cleanup() {
+	rm -rf "$tmp_dir"
+}
+
+[ -z "$branch" ] && branch=master
+
+fetch_remotes() {
+	cd "$tmp_dir" || exit 1
+	git clone --depth 1 "$first_remote" .
+
+	while [ $# -gt 0 ]; do
+		git remote add -f "$1" "$1"
+		shift
+	done
+}
+get_revs() {
+	cd "$tmp_dir"
+	git remote | xargs -I _ git show --no-patch --oneline --pretty='%cI %h %s' "_/$branch"
+}
+fetch_remotes
+get_revs
+
+# vi:ft=sh

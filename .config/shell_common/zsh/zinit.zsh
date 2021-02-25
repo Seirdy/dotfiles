@@ -91,6 +91,9 @@ zinit light aaronNG/reddio
 zi_program pick'hURL'
 zinit light 'fnord0/hURL'
 
+zi_program has'mogrify'
+zinit light 'hackerb9/lsix'
+
 # git-open has a manpage that I want in my MANPATH
 zi_program has'git' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" atpull'%atclone'
 zinit light paulirish/git-open
@@ -236,7 +239,7 @@ zi_completion has'fd'
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fd/_fd
 
 zi_completion has'exa' mv'completions.zsh -> _exa'
-zinit snippet https://github.com/ogham/exa/blob/master/contrib/completions.zsh
+zinit snippet https://github.com/ogham/exa/blob/master/completions/completions.zsh
 
 zi_completion has'cht.sh'
 zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
