@@ -96,3 +96,6 @@ venv/
 # gitlab-runner
 builds/
 cache/
+
+# nodeshit
+node_modules/*
