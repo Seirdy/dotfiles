@@ -36,12 +36,12 @@ export CPPFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"
 export FCFLAGS="$FFLAGS"
 export RUSTFLAGS="-C opt-level=3 -C target-cpu=$ARCH -C link-arg=-s"
-export CFLAGS_LTO="$CFLAGS -flto"
+export CFLAGS_LTO="$CFLAGS -flto -ffat-lto-objects"
 export CFLAGS_SIMPLE='-O3 -march=native -g -pipe -s -flto -m64'
 [ -z "$CARGO_INSTALL_OPTS" ] && export CARGO_INSTALL_OPTS='--all-features -Z unstable-options'
 
 # For builds using Clang instead of GCC, I replace C(XX)FLAGS with CLANGFLAGS
-export CLANGFLAGS_LTO="$CLANGFLAGS -flto"
+export CLANGFLAGS_LTO="$CLANGFLAGS -flto -ffat-lto-objects"
 export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO"
 
 export GOOS=linux GOARCH=amd64
