@@ -205,3 +205,53 @@ Channel school-oldclasses
 Channel school-confirmations
 Channel school-personal
 Channel school-reference
+
+##################
+
+IMAPAccount webmention
+Host imap.migadu.com
+Port 993
+User webmention@seirdy.one
+PassCmd "pash show email/webmention"
+SSLType IMAPS
+PipelineDepth 50
+CertificateFile /etc/ssl/certs/ca-bundle.crt
+
+MaildirStore webmention-local
+Path ~/mail/webmention/
+Inbox ~/mail/webmention/Inbox
+Subfolders Verbatim
+
+IMAPStore webmention-remote
+Account webmention
+
+Channel webmention-default
+Master :webmention-remote:
+Slave :webmention-local:Inbox
+
+Channel webmention-sent
+Master :webmention-remote:"Sent"
+Slave :webmention-local:Sent
+
+Channel webmention-trash
+Master :webmention-remote:"Trash"
+slave  :webmention-local:Trash
+
+Channel webmention-archive
+Master :webmention-remote:"Archive"
+slave  :webmention-local:Archive
+
+Channel webmention-junk
+Master :webmention-remote:"Junk"
+slave  :webmention-local:Junk
+
+Create Both
+Expunge Both
+SyncState *
+
+Group webmention
+Channel webmention-default
+Channel webmention-trash
+Channel webmention-archive
+Channel webmention-sent
+Channel webmention-junk
