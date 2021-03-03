@@ -31,7 +31,7 @@ alias broken-link='wl-paste -n | sd "\n" "" | url-picker' # line breaks in links
 # basic shorthands
 alias pcat='pee cat' # make `pee` from moreutils send to stdout like tee
 alias a2c='aria2c'   # fast aria2c downloading
-alias ytdl='youtube-dlc'
+alias ytdl='youtube-dl'
 # ytdl-sm: for my laptop which has mediocre hardware accel, esp. for vp8/vp9
 alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
 # anime4k scales up 720p best
@@ -47,6 +47,7 @@ alias stb='sudo tlp bat'
 alias rmm='rmtrash'
 alias rmhtm='rm *.html' # pandoc artifacts and stuff
 alias tootn='toot notifications'
+alias tootnr='toot notifications -r'
 alias tootnc='toot notifications --clear'
 # curl follow redirect
 alias curll='curl -L'
@@ -69,6 +70,7 @@ alias resettmp='redshift -x'
 alias dsks='diskus --size-format=binary'
 alias rsyncap='rsync -auP'
 alias rsyncapz='rsync -azuP'
+alias rsyncapzst='rsync -azuP --zc=zstd'
 alias moshlap='mosh rkumar@rkumarlappie /home/rkumar/.local/bin/tmux'
 alias moshdesk='mosh rkumar@rkumar-dekstop /home/rkumar/.local/bin/tmux'
 # curl
