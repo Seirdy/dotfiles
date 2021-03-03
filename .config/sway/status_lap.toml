@@ -1,6 +1,6 @@
 [[block]]
 block = "focused_window"
-max_width = 60
+max_width = 65
 
 [[block]]
 block = "battery"
@@ -10,14 +10,14 @@ format = "{percentage}%"
 [[block]]
 block="net"
 device = "wlp0s20u3u4"
-signal_strength = true
+# signal_strength = true
 use_bits = true
-interval = 3
+interval = 5
 
 [[block]]
 block = "maildir"
-interval = 30
-inboxes = ["/home/rkumar/mail/seirdy/Inbox"]
+interval = 25
+inboxes = ["~/mail/seirdy/Inbox"]
 threshold_warning = 1
 threshold_critical = 10
 display_type = "new"

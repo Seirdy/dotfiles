@@ -1,11 +1,13 @@
 font = "monospace term"
 
 [icons]
-name = "awesome"
+name = "material-nf"
 [icons.overrides]
 music = "  "
 # time = " "
-net_wired = " "
+net_wired = ""
+net_up = '祝'
+net_down = ' '
 net_vpn = " "
 music_play = " 契"
 music_pause = " "
@@ -15,7 +17,7 @@ music_next = " 怜"
 [theme]
 name="slick"
 [theme.overrides]
-separator=""
+# separator=""
 idle_bg = "#232629"
 
 [[block]]
@@ -26,3 +28,9 @@ max_width=35
 smart_trim = true
 dynamic_width = true
 marquee=false
+
+[[block]]
+block = "bluetooth"
+mac = "BC:F2:92:28:14:65"
+label = ""
+hide_disconnected = true

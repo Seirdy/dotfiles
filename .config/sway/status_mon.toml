@@ -5,9 +5,10 @@ max_width = 135
 [[block]]
 block = "net"
 device = "enp0s25"
-ip = false
+# ip = false
 interval = 5
-signal_strength = true
+icons_format = "{icon} "
+# signal_strength = true
 use_bits = true
 
 [[block]]
@@ -25,4 +26,8 @@ display_type = "new"
 
 [[block]]
 block = "time"
-format = "%a %m-%d %R%:z"
+format = "%a %m-%d %R%z"
+[[block]]
+block = "time"
+format = "%R%z"
+timezone = "Etc/UTC"
