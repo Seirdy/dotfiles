@@ -1,0 +1,3 @@
+#!/usr/bin/env dash
+mpick -t 'to =~ "gemini@lists.orbitalfox.eu" || "cc" =~ "gemini@lists.orbitalfox.eu"'
+# vi:ft=sh

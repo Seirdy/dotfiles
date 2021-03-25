@@ -1,0 +1,3 @@
+#!/usr/bin/env dash
+mpick -t 'from =~ "gitlab@mg\.gitlab\.com"'
+# vi:ft=sh
