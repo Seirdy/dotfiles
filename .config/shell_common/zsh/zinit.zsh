@@ -66,7 +66,7 @@ zi0a has'fzf' pick'fzf-finder.plugin.zsh'
 zinit light leophys/zsh-plugin-fzf-finder
 
 zi0b has'fzf' pick'completion.zsh' src'key-bindings.zsh'
-zinit light $GOPATH/src/github.com/junegunn/fzf/shell
+zinit light $GHQ_ROOT/github.com/junegunn/fzf/shell
 # }}}
 
 ############
@@ -78,9 +78,6 @@ zinit light $GOPATH/src/github.com/junegunn/fzf/shell
 zi_program() {
 	zi0a as'program' "$@"
 }
-
-zi_program has'trash' pick'rmtrash'
-zinit light PhrozenByte/rmtrash
 
 zi_program has'gpg'
 zinit light dylanaraps/pash
@@ -119,9 +116,6 @@ zinit light greymd/tmux-xpanes
 zi_program has'python3' pick'imguralbum.py'
 zinit light alexgisby/imgur-album-downloader
 
-zi_program has'signal-cli' pick'scli'
-zinit light isamert/scli
-
 zi_program has'jq'
 zinit snippet 'https://github.com/DanielG/dxld-mullvad/blob/master/am-i-mullvad.sh'
 
@@ -130,9 +124,6 @@ zinit light Seirdy/stpv
 
 zi_program has'weechat' pick'chattiest-channels'
 zinit light $GHQ_ROOT/git.sr.ht/~seirdy/chattiest-channels
-
-zi_program has'chromium-browser-privacy' pick'chrome-extension-dl'
-zinit light th3lusive/chrome-extension-dl
 
 zi_program has'ueberzug' pick'stpvimg'
 zinit light Seirdy/stpv
@@ -156,7 +147,7 @@ zi_program has'fzf'
 zinit light denisidoro/navi
 
 zi_program has'fzf' pick'fzf-tmux'
-zinit light $GOPATH/src/github.com/junegunn/fzf/bin
+zinit light $GHQ_ROOT/github.com/junegunn/fzf/bin
 
 zi_program pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zinit light dylanaraps/neofetch
@@ -185,7 +176,7 @@ zinit light wfxr/emoji-cli
 
 export FORGIT_GI_REPO_LOCAL="$XDG_DATA_HOME/forgit/gi/repos/dvcs/gitignore"
 
-zi0c has'fzf' pick'forgit.plugin.zsh'
+zi0b has'fzf' pick'forgit.plugin.zsh'
 zinit light wfxr/forgit
 
 zi0a as'program' has'git' pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
@@ -201,7 +192,7 @@ zinit snippet https://github.com/tj/git-extras/blob/master/etc/git-extras-comple
 ###############
 
 # fzf-based tab-completion. Load after all other completion plugins
-z_lucid wait'1'
+zi0c has'fzf'
 zinit light Aloxaf/fzf-tab
 
 zi_completion() {
@@ -220,9 +211,6 @@ zinit snippet https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 zi_completion has'rustc'
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rust/_rust
 
-zi_completion has'docker'
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-
 zi_completion has'rg'
 zinit snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 
@@ -238,8 +226,8 @@ zinit light srijanshetty/zsh-pandoc-completion
 zi_completion has'fd'
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fd/_fd
 
-zi_completion has'exa' mv'completions.zsh -> _exa'
-zinit snippet https://github.com/ogham/exa/blob/master/completions/completions.zsh
+# zi_completion has'exa' mv'completions.zsh -> _exa'
+# zinit snippet https://github.com/ogham/exa/blob/master/completions/completions.zsh
 
 zi_completion has'cht.sh'
 zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
@@ -247,14 +235,8 @@ zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
 zi_completion has'buku'
 zinit snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
 
-zi_completion has'hub' mv'hub.zsh_completion -> _hub'
-zinit snippet $GOPATH/src/github.com/github/hub/etc/hub.zsh_completion
-
 zi_completion has'youtube-dl' mv'youtube-dl.zsh -> _youtube-dl'
 zinit snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.zsh
-
-zi_completion has'podman'
-zinit snippet $GOPATH/src/github.com/containers/libpod/completions/zsh/_podman
 
 zi_completion has'mpv'
 zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv-build/mpv/etc/_mpv.zsh
@@ -271,10 +253,10 @@ zi_completion has'wl-paste'
 zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-paste
 
 zi_completion has'flatpak'
-zinit light "$GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak"
+zinit light $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
 
 zi_completion has'rclone'
-zinit light "$XDG_DATA_HOME/zsh/site-functions/_rclone"
+zinit light $XDG_DATA_HOME/zsh/site-functions/_rclone
 
 zi_completion has'beet'
 zinit snippet 'https://github.com/beetbox/beets/blob/master/extra/_beet'
@@ -288,57 +270,53 @@ zinit light zchee/zsh-completions
 zi_completion mv'git-completion.zsh -> _git'
 zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
 
-# dasht
-zi_completion is-snippet for \
-	$GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions/_* || true
-zi_completion is-snippet for \
-	$GHQ_ROOT/codeberg.org/dnkl/foot/completions/zsh/_foot \
-	$GHQ_ROOT/codeberg.org/dnkl/foot/completions/zsh/_footclient
+zi_completion
+zinit light $GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions
+zi_completion multisrc'_*' pick'/dev/null'
+zinit light /usr/share/zsh/site-functions
+zi_completion pick'_foot' src'footclient'
+zinit light $GHQ_ROOT/codeberg.org/dnkl/foot/completions/zsh
 
+SHELL_COMMON=$XDG_CONFIG_HOME/shell_common
+
+zi_completion has'pip'
+zinit snippet $SHELL_COMMON/zsh/completions/_pip
+
+zi_completion has'poetry'
+zinit snippet $SHELL_COMMON/zsh/completions/_poetry
+
+zi0a has'thefuck'
+zinit snippet $SHELL_COMMON/zsh/thefuck/thefuck.sh
+
+zi0b
+zinit snippet $XDG_CONFIG_HOME/less/less_termcap.sh
+
+zi0a pick'aliases.sh' multisrc'functions_ghq.sh pash.sh functions.sh aliases_private.sh'
+zinit light $SHELL_COMMON
+
+zi0b
+zinit snippet "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 
 # the following will run after everything else happens
 finish_setup() {
-	# command -v conda >/dev/null && alias condaify='eval "$(conda shell.zsh hook 2>/dev/null)"'
-	# dircolors: commented out cuz it's useless with fzf-tab, fz, and z.lua
-	# eval "$(dircolors)"
-	# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-	# give less pretty colors
-	# shellcheck source=../../less/less_termcap.sh
-	. "$XDG_CONFIG_HOME/less/less_termcap.sh"
-	. "$XDG_CONFIG_HOME/lf/lf_icons.sh"
-	# aliases
-	SHELL_COMMON="$HOME/.config/shell_common"
-	# shellcheck source=/home/.config/shell_common/aliases.sh
-	. "$SHELL_COMMON/aliases.sh"
-	# shellcheck source=/home/.config/shell_common/aliases_private.sh
-	[ -f "$SHELL_COMMON/aliases_private.sh" ] \
-		&& . "$SHELL_COMMON/aliases_private.sh" # Not committing private info
-	# shellcheck source=/home/.config/shell_common/functions.sh
-	. "$SHELL_COMMON/functions.sh"
-	# command -v rustup >/dev/null && . <(rustup completions zsh)
+	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+	zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --icons --group-directories-first --color=always $realpath'
+	zstyle ':fzf-tab:complete:man:*' fzf-preview 'man $word'
+	# zstyle ':fzf-tab:*' fzf-command fzf-tmux
+	zstyle ':fzf-tab:*' single-group ''
+	zstyle ':fzf-tab:complete:_zlua:*' query-string input
+	zstyle ':fzf-tab:complete:_fz:*' query-string input
 	GPG_TTY="$(tty)" && export GPG_TTY
 	[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
 	# yadm equivalent of forgit commands
 	where forgit::diff | sed -e 's/git /yadm /g' -e 's/forgit::diff/yd/' | source /dev/stdin
-	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /_ya /' | sd ' fzf$' " fzf | sd '...  ' '/home/rkumar/' | xargs yadm add" | source /dev/stdin
+	where yd | sed -e 's/ --bind.*$//' -e 's/^yd /_ya /' | sd ' fzf$' " fzf | sd '...  ' "$HOME" | xargs yadm add" | source /dev/stdin
 	function ya() {
 		yadm add "$HOME/$(_ya | awk '{print $2}')"
 	}
-	# shellcheck source=/dev/null
-	. "$XDG_CONFIG_HOME/broot/launcher/bash/br"
-	command -v thefuck >/dev/null && . <(thefuck --alias)
-	command -v kitty >/dev/null && . <(kitty + complete setup zsh 2>/dev/null)
-	command -v pip >/dev/null && . <(pip completion --zsh)
-	command -v poetry >/dev/null && . <(poetry completions zsh) 2>/dev/null
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
 	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
-	# load system completions
-	if [ -f /usr/share/zsh/site-functions/_systemctl ]; then
-	zi_completion is-snippet for \
-		/usr/share/zsh/site-functions/_*ctl
-	fi
-
 }
 
 zi0c atinit'zpcompinit; zpcdreplay; finish_setup'
