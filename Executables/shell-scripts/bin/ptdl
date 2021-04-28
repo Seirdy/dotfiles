@@ -1,0 +1,54 @@
+#!/usr/bin/env dash
+# Download PeerTube videos over BitTorrent using aria2
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [URL]
+
+Downloads a PeerTube video through BitTorrent using youtube-dl and aria2
+
+Youtube-dl supports PeerTube, but it downloads over HTTP instead of
+BitTorrent. This script uses youtube-dl to select the best format and
+downloads/seeds it over BitTorrent.
+
+Options:
+  -h, --help            Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-*)
+			bad_option "$1" 'invalid option'
+			;;
+		*)
+			url="$1"
+			;;
+	esac
+	shift
+done
+
+# edit the video URL to become the link to the torrent file, then download it with aria2
+ytdl_url="$(youtube-dl -f best -g "$url")"
+torrent_url="$(echo "$ytdl_url" | sed -Ee 's|static/webseed|download/torrents|' -e 's/\.(mp4|webm|mkv)$/\.torrent/')"
+
+aria2c "$torrent_url"
+
+# vi:ft=sh
