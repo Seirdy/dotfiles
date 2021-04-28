@@ -5,11 +5,11 @@
 alias \$=''
 
 alias ls='ls --color=auto'
-alias exa-fancy='exa -h --icons --group-directories-first --color=always'
-alias l='lsd --group-dirs first --color always --icon always --icon-theme fancy'
-alias ll='exa-fancy -l --time-style=long-iso'              # Better output than ls -l
-alias lll='exa-fancy -l --time-style=full-iso -s modified' # Show full timestamp
-alias la='l -A'
+alias exa-fancy='exa -h --icons --group-directories-first --color=always' # kept for legacy reasons
+alias l='exa -h --icons --group-directories-first --color=always'
+alias ll='l -l --time-style=long-iso'              # Better output than ls -l
+alias lll='l -l --time-style=full-iso -s modified' # Show full timestamp
+alias la='l -a'
 alias lla='ll -a'
 alias lls='ll -s size'
 alias llas='lla -s size'
