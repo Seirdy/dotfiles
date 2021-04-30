@@ -16,7 +16,7 @@ else
 				*.pdf)
 					exec zathura "$1"
 					;;
-				*.webp)
+				*.webp|*.avif)
 					exec imv "$1"
 					;;
 				*)

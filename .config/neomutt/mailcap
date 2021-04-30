@@ -1,0 +1,4 @@
+text/html; w3m-sandbox; copiousoutput;
+application/*; xdg-open '%s'; test=test -n "$WAYLAND_DISPLAY"
+image/*; xdg-open '%s'; test=test -n "$WAYLAND_DISPLAY"
+video/*; xdg-open '%s'; test=test -n "$WAYLAND_DISPLAY"

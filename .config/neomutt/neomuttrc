@@ -2886,7 +2886,7 @@ set from="seirdy@seirdy.one"
 # how often (in seconds) NeoMutt will update message counts.
 #
 #
-# set mailcap_path="~/.mailcap:/usr/share/neomutt/mailcap:/etc/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
+set mailcap_path="~/.config/neomutt/mailcap:~/.mailcap:/usr/share/neomutt/mailcap:/etc/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
 #
 # Name: mailcap_path
 # Type: string list
