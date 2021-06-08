@@ -32,5 +32,5 @@ marquee=false
 [[block]]
 block = "bluetooth"
 mac = "BC:F2:92:28:14:65"
-label = ""
+format = "{percentage}%"
 hide_disconnected = true

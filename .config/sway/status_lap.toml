@@ -8,11 +8,13 @@ driver = "upower"
 format = "{percentage}%"
 
 [[block]]
-block="net"
-device = "wlp0s20u3u4"
-# signal_strength = true
-use_bits = true
+block = "net"
+# device = "enp0s25"
+# ip = false
 interval = 5
+# icons_format = "{icon} "
+# signal_strength = true
+format = "{signal_strength}"
 
 [[block]]
 block = "maildir"
