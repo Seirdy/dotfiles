@@ -297,7 +297,7 @@ zinit snippet $XDG_CONFIG_HOME/less/less_termcap.sh
 zi0a pick'aliases.sh' multisrc'functions_ghq.sh pash.sh functions.sh aliases_private.sh'
 zinit light $SHELL_COMMON
 
-zi0b
+zi0b has'broot'
 zinit snippet "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 
 # the following will run after everything else happens
