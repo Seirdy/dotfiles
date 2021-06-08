@@ -214,8 +214,8 @@ zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rust/_rust
 zi_completion has'rg'
 zinit snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 
-zi_completion has'yadm' mv'yadm.zsh_completion -> _yadm'
-zinit snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/yadm.zsh_completion
+zi_completion has'yadm'
+zinit snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/zsh/_yadm
 
 zi_completion has'msync' mv'msync_complete.sh -> _msync'
 zinit snippet $GHQ_ROOT/github.com/Kansattica/msync/scripts/msync_complete.sh
