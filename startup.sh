@@ -18,9 +18,24 @@
 if [ -n "$PROFILE_SET" ]; then
 	exit
 fi
+
+# why is telelmetry opt-out
+# if you have to implement telmetry that's opt-out instead of opt-in, please think
+# about what you're doing and, if you can, have a conversation about ethical
+# concerns with the higher-ups who made the decision.
 export DO_NOT_TRACK=1 # https://consoledonottrack.com/
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_INTERACTIVE_CLI_TELEMETRY_OPTOUT=1
 export HINT_TELEMETRY="off"
+export GATSBY_TELEMETRY_OPT_OUT=1
+export NEXT_TELEMETRY_DEBUG=1
+export NUXT_TELEMETRY_DISABLED=1
+export ET_NO_TELEMETRY=1
+export INFLUXD_REPORTING_DISABLED=true
+export NG_CLI_ANALYTICS=false
+export CHOOSENIM_NO_ANALYTICS=1
+export POWERSHELL_TELEMETRY_OPTOUT=1 # had to use this once for a class.
+
 find_alt() {
 	for i; do
 		command -v "$i" >/dev/null && {
@@ -200,9 +215,10 @@ pathadd_head "$OPAM_SWITCH_PREFIX/bin"                # opam
 pathadd_head "$CARGO_HOME/bin"                        # cargo (rust)
 pathadd_head "$HOME/Executables/zsh-bin/bin"          # static portable zsh
 pathadd_head "$HOME/.local/sbin"                      # local sbin
-pathadd_head "$HOME/.local/bin"                       # local bin
 pathadd_head "$HOME/Executables/shell-scripts/bin"    # my shell scripts
 pathadd_head "$HOME/Executables/shell-scripts/mblaze" # my mblaze scripts
+pathadd_head "$HOME/.local/bin"                       # local bin
+pathadd_head "/tmp/bin"                               # binaries like mpv perform better when in /tmp
 
 # Detect my OS
 unameOut="$(uname -s)"
