@@ -107,6 +107,7 @@ alias tarlz='tar -I "lzip --best" -cvf'
 # nnn-based ncdu alternative
 alias nnncdu='n -T d -dH'
 # Aliases that change existing commands
+alias ffprobe='ffprobe -hide_banner'
 alias tuir='LESS="-x 2 -ir" tuir --enable-media'
 alias sub='tuir -s'
 alias ddgr='ddgr -x'
