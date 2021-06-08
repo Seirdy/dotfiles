@@ -132,7 +132,9 @@ gitssearch() {
 	$BROWSER "$(_ghsearch_starred_url "$*")"
 }
 
-# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh
-. "$(dirname "$0")/functions_ghq.sh"
-# shellcheck source=/home/rkumar/.config/shell_common/pash.sh
-. "$(dirname "$0")/pash.sh"
+if [ -z "$IN_ZINIT" ]; then
+	# shellcheck source=/home/rkumar/.config/shell_common/functions_ghq.sh
+	. "$(dirname "$0")/functions_ghq.sh"
+	# shellcheck source=/home/rkumar/.config/shell_common/pash.sh
+	. "$(dirname "$0")/pash.sh"
+fi
