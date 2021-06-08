@@ -242,7 +242,7 @@ zi_completion has'youtube-dl' mv'youtube-dl.zsh -> _youtube-dl'
 zinit snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.zsh
 
 zi_completion has'mpv'
-zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv-build/mpv/etc/_mpv.zsh
+zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv/etc/_mpv.zsh
 
 # zi_completion has'se'
 # zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
