@@ -24,6 +24,11 @@ ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 		--with-system-dbus-proxy \
 		--with-priv-mode=none
 
+export CFLAGS="$CFLAGS_LTO" \
+	LDFLAGS="$CFLAGS_LTO" \
+	CXXFLAGS="$CFLAGS_LTO" \
+	CPPFLAGS="$CFLAGS_LTO"
+
 # bubblewrap: sandbox any command. Dependency of Flatpak
 ghq_get_cd https://github.com/containers/bubblewrap.git \
 	&& env NOCONFIGURE=1 ./autogen.sh \
@@ -51,6 +56,11 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 # lrzip
 ghq_get_cd 'https://github.com/ckolivas/lrzip.git' && CFLAGS="$CFLAGS -fomit-frame-pointer" CXXFLAGS="$CXXFLAGS -fomit-frame-pointer" simple_autotools --enable-asm
 
+# zopfli + zopflipng
+export CFLAGS="$CFLAGS_LTO -fpie -static-pie" && export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+ghq_get_cd 'https://github.com/google/zopfli.git' && fancy_cmake -DBUILD_SHARED_LIBS=OFF
+export CFLAGS="$CFLAGS_LTO" && export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
 
@@ -66,18 +76,41 @@ ghq_get_cd https://github.com/caryll/otfcc.git \
 	&& make config=release_x64 \
 	&& install -m 0755 "$GHQ_ROOT/github.com/caryll/otfcc/bin/release-x64"/otfcc* "$BINPREFIX"
 
-# cflags for building some libs
-cflags_old="$CFLAGS"
-export CFLAGS="$CFLAGS_LTO -fPIC -ffat-lto-objects"
-export LDFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
 ghq_get_cd 'https://github.com/swaywm/wlroots.git' \
 	&& simple_meson -Dexamples=false -Dxwayland=enabled -Dlogind-provider=systemd -Dlogind=enabled -Dxcb-errors=disabled -Dxcb-icccm=enabled -Dwerror=false --default-library both
+ghq_get_cd https://github.com/harfbuzz/harfbuzz.git \
+	&& simple_meson -Dcairo=enabled -Dfontconfig=enabled -Dicu=enabled -Dgraphite=enabled -Dgdi=enabled -Ddirectwrite=disabled -Dcoretext=disabled -Dtests=disabled -Ddocs=disabled --default-library=static
+ghq_get_cd https://github.com/netflix/vmaf.git && cd libvmaf \
+	&& simple_meson -Denable_asm=true -Denable_avx512=false -Denable_tests=false -Denable_float=true -Dbuilt_in_models=true --default-library=static
+# for nginx, jpeg-xl, and a bunch of programs using fontconfig
+ghq_get_cd https://github.com/google/brotli.git && fancy_cmake
+export CFLAGS="$CLANGFLAGS_LTO" CXXFLAGS="$CLANGFLAGS_LTO" CPPFLAGS="$CLANGFLAGS_LTO" LDFLAGS="$CLANGFLAGS_LTO" CC='clang' CXX='clang++'
+# for jpeg-xl and libaom
+ghq_get_cd https://github.com/google/highway.git && fancy_cmake -DBUILD_TESTS=off
+CFLAGS="$CFLAGS $(pkg-config --libs --cflags --static libbrotlicommon libbrotlienc libbrotlidec)"
+export CFLAGS="$CFLAGS" LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+ghq_get_cd https://gitlab.com/wg1/jpeg-xl.git && fancy_cmake -DJPEGXL_ENABLE_BENCHMARK=false -DJPEGXL_ENABLE_FUZZERS=false -DJPEGXL_FORCE_SYSTEM_HWY=true -DJPEGXL_FORCE_SYSTEM_BROTLI=ON -DBUILD_TESTING=OFF -DJPEGXL_WARNINGS_AS_ERRORS=OFF -DJPEGXL_FORCE_SYSTEM_GTEST=ON
+
+export CFLAGS="$CFLAGS_LTO" LDFLAGS="$CFLAGS_LTO" CXXFLAGS="$CFLAGS_LTO" CPPFLAGS="$CFLAGS_LTO"
+unset CC CXX
+
 # aom reference impl.
 ghq_get_cd https://aomedia.googlesource.com/aom.git \
-	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 -DBUILD_SHARED_LIBS=0
-ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled --default-library=static
-ghq_get_cd https://code.videolan.org/videolan/dav1d.git && simple_meson -Denable_asm=true -Denable_avx512=true -Denable_tests=false --default-library=static
-ghq_get_cd https://github.com/matrix-org/olm.git && fancy_cmake
+	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 -DBUILD_SHARED_LIBS=0 -DCONFIG_WEBM_IO=1 -DCONFIG_TUNE_VMAF=1 -DCONFIG_TUNE_BUTTERAUGLI=1 -DENABLE_EXAMPLES=1 -DENABLE_CCACHE=1
+ghq_get_cd https://gitlab.com/AOMediaCodec/SVT-AV1.git && {
+	ln -s Build build || echo 'build directory already created'
+} && fancy_cmake -G"Unix Makefiles" -DBUILD_SHARED_LIBS=OFF
+ghq_get_cd https://code.videolan.org/videolan/dav1d.git && mkcd build && meson .. -Denable_asm=true -Denable_avx512=false -Denable_tests=false -Denable_tools=true -Denable_examples=false --default-library=static -Db_pgo=generate --prefix="$PREFIX" --libdir="$PREFIX/lib" --buildtype=release && ninja && ./tools/dav1d -i "$HOME/Videos/bench/sol_levante/sol_levante_volcano_libaom.ivf" --framethreads=4 --tilethreads=2 --muxer null -o outfile && meson configure -Db_pgo=use && ninja && ninja install
+ghq_get_cd 'https://bitbucket.org/multicoreware/x265_git.git' \
+	&& cmake -S source -B build-12 -G Ninja -DCMAKE_INSTALL_PREFIX="$PREFIX" -DHIGH_BIT_DEPTH=TRUE -DMAIN12=TRUE -DEXPORT_C_API=FALSE -DENABLE_CLI=FALSE -DENABLE_SHARED=FALSE -DENABLE_PIC=TRUE -DENABLE_TESTS=FALSE -DENABLE_SHARED=FALSE -DENABLE_LIBNUMA=TRUE -Wno-dev && ninja -C build-12 \
+	&& cmake -S source -B build-10 -G Ninja -DCMAKE_INSTALL_PREFIX="$PREFIX" -DHIGH_BIT_DEPTH=TRUE -DEXPORT_C_API=FALSE -DENABLE_CLI=FALSE -DENABLE_SHARED=FALSE -DENABLE_PIC=TRUE -DENABLE_TESTS=FALSE -DENABLE_SHARED=FALSE -DENABLE_LIBNUMA=TRUE -Wno-dev && ninja -C build-10 \
+	&& cmake -S source -B build -G Ninja -DCMAKE_INSTALL_PREFIX="$PREFIX" -DENABLE_HDR10_PLUS=TRUE -DEXTRA_LIB='x265_main10.a;x265_main12.a' -DEXTRA_LINK_FLAGS='-L .' -DLINKED_10BIT=TRUE -DLINKED_12BIT=TRUE -DENABLE_CLI=TRUE -DENABLE_PIC=TRUE -DENABLE_TESTS=FALSE -DENABLE_SHARED=FALSE -DENABLE_LIBNUMA=TRUE -Wno-dev \
+	&& {
+		ln -s ../build-10/libx265.a build/libx265_main10.a && ln -s ../build-12/libx265.a build/libx265_main12.a || echo 'symlinks already exist'
+	} \
+	&& ninja -C build && ninja -C build install
+ghq_get_cd https://github.com/strukturag/libde265.git && simple_autotools --enable-static --disable-shared --disable-arm --with-pic && rm "$PREFIX/bin/test"
+ghq_get_cd https://github.com/strukturag/libheif.git && simple_autotools --enable-static --disable-shared --disable-go --disable-examples --enable-local-rav1e --enable-rav1e
 ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 	&& ./configure \
 		--enable-vp8 \
@@ -89,6 +122,8 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 		--enable-vp9-decoder \
 		--enable-vp9-encoder \
 		--enable-experimental \
+		--disable-examples \
+		--disable-unit-tests \
 		--disable-shared \
 		--enable-static \
 		--enable-runtime-cpu-detect \
@@ -100,29 +135,79 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libwebp' \
 	&& env NOCONFIGURE=1 ./autogen.sh \
 	&& configure_install --enable-static --disable-shared --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --disable-neon
 ghq_get_cd 'https://gitlab.freedesktop.org/pixman/pixman.git' \
-	&& simple_meson --auto-features=auto --default-library=static
+	&& simple_meson --auto-features=auto --default-library=static -Denable_tests=false -Denable_gtk=false
+ghq_get_cd 'https://github.com/libass/libass.git' && env NOCONFIGURE=1 ./autogen.sh && configure_install --enable-static --disable-shared --disable-test --disable-directwrite --disable-coretext
+# for the RIST streaming protocol, used in ffmpeg
+ghq_get_cd 'https://code.videolan.org/rist/librist.git' && simple_meson -Dtest=false
+# build ffmpeg, with the g++ linker to allow linking against libvmaf>=2.0.0 properly
+# See https://github.com/Netflix/vmaf/issues/788
+ghq_get_cd 'https://git.ffmpeg.org/ffmpeg.git' \
+	&& ./configure --prefix="$PREFIX" --bindir="$BINPREFIX" --datadir="$XDG_DATA_HOME" --libdir="$PREFIX/lib" --mandir="$MANPREFIX" \
+		--enable-static --disable-shared --disable-debug --arch=x86_64 --cpu=haswell --enable-pic \
+		--ld=g++ --extra-libs=-lm --extra-libs=-pthread --enable-lto \
+		--enable-version3 \
+		--enable-bzlib \
+		--disable-crystalhd \
+		--enable-fontconfig \
+		--enable-frei0r \
+		--enable-gcrypt \
+		--enable-gnutls \
+		--enable-ladspa \
+		--enable-librav1e \
+		--enable-libaom \
+		--enable-libsvtav1 \
+		--enable-libdav1d \
+		--enable-libass \
+		--disable-libcdio \
+		--enable-libdrm \
+		--enable-libjack \
+		--enable-libfreetype \
+		--enable-libfribidi \
+		--enable-libgsm \
+		--disable-cuda-nvcc --disable-cuda-llvm --disable-cuvid --disable-ffnvcodec --disable-nvdec \
+		--disable-d3d11va --disable-dxva2 --disable-audiotoolbox \
+		--enable-libmp3lame \
+		--disable-nvenc \
+		--enable-openal \
+		--enable-opencl \
+		--enable-opengl \
+		--enable-libopenjpeg \
+		--enable-libopus \
+		--enable-libpulse \
+		--enable-librsvg \
+		--enable-libsoxr \
+		--enable-libspeex \
+		--enable-libssh \
+		--enable-libtheora \
+		--enable-libvorbis \
+		--enable-libv4l2 \
+		--enable-libvidstab \
+		--enable-libvmaf \
+		--enable-libvpx \
+		--enable-libwebp \
+		--enable-libx264 \
+		--enable-libx265 \
+		--enable-libxvid \
+		--enable-libzimg \
+		--enable-libzvbi \
+		--enable-avfilter \
+		--enable-postproc \
+		--enable-pthreads \
+		--enable-librist \
+		--enable-gpl \
+		--disable-debug \
+		--enable-libmfx \
+		--enable-runtime-cpudetect \
+		--disable-vdpau \
+	&& make_install
+ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled --default-library=static -Ddemos=false -Dtests=false
 # neovim dep
 ghq_get_cd 'https://github.com/tree-sitter/tree-sitter.git' && make_install
-
+export CFLAGS="$CFLAGS_LTO" LDFLAGS="$CFLAGS_LTO" CXXFLAGS="$CFLAGS_LTO" CPPFLAGS="$CFLAGS_LTO"
 # for building statically-linked tmux
 ghq_get_cd 'https://github.com/libevent/libevent.git' && ./autogen.sh && configure_install --disable-shared --enable-static
 
-export CFLAGS="$cflags_old" LDFLAGS="$cflags_old" CPPFLAGS="$cflags_old" CXXFLAGS="$cflags_old"
-
-# avif encoding and decoding (converting to png)
-ghq get -u https://github.com/link-u/cavif.git && ghq get -u https://github.com/link-u/davif.git
-# prepare cavif deps that don't get cloned
-[ -d "$GHQ_ROOT/github.com/link-u/cavif/external/Little-CMS" ] \
-	|| git clone --recurse-submodules --recursive \
-		git@github.com:mm2/Little-CMS.git \
-		"$GHQ_ROOT/github.com/link-u/cavif/external/Little-CMS"
-[ -d "$GHQ_ROOT/github.com/link-u/davif/external/Little-CMS" ] \
-	|| {
-		mkdir -p "$GHQ_ROOT/github.com/link-u/davif/external/" \
-			&& cp -r "$GHQ_ROOT/github.com/link-u/cavif/external/Little-CMS" "$GHQ_ROOT/github.com/link-u/davif/external/Little-CMS"
-	}
-cd "$GHQ_ROOT/github.com/link-u/davif" && fancy_cmake
-cd "$GHQ_ROOT/github.com/link-u/cavif" && fancy_cmake
+ghq_get_cd https://github.com/AOMediaCodec/libavif.git && fancy_cmake -DAVIF_CODEC_AOM=1 -DAVIF_CODEC_DAV1D=1 -DAVIF_CODEC_RAV1E=1 -DAVIF_CODEC_SVT=1 -DBUILD_SHARED_LIBS=0 -DAVIF_BUILD_APPS=1 -DAVIF_BUILD_GDK_PIXBUF=0 -DAVIF_LIBYUV_ENABLED=1 -DENABLE_CCACHE=0
 
 # waifu2x-ncnn-vulkan
 ghq_get_cd https://github.com/nihui/waifu2x-ncnn-vulkan.git \
@@ -134,12 +219,12 @@ ghq_get_cd https://github.com/nihui/waifu2x-ncnn-vulkan.git \
 # mpv, with ffmpeg/libass statically linked
 # shellcheck disable=SC2169
 ghq_get_cd https://github.com/mpv-player/mpv-build.git \
-	&& /bin/printf '--arch=x86_64\n--enable-version3\n--enable-bzlib\n--disable-crystalhd\n--enable-fontconfig\n--enable-frei0r\n--enable-gcrypt\n--enable-gnutls\n--enable-ladspa\n--enable-libaom\n--enable-libdav1d\n--enable-libass\n--disable-libcdio\n--enable-libdrm\n--enable-libjack\n--enable-libfreetype\n--enable-libfribidi\n--enable-libgsm\n--enable-libmp3lame\n--enable-nvenc\n--enable-openal\n--enable-opencl\n--enable-opengl\n--enable-libopenjpeg\n--enable-libopus\n--enable-libpulse\n--enable-librsvg\n--enable-libsoxr\n--enable-libspeex\n--enable-libssh\n--enable-libtheora\n--enable-libvorbis\n--enable-libv4l2\n--enable-libvidstab\n--enable-libvmaf\n--enable-libvpx\n--enable-libwebp\n--enable-libx264\n--enable-libx265\n--enable-libxvid\n--enable-libzimg\n--enable-libzvbi\n--enable-avfilter\n--disable-avresample\n--enable-postproc\n--enable-pthreads\n--enable-gpl\n--disable-debug\n--enable-libmfx\n--enable-runtime-cpudetect\n--disable-vdpau' >ffmpeg_options \
+	&& /bin/printf '--arch=x86_64\n--enable-version3\n--enable-bzlib\n--disable-crystalhd\n--enable-fontconfig\n--enable-frei0r\n--enable-gcrypt\n--enable-gnutls\n--enable-ladspa\n--enable-libaom\n--enable-libdav1d\n--enable-libass\n--disable-libcdio\n--enable-libdrm\n--enable-libjack\n--enable-libfreetype\n--enable-libfribidi\n--enable-libgsm\n--enable-libmp3lame\n--disable-nvenc\n--enable-openal\n--enable-opencl\n--enable-opengl\n--enable-libopenjpeg\n--enable-libopus\n--enable-libpulse\n--enable-librsvg\n--enable-libsoxr\n--enable-libspeex\n--enable-libssh\n--enable-libtheora\n--enable-libvorbis\n--enable-libv4l2\n--enable-libvidstab\n--enable-libvmaf\n--enable-libvpx\n--enable-libwebp\n--enable-libx264\n--enable-libx265\n--enable-libxvid\n--enable-libzimg\n--enable-libzvbi\n--enable-avfilter\n--disable-avresample\n--enable-postproc\n--enable-pthreads\n--enable-gpl\n--disable-debug\n--enable-libmfx\n--enable-runtime-cpudetect\n--disable-vdpau' >ffmpeg_options \
 	&& /bin/printf "--prefix=$PREFIX\n--datarootdir=$CONFIGPREFIX\n--mandir=$MANPREFIX\n--confdir=$CONFIGPREFIX\n--lua=luajit\n--disable-android\n--disable-audiounit\n--disable-caca\n--disable-cdda\n--disable-cocoa\n--disable-coreaudio\n--disable-cuda-hwaccel\n--disable-cuda-interop\n--disable-d3d-hwaccel\n--disable-d3d11\n--disable-d3d9-hwaccel\n--disable-debug-build\n--disable-direct3d\n--disable-dvdnav\n--disable-egl-android\n--disable-egl-angle\n--disable-egl-angle-lib\n--disable-egl-angle-win32\n--disable-egl-x11\n--disable-gl-cocoa\n--disable-gl-dxinterop\n--disable-gl-dxinterop-d3d9\n--disable-gl-win32\n--disable-gl-x11\n--disable-ios-gl\n--disable-libbluray\n--disable-macos-10-11-features\n--disable-macos-10-12-2-features\n--disable-macos-10-14-features\n--disable-macos-cocoa-cb\n--disable-macos-media-player\n--disable-macos-touchbar\n--disable-rpi\n--disable-rpi-mmal\n--disable-sdl2\n--disable-swift\n--disable-tvos\n--disable-vaapi-x-egl\n--disable-vaapi-x11\n--disable-vdpau\n--disable-videotoolbox-gl\n--disable-wasapi\n--disable-win32-internal-pthreads\n--disable-x11\n--disable-xv\n--enable-gl-wayland\n--enable-libarchive\n--enable-libmpv-shared\n--enable-vaapi-wayland\n--enable-wayland\n--enable-wayland-protocols\n--enable-wayland-scanner\n--enable-shaderc\n--enable-vulkan" >mpv_options \
-	&& dash ./use-ffmpeg-release && dash ./use-mpv-master && dash ./use-libass-master \
+	&& dash ./use-ffmpeg-master && dash ./use-mpv-master && dash ./use-libass-master \
 	&& dash ./update && dash ./clean \
 	&& dash ./scripts/libass-config && dash ./scripts/libass-build \
-	&& cp "$LIBPREFIX/libpixman-1.a" ./build_libs/ \
+	&& cp "$LIBPREFIX/libpixman-1.a" "$LIBPREFIX"/libwebp*.a "$LIBPREFIX/libzstd.a" "$LIBPREFIX/libplacebo.a" ./build_libs/ \
 	&& dash ./scripts/ffmpeg-config && dash ./scripts/ffmpeg-build \
 	&& install -m 0755 ffmpeg_build/ffmpeg "$BINPREFIX" \
 	&& install -m 0755 ffmpeg_build/ffplay "$BINPREFIX" \
@@ -214,7 +299,6 @@ ghq_get_cd https://github.com/facebook/zstd.git \
 		--prefix "$PREFIX" \
 		--libdir "$PREFIX/lib" \
 		--buildtype release \
-		--optimization 3 \
 		-Dbin_programs=true \
 		-Dbin_contrib=true \
 		--default-library=static \
@@ -230,11 +314,6 @@ ghq_get_cd https://github.com/akinomyoga/cxxmatrix && make_install
 
 # bcal
 ghq_get_cd https://github.com/jarun/bcal.git && make_install
-
-# nnn
-ghq_get_cd https://github.com/jarun/nnn.git && make O_PCRE=1 strip && make install
-
-ghq_get_cd https://github.com/openSUSE/catatonit.git && simple_autotools
 
 # kitty
 ghq_get_cd https://github.com/kovidgoyal/kitty.git \
@@ -302,21 +381,6 @@ ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 # stuff that needs LDFLAGS empty
 unset LIBLDFLAGS
-
-# aria2: download accelerator
-ghq_get_cd 'https://github.com/aria2/aria2.git' \
-	&& aclocal \
-	&& simple_autotools --enable-gnutls-system-crypto-policy --enable-epoll --with-libcares --with-ca-bundle='/etc/ssl/certs/ca-bundle.crt'
-
-# crun: container runtime. Better than runc.
-ghq_get_cd https://github.com/containers/crun.git \
-	&& ./autogen.sh \
-	&& configure_install
-
-# slirp4netns: required for many rootless container setups and Flatpak
-ghq_get_cd https://github.com/rootless-containers/slirp4netns \
-	&& ./autogen.sh \
-	&& configure_install
 
 end_time=$(date '+%s')
 elapsed=$(echo "$end_time - $start_time" | bc)

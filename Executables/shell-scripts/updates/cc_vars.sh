@@ -26,16 +26,16 @@ if [ "$CROSS_COMPILING" = 1 ]; then
 else
 	export EXECUTABLES="$HOME/Executables"
 fi
-CFLAGS="-O3 -DNDEBUG -mcpu=$ARCH -mtune=$ARCH -march=$ARCH -g -pipe -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-parameter -Wno-error=unused-variable -fPIC -fPIE"
-export CLANGFLAGS="$CFLAGS -fuse-ld=lld -L. -Wno-error=unused-parameter -Wno-error=unused-variable"
-export CFLAGS="$CFLAGS -Wno-error=unused-but-set-variable -fstack-clash-protection -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1"
-export LDFLAGS="$CFLAGS" # strip binaries
+CFLAGS="-O3 -DNDEBUG -march=$ARCH -fno-semantic-interposition -fipa-pta -fdevirtualize-at-ltrans -g -pipe -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-parameter -Wno-error=unused-variable -fPIC -fPIE -ffunction-sections -fdata-sections"
+export CLANGFLAGS="$CFLAGS -fuse-ld=lld"
+export CFLAGS="$CFLAGS -Wno-error=unused-but-set-variable -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1"
+export LDFLAGS="$CFLAGS -Wl,-z,relro -Wl,--as-needed -Wl,-z,now -Wl,-E -Wl,--gc-sections -Wl,-s" # strip binaries
 export CXXFLAGS="$CFLAGS"
 export CPPFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"
 export FCFLAGS="$FFLAGS"
 export RUSTFLAGS="-C opt-level=3 -C target-cpu=$ARCH -C link-arg=-s"
-export CFLAGS_LTO="$CLANGFLAGS -flto -ffat-lto-objects"
+export CFLAGS_LTO="$CFLAGS -flto -ffat-lto-objects"
 export CFLAGS_SIMPLE="-O3 -march= -g -pipe -s -flto -m64"
 [ -z "$CARGO_INSTALL_OPTS" ] && export CARGO_INSTALL_OPTS='--all-features -Z unstable-options'
 

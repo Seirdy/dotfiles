@@ -7,7 +7,8 @@ set -e
 . "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
-export CFLAGS="$CFLAGS_LTO -Wno-missing-profile"
+CFLAGS="-O3 -DNDEBUG -mcpu=native -mtune=native -march=native -g -pipe -Wformat -Werror=format-security -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -s -fPIC -fPIE -fuse-ld=lld -L. -flto -ffat-lto-objects $(pkg-config --cflags --libs --static xkbcommon pixman-1 libbrotlicommon libbrotlidec) -Wno-missing-profile"
+export CFLAGS
 export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 ghq_get_cd "https://codeberg.org/dnkl/foot.git"
 mkdir -p bld/release subprojects
@@ -22,7 +23,8 @@ meson configure -Db_pgo=generate
 # libxkbcommon, and libfontconfig + their deps
 ninja
 foot_tmp_file=$(mktemp)
-./foot sh -c "../../scripts/generate-alt-random-writes.py --scroll --scroll-region --colors-regular --colors-bright --colors-256 --colors-rgb --attr-bold --attr-italic --attr-underline ${foot_tmp_file} && cat ${foot_tmp_file}"
+python3 ../../scripts/generate-alt-random-writes.py --scroll --scroll-region --colors-regular --colors-bright --colors-256 --colors-rgb --attr-bold --attr-italic --attr-underline ${foot_tmp_file}
+./foot sh -c "cxxmatrix -s rain --frame-rate 120 --diffuse && cat ${foot_tmp_file}"
 rm "${foot_tmp_file}"
 meson configure -Db_pgo=use -Db_lto=true -Dime=false -Dfcft:text-shaping=disabled
 ninja

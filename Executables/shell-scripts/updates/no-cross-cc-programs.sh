@@ -56,6 +56,7 @@ build_libgit2() {
 		&& mkdir -p build && cd build \
 		&& cmake .. \
 			-DCMAKE_BUILD_TYPE=Release \
+			-DENABLE_REPRODUCIBLE_BUILDS=ON \
 			-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
 			-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
 			-DTHREADSAFE=ON \
