@@ -1,2 +1,2 @@
-user_pref("layout.css.devPixelsPerPx", "1.13");
+user_pref("layout.css.devPixelsPerPx", "1.1");
 
