@@ -1,0 +1,91 @@
+/* CSS that adds the bare minimum for a simple layout */
+
+/* This site's CSS does 11 major things:
+ * 1. sans-serif instead of serif for low-res screens.
+ * 2. Consistent font size; <pre> and <code> shouldn't be smaller than regular text.
+ * 3. max text width for readability
+ * 4. single-row nav links widescreen, multiline nav on narrow screens
+ * 5. Soft border around code in case it looks too similar to regular
+ *    text, and to show it continue across more than one line
+ * 6. Horizontally center non-inline images; left-aligned stick out.
+ * 7. Padding/line-height fixes so the above changes don't ruin alignment.
+ * 8. dark.css changes a few colors if the browser wants dark mode.
+ * 9. Make blockquotes stand out a little; some browsers don't make them obvious
+ * 10. Support unstyled lists: for webmentions, post lists, nav links.
+ * Everything else is browser defaults:
+ * default fonts, non-dark-mode colors, etc.
+ */
+
+body {
+	font-size: 18px;
+	line-height: 1.5rem;
+	margin: auto;
+	padding: 15px 30px;
+}
+
+blockquote {
+	border-left: 6px solid #bbb;
+	margin-left: 0;
+	padding-left: 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.75rem;
+}
+
+/* nav links should be easy to tap with fat fingers */
+nav li {
+	padding-right: 0.5rem;
+}
+
+img:not(.u-photo) {
+	display: block;
+	height: auto;
+	margin: auto;
+	max-width: 100%;
+}
+
+pre,
+p code {
+	border: 1px solid #bbb;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+/* Allow horizontal scroll in a pre block, but don't clip it vertically */
+pre {
+	/* csslint ignore:start */
+	overflow: auto visible;
+
+	/* csslint ignore:end */
+	padding: 8px;
+}
+html {
+	background: #0e0e0c;
+	color: #efefe2;
+}
+
+a {
+	color: #ed5;
+}
+
+a:visited {
+	color: #dfddcc;
+}
+
+a:active {
+	color: #c80;
+}
+
+blockquote,
+p code,
+hr,
+pre {
+	border-color: #333;
+}
+
+hr {
+	color: #333;
+}
