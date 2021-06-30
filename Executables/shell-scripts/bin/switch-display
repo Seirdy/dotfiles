@@ -20,15 +20,15 @@ echo "$new_display" >"$display_cfg"
 # KDE Fonts
 # i don't use kde anymore but what the hell
 if [ "$new_display" = "mon" ]; then
-	sans_font="Source Sans Pro,12,-1,5,50,0,0,0,0,0,Regular"
-	mono_font="monospace, 12,-1,5,50,0,0,0,0,0,Regular"
-	small_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
-	gsettings set org.gnome.desktop.interface font-name 'Source Sans Pro 12'
+	sans_font="IBM Plex Sans Condensed,11.5,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="monospace, 11.5,-1,5,50,0,0,0,0,0,Regular"
+	small_font="IBM Plex Sans Condensed,10,-1,5,50,0,0,0,0,0,Regular"
+	gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans Condensed 11'
 elif [ "$new_display" = "lap" ]; then
-	sans_font="Source Sans Pro,10,-1,5,50,0,0,0,0,0,Regular"
+	sans_font="IBM Plex Sans Condensed,10,-1,5,50,0,0,0,0,0,Regular"
 	mono_font="monospace, 10,-1,5,50,0,0,0,0,0,Regular"
-	small_font="Source Sans Pro,8,-1,5,50,0,0,0,0,0,Regular"
-	gsettings set org.gnome.desktop.interface font-name 'Source Sans Pro 10'
+	small_font="IBM Plex Sans Condensed,8,-1,5,50,0,0,0,0,0,Regular"
+	gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans Condensed 10'
 else
 	echo "Error; please specify mon or lap"
 	exit 1

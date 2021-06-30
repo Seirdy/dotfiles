@@ -4,7 +4,7 @@
 include "/usr/share/themes/Breeze-Dark/gtk-2.0/gtkrc"
 style "user-font" 
 {
-	font_name="Source Sans Pro Regular"
+	font_name="IBM Plex Sans Condensed"
 }
 widget_class "*" style "user-font"
 gtk-theme-name="Breeze-Dark"
