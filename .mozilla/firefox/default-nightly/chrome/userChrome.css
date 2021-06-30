@@ -20,8 +20,8 @@
 	--ui-border: #616569;
 	--ui-lightest: #A5AEB3;
 	--ui-faded_text: #818C91;
-	--tab-icon-dimension: 14px;
-	--compact-urlbar-min-height: 26px;
+	--tab-icon-dimension: 14px !important;
+	--compact-urlbar-min-height: 24px;
 	/* I collapse the tabbar, but tabs themselves shouldn't collapse. */
 	--tab-min-height: 26px !important;
 	--space-above-tabbar: 0 !important;
@@ -30,6 +30,7 @@
 	--lwt-accent-color: var(--ui-accent) !important;
 	--chrome-background-color: var(--ui-basecolor) !important;
 	--tab-selection-background-color: var(--ui-basecolor) !important;
+	--tab-border-radius: 0 !important;
 	--chrome-secondary-background-color: var(--ui-darkcolor) !important;
 	--chrome-content-separator-color: var(--ui-basecolor) !important;
 	--url-and-searchbar-background-color: transparent !important;
@@ -44,20 +45,16 @@
 	--lwt-toolbarbutton-active-background: var(--toolbarbutton-hover-background) !important;
 	--lwt-toolbarbutton-hover-background: var(--toolbarbutton-hover-background) !important;
 	--lwt-toolbar-field-background-color: var(--ui-background) !important;
+	--proton-tab-block-margin: 0;
 }
+#tabbrowser-tabs[haspinnedtabs] {
+	max-height: var(--tab-min-height) !important;
+}
+
 
 .autocomplete-richlistitem .ac-url {
 	color: var(--ui-faded-text) !important;
 	opacity: 0.6 !important;
-}
-
-/*
-Searchbar in overflow menu normally switches from these variables to hardcoded
-values. Manually remind it of the variables it should normally be using.
- */
-#searchbar {
-	background-color: var(--lwt-toolbar-field-background-color) !important;
-	color: var(--lwt-toolbar-field-color) !important;
 }
 
 #urlbar,
@@ -99,14 +96,15 @@ findbar {
 
 /*Reduce distracting addon button colors*/
 #navigator-toolbox .webextension-browser-action .toolbarbutton-icon {
-	filter: grayscale(100%) brightness(180%) opacity(70%) !important;
+	filter: grayscale(100%) brightness(150%) opacity(70%) !important;
+}
+
+.tab-icon-image {
+	filter: grayscale(50%) opacity(90%) !important;
 }
 
 #navigator-toolbox .toolbarbutton-1:hover .toolbarbutton-badge-stack {
 	border: 0 solid var(--ui-accent) !important;
-}
-
-#navigator-toolbox .toolbarbutton-1:hover .toolbarbutton-badge-stack {
 	--toolbarbutton-inner-padding: 5px !important;
 	border-width: 1px !important;
 }
@@ -115,7 +113,18 @@ findbar {
 .tab-stack,
 .tabbrowser-tab {
 	border: none !important;
-	border-width: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	margin-bottom: 0 !important;
+	margin-top: 0px !important;
+}
+
+.tabbrowser-tab {
+	padding-inline: 0 !important;
+	margin: 0 !important;
+}
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) .tabbrowser-tab[first-visible-unpinned-tab] {
+  margin-inline-start: 0px !important;
 }
 
 /* Center all inside tab */
@@ -125,6 +134,7 @@ findbar {
 	align-items: center;
 	min-width: 100% !important;
 	padding: 0 10px !important;
+	margin-top: -1px !important;
 }
 
 /* Prevent tab icons size breaking */
@@ -132,6 +142,12 @@ findbar {
 	min-width: var(--tab-icon-dimension) !important;
 	width: var(--tab-icon-dimension) !important;
 	height: var(--tab-icon-dimension) !important;
+}
+.tabbrowser-tab:not([selected]) .tab-close-button {
+	visibility: collapse !important;
+}
+.tabbrowser-tab:not([selected]):hover .tab-close-button {
+	visibility: visible !important;
 }
 
 /* Adjust tab label width */
@@ -182,7 +198,7 @@ findbar {
 	/* list-style-image: url("moz-icon://stock/window-close-symbolic?size=dialog") !important; */
 	height: var(--tab-icon-dimension);
 	opacity: .8;
-	padding: 2px;
+	padding: 0 !important;
 	width: var(--tab-icon-dimension);
 }
 
@@ -206,7 +222,9 @@ findbar {
 #userContext-indicator[data-identity-icon="circle"],
 /* urlbar magnifying glass icon */
 #identity-box.unknownIdentity > .identity-icon,
-#titlebar-placeholder-on-TabsToolbar-for-captions-buttons, .titlebar-buttonbox-container, .titlebar-spacer
+#titlebar-placeholder-on-TabsToolbar-for-captions-buttons, .titlebar-buttonbox-container, .titlebar-spacer,
+.tab-context-line, /* I set the tab-line color instead */
+#star-button-box, #PanelUI-menu-button, /* New in Proton */
 {
 	display: none !important;
 	visibility: collapse !important;
@@ -267,6 +285,29 @@ findbar {
 
 .tabbrowser-tab .tab-line {
 	opacity: 0.75 !important;
+}
+
+.tabbrowser-tab[selected] .tab-content {
+	border-bottom: 2px solid var(--ui-accent) !important;
+	margin-top: 1px !important;
+}
+.tabbrowser-tab[usercontextid] .tab-content {
+	border-bottom: 2px solid var(--identity-tab-color) !important;
+	margin-top: 1px !important;
+}
+.tabbrowser-tab:not([selected]):not([usercontextid]) .tab-content {
+	border-bottom: none !important;
+	margin-top: -1px !important;
+}
+.tabbrowser-tab:not([selected]):not([usercontextid]):hover .tab-content {
+	border-bottom: 2px solid var(--ui-basecolor) !important;
+	margin-top: 1px !important;
+}
+.tabbrowser-tab:not([selected]) .tab-content {
+	opacity: 0.85 !important;
+}
+.tabbrowser-tab[pending="true"] .tab-content {
+	opacity: 0.5 !important;
 }
 
 /*Fatten selected line when hovered*/
@@ -397,12 +438,46 @@ tab:only-of-type {
 	padding-inline-start: 0 !important;
 	padding-inline-end: 0 !important;
 	background-color: var(--arrowpanel-background) !important;
+	/* max-height: calc(var(--tab-min-height)+2) !important; */
+}
+
+/* bring back tab separators */
+#tabbrowser-tabs {
+	margin-inline-start: -1px !important;
+}
+:is(:root[sizemode='normal'], :root[gtktiledwindow='true']) .tabbrowser-tab:first-of-type {
+  margin-inline-start: 1px !important;
+}
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border-inline-start: 1px solid var(--ui-border);
+}
+.tabbrowser-tab::before {
+  margin-inline-start: -1px;
+}
+
+
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab[beforeselected-visible]::after,
+#tabbrowser-tabs[movingtab] .tabbrowser-tab[visuallyselected]::before,
+.tabbrowser-tab[visuallyselected]::after,
+.tabbrowser-tab[visuallyselected]::before {
+	border: none;
+  margin-block-start: 0;
+  /* margin-block-end: var(--tabs-navbar-shadow-size); */
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab[visuallyselected]::before,
+.tabbrowser-tab:first-of-type::before,
+#tabbrowser-tabs[movingtab] .tabbrowser-tab[visuallyselected]::before {
+  content: '';
+  display: block;
 }
 
 /* Keep tab height from collapsing due to the above */
-tab > stack {
-	height: var(--tab-min-height) !important;
-}
+/* tab > stack { */
+/* 	height: var(--tab-min-height) !important; */
+/* } */
 
 /*Disable White Flash of Death*/
 #browser vbox#appcontent tabbrowser,
@@ -425,6 +500,23 @@ browser[type=content],
 #editBMPanel_loadInSidebarCheckbox,
 #editBMPanel_locationRow {
 	visibility: visible;
+}
+
+/* compact arrowscrollbox */
+#scrollbuton-up, #scrollbutton-down,
+#alltabs-button .toolbarbutton-badge-stack,
+#alltabs-button {
+	max-height: var(--tab-min-height) !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+#tabbrowser-arrowscrollbox::part(scrollbutton-up), #tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+	border: none !important;
+}
+
+/* don't make the tab bar fatter when the scrollbox is activated*/
+#TabsToolbar-customization-target {
+	height: var(--tab-min-height) !important;
 }
 
 /*
