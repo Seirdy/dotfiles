@@ -1,0 +1,78 @@
+#!/usr/bin/env dash
+# A helpful comment
+
+set -eu
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+Run the Tor Browser Bundle sandboxed by bubblewrap.
+Any options besides -h are passed to the Tor Browser.
+
+Options:
+  -h, --help            Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
+tor_browser_path="$HOME/Executables/tor-browser_en-US"
+
+# unset all envvars with "env -i"
+# mime, icons, and glib need to be shared for save dialogs to work
+# xcb needs to be shared when launching after an update
+# /tmp/.X11-unix access allows isolating network namespace
+env -i bwrap \
+	--symlink usr/lib /lib \
+	--symlink usr/lib64 /lib64 \
+	--ro-bind /tmp/.X11-unix /tmp/.X11-unix \
+	--ro-bind /usr/lib /usr/lib \
+	--ro-bind /usr/lib64 /usr/lib64 \
+	--ro-bind /usr/share/X11/xkb /usr/share/X11/xkb \
+	--ro-bind /usr/share/themes /usr/share/themes \
+	--ro-bind /usr/share/icons /usr/share/icons \
+	--ro-bind /usr/share/locale /usr/share/locale \
+	--ro-bind /usr/share/mime /usr/share/mime \
+	--ro-bind /usr/share/glib-2.0 /usr/share/glib-2.0 \
+	--setenv HOME /home/tor \
+	--bind "$tor_browser_path/Browser" /home/tor \
+	--proc /proc --dev /dev --tmpfs /run \
+	--unshare-all --share-net \
+	--setenv LD_LIBRARY_PATH /home/tor/TorBrowser/Tor \
+	--setenv FONTCONFIG_PATH /home/tor/TorBrowser/Data/fontconfig \
+	--setenv FONTCONFIG_FILE fonts.conf \
+	--setenv DISPLAY "$DISPLAY" \
+	--setenv SHELL /sbin/nologin \
+	--setenv GTK_THEME "$GTK_THEME" \
+	--hostname RESTRICTED \
+	--new-session --die-with-parent --cap-drop ALL \
+	--seccomp 3 \
+	3< ~/.local/share/seccomp/seccomp.default.bpf \
+	/home/tor/firefox.real --class "Tor Browser" --profile /home/tor/TorBrowser/Data/Browser/profile.default "$@"
+
+# vi:ft=sh
