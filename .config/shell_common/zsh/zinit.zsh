@@ -152,7 +152,7 @@ zinit light $GHQ_ROOT/github.com/junegunn/fzf/bin
 zi_program pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zinit light dylanaraps/neofetch
 
-zi_program has'perl' pick'exiftool'
+zi_program has'perl' has'convert' pick'exiftool'
 zinit light exiftool/exiftool
 
 if [ -z "$SSH_CONNECTION" ]; then

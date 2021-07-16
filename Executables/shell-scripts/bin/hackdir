@@ -1,0 +1,50 @@
+#!/usr/bin/env dash
+# disposable tmp directory
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...]
+
+cd to a tmpdir with 'mktemp -d' and delete it when done.
+
+Options:
+  -h, --help            Print this help and exit
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
+set -e -u
+trap 'rm -rf "$temp"' EXIT
+temp="$(mktemp -d)"
+
+set -x
+cd "$temp"
+"${SHELL:-bash}"
+
+
+# vi:ft=sh
