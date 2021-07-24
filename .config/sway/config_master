@@ -15,6 +15,7 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 
+# suspend ff when it loses focus
 set $gnome-schema org.gnome.desktop.interface
 exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 exec_always {
@@ -31,6 +32,7 @@ for_window [app_id="^firefox$" title="^About Mozilla Firefox$"] floating enable
 for_window [app_id="^firefox$" title="^Inspector :: Font Finder - Mozilla Firefox$"] floating enable
 for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firefox$"] floating enable
 for_window [app_id="^launcher$"] floating enable
+for_window [title="^Floating Window - Show Me The Key$"] floating enable
 # havoc is a terminal emulator that starts up quickly; I use it for floating menus
 for_window [title="^havoc$"] floating enable
 for_window [title="^havoc$"] border pixel 3
@@ -43,6 +45,7 @@ for_window [app_id="^pinentry-qt$"] floating enable
 # images and videos should float above other programs since their dimensions should
 # not be limited by the WM.
 for_window [app_id="^imv$"] floating enable
+for_window [app_id="^qimgv$"] floating enable
 for_window [app_id="^mpv$"] floating enable
 for_window [app_id="^xdg-desktop-portal-gtk$"] floating enable
 for_window [app_id="^xdg-desktop-portal-kde$"] floating enable
@@ -147,12 +150,16 @@ input * {
 #
 # Program launching
 #
-	bindsym $mod+f exec firefox --new-window
+	bindsym $mod+f exec org.mozilla.firefox --new-window
 	bindsym $mod+shift+F exec org.kde.falkon
 
 	bindsym $mod+p exec xdg-open-paste
 	bindsym $mod+y exec 'mpv --profile=manga "$(wl-paste)"'
+	bindsym $mod+m exec 'mpv --loop-file=inf "$(wl-paste)"'
 	bindsym $mod+shift+P exec xdg-open-paste -d
+	bindsym $mod+i exec 'imv-url "$(wl-paste)"'
+	bindsym $mod+Mod1+p exec 'floating-terminal nvim'
+	bindsym Mod1+shift+P exec 'xclip -o | wl-copy -n'
 	# sanitize whatever's in the clipboard
 	bindsym $mod+u exec 'wl-paste | xargs sanitize-url | wl-copy -n'
 
@@ -161,7 +168,7 @@ input * {
 #
 	bindsym $mod+n exec makoctl dismiss
 	bindsym $mod+shift+n exec makoctl dismiss -a
-	bindsym $mod+m exec makoctl menu term-dmenu
+	bindsym $mod+shift+m exec makoctl menu term-dmenu
 
 #
 # Media keys

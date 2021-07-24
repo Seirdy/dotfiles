@@ -338,3 +338,18 @@ user_pref("full-screen-api.warning.timeout", 0);
 
 // I'm not sure if the following settings matter, but they're filled with URLs by default so they might phone home.
 user_pref("signon.management.page.breachAlertUrl", "");
+
+// via https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections
+user_pref("extensions.webextensions.restrictedDomains", "");
+user_pref("network.prefetch-next", false);
+user_pref("network.dns.disablePrefetch", true);
+user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("messaging-system.rsexperimentloader.enabled", false);
+user_pref("app.normandy.optoutstudies.enabled", false);
+user_pref("app.normandy.enabled", false);
+user_pref("extensions.getAddons.cache.enabled", false);
+user_pref("media.gmp-gmpopenh264.enabled", false);
+user_pref("browser.casting.enabled", false);
+user_pref("network.connectivity-service.enabled", false);
+user_pref("layout.css.devPixelsPerPx", "1.1");
+

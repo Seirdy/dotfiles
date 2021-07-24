@@ -55,7 +55,6 @@ fi
 
 # Config directories
 kitty_confdir="$XDG_CONFIG_HOME/kitty"
-ff_confdir="$HOME/.mozilla/firefox/default-nightly"
 gtk3_confdir="$XDG_CONFIG_HOME/gtk-3.0"
 gtk2_confdir="$XDG_CONFIG_HOME/gtk-2.0"
 termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
@@ -76,13 +75,6 @@ if [ -d "$kitty_confdir" ]; then
 		&& echo "updated kitty settings"
 else
 	echo "Failed to find kitty config in \"$kitty_confdir\"; skipping."
-fi
-if [ -d "$ff_confdir" ]; then
-	cd "$ff_confdir" \
-		&& cat ./user_master.js "./user_$new_display.js" >./user.js \
-		&& echo "updated Firefox Nighty settings"
-else
-	echo "Failed to find Firefox Nightly config in \"$ff_confdir\"; skipping."
 fi
 if [ -d "$gtk3_confdir" ]; then
 	cd "$gtk3_confdir" \

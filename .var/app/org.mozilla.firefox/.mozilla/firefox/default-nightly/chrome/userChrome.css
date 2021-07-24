@@ -54,7 +54,6 @@
 
 .autocomplete-richlistitem .ac-url {
 	color: var(--ui-faded-text) !important;
-	opacity: 0.6 !important;
 }
 
 #urlbar,
@@ -79,12 +78,34 @@ findbar {
 	border-color: var(--ui-accent) !important;
 }
 
-#urlbar[breakout][breakout-extend] {
-	width: 100% !important;
-	/* height: var(--urlbar-height) !important; */
-	top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
-	left: 0 !important;
-}
+  /* Compute new position, width, and padding */
+
+  #urlbar[breakout][breakout-extend] {
+    top: 5px !important;
+    left: 0px !important;
+    width: 100% !important;
+    padding: 0px !important;
+  }
+
+  #urlbar[breakout][breakout-extend] > #urlbar-input-container {
+    height: var(--urlbar-height) !important;
+    padding: 0 !important;
+  }
+
+  /* Do not animate */
+
+  #urlbar[breakout][breakout-extend] > #urlbar-background {
+    animation: none !important;;
+  }
+
+  /* Remove shadows */
+
+  #urlbar[breakout][breakout-extend] > #urlbar-background {
+    box-shadow: none !important;
+  }
+
+/*** END Firefox 77 (June 2, 2020) Override URL bar enlargement ***/
+
 
 #urlbar-input-container {
 	height: 100% !important;
@@ -92,21 +113,6 @@ findbar {
 	padding-bottom: 0 !important;
 	padding-block: 0 !important;
 	padding-inline: 0 !important;
-}
-
-/*Reduce distracting addon button colors*/
-#navigator-toolbox .webextension-browser-action .toolbarbutton-icon {
-	filter: grayscale(100%) brightness(150%) opacity(70%) !important;
-}
-
-.tab-icon-image {
-	filter: grayscale(50%) opacity(90%) !important;
-}
-
-#navigator-toolbox .toolbarbutton-1:hover .toolbarbutton-badge-stack {
-	border: 0 solid var(--ui-accent) !important;
-	--toolbarbutton-inner-padding: 5px !important;
-	border-width: 1px !important;
 }
 
 .tab-background,
@@ -137,120 +143,18 @@ findbar {
 	margin-top: -1px !important;
 }
 
-/* Prevent tab icons size breaking */
-.tab-icon-image, .tab-icon-sound, .tab-throbber, .tab-throbber-fallback, .tab-close-button {
-	min-width: var(--tab-icon-dimension) !important;
-	width: var(--tab-icon-dimension) !important;
-	height: var(--tab-icon-dimension) !important;
-}
-.tabbrowser-tab:not([selected]) .tab-close-button {
-	visibility: collapse !important;
-}
-.tabbrowser-tab:not([selected]):hover .tab-close-button {
-	visibility: visible !important;
-}
-
-/* Adjust tab label width */
-.tab-label-container {
-	min-width: 0 !important;
-}
-
-/* Put tab close button and icon sound to the right */
-.tab-icon-sound[soundplaying="true"], .tab-icon-sound[muted="true"],
-.tab-icon-sound[activemedia-blocked="true"] {
-	margin-left: auto !important;
-}
-.tabbrowser-tab:not([soundplaying]):not([muted]):not([activemedia-blocked]) .tab-close-button {
-	margin-left: auto !important;
-}
-
-/* Force tab favicon to the center */
-.tab-throbber, .tab-throbber-fallback {
-	margin-left: auto;
-}
-.tabbrowser-tab:not([busy]) .tab-icon-image {
-	margin-left: auto;
-}
-
-/* If tab favicon is not present, force tab label to the center */
-.tabbrowser-tab .tab-label-container {
-	margin-left: 0 !important;
-}
-.tabbrowser-tab:not([image]):not([busy]):not([progress]) .tab-label-container {
-	margin-left: auto !important;
-}
-
-/* If tab close button is not present, don't force favicon to the center */
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]) .tab-throbber,
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]) .tab-throbber-fallback {
-	margin-left: 0 !important;
-}
-
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]):not([busy]) .tab-icon-image,
-#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]):not([image]) .tab-label-container {
-	margin-left: 6px !important;
-}
-
-/* Close tab button */
-.tab-close-button {
-	/* border: 1px solid transparent; */
-	box-sizing: content-box; /* Avoid deformation on flexbox */
-	/* list-style-image: url("moz-icon://stock/window-close-symbolic?size=dialog") !important; */
-	height: var(--tab-icon-dimension);
-	opacity: .8;
-	padding: 0 !important;
-	width: var(--tab-icon-dimension);
-}
-
 /*hide stuff*/
-#forward-button, #back-button,
-.urlbar-go-button, .search-go-button, .urlbar-history-dropmarker, #urlbar *|*.textbox-input::placeholder,
-#pocket-button-box, #pageActionSeparator, #pageActionButton,
 #context-sendpagetodevice, #context-sep-sendpagetodevice, #context-sep-sendlinktodevice, #context_sendTabToDevice, #context_sendTabToDevice_separator,
+.search-one-offs,
 #appMenu-fxa-container, #appMenu-fxa-container+toolbarseparator, #appMenu-update-available-notification,
-#PanelUI-button,
 #PanelUI-menu-button, /* Proton */
 #whats-new-menu-button,
 #identity-icon-labels, #identity-icon,
 #userContext-indicator.identity-icon-circle, #tabContextMenu .menu-iconic-icon,
-#TabsToolbar #window-controls, #TabsToolbar .titlebar-spacer,
-/* .findbar-closebutton, */
-#overflowMenu-customize-button,
-/*Search engines in urlbar dropdown*/
-.search-one-offs,
-/*Compact sidebar header*/
-#sidebar-box #sidebar-header #sidebar-close, #sidebar-box #sidebar-header #sidebar-switcher-target #sidebar-switcher-arrow, #urlbar[pageproxystate="invalid"]>#identity-box,
-/* Circle container indicator */
-#userContext-indicator[data-identity-icon="circle"],
-/* urlbar magnifying glass icon */
-#identity-box.unknownIdentity > .identity-icon,
-#titlebar-placeholder-on-TabsToolbar-for-captions-buttons, .titlebar-buttonbox-container, .titlebar-spacer,
-.tab-context-line, /* I set the tab-line color instead */
-#star-button-box, #PanelUI-menu-button, /* New in Proton */
+#userContext-indicator[data-identity-icon="circle"]
 {
 	display: none !important;
-	visibility: collapse !important;
 }
-
-#identity-box {
-	padding: -8px 0 !important;
-	border: none !important;
-	margin: -8px 0 !important;
-	line-height: 0 !important;
-	transform: scale(.75, .75) !important;
-}
-#identity-box:hover {
-	background-color: transparent !important;
-}
-#urlbar:not([focused]) #identity-box #connection-icon {
-	fill: var(--ui-lightest) !important;
-	opacity: 1 !important;
-}
-
-#urlbar[focused] #identity-box #connection-icon {
-	fill: var(--ui-accent) !important;
-}
-
 /*Tabs on bottom*/
 
 #TabsToolbar,
@@ -264,7 +168,6 @@ findbar {
 	-moz-box-ordinal-group: 1 !important;
 	background-color: none !important;
 }
-/*Lighten tab separators*/
 
 /*Remove extra 1px space before 1st tab and after last tab*/
 
@@ -379,12 +282,6 @@ findbar {
 	padding: 0 !important;
 }
 
-/*Smaller tab font*/
-
-.tabbrowser-tab label {
-	font-size: 90% !important;
-}
-
 /*More compact sidebar header*/
 
 #sidebar-box #sidebar-header {
@@ -414,11 +311,6 @@ findbar {
 	background-color: var(--ui-darkcolor) !important;
 }
 
-:root[uidensity=compact] #nav-bar .toolbarbutton-1 {
-	padding-left: 2px !important;
-	padding-right: 2px !important;
-}
-
 .box-inherit .scrollbox-innerbox {
 	margin-right: 0 !important;
 	border: none !important;
@@ -426,11 +318,6 @@ findbar {
 }
 
 /* Allow arrowscrollbox to collapse when only one tab is visible */
-
-tab:only-of-type {
-	display: none !important;
-	visibility: collapse !important;
-}
 
 #tabbrowser-tabs,
 #tabbrowser-tabs arrowscrollbox,
@@ -548,10 +435,6 @@ browser[type=content],
 	color: inherit !important;
 }
 
-/* Margin from top when hidden (necessary for the transition to work) */
-
-/*findbar[hidden]{ margin-top: -2em !important; }*/
-
 /* Aligns the close button to the center */
 
 .findbar-closebutton {
@@ -561,6 +444,14 @@ browser[type=content],
 	height: inherit !important;
 }
 
+/* Prevent tab icons size breaking */
+.tab-icon-image, .tab-icon-sound, .tab-throbber, .tab-throbber-fallback, .tab-close-button {
+	min-width: var(--tab-icon-dimension) !important;
+	width: var(--tab-icon-dimension) !important;
+	height: var(--tab-icon-dimension) !important;
+}
+
+/*findbar[hidden]{ margin-top: -2em !important; }*/
 /*make tabs wider*/
 .tabbrowser-tab[fadein]:not([pinned]) {
 	max-width: 100% !important;
@@ -571,4 +462,3 @@ browser[type=content],
 .tabbrowser-tab[visuallyselected="true"] {
 	z-index: 0 !important;
 }
-
