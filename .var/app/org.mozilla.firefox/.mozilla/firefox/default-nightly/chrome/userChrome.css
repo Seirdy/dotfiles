@@ -46,6 +46,10 @@
 	--lwt-toolbarbutton-hover-background: var(--toolbarbutton-hover-background) !important;
 	--lwt-toolbar-field-background-color: var(--ui-background) !important;
 	--proton-tab-block-margin: 0;
+	--urlbar-toolbar-height: 28px !important;
+	--toolbarbutton-height: 26px !important;
+	--urlbar-height: 24px !important;
+	--toolbarbutton-inner-padding: 4px !important;
 }
 #tabbrowser-tabs[haspinnedtabs] {
 	max-height: var(--tab-min-height) !important;
@@ -54,6 +58,15 @@
 
 .autocomplete-richlistitem .ac-url {
 	color: var(--ui-faded-text) !important;
+}
+
+toolbar {
+	max-height: var(--urlbar-toolbar-height) !important;
+}
+
+.toolbarbutton-icon {
+	padding: 0 !important;;
+	height: 16px !important;
 }
 
 #urlbar,
@@ -81,7 +94,7 @@ findbar {
   /* Compute new position, width, and padding */
 
   #urlbar[breakout][breakout-extend] {
-    top: 5px !important;
+    top: 2px !important;
     left: 0px !important;
     width: 100% !important;
     padding: 0px !important;
