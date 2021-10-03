@@ -30,7 +30,7 @@
 # GitHub search #
 #################
 
-"exec:~/Executables/stack/bin/github-search-to-rss Seirdy" "git repos"
+"exec:~/Executables/stack/bin/github-search-to-rss Seirdy" "Me" "git repos"
 
 # new music
 https://muspy.com/feed?id=mujrx4bx006cv6gywluu3gf12koq7d "NonDev" "Favorite"
@@ -38,17 +38,27 @@ https://muspy.com/feed?id=mujrx4bx006cv6gywluu3gf12koq7d "NonDev" "Favorite"
 ###################
 # Text-based news #
 ###################
-
-https://seirdy.one/posts/index.xml "Favorite" "Blog"
+https://nitter.nixnet.services/search/rss?f=tweets&q=seirdy.one "Me" "Favorite" "Social"
+https://seirdy.one/posts/index.xml "Me" "Favorite" "Blog"
 https://whalecoiner.com/atom "Advocacy" "Blog" "Favorite"
+https://artemislena.eu/ "Blog" "Favorite" "NonDev" # not exactly nondev but not exactly dev either
 # https://sonniesedge.co.uk/bookmarks.xml "Blog"
 # Nondev because it usually isn't technical
 https://www.theguardian.com/profile/stallman-richard/rss "Advocacy" "Blog" "NonDev" "Favorite"
-https://static.fsf.org/fsforg/rss/news.xml "Advocacy" "NonDev" "Favorite"
+https://infosec-handbook.eu/index.xml "Favorite" "Dev" "Sec"
+https://qua3k.github.io/index.xml "Favorite" "Blog" "Dev" "Sec"
+https://1hiking.github.io/index.xml "Favorite" "Blog" "Dev" "Sec"
+https://concord.sh/posts/index.xml "Blog" "Dev" "Sec"
+https://plaperdr.github.io/blog/ "Favorite" "Blog" "Dev" "sec"
+https://nobodyspecial.neocities.org/rss2.xml "Favorite" "Blog" "Dev" "Sec"
 https://mikegerwitz.com/rss.xml "Blog" "Dev" "Favorite"
 https://people.kernel.org/bleung/feed/ "Blog" "Dev"
+https://jcs.org/rss "Blog" "Dev" "Favorite"
+https://utcc.utoronto.ca/~cks/space/blog/?atom "Blog" "Dev"
+https://uglyduck.ca/feed.xml "Blog" "Dev" "Favorite"
 https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://ethan.writeas.com/feed/ "Blog" "Favorite"
+https://blog.chromium.org/atom.xml "Dev" "Programs"
 https://evgenykuznetsov.org/en/single-language.xml "Blog"
 # toolbox is one of my favorite programs, and this is the primary dev's blog
 https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
@@ -58,8 +68,6 @@ https://christine.website/blog.rss "Blog" "Dev" "Favorite"
 https://github.com/containers/releases.atom "Fedora" "Linux" "git repos" "Programs" "Favorite" "~toolbox changelog"
 https://blogs.gnome.org/mclasen/feed/ "Fedora" "Linux" "Blog" "Dev"
 https://solar.lowtechmagazine.com/feeds/all.rss.xml "Advocacy" "NonDev" "Favorite"
-https://feeds.feedburner.com/0AdNews "git repos" "Programs" "Dev"
-http://blog.supertuxkart.net/feeds/posts/default "game" "Programs" "Blog" "Favorite"
 https://github.com/viewizard/astromenace/releases.atom "game" "Programs" "git repos"
 https://maunium.net/blog/index.xml "IRC/Matrix" "Blog" "Dev"
 https://leafo.net/feed.xml "Blog" "Dev" "Favorite"
@@ -88,21 +96,15 @@ https://github.com/AsamK/signal-cli/releases.atom "git repos" "Programs" "Dev"
 https://github.com/mikefarah/yq/releases.atom "git repos" "Programs" "Dev"
 # sh/shfmt for shell formatting
 https://github.com/mvdan/sh/releases.atom "git repos" "Programs" "Dev" "~shfmt changelog"
-# best mail client; should with fetchmail/sendmail
-https://git.sr.ht/~sircmpwn/aerc/refs/rss.xml "git repos" "Programs" "Dev" "Favorite" "~aerc refs"
 # some language servers. tagged under vim cuz that's where i use them.
 # https://github.com/MaskRay/ccls/releases.atom "git repos" "Programs" "Dev"
 # general-purpose language server; give it a linter/formatter and (soon) completion program and it behaves like a full LS.
 https://github.com/mattn/efm-langserver/releases.atom "vim" "git repos" "Programs" "Dev"
-https://github.com/dylanaraps/neofetch/releases.atom "git repos" "Programs" "Dev"
-https://github.com/jgm/pandoc/releases.atom "git repos" "Programs" "Dev" "Favorite"
 https://github.com/aria2/aria2/releases.atom "git repos" "Programs" "Dev"
-https://github.com/sharkdp/hyperfine/releases.atom "git repos" "Programs" "Dev"
 https://github.com/dbrgn/tealdeer/releases.atom "git repos" "Programs" "Dev"
 https://github.com/lunaryorn/mdcat/releases.atom "git repos" "Programs" "Dev"
 https://github.com/eXeC64/imv/commits/master/CHANGELOG.atom "git repos" "Programs" "Dev" "~imv changelog"
 https://github.com/nvbn/thefuck/releases.atom "git repos" "Programs" "Dev"
-https://github.com/donnemartin/haxor-news/releases.atom "git repos" "Programs" "Dev"
 https://github.com/sharkdp/bat/releases.atom "git repos" "Programs" "Dev"
 # i install all python executables this way; every python program with a $PATH entry gets its own venv.
 https://github.com/pipxproject/pipx/releases.atom "git repos" "Programs" "Dev" "~pipx changelog"
@@ -135,7 +137,6 @@ https://github.com/paulirish/git-open/commits/master.atom "git repos" "Programs"
 # 	pairs nicely with tuir for reddit feeds, haxor-news for hacker news RSS feeds,
 # 	and youtube-dl+mpv for youtube feeds so i never have to visit youtube.com
 https://newsboat.org/news.atom "Programs" "Dev" "Blog" "Favorite"
-https://github.com/newsboat/newsboat/releases.atom "git repos" "Programs" "Dev" "~newsboat changelog"
 https://github.com/ytdl-org/youtube-dl/releases.atom "git repos" "Programs" "Dev"
 https://github.com/mpv-player/mpv/releases.atom "mpv" "git repos" "Programs" "Dev"
 https://github.com/bloc97/Anime4K/commits/master.atom "mpv" "git repos" "Programs" "Dev"
@@ -146,11 +147,7 @@ https://gitlab.com/ajak/tuir/commits/master/CHANGELOG.rst?format=atom "git repos
 # abandoned, but still listening in case the radio silence breaks
 https://github.com/michael-lazar/rtv/commits/master.atom "git repos" "Programs" "Dev"
 https://github.com/htop-dev/htop/releases.atom "git repos" "Programs" "Dev"
-# lsd is better than ls; exa is betterh than ls -l
-https://github.com/Peltoche/lsd/releases.atom "git repos" "Programs" "Dev"
 https://github.com/ogham/exa/releases.atom "git repos" "Programs" "Dev"
-# send files to people who don't use the terminal
-https://gitlab.com/timvisee/ffsend/-/tags?format=atom "git repos" "Programs" "Dev"
 # faster than most "find" implementations
 https://github.com/sharkdp/fd/releases.atom "git repos" "Programs" "Dev"
 # faster and simpler than most "grep" implementations
@@ -160,24 +157,18 @@ https://github.com/anordal/shellharden/releases.atom "git repos" "Programs" "Dev
 # the best lolcat implementation i could find that supports 24bit color and doesn't require ruby
 https://github.com/jameslzhu/roflcat/commits/master.atom "git repos" "Programs" "Dev"
 # vim stuff
-# developer of coc.nvim, which allows running ported  vscode extensions and adds
-# 	language server protocol support to neovim. Also makes good use of neovim floating windows.
-https://github.com/neoclide/coc.nvim/releases.atom "vim" "git repos" "Programs" "Dev"
 https://github.com/junegunn/vim-plug/releases.atom "vim" "git repos" "Programs" "Dev"
 https://github.com/vim-pandoc/vim-pandoc-syntax/commits/master.atom "vim" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/vim-airline/vim-airline/releases.atom "vim" "git repos" "Programs" "Dev"
 https://github.com/fneu/breezy/commits/master.atom "vim" "git repos" "Programs" "Dev" "Favorite"
-https://lobste.rs/t/linux,vim,systemd,vcs,unix,show.rss "Social" "~Lobsters" "vim" "Linux" "Programs" "Dev"
+https://lobste.rs/t/vim,go,systemd,vcs,unix.rss "Social" "~Lobsters" "vim" "Linux" "Programs" "Dev"
 https://drewdevault.com/feed.xml "Blog" "Dev" "Favorite"
 https://danluu.com/atom.xml "Blog" "Dev" "Favorite"
 # my graphical torrent client, used alongside aria2.
-# offline documentation with rich formatting. i wish we could export these docsets to manpages.
-https://github.com/zealdocs/zeal/releases.atom "git repos" "Programs" "Dev"
 # preferred i2p implementation.
 https://github.com/PurpleI2P/i2pd/releases.atom "git repos" "Programs" "Dev"
-# best IRC+matrix client!
+# best IRC client!
 https://weechat.org/blog/feed/atom "IRC/Matrix" "Programs" "Dev" "Favorite"
-https://github.com/poljar/weechat-matrix/releases.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
 https://github.com/tomoe-mami/weechat-scripts/commits/master.atom "IRC/Matrix" "git repos" "Programs" "Dev" "Favorite"
 # some IRC networks have a news section
 https://www.gotham.chat/feed/ "IRC/Matrix" "Favorite"
@@ -229,12 +220,10 @@ https://hnrss.org/newest.atom?q=vim+OR+neovim&points=10 "Social" "Hacker News" "
 https://hnrss.org/newest.atom?q=rtv+OR+tuir+OR+hugo+OR+gemini+OR+sway+OR+newsboat+OR+neomutt+OR+nginx+OR+webmention+OR+zsh+OR+pandoc+OR+suckless+OR+swaywm+OR+silverblue+OR+agate+OR+gmni+OR+mpv+OR+ffmpeg+OR+av1+OR+lagrange+OR+amfora+OR+zstd+OR+wayland&points=2&comments=1 "Social" "Hacker News" "Dev" "Favorite" "~HN: favorite programs"
 https://hnrss.org/newest?points=1200 "Social" "Hacker News" "Dev" "~Hacker News: Top"
 # reddit feed of git repos
-https://www.reddit.com/r/C_programming+commandline+cpp+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
+https://www.reddit.com/r/commandline+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
 # some of the best and most relatable satire in tech imo
 http://n-gate.com/index.atom "Social" "Hacker News" "Dev" "Favorite"
 # some weekly digests not already in the above golang/python sections
-# Morning cup of coding
-https://us18.campaign-archive.com/feed?u=ab0f46cf302c0ed836e0bf0ad&id=56b5f64c5f "Digest" "Dev"
 # weekly programming digest.
 https://feeds.feedburner.com/digest-programming "Digest" "Dev"
 # i like fedora :)
@@ -243,19 +232,14 @@ https://www.sudosatirical.com/index.xml "Linux" "Dev" "Favorite"
 https://www.linuxjournal.com/node/feed "Linux" "Dev"
 https://lwn.net/headlines/newrss "Linux" "Dev"
 # webcomics!!
-https://www.questionablecontent.net/QCRSS.xml "Comics" "NonDev"
-https://www.bloodsplatteredsocks.com/rss "Comics" "NonDev"
 https://feeds.feedburner.com/sandraandwoo "Comics" "NonDev"
 https://feeds.feedburner.com/gaiacomic "Comics" "NonDev"
-https://www.marecomic.com/feed/ "Comics" "NonDev"
+# https://www.marecomic.com/feed/ "Comics" "NonDev"
 https://xkcd.com/rss.xml "Comics" "NonDev" "Favorite"
 https://what-if.xkcd.com/feed.atom "NonDev" "Favorite"
 https://blog.xkcd.com/feed/ "Comics" "NonDev" "Favorite" "Blog"
 http://helpful.cat-v.org/Blog/index.atom "Blog" "Dev" "Favorite"
 http://harmful.cat-v.org/Blog/index.atom "Blog" "Dev" "Favorite"
-# the Economist
-https://www.economist.com/briefing/rss.xml "Economist" "NonDev"
-https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "Favorite"
 
        #########
 ######## Media ########
@@ -266,75 +250,20 @@ https://www.economist.com/the-economist-explains/rss.xml "Economist" "NonDev" "F
 ############
 
 http://faif.us/feeds/cast-ogg/ "Audio" "Advocacy" "Media" "Linux" "Favorite"
-# Librelounge
 https://librelounge.org/atom-feed.atom "Audio" "Media" "Linux"
 
-#
-# Jupiter Broadcasting network
-#
-
-# Linux Action News
-https://feeds.fireside.fm/linuxactionnews/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
-# User Error
-https://feeds.fireside.fm/usererror/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
-# Linux Unplugged
-https://feeds.fireside.fm/linuxunplugged/rss "Audio" "Media" "Linux" "Favorite" "Jupiter Broadcasting"
-# TechSNAP
-https://feeds.fireside.fm/techsnap/rss "Audio" "Media" "Linux" "Jupiter Broadcasting"
-
-#
-# Destination Linux network
-#
-
-# Destination Linux
-https://destinationlinux.org/feed/mp3/ "Audio" "Media" "Linux" "DLN"
-# Linux for Everyone
-https://feeds.fireside.fm/linuxforeveryone/rss "Audio" "Media" "Linux" "DLN"
-# Linux Spotlight (BigDaddyLinux)
-https://feeds.fireside.fm/linuxspotlight/rss "Audio" "Media" "Linux" "DLN"
-# Ask Noah
-https://feeds.fireside.fm/asknoah/rss "Audio" "Media" "Linux" "DLN"
-# DLN Xtend: Destination Linux Network review
-https://dlnxtend.com/rss "Audio" "Media" "Linux" "DLN"
-# Hardware Addicts
-https://feeds.fireside.fm/hardwareaddicts/rss "Audio" "Media" "Linux" "DLN"
-
-#
-# Independent Podcasts
-#
-
-# DistroWatch
-https://distrowatch.com/news/podcast.xml "Audio" "Media" "Linux"
 # Tech Policy
 https://feed.podbean.com/podcast.techfreedom.org/feed.xml "Audio" "Advocacy" "Media" "Dev"
-# Techdirt
-https://feeds.podtrac.com/Rtx2imr1qVdG "Audio" "Advocacy" "Media"
 # FSFE's Software Freedom Podcast
 https://fsfe.org/news/podcast-opus.en.rss "Audio" "Advocacy" "Media"
 # Gnu World Order
 https://gnuworldorder.info/opus.atom.xml "Audio" "Media" "Linux" "Dev"
-# Going Linux
-https://goinglinux.com/oggpodcast.xml "Audio" "Media" "Linux"
-# Linux For The Rest Of Us
-http://podnutz.com/category/linux-for-the-rest-of-us/feed/ "Audio" "Media" "Linux"
-# LinuxLUGcast
-http://feeds.feedburner.com/Linuxlugcast-ogg "Audio" "Media" "Linux" "~Linuz LUGCast"
-# FLOSS Weekly
-http://feeds.twit.tv/floss.xml "Audio" "Media" "Dev"
-# The Binary Times
-https://thebinarytimes.net/rss-ogg.xml "Audio" "Media" "Linux"
 # Command Line Heros
 https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
-# This Week in Linux (TuxDigital)
-https://tuxdigital.com/feed/thisweekinlinux-mp3 "Audio" "Media" "Linux"
 # The Economist: Babbage
 https://rss.acast.com/theeconomistbabbage/ "Audio" "Economist" "Media" "NonDev"
-# Hacker Public Radio
-http://www.hackerpublicradio.org/hpr_total_spx_rss.php "Audio" "Media" "Dev"
 # Reality 2.0
 https://feeds.fireside.fm/reality2/rss "Audio" "Media" "Linux"
-# Late Night Linux
-https://latenightlinux.com/feed/ogg "Audio" "Media" "Linux"
 # On the Metal
 https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "Audio" "Media" "Linux"
 

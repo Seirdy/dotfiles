@@ -6,5 +6,5 @@ else
 fi
 mkdir -p "$dir" \
 	&& cd "$dir" \
-	&& nohup youtube-dl "$1" >/dev/null 2>&1 &
+	&& nohup yt-dlp -f '(398/137/bestvideo[height<1090][ext=mp4])+bestaudio/best' "$1" >/dev/null 2>&1 &
 # vim:ft=sh
