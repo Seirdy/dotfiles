@@ -1,0 +1,62 @@
+#!/usr/bin/env dash
+# Generate a changelog from Git's shortlog, excluding chores/tests
+set -e -u
+
+progname="$(basename "$0")"
+
+help_text="usage: $progname [OPTIONS] [LENGTH]
+
+OPTIONS:
+  -h, --help	Display this help message.
+  -s, --short	exclude chore/doc/test semantic commits."
+
+displayUsage() {
+	echo "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+short=0
+
+# Options
+while [ $# -gt 0 ]; do
+	case $1 in
+		-h | --help)
+			displayUsage
+			exit 0
+			;;
+		-s | --short)
+			short=1
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
+last_tag="$(git describe --abbrev=0 --tags)"
+
+remove_extra() {
+	anything_but_a_closing_paren='[^(\))]*'
+	stuff_in_parens="\($anything_but_a_closing_paren"'\)'
+	grep -Evi "^\s*(chore|doc|test)($stuff_in_parens)?:"
+}
+
+full_shortlog() {
+	git shortlog --oneline "$last_tag"..HEAD
+}
+
+if [ "$short" = 1 ]; then
+	full_shortlog | remove_extra
+else
+	full_shortlog
+fi
+
+# vi:ft=sh

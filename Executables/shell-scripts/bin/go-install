@@ -1,0 +1,5 @@
+#!/usr/bin/env dash
+
+CGO_ENABLED=0 go install -trimpath -mod=readonly -buildmode=exe -gcflags=-trimpath="$GOPATH" -asmflags=-trimpath="$GOPATH" -v -tags 'static' -ldflags="-s -w" "$@"
+
+# vi:ft=sh
