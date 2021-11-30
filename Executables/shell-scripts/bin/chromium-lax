@@ -1,0 +1,31 @@
+#!/usr/bin/env dash
+# like the chromium shell script but with JIT and other stuff, and its own profile folder.
+# optimized for a few heavy web apps
+enable_features_sec='ClearCrossSiteCrossBrowsingContextGroupWindowName,EnableDrDc,EnableOopPrintDrivers,EnableRemovingAllThirdPartyCookies,HeavyAdPrivacyMitigations,PageInfoV2Desktop,ParallelDownloading,ScrollableTabStrip:minTabWidth/140,HttpsOnlyMode,PdfUnseasoned,SplitCacheByNetworkIsolationKey,StrictOriginIsolation,StrictExtensionIsolation,WebRtcHideLocalIpsWithMdns,EmbeddingRequiresOptIn'
+enable_features_other='OmniboxUpdatedConnectionSecurityIndicators,OverlayScrollbar,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseOzonePlatform,WebRTCPipeWireCapturer,ReaderMode:discoverability/offer-in-settings,IncognitoClearBrowsingDataDialogForDesktop,DisableQuickAnswersV2Translation,DisableQRGenerator,BackForwardCache,Commander' # i guess pipewire is better than pulse?
+enable_features="$enable_features_sec,$enable_features_other"
+
+disable_autofill='AutofillAddressProfileSavePrompt,AutofillAlwaysReturnCloudTokenizedCard,AutofillCreditCardAuthentication,AutofillCreditCardUploadFeedback,AutofillEnableMerchantBoundVirtualCards,AutofillEnableOfferNotification,AutofillEnableOfferNotificationCrossTabTracking,AutofillParseMerchantPromoCodeFields,AutofillSaveAndFillVPA,AutofillShowTypePredictions,AutofillSuggestVirtualCardsOnIncompleteForm,AutofillUpstream,SyncAutofillWalletOfferData'
+disable_ecommerce='SecurePaymentConfirmationSyncTrustedVaultPassphrasePromo,SyncAutofillWalletOfferData,WebPaymentsExperimentalFeatures'
+disable_features_other='FontAccess,GenericSensorExtraClasses,HappinessTrackingSurveysForDesktopDemo,LensRegionSearch,LiteVideo,MediaEngagementBypassAutoplayPolicies,NavigationPredictor,NetworkTimeServiceQuerying,NtpModules,OptimizationGuideModelDownloading,PreloadMediaEngagementData,ServiceWorkerSubresourceFilter,TabHoverCardImages,WebBundles,WebUIFeedback'
+disable_features="$disable_features_other,$disable_autofill,$disable_pwmngr,$disable_ecommerce"
+
+export CHROME_PROFILE="$HOME/.var/app/com.github.Eloston.UngoogledChromium/config/chromium/Lax"
+
+mkdir -p "$HOME/Downloads/chromium"
+flatpak run --user com.github.Eloston.UngoogledChromium \
+	--enable-features="$enable_features" \
+	--disable-features="$disable_features" \
+	--ozone-platform=wayland --enable-potentially-annoying-security-features --enable-strict-mixed-content-checking --enable-strict-powerful-feature-restrictions --site-per-process \
+	--enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist \
+	--enable-stacked-tab-strip --fingerprinting-canvas-image-data-noise --fingerprinting-canvas-measuretext-noise --fingerprinting-client-rects-noise --force-punycode-hostnames --popups-to-tabs --remove-grab-handle --show-avatar-button=incognito-and-guest \
+	--disable-3d-apis --disable-file-system --disable-notifications --disable-speech --disable-speech-api --disable-reading-from-canvas --disable-background-networking --disable-auto-reload --disable-media-session-api --disable-webgl --disable-webgl2 \
+	--no-pings --no-crash-upload --no-report-upload --no-vr-runtime --no-wifi \
+	--force-prefers-reduced-motion --force-dark-mode \
+	--disable-dinosaur-easter-egg --disable-file-manager-touch-mode --no-default-browser-check --no-first-run --disable-network-portal-notification \
+	--disable-client-side-phishing-protection --disable-default-apps --disable-gaia-services --disable-sync --disable-sync-preferences --disable-sync-types --allow-browser-signin=false --disable-domain-reliability --disable-fonts-googleapis-references --disable-field-trial-config --disable-translate --disable-touch-adjustment --disable-wake-on-wifi --disable-offer-upload-credit-cards --disable-breakpad --disable-crash-reporter --disable-field-trial-config --data-reduction-proxy-server-experiments-disabled --lang=en-US --disable-ntp-popular-sites --disable-offer-store-unmasked-wallet-cards --disable-office-editing-component-extension --disable-fine-grained-time-zone-detection \
+	--autofill-assistant-url='' --autofill-api-key='' --autofill-assistant-key='' --autofill-server-url='' --optimization-guide-service-api-key='' --transit-script-url='' --connectivity-check-url='' --crash-server-url='' --data-reduction-proxy-config-url='' --data-reduction-proxy-pingback-url='' --data-reduction-proxy-secure-proxy-check-url='' --gcm-checkin-url='' --gcm-mcs-endpoint='' --gcm-registration-url='' --google-doodle-url='' --override-metrics-upload-url='' --cloud-print-url='' --google-apis-url='' --google-base-url='' --google-url='' --cryptauth-http-host='' --cryptauth-v2-devicesync-http-host='' --cryptauth-v2-enrollment-http-host='' --device-management-url='' \
+	"$@"
+
+
+# vi:ft=sh

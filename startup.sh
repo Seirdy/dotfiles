@@ -64,10 +64,18 @@ export ABDUCO_SOCKET_DIR="$XDG_DATA_HOME"
 export WEECHAT_HOME="$HOME/.weechat"
 export HELM_HOME="$XDG_DATA_HOME/helm"
 export GRAFANA_THEME=dark
-export GTK_THEME=Breeze-Dark
+# used to be Breeze but that causes bugs.
+# export GTK_THEME=Adwaita-dark
 export GTK_THEME_VARIANT=dark
 export CALIBRE_USE_SYSTEM_THEME=1
-export BROWSER=org.mozilla.firefox
+
+export GJS_DISABLE_JIT=1
+export JSC_useJIT=false
+export JavaScriptCoreUseJIT=0
+export QV4_FORCE_INTERPRETER=1
+# I use a bwrapped FF that can't open external links
+# and a shell script that wraps chromium with a bunch of prefs
+export BROWSER=chromium
 # export GTK_USE_PORTAL=1 # KDE file-picker
 export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
@@ -109,10 +117,10 @@ export TERMINFO="$HOME/Executables/zsh-bin/share/terminfo"
 export TERMINFO_DIRS="$HOME/Executables/zsh-bin/share/terminfo:/usr/share/terminfo"
 export GOPATH="$HOME/Executables/go"
 # shellcheck disable=SC2086
-if "$GOPATH/sdk/gotip/bin/go" version >/dev/null 2>/dev/null; then
-	export GOROOT="$GOPATH/sdk/gotip"
-	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
-fi
+# if "$GOPATH/sdk/gotip/bin/go" version >/dev/null 2>/dev/null; then
+# 	export GOROOT="$GOPATH/sdk/gotip"
+# 	export GOTOOLDIR="$GOROOT/pkg/tool/linux_amd64"
+# fi
 export CARGO_HOME="$HOME/Executables/cargo"
 export RUSTUP_HOME="$HOME/Executables/rustup"
 export WAPM_PACKAGES="$HOME/Executables/wapm"
@@ -202,14 +210,14 @@ pathadd_tail '/usr/sbin'
 pathadd_tail '/usr/bin'
 pathadd_tail '/sbin'
 pathadd_tail '/bin'
-pathadd_tail '/envs/bin'                              # envs.net
-pathadd_head "$GEM_HOME/bin"                          # rubygems (ruby)
-pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"               # cpanm (perl)
-pathadd_head "$NPM_PACKAGES/bin"                      # npm (javascript)
-pathadd_head "$HOME/Executables/luarocks/bin"         # luarocks (lua)
-pathadd_head "$PIPX_BIN_DIR"                          # pipx (python)
-pathadd_head "$GOPATH/bin"                            # go pacakages
-pathadd_head "$GOPATH/sdk/gotip/bin"                  # golang nightly build
+pathadd_tail '/envs/bin'                      # envs.net
+pathadd_head "$GEM_HOME/bin"                  # rubygems (ruby)
+pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"       # cpanm (perl)
+pathadd_head "$NPM_PACKAGES/bin"              # npm (javascript)
+pathadd_head "$HOME/Executables/luarocks/bin" # luarocks (lua)
+pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
+pathadd_head "$GOPATH/bin"                    # go pacakages
+# pathadd_head "$GOPATH/sdk/gotip/bin"                  # golang nightly build
 pathadd_head "$NIMBLE_DIR/bin"                        # nim packages
 pathadd_head "$STACK_ROOT/bin"                        # stack (haskell)
 pathadd_head "$OPAM_SWITCH_PREFIX/bin"                # opam
@@ -289,7 +297,8 @@ fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 # shellcheck disable=SC2154
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
-	export QT_QPA_PLATFORMTHEME='qt5ct'
+	export QT_QPA_PLATFORMTHEME='gtk2' # todo: change this to "gnome" and set gnome icons/fonts properly
+	export QT_STYLE_OVERRIDE='Adwaita-Dark'
 fi
 # Start the gpg-agent if not already running
 if ! pgrep -xu "$USER" gpg-agent >/dev/null 2>&1; then

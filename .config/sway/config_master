@@ -15,12 +15,17 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 
-# suspend ff when it loses focus
 set $gnome-schema org.gnome.desktop.interface
+# set $appearance-schema org.freedesktop.appearance  # <- perhaps someday in the future??
+set $appearance-schema org.gnome.gitlab.exalm.Impatience
 exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 exec_always {
-	gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
-	gsettings set $gnome-schema icon-theme 'Breeze-Dark'
+	gsettings set $appearance-schema color-scheme "prefer-dark"
+	# hide client-side window controls.
+	gsettings set org.gnome.desktop.wm.preferences button-layout ''
+	gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+	gsettings set $gnome-schema overlay-scrolling false
+	gsettings set $gnome-schema icon-theme 'Adwaita'
 	gsettings set $gnome-schema cursor-theme 'Adwaita'
 }
 
@@ -28,7 +33,7 @@ exec_always {
 bindsym $mod+z exec dmenu-runner
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
-for_window [app_id="^firefox$" title="^About Mozilla Firefox$"] floating enable
+for_window [app_id="^firefox$" title="^About (Tor Browser|Mozilla Firefox)$"] floating enable
 for_window [app_id="^firefox$" title="^Inspector :: Font Finder - Mozilla Firefox$"] floating enable
 for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firefox$"] floating enable
 for_window [app_id="^launcher$"] floating enable
@@ -40,6 +45,7 @@ for_window [app_id="^cava$"] border pixel 1
 
 for_window [app_id="^org\.keepassxc\.KeePassXC$"] floating enable
 for_window [app_id="^pavucontrol-qt$"] floating enable
+for_window [app_id="^pavucontrol$"] floating enable
 for_window [class="^Sxiv$"] floating enable
 for_window [app_id="^pinentry-qt$"] floating enable
 # images and videos should float above other programs since their dimensions should
@@ -62,19 +68,23 @@ default_border pixel 3
 ### Autostart
 # exec ~/startup.sh
 # notifications
-# exec mako # handled by systemd now
+# exec mako # managed by systemd
 exec wlsunset-wrapper
 # overlay bar
 exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 # daemons to download whatever gets sent to a named pipe
 exec mkfifo /tmp/dldaemon && tail -f /tmp/dldaemon | xargs -L1 -P 0 aria2c -d "$XDG_DATA_HOME/dldaemon"
-exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 youtube-dlc -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
+exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 yt-dlp -o "$HOME/Videos/yt/ytdldaemon/%(title)s-%(id)s.%(ext)s"
 exec mkfifo /tmp/paste && tail -f /tmp/paste | xargs -L1 wl-copy -n -t text/plain
 # idle config
 exec swayidle \
 	timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	before-sleep 'loginctl lock-session' \
 	lock 'swaylock-fancy'
+
+for_window [app_id="mpv"] {
+	inhibit_idle fullscreen
+}
 
 #colors
 # class                 border  backgr. text    indicator child_border
