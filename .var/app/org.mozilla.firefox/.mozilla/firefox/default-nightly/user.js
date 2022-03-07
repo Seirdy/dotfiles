@@ -1,3 +1,6 @@
+// This user.js WILL create more fingerprinting vectors. However, most third-party surveillance modules take very little of this into account.
+// If you really want to reduce fingerprinting potential, use the tor browser.
+
 // disable auto connections for updates, since I handle updates outside the browser
 user_pref("app.update.url", "");
 user_pref("app.update.url.manual", "");
@@ -40,15 +43,14 @@ user_pref("media.eme.enabled", false);
 user_pref("media.eme.apiVisible", false);
 user_pref("browser.eme.ui.enabled", false);
 user_pref("media.gmp-eme-adobe.enabled", false);
-user_pref("dom.battery.enabled", false);
-user_pref("geo.enabled", false);
-user_pref("geo.wifi.uri", "");
 user_pref("browser.search.geoip.url", "");
 user_pref("browser.search.geoSpecificDefaults.url", "");
 user_pref("browser.selfsupport.url", "");
 user_pref("browser.chrome.errorReporter.infoURL", "");
+user_pref("browser.chrome.errorReporter.publicKey", "");
 user_pref("browser.aboutHomeSnippets.updateUrL", "");
 user_pref("browser.startup.homepage_override.buildID", "");
+user_pref("browser.startup.homepage", "");
 user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("startup.homepage_override_url", "");
@@ -57,8 +59,6 @@ user_pref("browser.search.countryCode", "US"); // (hidden pref)
 user_pref("browser.search.region", "US"); // (hidden pref)
 user_pref("general.useragent.locale", "en-US");
 user_pref("browser.search.geoSpecificDefaults", false);
-user_pref("intl.accept_languages", "en-US, en");
-user_pref("javascript.use_us_english_locale", true);
 user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtabpage.enhanced", false);
@@ -101,7 +101,7 @@ user_pref("extensions.formautofill.creditCards.available", false);
 user_pref("signon.rememberSignons", false);
 user_pref("signon.autofillForms", false);
 user_pref("signon.storeWhenAutocompleteOff", false);
-/*disale captive portal phoning home to detectportal.firefox.com*/
+/// disale captive portal phoning home to detectportal.firefox.com; I handle captive portals separately.
 user_pref("network.captive-portal-service.enabled", false);
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.protocol-handler.external.ms-windows-store", false);
@@ -123,6 +123,11 @@ user_pref("browser.urlbar.oneOffSearches", false);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.library.activity-stream.enabled", false);
+user_pref("browser.library.activity-stream.topSiteSearchShortcuts", false);
+user_pref("browser.newtabpage.activity-stream.discoverystream.personalization.modelKeys", "");
+user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines", "");
+user_pref("browser.newtabpage.pinned", "");
+user_pref("browser.newtabpage.activity-stream.fxaccounts.endpoint", "");
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 user_pref("browser.newtabpage.activity-stream.asrouter.providers.whats-new-panel", "");
 user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
@@ -132,6 +137,8 @@ user_pref("browser.newtabpage.activity-stream.asrouter.providers.cfr", "");
 user_pref("browser.newtabpage.activity-stream.discoverystream.config", "");
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories.options", "");
 user_pref("browser.newtabpage.activity-stream.telemetry.structuredIngestion.endpoint", "");
+user_pref("browser.onboarding.notification.tour-ids-queue", "");
+user_pref("lightweightThemes.getMoreURL", "");
 user_pref("browser.pageActions.persistedActions", "");
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.enabled", false);
@@ -213,6 +220,7 @@ user_pref("browser.snippets.geoUrl", "");
 
 // misc auto-downloading
 user_pref("browser.dictionaries.download.url", "");
+user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
 
 /*disable builtin extensions*/
@@ -222,6 +230,7 @@ user_pref("extensions.pocket.oAuthConsumerKey", "");
 user_pref("extensions.pocket.api", "");
 user_pref("extensions.screenshots.disabled", true);
 user_pref("extensions.screenshots.upload-disabled", true);
+user_pref("extensions.autoDisableScopes", 15);
 user_pref("beacon.enabled", false);
 /*allow addons on AMO*/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
@@ -246,21 +255,28 @@ user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket",
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
 user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
+user_pref("browser.topsites.contile.enabled", false);
+user_pref("browser.topsites.contile.endpoint", "");
+user_pref("browser.partnerlink.attributionURL", "");
+user_pref("browser.partnerlink.campaign.topsites", "");
 
 // misc privacy
 user_pref("privacy.firstparty.isolate", true);
+user_pref("privacy.firstparty.isolate.block_post_message", true);
 user_pref("browser.sessionrestore.privacy_level", 2);
 
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-user_pref("browser.urlbar.trimURLs", false);
 
 /*Deny most permissions*/
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.microphone", 2);
+user_pref("permissions.isolateBy.userContext", true);
+user_pref("privacy.userContext.ui.enabled", true);
 
 /*Extension blocklist*/
 user_pref("extensions.blocklist.enabled", false);
@@ -301,12 +317,18 @@ user_pref("browser.safebrowsing.provider.google.gethashURL", "");
 user_pref("browser.safebrowsing.provider.google.advisoryURL", "");
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
+user_pref("browser.safebrowsing.provider.mozilla.lists", "");
+user_pref("browser.safebrowsing.provider.mozilla.lists.base", "");
+user_pref("browser.safebrowsing.provider.mozilla.lists.content", "");
+
 // Disable firefox accounts; just use a dotfile manaager and rsync the extensions.
+user_pref("identity.fxaccounts.remote.root", "");
 user_pref("identity.fxaccounts.pairing.enabled", false);
 user_pref("identity.fxaccounts.pairing.uri", "");
 user_pref("identity.fxaccounts.enabled", false);
 user_pref("identity.sync.tokenserver.uri", "");
 user_pref("webextensions.storage.sync.serverURL", "");
+user_pref("webchannel.allowObject.urlWhitelist", "");
 // devtools telemetry
 user_pref("devtools.onboarding.telemetry.logged", false);
 user_pref("devtools.remote.adb.extensionURL", "");
@@ -344,6 +366,7 @@ user_pref("extensions.webextensions.restrictedDomains", "");
 user_pref("network.prefetch-next", false);
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("network.predictor.enabled", false);
 user_pref("messaging-system.rsexperimentloader.enabled", false);
 user_pref("app.normandy.optoutstudies.enabled", false);
 user_pref("app.normandy.enabled", false);
@@ -351,5 +374,120 @@ user_pref("extensions.getAddons.cache.enabled", false);
 user_pref("media.gmp-gmpopenh264.enabled", false);
 user_pref("browser.casting.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
-user_pref("layout.css.devPixelsPerPx", "1.1");
+user_pref("layout.css.devPixelsPerPx", "1.0");
 
+// HTTPS-first
+user_pref("dom.security.https_first", true);
+user_pref("dom.security.https_first_pbm", false);
+user_pref("dom.targetBlankNoOpener.enabled", true);
+user_pref("network.IDN_show_punycode", true);
+user_pref("network.cookie.cookieBehavior", 1);
+user_pref("network.cookie.thirdparty.sessionOnly", true);
+user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
+
+user_pref("app.update.background.scheduling.enabled", false);
+
+user_pref("browser.cache.offline.storage.enable", false);
+user_pref("offline-apps.allow_by_default", false);
+user_pref("privacy.clearOnShutdown.cache", true);
+user_pref("privacy.clearOnShutdown.downloads", true); // see note above
+user_pref("privacy.clearOnShutdown.offlineApps", true); // Offline Website Data
+user_pref("privacy.clearOnShutdown.siteSettings", false); // Site Preferences
+
+user_pref("browser.menu.showViewImageInfo", true);
+
+// some prefs from torbutton
+user_pref("javascript.options.ion", false);
+user_pref("javascript.options.baselinejit", false);
+user_pref("javascript.options.native_regexp", false);
+user_pref("javascript.options.asmjs", false);
+user_pref("javascript.options.wasm", false);
+
+user_pref("dom.event.clipboardevents.enabled", false);
+user_pref("dom.event.clipboardevents.enabled", false);
+user_pref("dom.vibrator.enabled", false);
+// user_pref("dom.allow_cut_copy", false);
+user_pref("dom.event.contextmenu.enabled", false);
+user_pref("network.http.referer.XOriginPolicy", 2);
+user_pref("network.http.referer.trimmingPolicy", 2);
+user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+user_pref("browser.cache.disk.capacity", 0);
+user_pref("browser.cache.disk.enable", false);
+// I have no reason to use something besides en-us.
+user_pref("privacy.spoof_english", true);
+user_pref("javascript.use_us_english_locale", true);
+user_pref("intl.accept_languages", "en-US, en");
+user_pref("dom.webaudio.enabled", false);
+user_pref("browser.download.forbid_open_with", true);
+user_pref("security.OCSP.enabled", 1); // ocsp is good for security, but please use stapling. I'm trading some priv for sec.
+user_pref("browser.preferences.experimental", true); // doesn't do anything, just exposes a convenient menu in prefs.
+
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1672013
+user_pref("widget.non-native-theme.enabled", true);
+user_pref("security.sandbox.content.headless", true);
+user_pref("security.ssl.treat_unsafe_negotiation_as_broken",	true);
+user_pref("security.mixed_content.upgrade_display_content", true);
+user_pref("security.mixed_content.block_object_subrequest", true);
+user_pref("security.mixed_content.block_display_content", true);
+user_pref("security.mixed_content.block_active_content", true);
+
+// why isn't this default
+user_pref("browser.ctrlTab.sortByRecentlyUsed", false);
+user_pref("browser.download.animateNotifications", false);
+
+user_pref("browser.bookmarks.autoExportHTML", true);
+user_pref("dom.payments.request.enable", false);
+user_pref("browser.translation.engine", "");
+
+user_pref("html5.offmainthread", true); //default true
+user_pref("layers.offmainthreadcomposition.enabled", true);
+user_pref("layers.offmainthreadcomposition.async-animations", true);
+user_pref("browser.display.use_document_fonts", 0);
+user_pref("gfx.downloadable_fonts.enabled", false);
+
+user_pref("webgl.disabled", true);
+user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
+user_pref("webgl.enable-webgl2", false);
+/* 2012: limit WebGL ***/
+user_pref("webgl.min_capability_mode", true);
+user_pref("webgl.disable-extensions", true);
+user_pref("webgl.disable-fail-if-major-performance-caveat", true);
+/* 2022: disable screensharing ***/
+user_pref("media.getusermedia.screensharing.enabled", false);
+user_pref("media.getusermedia.browser.enabled", false);
+user_pref("media.getusermedia.audiocapture.enabled", false);
+
+// disable some stuff I don't need/use but can get annoyed by.
+user_pref("dom.enable_resource_timing", false);
+user_pref("dom.enable_performance", false);
+user_pref("device.sensors.enabled", false);
+user_pref("dom.gamepad.enabled", false);
+user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
+user_pref("media.webspeech.synth.enabled", false);
+user_pref("media.video_stats.enabled", false);
+user_pref("dom.w3c_touch_events.enabled", 0);
+user_pref("media.ondevicechange.enabled", false);
+user_pref("webgl.enable-debug-renderer-info", false);
+user_pref("dom.w3c_pointer_events.enabled", false);
+user_pref("dom.battery.enabled", false);
+user_pref("geo.enabled", false);
+user_pref("geo.wifi.uri", "");
+user_pref("dom.serviceWorkers.enabled", false); // use chromium for more advanced webshit
+user_pref("browser.send_pings", false); // why is this a feature
+user_pref("browser.urlbar.trimURLs", false); // why is this a feature
+user_pref("media.autoplay.default", 1); // thanks adtech for making me do this shit. you people are making the world a better place.
+user_pref("browser.tabs.drawInTitlebar", false); // let the WM/Compositor handle decorations, stop trying to do everything yourself. ugh.
+user_pref("security.ssl.disable_session_identifiers", true); // common tracking vector
+// WHY ARE THERE ADS ON MY COMPUTER. WTF.
+user_pref("browser.urlbar.suggest.quicksuggest", false);
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
+user_pref("browser.newtabpage.activity-stream.discoverystream.sponsored-collections.enabled", false);
+user_pref("pdfjs.enableScripting", false); // WTF
+
+// gpu accel
+user_pref("layers.gpu-process.enabled", true);
+user_pref("gfx.webrender.all", true);
+user_pref("media.gpu-process-decoder", true);
+user_pref("widget.wayland-dmabuf-vaapi.enabled", true);
+
+user_pref("_userjs.parsed.correctly", "SUCCESS");

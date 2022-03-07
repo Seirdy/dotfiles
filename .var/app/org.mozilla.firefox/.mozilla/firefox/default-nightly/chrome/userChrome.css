@@ -157,8 +157,8 @@ findbar {
 }
 
 /*hide stuff*/
-#context-sendpagetodevice, #context-sep-sendpagetodevice, #context-sep-sendlinktodevice, #context_sendTabToDevice, #context_sendTabToDevice_separator,
-.search-one-offs,
+#context-sendpagetodevice, #context-sep-sendpagetodevice, #context-sep-sendlinktodevice,
+#context_sendTabToDevice, #context_sendTabToDevice_separator,
 #appMenu-fxa-container, #appMenu-fxa-container+toolbarseparator, #appMenu-update-available-notification,
 #PanelUI-menu-button, /* Proton */
 #whats-new-menu-button,

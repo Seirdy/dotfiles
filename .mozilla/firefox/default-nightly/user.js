@@ -1,1 +1,1 @@
-./user.js
+/home/rkumar/.var/app/org.mozilla.firefox/.mozilla/firefox/default-nightly/user.js
