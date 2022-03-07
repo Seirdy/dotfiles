@@ -1,0 +1,20 @@
+#!/usr/bin/env dash
+
+set -eu
+
+TMP_DIR="$(mktemp -d)"
+
+pre_exit() {
+	rm -rf "$TMP_DIR"
+}
+
+trap pre_exit EXIT
+
+buku -t public -j >"$TMP_DIR/bookmarks.json"
+
+ect -9 -strip -gzip "$TMP_DIR/bookmarks.json"
+brotli -kZ "$TMP_DIR/bookmarks.json"
+
+rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=gz/br "$TMP_DIR/bookmarks.json"* deploy@seirdy.one:/var/www/seirdy.one/data/
+
+# vi:ft=sh
