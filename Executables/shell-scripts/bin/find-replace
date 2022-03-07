@@ -48,7 +48,12 @@ sed_fr() {
 }
 
 perl_fr() {
-	perl -p -e"s/$find_regex/$replace_regex/g" || sed_fr
+	# use perl's sed-like regex support; fall back to GNU sed with PCRE2 support if perl isn't installed.
+	if command -v perl >/dev/null; then
+		perl -p -e"s/$find_regex/$replace_regex/g"
+	else
+		sed_fr
+	fi
 }
 
 ripgrep_fr() {

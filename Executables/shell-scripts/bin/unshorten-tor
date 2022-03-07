@@ -60,7 +60,7 @@ fetch_headers() {
 }
 get_url() {
 	# shellcheck disable=SC2016 # $1 refers to a capture group not a shell expr
-	fetch_headers "$1" | rg '^location: (.*)$' --replace '$1' | xurls
+	fetch_headers "$1" | rg -i '^location: (.*)$' --replace '$1' | xurls
 }
 
 unshortened_url="$(get_url "$url")"

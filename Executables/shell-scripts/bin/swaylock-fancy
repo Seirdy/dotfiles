@@ -4,7 +4,7 @@ screenshot='/tmp/screenshot.ppm'
 fancy_background='/tmp/fancy_background.ppm'
 lock_icon="${XDG_DATA_HOME-${HOME-~}/.local/share}/icons/swaylock-foreground.ppm"
 # ffmpeg filters shrink/grow the image to pixelate it before overlaying the lock icon
-ffmpeg_filters='scale=iw/15:ih/15,scale=15*iw:15*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
+ffmpeg_filters='scale=iw/18:ih/18,scale=18*iw:18*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
 
 cleanup() {
 	rm "$screenshot" &
