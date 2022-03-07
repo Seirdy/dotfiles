@@ -1,6 +1,11 @@
 #!/usr/bin/env dash
 
 # opens a link to an image in imv
-curl "$@" --output - | imv -
+
+open_stdin() {
+	curl "$*" --output - | swayimg -
+}
+
+open_stdin "$@" || dl-open "$@"
 
 # vi:ft=sh

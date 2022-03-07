@@ -1,20 +1,12 @@
 #!/usr/bin/env dash
 
 # curl over tor
-# depends on a running Tor daemon and an "xurls" implementation
+# depends on a running Tor daemon
 
-# spoof a referrer header like the TBB does by default.
-dest_url="$(echo "$*" | xurls -r | tail -n 1)"
-
-# note: update these headers regularly. Use the Tor Browser's network inspector's "Copy as cURL" option to grab cURL flags.
-curl_like_ff() {
-	curl -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0' -H 'Accept: text/css,*/*;q=0.1' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H "Referer: $dest_url" -H 'Connection: keep-alive' -H 'If-None-Match: W/"197pm"' -H 'Cache-Control: max-age=0' -H 'TE: Trailers' "$@"
-}
 if pgrep -f /usr/bin/tor >/dev/null; then
-	curl_like_ff --socks5-hostname localhost:9050 "$@"
+	curl --user-agent '' --socks5-hostname localhost:9050 "$@"
 else
 	echo "Error: tor is not running" 1>&2
 fi
 
 # vi:ft=sh
-

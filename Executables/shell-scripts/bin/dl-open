@@ -12,7 +12,7 @@ for url in "$@"; do
 	aria2c "$url" &
 done
 wait
-images="$(fd -t f -x dash -c "file --dereference --mime-type '{}' | grep ':\s*image/.*' | sed 's#:\s*image/.*##'")"
+images="$(fd -t f -x dash -c "file --dereference --mime-type -- '{}' | grep ':\s*image/.*' | sed 's#:\s*image/.*##'")"
 if [ -n "$images" ]; then
 	echo "$images" | imv
 fi

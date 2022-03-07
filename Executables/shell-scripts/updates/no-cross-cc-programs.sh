@@ -68,14 +68,14 @@ build_libgit2() {
 			-DBUILD_SHARED_LIBS=OFF \
 			-DUSE_EXT_HTTP_PARSER=OFF \
 			-DZERO_NSEC=ON \
-		&& CXX='g++ -static' cmake --build .
+		&& CXX='clang -static-pie' cmake --build .
 }
 
 build_gitstatus() {
 	ghq_get_cd https://github.com/romkatv/gitstatus.git \
 		&& cxxflags="$CXXFLAGS -static -I$DIR/libgit2/include -DGITSTATUS_ZERO_NSEC" \
 		&& ldflags="$LDFLAGS -static -L$DIR/libgit2/build -static-libstdc++ -static-libgcc" \
-		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags CXX='g++ -static' make \
+		&& CXXFLAGS=$cxxflags LDFLAGS=$ldflags CXX='clangg++ -static-pie' make \
 		&& strip usrbin/gitstatusd \
 		&& target="$BINPREFIX/gitstatusd" \
 		&& install -m 0755 usrbin/gitstatusd "$target" \

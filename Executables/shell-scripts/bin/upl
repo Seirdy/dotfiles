@@ -1,11 +1,20 @@
 #!/usr/bin/env dash
 # upload to https://0x0.st
 
+set -e -u
+
+curl_prog='curl'
+copy_url=0
+preview_url=0
+
 while [ $# -gt 0 ]; do
 	key="$1"
 	case $key in
 		-c | --copy)
 			copy_url=1
+			;;
+		-t | --tor)
+			curl_prog='curl-tor'
 			;;
 		-p | --preview)
 			preview_url=1
@@ -16,15 +25,16 @@ while [ $# -gt 0 ]; do
 	esac
 	shift
 done
-output_url="$(curl -F"file=@$file_path" https://0x0.st)"
 
-if [ -n "$copy_url" ]; then
+output_url="$("$curl_prog" -F"file=@$file_path" https://0x0.st)"
+
+if [ "$copy_url" = '1' ]; then
 	printf '%s' "$output_url" | wl-copy -n -t text/plain
 fi
 
 echo "$output_url"
 
-if [ -n "$preview_url" ]; then
+if [ "$preview_url" = '1' ]; then
 	curl "$output_url"
 fi
 

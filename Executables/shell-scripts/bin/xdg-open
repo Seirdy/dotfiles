@@ -1,6 +1,5 @@
 #!/usr/bin/env dash
 
-export BROWSER=firefox
 # if this is being called by tmux-fzf-url, then copy it instead of opening it
 pppid="$(ps -o args= "$(ps -o ppid= "$PPID" | awk '{print $1}')")"
 if [ "${pppid#*fzf-url/}" = 'fzf-url.sh' ]; then
@@ -13,17 +12,18 @@ else
 			;;
 		*)
 			case "$1" in
-				*.pdf)
-					exec zathura "$1"
-					;;
-				*.webp|*.avif)
-					exec imv "$1"
+				*.webm | *.mp4 | *.mkv)
+					exec mpv "$1"
 					;;
 				*)
 					# shellcheck disable=SC2154
 					case "${MACHINE}" in
 						Linux)
-							exec /usr/bin/xdg-open "$@"
+							if file --b --mime-type -- "$1" | grep -i 'image' >/dev/null 2>&1; then
+								exec swayimg -s fit "$@"
+							else
+								exec /usr/bin/xdg-open "$@"
+							fi
 							;;
 						Darwin)
 							exec open "$@"
