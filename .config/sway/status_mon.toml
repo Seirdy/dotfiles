@@ -4,17 +4,27 @@ max_width = 135
 
 [[block]]
 block = "net"
-# device = "enp0s25"
+device = "enp0s25"
 # ip = false
 interval = 5
 # icons_format = "{icon} "
 # signal_strength = true
-format = "{signal_strength} {speed_down;K*b} {speed_up;K*b}"
+format = "{speed_down;K*b} {speed_up;K*b}"
 
 [[block]]
 block = "load"
 interval = 5
 format = "{1m} {5m} {15m}"
+
+[[block]]
+block = "disk_space"
+path = "/home"
+info_type = "available"
+warning = 32.0
+alert = 16.0
+interval = 90
+unit = "GB"
+alert_absolute = true
 
 [[block]]
 block = "maildir"
@@ -26,7 +36,7 @@ display_type = "new"
 
 [[block]]
 block = "time"
-format = "%a %m-%d %R%z"
+format = "%a %d %R%z"
 [[block]]
 block = "time"
 format = "%R%z"

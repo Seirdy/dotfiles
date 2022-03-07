@@ -332,5 +332,5 @@ bar {
 		background #31363b00
 		inactive_workspace #32323200 #32323200 #5c5c5c
 	}
-	status_command i3status-rs ~/.config/sway/status.toml
+	status_command TZ=America/Los_Angeles i3status-rs ~/.config/sway/status.toml
 	icon_theme Papirus-Dark

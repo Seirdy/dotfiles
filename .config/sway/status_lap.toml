@@ -17,23 +17,22 @@ interval = 5
 format = "{signal_strength}"
 
 [[block]]
+block = "load"
+interval = 5
+format = "{1m} {5m} {15m}"
+
+[[block]]
 block = "maildir"
-interval = 25
-inboxes = ["~/mail/seirdy/Inbox"]
+interval = 15
+inboxes = ["/home/rkumar/mail/seirdy/Inbox"]
 threshold_warning = 1
 threshold_critical = 10
 display_type = "new"
 
-# [[block]]
-# block = "notmuch"
-# maildir = "/home/rkumar/mail"
-# query = "tag:unread folder:seirdy/Inbox and not tag:archived"
-# threshold_good = 1
-# threshold_info = 3
-# threshold_warning = 5
-# threshold_critical = 10
-# interval = 30
-
 [[block]]
 block = "time"
-format = "%m-%d %H:%M"
+format = "%a %d %R%z"
+[[block]]
+block = "time"
+format = "%R%z"
+timezone = "Etc/UTC"

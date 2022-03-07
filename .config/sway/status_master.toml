@@ -7,12 +7,13 @@ music = "  "
 # time = " "
 net_wired = ""
 net_up = '祝'
-net_down = ' '
+net_down = ''
 net_vpn = " "
 music_play = " 契"
 music_pause = " "
 music_prev = " 玲"
 music_next = " 怜"
+disk_drive = " "
 
 [theme]
 name="slick"
