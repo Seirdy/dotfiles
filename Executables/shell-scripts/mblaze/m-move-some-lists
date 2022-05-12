@@ -1,0 +1,26 @@
+#!/usr/bin/env dash
+
+# This script moves mailing list items and some automated messages to dedicated
+
+set -e
+mail_dir="$HOME/mail/seirdy"
+
+find_matches() {
+	mlist "$mail_dir/Inbox/cur" | "m-$1"
+}
+
+move() {
+	matches="$(find_matches "$1")"
+	num_matches="$(printf '%s' "$matches" | wc -l)"
+	if [ "$num_matches" -gt 0 ]; then
+		echo "moving $num_matches emails to $2"
+		for match in $matches; do
+			mv "$match" "$2/cur/"
+		done
+	fi
+}
+
+move srht-builds-lists "$mail_dir/lists/sr.ht/builds"
+move chromium-lists "$mail_dir/lists/chromium"
+move dmarc-reports "$mail_dir/dmarc-reports"
+# vi:ft=sh

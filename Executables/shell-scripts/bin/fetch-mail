@@ -1,0 +1,4 @@
+#!/usr/bin/env dash
+# just an alias to fetch mail, do some preliminary sorting, and open my inbox.
+mbsync seirdy-default && m-move-some-lists && neomutt -f ~/mail/seirdy/Inbox
+# vi:ft=sh
