@@ -7,7 +7,7 @@
 # 	2. f,d,a:   file,directory,all
 # Not every combination is possible; you can't cd into a file
 # Dependencies:
-# 	- lsd
+# 	- exa
 # 	- fd-find
 # 	- fzf
 # 	- bat
@@ -16,7 +16,7 @@
 _lsd_args='--color always --oneline'
 
 fpa() {
-	dash -c "lsd --group-dirs first $* $_lsd_args" | fzfp | awk '{print $2}'
+	dash -c "exa --group-directories first $* $_lsd_args" | fzfp | awk '{print $2}'
 }
 
 fpd() {

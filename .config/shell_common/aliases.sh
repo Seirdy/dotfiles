@@ -4,6 +4,9 @@
 # undollar
 alias \$=''
 
+# changing my habits
+# alias exiftool='echo "use mat2 instead"'
+
 alias ls='ls --color=auto'
 alias exa-fancy='exa -h --icons --group-directories-first --color=always' # kept for legacy reasons
 alias l='exa -h --icons --group-directories-first --color=always'
@@ -27,22 +30,26 @@ alias recopy='wl-paste -n | wl-copy -n' # good for stripping newlines I guess
 alias dlpaste='aria2c "$(wl-paste -n)"'
 alias dlopaste='dl-open "$(wl-paste -n)"'
 alias broken-link='wl-paste -n | sd "\n" "" | url-picker' # line breaks in links
+alias wlpn='wl-paste -t text/plain -n'
 
 # basic shorthands
 alias pcat='pee cat' # make `pee` from moreutils send to stdout like tee
 alias a2c='aria2c'   # fast aria2c downloading
-alias ytdl='youtube-dl'
+alias ytdl='yt-dlp'
 # ytdl-sm: for my laptop which has mediocre hardware accel, esp. for vp8/vp9
-alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/best'"
+alias ytdl-sm="ytdl -f 'bestvideo[height<=1080][vcodec^=avc1]+bestaudio[ext=m4a]/bestvideo[height<=1080]+bestaudio/bestvideo+bestaudio/best'"
 # anime4k scales up 720p best
 alias ytdl-720="ytdl -f 'bestvideo[height<1080]+bestaudio/best[height<1080]'"
+# for crunchyroll, which I use for just "trying out" a show before I decide to actually watch it
 alias ytdl-crs='ytdl-720 --ignore-config --add-metadata --console-title --external-downloader aria2c --sub-format=ass --sub-lang=enUS --write-sub -k --yes-playlist --socket-timeout=20 -R 20'
-alias ffmpeg-copy='ffmpeg -c:v copy -c:a copy'
+alias ffmpeg-copy='ffmpeg -c copy'
 alias chafa-best='chafa --symbols all-braille-extra --zoom -w 9 -c full --color-space din99d'
 alias cwebp-max='cwebp -lossless -m 6 -z 9 -q 100'
+alias dnfinf='dnf info -C --forcearch x86_64'
 alias dnfs='dnf search'
 alias sdrem='sudo dnf remove'
 alias sdins='sudo dnf install'
+# alias dnfup='sudo dnf --setopt=install_weak_deps=False --setopt=max_parallel_downloads=15 upgrade --refresh --allowerasing'
 alias stb='sudo tlp bat'
 alias rmm='rmtrash'
 alias rmhtm='rm *.html' # pandoc artifacts and stuff
@@ -50,11 +57,27 @@ alias tootn='toot notifications'
 alias tootnr='toot notifications -r'
 alias tootnc='toot notifications --clear'
 # curl follow redirect
-alias curll='curl -L'
+alias curll='curl -SL'
 alias curltl='curl-tor -L'
+alias curls='curl --proto "=https" --proto-default https --no-npn'
+alias curlsl='curl --proto "=https" --proto-default https -sSL --no-npn'
+alias curlslc='curl --proto "=https" --proto-default https -sSL --compressed --no-npn'
+alias curlslcs='curl --proto "=https" --proto-default https -sSL --tlsv1.3 --compressed --no-npn'
+
+# ideally everything is HTTP/2+, compressed, TLSv1.3+.
+alias ccurl='curl --proto "=https" --proto-default https --http2 --no-npn -sSL --tlsv1.3 --compressed'
+# xh is like httpie, written in rust
+alias xxh='xh --https --http-version 2 --ssl tls1.3 -FS'
+
+# -v, -i, and -z are my most commonly-used rg options.
 alias rgi='rg -i'
 alias rgv='rg -v'
-alias rgvi='rg -vi'
+alias rgz='rg -z'
+alias rgvi='rgv -i'
+alias rgiz='rgi -z'
+alias rgvz='rgv -z'
+alias rgviz='rgvi -z'
+
 alias vim='vim -u NONE'
 alias wcl='wc -l'
 alias psave='pockyt put -i'
@@ -63,20 +86,23 @@ alias c='calc -p'
 alias je='julia -e'
 # shellcheck disable=SC2154
 alias p='pash'
-alias fuck!='fuck --yeah' # auto-correct previous command
+alias pashc='PASH_CLIP="wl-copy -n" PASH_TIMEOUT=4 pash c' # chromium doesn't like "wl-copy -o"
+#alias fuck!='fuck --yeah' # auto-correct previous command
 alias cmdv='command -v'
 alias settmp='redshift -O'
 alias resettmp='redshift -x'
 alias dsks='diskus --size-format=binary'
 alias rsyncap='rsync -auP'
 alias rsyncapz='rsync -azuP'
-alias rsyncapzst='rsync -azuP --zc=zstd'
+alias rsyncapzst='rsync -azuP --zc=zstd --compress-level=6'
+# "serveit dir" just serves the dir over http on 8080
+alias serveit='busybox httpd -fvp 8080 -h'
 alias moshlap='mosh rkumar@rkumarlappie /home/rkumar/.local/bin/tmux'
 alias moshdesk='mosh rkumar@rkumar-dekstop /home/rkumar/.local/bin/tmux'
 # curl
-alias wtfismyip='curl https://ipv4.icanhazip.com; curl https://ipv6.icanhazip.com'
+alias wtfismyip='ccurl -A "" -4 https://seirdy.one/ip; echo; ccurl -A "" -6 https://seirdy.one/ip; echo'
 # check that tor works
-alias wtfismyip-tor='curl-tor https://ipv4.icanhazip.com; curl-tor https://ipv6.icanhazip.com'
+alias wtfismyip-tor='curl-tor -A "" -s4 https://seirdy.one/ip; echo; curl-tor -A "" -s6 https://seirdy.one/ip; echo'
 # pastebin/file-upload stuff
 alias clbincp='clbin | wlcv'
 alias 0x0cp='0x0 | wlcv'
@@ -94,7 +120,7 @@ alias gorun='go run .'
 alias gobld='go build'
 # flatpak app aliases to replicate non-flatpak CLI functionality
 command -v ebook-viewer >/dev/null || alias ebook-convert='flatpak run --command=ebook-convert com.calibre_ebook.calibre'
-alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
+# alias loffcon='flatpak run org.libreoffice.LibreOffice --convert-to'
 alias pdfify='loffcon pdf'
 alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +qa'
 alias nvimclean='nvim +PlugClean'
@@ -104,8 +130,9 @@ alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 alias emoj-cp='emoj | wlc'
 alias tarlz='tar -I "lzip --best" -cvf'
+alias count-uniq='sort | uniq -c | sort -nr'
 # nnn-based ncdu alternative
-alias nnncdu='n -T d -dH'
+alias nnncdu='n -dHTd'
 # Aliases that change existing commands
 alias ffprobe='ffprobe -hide_banner'
 alias tuir='LESS="-x 2 -ir" tuir --enable-media'
@@ -151,7 +178,8 @@ alias gcoa='gco -a'
 alias gcom='gco -m'
 alias gcoam='gcoa -m'
 alias gp='git pushall'
-alias gpp='git push origin; git push gh_mirror' # push to GitLab and GitHub remotes
+alias gpn='git pushall && git pushall-notes'
+alias gpp="printf 'pushall-force\npushall-notes' | xargs -P0 -n1 git"
 alias gpo='gp origin'
 alias gpom='gpo master'
 alias gm='git merge'
@@ -230,6 +258,4 @@ if [ -n "$ZSH_VERSION" ]; then
 	fi
 	alias zpstudy='zpmod source-study | grep -v "[0-5] ms" | sort -bgr'
 	alias -g 'wlp'='"$(wl-paste -n)"'
-	unalias zf
-	alias zf="FZF_DEFAULT_OPTS=\"$FZF_DEFAULT_OPTS --preview='lsd --group-dirs first --color always --icon always --icon-theme fancy {2}'\" z -I"
 fi
