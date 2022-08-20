@@ -1,10 +1,1 @@
-#!/bin/sh
-# aerc filter which runs w3m using bwrap to prevent
-# any phoning home by rendered emails. bwrap is a better
-# lightweight solution than socksify imo.
-exec bwrap --ro-bind /usr /usr --symlink usr/lib64 /lib64 --proc /proc --unshare-all w3m \
-	-T text/html \
-	-cols "$(tput cols)" \
-	-dump \
-	-o display_image=false \
-	-o display_link=true
+/home/rkumar/Executables/shell-scripts/bin/w3m-sandbox
