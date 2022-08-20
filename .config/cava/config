@@ -9,7 +9,8 @@ gradient_color_2 = '#1abc9c'
 
 [general]
 
-framerate = 120
+framerate = 60
+sensitivity=120
 
 
 [input]
