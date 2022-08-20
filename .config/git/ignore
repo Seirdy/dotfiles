@@ -99,3 +99,9 @@ cache/
 
 # nodeshit
 node_modules/*
+
+*.prof
+
+*.env
+.autoenv.zsh
+.autoenv_leave.zsh

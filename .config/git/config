@@ -15,8 +15,9 @@
 	gpgSign = if-asked
 [core]
 	editor = nvim
-	pager = delta --theme='ansi-dark' --tabs 2
+	pager = delta --dark --tabs 2
 	commitGraph = true
+	autocrlf = input
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -34,7 +35,9 @@
 [ghq]
 	root = "~/Executables/ghq"
 [alias]
-	pushall = !git remote | grep -E 'origin|mirror' | xargs -L1 -P 0 git push --all --follow-tags
+	pushall = !git push origin -4 --all --follow-tags && git remote | grep -F 'mirror' | xargs -n1 -P 0 git push -4 --all --follow-tags --no-verify
+	pushall-notes = !git remote | grep -E 'mirror|origin' | xargs -I _ -n1 -P 0 git push -4 --follow-tags --no-verify _ refs/notes/commits
+	pushall-force = !git push origin -4 --force --all --follow-tags && git remote | grep -F 'mirror' | xargs -n1 -P 0 git push -4 --force --all --follow-tags --no-verify
 	fetchall = !git remote | grep -E 'origin|mirror' | xargs -L1 -P 0 git fetch
 
 [credential "https://gitlab.com"]
@@ -56,3 +59,5 @@
 	helper = !pash show git/seirdy@seirdy.one
 [pull]
 	rebase = false
+[init]
+	defaultBranch = trunk
