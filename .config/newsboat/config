@@ -32,7 +32,7 @@ bind-key k up
 unbind-key j
 bind-key j down
 unbind-key q
-bind-key q hard-quit
+bind-key q quit
 unbind-key l
 bind-key l open
 unbind-key h

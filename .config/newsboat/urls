@@ -39,23 +39,28 @@ https://muspy.com/feed?id=mujrx4bx006cv6gywluu3gf12koq7d "NonDev" "Favorite"
 # Text-based news #
 ###################
 https://nitter.nixnet.services/search/rss?f=tweets&q=seirdy.one "Me" "Favorite" "Social"
-https://seirdy.one/posts/index.xml "Me" "Favorite" "Blog"
+# my own feeds, for debugging
+https://seirdy.one/posts/index.xml "Me" "Blog"
+https://seirdy.one/posts/atom.xml "Me" "Favorite" "Blog"
+https://seirdy.one/notes/atom.xml "Me" "Favorite" "Blog"
+https://seirdy.one/notes/index.xml "Me" "Blog"
+
 https://whalecoiner.com/atom "Advocacy" "Blog" "Favorite"
 https://artemislena.eu/ "Blog" "Favorite" "NonDev" # not exactly nondev but not exactly dev either
 # https://sonniesedge.co.uk/bookmarks.xml "Blog"
-# Nondev because it usually isn't technical
-https://www.theguardian.com/profile/stallman-richard/rss "Advocacy" "Blog" "NonDev" "Favorite"
 https://infosec-handbook.eu/index.xml "Favorite" "Dev" "Sec"
+https://matt.traudt.xyz/index.atom "Favorite" "Blog" "Dev" "Sec"
 https://qua3k.github.io/index.xml "Favorite" "Blog" "Dev" "Sec"
 https://1hiking.github.io/index.xml "Favorite" "Blog" "Dev" "Sec"
 https://concord.sh/posts/index.xml "Blog" "Dev" "Sec"
-https://plaperdr.github.io/blog/ "Favorite" "Blog" "Dev" "sec"
+https://plaperdr.github.io/feed.xml "Favorite" "Blog" "Dev" "sec"
 https://nobodyspecial.neocities.org/rss2.xml "Favorite" "Blog" "Dev" "Sec"
 https://mikegerwitz.com/rss.xml "Blog" "Dev" "Favorite"
+https://palone.blog/feed/atom/ "Blog" "Dev" "Sec"
 https://people.kernel.org/bleung/feed/ "Blog" "Dev"
 https://jcs.org/rss "Blog" "Dev" "Favorite"
 https://utcc.utoronto.ca/~cks/space/blog/?atom "Blog" "Dev"
-https://uglyduck.ca/feed.xml "Blog" "Dev" "Favorite"
+https://tdarb.org/feeds/posts.xml "Blog" "Dev" "Favorite"
 https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://ethan.writeas.com/feed/ "Blog" "Favorite"
 https://blog.chromium.org/atom.xml "Dev" "Programs"
@@ -65,17 +70,14 @@ https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://barthalion.blog/index.xml "GNOME" "Fedora" "Linux" "Blog" "Dev"
 https://blogs.gnome.org/alexl/feed/ "GNOME" "Fedora" "Linux" "Blog" "Dev"
 https://christine.website/blog.rss "Blog" "Dev" "Favorite"
-https://github.com/containers/releases.atom "Fedora" "Linux" "git repos" "Programs" "Favorite" "~toolbox changelog"
 https://blogs.gnome.org/mclasen/feed/ "Fedora" "Linux" "Blog" "Dev"
 https://solar.lowtechmagazine.com/feeds/all.rss.xml "Advocacy" "NonDev" "Favorite"
 https://github.com/viewizard/astromenace/releases.atom "game" "Programs" "git repos"
-https://maunium.net/blog/index.xml "IRC/Matrix" "Blog" "Dev"
 https://leafo.net/feed.xml "Blog" "Dev" "Favorite"
 # i use swaywm as my window manager.
 https://github.com/emersion/mako/releases.atom "Sway" "git repos" "Programs" "Dev"
 https://github.com/swaywm/sway/releases.atom "Sway" "git repos" "Programs" "Dev"
 https://github.com/bugaevc/wl-clipboard/releases.atom "Sway" "git repos" "Programs" "Dev"
-https://github.com/swaywm/swaylock/releases.atom "Sway" "git repos" "Programs" "Dev"
 # wayland screenshot utils
 https://github.com/emersion/grim/releases.atom "Sway" "git repos" "Programs" "Dev"
 https://github.com/emersion/slurp/releases.atom "Sway" "git repos" "Programs" "Dev"
@@ -88,26 +90,11 @@ https://github.com/carnager/clerk/commits/master.atom "music programs" "git repo
 https://github.com/arybczak/ncmpcpp/releases.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~ncmpcpp changelog"
 https://www.musicpd.org/atom.xml "music programs" "Programs" "Dev" "Favorite"
 https://github.com/karlstav/cava/releases.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~cava releases"
-# I sometimes use cantata for a change of scenery.
-https://github.com/CDrummond/cantata/releases.atom "music programs" "git repos" "Programs" "Dev" "Favorite" "~cantata releases"
 # signal is the only privacy-respecting testing app i can get my friends to use.
 https://github.com/AsamK/signal-cli/releases.atom "git repos" "Programs" "Dev"
-# https://github.com/fredrik-johansson/mpmath/tags.atom "git repos" "Programs" "Dev"
-https://github.com/mikefarah/yq/releases.atom "git repos" "Programs" "Dev"
-# sh/shfmt for shell formatting
-https://github.com/mvdan/sh/releases.atom "git repos" "Programs" "Dev" "~shfmt changelog"
 # some language servers. tagged under vim cuz that's where i use them.
 # https://github.com/MaskRay/ccls/releases.atom "git repos" "Programs" "Dev"
-# general-purpose language server; give it a linter/formatter and (soon) completion program and it behaves like a full LS.
-https://github.com/mattn/efm-langserver/releases.atom "vim" "git repos" "Programs" "Dev"
-https://github.com/aria2/aria2/releases.atom "git repos" "Programs" "Dev"
-https://github.com/dbrgn/tealdeer/releases.atom "git repos" "Programs" "Dev"
-https://github.com/lunaryorn/mdcat/releases.atom "git repos" "Programs" "Dev"
 https://github.com/eXeC64/imv/commits/master/CHANGELOG.atom "git repos" "Programs" "Dev" "~imv changelog"
-https://github.com/nvbn/thefuck/releases.atom "git repos" "Programs" "Dev"
-https://github.com/sharkdp/bat/releases.atom "git repos" "Programs" "Dev"
-# i install all python executables this way; every python program with a $PATH entry gets its own venv.
-https://github.com/pipxproject/pipx/releases.atom "git repos" "Programs" "Dev" "~pipx changelog"
 # best cli calculator; faster than `bc` and written in minimal C
 https://github.com/lcn2/calc/releases.atom "git repos" "Programs" "Dev" "Favorite"
 # best shell cuz it has so many great plugins and supports POSIX scripts.
@@ -123,16 +110,8 @@ https://github.com/hlissner/zsh-autopair/releases.atom "zsh" "git repos" "Progra
 https://github.com/zdharma/zinit/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
 # the developers behind zinit, fast-syntax-highlighting, and more
 https://zdharma.org/feed.xml "zsh" "Programs" "Dev" "Blog"
-# fzf + git
-https://github.com/wfxr/forgit/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
 # fz+z.lua+fzf is the best, fastest way to change directories. better than z, autojump, z.sh, etc.
-https://github.com/changyuheng/fz/commits/master.atom
-https://github.com/skywind3000/z.lua/releases.atom "zsh" "git repos" "Programs" "Dev" "Favorite"
-https://github.com/leophys/zsh-plugin-fzf-finder/commits/master.atom "zsh" "git repos" "Programs" "Dev"
 https://github.com/junegunn/fzf/releases.atom "zsh" "git repos" "Programs" "Dev"
-https://github.com/LuRsT/hr/releases.atom "zsh" "git repos" "Programs" "Dev"
-https://github.com/tj/git-extras/releases.atom "git repos" "Programs" "Dev"
-https://github.com/paulirish/git-open/commits/master.atom "git repos" "Programs" "Dev"
 # best RSS and podcast reader; can update hundreds of feeds in parallel very quickly.
 # 	pairs nicely with tuir for reddit feeds, haxor-news for hacker news RSS feeds,
 # 	and youtube-dl+mpv for youtube feeds so i never have to visit youtube.com
@@ -141,28 +120,20 @@ https://github.com/ytdl-org/youtube-dl/releases.atom "git repos" "Programs" "Dev
 https://github.com/mpv-player/mpv/releases.atom "mpv" "git repos" "Programs" "Dev"
 https://github.com/bloc97/Anime4K/commits/master.atom "mpv" "git repos" "Programs" "Dev"
 https://github.com/hoyon/mpv-mpris/releases.atom "mpv" "git repos" "Programs" "Dev"
-https://github.com/occivink/mpv-scripts/commits/master.atom "mpv" "git repos" "Programs" "Dev"
 # best way to browse reddit with vim keybindings.
 https://gitlab.com/ajak/tuir/commits/master/CHANGELOG.rst?format=atom "git repos" "Programs" "Dev" "Favorite" "~tuir changelog"
-# abandoned, but still listening in case the radio silence breaks
-https://github.com/michael-lazar/rtv/commits/master.atom "git repos" "Programs" "Dev"
 https://github.com/htop-dev/htop/releases.atom "git repos" "Programs" "Dev"
 https://github.com/ogham/exa/releases.atom "git repos" "Programs" "Dev"
 # faster than most "find" implementations
 https://github.com/sharkdp/fd/releases.atom "git repos" "Programs" "Dev"
 # faster and simpler than most "grep" implementations
 https://github.com/BurntSushi/ripgrep/releases.atom "git repos" "Programs" "Dev"
-https://github.com/dandavison/delta/releases.atom "git repos" "Programs" "Dev"
-https://github.com/anordal/shellharden/releases.atom "git repos" "Programs" "Dev"
-# the best lolcat implementation i could find that supports 24bit color and doesn't require ruby
-https://github.com/jameslzhu/roflcat/commits/master.atom "git repos" "Programs" "Dev"
 # vim stuff
 https://github.com/junegunn/vim-plug/releases.atom "vim" "git repos" "Programs" "Dev"
 https://github.com/vim-pandoc/vim-pandoc-syntax/commits/master.atom "vim" "git repos" "Programs" "Dev" "Favorite"
-https://github.com/vim-airline/vim-airline/releases.atom "vim" "git repos" "Programs" "Dev"
 https://github.com/fneu/breezy/commits/master.atom "vim" "git repos" "Programs" "Dev" "Favorite"
-https://lobste.rs/t/vim,go,systemd,vcs,unix.rss "Social" "~Lobsters" "vim" "Linux" "Programs" "Dev"
-https://drewdevault.com/feed.xml "Blog" "Dev" "Favorite"
+https://lobste.rs/t/vim,vcs,unix,a11y.rss "Social" "~Lobsters" "vim" "Linux" "Programs" "Dev"
+https://drewdevault.com/feed.xml "Blog" "Dev"
 https://danluu.com/atom.xml "Blog" "Dev" "Favorite"
 # my graphical torrent client, used alongside aria2.
 # preferred i2p implementation.
@@ -193,15 +164,15 @@ https://mozillagfx.wordpress.com/feed/ "Firefox" "Dev"
 http://queryfeed.net/tw?q=%40ZdharmaI "Social" "zsh" "Programs" "Dev"
 # python thingz
 https://neopythonic.blogspot.com/feeds/posts/default "Python" "Dev"
-https://medium.com/feed/instagram-engineering/tagged/python "Python" "Dev"
+# https://medium.com/feed/instagram-engineering/tagged/python "Python" "Dev"
 https://treyhunner.com/atom.xml "Python" "Blog" "Dev"
 https://sobolevn.me/feed.xml "Python" "Blog" "Dev"
-https://hub.fosstodon.org/feed/ "Social" "NonDev"
-https://hnrss.org/newest.atom?q=Python+OR+numpy+OR+cython+OR+pypy+OR+mypy+OR+mpmath+OR+scipy&link=comments&points=90 "Social" "Hacker News" "Python" "Dev"
+# https://hub.fosstodon.org/feed/ "Social" "NonDev"
+https://hnrss.org/newest.atom?q=Python+OR+numpy+OR+cython+OR+pypy+OR+mypy+OR+mpmath+OR+scipy&link=comments&points=200 "Social" "Hacker News" "Python" "Dev"
 https://mypy-lang.blogspot.com/feeds/posts/default "Python" "Blog" "Dev"
 https://www.pypy.org/rss.xml "Python" "Dev"
-https://pycoders.com/feed/0 "Digest" "Python" "Dev"
-https://blog.pytest.org/feeds/all.atom.xml "Python" "Dev"
+# https://pycoders.com/feed/0 "Digest" "Python" "Dev"
+# https://blog.pytest.org/feeds/all.atom.xml "Python" "Dev"
 # python devtools
 # https://lobste.rs/t/python.rss "Python" "Dev"  # Updates too frequently
 https://eli.thegreenplace.net/feeds/all.atom.xml "Python" "Dev" "Go" "Blog" "Favorite"
@@ -213,25 +184,27 @@ https://whipperstacker.com/index.xml "Go" "Dev"
 https://spf13.com/post/index.xml "Go" "Blog" "Dev"
 https://dave.cheney.net/feed "Go" "Dev" "Favorite"
 # hacker news
-https://hnrss.org/show.atom?points=450 "Social" "Hacker News" "Dev"
-https://hnrss.org/newest.atom?q=CLI+OR+terminal&points=12 "Social" "Hacker News" "Dev" "~HN: CLI"
-https://hnrss.org/newest.atom?q=Fedora+OR+Alpine&points=7 "Social" "Hacker News" "Dev" "~HN: Distros"
-https://hnrss.org/newest.atom?q=vim+OR+neovim&points=10 "Social" "Hacker News" "Dev" "Favorite" "~HN: Vim"
-https://hnrss.org/newest.atom?q=rtv+OR+tuir+OR+hugo+OR+gemini+OR+sway+OR+newsboat+OR+neomutt+OR+nginx+OR+webmention+OR+zsh+OR+pandoc+OR+suckless+OR+swaywm+OR+silverblue+OR+agate+OR+gmni+OR+mpv+OR+ffmpeg+OR+av1+OR+lagrange+OR+amfora+OR+zstd+OR+wayland&points=2&comments=1 "Social" "Hacker News" "Dev" "Favorite" "~HN: favorite programs"
-https://hnrss.org/newest?points=1200 "Social" "Hacker News" "Dev" "~Hacker News: Top"
+https://hnrss.org/show.atom?points=550 "Social" "Hacker News" "Dev"
+https://hnrss.org/newest.atom?q=CLI+OR+terminal&points=25 "Social" "Hacker News" "Dev" "~HN: CLI"
+https://hnrss.org/newest.atom?q=Fedora+OR+Alpine&points=15 "Social" "Hacker News" "Dev" "~HN: Distros"
+https://hnrss.org/newest.atom?q=vim+OR+neovim&points=25 "Social" "Hacker News" "Dev" "Favorite" "~HN: Vim"
+https://hnrss.org/newest.atom?q=rtv+OR+tuir+OR+hugo+OR+gemini+OR+sway+OR+newsboat+OR+neomutt+OR+nginx+OR+webmention+OR+zsh+OR+pandoc+OR+suckless+OR+swaywm+OR+silverblue+OR+agate+OR+gmni+OR+mpv+OR+ffmpeg+OR+av1+OR+lagrange+OR+amfora+OR+zstd+OR+wayland&points=4&comments=1 "Social" "Hacker News" "Dev" "Favorite" "~HN: favorite programs"
+https://hnrss.org/newest?points=1500 "Social" "Hacker News" "Dev" "~Hacker News: Top"
 # reddit feed of git repos
 https://www.reddit.com/r/commandline+neovim+vim+zsh/search.xml?q=url%3Agithub.com+OR+url%3Agitlab.com+OR+url%3Asr.ht+OR+url%3Abitbucket.org+OR+url%3Alaunchpad.net+-library+-flair%3Ajavascript+-flair%3Ajava+-flair%3Atypescript+NOT+(flair%3Aother+awesome)&restrict_sr=on&include_over_18=on&sort=new&t=all "Reddit" "Social" "git repos" "Programs" "Dev" "~Reddit: git repos"
 # some of the best and most relatable satire in tech imo
-http://n-gate.com/index.atom "Social" "Hacker News" "Dev" "Favorite"
+# http://n-gate.com/index.atom "Social" "Hacker News" "Dev" "Favorite"
 # some weekly digests not already in the above golang/python sections
 # weekly programming digest.
-https://feeds.feedburner.com/digest-programming "Digest" "Dev"
+# https://feeds.feedburner.com/digest-programming "Digest" "Dev"
 # i like fedora :)
 https://fedoramagazine.org/feed/ "Fedora" "Linux" "Dev" "Favorite"
 https://www.sudosatirical.com/index.xml "Linux" "Dev" "Favorite"
-https://www.linuxjournal.com/node/feed "Linux" "Dev"
 https://lwn.net/headlines/newrss "Linux" "Dev"
 # webcomics!!
+https://www.questionablecontent.net/QCRSS.xml "Comics" "NonDev"
+https://www.egscomics.com/comic/rss "Comics" "NonDev"
+https://www.egscomics.com/egsnp/rss "Comics" "NonDev"
 https://feeds.feedburner.com/sandraandwoo "Comics" "NonDev"
 https://feeds.feedburner.com/gaiacomic "Comics" "NonDev"
 # https://www.marecomic.com/feed/ "Comics" "NonDev"
@@ -256,12 +229,12 @@ https://librelounge.org/atom-feed.atom "Audio" "Media" "Linux"
 https://feed.podbean.com/podcast.techfreedom.org/feed.xml "Audio" "Advocacy" "Media" "Dev"
 # FSFE's Software Freedom Podcast
 https://fsfe.org/news/podcast-opus.en.rss "Audio" "Advocacy" "Media"
-# Gnu World Order
-https://gnuworldorder.info/opus.atom.xml "Audio" "Media" "Linux" "Dev"
-# Command Line Heros
-https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
-# The Economist: Babbage
-https://rss.acast.com/theeconomistbabbage/ "Audio" "Economist" "Media" "NonDev"
+# # Gnu World Order
+# https://gnuworldorder.info/opus.atom.xml "Audio" "Media" "Linux" "Dev"
+# # Command Line Heros
+# https://feeds.pacific-content.com/commandlineheroes "Audio" "Media" "Linux"
+# # The Economist: Babbage
+# https://rss.acast.com/theeconomistbabbage/ "Audio" "Economist" "Media" "NonDev"
 # Reality 2.0
 https://feeds.fireside.fm/reality2/rss "Audio" "Media" "Linux"
 # On the Metal
@@ -275,18 +248,18 @@ https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "A
 https://www.youtube.com/feeds/videos.xml?channel_id=UC3XTzVzaHQEd30rQbuvCtTQ "Video" "Media" "NonDev"
 # Juice Media. Not an Aussie, just think thee honest ads are funny.
 https://www.youtube.com/feeds/videos.xml?channel_id=UCKRw8GAAtm27q4R3Q0kst_g "Video" "Media" "NonDev"
-# Kurzgesagt
-https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q "Video" "Media" "NonDev"
-# Wisecrack
-https://www.youtube.com/feeds/videos.xml?channel_id=UC6-ymYjG0SU0jUWnWh9ZzEQ "Video" "Media" "NonDev"
+# # Kurzgesagt
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q "Video" "Media" "NonDev"
+# # Wisecrack
+# https://www.youtube.com/feeds/videos.xml?channel_id=UC6-ymYjG0SU0jUWnWh9ZzEQ "Video" "Media" "NonDev"
 # CinemaWins
-https://www.youtube.com/feeds/videos.xml?channel_id=UCL8h3ri2WN_-IbviBlWtUcQ "Video" "Media" "NonDev" "Favorite"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCL8h3ri2WN_-IbviBlWtUcQ "Video" "Media" "NonDev"
 # FilmJoy
 https://www.youtube.com/feeds/videos.xml?channel_id=UCEtB-nx5ngoNJWEzYa-yXBg "Video" "Media" "NonDev" "Favorite"
 # Aliens Guide
 https://www.youtube.com/feeds/videos.xml?channel_id=UCu6DDGoV21YhwSb5iWbriAw "Video" "Media" "NonDev"
 # Contrapoints
-https://www.youtube.com/feeds/videos.xml?channel_id=UCNvsIonJdJ5E4EXMa65VYpA "Video" "Media" "NonDev"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNvsIonJdJ5E4EXMa65VYpA "Video" "Media" "NonDev" "Favorite"
 # CGP Grey
 https://www.youtube.com/feeds/videos.xml?channel_id=UC2C_jShtL725hvbm1arSV9w "Video" "Media" "NonDev"
 # vi:ft=conf
