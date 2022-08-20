@@ -20,8 +20,8 @@ echo "$new_display" >"$display_cfg"
 # KDE Fonts
 # i don't use kde anymore but what the hell
 if [ "$new_display" = "mon" ]; then
-	sans_font="IBM Plex Sans Condensed,11.5,-1,5,50,0,0,0,0,0,Regular"
-	mono_font="monospace, 11.5,-1,5,50,0,0,0,0,0,Regular"
+	sans_font="IBM Plex Sans Condensed,11,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="monospace, 11,-1,5,50,0,0,0,0,0,Regular"
 	small_font="IBM Plex Sans Condensed,10,-1,5,50,0,0,0,0,0,Regular"
 	gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans Condensed 11'
 elif [ "$new_display" = "lap" ]; then
@@ -40,17 +40,13 @@ kdeglobals_update() {
 }
 
 # shellcheck disable=SC2154
-if [ "$MACHINE" = "Linux" ] && [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
-	if command -v kwriteconfig5 >/dev/null; then
+if [ "$MACHINE" = "Linux" ] && command -v kwriteconfig5 >/dev/null ; then
 		kdeglobals_update --group "General" --key "fixed" "$mono_font"
 		kdeglobals_update --group "General" --key "font" "$sans_font"
 		kdeglobals_update --group "General" --key "menuFont" "$sans_font"
 		kdeglobals_update --group "General" --key "toolBarFont" "$sans_font"
 		kdeglobals_update --group "WM" --key "activeFont" "$sans_font"
 		kdeglobals_update --group "General" --key "smallestReadableFont" "$small_font"
-	else
-		echo "kwriteconfig5 not found; please install it to update KDE settings."
-	fi
 fi
 
 # Config directories

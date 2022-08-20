@@ -16,11 +16,12 @@ set $right l
 set $term foot
 
 set $gnome-schema org.gnome.desktop.interface
-# set $appearance-schema org.freedesktop.appearance  # <- perhaps someday in the future??
-set $appearance-schema org.gnome.gitlab.exalm.Impatience
+# set $appearance-schema org.freedesktop.appearance
+# set $appearance-schema org.gnome.gitlab.exalm.Impatience
 exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 exec_always {
-	gsettings set $appearance-schema color-scheme "prefer-dark"
+	# gsettings set $appearance-schema color-scheme "prefer-dark"
+	gsettings set $gnome-schema color-scheme prefer-dark
 	# hide client-side window controls.
 	gsettings set org.gnome.desktop.wm.preferences button-layout ''
 	gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
@@ -33,7 +34,7 @@ exec_always {
 bindsym $mod+z exec dmenu-runner
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
-for_window [app_id="^firefox$" title="^About (Tor Browser|Mozilla Firefox)$"] floating enable
+for_window [app_id="^firefox$" title="^About (Tor Browser|Mozilla Firefox|Firefox Developer Edition)$"] floating enable
 for_window [app_id="^firefox$" title="^Inspector :: Font Finder - Mozilla Firefox$"] floating enable
 for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firefox$"] floating enable
 for_window [app_id="^launcher$"] floating enable
@@ -165,7 +166,7 @@ input * {
 
 	bindsym $mod+p exec xdg-open-paste
 	bindsym $mod+y exec 'mpv --profile=manga "$(wl-paste)"'
-	bindsym $mod+m exec 'mpv --loop-file=inf "$(wl-paste)"'
+	bindsym $mod+m exec 'mpv --force-window=yes --loop-file=inf "$(wl-paste)"'
 	bindsym $mod+shift+P exec xdg-open-paste -d
 	bindsym $mod+i exec 'imv-url "$(wl-paste)"'
 	bindsym $mod+Mod1+p exec 'floating-terminal nvim'

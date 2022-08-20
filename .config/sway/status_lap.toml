@@ -1,6 +1,8 @@
 [[block]]
 block = "focused_window"
-max_width = 65
+[block.format]
+full = "$title.rot-str(15)|"
+short = "$title.rot-str(10)|"
 
 [[block]]
 block = "battery"

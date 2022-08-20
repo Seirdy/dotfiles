@@ -1,30 +1,31 @@
 [[block]]
 block = "focused_window"
-max_width = 135
+[block.format]
+full = "$title.str(30)|"
+#short = "$title.rot-str(20)|"
 
 [[block]]
 block = "net"
 device = "enp0s25"
 # ip = false
-interval = 5
+interval = 3
 # icons_format = "{icon} "
 # signal_strength = true
-format = "{speed_down;K*b} {speed_up;K*b}"
+format = "$speed_down.eng(3,B,K)$speed_up.eng(3,B,K)"
 
 [[block]]
 block = "load"
 interval = 5
-format = "{1m} {5m} {15m}"
+format = "$1m.eng(3) $5m.eng(3) $15m.eng(3)"
 
 [[block]]
 block = "disk_space"
 path = "/home"
 info_type = "available"
-warning = 32.0
-alert = 16.0
+warning = 20.0
+alert = 10.0
 interval = 90
-unit = "GB"
-alert_absolute = true
+#unit = "GB"
 
 [[block]]
 block = "maildir"

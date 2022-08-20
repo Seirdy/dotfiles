@@ -1,4 +1,6 @@
-font = "monospace term"
+# font = "monospace term"
+# icons  = "material-nf"
+# theme="slick"
 
 [icons]
 name = "material-nf"
@@ -21,17 +23,19 @@ name="slick"
 # separator=""
 idle_bg = "#232629"
 
-[[block]]
-block = "music"
-player = "mpd"
-buttons = ["play", "next"]
-max_width=35
-smart_trim = true
-dynamic_width = true
-marquee=false
+# [[block]]
+# block = "music"
+# format = "$combo.rot_str(30) $play $next"
+# player = ["mpd"]
+# hide_when_empty = true
+# buttons = ["play", "next"]
+# max_width=35
+#smart_trim = true
+#dynamic_width = true
+#marquee=false
 
-[[block]]
-block = "bluetooth"
-mac = "BC:F2:92:28:14:65"
-format = "{percentage}%"
-hide_disconnected = true
+# [[block]]
+# block = "bluetooth"
+# mac = "BC:F2:92:28:14:65"
+# format = "{percentage}%"
+# hide_disconnected = true
