@@ -26,7 +26,7 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-output_url="$("$curl_prog" -F"file=@$file_path" https://0x0.st)"
+output_url="$("$curl_prog" -sS -F"file=@$file_path" https://0x0.st)"
 
 if [ "$copy_url" = '1' ]; then
 	printf '%s' "$output_url" | wl-copy -n -t text/plain
