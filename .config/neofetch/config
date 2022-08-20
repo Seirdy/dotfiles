@@ -9,38 +9,35 @@
 # https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
 print_info() {
 	info title
-	info underline
-
 	# listing packages takes time, so run it asynchrously
 	info 'Packages' packages &
+	info 'WM' wm &
+	info underline
+	info 'CPU' cpu &
+	info 'GPU' gpu &
 	info 'OS' distro
-	info 'Model' model
-	info 'Kernel' kernel
 	info 'Uptime' uptime
-	info 'Shell' shell
-	info 'Resolution' resolution
-	info 'DE' de
-	info 'WM' wm
-	info 'WM Theme' wm_theme
-	info 'Theme' theme
-	info 'Icons' icons
-	info 'Terminal' term
-	info 'Terminal Font' term_font
-	info 'CPU' cpu
-	info 'GPU' gpu
-	info 'Memory' memory
-
-	# info 'CPU Usage' cpu_usage
+	info 'Kernel' kernel
+	info 'Model' model &
+	info 'Shell' shell &
+	info 'DE' de &
+	info 'Resolution' resolution &
+	# info 'WM Theme' wm_theme &
+	info 'Theme' theme &
+	info 'Icons' icons &
+	info 'Terminal' term &
+	info 'Terminal Font' term_font &
+	info 'Memory' memory &
 	info 'Disk' disk
+	# info 'CPU Usage' cpu_usage
 	# info 'Battery' battery
-	info 'Font' font
-	info 'Song' song
+	info 'Font' font &
+	info 'Song' song &
 	# info 'Local IP' local_ip
 	# info 'Public IP' public_ip
 	# info 'Users' users
-	info 'Install Date' install_date
+	info 'Install Date' install_date &
 	# info 'Locale' locale # This only works on glibc systems.
-
 	wait
 	info cols
 }
