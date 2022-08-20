@@ -98,7 +98,7 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['plaintex', 'tex', 'pandoc']}
 Plug 'chikamichi/mediawiki.vim' " MediaWiki
 Plug 'vim-pandoc/vim-pandoc', { 'for': [ 'pandoc' ] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'pandoc', 'rst' ] }
-Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
+" Plug 'vim-pandoc/vim-pandoc-after', { 'for': [ 'pandoc', 'rst' ] }
 Plug 'cespare/vim-toml'
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
@@ -107,7 +107,8 @@ Plug 'leafo/moonscript-vim'
 Plug 'tridactyl/vim-tridactyl', { 'for': 'tridactyl' }
 Plug 'gpanders/vim-scdoc'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'https://tildegit.org/sloum/gemini-vim-syntax.git'
+" Plug 'https://tildegit.org/sloum/gemini-vim-syntax.git'
+Plug 'bfrg/vim-jq'
 
 call plug#end()
 
@@ -138,6 +139,7 @@ endif
 
 let g:one_allow_italics = 1
 
+" TODO: replace
 colorscheme breezy
 hi Comment gui=italic
 if !has('gui_running')
@@ -421,7 +423,7 @@ let g:table_mode_align_char='+'
 " go here.
 
 let g:pandoc#after#modules#enabled = ['vim-table-mode']
-let g:pandoc#syntax#codeblocks#embeds#langs=['c', 'python', 'sh', 'html', 'css']
+let g:pandoc#syntax#codeblocks#embeds#langs=['sh', 'html']
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#modules#disabled = ['folding','formatting']
 let g:pandoc#syntax#conceal#cchar_overrides = {'codelang': ' '}

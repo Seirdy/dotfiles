@@ -11,5 +11,8 @@ require'nvim-treesitter.configs'.setup {
 			scope_decremental = 'grm',
 		}
 	},
-	ensure_installed = 'python'
+	ensure_installed = 'python',
+	additional_vim_regex_highlighting = false,
 }
+local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
+ft_to_parser.pandoc = "markdown" -- the someft filetype will use the python parser and queries.

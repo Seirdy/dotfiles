@@ -46,6 +46,9 @@ tools:
   sh-shfmt: &sh-shfmt
     format-command: 'shfmt -ci -s -bn'
     format-stdin: true
+  markdown-mdfmt:
+    format-command: 'mdfmt -stxHeaders'
+    format-stdin: true
 
 languages:
   pandoc:

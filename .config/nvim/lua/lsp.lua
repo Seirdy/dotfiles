@@ -44,10 +44,6 @@ local custom_on_attach_folding = function(client, bufnr)
 	require('folding').on_attach()
 end
 
--- lspconfig.bashls.setup{
--- 	on_attach = custom_on_attach,
--- 	filetypes = { "sh", "zsh" }
--- }
 lspconfig.ccls.setup{
 	on_attach = custom_on_attach_folding,
 }
@@ -62,10 +58,12 @@ lspconfig.cssls.setup{
 lspconfig.gopls.setup{
 	on_attach = custom_on_attach_folding,
 	init_options = {
-		linkTarget="pkg.go.dev",
+		gofumpt = true,
+		linkTarget="godocs.io",
+		linksInHover=false,
 		completionDocumentation=true,
 		deepCompletion=true,
-		fuzzyMatching=true
+		matcher="fuzzy"
 	}
 }
 lspconfig.dockerls.setup{
@@ -80,17 +78,17 @@ lspconfig.jsonls.setup{
 lspconfig.vimls.setup{
 	on_attach = custom_on_attach
 }
-lspconfig.efm.setup{
-	on_attach = custom_on_attach,
-	-- only run on configured filetypes
-	filetypes = {'pandoc', 'markdown', 'gfm', 'markdown.pandoc.gfm', 'rst','sh','vim','make','yaml','dockerfile'},
-}
+-- lspconfig.efm.setup{
+-- 	on_attach = custom_on_attach,
+-- 	-- only run on configured filetypes
+-- 	filetypes = {'rst','sh','vim','make','yaml','dockerfile'},
+-- }
 -- lspconfig.jedi_language_server.setup{
 -- 	on_attach = custom_on_attach,
 -- }
-lspconfig.pyright.setup{
-	on_attach=custom_on_attach,
-}
+-- lspconfig.pyright.setup{
+-- 	on_attach=custom_on_attach,
+-- }
 local custom_on_attach_nlua = function(client, bufnr)
 	custom_on_attach_folding(client, bufnr)
 end
