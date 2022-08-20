@@ -1,5 +1,6 @@
 #!/usr/bin/env dash
 
 dnfc upgrade --refresh
+# fd -uu -t x -E 'zsh\.old' -E 'zsh-[0-9].*' . /opt/firefox-trunk -X file '{}' | rg -e ':\s*ELF 64-bit LSB.*$' --replace '' | sudo xargs -n1 strip
 
 # vi:ft=sh
