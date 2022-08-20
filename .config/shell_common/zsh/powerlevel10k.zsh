@@ -3,7 +3,7 @@ autoload -Uz add-zsh-hook
 # use transient prompt. Set it to "off" since I don't want
 # to use its default elements; I want to use the same elements as line 2
 export POWERLEVEL9K_TRANSIENT_PROMPT=off
-export POWERLEVEL9K_GITSTATUS_DIR="$GHQ_ROOT/github.com/romkatv/gitstatus"
+# export POWERLEVEL9K_GITSTATUS_DIR="$GHQ_ROOT/github.com/romkatv/gitstatus"
 POWERLEVEL9K_DEFAULT_BACKGROUND='black'
 # add invisible execution time to left prompt
 # in order to show it in the right-side transient prompt
@@ -21,8 +21,9 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
 	root_indicator background_jobs command_execution_time time
 )
 
+# my tmux config should display the hostname. if we're not in tmux, it's redundant
 if [ -n "$SSH_CONNECTION" ] || hostname | grep -q 'toolbox'; then
-	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS)
+	[ -n "$TMUX" ] || POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS)
 fi
 POWERLEVEL9K_MODE='nerdfont-complete'
 # POWERLEVEL9K_MODE="awesome-fontconfig"

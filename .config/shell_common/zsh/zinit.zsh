@@ -42,6 +42,9 @@ zinit light skywind3000/z.lua
 # zi0b src'czmod.zsh'
 # zinit light "$GHQ_ROOT/github.com/skywind3000/czmod"
 
+# zi0a
+# zinit light Tarrasch/zsh-autoenv
+
 zi0c has'fzf' ''
 zinit light ZoeFiri/fz
 
@@ -86,10 +89,10 @@ zi_program has'jq' pick'reddio' from'gitlab'
 zinit light aaronNG/reddio
 
 zi_program pick'hURL'
-zinit light 'fnord0/hURL'
+zinit light fnord0/hURL
 
 zi_program has'mogrify'
-zinit light 'hackerb9/lsix'
+zinit light hackerb9/lsix
 
 # git-open has a manpage that I want in my MANPATH
 zi_program has'git' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" atpull'%atclone'
@@ -125,15 +128,18 @@ zinit light Seirdy/stpv
 zi_program has'weechat' pick'chattiest-channels'
 zinit light $GHQ_ROOT/git.sr.ht/~seirdy/chattiest-channels
 
-zi_program has'ueberzug' pick'stpvimg'
-zinit light Seirdy/stpv
+zi_program has'bash' pic'vimv'
+zinit light thameera/vimv
+
+# zi_program has'ueberzug' pick'stpvimg'
+# zinit light Seirdy/stpv
 
 zi_program pick'stpv'
 zinit light Seirdy/stpv
 
 if [ -n "$WAYLAND_DISPLAY" ]; then
 	zi_program pick'farge'
-	zinit light 'sdushantha/farge'
+	zinit light sdushantha/farge
 
 	zi_program has'imv' pick'kunst'
 	zinit light $GHQ_ROOT/git.sr.ht/~seirdy/kunst
@@ -152,8 +158,10 @@ zinit light $GHQ_ROOT/github.com/junegunn/fzf/bin
 zi_program pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
 zinit light dylanaraps/neofetch
 
-zi_program has'perl' has'convert' pick'exiftool'
-zinit light exiftool/exiftool
+if ! command -v exiftool >/dev/null; then
+	zi_program has'perl' has'convert' pick'exiftool'
+	zinit light exiftool/exiftool
+fi
 
 if [ -z "$SSH_CONNECTION" ]; then
 	zi_program has'perl' pick'inxi'
@@ -206,13 +214,10 @@ zi_completion has'tmux' pick'completion/zsh'
 zinit light greymd/tmux-xpanes
 
 zi_completion has'cargo'
-zinit snippet https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
+zinit snippet $RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions/_cargo
 
 zi_completion has'rustc'
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rust/_rust
-
-zi_completion has'rg'
-zinit snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
 
 zi_completion has'yadm'
 zinit snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/zsh/_yadm
@@ -223,14 +228,8 @@ zinit snippet $GHQ_ROOT/github.com/Kansattica/msync/scripts/msync_complete.sh
 zi_completion has'tldr' mv'zsh_tealdeer -> _tldr'
 zinit snippet https://github.com/dbrgn/tealdeer/blob/master/zsh_tealdeer
 
-zi_completion has'pandoc'
-zinit light srijanshetty/zsh-pandoc-completion
-
-zi_completion has'fd'
-zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fd/_fd
-
-# zi_completion has'exa' mv'completions.zsh -> _exa'
-# zinit snippet https://github.com/ogham/exa/blob/master/completions/completions.zsh
+zi_completion has'yt-dlp'
+zinit snippet $GHQ_ROOT/github.com/yt-dlp/yt-dlp/completions/zsh/_yt-dlp
 
 zi_completion has'cht.sh'
 zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
@@ -238,28 +237,8 @@ zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
 zi_completion has'buku'
 zinit snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
 
-zi_completion has'youtube-dl' mv'youtube-dl.zsh -> _youtube-dl'
-zinit snippet $GHQ_ROOT/github.com/ytdl-org/youtube-dl/youtube-dl.plugin.zsh
-
 zi_completion has'mpv'
 zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv/etc/_mpv.zsh
-
-# zi_completion has'se'
-# zinit snippet $PIPX_HOME/venvs/standardebooks/lib/python3.*/site-packages/se/completions/zsh/_se
-
-zi_completion has'alacritty'
-zinit snippet $GHQ_ROOT/github.com/alacritty/alacritty/extra/completions/_alacritty
-
-zi_completion has'wl-copy'
-zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-copy
-zi_completion has'wl-paste'
-zinit snippet $GHQ_ROOT/github.com/bugaevc/wl-clipboard/completions/zsh/_wl-paste
-
-zi_completion has'flatpak'
-zinit light $GHQ_ROOT/github.com/flatpak/flatpak/completion/_flatpak
-
-zi_completion has'rclone'
-zinit light $XDG_DATA_HOME/zsh/site-functions/_rclone
 
 zi_completion has'beet'
 zinit snippet 'https://github.com/beetbox/beets/blob/master/extra/_beet'
@@ -275,12 +254,14 @@ zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-comp
 
 zi_completion
 zinit light $GHQ_ROOT/github.com/sunaku/dasht/etc/zsh/completions
-zi_completion multisrc'_*' pick'/dev/null'
-zinit light /usr/share/zsh/site-functions
+
 zi_completion pick'_foot' src'footclient'
 zinit light $GHQ_ROOT/codeberg.org/dnkl/foot/completions/zsh
 
 SHELL_COMMON=$XDG_CONFIG_HOME/shell_common
+
+zi_completion has'wormhole-william'
+zinit snippet $SHELL_COMMON/zsh/completions/_wormhole-william
 
 zi_completion has'pip'
 zinit snippet $SHELL_COMMON/zsh/completions/_pip
@@ -296,9 +277,6 @@ zinit snippet $XDG_CONFIG_HOME/less/less_termcap.sh
 
 zi0a pick'aliases.sh' multisrc'functions_ghq.sh pash.sh functions.sh aliases_private.sh'
 zinit light $SHELL_COMMON
-
-zi0b has'broot'
-zinit snippet "$XDG_CONFIG_HOME/broot/launcher/bash/br"
 
 # the following will run after everything else happens
 finish_setup() {
@@ -320,7 +298,11 @@ finish_setup() {
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
 	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
+	alias z="FZF_DEFAULT_OPTS=\"$FZF_DEFAULT_OPTS --preview='exa --group-directories-first --color always -a1 --icons {2}'\" _fz"
 }
 
-zi0c atinit'zpcompinit; zpcdreplay; finish_setup'
-zinit light zdharma/fast-syntax-highlighting
+zinit wait'0c' lucid light-mode for \
+	atclone'print Installing system completions...; \
+	zinit creinstall -q /usr/share/zsh/site-functions' \
+	atload'zpcompinit; zpcdreplay; finish_setup' \
+	zdharma/fast-syntax-highlighting
