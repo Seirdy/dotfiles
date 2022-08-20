@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2016 # we use a lot of regexes in single quotes
 # Sanitze and condense messy URLs. Ideal for link sharing.
 # depends on:
 # - a POSIX environemnt
@@ -7,6 +8,8 @@
 # you do NOT need ripgrep to have PCRE2 support.
 # NOTE: this currently removes all URL params (?=...)
 # so it'll mess up your YouTube links. YouTube support coming soon^TM
+
+set -e -u
 
 # Usage/Flags {{{
 # ---------------
@@ -23,6 +26,8 @@ ARGS:
   URL\t the URL to sanitize.
 " "$(basename "${0}")"
 }
+
+mirror=""
 
 # Options
 while getopts "hm" flags; do
@@ -81,7 +86,21 @@ find_replace() {
 # ------------------
 # remove URL parameters and trailing slash
 # TODO: make a list of okay parameters for Reddit, YouTube, etc.
-url="$(echo "$1" | sed -E 's#/(\?.*)?$##')"
+url_original="$1"
+
+# sanitize google tracking links; works for google's basic HTML version, not the JS-enabled google SERPs.
+googlesearch_url='https://www.google.com/url\?q=(https?:)([^\&]*).*'
+if echo "$url_original" | greplike "$googlesearch_url" >/dev/null; then
+	url_original="$(echo "$url_original" | find_replace "$googlesearch_url" '$1$2')"
+	url_original="$(urlencode -d "$url_original")"
+fi
+
+tracking_params='(?:(?:utm|ga|hmb|ic|fb|pd_rd|ref|share|client|service)_[^=]*|sk|fbclid|gclid)?=[^\&]*'
+
+url="$url_original"
+url="$(echo "$url" | find_replace "\&($tracking_params|\$)" '')"
+url="$(echo "$url" | find_replace "\?$tracking_params" '?')"
+url="$(echo "$url" | find_replace '\?$' '')"
 # }}}
 
 # shorten Reddit links {{{
@@ -102,6 +121,7 @@ url_matches() {
 if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 	# the big fat regex we'll use to split up reddit URLs
 	reddit_re='^https?://(?:(?:www|np|new|old)\.)?reddit\.com/(r/[A-Za-z0-9][A-Za-z0-9_]{2,20}/)(comments/)(.*)$'
+	reddit_contextparam='.*(\?|\&)context=([0-9]*)'
 	# split the reddit URL into its parts.
 	reddit_dotcom='https://reddit.com/' # we don't need "www|old|new|i|np"
 	# shellcheck disable=SC2016
@@ -121,6 +141,10 @@ if echo "$url" | greplike "$reddit_re_simple" >/dev/null; then
 		else
 			thread_id="${comment_id##*/}"
 			url="${reddit_dotcom}comments/$post_id/_/$thread_id"
+			context="$(echo "$url_original" | find_replace "$reddit_contextparam" '$2')"
+			if [ "$context" != '' ]; then
+				url="$url?context=$context"
+			fi
 		fi
 	fi
 	echo "$url" && exit 0
@@ -132,21 +156,30 @@ elif url_matches "$sandraandwoo"; then
 fi
 # }}}
 
+if [ "$mirror" == "" ]; then
+	echo "$url"
+	exit 0
+fi
+
 # imgur mirror: imgur.kageurufu.net displays albums and gifv without the BS
-if [ -n "$mirror" ]; then
-	imgur_re='^https?://(?:[A-Za-z0-9]*\.)?imgur\.com/(.*)$'
-	if echo "$url" | greplike "$imgur_re" >/dev/null; then
-		# shellcheck disable=SC2016
-		url="$(echo "$url" | find_replace "$imgur_re" 'https://imgur.kageurufu.net/$1')"
-		# url="https://imgur.kageurufu.net/$page_path"
-		echo "$url" && exit 0
-	fi
+imgur_re='^https?://(?:[A-Za-z0-9]*\.)?imgur\.com/(.*)$'
+if echo "$url" | greplike "$imgur_re" >/dev/null; then
+	# shellcheck disable=SC2016
+	url="$(echo "$url" | find_replace "$imgur_re" 'https://imgur.kageurufu.net/$1')"
+	# url="https://imgur.kageurufu.net/$page_path"
+	echo "$url" && exit 0
+fi
+
+twitter_re='https?://(?:mobile|www\.)?twitter\.com/(.*)'
+if echo "$url" | greplike "$twitter_re" >/dev/null; then
+	# shellcheck disable=SC2016
+	url="$(echo "$url" | find_replace "$twitter_re" 'https://nitter.pussthecat.org/$1')"
+	# url="https://imgur.kageurufu.net/$page_path"
+	echo "$url" && exit 0
 fi
 
 # TODO: condense/sanitize youtube URLS
 # TODO: replace youtube URLS with invidio.us if given `-m` flag
 # TODO: twitter -> nitter if given `-m` flag
-
-printf '%s' "$url"
 
 # vi:ft=sh

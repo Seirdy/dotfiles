@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 # A helpful comment
 
-java -jar "$GHQ_ROOT/github.com/validator/validator/build/dist/vnu.jar" --stdout $@ | rg --passthru -F "file:$PWD/" --replace ''
+java -jar "$GHQ_ROOT/github.com/validator/validator/build/dist/vnu.jar" $@
 
 # vi:ft=sh
