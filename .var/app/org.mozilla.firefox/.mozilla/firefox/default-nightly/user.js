@@ -444,6 +444,7 @@ user_pref("layers.offmainthreadcomposition.enabled", true);
 user_pref("layers.offmainthreadcomposition.async-animations", true);
 user_pref("browser.display.use_document_fonts", 0);
 user_pref("gfx.downloadable_fonts.enabled", false);
+// user_pref("gfx.downloadable_fonts.disable_cache", true);
 
 user_pref("webgl.disabled", true);
 user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
@@ -478,16 +479,41 @@ user_pref("browser.urlbar.trimURLs", false); // why is this a feature
 user_pref("media.autoplay.default", 1); // thanks adtech for making me do this shit. you people are making the world a better place.
 user_pref("browser.tabs.drawInTitlebar", false); // let the WM/Compositor handle decorations, stop trying to do everything yourself. ugh.
 user_pref("security.ssl.disable_session_identifiers", true); // common tracking vector
-// WHY ARE THERE ADS ON MY COMPUTER. WTF.
+
+// WHY IS THERE ADWARE ON MY COMPUTER. WTF.
 user_pref("browser.urlbar.suggest.quicksuggest", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.newtabpage.activity-stream.discoverystream.sponsored-collections.enabled", false);
-user_pref("pdfjs.enableScripting", false); // WTF
+
+user_pref("pdfjs.enableScripting", false);
 
 // gpu accel
 user_pref("layers.gpu-process.enabled", true);
 user_pref("gfx.webrender.all", true);
 user_pref("media.gpu-process-decoder", true);
 user_pref("widget.wayland-dmabuf-vaapi.enabled", true);
+
+user_pref("extensions.manifestV3.enabled", true);
+user_pref("privacy.query_stripping.enabled", true);
+user_pref("privacy.globalprivacycontrol.enabled", true);
+user_pref("privacy.globalprivacycontrol.functionality.enabled", true);
+user_pref("privacy.partition.network_state.ocsp_cache", true);
+
+// isolation
+user_pref("dom.block_external_protocol_navigation_from_sandbox", true);
+user_pref("dom.ipc.processCount.webIsolated", 8);
+user_pref("dom.ipc.processCount", 16);
+user_pref("fission.webContentIsolationStrategy", 1);
+// the following pref breaks most extensions
+// user_pref("security.sandbox.gpu.level", 1); // text rendering is broken when value set to "2"
+user_pref("security.sandbox.socket.process.level", 1);
+
+
+// IDK if this works on all platforms yet
+user_pref("security.sandbox.content.shadow-stack.enabled", true	);
+user_pref("security.sandbox.gmp.shadow-stack.enabled", true	);
+user_pref("security.sandbox.gpu.shadow-stack.enabled", true	);
+user_pref("security.sandbox.rdd.shadow-stack.enabled", true	);
+user_pref("security.sandbox.socket.shadow-stack.enabled", true);
 
 user_pref("_userjs.parsed.correctly", "SUCCESS");

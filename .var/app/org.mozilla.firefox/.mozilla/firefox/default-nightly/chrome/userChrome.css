@@ -205,7 +205,7 @@ findbar {
 	opacity: 0.75 !important;
 }
 
-.tabbrowser-tab[selected] .tab-content {
+.tabbrowser-tab[visuallyselected="true"] .tab-content {
 	border-bottom: 2px solid var(--ui-accent) !important;
 	margin-top: 1px !important;
 }
@@ -213,15 +213,15 @@ findbar {
 	border-bottom: 2px solid var(--identity-tab-color) !important;
 	margin-top: 1px !important;
 }
-.tabbrowser-tab:not([selected]):not([usercontextid]) .tab-content {
+.tabbrowser-tab:not([visuallyselected="true"]):not([usercontextid]) .tab-content {
 	border-bottom: none !important;
 	margin-top: -1px !important;
 }
-.tabbrowser-tab:not([selected]):not([usercontextid]):hover .tab-content {
+.tabbrowser-tab:not([visuallyselected="true"]):not([usercontextid]):hover .tab-content {
 	border-bottom: 2px solid var(--ui-basecolor) !important;
 	margin-top: 1px !important;
 }
-.tabbrowser-tab:not([selected]) .tab-content {
+.tabbrowser-tab:not([visuallyselected="true"]) .tab-content {
 	opacity: 0.85 !important;
 }
 .tabbrowser-tab[pending="true"] .tab-content {
@@ -229,7 +229,7 @@ findbar {
 }
 
 /*Fatten selected line when hovered*/
-.tabbrowser-tab[selected]:hover .tab-line {
+.tabbrowser-tab[visuallyselected="true"]:hover .tab-line {
 	height: 3px !important;
 	opacity: 1 !important;
 }
@@ -263,14 +263,14 @@ findbar {
 /*Color mods*/
 
 /*Change the color of the tab line of container tabs*/
-.tabbrowser-tab:not([usercontextid]) .tab-line[selected="true"] {
+.tabbrowser-tab[visuallyselected="true"]:not([usercontextid]) .tab-line {
 	--tab-line-color: var(--ui-accent) !important;
 }
 
 .tabbrowser-tab[usercontextid] .tab-line {
 	--tab-line-color: var(--identity-tab-color) !important;
 }
-.tabbrowser-tab[usercontextid]:not([selected]):hover .tab-line {
+.tabbrowser-tab[usercontextid]:not([visuallyselected="true"]):hover .tab-line {
 	opacity: 0.5 !important;
 	background-color: var(--identity-tab-color) !important;
 }
@@ -283,7 +283,7 @@ findbar {
 
 /*Hide the standard container indicators of unfocused tabs*/
 .tabbrowser-tab:hover .tab-bottom-line,
-.tabbrowser-tab[selected] .tab-bottom-line {
+.tabbrowser-tab[visuallyselected="true"] .tab-bottom-line {
 	display: none !important;
 }
 
