@@ -1780,7 +1780,7 @@ set folder="~/mail/seirdy"
 # Also see the $record variable.
 #
 #
-# set forward_attachments=ask-yes
+set forward_attachments=ask-yes
 #
 # Name: forward_attachments
 # Type: quadoption
@@ -2233,7 +2233,7 @@ set from="seirdy@seirdy.one"
 # honored when group-replying to a message.
 #
 #
-# set hostname=""
+set hostname="seirdy.one"
 #
 # Name: hostname
 # Type: string

@@ -1,8 +1,12 @@
+Create Both
+Expunge Both
+SyncState *
+
 IMAPAccount seirdy
 Host imap.migadu.com
 Port 993
 User seirdy@seirdy.one
-PassCmd "pash show email/migadu"
+PassCmd "gpg -dq --pinentry-mode=cancel /home/rkumar/.local/share/pash/email/migadu.gpg"
 SSLType IMAPS
 PipelineDepth 50
 CertificateFile /etc/ssl/certs/ca-bundle.crt
@@ -16,28 +20,40 @@ IMAPStore seirdy-remote
 Account seirdy
 
 Channel seirdy-default
-Master :seirdy-remote:
-Slave :seirdy-local:Inbox
+far :seirdy-remote:
+near :seirdy-local:Inbox
 
 Channel seirdy-sent
-Master :seirdy-remote:"Sent"
-Slave :seirdy-local:Sent
+far :seirdy-remote:"Sent"
+near :seirdy-local:Sent
 
 Channel seirdy-trash
-Master :seirdy-remote:"Trash"
-slave  :seirdy-local:Trash
+far :seirdy-remote:"Trash"
+near  :seirdy-local:Trash
 
 Channel seirdy-archive
-Master :seirdy-remote:"Archive"
-slave  :seirdy-local:Archive
+far :seirdy-remote:"Archive"
+near  :seirdy-local:Archive
+
+Channel seirdy-blog
+far :seirdy-remote:"blog"
+near  :seirdy-local:blog
+
+Channel seirdy-lists
+far :seirdy-remote:"lists"
+near  :seirdy-local:lists
+
+Channel seirdy-lists/gemini
+far :seirdy-remote:"lists/gemini"
+near  :seirdy-local:lists/gemini
+
+Channel seirdy-lists/gemini
+far :seirdy-remote:"lists/sr.ht"
+near  :seirdy-local:lists/sr.ht
 
 Channel seirdy-junk
-Master :seirdy-remote:"Junk"
-slave  :seirdy-local:Junk
-
-Create Both
-Expunge Both
-SyncState *
+far :seirdy-remote:"Junk"
+near  :seirdy-local:Junk
 
 Group seirdy
 Channel seirdy-default
@@ -53,7 +69,7 @@ IMAPAccount envs.net
 Host mail.envs.net
 Port 993
 User seirdy@envs.net
-PassCmd "pash show email/envs.net"
+PassCmd "gpg -dq --pinentry-mode=cancel /home/rkumar/.local/share/pash/email/envs.net.gpg"
 SSLType IMAPS
 PipelineDepth 5
 CertificateFile /etc/ssl/certs/ca-bundle.crt
@@ -67,28 +83,24 @@ IMAPStore envs.net-remote
 Account envs.net
 
 Channel envs.net-default
-Master :envs.net-remote:
-Slave :envs.net-local:Inbox
+far :envs.net-remote:
+near :envs.net-local:Inbox
 
 Channel envs.net-sent
-Master :envs.net-remote:"Sent"
-Slave :envs.net-local:Sent
+far :envs.net-remote:"Sent"
+near :envs.net-local:Sent
 
 Channel envs.net-trash
-Master :envs.net-remote:"Trash"
-slave  :envs.net-local:Trash
+far :envs.net-remote:"Trash"
+near  :envs.net-local:Trash
 
 Channel envs.net-archive
-Master :envs.net-remote:"Archive"
-slave  :envs.net-local:Archive
+far :envs.net-remote:"Archive"
+near  :envs.net-local:Archive
 
 Channel envs.net-junk
-Master :envs.net-remote:"Junk"
-slave  :envs.net-local:Junk
-
-Create Both
-Expunge Both
-SyncState *
+far :envs.net-remote:"Junk"
+near  :envs.net-local:Junk
 
 Group envs.net
 Channel envs.net-default
@@ -102,7 +114,7 @@ Channel envs.net-junk
 IMAPAccount school
 Host imap.gmail.com
 User rkumar@lclark.edu
-PassCmd "pash show school/lc"
+PassCmd "gpg -dq --pinentry-mode=cancel /home/rkumar/.local/share/pash/school/lc.gpg"
 SSLType IMAPS
 PipelineDepth 10
 CertificateFile /etc/ssl/certs/ca-bundle.crt
@@ -116,76 +128,76 @@ Inbox ~/mail/school/inbox
 Subfolders Verbatim
 
 Channel school-default
-Master :school-remote:
-Slave :school-local:Inbox
+far :school-remote:
+near :school-local:Inbox
 
 Channel school-sent
-Master :school-remote:"[Gmail]/Sent Mail"
-slave  :school-local:Sent
+far :school-remote:"[Gmail]/Sent Mail"
+near  :school-local:Sent
 
 Channel school-trash
-Master :school-remote:"[Gmail]/Trash"
-slave  :school-local:Trash
+far :school-remote:"[Gmail]/Trash"
+near  :school-local:Trash
 
 Channel school-archive
-Master :school-remote:"[Gmail]/All Mail"
-slave  :school-local:All
+far :school-remote:"[Gmail]/All Mail"
+near  :school-local:All
 
 Channel school-junk
-Master :school-remote:"[Gmail]/Spam"
-slave  :school-local:Junk
+far :school-remote:"[Gmail]/Spam"
+near  :school-local:Junk
 
 Channel school-advising
-Master :school-remote:"Advising"
-slave  :school-local:Advising
+far :school-remote:"Advising"
+near  :school-local:Advising
 
 Channel school-newsletters
-Master :school-remote:"Newsletters"
-slave  :school-local:Newsletters
+far :school-remote:"Newsletters"
+near  :school-local:Newsletters
 
 Channel school-bookstore
-Master :school-remote:"Newsletters/Bookstore"
-slave  :school-local:"Newsletters/Bookstore"
+far :school-remote:"Newsletters/Bookstore"
+near  :school-local:"Newsletters/Bookstore"
 
 Channel school-clubs
-Master :school-remote:"Newsletters/Clubs"
-slave  :school-local:"Newsletters/Clubs"
+far :school-remote:"Newsletters/Clubs"
+near  :school-local:"Newsletters/Clubs"
 
 Channel school-reshall
-Master :school-remote:"ResHall"
-slave  :school-local:ResHall
+far :school-remote:"ResHall"
+near  :school-local:ResHall
 
 Channel school-cs
-Master :school-remote:"Classes/CS"
-slave  :school-local:"Classes/CS"
+far :school-remote:"Classes/CS"
+near  :school-local:"Classes/CS"
 
 Channel school-math
-Master :school-remote:"Classes/Math"
-slave  :school-local:"Classes/Math"
+far :school-remote:"Classes/Math"
+near  :school-local:"Classes/Math"
 
 Channel school-otherclasses
-Master :school-remote:"Classes/OtherClasses"
-slave  :school-local:"Classes/OtherClasses"
+far :school-remote:"Classes/OtherClasses"
+near  :school-local:"Classes/OtherClasses"
 
 Channel school-oldclasses
-Master :school-remote:"Classes/Old"
-slave  :school-local:"Classes/Old"
+far :school-remote:"Classes/Old"
+near  :school-local:"Classes/Old"
 
 Channel school-confirmations
-Master :school-remote:"Confirmations"
-slave  :school-local:"Confirmations"
+far :school-remote:"Confirmations"
+near  :school-local:"Confirmations"
 
 Channel school-personal
-Master :school-remote:"Personal"
-slave  :school-local:"Personal"
+far :school-remote:"Personal"
+near  :school-local:"Personal"
 
 Channel school-reference
-Master :school-remote:"Reference"
-slave  :school-local:"Reference"
+far :school-remote:"Reference"
+near  :school-local:"Reference"
 
-Create Both
-Expunge Both
-SyncState *
+Channel school-reinst
+far :school-remote:"reinst"
+near  :school-local:"reinst"
 
 Group school
 Channel school-default
@@ -205,6 +217,7 @@ Channel school-oldclasses
 Channel school-confirmations
 Channel school-personal
 Channel school-reference
+Channel school-reinst
 
 ##################
 
@@ -212,7 +225,7 @@ IMAPAccount webmention
 Host imap.migadu.com
 Port 993
 User webmention@seirdy.one
-PassCmd "pash show email/webmention"
+PassCmd "gpg -dq --pinentry-mode=cancel /home/rkumar/.local/share/pash/email/webmention.gpg"
 SSLType IMAPS
 PipelineDepth 50
 CertificateFile /etc/ssl/certs/ca-bundle.crt
@@ -226,28 +239,24 @@ IMAPStore webmention-remote
 Account webmention
 
 Channel webmention-default
-Master :webmention-remote:
-Slave :webmention-local:Inbox
+far :webmention-remote:
+near :webmention-local:Inbox
 
 Channel webmention-sent
-Master :webmention-remote:"Sent"
-Slave :webmention-local:Sent
+far :webmention-remote:"Sent"
+near :webmention-local:Sent
 
 Channel webmention-trash
-Master :webmention-remote:"Trash"
-slave  :webmention-local:Trash
+far :webmention-remote:"Trash"
+near  :webmention-local:Trash
 
 Channel webmention-archive
-Master :webmention-remote:"Archive"
-slave  :webmention-local:Archive
+far :webmention-remote:"Archive"
+near  :webmention-local:Archive
 
 Channel webmention-junk
-Master :webmention-remote:"Junk"
-slave  :webmention-local:Junk
-
-Create Both
-Expunge Both
-SyncState *
+far :webmention-remote:"Junk"
+near  :webmention-local:Junk
 
 Group webmention
 Channel webmention-default
