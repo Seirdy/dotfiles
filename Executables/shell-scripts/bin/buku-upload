@@ -2,19 +2,36 @@
 
 set -eu
 
+export NO_STATIC=1
+
 TMP_DIR="$(mktemp -d)"
 
 pre_exit() {
 	rm -rf "$TMP_DIR"
 }
-
 trap pre_exit EXIT
 
-buku -t public -j >"$TMP_DIR/bookmarks.json"
+bookmarks_file="$TMP_DIR/bookmarks.json"
 
-ect -9 -strip -gzip "$TMP_DIR/bookmarks.json"
-brotli -kZ "$TMP_DIR/bookmarks.json"
+buku -t public -j | jq '.|=sort_by(.tags)' >"$bookmarks_file"
 
-rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=gz/br "$TMP_DIR/bookmarks.json"* deploy@seirdy.one:/var/www/seirdy.one/data/
+ect -9 -strip -gzip "$bookmarks_file"
+brotli -kZ "$bookmarks_file"
+
+parallel -j2 rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=gz/br "$bookmarks_file"* ::: deploy@seirdy.one:/var/www/seirdy.one/data/ seirdy@envs.net:/home/seirdy/public_html/data/
+
+cd "${GHQ_ROOT-$HOME/Executables/ghq}/git.sr.ht/~seirdy/seirdy.one"
+
+deploy_bookmarks() {
+	ect -9 -strip -gzip public/bookmarks/index.*html
+	brotli -kZ public/bookmarks/index.*html
+	rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=gz/br public/bookmarks/index.* "$1"
+}
+
+make clean hugo xhtmlize
+deploy_bookmarks deploy@seirdy.one:/var/www/seirdy.one/bookmarks/
+
+make HUGO_BASEURL='https://envs.net/~seirdy/' clean hugo xhtmlize
+deploy_bookmarks seirdy@envs.net:/home/seirdy/public_html/bookmarks/
 
 # vi:ft=sh
