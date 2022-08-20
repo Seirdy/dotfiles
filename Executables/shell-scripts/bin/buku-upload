@@ -23,15 +23,18 @@ parallel -j2 rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=g
 cd "${GHQ_ROOT-$HOME/Executables/ghq}/git.sr.ht/~seirdy/seirdy.one"
 
 deploy_bookmarks() {
-	ect -9 -strip -gzip public/bookmarks/index.*html
-	brotli -kZ public/bookmarks/index.*html
-	rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=gz/br public/bookmarks/index.* "$1"
+	ect -9 -strip -gzip "$1"/bookmarks/index.*html
+	brotli -kZ "$1"/bookmarks/index.*html
+	rsync -azuP --mkpath --zc=zstd --compress-level=6 --skip-compress=gz/br public/bookmarks/index.* "$2"
 }
 
-make clean hugo xhtmlize
-deploy_bookmarks deploy@seirdy.one:/var/www/seirdy.one/bookmarks/
+bmake .prepare-deploy
+deploy_bookmarks public deploy@seirdy.one:/var/www/seirdy.one/bookmarks/
 
-make HUGO_BASEURL='https://envs.net/~seirdy/' clean hugo xhtmlize
-deploy_bookmarks seirdy@envs.net:/home/seirdy/public_html/bookmarks/
+bmake HUGO_BASEURL='http://wgq3bd2kqoybhstp77i3wrzbfnsyd27wt34psaja4grqiezqircorkyd.onion/' OUTPUT_DIR=public_onion .prepare-deploy
+deploy_bookmarks public_onion deploy@seirdy.one:/var/www/seirdy.onion/bookmarks/
+
+bmake HUGO_BASEURL='https://envs.net/~seirdy/' OUTPUT_DIR=public_envs clean hugo xhtmlize
+deploy_bookmarks public_envs seirdy@envs.net:/home/seirdy/public_html/bookmarks/
 
 # vi:ft=sh
