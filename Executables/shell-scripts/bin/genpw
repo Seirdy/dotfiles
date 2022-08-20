@@ -35,14 +35,14 @@ while [ $# -gt 0 ]; do
 done
 
 raw_pass() {
-	tr -dc "$1" </dev/urandom \
+	tr -dc "$1" </dev/random \
 		| dd ibs=1 obs=1 count="${length:-64}" 2>/dev/null
 }
 
 if [ -n "$ascii_only" ]; then
 	raw_pass ' -~'
 else
-	raw_pass '\40-\377' | iconv -f ISO88591 -ct UTF8
+	raw_pass '\40-\176\240-\377' | iconv -f ISO88591 -ct UTF8
 fi
 
 # vi:ft=sh
