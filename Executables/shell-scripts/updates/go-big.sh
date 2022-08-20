@@ -17,7 +17,7 @@ go_update() {
 	echo "### Updating $* ###"
 	echo "###"
 	cd "$GOPATH/src/$1" && git reset --hard HEAD && cd - || echo "$1 doesn't seem to be installed yet."
-	go get -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
+	go install -u -v "$*" 2>&1 # verbose output is sent to stderr for some reason
 }
 
 # update go itself
