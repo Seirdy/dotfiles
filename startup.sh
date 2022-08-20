@@ -55,6 +55,7 @@ export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
 export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 export TZ="America/Los_Angeles"
+# export TZ="US/Hawaii"
 export NVIM_GTK_PREFER_DARK_THEME=1
 export GIT_COLA_ICON_THEME='dark'
 export XCURSOR_THEME='Adwaita'
@@ -69,13 +70,15 @@ export GRAFANA_THEME=dark
 export GTK_THEME_VARIANT=dark
 export CALIBRE_USE_SYSTEM_THEME=1
 
+# disable JIT
 export GJS_DISABLE_JIT=1
 export JSC_useJIT=false
 export JavaScriptCoreUseJIT=0
 export QV4_FORCE_INTERPRETER=1
+export SIGNAL_CLI_OPTS='-Xint'
 # I use a bwrapped FF that can't open external links
 # and a shell script that wraps chromium with a bunch of prefs
-export BROWSER=chromium
+# export BROWSER=chromium
 # export GTK_USE_PORTAL=1 # KDE file-picker
 export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
 export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
@@ -132,6 +135,7 @@ export NIMBLE_DIR="$HOME/Executables/nimble"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 # Keep npm from polluting my $HOME
 export NPM_PACKAGES="$HOME/Executables/npm"
+export PNPM_HOME="$NPM_PACKAGES/bin"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export UNISON="$XDG_DATA_HOME/unison"
@@ -213,7 +217,7 @@ pathadd_tail '/bin'
 pathadd_tail '/envs/bin'                      # envs.net
 pathadd_head "$GEM_HOME/bin"                  # rubygems (ruby)
 pathadd_head "$PERL_LOCAL_LIB_ROOT/bin"       # cpanm (perl)
-pathadd_head "$NPM_PACKAGES/bin"              # npm (javascript)
+pathadd_head "$PNPM_HOME"                     # npm (javascript)
 pathadd_head "$HOME/Executables/luarocks/bin" # luarocks (lua)
 pathadd_head "$PIPX_BIN_DIR"                  # pipx (python)
 pathadd_head "$GOPATH/bin"                    # go pacakages
@@ -294,6 +298,10 @@ if [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_D
 	# Commented out because (Ungoogled-)Chromium and Electron aren't ready
 	# export GDK_BACKEND='wayland'
 fi
+
+if [ -n "$SWAYSOCK" ]; then
+	export XDG_CURRENT_DESKTOP=sway
+fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 # shellcheck disable=SC2154
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
@@ -315,7 +323,7 @@ export FZF_DEFAULT_COMMAND='rg --files -g ""'
 
 # the pash passsword manager is best girl
 # https://github.com/dylanaraps/pash
-export PASH_TIMEOUT=7
+export PASH_TIMEOUT=5
 export PASH_LENGH=255
 export PASH_DIR="$XDG_DATA_HOME/pash"
 export PASH_KEYID=25A69441
