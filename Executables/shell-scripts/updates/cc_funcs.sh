@@ -9,8 +9,9 @@ fancy_cmake() {
 			-DCMAKE_BUILD_TYPE=Release \
 			-DCMAKE_INSTALL_PREFIX="$CMAKE_INSTALL_PREFIX" \
 			-DCMAKE_INSTALL_MANDIR="$CMAKE_INSTALL_MANDIR" \
+			-GNinja \
 			"$@" \
-		&& cmake --build . --target install/strip
+		&& ninja && ninja install
 }
 
 make_install() {
