@@ -2,7 +2,10 @@
 
 # Run or kill wlsunset with my preferred settings
 
-set -e
+set -e -u
+
+temp_night=3200
+
 # the name of this program
 progname="$(basename "${0}")"
 
@@ -60,8 +63,6 @@ done
 
 lat='37.5'
 lon='-122.0'
-# duration='90'
-[ -z "$temp_night" ] && temp_night='3800'
 
 # if wlsunset is running, kill it first
 kill_wlsunset
