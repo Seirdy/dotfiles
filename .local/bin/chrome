@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ -z "$CHROME_PROFILE" ]; then
+	CHROME_PROFILE="${XDG_CONFIG_HOME-$HOME/.config}/chromium"
+fi
+if [ -z "JS_FLAGS" ]; then
+	JS_FLAGS='--jitless'
+fi
+
+export CHROME_PROFILE
+
+~/Downloads/gitclone/chromium/thorium/latest/thorium --ozone-platform=wayland \
+	--no-default-browser-check --disable-client-side-phishing-detection --disable-default-apps --disable-device-discovery-notifications --disable-domain-reliability \
+	--disable-breakpad --no-first-run --disable-background-networking \
+	--popups-to-tabs --show-avatar-button=incognito-and-guest \
+	--no-pings --no-crash-upload --no-report-upload --no-vr-runtime --no-wifi \
+	--force-prefers-reduced-motion --force-dark-mode \
+	--disable-dinosaur-easter-egg --disable-file-manager-touch-mode --no-default-browser-check --no-first-run --disable-network-portal-notification \
+	--disable-client-side-phishing-protection --disable-default-apps --disable-gaia-services --disable-sync --disable-sync-preferences --disable-sync-types --allow-browser-signin=false --disable-domain-reliability --disable-fonts-googleapis-references --disable-field-trial-config --disable-translate --disable-touch-adjustment --disable-wake-on-wifi --disable-offer-upload-credit-cards --disable-breakpad --disable-crash-reporter --disable-field-trial-config --data-reduction-proxy-server-experiments-disabled --lang=en-US --disable-ntp-popular-sites --disable-offer-store-unmasked-wallet-cards --disable-office-editing-component-extension --disable-fine-grained-time-zone-detection \
+	--autofill-assistant-url='' --autofill-api-key='' --autofill-assistant-key='' --autofill-server-url='' --optimization-guide-service-api-key='' --transit-script-url='' --connectivity-check-url='' --crash-server-url='' --data-reduction-proxy-config-url='' --data-reduction-proxy-pingback-url='' --data-reduction-proxy-secure-proxy-check-url='' --gcm-checkin-url='' --gcm-mcs-endpoint='' --gcm-registration-url='' --google-doodle-url='' --override-metrics-upload-url='' --cloud-print-url='' --google-apis-url='' --google-base-url='' --google-url='' --cryptauth-http-host='' --cryptauth-v2-devicesync-http-host='' --cryptauth-v2-enrollment-http-host='' --device-management-url='' \
+	--user-data-dir="$CHROME_PROFILE" --js-flags="$JS_FLAGS" $*

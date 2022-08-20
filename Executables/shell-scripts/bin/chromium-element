@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+# like the chromium shell script but with JIT and other stuff, and its own profile folder.
+# optimized for a few heavy web apps
+export CHROME_PROFILE="$HOME/.var/app/com.github.Eloston.UngoogledChromium/config/chromium/element"
+export JS_FLAGS=''
+chromium "$@"
+
+# vi:ft=sh
