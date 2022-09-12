@@ -1,0 +1,79 @@
+#!/usr/bin/env dash
+# A helpful comment
+
+set -e -u
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...] [Filename] <file.txt
+
+pastebin the contents of stdin using ssh
+
+Options:
+  -h            Print this help and exit
+  -c            Copy link to clipboard
+
+Args:
+	filename      Optional: the filename to use.
+	              Auto-generated if not given
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+copy=0
+filename=''
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-c | --copy)
+			copy=1
+			;;
+		-*)
+			bad_option "$1" 'invalid option'
+			;;
+		*)
+			filename="$1"
+	esac
+	shift
+done
+
+gen_filename() {
+	# non-confusing characters; no I/l, 0/o, or upper/lower confusion
+	# 38 chars; well over 2M 4-character filenames.
+	tr -dc 'abcdefghjkpqrtxyABDEFGHJLNQRTY2-9' </dev/random \
+		| dd ibs=1 obs=1 count=4 2>/dev/null
+}
+
+if [ "$filename" = '' ]; then
+	filename="$(gen_filename)"
+fi
+
+ssh deploy@seirdy.one "cat >\"/var/www/pb/$filename\" && chmod 644 \"/var/www/pb/$filename\""
+
+print_url() {
+	echo "https://seirdy.one/pb/$filename"
+}
+
+if [ "$copy" = '1' ]; then
+	print_url | wlcv
+else
+	print_url
+fi
+
+# vi:ft=sh
