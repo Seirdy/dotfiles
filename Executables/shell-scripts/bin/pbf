@@ -1,0 +1,67 @@
+#!/usr/bin/env dash
+# A helpful comment
+
+set -e -u
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...] file.txt
+
+Pastebin a file, preserving the name
+
+Options:
+  -h            Print this help and exit
+  -c            Copy link to clipboard
+
+Args:
+	local_path      the filename to use
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+copy=0
+local_path=''
+
+# parse arguments
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-c | --copy)
+			copy=1
+			;;
+		-*)
+			bad_option "$1" 'invalid option'
+			;;
+		*)
+			local_path="$1"
+	esac
+	shift
+done
+
+rsync -azuPq --zc=zstd --compress-level=3 --chmod=0644 "$local_path" 'deploy@seirdy.one:/var/www/pb/'
+
+print_url() {
+	echo "https://seirdy.one/pb/$(basename "$local_path")"
+}
+
+if [ "$copy" = '1' ]; then
+	print_url | wlcv
+else
+	print_url
+fi
+
+# vi:ft=sh
