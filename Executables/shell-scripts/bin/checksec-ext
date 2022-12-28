@@ -1,0 +1,48 @@
+#!/usr/bin/env dash
+# checksec with more info
+
+# the name of this program
+progname="$(basename "${0}")"
+
+help_text="Usage: $progname [OPTION...] file
+
+checksec with more info, formatted nicely.
+uses yq(1) and column(1) to format output
+
+Options:
+  -h                 Print this help and exit
+	file               Path to executable to inspect
+"
+
+usage() {
+	printf '%s' "$help_text"
+}
+
+# when the user passess bad args, send a msg to stderr and exit
+# usage: bad_option <option> <reason>
+bad_option() {
+	echo "$progname: option $1: $2" >&2
+	usage >&2
+	exit 1
+}
+
+# parse arguments
+while getopts "h" flags; do
+	case $flags in
+		h)
+			usage
+			exit 0
+			;;
+		*)
+			bad_option "$1" 'invalid option'
+			;;
+	esac
+	shift
+done
+
+exe="$1"
+checksec --extended --format=json --file="$exe" \
+	| yq '.[]' -o yaml -P \
+	| column -t
+
+# vi:ft=sh
