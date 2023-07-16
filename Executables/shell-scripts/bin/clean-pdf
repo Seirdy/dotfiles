@@ -1,0 +1,7 @@
+#!/usr/bin/env dash
+# Clean metadata from a PDF
+
+exiftool -q -q -all:all= "$1"
+qpdf --linearize --replace-input --deterministic-id  "$1"
+
+# vi:ft=sh
