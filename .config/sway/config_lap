@@ -1,4 +1,6 @@
 	font monospace term 10.75
 	height 20
 }
-gaps inner 10
+font monospace term 9.75
+titlebar_padding 4 2
+gaps inner 12
