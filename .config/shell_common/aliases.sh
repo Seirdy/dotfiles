@@ -8,8 +8,12 @@ alias \$=''
 # alias exiftool='echo "use mat2 instead"'
 
 alias ls='ls --color=auto'
-alias exa-fancy='exa -h --icons --group-directories-first --color=always' # kept for legacy reasons
-alias l='exa -h --icons --group-directories-first --color=always'
+ls_cmd=exa
+if command -v eza >/dev/null; then
+	ls_cmd=eza
+fi
+alias exa-fancy="$ls_cmd -h --icons --group-directories-first --color=always" # kept for legacy reasons
+alias l="$ls_cmd -h --icons --group-directories-first --color=always"
 alias ll='l -l --time-style=long-iso'              # Better output than ls -l
 alias lll='l -l --time-style=full-iso -s modified' # Show full timestamp
 alias la='l -a'
@@ -56,18 +60,20 @@ alias rmhtm='rm *.html' # pandoc artifacts and stuff
 alias tootn='toot notifications'
 alias tootnr='toot notifications -r'
 alias tootnc='toot notifications --clear'
+alias tootp='toot post -l en -t text/markdown'
 # curl follow redirect
 alias curll='curl -SL'
 alias curltl='curl-tor -L'
-alias curls='curl --proto "=https" --proto-default https --no-npn'
-alias curlsl='curl --proto "=https" --proto-default https -sSL --no-npn'
-alias curlslc='curl --proto "=https" --proto-default https -sSL --compressed --no-npn'
-alias curlslcs='curl --proto "=https" --proto-default https -sSL --tlsv1.3 --compressed --no-npn'
+alias curls='curl --proto "=https" --proto-default https'
+alias curlsl='curl --proto "=https" --proto-default https -sSL'
+alias curlslc='curl --proto "=https" --proto-default https -sSL --compressed'
+alias curlslcs='curl --proto "=https" --proto-default https -sSL --tlsv1.3 --compressed'
 
 # ideally everything is HTTP/2+, compressed, TLSv1.3+.
-alias ccurl='curl --proto "=https" --proto-default https --http2 --no-npn -sSL --tlsv1.3 --compressed'
+alias ccurl='curl --proto "=https" --proto-default https --http2 -sSL --tlsv1.3 --compressed --cert-status'
 # xh is like httpie, written in rust
 alias xxh='xh --https --http-version 2 --ssl tls1.3 -FS'
+alias xxhh='xh --https --http-version 2 --ssl tls1.3 -FS --headers'
 
 # -v, -i, and -z are my most commonly-used rg options.
 alias rgi='rg -i'
@@ -82,7 +88,7 @@ alias vim='vim -u NONE'
 alias wcl='wc -l'
 alias psave='pockyt put -i'
 alias :q='exit' # muh vim habits
-alias c='calc -p'
+alias c='calc -pm0'
 alias je='julia -e'
 # shellcheck disable=SC2154
 alias p='pash'
@@ -124,6 +130,7 @@ command -v ebook-viewer >/dev/null || alias ebook-convert='flatpak run --command
 alias pdfify='loffcon pdf'
 alias nvimup='nvim +PlugInstall +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +qa'
 alias nvimclean='nvim +PlugClean'
+alias rnvim='nvim +"set secure"' # like rvim
 # shellcheck disable=SC2142
 alias localhosts='ip n | grep REACHABLE | awk "{ print \$1 }" | xargs -n1 host | grep -v "not found"'
 alias battstat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'time to (empty|full)|percentage' | sd '.*:\s*' ''"
