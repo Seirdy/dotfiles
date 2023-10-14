@@ -1,15 +1,22 @@
 #!/usr/bin/env dash
 
-# Passes volume-setting cmds to amixer and prints the volume afterwards
+# Passes volume-setting cmds to wpctl and prints the volume afterwards.
+# intended for use with wob
 
-status="$(amixer sset Master "$@" | awk -F'[][]' '/[0-9]+%/ {print $2,$4}' | uniq)"
-muted="$(echo "$status" | awk '{print 2}')"
+# toggle mute or set volume
+if [ "$1" = 'toggle' ]; then
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+else
+	wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ "$*"
+fi
 
 # print current volume
-if [ "$muted" = 'off' ]; then
-	echo 0
+
+audio_status="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+if [ "$(echo "$audio_status" | awk '{print $3}')" != '' ]; then
+	echo "0"
 else
-	echo "$status" | awk '{print substr($1, 0, length($1)-1)}'
+	echo "$audio_status" | awk '{print $2*100}'
 fi
 
 # vi:ft=sh

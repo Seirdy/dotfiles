@@ -3,6 +3,8 @@
 # include /etc/sway/config.d/*
 # cursor theme
 seat seat0 xcursor_theme Adwaita 24
+# disable xwayland
+# xwayland disable
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -34,7 +36,7 @@ exec_always {
 bindsym $mod+z exec dmenu-runner
 bindsym $mod+d exec app-launcher
 bindsym Mod1+Tab exec window-switcher
-for_window [app_id="^firefox$" title="^About (Tor Browser|Mozilla Firefox|Firefox Developer Edition)$"] floating enable
+for_window [app_id="^firefox(-aurora)?$" title="^About (Tor Browser|Mozilla Firefox|Firefox Developer Edition)$"] floating enable
 for_window [app_id="^firefox$" title="^Inspector :: Font Finder - Mozilla Firefox$"] floating enable
 for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firefox$"] floating enable
 for_window [app_id="^launcher$"] floating enable
@@ -105,6 +107,7 @@ output '*' bg ~/Pictures/animewalls/cropped3.png fill
 #	output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+output DP-1 scale 1
 
 ### Input configuration
 #
@@ -139,6 +142,8 @@ input * {
 	# kill focused window
 	bindsym $mod+Shift+q kill
 
+	bindsym $mod+Mod1+l exec swaylock-fancy
+
 	# start your launcher
 	# bindsym $mod+d exec $menu
 
@@ -161,8 +166,9 @@ input * {
 #
 # Program launching
 #
-	bindsym $mod+f exec org.mozilla.firefox --new-window
-	bindsym $mod+shift+F exec org.kde.falkon
+	bindsym $mod+f exec firefox --new-window
+	bindsym $mod+shift+F exec brave
+	bindsym $mod+c exec chromium-element
 
 	bindsym $mod+p exec xdg-open-paste
 	bindsym $mod+y exec 'mpv --profile=manga "$(wl-paste)"'
@@ -186,8 +192,8 @@ input * {
 #
 
 	# Volume
-		bindsym XF86AudioRaiseVolume exec volumectl 2%+ unmute > $SWAYSOCK.wob
-		bindsym XF86AudioLowerVolume exec volumectl 2%- unmute > $SWAYSOCK.wob
+		bindsym XF86AudioRaiseVolume exec volumectl 2%+ >$SWAYSOCK.wob
+		bindsym XF86AudioLowerVolume exec volumectl 2%- >$SWAYSOCK.wob
 		bindsym XF86AudioMute exec volumectl toggle
 		bindsym shift+XF86AudioMute exec amixer sset 'Capture' toggle
 
