@@ -237,6 +237,9 @@ zinit snippet $XDG_CONFIG_HOME/shell_common/zsh/_cht.sh
 zi_completion has'buku'
 zinit snippet https://github.com/jarun/Buku/blob/master/auto-completion/zsh/_buku
 
+# zi_completion has'eza'
+# zinit snippet /usr/share/zsh/site-functions/_eza
+
 zi_completion has'mpv'
 zinit snippet $GHQ_ROOT/github.com/mpv-player/mpv/etc/_mpv.zsh
 
@@ -281,7 +284,7 @@ zinit light $SHELL_COMMON
 # the following will run after everything else happens
 finish_setup() {
 	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-	zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --icons --group-directories-first --color=always $realpath'
+	zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --icons --group-directories-first --color=always $realpath'
 	zstyle ':fzf-tab:complete:man:*' fzf-preview 'man $word'
 	# zstyle ':fzf-tab:*' fzf-command fzf-tmux
 	zstyle ':fzf-tab:*' single-group ''
@@ -298,7 +301,7 @@ finish_setup() {
 	# fzf ctrl-r widget: show timestamp of command and add syntax highlighting for preview window
 	where fzf-history-widget | sed 's/fc -rl/fc -ril/' | source /dev/stdin \
 		&& export FZF_CTRL_R_OPTS="--preview 'echo {1..3}; echo {4..} | bat --style=plain --language=zsh' --preview-window down:3:wrap --bind '?:toggle-preview'"
-	alias z="FZF_DEFAULT_OPTS=\"$FZF_DEFAULT_OPTS --preview='exa --group-directories-first --color always -a1 --icons {2}'\" _fz"
+	alias z="FZF_DEFAULT_OPTS=\"$FZF_DEFAULT_OPTS --preview='eza --group-directories-first --color always -a1 --icons {2}'\" _fz"
 }
 
 zinit wait'0c' lucid light-mode for \
