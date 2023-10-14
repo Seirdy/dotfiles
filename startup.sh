@@ -51,7 +51,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
-# export LC_TIME=en_ZA.UTF-8
+export LC_TIME=C # 24 hour date
 export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 export TZ="America/Los_Angeles"
@@ -75,7 +75,7 @@ export GJS_DISABLE_JIT=1
 export JSC_useJIT=false
 export JavaScriptCoreUseJIT=0
 export QV4_FORCE_INTERPRETER=1
-export SIGNAL_CLI_OPTS='-Xint'
+# export SIGNAL_CLI_OPTS='-Xint' # disables JIT but makes it too slow.
 # I use a bwrapped FF that can't open external links
 # and a shell script that wraps chromium with a bunch of prefs
 # export BROWSER=chromium
@@ -231,6 +231,7 @@ pathadd_head "$HOME/.local/sbin"                      # local sbin
 pathadd_head "$HOME/Executables/shell-scripts/bin"    # my shell scripts
 pathadd_head "$HOME/Executables/shell-scripts/mblaze" # my mblaze scripts
 pathadd_head "$HOME/.local/bin"                       # local bin
+pathadd_tail '/usr/lib/jvm/java/bin' # java
 pathadd_head "/tmp/bin"                               # binaries like mpv perform better when in /tmp
 
 # Detect my OS
@@ -301,12 +302,13 @@ fi
 
 if [ -n "$SWAYSOCK" ]; then
 	export XDG_CURRENT_DESKTOP=sway
+	export I3SOCK="$SWAYSOCK"
 fi
 # set the QT5 theme with qt5ct if I'm not running KDE
 # shellcheck disable=SC2154
 if [ "$XDG_CURRENT_DESKTOP" != 'KDE' ]; then
-	export QT_QPA_PLATFORMTHEME='gtk2' # todo: change this to "gnome" and set gnome icons/fonts properly
-	export QT_STYLE_OVERRIDE='Adwaita-Dark'
+	export QT_QPA_PLATFORMTHEME='qt5ct' # todo: change this to "gnome" and set gnome icons/fonts properly
+	# export QT_STYLE_OVERRIDE='qt5ct-style'
 fi
 # Start the gpg-agent if not already running
 if ! pgrep -xu "$USER" gpg-agent >/dev/null 2>&1; then
