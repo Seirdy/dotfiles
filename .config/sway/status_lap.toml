@@ -1,27 +1,43 @@
 [[block]]
 block = "focused_window"
-[block.format]
-full = "$title.rot-str(15)|"
-short = "$title.rot-str(10)|"
-
-[[block]]
-block = "battery"
-driver = "upower"
-format = "{percentage}%"
+driver = "wlr_toplevel_management"
+format = " $title.str(max_w:85)| "
+# [block.format]
+# short = "$title.rot-str(30)|"
 
 [[block]]
 block = "net"
-# device = "enp0s25"
+device = "^enp[0-9]"
 # ip = false
-interval = 5
+interval = 3
 # icons_format = "{icon} "
 # signal_strength = true
-format = "{signal_strength}"
+format = " $icon $speed_down.eng(prefix:K) $speed_up.eng(prefix:K) "
 
 [[block]]
 block = "load"
 interval = 5
-format = "{1m} {5m} {15m}"
+format = " $1m.eng(w:3) $5m.eng(w:3) $15m.eng(w:3) "
+
+[[block]]
+block = "battery"
+interval = 30
+format = " $percentage "
+full_format = ""
+critical = 30
+warning = 40
+info = 70
+good = 80
+full_threshold = 92
+
+[[block]]
+block = "disk_space"
+path = "/home"
+info_type = "available"
+warning = 20.0
+alert = 10.0
+interval = 90
+#unit = "GB"
 
 [[block]]
 block = "maildir"
@@ -33,8 +49,8 @@ display_type = "new"
 
 [[block]]
 block = "time"
-format = "%a %d %R%z"
+format = " $timestamp.datetime(f:'%a %d %R%z') "
 [[block]]
 block = "time"
-format = "%R%z"
+format = " $timestamp.datetime(f:'%R%z') "
 timezone = "Etc/UTC"

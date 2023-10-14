@@ -1,22 +1,21 @@
 [[block]]
 block = "focused_window"
-[block.format]
-full = "$title.str(30)|"
-#short = "$title.rot-str(20)|"
+driver = "wlr_toplevel_management"
+format = " $title.str(max_w:120)| "
 
 [[block]]
 block = "net"
-device = "enp0s25"
+device = "^enp[0-9]"
 # ip = false
 interval = 3
 # icons_format = "{icon} "
 # signal_strength = true
-format = "$speed_down.eng(3,B,K)$speed_up.eng(3,B,K)"
+format = " $icon $speed_down.eng(prefix:K) $speed_up.eng(prefix:K) "
 
 [[block]]
 block = "load"
 interval = 5
-format = "$1m.eng(3) $5m.eng(3) $15m.eng(3)"
+format = " $1m.eng(w:3) $5m.eng(w:3) $15m.eng(w:3) "
 
 [[block]]
 block = "disk_space"
@@ -37,8 +36,8 @@ display_type = "new"
 
 [[block]]
 block = "time"
-format = "%a %d %R%z"
+format = " $timestamp.datetime(f:'%a %d %R%z') "
 [[block]]
 block = "time"
-format = "%R%z"
+format = " $timestamp.datetime(f:'%R%z') "
 timezone = "Etc/UTC"
