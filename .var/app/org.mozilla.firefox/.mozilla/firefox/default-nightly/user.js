@@ -340,10 +340,10 @@ user_pref("browser.contentblocking.report.monitor.url", "");
 user_pref("extensions.fxmonitor.firstAlertShown", "");
 user_pref("browser.contentblocking.report.monitor.enabled", false);
 // DNS should obey my system settings, thank you very much.
-user_pref("network.trr.mode", 5);
-user_pref("network.trr.resolvers", "");
-user_pref("network.trr.bootstrapAddress", "");
-user_pref("network.trr.uri", "");
+//user_pref("network.trr.mode", 5);
+//user_pref("network.trr.resolvers", "");
+//user_pref("network.trr.bootstrapAddress", "");
+//user_pref("network.trr.uri", "");
 // I use mpv via a native messenger to open videos outside the browser in a floating
 // window, so picture-in-picture is unnecessary.
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
@@ -374,7 +374,7 @@ user_pref("extensions.getAddons.cache.enabled", false);
 user_pref("media.gmp-gmpopenh264.enabled", false);
 user_pref("browser.casting.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
-user_pref("layout.css.devPixelsPerPx", "1.0");
+// user_pref("layout.css.devPixelsPerPx", "1.0");
 
 // HTTPS-first
 user_pref("dom.security.https_first", true);
@@ -517,3 +517,8 @@ user_pref("security.sandbox.rdd.shadow-stack.enabled", true	);
 user_pref("security.sandbox.socket.shadow-stack.enabled", true);
 
 user_pref("_userjs.parsed.correctly", "SUCCESS");
+
+// more bloat
+
+user_pref("browser.tabs.firefox-view", false);
+user_pref("browser.tabs.firefox-view-next", false);
