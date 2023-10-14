@@ -20,10 +20,10 @@ echo "$new_display" >"$display_cfg"
 # KDE Fonts
 # i don't use kde anymore but what the hell
 if [ "$new_display" = "mon" ]; then
-	sans_font="IBM Plex Sans Condensed,11,-1,5,50,0,0,0,0,0,Regular"
-	mono_font="monospace, 11,-1,5,50,0,0,0,0,0,Regular"
+	sans_font="IBM Plex Sans Condensed,12,-1,5,50,0,0,0,0,0,Regular"
+	mono_font="monospace, 12,-1,5,50,0,0,0,0,0,Regular"
 	small_font="IBM Plex Sans Condensed,10,-1,5,50,0,0,0,0,0,Regular"
-	gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans Condensed 11'
+	gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans Condensed 12'
 elif [ "$new_display" = "lap" ]; then
 	sans_font="IBM Plex Sans Condensed,10,-1,5,50,0,0,0,0,0,Regular"
 	mono_font="monospace, 10,-1,5,50,0,0,0,0,0,Regular"
@@ -57,6 +57,7 @@ termset_confdir="$HOME/Executables/shell-scripts/terminal_cmds"
 alacritty_confdir="$XDG_CONFIG_HOME/alacritty"
 foot_confdir="$XDG_CONFIG_HOME/foot"
 sway_confdir="$XDG_CONFIG_HOME/sway"
+qt5ct_confdir="$XDG_CONFIG_HOME/qt5ct"
 
 if [ -d "$foot_confdir" ]; then
 	cd "$foot_confdir" \
@@ -107,6 +108,8 @@ if [ -d "$sway_confdir" ]; then
 		&& cat ./config_master "./config_$new_display" >config \
 		&& echo "updated i3status-rs settings"
 fi
+
+cp "$qt5ct_confdir/qt5ct_$new_display.conf" "$qt5ct_confdir/qt5ct.conf"
 
 # [ -n "$SWAYSOCK" ] && swaymsg reload
 

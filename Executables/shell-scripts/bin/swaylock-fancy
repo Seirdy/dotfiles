@@ -3,8 +3,15 @@
 screenshot='/tmp/screenshot.ppm'
 fancy_background='/tmp/fancy_background.ppm'
 lock_icon="${XDG_DATA_HOME-${HOME-~}/.local/share}/icons/swaylock-foreground.ppm"
+display_cfg="$XDG_DATA_HOME/computer_state/current_display"
+sf='18'
+
+if [ $(cat "$display_cfg") = 'mon' ]; then
+	sf=25
+fi
+
 # ffmpeg filters shrink/grow the image to pixelate it before overlaying the lock icon
-ffmpeg_filters='scale=iw/18:ih/18,scale=18*iw:18*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2'
+ffmpeg_filters="scale=iw/$sf:ih/$sf,scale=$sf*iw:$sf*ih:flags=neighbor,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2"
 
 cleanup() {
 	rm "$screenshot" &
