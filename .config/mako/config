@@ -1,7 +1,7 @@
 layer=overlay
 font=monospace term 10
 background-color=#31363b
-default-timeout=80000
+default-timeout=86400000
 group-by=app-name
 icon-path=/usr/share/icons/Papirus-Dark
 anchor=bottom-right
