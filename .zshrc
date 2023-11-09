@@ -35,9 +35,9 @@ export FZ_HISTORY_CD_CMD=_zlua
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 # An SSD can handle a large history
-HISTSIZE=99999
+HISTSIZE=89999
 # shellcheck disable=SC2034
-SAVEHIST=90000
+SAVEHIST=80000
 ## History command configuration
 setopt extended_history # record timestamp of command in HISTFILE
 # delete duplicates first when HISTFILE size exceeds HISTSIZE

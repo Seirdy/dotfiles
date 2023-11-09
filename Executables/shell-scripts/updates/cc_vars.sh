@@ -1,6 +1,7 @@
 #!/bin/sh
 # shellcheck source=/home/rkumar/startup.sh
-[ -z "$PROFILE_SET" ] && . "$HOME/startup.sh"
+[ -z "$PROFILE_SET" ] && . "$HOME/Executables/shell-scripts/updates/startup.sh"
+
 [ -z "$PREFIX" ] && export PREFIX="$HOME/.local"
 export BINPREFIX="$PREFIX/bin"
 export INCLUDEPREFIX="$PREFIX/include"
@@ -26,7 +27,7 @@ if [ "$CROSS_COMPILING" = 1 ]; then
 else
 	export EXECUTABLES="$HOME/Executables"
 fi
-CFLAGS="-O3 -DNDEBUG -march=$ARCH -fno-semantic-interposition -fipa-pta -fdevirtualize-at-ltrans -g -pipe -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-parameter -Wno-error=unused-variable -fPIC -fPIE -ffunction-sections -fdata-sections"
+CFLAGS="-O3 -DNDEBUG -march=$ARCH -fno-semantic-interposition -fipa-pta -fdevirtualize-at-ltrans -fno-plt -g -pipe -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -s -Wno-error=unused-parameter -Wno-error=unused-variable -fPIC -fPIE -ffunction-sections -fdata-sections -Bsymbolic -ffunction-sections -fdata-sections -fgraphite-identity -mtls-dialect=gnu2 -malign-data=cacheline"
 export CLANGFLAGS="$CFLAGS -fuse-ld=lld"
 export CFLAGS="$CFLAGS -Wno-error=unused-but-set-variable -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1"
 export LDFLAGS="$CFLAGS -Wl,-z,relro -Wl,--as-needed -Wl,-z,now -Wl,-E -Wl,--gc-sections -Wl,-s" # strip binaries
@@ -34,14 +35,18 @@ export CXXFLAGS="$CFLAGS"
 export CPPFLAGS="$CFLAGS"
 export FFLAGS="$CFLAGS -I/usr/lib64/gfortran/modules"
 export FCFLAGS="$FFLAGS"
-export RUSTFLAGS="-C opt-level=3 -C target-cpu=$ARCH -C link-arg=-s"
-export CFLAGS_LTO="$CFLAGS -flto -ffat-lto-objects"
+export RUSTFLAGS="-Copt-level=3 -Ctarget-cpu=$ARCH -Ztune-cpu=$ARCH -Clink-arg=-s -Cprefer-dynamic=no"
+export lto_flags="-flto -ffat-lto-objects -fvisibility=hidden"
+export CFLAGS_LTO="$CFLAGS $lto_flags"
+export LDFLAGS_LTO="$LDFLAGS $lto_flags"
 export CFLAGS_SIMPLE="-O3 -march= -g -pipe -s -flto -m64"
 [ -z "$CARGO_INSTALL_OPTS" ] && export CARGO_INSTALL_OPTS='--all-features -Z unstable-options'
+export LIBRARY_PATH="$LD_LIBRARY_PATH"
 
 # For builds using Clang instead of GCC, I replace C(XX)FLAGS with CLANGFLAGS
-export CLANGFLAGS_LTO="$CLANGFLAGS -flto"
-export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO"
+export CLANGFLAGS_LTO="$CLANGFLAGS -flto=full -fvisibility=hidden -fsanitize=cfi -fsanitize=safe-stack"
+export LLDFLAGS_LTO="$LDFLAGS -flto=full"
+export CLANGFLAGS_UNUSED_STUFF="$CLANGFLAGS_LTO" # legacy
 
 export GOOS=linux GOARCH=amd64
 export GOFLAGS='-ldflags=-s -ldflags=-w'

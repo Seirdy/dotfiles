@@ -1,18 +1,24 @@
 [[block]]
 block = "focused_window"
-driver = "wlr_toplevel_management"
-format = " $title.str(max_w:85)| "
-# [block.format]
-# short = "$title.rot-str(30)|"
+[block.format]
+full = "$title.rot-str(30)|"
+short = "$title.rot-str(25)|"
+
+[[block]]
+block = "battery"
+driver = "sysfs"
+interval = 20
+device = "BAT0"
+format = "$percentage|N/A"
 
 [[block]]
 block = "net"
-device = "^enp[0-9]"
+# device = "^enp[0-9]"
 # ip = false
 interval = 3
 # icons_format = "{icon} "
 # signal_strength = true
-format = " $icon $speed_down.eng(prefix:K) $speed_up.eng(prefix:K) "
+format = "$speed_down.eng(3,B,K)$speed_up.eng(3,B,K)"
 
 [[block]]
 block = "load"
@@ -38,10 +44,11 @@ warning = 20.0
 alert = 10.0
 interval = 90
 #unit = "GB"
+format = "$1m.eng(3) $5m.eng(3) $15m.eng(3)"
 
 [[block]]
 block = "maildir"
-interval = 15
+interval = 20
 inboxes = ["/home/rkumar/mail/seirdy/Inbox"]
 threshold_warning = 1
 threshold_critical = 10

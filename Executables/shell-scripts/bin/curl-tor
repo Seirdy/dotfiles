@@ -4,7 +4,7 @@
 # depends on a running Tor daemon
 
 if pgrep -f /usr/bin/tor >/dev/null; then
-	curl --user-agent '' --socks5-hostname localhost:9050 "$@"
+	curl --socks5-hostname localhost:9050 "$@"
 else
 	echo "Error: tor is not running" 1>&2
 fi

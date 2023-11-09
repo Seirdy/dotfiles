@@ -1,47 +1,20 @@
 #
-# WeeChat 3.0-rc1 (compiled on Nov  1 2020 15:54:06)
+# WeeChat 3.6 (compiled on Oct  5 2022 00:00:00)
 #
 # Use /autoconf load or cat this file to the FIFO pipe.
 #
 # For more info, see https://weechat.org/scripts/source/autoconf.py.html
 #
 
-*/set weechat.look.bar_more_left "◀"
-*/set weechat.look.bar_more_right "▶"
-*/set weechat.look.mouse on
-*/set weechat.look.prefix_align_max 25
-*/set weechat.look.prefix_same_nick "⤷"
-*/set weechat.completion.nick_completer ":"
-*/set weechat.history.max_buffer_lines_number 1024
-*/set weechat.bar.buflist.items "buflist"
-*/set weechat.bar.fset.items "fset"
-*/set weechat.bar.input.items "mode_indicator+[input_prompt]+(away),[input_search],[input_paste],[input_olds],input_text,[vi_buffer]"
-*/set weechat.bar.isetbar.items "isetbar_help"
-*/set weechat.bar.nicklist.items "chatters,buffer_nicklist"
-*/set weechat.bar.status.items "matrix_typing_notice,[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes),buffer_nicklist_count,scroll,[lag],[hotlist],completion"
-*/set weechat.bar.vi_line_numbers.items "line_numbers"
-*/set logger.look.backlog 1000
-*/set logger.file.color_lines on
-*/set exec.command.shell "sh"
-*/set spell.check.commands "ame,amsg,away,command,cycle,kick,kickban,me,msg,notice,part,query,quit,topic"
-*/set spell.check.default_dict "en"
-*/set spell.check.enabled on
-*/set spell.dict.core.weechat "en_US"
-*/set buflist.look.display_conditions "${buffer.hidden}==0 && (${buffer.hotlist.priority}!=0 || ${type}==server || ${current_buffer} || ${buffer.full_name}=~(core.weechat|perl.highmon|fset|urlgrab|scripts))"
-*/set buflist.format.indent "${color:237}${if:${buffer.next_buffer.local_variables.type}=~^(channel|private)$?├─:└─}"
-*/set irc.look.highlight_channel "$nick,weestats,clogstats,seirdy"
-*/set irc.look.server_buffer independent
-*/set irc.server_default.autoconnect on
-*/set irc.server_default.capabilities "account-notify,away-notify,capa-notify,chghost,extended-join,invite-notify,multi-prefix,server-time,userhost-in-names"
-*/set irc.server_default.msg_part "👋 (WeeChat ${info:version})"
-*/set irc.server_default.msg_quit "exiting ${info:version}"
 */set relay.color.status_active lightblue
 */set relay.color.status_auth_failed lightred
 */set relay.color.status_connecting yellow
 */set relay.color.status_waiting_auth brown
+*/set relay.network.ssl_cert_key "%h/ssl/relay.pem"
 */set relay.irc.backlog_max_minutes 1440
 */set relay.irc.backlog_max_number 256
 */set relay.weechat.commands "*,!exec,!upgrade,!quit"
-*/set urlgrab.default.copycmd "wl-copy -n"
 */set script.look.sort "u"
+*/set script.scripts.download_enabled on
 */set script.scripts.hold "mnotify.py"
+*/set script.scripts.path "%h/script"

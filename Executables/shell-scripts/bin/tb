@@ -37,7 +37,7 @@ while [ $# -gt 0 ]; do
 done
 
 upload() {
-	nc termbin.com 9999 </dev/stdin | tr -dc "[:alnum:]:/.\n"
+	nc termbin.com 9999 | tr -dc "[:alnum:]:/.\n"
 }
 
 if [ -n "$copy" ]; then

@@ -9,7 +9,7 @@ fi
 
 export CHROME_PROFILE
 
-~/Downloads/gitclone/chromium/thorium/latest/thorium --ozone-platform=wayland \
+flatpak run org.chromium.Chromium --ozone-platform=wayland \
 	--no-default-browser-check --disable-client-side-phishing-detection --disable-default-apps --disable-device-discovery-notifications --disable-domain-reliability \
 	--disable-breakpad --no-first-run --disable-background-networking \
 	--popups-to-tabs --show-avatar-button=incognito-and-guest \

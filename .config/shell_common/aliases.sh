@@ -57,6 +57,7 @@ alias sdins='sudo dnf install'
 alias stb='sudo tlp bat'
 alias rmm='rmtrash'
 alias rmhtm='rm *.html' # pandoc artifacts and stuff
+alias qdiga='qdig -t A AAAA NS MX HTTPS TXT OPENPGP SSHFP CAA SRV SVCB HINFO'
 alias tootn='toot notifications'
 alias tootnr='toot notifications -r'
 alias tootnc='toot notifications --clear'
@@ -75,14 +76,25 @@ alias ccurl='curl --proto "=https" --proto-default https --http2 -sSL --tlsv1.3 
 alias xxh='xh --https --http-version 2 --ssl tls1.3 -FS'
 alias xxhh='xh --https --http-version 2 --ssl tls1.3 -FS --headers'
 
-# -v, -i, and -z are my most commonly-used rg options.
+# -v, -i, -z, and -F are my most commonly-used rg options.
 alias rgi='rg -i'
 alias rgv='rg -v'
+alias rgiv='rg -iv'
+
+alias rgu='rg -u'
+alias rguv='rg -uv'
+alias rgui='rg -uvi'
+alias rguiv='rg -uiv'
+# search everything ripgrep can; anything more than this calls for ripgrep-all
+alias rguu='rg -zuuu'
+# normal-ass search. just find all instances of this string. don't be clever.
+# might crash with big binary files
+alias rguf='rg -auuuF'
+
 alias rgz='rg -z'
-alias rgvi='rgv -i'
-alias rgiz='rgi -z'
-alias rgvz='rgv -z'
-alias rgviz='rgvi -z'
+alias rgzi='rg -zi'
+alias rgzv='rg -zv'
+alias rgziv='rg -zvi'
 
 alias vim='vim -u NONE'
 alias wcl='wc -l'

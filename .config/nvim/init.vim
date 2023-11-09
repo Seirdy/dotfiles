@@ -35,10 +35,16 @@ set shiftwidth=2
 set tabstop=2  " Anything more than that is distracting.
 " I like splitting windows with a tiling WM. Often, I have one wide window
 " column and two narrow window columns. The narrow window columns typically
-" fit 92 characters. Including the signcolumn, number column, and other parts
-" of the vim UI, that leaves 88 columns for content. Encourage wrapping at 86
+" fit 92 characters. Including the signcolumn, number column, and folding
+" indicator, that leaves 87 columns for content. Encourage wrapping at 86
 " columns to accomodate this.
+" Without my external monitor, this is also just enough for me to fit a row
+" when I have split windows on my laptop.
 set colorcolumn=86
+
+# disable "how to disable mouse
+aunmenu PopUp.How-to\ disable\ mouse
+aunmenu PopUp.-1-
 
 " Spellfile
 set spellfile=~/.config/nvim/spell/en.utf-8.add

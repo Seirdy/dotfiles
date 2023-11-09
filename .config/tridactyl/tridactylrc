@@ -81,10 +81,6 @@ bind ,h hint -W exclaim_quiet terminal hn-url
 " Open in mpv
 bind ,m hint -W mpvsafe
 " Open image in feh
-bind ,i composite hint -pipe img src | exclaim_quiet feh
-" Save to pocket (requires pockyt to be installed)
-bind ,P composite get_current_url | exclaim pockyt put -i
-bind ,p composite hint -pipe a href | exclaim pockyt put -i
 
 bind ,s source
 " Tab and window management

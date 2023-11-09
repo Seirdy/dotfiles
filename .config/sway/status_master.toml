@@ -16,7 +16,12 @@ music_play = " 契"
 music_pause = " "
 music_prev = " 玲"
 music_next = " 怜"
-disk_drive = ""
+disk_drive = " "
+bat_90="9"
+bat_80="8"
+bat_70="7"
+bat_60="6"
+bat_50="5"
 
 [theme]
 theme="slick"

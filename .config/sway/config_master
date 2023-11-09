@@ -40,6 +40,11 @@ for_window [app_id="^firefox(-aurora)?$" title="^About (Tor Browser|Mozilla Fire
 for_window [app_id="^firefox$" title="^Inspector :: Font Finder - Mozilla Firefox$"] floating enable
 for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firefox$"] floating enable
 for_window [app_id="^launcher$"] floating enable
+for_window [app_id="^thorium-browser"] shortcuts_inhibitor disable
+for_window [app_id="^chrome-"] shortcuts_inhibitor disable
+# Sometimes I need Chromium and Tor and I don't want to run yet another Whonix
+# profile, or re-use the system Tor's circuit. Nothing else does the
+# trick. That's the only reason I use this.
 for_window [title="^Floating Window - Show Me The Key$"] floating enable
 # havoc is a terminal emulator that starts up quickly; I use it for floating menus
 for_window [title="^havoc$"] floating enable
@@ -81,7 +86,7 @@ exec mkfifo /tmp/ytdldaemon && tail -f /tmp/ytdldaemon | xargs -L1 -P 0 yt-dlp -
 exec mkfifo /tmp/paste && tail -f /tmp/paste | xargs -L1 wl-copy -n -t text/plain
 # idle config
 exec swayidle \
-	timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	before-sleep 'loginctl lock-session' \
 	lock 'swaylock-fancy'
 
@@ -167,7 +172,6 @@ input * {
 # Program launching
 #
 	bindsym $mod+f exec firefox --new-window
-	bindsym $mod+shift+F exec brave
 	bindsym $mod+c exec chromium-element
 
 	bindsym $mod+p exec xdg-open-paste

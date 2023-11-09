@@ -7,7 +7,7 @@ set -e
 . "$XDG_CONFIG_HOME/shell_common/functions_ghq.sh"
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
-CFLAGS="-O3 -fstack-protector-strong -fcf-protection=full -fstack-clash-protection -fno-semantic-interposition -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fipa-pta -fdevirtualize-at-ltrans -DNDEBUG -march=native -g -pipe -Wformat -Werror=format-security -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -s -fPIC -fPIE -fpic -fpie -Bsymbolic -ffunction-sections -fdata-sections -fgraphite-identity -mtls-dialect=gnu2 -malign-data=cacheline -fno-plt -fvisibility=hidden -L. -I$HOME/Executables/ghq/codeberg.org/dnkl/foot -flto -ffat-lto-objects -Wno-missing-profile"
+CFLAGS="-O3 -fstack-protector-strong -fcf-protection=full -fstack-clash-protection -fno-semantic-interposition -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fipa-pta -fdevirtualize-at-ltrans -DNDEBUG -march=native -g -pipe -Wformat -Werror=format-security -grecord-gcc-switches -m64 -fasynchronous-unwind-tables -s -fPIC -fPIE -fpic -fpie -Bsymbolic -ffunction-sections -fdata-sections -fgraphite-identity -mtls-dialect=gnu2 -malign-data=cacheline -fno-plt -fvisibility=hidden -L. -I$HOME/Executables/ghq/codeberg.org/dnkl/foot -flto -ffat-lto-objects -Wno-missing-profile -fzero-call-used-regs=used-gpr"
 export CFLAGS
 export LDFLAGS="$CFLAGS -pie -Wl,-z,relro,-z,now,-z,noexecstack -Wl,--as-needed -Wl,-E -Wl,--gc-sections" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 export CC=gcc CXX=g++ CCLD=ld.bfd

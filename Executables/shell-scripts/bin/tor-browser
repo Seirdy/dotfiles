@@ -3,50 +3,12 @@
 
 set -eu
 
-# the name of this program
-progname="$(basename "${0}")"
-
-help_text="Usage: $progname [OPTION...]
-
-Run the Tor Browser Bundle sandboxed by bubblewrap.
-Any options besides -h are passed to the Tor Browser.
-
-Options:
-  -h, --help            Print this help and exit
-"
-
-usage() {
-	printf '%s' "$help_text"
-}
-
-# when the user passess bad args, send a msg to stderr and exit
-# usage: bad_option <option> <reason>
-bad_option() {
-	echo "$progname: option $1: $2" >&2
-	usage >&2
-	exit 1
-}
-
-# parse arguments
-while [ $# -gt 0 ]; do
-	case "$1" in
-		-h | --help)
-			usage
-			exit 0
-			;;
-		*)
-			bad_option "$1" 'invalid option'
-			;;
-	esac
-	shift
-done
-
 tor_browser_path="$HOME/Executables/tor-browser_en-US"
 
 # unset all envvars with "env -i"
 # mime, icons, and glib need to be shared for save dialogs to work
 # xcb needs to be shared when launching after an update
-# /tmp/.X11-unix access allows isolating network namespace
+# /tmp/.X11-unix access allows isolating network namespace...I think?
 env -i bwrap \
 	--symlink usr/lib /lib \
 	--symlink usr/lib64 /lib64 \
@@ -56,23 +18,24 @@ env -i bwrap \
 	--ro-bind /usr/share/X11/xkb /usr/share/X11/xkb \
 	--ro-bind /usr/share/themes /usr/share/themes \
 	--ro-bind /usr/share/icons /usr/share/icons \
-	--ro-bind /usr/share/locale /usr/share/locale \
 	--ro-bind /usr/share/mime /usr/share/mime \
 	--ro-bind /usr/share/glib-2.0 /usr/share/glib-2.0 \
 	--setenv HOME /home/tor \
 	--bind "$tor_browser_path/Browser" /home/tor \
-	--proc /proc --dev /dev --tmpfs /run \
+	--proc /proc --dev /dev \
 	--unshare-all --share-net \
 	--setenv LD_LIBRARY_PATH /home/tor/TorBrowser/Tor \
 	--setenv FONTCONFIG_PATH /home/tor/TorBrowser/Data/fontconfig \
-	--setenv FONTCONFIG_FILE fonts.conf \
+	--setenv FONTCONFIG_FILE /home/tor/TorBrowser/Data/fontconfig/fonts.conf \
 	--setenv DISPLAY "$DISPLAY" \
 	--setenv SHELL /sbin/nologin \
-	--setenv GTK_THEME "$GTK_THEME" \
+	--setenv GTK_THEME "${GTK_THEME-Adwaita-dark}" \
+	--setenv "MOZ_ENABLE_WAYLAND" "1" \
+	--setenv WAYLAND_DISPLAY "${WAYLAND_DISPLAY-wayland-1}" \
+	--setenv XDG_RUNTIME_DIR "/run/user/$(id -u)" \
+	--ro-bind "/run/user/$(id -u)/$WAYLAND_DISPLAY" "/run/user/$(id -u)/$WAYLAND_DISPLAY" \
 	--hostname RESTRICTED \
 	--new-session --die-with-parent --cap-drop ALL \
-	--seccomp 3 \
-	3< ~/.local/share/seccomp/seccomp.default.bpf \
 	/home/tor/firefox.real --class "Tor Browser" --profile /home/tor/TorBrowser/Data/Browser/profile.default "$@"
 
 # vi:ft=sh

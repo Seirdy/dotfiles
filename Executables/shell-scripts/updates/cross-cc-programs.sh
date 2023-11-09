@@ -10,7 +10,8 @@ start_time=$(date '+%s')
 . "$HOME/Executables/shell-scripts/updates/cc_funcs.sh"
 
 # file(1). Upstream gets updated with new formats more often.
-ghq_get_cd https://github.com/file/file.git && simple_autotools
+ghq_get_cd https://github.com/file/file.git \
+	&& simple_autotools --enable-libseccomp --enable-static
 
 # chafa
 ghq_get_cd https://github.com/hpjansson/chafa.git \
@@ -25,7 +26,7 @@ ghq_get_cd https://github.com/flatpak/xdg-dbus-proxy.git \
 		--with-priv-mode=none
 
 export CFLAGS="$CFLAGS_LTO" \
-	LDFLAGS="$CFLAGS_LTO" \
+	LDFLAGS="$LDFLAGS_LTO" \
 	CXXFLAGS="$CFLAGS_LTO" \
 	CPPFLAGS="$CFLAGS_LTO"
 
@@ -42,24 +43,29 @@ ghq_get_cd https://github.com/weechat/weechat.git \
 	&& fancy_cmake \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DENABLE_ENCHANT=ON \
-		-DENABLE_PHP=ON \
+		-DENABLE_PHP=OFF \
 		-DENABLE_LUA=ON \
-		-DENABLE_TCL=ON \
-		-DENABLE_RUBY=ON \
+		-DENABLE_TCL=OFF \
+		-DENABLE_RUBY=OFF \
 		-DENABLE_GUILE=ON \
-		-DENABLE_PYTHON3=ON \
+		-DENABLE_PYTHON=ON \
+		-DENABLE_TRIGGER=ON \
+		-DENABLE_TYPING=ON \
 		-DENABLE_DOC=ON \
+		-DENABLE_NLS=OFF \
 		-DENABLE_MAN=ON \
+		-DENABLE_RELAY=ON \
 		-DENABLE_JAVASCRIPT=OFF \
+		-DWEECHAT_HOME="~/.weechat" \
 		-DCA_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 # lrzip
 ghq_get_cd 'https://github.com/ckolivas/lrzip.git' && CFLAGS="$CFLAGS -fomit-frame-pointer" CXXFLAGS="$CXXFLAGS -fomit-frame-pointer" simple_autotools --enable-asm
 
 # zopfli + zopflipng
-export CFLAGS="$CFLAGS_LTO -fpie -static-pie" && export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+export CFLAGS="$CFLAGS_LTO -fpie -static-pie" && export LDFLAGS="$LLDFLAGS_LTO -static-pie" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 ghq_get_cd 'https://github.com/google/zopfli.git' && fancy_cmake -DBUILD_SHARED_LIBS=OFF
-export CFLAGS="$CFLAGS_LTO" && export LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+export CFLAGS="$CFLAGS_LTO" && export LDFLAGS="$LDFLAGS_LTO" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 
 # atool
 ghq_get_cd https://repo.or.cz/atool.git && simple_autotools
@@ -84,14 +90,14 @@ ghq_get_cd https://github.com/netflix/vmaf.git && cd libvmaf \
 	&& simple_meson -Denable_asm=true -Denable_avx512=false -Denable_tests=false -Denable_float=true -Dbuilt_in_models=true --default-library=static
 # for nginx, jpeg-xl, and a bunch of programs using fontconfig
 ghq_get_cd https://github.com/google/brotli.git && fancy_cmake
-export CFLAGS="$CLANGFLAGS_LTO" CXXFLAGS="$CLANGFLAGS_LTO" CPPFLAGS="$CLANGFLAGS_LTO" LDFLAGS="$CLANGFLAGS_LTO" CC='clang' CXX='clang++'
+export CFLAGS="$CLANGFLAGS_LTO" CXXFLAGS="$CLANGFLAGS_LTO" CPPFLAGS="$CLANGFLAGS_LTO" LDFLAGS="$LLDFLAGS_LTO" CC='clang' CXX='clang++'
 # for jpeg-xl and libaom
 ghq_get_cd https://github.com/google/highway.git && fancy_cmake -DBUILD_TESTS=off
-CFLAGS="$CFLAGS $(pkg-config --libs --cflags --static libbrotlicommon libbrotlienc libbrotlidec)"
-export CFLAGS="$CFLAGS" LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
+addflags="$(pkg-config --libs --cflags --static libbrotlicommon libbrotlienc libbrotlidec)"
+export CFLAGS="$CFLAGS $addflags" LDFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS" CPPFLAGS="$CFLAGS"
 ghq_get_cd https://gitlab.com/wg1/jpeg-xl.git && fancy_cmake -DJPEGXL_ENABLE_BENCHMARK=false -DJPEGXL_ENABLE_FUZZERS=false -DJPEGXL_FORCE_SYSTEM_HWY=true -DJPEGXL_FORCE_SYSTEM_BROTLI=ON -DBUILD_TESTING=OFF -DJPEGXL_WARNINGS_AS_ERRORS=OFF -DJPEGXL_FORCE_SYSTEM_GTEST=ON
 
-export CFLAGS="$CFLAGS_LTO" LDFLAGS="$CFLAGS_LTO" CXXFLAGS="$CFLAGS_LTO" CPPFLAGS="$CFLAGS_LTO"
+export CFLAGS="$CFLAGS_LTO" LDFLAGS="$LDLAGS_LTO" CXXFLAGS="$CFLAGS_LTO" CPPFLAGS="$CFLAGS_LTO"
 unset CC CXX
 
 # aom reference impl.
@@ -99,7 +105,7 @@ ghq_get_cd https://aomedia.googlesource.com/aom.git \
 	&& fancy_cmake -DCONFIG_HIGHBITDEPTH=1 -DENABLE_TESTS=0 -DBUILD_SHARED_LIBS=0 -DCONFIG_WEBM_IO=1 -DCONFIG_TUNE_VMAF=1 -DCONFIG_TUNE_BUTTERAUGLI=1 -DENABLE_EXAMPLES=1 -DENABLE_CCACHE=1
 ghq_get_cd https://gitlab.com/AOMediaCodec/SVT-AV1.git && {
 	ln -s Build build || echo 'build directory already created'
-} && fancy_cmake -G"Unix Makefiles" -DBUILD_SHARED_LIBS=OFF
+} && fancy_cmake -DBUILD_SHARED_LIBS=OFF
 ghq_get_cd https://code.videolan.org/videolan/dav1d.git && mkcd build && meson .. -Denable_asm=true -Denable_avx512=false -Denable_tests=false -Denable_tools=true -Denable_examples=false --default-library=static -Db_pgo=generate --prefix="$PREFIX" --libdir="$PREFIX/lib" --buildtype=release && ninja && ./tools/dav1d -i "$HOME/Videos/bench/sol_levante/sol_levante_volcano_libaom.ivf" --framethreads=4 --tilethreads=2 --muxer null -o outfile && meson configure -Db_pgo=use && ninja && ninja install
 ghq_get_cd 'https://bitbucket.org/multicoreware/x265_git.git' \
 	&& cmake -S source -B build-12 -G Ninja -DCMAKE_INSTALL_PREFIX="$PREFIX" -DHIGH_BIT_DEPTH=TRUE -DMAIN12=TRUE -DEXPORT_C_API=FALSE -DENABLE_CLI=FALSE -DENABLE_SHARED=FALSE -DENABLE_PIC=TRUE -DENABLE_TESTS=FALSE -DENABLE_SHARED=FALSE -DENABLE_LIBNUMA=TRUE -Wno-dev && ninja -C build-12 \
@@ -132,10 +138,9 @@ ghq_get_cd 'https://chromium.googlesource.com/webm/libvpx.git' \
 		--prefix="$PREFIX" \
 	&& make && make install
 ghq_get_cd 'https://chromium.googlesource.com/webm/libwebp' \
-	&& env NOCONFIGURE=1 ./autogen.sh \
-	&& configure_install --enable-static --disable-shared --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --disable-neon
+	&& fancy_cmake -DWEBP_BUILD_CWEBP=ON -DWEBP_BUILD_LIBWEBPMUX=ON -DWEBP_BUILD_WEBPMUX=ON -DWEBP_BUILD_EXTRAS=OFF -DWEBP_BUILD_WEBPINFO=ON -DWEBP_BUILD_DWEBP=ON -DBUILD_SHARED_LIBS=OFF -DWEBP_BUILD_ANIM_UTILS=ON -DWEBP_BUILD_DWEBP=ON -DWEBP_BUILD_VWEBP=OFF
 ghq_get_cd 'https://gitlab.freedesktop.org/pixman/pixman.git' \
-	&& simple_meson --auto-features=auto --default-library=static -Denable_tests=false -Denable_gtk=false
+	&& simple_meson --auto-features=auto --default-library=static -Denable_tests=false -Denable_gtk=false -Dtests=disabled
 ghq_get_cd 'https://github.com/libass/libass.git' && env NOCONFIGURE=1 ./autogen.sh && configure_install --enable-static --disable-shared --disable-test --disable-directwrite --disable-coretext
 # for the RIST streaming protocol, used in ffmpeg
 ghq_get_cd 'https://code.videolan.org/rist/librist.git' && simple_meson -Dtest=false
@@ -200,7 +205,7 @@ ghq_get_cd 'https://git.ffmpeg.org/ffmpeg.git' \
 		--enable-runtime-cpudetect \
 		--disable-vdpau \
 	&& make_install
-ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled --default-library=static -Ddemos=false -Dtests=false
+ghq_get_cd 'https://code.videolan.org/videolan/libplacebo.git' && simple_meson -Dvulkan=enabled -Dshaderc=enabled --default-library=static -Ddemos=false -Dtests=false -Dd3d11=disabled
 # neovim dep
 ghq_get_cd 'https://github.com/tree-sitter/tree-sitter.git' && make_install
 export CFLAGS="$CFLAGS_LTO" LDFLAGS="$CFLAGS_LTO" CXXFLAGS="$CFLAGS_LTO" CPPFLAGS="$CFLAGS_LTO"
@@ -372,9 +377,9 @@ ghq_get_cd https://github.com/tmux/tmux.git \
 ghq_get_cd https://github.com/jaseg/lolcat && DESTDIR=$PREFIX/bin make_install
 
 # ncmpcpp, with only the features i use
-ghq_get_cd https://github.com/arybczak/ncmpcpp.git \
+ghq_get_cd https://github.com/ncmpcpp/ncmpcpp.git \
 	&& ./autogen.sh \
-	&& configure_install --disable-static --with-taglib --with-gnu-ld
+	&& configure_install --disable-static --with-taglib
 
 # back to regular flags, no LTO
 # shellcheck source=/home/rkumar/Executables/shell-scripts/updates/cc_funcs.sh

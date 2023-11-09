@@ -484,6 +484,15 @@ user_pref("security.ssl.disable_session_identifiers", true); // common tracking 
 user_pref("browser.urlbar.suggest.quicksuggest", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.newtabpage.activity-stream.discoverystream.sponsored-collections.enabled", false);
+user_pref("browser.newtabpage.activity-stream.discoverystream.spocAdTypes", "");
+user_pref("browser.newtabpage.activity-stream.discoverystream.spocSiteId", "");
+user_pref("browser.newtabpage.activity-stream.discoverystream.spocZoneIds", "");
+// IDK what this is, but I block all cookie banners so I can't consent to them lol.
+// Assuming that browsing the website == consent is illegal and plenty of sites still
+// do it, but I cbf to find a good workaround. This isn't a real workaround since it
+// can still pick "accept all" automatically, WTF
+user_pref("cookiebanners.bannerClicking.enabled", false);
+user_pref("cookiebanners.ui.desktop.enabled", false);
 
 user_pref("pdfjs.enableScripting", false);
 
@@ -515,6 +524,33 @@ user_pref("security.sandbox.gmp.shadow-stack.enabled", true	);
 user_pref("security.sandbox.gpu.shadow-stack.enabled", true	);
 user_pref("security.sandbox.rdd.shadow-stack.enabled", true	);
 user_pref("security.sandbox.socket.shadow-stack.enabled", true);
+
+// more mozilla bloatware
+user_pref("browser.tabs.firefox-view", false);
+user_pref("services.sync.prefs.sync.browser.firefox-view.feature-tour", false);
+user_pref("browser.firefox-view.feature-tour", "");
+// I'll use a weather app/widget if I want to, but outside the browser
+user_pref("browser.urlbar.suggest.weather", false);
+
+// I deal with overstim, so I like to disable animations
+// disable animations
+user_pref("ui.prefersReducedMotion", 1);
+
+// disable migrations
+user_pref("browser.migrate.brave.enabled", false);
+user_pref("browser.migrate.canary.enabled", false);
+user_pref("browser.migrate.chrome-beta.enabled", false);
+user_pref("browser.migrate.chrome-dev.enabled", false);
+user_pref("browser.migrate.chrome.enabled", false);
+user_pref("browser.migrate.chromium-360se.enabled", false);
+user_pref("browser.migrate.chromium-edge-beta.enabled", false);
+user_pref("browser.migrate.chromium-edge.enabled", false);
+user_pref("browser.migrate.chromium.enabled", false);
+user_pref("browser.migrate.edge.enabled", false);
+user_pref("browser.migrate.firefox.enabled", false);
+user_pref("browser.migrate.ie.enabled", false);
+user_pref("browser.migrate.opera.enabled", false);
+user_pref("browser.migrate.safari.enabled", false);
 
 user_pref("_userjs.parsed.correctly", "SUCCESS");
 

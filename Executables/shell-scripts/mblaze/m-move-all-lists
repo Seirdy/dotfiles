@@ -1,18 +1,45 @@
 #!/usr/bin/env dash
-set -e
-matches() {
-	mlist ~/mail/seirdy/Inbox/cur | "$1" | wc -l
+
+# This script moves mailing list items and some automated messages to dedicated
+
+set -e -u
+mail_dir="$HOME/mail/seirdy"
+
+find_matches() {
+	mlist "$mail_dir/Inbox/cur" | "m-$1"
 }
+
 move() {
-	num_matches="$(matches "$1")"
+	matches="$(find_matches "$1")"
+	num_matches="$(printf '%s' "$matches" | wc -l)"
 	if [ "$num_matches" -gt 0 ]; then
-		echo "moving $num_matches" emails to "$2"
-		mv $(mlist ~/mail/seirdy/Inbox/cur | "$1") "$2"
+		echo "moving $num_matches emails to $2"
+		for match in $matches; do
+			mv "$match" "$2/cur/"
+		done
 	fi
 }
-move m-srht-lists ~/mail/seirdy/lists/sr.ht/cur/
-move m-gemini-lists ~/mail/seirdy/lists/gemini/cur/
-move m-github-lists ~/mail/seirdy/lists/github.com/cur/
-move m-gitlab-lists ~/mail/seirdy/lists/gitlab.com/cur/
-move m-codeberg-lists ~/mail/seirdy/lists/codeberg.org/cur/
+
+move srht-me-lists "$mail_dir/lists/sr.ht/seirdy"
+move srht-lists "$mail_dir/lists/sr.ht"
+move srht-builds-lists "$mail_dir/lists/sr.ht/builds"
+move gemini-lists "$mail_dir/lists/gemini"
+move github-lists "$mail_dir/lists/github.com"
+move gitlab-lists "$mail_dir/lists/gitlab.com"
+move fdesktop-lists "$mail_dir/lists/gitlab-fdesktop"
+move gitlab-tor-lists "$mail_dir/lists/tor/gitlab"
+move codeberg-lists "$mail_dir/lists/codeberg.org"
+move fedora-discourse-lists "$mail_dir/lists/fedora/discourse"
+move fedora-sway-lists "$mail_dir/lists/fedora/sway-sig"
+move libravatar-fans-lists "$mail_dir/lists/libravatar-fans"
+move bugzilla-lists "$mail_dir/lists/bugzilla"
+move chromium-lists "$mail_dir/lists/chromium"
+move lobsters-lists "$mail_dir/lists/lobsters"
+move schemaorg-lists "$mail_dir/lists/schemaorg"
+move a11y-lists "$mail_dir/lists/a11y"
+move search-console-lists "$mail_dir/lists/search-console"
+move dmarc-reports "$mail_dir/dmarc-reports"
+move discourse-misc-lists "$mail_dir/lists/discourse-misc"
+
+echo 'finished'
 # vi:ft=sh
