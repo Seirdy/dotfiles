@@ -1,0 +1,5 @@
+#!/usr/bin/env dash
+# qdig wrapper that queries basically all the DNS records I could be interested in
+
+qdig $* -t A AAAA NS MX HTTPS TXT OPENPGP SSHFP CAA SRV SVCB HINFO
+# vi:ft=sh
