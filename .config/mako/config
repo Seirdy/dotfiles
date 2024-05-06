@@ -1,8 +1,13 @@
 layer=overlay
 font=monospace term 10
 background-color=#31363b
-default-timeout=86400000
+default-timeout=0
 group-by=app-name
 icon-path=/usr/share/icons/Papirus-Dark
 anchor=bottom-right
 width=400
+
+[app-name="qBittorrent" summary="I/O Error"]
+default-timeout=10
+ignore-timeout=1
+anchor=bottom-left
