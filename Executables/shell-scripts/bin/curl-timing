@@ -1,0 +1,15 @@
+#!/usr/bin/env dash
+# curl-based script for performance measurement.
+
+output_format='Connect:\t%{time_connect}
+Handshake:\t%{time_appconnect}
+TTFB:\t%{time_starttransfer}
+Total:\t%{time_total}
+
+Header download:\t%{size_header}
+Body download:\t%{size_download}\n'
+
+curl -sS --compressed -w "$output_format" -o /dev/null $* \
+	| column -t -s'	'
+
+# vi:ft=sh
