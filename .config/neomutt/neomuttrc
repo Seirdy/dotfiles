@@ -1673,7 +1673,7 @@ set edit_headers=yes
 # If set, flagged messages can't be deleted.
 #
 #
-set folder="~/mail/seirdy"
+set folder="~/mail/seirdy2"
 #
 # Name: folder
 # Type: mailbox
@@ -3009,7 +3009,7 @@ set mask="!^\\.[^.]"
 # will be shown. The match is always case-sensitive.
 #
 #
-set mbox="~/mail/seirdy"
+set mbox="~/mail/seirdy2"
 #
 # Name: mbox
 # Type: mailbox
@@ -6245,7 +6245,7 @@ set sort_aux=last-date-received
 # separator.
 #
 #
-set spoolfile="~/mail/seirdy"
+set spoolfile="~/mail/seirdy2"
 #
 # Name: spoolfile
 # Type: mailbox
@@ -7251,6 +7251,6 @@ set pgp_check_gpg_decrypt_status_fd
 mono quoted bold
 
 mailboxes =Inbox
-mailboxes `find ~/mail/seirdy/ -type d -name cur | grep -Ev 'seirdy/cur|Inbox' | sed -e 's:/cur/*$::' -e 's/ /\\ /g' | sort | tr '\n' ' '`
+mailboxes `find ~/mail/seirdy2/ -type d -name cur | grep -Ev 'seirdy2/cur|Inbox' | sed -e 's:/cur/*$::' -e 's/ /\\ /g' | sort | tr '\n' ' '`
 
 alternative_order text/plain text/enriched text/html
