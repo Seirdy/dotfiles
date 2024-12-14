@@ -1,7 +1,8 @@
 #!/usr/bin/env dash
 # wrapper for q, a program like "dig" that supports more client-server DNS protocols.
 
-# q $* -s tls://2606:4700:4700::6400 --aa --tls-min-version=1.3
-q $* -s quic://dns.nextdns.io --aa --tls-min-version=1.3
+# q $* -ds tls://2606:4700:4700::6400 --aa --tls-min-version=1.3
+q $* -ds quic://dns.nextdns.io --aa --tls-min-version=1.3
+# q $* -ds quic://dnsforge.de:853 --aa --tls-min-version=1.3
 
 # vi:ft=sh
