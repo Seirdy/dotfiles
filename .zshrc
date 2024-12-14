@@ -21,7 +21,7 @@ export ZINIT[SNIPPETS_DIR]="$ZINIT[HOME_DIR]/snippets"
 if [ "$0" = '/bin/zsh' ]; then
 	module_path+=("$ZINIT[HOME_DIR]/bin/zmodules/Src")
 	# study time spent sourcing files
-	zmodload zdharma/zplugin # doesn't work with static zsh-bin
+	zmodload zdharma-continuum/zplugin # doesn't work with static zsh-bin
 fi
 
 if [ -z "$PROFILE_SET" ]; then
@@ -146,10 +146,7 @@ zreload() {
 
 # add some items to bash-insulter
 custom_insults=(
-	"B-BAKA!!!"
-	"Omae wa mou shindeiru"
 	"Nani?!"
-	"REEEEEEEEEEEE"
 )
 # increase the probability of my custom additions showing by duplicating them
 custom_insults=("${custom_insults[@]}" "${custom_insults[@]}")
