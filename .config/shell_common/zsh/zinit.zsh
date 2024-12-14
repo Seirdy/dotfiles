@@ -31,10 +31,10 @@ zi0c() {
 ###########
 
 # My fancy prompt needs at least 256 colors, preferably 24bit color
-if [ "${TERM##*-}" = '256color' ] || [ "${terminfo[colors]:?}" -gt 255 ]; then
+# if [ "${TERM##*-}" = '256color' ] || [ "${terminfo[colors]:?}" -gt 255 ]; then
 	z_lucid depth=1
 	zinit light romkatv/powerlevel10k
-fi
+# fi
 
 zi0a
 zinit light skywind3000/z.lua
@@ -155,14 +155,6 @@ zinit light denisidoro/navi
 zi_program has'fzf' pick'fzf-tmux'
 zinit light $GHQ_ROOT/github.com/junegunn/fzf/bin
 
-zi_program pick'neofetch' atclone"cp neofetch.1 $HOME/.local/man/man1" atpull'%atclone'
-zinit light dylanaraps/neofetch
-
-if ! command -v exiftool >/dev/null; then
-	zi_program has'perl' has'convert' pick'exiftool'
-	zinit light exiftool/exiftool
-fi
-
 if [ -z "$SSH_CONNECTION" ]; then
 	zi_program has'perl' pick'inxi'
 	zinit light smxi/inxi
@@ -177,7 +169,7 @@ zinit snippet $GHQ_ROOT/github.com/jarun/nnn/misc/quitcd/quitcd.bash_zsh
 
 # only used in fzf previews because delta's colors get messed up there
 zi0a has'perl' as'program' pick'bin/git-dsf'
-zinit light zdharma/zsh-diff-so-fancy
+zinit light zdharma-continuum/zsh-diff-so-fancy
 
 zi0a
 zinit light wfxr/emoji-cli
@@ -216,9 +208,6 @@ zinit light greymd/tmux-xpanes
 zi_completion has'cargo'
 zinit snippet $RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions/_cargo
 
-zi_completion has'rustc'
-zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rust/_rust
-
 zi_completion has'yadm'
 zinit snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/zsh/_yadm
 
@@ -226,7 +215,7 @@ zi_completion has'msync' mv'msync_complete.sh -> _msync'
 zinit snippet $GHQ_ROOT/github.com/Kansattica/msync/scripts/msync_complete.sh
 
 zi_completion has'tldr' mv'zsh_tealdeer -> _tldr'
-zinit snippet https://github.com/dbrgn/tealdeer/blob/master/zsh_tealdeer
+zinit snippet https://github.com/tealdeer-rs/tealdeer/blob/main/completion/zsh_tealdeer
 
 zi_completion has'yt-dlp'
 zinit snippet $GHQ_ROOT/github.com/yt-dlp/yt-dlp/completions/zsh/_yt-dlp
@@ -308,4 +297,4 @@ zinit wait'0c' lucid light-mode for \
 	atclone'print Installing system completions...; \
 	zinit creinstall -q /usr/share/zsh/site-functions' \
 	atload'zpcompinit; zpcdreplay; finish_setup' \
-	zdharma/fast-syntax-highlighting
+	zdharma-continuum/fast-syntax-highlighting

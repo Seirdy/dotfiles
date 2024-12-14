@@ -1,5 +1,7 @@
 // This user.js WILL create more fingerprinting vectors. However, most third-party surveillance modules take very little of this into account.
 // If you really want to reduce fingerprinting potential, use the tor browser.
+// My priority here is attack surface reduction, not anonymity. Again, use the Tor Browser for anonymity.
+// I use FF for attack surface reduction, Chromium for securely using apps with lots of attack surface, and the Tor Browser for anonymity.
 
 // disable auto connections for updates, since I handle updates outside the browser
 user_pref("app.update.url", "");
@@ -420,6 +422,7 @@ user_pref("intl.accept_languages", "en-US, en");
 user_pref("dom.webaudio.enabled", false);
 user_pref("browser.download.forbid_open_with", true);
 user_pref("security.OCSP.enabled", 1); // ocsp is good for security, but please use stapling. I'm trading some priv for sec.
+user_pref("security.OCSP.require", true); // ocsp is good for security, but please use stapling. I'm trading some priv for sec.
 user_pref("browser.preferences.experimental", true); // doesn't do anything, just exposes a convenient menu in prefs.
 
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1672013
@@ -552,9 +555,39 @@ user_pref("browser.migrate.ie.enabled", false);
 user_pref("browser.migrate.opera.enabled", false);
 user_pref("browser.migrate.safari.enabled", false);
 
-user_pref("_userjs.parsed.correctly", "SUCCESS");
-
 // more bloat
 
 user_pref("browser.tabs.firefox-view", false);
 user_pref("browser.tabs.firefox-view-next", false);
+user_pref("browser.aboutwelcome.enabled", false);
+user_pref("dom.push.enabled", false);
+user_pref("dom.webmidi.enabled", false);
+user_pref("dom.vr.enabled", false);
+user_pref("javascript.options.shared_memory", false);
+
+// perf
+user_pref("nglayout.initialpaint.delay", 50);
+user_pref("nglayout.initialpaint.delay_in_oopif", 50);
+user_pref("gfx.webrender.precache-shaders", true);
+user_pref("gfx.webrender.compositor", true);
+user_pref("gfx.webrender.compositor.force-enabled", true);
+user_pref("network.http.max-connections", 1800); // default=900
+user_pref("browser.low_commit_space_threshold_percent", 25); // default=5;
+
+
+// PREF: Smartblock
+// [1] https://support.mozilla.org/en-US/kb/smartblock-enhanced-tracking-protection
+// [2] https://www.youtube.com/watch?v=VE8SrClOTgw
+// [3] https://searchfox.org/mozilla-central/source/browser/extensions/webcompat/data/shims.js
+user_pref("extensions.webcompat.enable_shims", true); // enabled with "Strict"
+
+
+// PREF: disable remote debugging
+// [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222
+user_pref("devtools.debugger.remote-enabled", false); // DEFAULT
+
+// no TLS bypass
+user_pref("security.cert_pinning.enforcement_level", 2);
+user_pref("security.enterprise_roots.enabled", false);
+
+user_pref("_userjs.parsed.correctly", "SUCCESS");
