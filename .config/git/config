@@ -50,7 +50,7 @@
 	smtpserver = smtp.migadu.com
 	smtpencryption = tls
 	smtpserverport = 587
-	from = Rohan Kumar <seirdy@seirdy.one>
+	from = Seirdy <seirdy@seirdy.one>
 	compose-encoding = UTF-8
 	confirm = always
 	; smtpsslcertpath = /etc/ssl/certs
@@ -61,3 +61,5 @@
 	rebase = false
 [init]
 	defaultBranch = trunk
+[format]
+	subjectPrefix = PATCH repo-name
