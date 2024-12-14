@@ -54,7 +54,7 @@ export XDG_USER_CONFIG_DIR="$XDG_CONFIG_HOME" # rofi
 export LC_TIME=C # 24 hour date
 export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
-export TZ="America/Los_Angeles"
+export TZ="America/New_York"
 # export TZ="US/Hawaii"
 export NVIM_GTK_PREFER_DARK_THEME=1
 export GIT_COLA_ICON_THEME='dark'
@@ -80,9 +80,9 @@ export QV4_FORCE_INTERPRETER=1
 # and a shell script that wraps chromium with a bunch of prefs
 # export BROWSER=chromium
 # export GTK_USE_PORTAL=1 # KDE file-picker
-export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
-export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
-export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
+#export QT_QPA_FLATPAK_PLATFORMTHEME='kde'
+#export QT_PLUGIN_PATH="/usr/lib64/qt5/plugins:$QT_PLUGIN_PATH"
+#export QT_PLUGIN_PATH="$HOME/.local/lib64/qt5/plugins:$QT_PLUGIN_PATH"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
 export TOOLBOX_PROFILE_DIR="$XDG_DATA_HOME/toolbox"
 export KUNST_MUSIC_DIR="$HOME/Music"
@@ -91,7 +91,7 @@ export _ZL_HYPHEN=1 # fix for https://github.com/skywind3000/z.lua/wiki/FAQ#how-
 # allow using Mercurial with Python 3
 export HGPYTHON3=1
 # Disable the golang google proxy
-export GOPROXY=direct
+#export GOPROXY=direct
 
 # De-clutter my home folder.
 # See https://0x46.net/thoughts/2019/02/01/dotfile-madness/
@@ -294,7 +294,7 @@ if [ "$XDG_SESSION_TYPE" = 'wayland' ] || [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_D
 	# firefox
 	export MOZ_ENABLE_WAYLAND=1
 	# use wl-copy with pash, and clear the clipboard after one paste
-	export PASH_CLIP='wl-copy -no'
+	export PASH_CLIP='wl-copy -n'
 	# some GTK apps.
 	# Commented out because (Ungoogled-)Chromium and Electron aren't ready
 	# export GDK_BACKEND='wayland'
