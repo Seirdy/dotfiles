@@ -4,7 +4,7 @@
 # cursor theme
 seat seat0 xcursor_theme Adwaita 24
 # disable xwayland
-# xwayland disable
+xwayland disable
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -42,9 +42,11 @@ for_window [app_id="^firefox$" title=".*Greasemonkey User Script - Mozilla Firef
 for_window [app_id="^launcher$"] floating enable
 for_window [app_id="^thorium-browser"] shortcuts_inhibitor disable
 for_window [app_id="^chrome-"] shortcuts_inhibitor disable
-# Sometimes I need Chromium and Tor and I don't want to run yet another Whonix
+# Rarely, I need Chromium and Tor and I don't want to run yet another Whonix
 # profile, or re-use the system Tor's circuit. Nothing else does the
 # trick. That's the only reason I use this.
+# If you don't fall in this weird niche, don't use Brave.
+for_window [app_id="^brave-"] shortcuts_inhibitor disable
 for_window [title="^Floating Window - Show Me The Key$"] floating enable
 # havoc is a terminal emulator that starts up quickly; I use it for floating menus
 for_window [title="^havoc$"] floating enable
@@ -143,6 +145,7 @@ input * {
 	# start a terminal
 	bindsym $mod+space exec $term
 	bindsym $mod+Mod1+space exec floating-terminal
+	bindsym $mod+Mod1+Shift+space exec foot --config ~/.config/foot/foot_no_tmux.ini
 
 	# kill focused window
 	bindsym $mod+Shift+q kill
@@ -172,6 +175,7 @@ input * {
 # Program launching
 #
 	bindsym $mod+f exec firefox --new-window
+	bindsym $mod+shift+F exec chrome2
 	bindsym $mod+c exec chromium-element
 
 	bindsym $mod+p exec xdg-open-paste
